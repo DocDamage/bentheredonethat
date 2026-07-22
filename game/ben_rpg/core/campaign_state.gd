@@ -182,6 +182,21 @@ const UNIVERSE_TREASURE_CACHES := {
 	},
 }
 const EQUIPMENT_SLOTS := [&"weapon", &"head", &"body", &"hands", &"accessory", &"charm"]
+const EQUIPMENT_AFFINITIES := {
+	&"ben": [&"field", &"martial", &"technical", &"occult", &"frontline", &"scout", &"radiant"],
+	&"fighter": [&"field", &"martial", &"frontline"],
+	&"astronaut": [&"field", &"technical", &"scout"],
+	&"caveman": [&"field", &"martial", &"frontline"],
+	&"crimson_oni": [&"field", &"martial", &"frontline"],
+	&"rift_jackal": [&"field", &"martial", &"occult", &"scout"],
+	&"mossback_surveyor": [&"field", &"frontline"],
+	&"cobalt_courier": [&"field", &"martial", &"technical", &"scout"],
+	&"bulkhead_warden": [&"field", &"martial", &"technical", &"frontline"],
+	&"kitsune_empress": [&"field", &"occult", &"scout"],
+	&"neon_viper": [&"field", &"technical", &"scout"],
+	&"archangel_commander": [&"field", &"occult", &"frontline", &"radiant"],
+	&"frost_lich_emperor": [&"field", &"technical", &"occult"],
+}
 const JOB_QUALITY_NAMES := ["Routine", "Competent", "Excellent", "Masterwork", "Legendary"]
 const SERVICE_ITEM_CATALOG := {
 	&"tonic": {"name": "Tonic", "price": 18, "icon": "dfgui_icon-cauldron.png", "description": "Restores 70 HP to one ally in battle."},
@@ -221,96 +236,96 @@ const ARMORY_STOCK := {
 	&"watchmakers_lens": {
 		"id": &"watchmakers_lens", "base_name": "Watchmaker's Field Lens", "slot": &"accessory", "price": 64,
 		"icon": "res://game_assets/items/resources_items_artifacts_loot/PNG/Transperent/Icon15.png",
-		"rarity": "Common", "rarity_color": "#d8d3c5", "modifiers": [{"name": "of Calibration", "stat": "magic", "value": 2}, {"name": "of Timing", "stat": "speed", "value": 2}],
+		"rarity": "Common", "rarity_color": "#d8d3c5", "modifiers": [{"name": "of Calibration", "stat": "magic", "value": 2}, {"name": "of Timing", "stat": "speed", "value": 2}], "required_affinities": [&"technical"],
 	},
 	&"anchor_knot": {
 		"id": &"anchor_knot", "base_name": "Braided Anchor Knot", "slot": &"charm", "price": 66,
 		"icon": "res://game_assets/items/resources_items_artifacts_loot/PNG/Transperent/Icon42.png",
-		"rarity": "Common", "rarity_color": "#d8d3c5", "modifiers": [{"name": "of Continuity", "stat": "spirit", "value": 3}, {"name": "of Charge", "stat": "max_mp", "value": 6}],
+		"rarity": "Common", "rarity_color": "#d8d3c5", "modifiers": [{"name": "of Continuity", "stat": "spirit", "value": 3}, {"name": "of Charge", "stat": "max_mp", "value": 6}], "required_affinities": [&"occult"],
 	},
 	&"tempered_saber": {
 		"id": &"tempered_saber", "base_name": "Tempered Fault-Line Saber", "slot": &"weapon", "price": 148,
 		"icon": "res://game_assets/items/armory/Singles/Weapon_Singles/Iron/Iron_Weapon8.png",
 		"rarity": "Uncommon", "rarity_color": "#62d67b", "modifiers": [{"name": "of Tempering", "stat": "attack", "value": 7}, {"name": "of Quick Draw", "stat": "speed", "value": 2}],
-		"requires_flags": [&"mansion_archive_boss_defeated"],
+		"required_affinities": [&"martial"], "requires_flags": [&"mansion_archive_boss_defeated"],
 	},
 	&"timekeeper_charm": {
 		"id": &"timekeeper_charm", "base_name": "Timekeeper's Safety Charm", "slot": &"charm", "price": 142,
 		"icon": "res://game_assets/items/resources_items_artifacts_loot/PNG/Transperent/Icon42.png",
 		"rarity": "Uncommon", "rarity_color": "#62d67b", "modifiers": [{"name": "of Punctuality", "stat": "spirit", "value": 5}, {"name": "of Preparedness", "stat": "speed", "value": 1}],
-		"element_rates": {&"time": 0.75}, "requires_flags": [&"mansion_archive_boss_defeated"],
+		"element_rates": {&"time": 0.75}, "required_affinities": [&"occult"], "requires_flags": [&"mansion_archive_boss_defeated"],
 	},
 	&"vacuum_plate": {
 		"id": &"vacuum_plate", "base_name": "Asterion Vacuum Plate", "slot": &"body", "price": 184,
 		"icon": "res://game_assets/items/armory/Singles/Armor_Singles/Iron/Iron_Chestplate1.png",
 		"rarity": "Uncommon", "rarity_color": "#62d67b", "modifiers": [{"name": "of Pressure", "stat": "defense", "value": 8}, {"name": "of Reserve Air", "stat": "max_hp", "value": 24}],
-		"requires_flags": [&"asterion_station_complete"],
+		"required_affinities": [&"frontline"], "requires_flags": [&"asterion_station_complete"],
 	},
 	&"grounded_signal_lens": {
 		"id": &"grounded_signal_lens", "base_name": "Grounded Signal Lens", "slot": &"accessory", "price": 188,
 		"icon": "res://game_assets/items/resources_items_artifacts_loot/PNG/Transperent/Icon15.png",
 		"rarity": "Uncommon", "rarity_color": "#62d67b", "modifiers": [{"name": "of Diagnostics", "stat": "magic", "value": 5}, {"name": "of Isolation", "stat": "spirit", "value": 3}],
-		"element_rates": {&"lightning": 0.75}, "requires_flags": [&"asterion_station_complete"],
+		"element_rates": {&"lightning": 0.75}, "required_affinities": [&"technical"], "requires_flags": [&"asterion_station_complete"],
 	},
 	&"caldera_field_gloves": {
 		"id": &"caldera_field_gloves", "base_name": "Caldera Field Gloves", "slot": &"hands", "price": 212,
 		"icon": "res://game_assets/items/armory/Singles/Armor_Singles/Iron/Iron_Gloves5.png",
 		"rarity": "Rare", "rarity_color": "#58a6ff", "modifiers": [{"name": "of the Hunt", "stat": "attack", "value": 5}, {"name": "of Sure Footing", "stat": "speed", "value": 3}],
-		"element_rates": {&"nature": 0.75}, "requires_flags": [&"primeval_scenario_complete"],
+		"element_rates": {&"nature": 0.75}, "required_affinities": [&"martial"], "requires_flags": [&"primeval_scenario_complete"],
 	},
 	&"paleo_signal_lens": {
 		"id": &"paleo_signal_lens", "base_name": "Paleo Signal Lens", "slot": &"accessory", "price": 206,
 		"icon": "res://game_assets/items/resources_items_artifacts_loot/PNG/Transperent/Icon9.png",
 		"rarity": "Rare", "rarity_color": "#58a6ff", "modifiers": [{"name": "of Translation", "stat": "magic", "value": 6}, {"name": "of Bedrock", "stat": "defense", "value": 4}],
-		"element_rates": {&"spectral": 0.8}, "requires_flags": [&"primeval_scenario_complete"],
+		"element_rates": {&"spectral": 0.8}, "required_affinities": [&"technical"], "requires_flags": [&"primeval_scenario_complete"],
 	},
 	&"noonshade_visored_cap": {
 		"id": &"noonshade_visored_cap", "base_name": "Noonshade Visored Cap", "slot": &"head", "price": 246,
 		"icon": "res://game_assets/items/armory/Singles/Armor_Singles/Iron/Iron_Helmet5.png",
 		"rarity": "Rare", "rarity_color": "#58a6ff", "modifiers": [{"name": "of the Night Shift", "stat": "defense", "value": 5}, {"name": "of Escape Routes", "stat": "speed", "value": 4}],
-		"element_rates": {&"radiant": 0.75}, "requires_flags": [&"helios_scenario_complete"],
+		"element_rates": {&"radiant": 0.75}, "required_affinities": [&"scout"], "requires_flags": [&"helios_scenario_complete"],
 	},
 	&"afterlight_coil": {
 		"id": &"afterlight_coil", "base_name": "Afterlight Discharge Coil", "slot": &"charm", "price": 238,
 		"icon": "res://game_assets/items/resources_items_artifacts_loot/PNG/Transperent/Icon42.png",
 		"rarity": "Rare", "rarity_color": "#58a6ff", "modifiers": [{"name": "of Countercurrent", "stat": "magic", "value": 5}, {"name": "of Nerve", "stat": "spirit", "value": 5}],
-		"element_rates": {&"lightning": 0.7}, "requires_flags": [&"helios_scenario_complete"],
+		"element_rates": {&"lightning": 0.7}, "required_affinities": [&"technical"], "requires_flags": [&"helios_scenario_complete"],
 	},
 	&"thermal_arbitration_coat": {
 		"id": &"thermal_arbitration_coat", "base_name": "Thermal Arbitration Coat", "slot": &"body", "price": 278,
 		"icon": "res://game_assets/items/armory/Singles/Armor_Singles/Iron/Iron_Chestplate5.png",
 		"rarity": "Rare", "rarity_color": "#58a6ff", "modifiers": [{"name": "of Insulation", "stat": "defense", "value": 9}, {"name": "of Warm Rations", "stat": "max_hp", "value": 28}],
-		"element_rates": {&"frost": 0.7}, "requires_flags": [&"frosthold_scenario_complete"],
+		"element_rates": {&"frost": 0.7}, "required_affinities": [&"frontline"], "requires_flags": [&"frosthold_scenario_complete"],
 	},
 	&"winter_ledger_locket": {
 		"id": &"winter_ledger_locket", "base_name": "Winter Ledger Locket", "slot": &"accessory", "price": 266,
 		"icon": "res://game_assets/items/resources_items_artifacts_loot/PNG/Transperent/Icon15.png",
 		"rarity": "Rare", "rarity_color": "#58a6ff", "modifiers": [{"name": "of Forbearance", "stat": "spirit", "value": 7}, {"name": "of Reserves", "stat": "max_mp", "value": 10}],
-		"element_rates": {&"spectral": 0.75}, "requires_flags": [&"frosthold_scenario_complete"],
+		"element_rates": {&"spectral": 0.75}, "required_affinities": [&"occult"], "requires_flags": [&"frosthold_scenario_complete"],
 	},
 	&"veracity_lantern_locket": {
 		"id": &"veracity_lantern_locket", "base_name": "Veracity Lantern Locket", "slot": &"accessory", "price": 308,
 		"icon": "res://game_assets/items/resources_items_artifacts_loot/PNG/Transperent/Icon15.png",
 		"rarity": "Epic", "rarity_color": "#bd77ff", "modifiers": [{"name": "of Witness", "stat": "magic", "value": 8}, {"name": "of the Record", "stat": "spirit", "value": 4}],
-		"element_rates": {&"spectral": 0.7}, "requires_flags": [&"moonpetal_scenario_complete"],
+		"element_rates": {&"spectral": 0.7}, "required_affinities": [&"occult"], "requires_flags": [&"moonpetal_scenario_complete"],
 	},
 	&"moonpetal_courier_gloves": {
 		"id": &"moonpetal_courier_gloves", "base_name": "Moonpetal Courier Gloves", "slot": &"hands", "price": 296,
 		"icon": "res://game_assets/items/armory/Singles/Armor_Singles/Iron/Iron_Gloves9.png",
 		"rarity": "Epic", "rarity_color": "#bd77ff", "modifiers": [{"name": "of the Procession", "stat": "attack", "value": 7}, {"name": "of Swift Recall", "stat": "speed", "value": 4}],
-		"element_rates": {&"time": 0.75}, "requires_flags": [&"moonpetal_scenario_complete"],
+		"element_rates": {&"time": 0.75}, "required_affinities": [&"scout"], "requires_flags": [&"moonpetal_scenario_complete"],
 	},
 	&"galvanic_counterweight": {
 		"id": &"galvanic_counterweight", "base_name": "Galvanic Counterweight", "slot": &"charm", "price": 348,
 		"icon": "res://game_assets/items/resources_items_artifacts_loot/PNG/Transperent/Icon42.png",
 		"rarity": "Epic", "rarity_color": "#bd77ff", "modifiers": [{"name": "of Grounding", "stat": "defense", "value": 9}, {"name": "of Ballast", "stat": "max_hp", "value": 30}],
-		"element_rates": {&"lightning": 0.7}, "requires_flags": [&"empyreal_scenario_complete"],
+		"element_rates": {&"lightning": 0.7}, "required_affinities": [&"technical"], "requires_flags": [&"empyreal_scenario_complete"],
 	},
 	&"aerie_ward_helm": {
 		"id": &"aerie_ward_helm", "base_name": "Aerie Ward Helm", "slot": &"head", "price": 336,
 		"icon": "res://game_assets/items/armory/Singles/Armor_Singles/Iron/Iron_Helmet8.png",
 		"rarity": "Epic", "rarity_color": "#bd77ff", "modifiers": [{"name": "of Appeals", "stat": "spirit", "value": 8}, {"name": "of Flight", "stat": "speed", "value": 4}],
-		"element_rates": {&"radiant": 0.7}, "requires_flags": [&"empyreal_scenario_complete"],
+		"element_rates": {&"radiant": 0.7}, "required_affinities": [&"radiant"], "requires_flags": [&"empyreal_scenario_complete"],
 	},
 }
 const FACILITY_DEFINITIONS := {
@@ -1347,10 +1362,7 @@ func reset_skill_tree(character_id: StringName) -> bool:
 func equip_loot(character_id: StringName, instance_id: String) -> bool:
 	var item := loot_by_instance(instance_id)
 	var slot := StringName(item.get("slot", ""))
-	if item.is_empty() or slot not in EQUIPMENT_SLOTS or not recruit_catalog.has(character_id):
-		return false
-	var allowed: Array = item.get("allowed_characters", [])
-	if not allowed.is_empty() and character_id not in allowed and String(character_id) not in allowed:
+	if item.is_empty() or slot not in EQUIPMENT_SLOTS or not item_is_compatible_with_character(character_id, item):
 		return false
 	for other_id in character_progress.keys():
 		var other_progress: Dictionary = character_progress[other_id]
@@ -1375,6 +1387,42 @@ func unequip_slot(character_id: StringName, slot: StringName) -> bool:
 	_clamp_character_vitals(character_id)
 	state_changed.emit()
 	return true
+
+
+func unequip_all_inactive(character_id: StringName) -> bool:
+	if StringName(recruit_status.get(character_id, &"undiscovered")) not in [&"reserve", &"staffed"]:
+		return false
+	var defaults := _default_vitals(character_id)
+	var progress := ensure_character_progress(character_id, defaults.x, defaults.y)
+	if progress.get("equipment", {}).is_empty():
+		return false
+	progress["equipment"].clear()
+	_clamp_character_vitals(character_id)
+	state_changed.emit()
+	return true
+
+
+func equipment_affinities_for(character_id: StringName) -> Array[StringName]:
+	var results: Array[StringName] = []
+	for raw_affinity in EQUIPMENT_AFFINITIES.get(character_id, [&"field"]):
+		results.append(StringName(raw_affinity))
+	return results
+
+
+func item_is_compatible_with_character(character_id: StringName, item: Dictionary) -> bool:
+	if not recruit_catalog.has(character_id) or item.is_empty():
+		return false
+	var allowed: Array = item.get("allowed_characters", [])
+	if not allowed.is_empty() and character_id not in allowed and String(character_id) not in allowed:
+		return false
+	var required_affinities: Array = item.get("required_affinities", [])
+	if required_affinities.is_empty():
+		return true
+	var affinities := equipment_affinities_for(character_id)
+	for raw_affinity in required_affinities:
+		if StringName(raw_affinity) in affinities:
+			return true
+	return false
 
 
 func save_equipment_loadout(character_id: StringName, loadout_name: String) -> bool:
@@ -1406,8 +1454,7 @@ func apply_equipment_loadout(character_id: StringName, loadout_name: String) -> 
 		var item := loot_by_instance(instance_id)
 		if slot not in EQUIPMENT_SLOTS or item.is_empty() or StringName(item.get("slot", "")) != slot:
 			return false
-		var allowed: Array = item.get("allowed_characters", [])
-		if not allowed.is_empty() and character_id not in allowed and String(character_id) not in allowed:
+		if not item_is_compatible_with_character(character_id, item):
 			return false
 		restored[slot] = instance_id
 	for other_id in character_progress.keys():

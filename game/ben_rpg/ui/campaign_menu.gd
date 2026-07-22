@@ -106,7 +106,7 @@ func open_menu(initial_tab: StringName = &"") -> void:
 		return
 	if initial_tab in [&"equipment", &"skills", &"inventory", &"facilities", &"quests", &"bestiary", &"roster", &"recall", &"services"]:
 		selected_tab = initial_tab
-	if selected_character not in CampaignState.party:
+	if not _is_menu_character_available(selected_character):
 		selected_character = CampaignState.party[0]
 	FieldEvents.input_paused.emit(true)
 	show()
@@ -261,7 +261,7 @@ func _build_interface() -> void:
 func _refresh() -> void:
 	_first_focus = null
 	_active_job_timer = null
-	if selected_character not in CampaignState.party and not CampaignState.party.is_empty():
+	if not _is_menu_character_available(selected_character) and not CampaignState.party.is_empty():
 		selected_character = CampaignState.party[0]
 	_header_currency.text = "%d DUCKETS\n%s" % [CampaignState.duckets, "LABORATORY — FREE RESETS" if _at_laboratory() else "FIELD LOADOUT"]
 	_refresh_character_buttons()
@@ -370,6 +370,17 @@ func _build_equipment_page() -> void:
 		if slot == selected_slot:
 			button.add_theme_color_override("font_color", Color(0.45, 0.92, 1.0))
 	_build_loadout_section()
+	var selected_status := StringName(CampaignState.recruit_status.get(selected_character, &"undiscovered"))
+	if selected_status in [&"reserve", &"staffed"]:
+		var unequip_all := Button.new()
+		unequip_all.name = "UnequipInactiveGear"
+		unequip_all.text = "UNEQUIP ALL %s GEAR" % String(selected_status).to_upper()
+		unequip_all.custom_minimum_size.y = 48
+		unequip_all.disabled = equipment.is_empty()
+		unequip_all.tooltip_text = "Returns every equipped item from this inactive character to the shared equipment inventory."
+		_apply_button_skin(unequip_all, UI_ROOT + "/dfgui_icon-wardrobe.png")
+		unequip_all.pressed.connect(_unequip_all_inactive)
+		_content.add_child(unequip_all)
 
 	_add_subheading("AVAILABLE FOR %s" % String(selected_slot).to_upper())
 	var equipped_id := String(equipment.get(selected_slot, ""))
@@ -384,8 +395,7 @@ func _build_equipment_page() -> void:
 	for item in CampaignState.loot_inventory:
 		if StringName(item.get("slot", "")) != selected_slot:
 			continue
-		var allowed: Array = item.get("allowed_characters", [])
-		if not allowed.is_empty() and selected_character not in allowed and String(selected_character) not in allowed:
+		if not CampaignState.item_is_compatible_with_character(selected_character, item):
 			continue
 		candidates += 1
 		var button := Button.new()
@@ -661,6 +671,14 @@ func _build_roster_page() -> void:
 		_apply_button_skin(button, UI_ROOT + "/dfgui_icon-wardrobe.png")
 		button.pressed.connect(_recall_to_party.bind(StringName(recruit_id)))
 		_content.add_child(button)
+		var gear := Button.new()
+		gear.name = "ManageInactiveGear_%s" % recruit_id
+		gear.text = "MANAGE GEAR"
+		gear.custom_minimum_size.y = 44
+		gear.tooltip_text = "Review or release equipment assigned to this reserve or staffed recruit."
+		_apply_button_skin(gear, UI_ROOT + "/dfgui_icon-helmet.png")
+		gear.pressed.connect(_open_inactive_equipment.bind(StringName(recruit_id)))
+		_content.add_child(gear)
 	if reserve_count == 0:
 		_add_notice("No discovered recruits are waiting in reserve or on facility duty.", Color(0.68, 0.72, 0.8))
 
@@ -1041,6 +1059,8 @@ func _build_armory_stock() -> void:
 	var character_name := String(CampaignState.recruit_catalog.get(selected_character, {}).get("name", selected_character))
 	_add_subheading("COMPANY OUTFITTING • %s" % character_name.to_upper())
 	for item in CampaignState.armory_stock():
+		if not CampaignState.item_is_compatible_with_character(selected_character, item):
+			continue
 		var stock_id := StringName(item.get("stock_id", ""))
 		var price := int(item.get("price", 0))
 		var comparison := _gear_comparison_summary(item)
@@ -1177,6 +1197,14 @@ func _select_character(character_id: StringName) -> void:
 	_refresh()
 
 
+func _open_inactive_equipment(character_id: StringName) -> void:
+	if not _is_menu_character_available(character_id):
+		return
+	selected_character = character_id
+	selected_tab = &"equipment"
+	_refresh()
+
+
 func _select_tab(tab: StringName) -> void:
 	selected_tab = tab
 	_refresh()
@@ -1240,6 +1268,12 @@ func _equip_item(instance_id: String) -> void:
 
 func _unequip_selected() -> void:
 	if CampaignState.unequip_slot(selected_character, selected_slot):
+		_save_changes()
+	_refresh()
+
+
+func _unequip_all_inactive() -> void:
+	if CampaignState.unequip_all_inactive(selected_character):
 		_save_changes()
 	_refresh()
 
@@ -1391,6 +1425,12 @@ func _at_laboratory() -> bool:
 	if not Player.gamepiece:
 		return false
 	return Rect2i(Vector2i.ZERO, Vector2i(20, 12)).has_point(Gameboard.pixel_to_cell(Player.gamepiece.position))
+
+
+func _is_menu_character_available(character_id: StringName) -> bool:
+	if character_id in CampaignState.party:
+		return true
+	return StringName(CampaignState.recruit_status.get(character_id, &"undiscovered")) in [&"reserve", &"staffed"]
 
 
 func _at_company_management_location() -> bool:

@@ -142,6 +142,14 @@ func _run() -> void:
 	if "TIME RESIST 25%" not in resistance_button.text:
 		_fail("The shop UI did not state the sidegrade's elemental counterplay")
 		return
+	var technical_lens := CampaignState.purchase_armory_item(&"watchmakers_lens")
+	if technical_lens.is_empty() or CampaignState.item_is_compatible_with_character(&"fighter", technical_lens) or CampaignState.equip_loot(&"fighter", String(technical_lens.get("instance_id", ""))):
+		_fail("Role affinities did not prevent a martial recruit from equipping technical gear")
+		return
+	var field_cap := CampaignState.purchase_armory_item(&"copper_watch_cap")
+	if field_cap.is_empty() or not CampaignState.equip_loot(&"fighter", String(field_cap.get("instance_id", ""))):
+		_fail("Role affinities did not preserve compatible field gear for an inactive recruit")
+		return
 	var buy_button := menu.find_child("BuyGear_militia_saber", true, false) as Button
 	var before_ui_purchase := CampaignState.loot_inventory.size()
 	buy_button.pressed.emit()
@@ -157,6 +165,18 @@ func _run() -> void:
 	var equipped_sell := menu.find_child("Sell_%s" % first_id, true, false) as Button
 	if not sell_button or sell_button.disabled or not salvage_button or salvage_button.disabled or not reforge_button or not equipped_sell or not equipped_sell.disabled:
 		_fail("The shop UI did not expose safe sell, salvage, and reforge choices")
+		return
+	menu.selected_character = &"fighter"
+	menu.open_menu(&"equipment")
+	await get_tree().process_frame
+	var unequip_all := menu.find_child("UnequipInactiveGear", true, false) as Button
+	if not unequip_all or unequip_all.disabled:
+		_fail("The equipment page did not expose one-click cleanup for inactive gear")
+		return
+	unequip_all.pressed.emit()
+	await get_tree().process_frame
+	if not CampaignState.character_progress[&"fighter"].get("equipment", {}).is_empty():
+		_fail("The inactive equipment cleanup did not release every reserved or staffed item")
 		return
 
 	if CampaignState.save_game(TEST_SAVE) != OK:

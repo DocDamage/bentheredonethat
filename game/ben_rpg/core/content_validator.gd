@@ -134,6 +134,10 @@ static func _validate_facilities(errors: Array[String]) -> void:
 
 static func _validate_armory_stock(errors: Array[String]) -> void:
 	var supported_elements := {}
+	var known_affinities := {}
+	for character_id in CampaignState.EQUIPMENT_AFFINITIES:
+		for affinity in CampaignState.EQUIPMENT_AFFINITIES[character_id]:
+			known_affinities[StringName(affinity)] = true
 	for action_id in CampaignCombatDatabase.action_ids():
 		var element := StringName(CampaignCombatDatabase.action(action_id).get("element", &""))
 		if element != &"":
@@ -156,6 +160,9 @@ static func _validate_armory_stock(errors: Array[String]) -> void:
 				errors.append("Armory item '%s' resists unsupported element '%s'." % [stock_id, element])
 			elif rate < 0.25 or rate > 0.9:
 				errors.append("Armory item '%s' has invalid resistance rate %.2f for '%s'." % [stock_id, rate, element])
+		for raw_affinity in item.get("required_affinities", []):
+			if not known_affinities.has(StringName(raw_affinity)):
+				errors.append("Armory item '%s' requires unknown equipment affinity '%s'." % [stock_id, raw_affinity])
 
 
 static func _validate_facility_upgrades(errors: Array[String]) -> void:
