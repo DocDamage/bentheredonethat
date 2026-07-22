@@ -95,7 +95,6 @@ var helios_structures: Texture2D
 var nightclub_signs: Texture2D
 var frozen_ground: Texture2D
 var sakura_paths: Texture2D
-var empyreal_clouds: Texture2D
 var built_facilities: Dictionary = {}
 var build_mode := false
 var selected_plot := 0
@@ -124,7 +123,6 @@ func _ready() -> void:
 	nightclub_signs = visual_profiles.texture(&"afterlight_club_sign")
 	frozen_ground = visual_profiles.texture(&"frosthold_snow_ground_tile")
 	sakura_paths = visual_profiles.texture(&"moonpetal_processional_path")
-	empyreal_clouds = visual_profiles.texture(&"empyreal_sky_cloud_bank")
 	if not CampaignState.town_terrain_changed.is_connected(_on_town_terrain_changed):
 		CampaignState.town_terrain_changed.connect(_on_town_terrain_changed)
 	if not CampaignState.state_changed.is_connected(_on_campaign_state_changed):
@@ -170,7 +168,6 @@ func _draw() -> void:
 	draw_helios_arcology()
 	draw_frosthold_kingdom()
 	draw_moonpetal_court()
-	draw_empyreal_court()
 
 
 func draw_laboratory() -> void:
@@ -727,58 +724,6 @@ func _draw_moonpetal_processional_path(room_offset: Vector2) -> void:
 	draw_set_transform(room_offset + Vector2(220, 174), PI * 0.5)
 	profile_tile(&"moonpetal_processional_path", sakura_paths, Vector2.ZERO)
 	draw_set_transform(Vector2.ZERO, 0.0, Vector2.ONE)
-
-
-func draw_empyreal_court() -> void:
-	# These source sheets are deliberately high-detail. Do not composite five
-	# off-screen rooms while the player is in town or another universe.
-	if not active_area.begins_with("empyreal"):
-		return
-	var offset := Vector2(EMPYREAL_ORIGIN * TILE)
-	var rooms := {
-		&"empyreal_landing": [Vector2i(0, 0), &"landing"],
-		&"empyreal_garden": [Vector2i(10, 0), &"garden"],
-		&"empyreal_forum": [Vector2i(20, 0), &"forum"],
-		&"empyreal_aerie": [Vector2i(10, 10), &"aerie"],
-		&"empyreal_tribunal": [Vector2i(20, 10), &"tribunal"],
-	}
-	if rooms.has(active_area):
-		var definition: Array = rooms[active_area]
-		_draw_empyreal_room(offset + Vector2(definition[0] * TILE), definition[1])
-		return
-	for definition in rooms.values():
-		_draw_empyreal_room(offset + Vector2(definition[0] * TILE), definition[1])
-
-
-func _draw_empyreal_room(room_offset: Vector2, room_kind: StringName) -> void:
-	# The Greek pack's showcased floor squares contain a 2x2 set of character-scale
-	# tiles. Draw each complete square at 96px—not the former 192px—so its internal
-	# grout lands on the game's 48px movement grid. This is now a real terrace with
-	# eight-cell proportions instead of two giant catalog samples beneath Ben.
-	# The sky extends well beyond the walkable terrace, filling the widescreen
-	# camera instead of exposing gray canvas on either side of an 8x8 room.
-	# A 384px terrace is shorter than the gameplay camera. Extend the sky above
-	# and below the authored platform instead of exposing the renderer's neutral
-	# canvas at the bottom of the screen.
-	draw_rect(Rect2(room_offset - Vector2(384, 96), Vector2(1152, 576)), Color(0.18, 0.44, 0.72), true)
-	for cloud_x in [-424, -40, 344]:
-		profile_tile(&"empyreal_sky_cloud_bank", empyreal_clouds, room_offset + Vector2(cloud_x, 12))
-	var floor_profile: StringName = {
-		&"landing": &"empyreal_marble_plain_tile",
-		&"garden": &"empyreal_marble_plain_tile",
-		&"forum": &"empyreal_marble_gold_quarter_tile",
-		&"aerie": &"empyreal_marble_cracked_tile",
-		&"tribunal": &"empyreal_marble_gold_quarter_tile",
-	}.get(room_kind, &"empyreal_marble_plain_tile")
-	for y in range(3):
-		for x in range(4):
-			profile_tile(floor_profile, visual_profiles.texture(floor_profile), room_offset + Vector2(x * 96, 144 + y * 96))
-	# One continuous rear balustrade establishes a shared perspective line. Props
-	# sit on that line or overlap the terrace; none float as a disconnected row.
-	for x in range(0, 384, 96):
-		profile_tile(&"empyreal_blue_balustrade", visual_profiles.texture(&"empyreal_blue_balustrade"), room_offset + Vector2(x, 124))
-	if room_kind == &"landing":
-		draw_rect(Rect2(room_offset + Vector2(145, 176), Vector2(94, 4)), Color(0.32, 0.19, 0.08, 0.65), true)
 
 
 func draw_asterion_station() -> void:

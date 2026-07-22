@@ -35,6 +35,7 @@ class ProfiledForegroundRendererTests(unittest.TestCase):
     def test_profiled_map_shells_do_not_restore_raw_atlas_slices(self) -> None:
         source = MAP_VISUAL.read_text(encoding="utf-8")
         self.assertNotIn("empyreal_slices", source)
+        self.assertNotIn("func draw_empyreal_court", source)
         self.assertNotIn('load("res://game_assets/Tilesets/Ancient Greek Mythology/Sliced/', source)
         self.assertNotIn("Rect2(54, 686, 306, 114)", source)
         self.assertNotIn("plain_tiles", source)
