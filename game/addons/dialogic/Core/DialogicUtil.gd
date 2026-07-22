@@ -652,7 +652,7 @@ static func get_character_suggestions(_search_text:String, current_value:Dialogi
 	# Get characters in the current timeline and place them at the top of suggestions.
 	if editor_node:
 		var recent_characters := []
-		var timeline_node := editor_node.get_parent().find_parent("Timeline") as DialogicEditor
+		var timeline_node := editor_node.get_parent().find_parent("Timeline")
 		for event_node in timeline_node.find_child("Timeline").get_children():
 			if event_node == editor_node:
 				break

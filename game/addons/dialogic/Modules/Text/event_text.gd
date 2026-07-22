@@ -22,6 +22,14 @@ extends DialogicEvent
 
 ### Helpers
 
+# These values are authored by Dialogic's character-editor section, but text
+# events need them at runtime too. Keep the runtime path independent of that
+# editor-only class so exported games do not need to load the Dialogic editor.
+const CHARACTER_PREFIX_CUSTOM_KEY := "prefix"
+const CHARACTER_SUFFIX_CUSTOM_KEY := "suffix"
+const DEFAULT_CHARACTER_PREFIX := ""
+const DEFAULT_CHARACTER_SUFFIX := ""
+
 ## Used to set the character resource from the unique name identifier and vice versa
 var character_identifier: String:
 	get:
@@ -136,8 +144,8 @@ func _execute() -> void:
 			var is_append: bool = split_text[section_idx][1]
 
 			if character:
-				var character_prefix: String = character.custom_info.get(DialogicCharacterPrefixSuffixSection.PREFIX_CUSTOM_KEY, DialogicCharacterPrefixSuffixSection.DEFAULT_PREFIX)
-				var character_suffix: String = character.custom_info.get(DialogicCharacterPrefixSuffixSection.SUFFIX_CUSTOM_KEY, DialogicCharacterPrefixSuffixSection.DEFAULT_SUFFIX)
+				var character_prefix: String = character.custom_info.get(CHARACTER_PREFIX_CUSTOM_KEY, DEFAULT_CHARACTER_PREFIX)
+				var character_suffix: String = character.custom_info.get(CHARACTER_SUFFIX_CUSTOM_KEY, DEFAULT_CHARACTER_SUFFIX)
 
 				if len(split_text) == 1 or section_idx == 0 or not is_append:
 					section_text = character_prefix + section_text
@@ -411,7 +419,7 @@ func _get_property_original_translation(property:String) -> String:
 #region EVENT EDITOR
 ################################################################################
 
-func _enter_visual_editor(editor:DialogicEditor):
+func _enter_visual_editor(editor:Node):
 	editor.opened.connect(func(): ui_update_needed.emit())
 
 

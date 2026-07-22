@@ -15,17 +15,18 @@ from the human, platform, licensing, and performance sign-offs that remain.
   box/Ctrl-click multiselect, batch move undo/redo, pack search, validated slot
   round-trips, route preservation, and malformed-slot rejection.
 - A clean Windows x86_64 `Windows Desktop` release export completed on July 22,
-  2026. `output/windows/BenThereDoneThat.exe` was 324,150,520 bytes with SHA-256
-  `BE218AD917E85423AC4881AEB49961D6C2AD2DFC1AD54675213A46DFD50A069D`.
+  2026. `output/windows/BenThereDoneThat.exe` was 322,605,456 bytes with SHA-256
+  `1602F2A82FEBB91056D71C78AECE862D9CDFD96F914A3BDDB3FA49A20CD21D34`.
   Its Windows file/product versions are `0.3.0.0` / `0.3.0`. It launched
   headlessly for 20 frames with isolated user data, exited 0, and its startup
   log contained neither an MCP bridge nor an engine/script error.
 - `tools/build_windows_release.ps1` reproduces the local Windows export and
   fails clearly when its preset or matching export templates are absent.
-- The Windows preset excludes the inactive MCP addon, smoke tests, and visual
-  capture resources; the export log confirms those paths are absent. Dialogic's
-  current runtime scripts still statically depend on classes in its `Editor`
-  folder, so that third-party folder remains packaged.
+- The Windows preset excludes the inactive MCP addon, Dialogic editor-only
+  resources, smoke tests, and visual captures; the export log confirms those
+  paths are absent. Runtime Dialogic code reads the required character
+  prefix/suffix values directly rather than statically depending on editor-only
+  classes.
 - `CREDITS.md`, the base `LICENSE`, and several supplied asset-pack license files
   are tracked in the repository.
 
@@ -41,8 +42,6 @@ from the human, platform, licensing, and performance sign-offs that remain.
 - [ ] Complete a license/provenance inventory for every distributed art, audio,
   font, addon, and source-derived runtime asset; consolidate required notices
   into the shipped credits.
-- [ ] Remove or update Dialogic's export-time dependency on its editor classes
-  before claiming a release with no editor-content dependency.
 - [ ] Archive two fresh-save end-to-end playthroughs and one migrated-save run,
   including recall, defeat/retry, partial-puzzle reload, and backup recovery.
 - [ ] Perform complete keyboard/mouse and modern-controller playthroughs at all
