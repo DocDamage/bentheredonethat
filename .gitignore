@@ -1,0 +1,30 @@
+# Local Codex and editor state.  Use .mcp.example.json as the shareable template.
+/.mcp.json
+/.playwright-cli/
+/.tools/
+/.template_sources/
+
+# Bundled engine installations and generated/temporary output.
+/Godot_v4.7.1-stable_win64.exe/
+/Godot_v4.7.1-stable_mono_win64/
+/godot/
+/output/
+/test-artifacts/
+/*.log
+
+# The supplied source-art library is intentionally kept outside the runtime tree.
+# Its paths and provenance are recorded in the curated asset catalog.
+/assets/
+
+# Godot import/editor caches, including generated sidecars.
+**/.godot/
+**/.mono/
+**/.import/
+*.import
+*.translation
+mono_crash.*.json
+
+# Platform and editor noise.
+.DS_Store
+Thumbs.db
+*~

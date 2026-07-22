@@ -1,0 +1,229 @@
+{
+  "version": 1,
+  "description": "Editable source masters and the supplied browser-readable raster assets that represent them. Paths are workspace-relative and use forward slashes.",
+  "sources": {
+    "assets/Bots and Bolts 2D robot/Character/Robot.aseprite": {
+      "sourceSize": [48, 48],
+      "frameCount": 392,
+      "tagCount": 100,
+      "relationship": "frame-equivalent",
+      "representedBy": [
+        "assets/Bots and Bolts 2D robot/Character/Sprite sheets/Full sprite sheet.png",
+        "assets/Bots and Bolts 2D robot/Character/Sprite sheets/Directional sprite sheets/Down sprite sheet.png",
+        "assets/Bots and Bolts 2D robot/Character/Sprite sheets/Directional sprite sheets/Up sprite sheet.png",
+        "assets/Bots and Bolts 2D robot/Character/Sprite sheets/Directional sprite sheets/Left sprite sheet.png",
+        "assets/Bots and Bolts 2D robot/Character/Sprite sheets/Directional sprite sheets/Right sprite sheet.png"
+      ]
+    },
+    "assets/More Tilesets/cursed land/Objects.psd": {
+      "sourceSize": [1072, 736],
+      "relationship": "repacked",
+      "representedBy": [
+        "assets/More Tilesets/cursed land/PNG/Cursed_objects.png",
+        "assets/More Tilesets/cursed land/PNG/Objects_separately/Claw_eggs_shadow1_1.png"
+      ]
+    },
+    "assets/More Tilesets/Flying Islands/PSD/Clouds_animated.psd": {
+      "sourceSize": [208, 320],
+      "relationship": "same-canvas",
+      "representedBy": [
+        "assets/More Tilesets/Flying Islands/Tiled_files/Clouds_animated.png"
+      ]
+    },
+    "assets/More Tilesets/Flying Islands/PSD/Clouds.psd": {
+      "sourceSize": [496, 240],
+      "relationship": "same-canvas",
+      "representedBy": [
+        "assets/More Tilesets/Flying Islands/Tiled_files/Clouds.png"
+      ]
+    },
+    "assets/More Tilesets/Flying Islands/PSD/details.psd": {
+      "sourceSize": [156, 123],
+      "relationship": "repacked",
+      "representedBy": [
+        "assets/More Tilesets/Flying Islands/Tiled_files/details.png",
+        "assets/More Tilesets/Flying Islands/PNG/details.png"
+      ]
+    },
+    "assets/More Tilesets/Flying Islands/PSD/flying_flower_animation.psd": {
+      "sourceSize": [384, 128],
+      "relationship": "same-canvas",
+      "representedBy": [
+        "assets/More Tilesets/Flying Islands/Tiled_files/flying_flower_animation.png"
+      ]
+    },
+    "assets/More Tilesets/Flying Islands/PSD/Flying_rocks_animation.psd": {
+      "sourceSize": [384, 192],
+      "relationship": "same-canvas",
+      "representedBy": [
+        "assets/More Tilesets/Flying Islands/Tiled_files/Flying_rocks_animation.png"
+      ]
+    },
+    "assets/More Tilesets/Flying Islands/PSD/Objects.psd": {
+      "sourceSize": [496, 800],
+      "relationship": "same-canvas",
+      "representedBy": [
+        "assets/More Tilesets/Flying Islands/Tiled_files/Objects.png"
+      ]
+    },
+    "assets/More Tilesets/Flying Islands/PSD/Statues_animation1.psd": {
+      "sourceSize": [960, 144],
+      "relationship": "same-canvas",
+      "representedBy": [
+        "assets/More Tilesets/Flying Islands/Tiled_files/Statues_animation1.png"
+      ]
+    },
+    "assets/More Tilesets/Flying Islands/PSD/Statues_animation2.psd": {
+      "sourceSize": [304, 160],
+      "relationship": "same-canvas",
+      "representedBy": [
+        "assets/More Tilesets/Flying Islands/Tiled_files/Statues_animation2.png"
+      ]
+    },
+    "assets/More Tilesets/Flying Islands/PSD/Tree_animation.psd": {
+      "sourceSize": [960, 160],
+      "relationship": "same-canvas",
+      "representedBy": [
+        "assets/More Tilesets/Flying Islands/Tiled_files/Tree_animation.png"
+      ]
+    },
+    "assets/More Tilesets/Flying Islands/PSD/Water_coasts.psd": {
+      "sourceSize": [464, 496],
+      "relationship": "same-canvas",
+      "representedBy": [
+        "assets/More Tilesets/Flying Islands/Tiled_files/Water_coasts.png"
+      ]
+    },
+    "assets/More Tilesets/Flying Islands/PSD/Water_coasts2.psd": {
+      "sourceSize": [464, 496],
+      "relationship": "same-canvas",
+      "representedBy": [
+        "assets/More Tilesets/Flying Islands/Tiled_files/Water_coasts2.png"
+      ]
+    },
+    "assets/More Tilesets/Flying Islands/PSD/Waterfalls.psd": {
+      "sourceSize": [304, 1056],
+      "relationship": "same-canvas",
+      "representedBy": [
+        "assets/More Tilesets/Flying Islands/Tiled_files/Waterfalls.png"
+      ]
+    },
+    "assets/More Tilesets/Level Map Assets Pixel Art/PSD/Objects.psd": {
+      "sourceSize": [438, 401],
+      "relationship": "repacked",
+      "representedBy": [
+        "assets/More Tilesets/Level Map Assets Pixel Art/2 Objects/Grass/1.png",
+        "assets/More Tilesets/Level Map Assets Pixel Art/2 Objects/Houses/1.png",
+        "assets/More Tilesets/Level Map Assets Pixel Art/2 Objects/Other/Pyramid1.png",
+        "assets/More Tilesets/Level Map Assets Pixel Art/2 Objects/Rocks/1.png",
+        "assets/More Tilesets/Level Map Assets Pixel Art/2 Objects/Trees/1.png"
+      ]
+    },
+    "assets/More Tilesets/Level Map Assets Pixel Art/PSD/Tiles.psd": {
+      "sourceSize": [384, 416],
+      "relationship": "same-canvas",
+      "representedBy": [
+        "assets/More Tilesets/Level Map Assets Pixel Art/1 Tiles/Map_tiles.png"
+      ]
+    },
+    "assets/More Tilesets/Seabed/PSD/Animated_objects1.psd": {
+      "sourceSize": [576, 416],
+      "relationship": "same-canvas",
+      "representedBy": [
+        "assets/More Tilesets/Seabed/Tiled_files/Animated_objects1.png"
+      ]
+    },
+    "assets/More Tilesets/Seabed/PSD/Animated_objects2.psd": {
+      "sourceSize": [384, 496],
+      "relationship": "same-canvas",
+      "representedBy": [
+        "assets/More Tilesets/Seabed/Tiled_files/Animated_objects2.png"
+      ]
+    },
+    "assets/More Tilesets/Seabed/PSD/Animated_objects3.psd": {
+      "sourceSize": [192, 400],
+      "relationship": "same-canvas",
+      "representedBy": [
+        "assets/More Tilesets/Seabed/Tiled_files/Animated_objects3.png"
+      ]
+    },
+    "assets/More Tilesets/Seabed/PSD/Animated_objects4.psd": {
+      "sourceSize": [320, 480],
+      "relationship": "same-canvas",
+      "representedBy": [
+        "assets/More Tilesets/Seabed/Tiled_files/Animated_objects4.png"
+      ]
+    },
+    "assets/More Tilesets/Seabed/PSD/Animated_objects5.psd": {
+      "sourceSize": [288, 448],
+      "relationship": "same-canvas",
+      "representedBy": [
+        "assets/More Tilesets/Seabed/Tiled_files/Animated_objects5.png"
+      ]
+    },
+    "assets/More Tilesets/Seabed/PSD/Bubbles.psd": {
+      "sourceSize": [304, 992],
+      "relationship": "same-canvas",
+      "representedBy": [
+        "assets/More Tilesets/Seabed/Tiled_files/Bubbles.png"
+      ]
+    },
+    "assets/More Tilesets/Seabed/PSD/Details.psd": {
+      "sourceSize": [224, 304],
+      "relationship": "same-canvas",
+      "representedBy": [
+        "assets/More Tilesets/Seabed/Tiled_files/Details.png"
+      ]
+    },
+    "assets/More Tilesets/Seabed/PSD/Objects.psd": {
+      "sourceSize": [480, 1456],
+      "relationship": "same-canvas",
+      "representedBy": [
+        "assets/More Tilesets/Seabed/Tiled_files/Objects.png"
+      ]
+    },
+    "assets/More Tilesets/Seabed/PSD/reef_elements.psd": {
+      "sourceSize": [288, 160],
+      "relationship": "same-canvas",
+      "representedBy": [
+        "assets/More Tilesets/Seabed/Tiled_files/reef_elements.png"
+      ]
+    },
+    "assets/More Tilesets/Seabed/PSD/Sand_ground.psd": {
+      "sourceSize": [336, 1312],
+      "relationship": "same-canvas",
+      "representedBy": [
+        "assets/More Tilesets/Seabed/Tiled_files/Sand_ground.png"
+      ]
+    },
+    "assets/More Tilesets/undead land objects/Objects.psd": {
+      "sourceSize": [912, 944],
+      "relationship": "repacked",
+      "representedBy": [
+        "assets/More Tilesets/undead land objects/PNG/Objects_source.png",
+        "assets/More Tilesets/undead land objects/PNG/Objects_separately/bone_arm_sword_shadow1.png"
+      ]
+    },
+    "assets/More Tilesets/XModern Arcade/tilesPSD.psd": {
+      "sourceSize": [256, 256],
+      "relationship": "repacked",
+      "representedBy": [
+        "assets/More Tilesets/XModern Arcade/master.png",
+        "assets/More Tilesets/XModern Arcade/fullcolor/xmodern_A5.png",
+        "assets/More Tilesets/XModern Arcade/fullcolor/xmodern_A5b.png",
+        "assets/More Tilesets/XModern Arcade/fullcolor/xmodern_B1.png",
+        "assets/More Tilesets/XModern Arcade/fullcolor/xmodern_B2.png",
+        "assets/More Tilesets/XModern Arcade/fullcolor/xmodern_B3.png"
+      ]
+    },
+    "assets/Ranch Stuff/Super_retro_world_water_animation/animation.aseprite": {
+      "sourceSize": [16, 16],
+      "frameCount": 5,
+      "frameDurationMs": 100,
+      "relationship": "frame-equivalent",
+      "representedBy": [
+        "assets/Ranch Stuff/Super_retro_world_water_animation/spritesheet_16x16_5frames.png"
+      ]
+    }
+  }
+}

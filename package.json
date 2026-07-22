@@ -1,0 +1,11 @@
+{
+  "name": "ben-there-done-that",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "test": "node --test tests/*.test.js",
+    "check": "node --check asset-paths.js && node --check game-core.js && node --check game.js && node --check rpg-core.js && node --check rpg-campaign.js && npm test",
+    "validate:assets": "python tools/validate_curated_asset_catalog.py && node tools/validate_npc_asset_readiness.js",
+    "serve": "python -m http.server 8080"
+  }
+}

@@ -1,0 +1,36 @@
+{
+  "group_id": null,
+  "states": [
+    {
+      "character": {
+        "id": "c4b9856b-5054-46ef-8b6d-a5be4b4a3dcb",
+        "name": "\ud83d\udcda 9. Librarian",
+        "prompt": "92x92 pixel art character sprite sheet, village librarian, books in hand, elegant glasses, scholarly clothing, calm personality, cozy fantasy village aesthetic, top-down RPG sprite, 8 directions, chunky pixel art, transparent background, clean silhouette, no anti-aliasing",
+        "size": {
+          "width": 92,
+          "height": 92
+        },
+        "template_id": "mannequin",
+        "directions": 8,
+        "view": "low top-down",
+        "created_at": "2026-06-06T19:06:17.941153+00:00"
+      },
+      "folder": "9._Librarian",
+      "frames": {
+        "rotations": {
+          "south": "9._Librarian/rotations/south.png",
+          "south-east": "9._Librarian/rotations/south-east.png",
+          "east": "9._Librarian/rotations/east.png",
+          "north-east": "9._Librarian/rotations/north-east.png",
+          "north": "9._Librarian/rotations/north.png",
+          "north-west": "9._Librarian/rotations/north-west.png",
+          "west": "9._Librarian/rotations/west.png",
+          "south-west": "9._Librarian/rotations/south-west.png"
+        },
+        "animations": {}
+      }
+    }
+  ],
+  "export_version": "3.0",
+  "export_date": "2026-06-06T23:43:41.653623"
+}

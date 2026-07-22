@@ -1,0 +1,577 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#172238">
+  <meta name="description" content="A traditional multiverse JRPG starring Benjamin Franklin, his hires, and one unusually proactive velociraptor.">
+  <title>Ben There, Done That</title>
+  <link rel="icon" href="assets/characters/Main Character/Ben_Franklin/rotations/south.png" type="image/png">
+  <link rel="stylesheet" href="styles.css?v=17">
+  <link rel="stylesheet" href="rpg.css?v=3">
+</head>
+<body>
+  <div id="game-shell">
+    <header class="topbar">
+      <div class="brand-lockup" aria-label="Ben There, Done That">
+        <span class="brand-kicker">A perfectly normal life simulator</span>
+        <strong>BEN THERE, DONE THAT</strong>
+      </div>
+
+      <div class="status-strip" aria-label="Current status">
+        <div class="status-block calendar-block">
+          <span id="cycle-label">Timeline 1</span>
+          <b><span id="day-label">Day 1</span> <i>of 30</i></b>
+          <small id="season-label">Spring</small>
+        </div>
+        <div class="status-block">
+          <span>Time</span>
+          <b id="time-label">Morning</b>
+        </div>
+        <div id="weather-status" class="status-block weather-block">
+          <span>Forecast</span>
+          <b><span id="weather-icon">☀</span> <span id="weather-label">Sunny</span></b>
+        </div>
+        <div class="status-block compact">
+          <span>Wallet</span>
+          <b id="cash-label">$24</b>
+        </div>
+        <button id="sound-toggle" class="icon-button" type="button" aria-label="Toggle sound" title="Toggle sound (M)">♫</button>
+        <button id="help-button" class="icon-button" type="button" aria-label="Show controls" title="Show controls (H)">?</button>
+      </div>
+    </header>
+
+    <main class="game-layout">
+      <section class="map-panel panel">
+        <div class="panel-heading map-heading">
+          <div>
+            <span class="eyebrow">New Philadelphia · Population: concerning</span>
+            <h1 id="headline">Local Founding Father Seeks Work-Life Balance</h1>
+          </div>
+          <div class="energy-meter" title="Actions cost energy. Energy returns each morning.">
+            <span>Energy</span>
+            <div id="energy-pips" class="pips" aria-label="Energy"></div>
+          </div>
+        </div>
+
+        <div id="town-map" class="town-map" tabindex="0" aria-label="New Philadelphia. Walk with WASD or arrow keys. Press E at a door to enter.">
+          <div id="town-world" class="town-world">
+            <canvas id="town-water-canvas" width="3648" height="2432"></canvas>
+            <canvas id="town-canvas" width="3648" height="2432"></canvas>
+            <div id="town-buildings" aria-hidden="true"></div>
+            <div class="town-river"></div>
+            <div class="town-bridge bridge-north"></div>
+            <div class="town-bridge bridge-south"></div>
+            <div class="town-path path-main"></div>
+            <div class="town-path path-cross"></div>
+            <div class="town-square"><span>⚡</span></div>
+            <div id="town-scenery"></div>
+            <div id="town-npcs" aria-label="Town residents"></div>
+            <div id="town-custom-npcs" aria-label="Editor-placed town residents"></div>
+            <div id="location-markers"></div>
+            <div id="town-editor-layer"></div>
+            <div id="ben-marker" class="ben-marker" aria-label="Ben Franklin">
+              <div class="ben-shadow"></div>
+            <img id="ben-sprite" src="assets/characters/Main Character/Ben_Franklin/rotations/south.png" alt="Ben Franklin">
+            </div>
+          </div>
+          <div class="town-edit-tools" aria-label="Town layout tools">
+            <button id="town-edit-toggle" type="button">✥ Edit Town</button>
+            <button id="town-tools-collapse" class="hidden" type="button" aria-expanded="false" aria-controls="town-edit-palette">☰ Tools</button>
+            <div id="town-edit-palette" class="town-edit-palette hidden">
+              <div class="town-object-tools" aria-label="Town object tools">
+                <b>Objects</b>
+                <span class="catalog-presence">Build catalog docked below</span>
+                <button type="button" data-town-add="cottage">+ Cottage</button>
+                <button type="button" data-town-add="shop">+ Shop</button>
+                <button type="button" data-town-add="barn">+ Barn</button>
+                <button type="button" data-town-add="tree">+ Tree</button>
+                <button type="button" data-town-add="flower">+ Flowers</button>
+                <button type="button" data-town-add="bench">+ Bench</button>
+                <button type="button" data-town-add="pond">+ Pond</button>
+                <button type="button" data-town-add="path">+ Path</button>
+              </div>
+
+              <section id="town-founding-tools" class="town-founding-tools hidden" aria-labelledby="town-founding-title">
+                <b id="town-founding-title">Town services</b>
+                <label>Destination <select id="town-landmark-select" aria-label="Choose a destination building to place"></select></label>
+                <button id="town-landmark-add" type="button">+ Place destination</button>
+                <span id="town-landmark-count">0 of 14 placed</span>
+                <button id="town-reroll-terrain" type="button">⟳ Regenerate land</button>
+              </section>
+
+              <section class="npc-editor-panel" aria-labelledby="town-npc-editor-title">
+                <div class="npc-editor-additions">
+                  <b id="town-npc-editor-title">NPC Entities</b>
+                  <label>Resident <select id="town-npc-select" aria-label="Choose an NPC to place"></select></label>
+                  <button id="town-npc-add" type="button">+ Place NPC</button>
+                  <span id="town-npc-count">0 placed</span>
+                </div>
+                <div id="town-npc-inspector" class="npc-entity-inspector hidden">
+                  <strong id="town-npc-selected-name">NPC entity</strong>
+                  <label>X <input id="town-npc-x" type="number" min="0" max="3648" step="8"></label>
+                  <label>Y <input id="town-npc-y" type="number" min="0" max="2432" step="8"></label>
+                  <label>Behavior <select id="town-npc-behavior"><option value="static">Stay put</option><option value="face-player">Face player</option><option value="wander">Wander nearby</option></select></label>
+                  <label>Facing <select id="town-npc-facing"><option value="south">South</option><option value="west">West</option><option value="east">East</option><option value="north">North</option></select></label>
+                  <label class="npc-editor-check"><input id="town-npc-collision" type="checkbox" checked> Collision</label>
+                  <label class="npc-editor-check"><input id="town-npc-visible" type="checkbox" checked> Visible</label>
+                  <label class="npc-editor-check"><input id="town-npc-locked" type="checkbox"> Locked</label>
+                </div>
+              </section>
+
+              <section class="terrain-editor-panel" aria-labelledby="terrain-editor-title">
+                <div class="terrain-editor-heading">
+                  <div><b id="terrain-editor-title">Terrain Studio</b><span id="terrain-editor-status">Choose a brush, then paint the world</span></div>
+                  <div class="terrain-history-tools">
+                    <button id="terrain-undo" type="button" disabled title="Undo (Ctrl+Z)">↶ Undo</button>
+                    <button id="terrain-redo" type="button" disabled title="Redo (Ctrl+Y)">↷ Redo</button>
+                  </div>
+                </div>
+                <div class="terrain-tool-row" aria-label="Terrain sculpting tools">
+                  <b>Sculpt</b>
+                  <button type="button" data-terrain-tool="raise" title="Raise terrain by the selected strength">＋ Raise</button>
+                  <button type="button" data-terrain-tool="lower" title="Lower terrain by the selected strength">− Lower</button>
+                  <button type="button" data-terrain-tool="smooth" title="Blend elevation with neighboring cells">Smooth</button>
+                  <button type="button" data-terrain-tool="flatten" title="Return terrain to ground level">Level</button>
+                  <button type="button" data-terrain-tool="terrace" title="Set terrain to the chosen elevation">Set Height</button>
+                  <label>Target
+                    <select id="terrain-target-height" aria-label="Target elevation">
+                      <option value="-2">−2</option><option value="-1">−1</option><option value="0" selected>0</option>
+                      <option value="1">1</option><option value="2">2</option><option value="3">3</option>
+                      <option value="4">4</option><option value="5">5</option>
+                    </select>
+                  </label>
+                </div>
+                <div class="terrain-tool-row" aria-label="Terrain surface tools">
+                  <b>Surface</b>
+                  <button type="button" data-terrain-tool="grass">Grass</button>
+                  <button type="button" data-terrain-tool="dirt">Dirt</button>
+                  <button type="button" data-terrain-tool="road">Road</button>
+                  <button type="button" data-terrain-tool="water">Water</button>
+                  <button type="button" data-terrain-tool="restore" title="Restore the authored road, river, grass, and ground height beneath the brush">Restore Default</button>
+                  <button type="button" data-terrain-tool="sample" title="Pick a surface and elevation from the map">◎ Sample</button>
+                  <button type="button" data-terrain-tool="fill" title="Flood-fill a connected surface">Fill Region</button>
+                  <label>Fill
+                    <select id="terrain-fill-material" aria-label="Flood fill material">
+                      <option value="grass">Grass</option><option value="dirt">Dirt</option><option value="road">Road</option><option value="water">Water</option>
+                    </select>
+                  </label>
+                </div>
+                <div class="terrain-control-row" aria-label="Terrain brush settings">
+                  <label>Size <input id="terrain-brush-size" type="range" min="1" max="6" value="2"><output id="terrain-brush-size-output" for="terrain-brush-size">2</output></label>
+                  <label>Shape <select id="terrain-brush-shape"><option value="circle">Round</option><option value="square">Square</option></select></label>
+                  <label>Strength <input id="terrain-brush-strength" type="range" min="1" max="3" value="1"><output id="terrain-brush-strength-output" for="terrain-brush-strength">1</output></label>
+                  <label class="terrain-check"><input id="terrain-grid-toggle" type="checkbox" checked> Grid</label>
+                  <label class="terrain-check"><input id="terrain-height-toggle" type="checkbox"> Heights</label>
+                  <button id="terrain-export" type="button" title="Download buildings, decorations, and terrain as JSON">Export Map</button>
+                  <button id="terrain-import" type="button" title="Import a map JSON file">Import Map</button>
+                  <input id="terrain-import-file" class="visually-hidden" type="file" accept="application/json,.json">
+                  <button id="terrain-clear-edits" type="button">Clear Terrain</button>
+                </div>
+              </section>
+
+              <div class="town-selection-tools">
+                <span id="town-editor-selection" class="editor-selection-label">Nothing selected</span>
+                <button id="town-duplicate-item" type="button" disabled>Duplicate</button>
+                <button id="town-delete-item" type="button" disabled>Remove</button>
+                <button id="town-reset-layout" type="button">Reset Town</button>
+              </div>
+            </div>
+          </div>
+          <button id="objective-compass" class="objective-compass hidden" type="button" aria-label="Current waypoint">
+            <span id="objective-compass-arrow" aria-hidden="true">↑</span>
+            <span><b id="objective-compass-name">Café</b><small id="objective-compass-distance">Nearby</small></span>
+          </button>
+          <aside id="onboarding-card" class="onboarding-card hidden" aria-live="polite">
+            <span id="onboarding-step">First morning · 1 of 3</span>
+            <strong id="onboarding-title">Start at the Daily Grind</strong>
+            <p id="onboarding-copy">Follow the gold waypoint to the Café, then press E or Enter at its front door.</p>
+            <button id="onboarding-skip" type="button">Skip guide</button>
+          </aside>
+          <div id="town-prompt" class="town-prompt" aria-live="polite"></div>
+          <div class="map-hint"><kbd>WASD</kbd> walk · click ground to move · <kbd>E</kbd> enter</div>
+          <div id="weather-layer" class="weather-layer" aria-hidden="true"></div>
+        </div>
+
+        <div class="day-plan" aria-label="Today's schedule">
+          <span>Today</span>
+          <div id="schedule-slots" class="schedule-slots"></div>
+          <button id="rest-button" class="quiet-button" type="button">Take a power nap</button>
+        </div>
+      </section>
+
+      <aside class="side-panel">
+        <section id="errand-card" class="panel objective-card">
+          <div class="panel-heading tight">
+            <div>
+              <span class="eyebrow">Today's questionable priority</span>
+              <h2 id="errand-title">A Latte for Science</h2>
+            </div>
+            <span id="errand-reward" class="reward-pill">+$12</span>
+          </div>
+          <p id="errand-copy">Pick up Juniper's experimental coffee and take it to Dr. Hex.</p>
+          <div id="errand-route" class="route-line"></div>
+        </section>
+
+        <section class="panel project-card">
+          <div class="panel-heading tight">
+            <div>
+              <span class="eyebrow">Month-long project</span>
+              <h2>The Civic Spark</h2>
+            </div>
+            <span id="spark-count" class="spark-count">0 ⚡</span>
+          </div>
+          <p>Build something impressive enough that the town stops calling Ben “the kite guy.”</p>
+          <div class="project-track" aria-label="Invention progress">
+            <div id="project-progress" class="project-progress"></div>
+          </div>
+          <div id="invention-list" class="invention-list"></div>
+          <div id="virtue-focus" class="virtue-focus" aria-label="Today's virtue focus"></div>
+        </section>
+
+        <section class="panel notebook-card">
+          <div class="tab-row" role="tablist">
+            <button class="tab active" data-tab="people" type="button" role="tab" aria-selected="true">People</button>
+            <button class="tab" data-tab="pockets" type="button" role="tab" aria-selected="false">Pockets</button>
+            <button class="tab" data-tab="virtues" type="button" role="tab" aria-selected="false">Virtues</button>
+            <button class="tab" data-tab="notes" type="button" role="tab" aria-selected="false">Notes</button>
+          </div>
+          <div id="tab-people" class="tab-content active" role="tabpanel">
+            <div class="people-tools">
+              <input id="people-search" type="search" placeholder="Find a resident…" aria-label="Find a resident">
+              <select id="people-filter" aria-label="Filter residents">
+                <option value="known">Met & relevant</option>
+                <option value="all">Everyone</option>
+              </select>
+            </div>
+            <div id="relationship-list" class="relationship-list"></div>
+          </div>
+          <div id="tab-pockets" class="tab-content" role="tabpanel">
+            <div id="inventory-list" class="inventory-list"></div>
+          </div>
+          <div id="tab-virtues" class="tab-content" role="tabpanel">
+            <div id="virtue-ledger" class="virtue-ledger"></div>
+          </div>
+          <div id="tab-notes" class="tab-content" role="tabpanel">
+            <ul id="notes-list" class="notes-list"></ul>
+          </div>
+        </section>
+      </aside>
+    </main>
+
+    <nav class="touch-controls" aria-label="Walking controls">
+      <button id="touch-up" type="button" aria-label="Walk up">▲</button>
+      <button id="touch-left" type="button" aria-label="Walk left">◀</button>
+      <button id="touch-enter" class="touch-primary" type="button">Enter</button>
+      <button id="touch-right" type="button" aria-label="Walk right">▶</button>
+      <button id="touch-down" type="button" aria-label="Walk down">▼</button>
+    </nav>
+  </div>
+
+  <div id="start-screen" class="overlay start-screen" role="dialog" aria-modal="true" aria-labelledby="game-title">
+    <div class="start-card">
+      <div class="start-copy">
+        <span class="start-stamp">NEW PHILADELPHIA TOURISM BOARD PRESENTS</span>
+        <h1 id="game-title">BEN THERE,<br><em>DONE THAT</em></h1>
+        <p>Invent a town. Hire impossible heroes. Step through buildings into other universes.</p>
+        <div class="start-buttons">
+          <button id="new-game-button" class="primary-button" type="button">Begin Campaign</button>
+          <button id="rpg-sandbox-button" class="secondary-button" type="button">JRPG Sandbox</button>
+          <button id="found-town-button" class="secondary-button" type="button">Town Builder Sandbox</button>
+          <button id="continue-button" class="secondary-button" type="button">Continue Campaign</button>
+        </div>
+        <details class="save-manager">
+          <summary>Save slots & backup</summary>
+          <label>Active slot
+            <select id="save-slot-select">
+              <option value="1">Slot 1</option>
+              <option value="2">Slot 2</option>
+              <option value="3">Slot 3</option>
+            </select>
+          </label>
+          <div class="save-manager-actions">
+            <button id="save-export" type="button">Export</button>
+            <button id="save-import" type="button">Import</button>
+            <button id="save-reset" type="button">Clear slot</button>
+            <input id="save-import-file" class="visually-hidden" type="file" accept="application/json,.json">
+          </div>
+          <span id="save-manager-status" role="status" aria-live="polite">Slot 1 · empty</span>
+        </details>
+        <section id="found-town-setup" class="found-town-setup hidden" aria-labelledby="found-town-title">
+          <div class="found-town-heading"><div><b id="found-town-title">Found a town from bare land</b><span>No buildings or residents. Natural features are your choice.</span></div><button id="found-town-cancel" type="button" aria-label="Close town setup">×</button></div>
+          <label class="found-town-seed">World seed<input id="found-town-seed" type="text" maxlength="48" value="New Philadelphia" autocomplete="off"></label>
+          <div class="found-town-sliders">
+            <label>Maximum height <input id="found-town-height" type="range" min="0" max="5" value="2"><output for="found-town-height">2</output></label>
+            <label>Grass coverage <input id="found-town-grass" type="range" min="0" max="100" value="78"><output for="found-town-grass">78%</output></label>
+            <label>Water coverage <input id="found-town-water" type="range" min="0" max="35" value="8"><output for="found-town-water">8%</output></label>
+            <label>Tree density <input id="found-town-trees" type="range" min="0" max="100" value="28"><output for="found-town-trees">28%</output></label>
+          </div>
+          <div class="found-town-actions"><button id="found-town-random-seed" type="button">New seed</button><button id="found-town-start" class="primary-button" type="button">Generate Empty Plot</button></div>
+        </section>
+        <small>Campaign, JRPG sandbox, and town-builder saves are kept separate.</small>
+      </div>
+      <div class="start-art" aria-hidden="true">
+        <div class="lightning lightning-one">ϟ</div>
+        <div class="lightning lightning-two">ϟ</div>
+        <img src="assets/characters/Main Character/Ben_Franklin_with_Kite/rotations/south.png" alt="">
+        <div class="start-badge">A STRANGE<br>MULTIVERSE<br>JRPG</div>
+      </div>
+    </div>
+  </div>
+
+  <div id="dialogue-overlay" class="overlay dialogue-overlay hidden" role="dialog" aria-modal="true" aria-labelledby="dialogue-name">
+    <section class="dialogue-card">
+      <button id="dialogue-close" class="close-button" type="button" aria-label="Close conversation">×</button>
+      <div id="dialogue-avatar" class="dialogue-avatar" aria-hidden="true">☕</div>
+      <div class="dialogue-copy">
+        <span id="dialogue-activity" class="eyebrow">Morning in New Philadelphia</span>
+        <h2 id="dialogue-name">A resident</h2>
+        <p id="dialogue-line">“Good morning, Ben.”</p>
+        <div id="dialogue-mission" class="dialogue-mission"></div>
+        <button id="dialogue-continue" class="primary-button" type="button">Continue</button>
+      </div>
+    </section>
+  </div>
+
+  <div id="location-sheet" class="overlay sheet-overlay hidden" role="dialog" aria-modal="true" aria-labelledby="location-title">
+    <section class="location-sheet">
+      <button class="close-button" type="button" data-close="location-sheet" aria-label="Close">×</button>
+      <div id="location-scene" class="location-scene">
+        <div id="interior-world" class="interior-world">
+          <img id="scene-ben" src="assets/characters/Main Character/Ben_Franklin/rotations/south-east.png" alt="Ben Franklin">
+        </div>
+        <div class="room-edit-tools" aria-label="Room layout tools">
+          <button id="room-edit-toggle" type="button">✥ Edit Room</button>
+          <div id="room-edit-palette" class="room-edit-palette hidden"></div>
+        </div>
+        <div class="scene-vignette"></div>
+        <div class="scene-area-card">
+          <span id="scene-area-count">Exploring</span>
+          <strong id="scene-area-name">Front Counter</strong>
+        </div>
+        <button id="scene-prev" class="scene-nav scene-prev" type="button" aria-label="Walk to previous area">‹</button>
+        <button id="scene-next" class="scene-nav scene-next" type="button" aria-label="Walk to next area">›</button>
+        <div id="npc-sprite" class="npc-sprite" aria-hidden="true"></div>
+        <div id="scene-path" class="scene-path" aria-label="Location areas"></div>
+        <button id="scene-inspect" class="scene-inspect" type="button">◎ Observe</button>
+        <div id="scene-toast" class="scene-toast" role="status" aria-live="polite"></div>
+      </div>
+      <div class="location-content">
+        <span id="location-eyebrow" class="eyebrow">You are here</span>
+        <h2 id="location-title">The Daily Grind</h2>
+        <p id="scene-description" class="scene-description">A coffee counter with enough spare room for a small printing press.</p>
+        <div class="npc-intro">
+          <strong id="npc-name">Juniper Bones</strong>
+          <span id="npc-role">Barista · amateur anatomist</span>
+        </div>
+        <p id="npc-line" class="npc-line">“Decaf is just bean tea, Ben.”</p>
+        <div>
+          <span class="roster-label">Who’s here today</span>
+          <div id="npc-roster" class="npc-roster" aria-label="Choose a resident to spend time with"></div>
+        </div>
+        <div id="action-list" class="action-list"></div>
+        <div class="sheet-footer"><span><kbd>WASD</kbd> walk · <kbd>E</kbd> interact</span><span><kbd>1</kbd>–<kbd>4</kbd> act nearby</span></div>
+      </div>
+    </section>
+  </div>
+
+  <div id="minigame-overlay" class="overlay minigame-overlay hidden" role="dialog" aria-modal="true" aria-labelledby="minigame-title">
+    <section id="minigame-card" class="minigame-card">
+      <button id="minigame-close" class="close-button" type="button" aria-label="Leave challenge">×</button>
+      <div class="minigame-heading">
+        <div>
+          <span id="minigame-eyebrow" class="eyebrow">Neighborhood challenge</span>
+          <h2 id="minigame-title">Pull Perfect Shots</h2>
+          <p id="minigame-instructions">Stop the marker inside the golden zone.</p>
+        </div>
+        <div class="minigame-hud">
+          <div><span>Score</span><b id="minigame-score">0</b></div>
+          <div><span id="minigame-progress-label">Round</span><b id="minigame-progress">1/3</b></div>
+        </div>
+      </div>
+      <div id="minigame-arena" class="minigame-arena" tabindex="0" aria-label="Challenge play area"></div>
+      <div id="minigame-inputs" class="minigame-inputs" aria-label="Challenge controls"></div>
+      <button id="minigame-primary" class="primary-button minigame-primary" type="button">Stop!</button>
+      <div class="minigame-footer">
+        <span id="minigame-control-hint"><kbd>Space</kbd> / <kbd>A</kbd> / tap to act</span>
+        <span>Costs time only when completed</span>
+      </div>
+    </section>
+  </div>
+
+  <div id="result-overlay" class="overlay result-overlay hidden" role="dialog" aria-modal="true" aria-labelledby="result-title">
+    <section class="result-card">
+      <div class="result-animation" aria-live="polite">
+        <div class="result-ben-shadow"></div>
+        <img id="result-ben" src="assets/characters/Main Character/Ben_Franklin/rotations/south.png" alt="Ben Franklin performs an action">
+        <span id="result-action-label">Ben move: breathing idle</span>
+      </div>
+      <span id="result-stamp" class="result-stamp">AFTERNOON WELL SPENT</span>
+      <h2 id="result-title">A Minor Triumph</h2>
+      <p id="result-copy">Nobody was electrocuted in a legally meaningful way.</p>
+      <div id="result-deltas" class="result-deltas"></div>
+      <button id="result-continue" class="primary-button" type="button">Keep going</button>
+    </section>
+  </div>
+
+  <div id="day-end-overlay" class="overlay hidden" role="dialog" aria-modal="true" aria-labelledby="day-end-title">
+    <section class="day-end-card">
+      <span class="eyebrow">The Franklin Evening Ledger</span>
+      <h2 id="day-end-title">Day 1, Filed Under “Productive-ish”</h2>
+      <p id="day-end-event">Ben dreams of a world where every municipal bench has a charging port.</p>
+      <div id="day-end-summary" class="day-end-summary"></div>
+      <button id="next-day-button" class="primary-button" type="button">Start Tomorrow</button>
+    </section>
+  </div>
+
+  <div id="cycle-end-overlay" class="overlay hidden" role="dialog" aria-modal="true" aria-labelledby="cycle-title">
+    <section class="cycle-card">
+      <span class="start-stamp">THE NEW PHILADELPHIA CIVIC SHOWCASE</span>
+      <h2 id="cycle-title">Thirty Days Later…</h2>
+      <div id="cycle-grade" class="cycle-grade">B+</div>
+      <p id="cycle-copy"></p>
+      <div id="cycle-stats" class="cycle-stats"></div>
+      <button id="next-cycle-button" class="primary-button" type="button">Begin Another Timeline</button>
+    </section>
+  </div>
+
+  <div id="help-overlay" class="overlay hidden" role="dialog" aria-modal="true" aria-labelledby="help-title">
+    <section class="help-card">
+      <button class="close-button" type="button" data-close="help-overlay" aria-label="Close">×</button>
+      <span class="eyebrow">How to be Ben</span>
+      <h2 id="help-title">Controls</h2>
+      <div class="control-grid">
+        <div><b>Keyboard</b><span>WASD / arrows walk everywhere. Approach a door and press E or Enter to enter. E talks to nearby editor-placed NPCs; inside it otherwise observes. Editors: the build catalog stays visible at the bottom; press / to search, use arrow keys between cards, drag to place, Ctrl+Z/Y to undo/redo, Ctrl+D to duplicate, Delete to remove, and Esc to finish. Shift strolls; Space plays challenges; M toggles sound.</span></div>
+        <div><b>Controller</b><span>Modern Xbox, PlayStation, Switch-style, and generic browser gamepads are supported. D-pad / left stick walks · A / Cross confirms or walks to the selected building · X / Square observes · B / Circle closes · shoulders change selection · Menu opens help.</span></div>
+        <div><b>Touch / Mouse</b><span>Click or tap any walkable ground to move there; click a building to walk to its front door. Manual movement cancels the route. The walking pad, residents, observations, and actions can also be tapped.</span></div>
+      </div>
+      <p class="help-tip"><b>Tip:</b> The highlighted daily Virtue earns bonus practice. There is still no perfect route—Franklin’s ledger was for reflection, not perfection.</p>
+    </section>
+  </div>
+
+  <aside id="asset-browser-overlay" class="asset-build-dock hidden" role="region" aria-labelledby="asset-browser-title">
+    <section class="asset-browser-card">
+      <button id="asset-browser-close" class="asset-dock-collapse" type="button" aria-label="Collapse build catalog" aria-expanded="true">⌄</button>
+      <div class="asset-browser-heading">
+        <div><span class="eyebrow">Always available while editing</span><h2 id="asset-browser-title">Build Catalog</h2></div>
+        <b id="asset-browser-count">0 assets</b>
+      </div>
+      <nav id="asset-category-tabs" class="asset-category-tabs" aria-label="Build categories"></nav>
+      <div class="asset-browser-filters">
+        <input id="asset-search" type="search" placeholder="Search by object name…" aria-label="Search assets">
+        <select id="asset-pack-filter" aria-label="Filter asset pack"><option value="">All asset packs</option></select>
+        <select id="asset-kind-filter" aria-label="Filter asset kind"><option value="">All asset kinds</option></select>
+        <select id="asset-sort" aria-label="Sort assets"><option value="recommended">Recommended</option><option value="name">Name A–Z</option><option value="pack">Pack / folder</option></select>
+        <label class="asset-usable-filter"><input id="asset-usable-only" type="checkbox" checked> Ready to place only</label>
+        <button id="asset-clear-filters" type="button">Clear</button>
+      </div>
+      <div id="asset-browser-grid" class="asset-browser-grid"></div>
+      <div class="asset-browser-pages">
+        <button id="asset-page-prev" type="button">← Previous</button><span id="asset-page-label">Page 1</span><button id="asset-page-next" type="button">Next →</button>
+      </div>
+      <div class="asset-crop-panel">
+        <div class="asset-preview-wrap"><div id="asset-preview" class="asset-preview"><span>Select an asset</span></div><button id="asset-selected-favorite" type="button" disabled aria-label="Add selected asset to favorites">☆</button></div>
+        <div class="asset-crop-controls">
+          <div class="asset-selected-heading"><strong id="asset-selected-name">No asset selected</strong><span id="asset-selected-meta">Choose a catalog item or detected variant.</span></div>
+          <label class="asset-variant-picker">Detected variant<select id="asset-variant-select" disabled><option value="">Whole asset</option></select></label>
+          <div id="asset-grid-picker" class="asset-grid-picker hidden">
+            <strong>Tilesheet cell</strong>
+            <label>Column<input id="asset-grid-column" type="number" min="1" value="1"></label>
+            <label>Row<input id="asset-grid-row" type="number" min="1" value="1"></label>
+            <button id="asset-use-grid-cell" type="button">Use exact cell</button>
+          </div>
+          <details class="asset-advanced-controls">
+            <summary>Size & crop</summary>
+            <div class="asset-number-grid">
+              <label>Crop X<input id="asset-crop-x" type="number" min="0" value="0"></label>
+              <label>Crop Y<input id="asset-crop-y" type="number" min="0" value="0"></label>
+              <label>Crop W<input id="asset-crop-w" type="number" min="1" value="48"></label>
+              <label>Crop H<input id="asset-crop-h" type="number" min="1" value="48"></label>
+              <label>Stage W<input id="asset-display-w" type="number" min="8" max="640" value="96"></label>
+              <label>Stage H<input id="asset-display-h" type="number" min="8" max="640" value="96"></label>
+            </div>
+            <div class="asset-crop-actions">
+              <label><input id="asset-lock-ratio" type="checkbox" checked> Keep ratio</label>
+              <label><input id="asset-animate" type="checkbox" checked disabled> Animate</label>
+              <button id="asset-reset-crop" type="button" disabled>Reset crop</button>
+              <button id="asset-trim-alpha" type="button" disabled>Trim padding</button>
+            </div>
+          </details>
+          <button id="asset-place-button" class="primary-button" type="button" disabled>Place in editor</button>
+        </div>
+      </div>
+    </section>
+  </aside>
+
+  <div id="rpg-shell" class="rpg-shell hidden" aria-label="Multiverse campaign">
+    <header class="rpg-topbar">
+      <button id="rpg-title-button" class="rpg-icon-button" type="button" aria-label="Return to title">☰</button>
+      <div class="rpg-title-lockup">
+        <span id="rpg-chapter">Prologue</span>
+        <strong id="rpg-location">New Philadelphia</strong>
+      </div>
+      <div class="rpg-resource-strip" aria-label="Campaign resources">
+        <span><i>◈</i> <b id="rpg-duckets">0</b> Duckets</span>
+        <span><i>▥</i> <b id="rpg-party-count">1/5</b> Party</span>
+        <button id="rpg-save-button" type="button">Save</button>
+      </div>
+    </header>
+
+    <div class="rpg-layout">
+      <nav id="rpg-navigation" class="rpg-navigation" aria-label="Campaign sections">
+        <button type="button" data-rpg-view="world" class="active"><span>⚑</span>Explore</button>
+        <button type="button" data-rpg-view="town" class="active"><span>⌂</span>Town</button>
+        <button type="button" data-rpg-view="party"><span>♙</span>Party</button>
+        <button type="button" data-rpg-view="facilities"><span>⚒</span>Facilities</button>
+        <button type="button" data-rpg-view="assignments"><span>◷</span>Assignments</button>
+        <button type="button" data-rpg-view="inventory"><span>▣</span>Inventory</button>
+        <button type="button" data-rpg-view="quests"><span>!</span>Quests</button>
+        <button type="button" data-rpg-view="laboratory"><span>⚗</span>Laboratory</button>
+      </nav>
+
+      <main id="rpg-main" class="rpg-main" tabindex="-1"></main>
+
+      <aside class="rpg-party-rail" aria-labelledby="rpg-party-heading">
+        <div class="rpg-rail-heading"><span>Active party</span><b id="rpg-party-heading">Ben + 4 hires</b></div>
+        <div id="rpg-party-list" class="rpg-party-list"></div>
+        <section id="rpg-companion-card" class="rpg-companion-card"></section>
+      </aside>
+    </div>
+
+    <footer class="rpg-footer">
+      <span><kbd>WASD</kbd>/<kbd>D-pad</kbd> navigate</span>
+      <span><kbd>Enter</kbd>/<kbd>A</kbd> select</span>
+      <span><kbd>Esc</kbd>/<kbd>B</kbd> back</span>
+      <span id="rpg-autosave-state">Autosave ready</span>
+    </footer>
+  </div>
+
+  <div id="rpg-battle" class="rpg-battle hidden" role="dialog" aria-modal="true" aria-label="Active-time battle">
+    <div id="rpg-battle-stage" class="rpg-battle-stage">
+      <canvas id="rpg-battle-background" data-rpg-scene="haunted-mansion-interior" aria-label="A haunted room composed from individual tiles and props"></canvas>
+      <div id="rpg-enemy-line" class="rpg-enemy-line"></div>
+      <div id="rpg-hero-line" class="rpg-hero-line"></div>
+      <div id="rpg-battle-banner" class="rpg-battle-banner">BATTLE</div>
+    </div>
+    <div class="rpg-battle-hud">
+      <section id="rpg-battle-log" class="rpg-battle-log" aria-live="polite"></section>
+      <section id="rpg-battle-party" class="rpg-battle-party"></section>
+      <section id="rpg-command-menu" class="rpg-command-menu" aria-label="Battle commands"></section>
+    </div>
+  </div>
+
+  <div id="rpg-toast" class="rpg-toast hidden" role="status" aria-live="polite"></div>
+
+  <audio id="music-player" loop preload="metadata">
+    <source src="assets/Music/Lo-Fi HipHop/Lofi hip hop Volume 1) - 01 - Rise to Shine (Loop Version).flac" type="audio/flac">
+  </audio>
+  <audio id="sfx-player" preload="auto"></audio>
+
+  <script src="asset-paths.js?v=2"></script>
+  <script src="game-core.js?v=3"></script>
+  <script src="game.js?v=25"></script>
+  <script src="rpg-core.js?v=2"></script>
+  <script src="jrpg-world.js?v=1"></script>
+  <script src="rpg-campaign.js?v=6"></script>
+</body>
+</html>

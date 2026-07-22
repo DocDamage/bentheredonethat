@@ -1,0 +1,2953 @@
+extends Node
+
+signal state_changed
+signal facility_built(plot_index: int, facility_name: String)
+signal recruit_status_changed(recruit_id: StringName, status: StringName)
+signal facility_job_ready(facility_name: String, job_id: StringName)
+signal quest_advanced(quest_id: StringName, step_index: int)
+signal quest_completed(quest_id: StringName)
+signal party_changed
+signal town_objects_changed
+signal town_terrain_changed
+signal universe_anchored(plot_index: int, universe_id: StringName)
+signal encounter_pressure_changed(data: Dictionary)
+
+const SAVE_VERSION := 18
+const DEFAULT_SAVE_PATH := "user://save_slot_1.json"
+const SANDBOX_SAVE_PATH := "user://sandbox_slot.json"
+const SANDBOX_AUTHORED_OBJECTS := [
+	{"instance_id": "sandbox_town_lab", "catalog_id": &"modern_warehouse", "cell": Vector2i(48, 5), "role": &"town_lab", "protected": true},
+	{"instance_id": "sandbox_tree_northwest", "catalog_id": &"ranch_sapling", "cell": Vector2i(37, 1), "role": &"town_tree"},
+	{"instance_id": "sandbox_tree_northeast", "catalog_id": &"ranch_oak", "cell": Vector2i(62, 1), "role": &"town_tree", "flipped": true},
+	{"instance_id": "sandbox_tree_southwest", "catalog_id": &"ranch_oak", "cell": Vector2i(37, 17), "role": &"town_tree", "flipped": true},
+	{"instance_id": "sandbox_tree_southeast", "catalog_id": &"ranch_sapling", "cell": Vector2i(63, 17), "role": &"town_tree"},
+]
+const PARTY_LIMIT := 5
+const FORMATION_ROW_LIMIT := 3
+const FORMATION_ROWS := [&"front", &"back"]
+const SCENARIO_PARTY_REQUIREMENTS := {&"haunted_mansion": [&"fighter"]}
+const FIELD_SPECIALIST_TASKS := {
+	&"asterion_cargo_override": {
+		"preferred_recruits": [&"astronaut"], "preferred_skills": [&"Navigation"],
+		"duckets": 24, "items": {&"ether": 1, &"research_notes": 1},
+		"label": "Asterion customs override",
+	},
+	&"primeval_relay_survey": {
+		"preferred_recruits": [&"caveman", &"mossback_surveyor", &"astronaut"],
+		"preferred_skills": [&"Farming", &"Navigation", &"Athletics"],
+		"duckets": 0, "items": {&"provisions": 2, &"research_notes": 1},
+		"label": "Primeval relay survey",
+	},
+	&"helios_transit_override": {
+		"preferred_recruits": [&"neon_viper", &"cobalt_courier", &"astronaut", &"rift_jackal"],
+		"preferred_skills": [&"Engineering", &"Security"],
+		"duckets": 18, "items": {&"ether": 2},
+		"label": "Helios transit override",
+	},
+	&"frosthold_thermal_counsel": {
+		"preferred_recruits": [&"frost_lich_emperor", &"neon_viper"],
+		"preferred_skills": [&"Occult", &"Engineering"],
+		"duckets": 0, "items": {&"anchor_dust": 1, &"tonic": 1},
+		"label": "Frosthold thermal counsel",
+	},
+	&"moonpetal_memory_audit": {
+		"preferred_recruits": [&"kitsune_empress", &"frost_lich_emperor"],
+		"preferred_skills": [&"Occult", &"Diplomacy"],
+		"duckets": 0, "items": {&"research_notes": 1, &"anchor_dust": 1},
+		"label": "Moonpetal memory audit",
+	},
+	&"empyreal_weight_appeal": {
+		"preferred_recruits": [&"archangel_commander", &"kitsune_empress"],
+		"preferred_skills": [&"Diplomacy", &"Security"],
+		"duckets": 48, "items": {&"phoenix_tonic": 1},
+		"label": "Empyreal weight appeal",
+	},
+}
+const UNIVERSE_DEFINITIONS := {
+	&"haunted_mansion": {
+		"name": "The House at 4:44",
+		"building": "Haunted Mansion",
+		"destination": &"haunted_mansion",
+		"description": "A time-struck manor whose clocks remember a history that never happened.",
+		"mandatory_first": true,
+		"required_recruits": [&"fighter"],
+		"required_flags": [],
+		"anchor_flag": &"haunted_mansion_anchor_built",
+	},
+	&"asterion_station": {
+		"name": "Asterion Station",
+		"building": "Observatory",
+		"destination": &"asterion_station",
+		"description": "A derelict agricultural station still enforcing its final work shift.",
+		"mandatory_first": false,
+		"required_recruits": [],
+		"required_flags": [&"mansion_archive_boss_defeated"],
+		"anchor_flag": &"asterion_anchor_built",
+	},
+	&"primeval_expanse": {
+		"name": "Primeval Expanse",
+		"building": "Trailhead Lodge",
+		"destination": &"primeval_expanse",
+		"description": "A Stone Age municipality trying to regulate dinosaurs with traffic signals and cave computers.",
+		"mandatory_first": false,
+		"required_recruits": [],
+		"required_flags": [&"asterion_station_complete"],
+		"anchor_flag": &"primeval_anchor_built",
+	},
+	&"helios_arcology": {
+		"name": "Helios Arcology",
+		"building": "Afterlight Club",
+		"destination": &"helios_arcology",
+		"description": "A spotless sky city that outlawed night after deciding sleep was economically suspicious.",
+		"mandatory_first": false,
+		"required_recruits": [],
+		"required_flags": [&"primeval_scenario_complete"],
+		"anchor_flag": &"helios_anchor_built",
+	},
+	&"frosthold_kingdom": {
+		"name": "Frosthold Kingdom",
+		"building": "Cold Storage",
+		"destination": &"frosthold_kingdom",
+		"description": "A frozen court where winter is permanent, heat is contraband, and the royal treasury has begun auditing body temperature.",
+		"mandatory_first": false,
+		"required_recruits": [],
+		"required_flags": [&"helios_scenario_complete"],
+		"anchor_flag": &"frosthold_anchor_built",
+	},
+	&"moonpetal_court": {
+		"name": "Moonpetal Court",
+		"building": "Tea House",
+		"destination": &"moonpetal_court",
+		"description": "A shrine-city trapped in a perfect festival night, where a smiling magistrate taxes memories and notarizes illusions.",
+		"mandatory_first": false,
+		"required_recruits": [],
+		"required_flags": [&"frosthold_scenario_complete"],
+		"anchor_flag": &"moonpetal_anchor_built",
+	},
+	&"empyreal_court": {
+		"name": "Empyreal Court",
+		"building": "Belfry",
+		"destination": &"empyreal_court",
+		"description": "A celestial republic where gravity, weather, and miracles have all acquired fees, forms, and armed enforcement.",
+		"mandatory_first": false,
+		"required_recruits": [],
+		"required_flags": [&"moonpetal_scenario_complete"],
+		"anchor_flag": &"empyreal_anchor_built",
+	},
+}
+# Every scenario anchor uses this single source of truth for saving, recovery,
+# retry metadata, and roster access. Cells are absolute gameboard cells so a
+# future room rearrangement cannot silently leave the menu checking an old prop.
+const UNIVERSE_SAVE_POINTS := {
+	&"mansion_archive": {"name": "Archive Anchor Clock", "cell": Vector2i(12, 35), "flag": &"mansion_archive_save_found"},
+	&"asterion_medical": {"name": "Asterion Medical Beacon", "cell": Vector2i(52, 45), "flag": &"asterion_save_found"},
+	&"primeval_nest": {"name": "Relay Nest Anchor Totem", "cell": Vector2i(84, 45), "flag": &"primeval_save_found"},
+	&"helios_clinic": {"name": "Afterlight Clinic Beacon", "cell": Vector2i(122, 45), "flag": &"helios_save_found"},
+	&"frosthold_rune_hall": {"name": "Rune Hall Save Brazier", "cell": Vector2i(156, 47), "flag": &"frosthold_save_found"},
+	&"moonpetal_bell_walk": {"name": "Bell Walk Memory Lantern", "cell": Vector2i(191, 47), "flag": &"moonpetal_save_found"},
+	&"empyreal_aerie": {"name": "Aerie Anchor Crystal", "cell": Vector2i(230, 47), "flag": &"empyreal_save_found"},
+}
+const UNIVERSE_TREASURE_CACHES := {
+	&"primeval_ruins_plinth": {
+		"name": "Misfiled Fossil Plinth", "flag": &"primeval_ruins_treasure_claimed",
+		"loot_encounter": &"primeval_grove_intro", "duckets": 28,
+		"description": "Ben rotates the plinth's municipal seal. A fossilized field kit rises from the stone with a citation attached.",
+	},
+	&"helios_market_terminal": {
+		"name": "Unclaimed Property Terminal", "flag": &"helios_market_treasure_claimed",
+		"loot_encounter": &"helios_skybridge_intro", "duckets": 46,
+		"description": "The terminal recognizes Ben as the oldest unresolved customer complaint and releases an unclaimed equipment parcel.",
+	},
+	&"frosthold_heat_cache": {
+		"name": "Seized Heat Cache", "flag": &"frosthold_market_treasure_claimed",
+		"loot_encounter": &"frosthold_gate_intro", "duckets": 54,
+		"description": "Ben finds a confiscated supply case beneath the market brazier. Its contents are charged with unlawful warmth.",
+	},
+	&"moonpetal_offering": {
+		"name": "Unremembered Offering", "flag": &"moonpetal_garden_treasure_claimed",
+		"loot_encounter": &"moonpetal_gate_intro", "duckets": 62,
+		"description": "The garden offering bears Ben's name in handwriting he has not used yet. The magistrate forgot to inventory it.",
+	},
+	&"empyreal_tithe_basin": {
+		"name": "Misallocated Tithe Basin", "flag": &"empyreal_garden_treasure_claimed",
+		"loot_encounter": &"empyreal_landing_intro", "duckets": 76,
+		"description": "Ben appeals the fountain's ownership ledger. It refunds an equipment tithe plus several centuries of negligible interest.",
+	},
+}
+const EQUIPMENT_SLOTS := [&"weapon", &"head", &"body", &"hands", &"accessory", &"charm"]
+const JOB_QUALITY_NAMES := ["Routine", "Competent", "Excellent", "Masterwork", "Legendary"]
+const SERVICE_ITEM_CATALOG := {
+	&"tonic": {"name": "Tonic", "price": 18, "icon": "dfgui_icon-cauldron.png", "description": "Restores 70 HP to one ally in battle."},
+	&"ether": {"name": "Leyden Ether", "price": 32, "icon": "dfgui_icon-wand.png", "description": "Restores 24 MP to one ally in battle."},
+	&"smelling_salts": {"name": "Smelling Salts", "price": 24, "icon": "dfgui_icon-pouch.png", "description": "Removes Poison, Slow, and Shock."},
+	&"phoenix_tonic": {"name": "Phoenix Tonic", "price": 58, "icon": "dfgui_icon-goblet.png", "description": "Revives one fallen company member with 25% HP."},
+	&"provisions": {"name": "Expedition Provisions", "price": 14, "icon": "dfgui_icon-food.png", "description": "Facility material used for meals and longer assignments."},
+	&"rift_ward": {"name": "Rift Ward", "price": 36, "icon": "dfgui_icon-pouch.png", "description": "Suppresses random encounters for 40 dangerous steps. Scripted battles remain active."},
+}
+const SERVICE_STOCK := {
+	"Cafe": [&"tonic", &"ether", &"provisions", &"rift_ward"],
+	"Clinic": [&"tonic", &"smelling_salts", &"phoenix_tonic"],
+}
+const ARMORY_STOCK := {
+	&"militia_saber": {
+		"id": &"militia_saber", "base_name": "Militia Saber", "slot": &"weapon", "price": 72,
+		"icon": "res://game_assets/items/armory/Singles/Weapon_Singles/Iron/Iron_Weapon1.png",
+		"rarity": "Common", "rarity_color": "#d8d3c5", "modifiers": [{"name": "of Readiness", "stat": "attack", "value": 4}],
+	},
+	&"copper_watch_cap": {
+		"id": &"copper_watch_cap", "base_name": "Copper Watch Cap", "slot": &"head", "price": 56,
+		"icon": "res://game_assets/items/armory/Singles/Armor_Singles/Copper/Copper_Helmet1.png",
+		"rarity": "Common", "rarity_color": "#d8d3c5", "modifiers": [{"name": "of Vigilance", "stat": "defense", "value": 3}, {"name": "of Good Sense", "stat": "spirit", "value": 1}],
+	},
+	&"copper_field_coat": {
+		"id": &"copper_field_coat", "base_name": "Copper Field Coat", "slot": &"body", "price": 88,
+		"icon": "res://game_assets/items/armory/Singles/Armor_Singles/Copper/Copper_Chestplate1.png",
+		"rarity": "Common", "rarity_color": "#d8d3c5", "modifiers": [{"name": "of Shelter", "stat": "defense", "value": 5}, {"name": "of Vigor", "stat": "max_hp", "value": 15}],
+	},
+	&"copper_work_gloves": {
+		"id": &"copper_work_gloves", "base_name": "Copper Work Gloves", "slot": &"hands", "price": 58,
+		"icon": "res://game_assets/items/armory/Singles/Armor_Singles/Copper/Copper_Gloves1.png",
+		"rarity": "Common", "rarity_color": "#d8d3c5", "modifiers": [{"name": "of Grip", "stat": "attack", "value": 2}, {"name": "of Bracing", "stat": "defense", "value": 2}],
+	},
+	&"watchmakers_lens": {
+		"id": &"watchmakers_lens", "base_name": "Watchmaker's Field Lens", "slot": &"accessory", "price": 64,
+		"icon": "res://game_assets/items/resources_items_artifacts_loot/PNG/Transperent/Icon15.png",
+		"rarity": "Common", "rarity_color": "#d8d3c5", "modifiers": [{"name": "of Calibration", "stat": "magic", "value": 2}, {"name": "of Timing", "stat": "speed", "value": 2}],
+	},
+	&"anchor_knot": {
+		"id": &"anchor_knot", "base_name": "Braided Anchor Knot", "slot": &"charm", "price": 66,
+		"icon": "res://game_assets/items/resources_items_artifacts_loot/PNG/Transperent/Icon42.png",
+		"rarity": "Common", "rarity_color": "#d8d3c5", "modifiers": [{"name": "of Continuity", "stat": "spirit", "value": 3}, {"name": "of Charge", "stat": "max_mp", "value": 6}],
+	},
+	&"tempered_saber": {
+		"id": &"tempered_saber", "base_name": "Tempered Fault-Line Saber", "slot": &"weapon", "price": 148,
+		"icon": "res://game_assets/items/armory/Singles/Weapon_Singles/Iron/Iron_Weapon8.png",
+		"rarity": "Uncommon", "rarity_color": "#62d67b", "modifiers": [{"name": "of Tempering", "stat": "attack", "value": 7}, {"name": "of Quick Draw", "stat": "speed", "value": 2}],
+		"requires_flags": [&"mansion_archive_boss_defeated"],
+	},
+	&"vacuum_plate": {
+		"id": &"vacuum_plate", "base_name": "Asterion Vacuum Plate", "slot": &"body", "price": 184,
+		"icon": "res://game_assets/items/armory/Singles/Armor_Singles/Iron/Iron_Chestplate1.png",
+		"rarity": "Uncommon", "rarity_color": "#62d67b", "modifiers": [{"name": "of Pressure", "stat": "defense", "value": 8}, {"name": "of Reserve Air", "stat": "max_hp", "value": 24}],
+		"requires_flags": [&"asterion_station_complete"],
+	},
+}
+const FACILITY_DEFINITIONS := {
+	"Cafe": {
+		"description": "Feeds the town, hosts visitors, and turns hospitality into steady Duckets.",
+		"icon": "dfgui_icon-food.png",
+		"jobs": [
+			{"id": &"cafe_morning_service", "name": "Open the Morning Service", "description": "Run breakfast for settlers and curious interdimensional guests.", "duration_seconds": 300, "duckets": 18, "experience": 14, "items": {}, "preferred_skills": [&"Logistics", &"Diplomacy"], "ben_can_lead": true, "ben_can_assist": true, "boost_invention": &"serving_automaton"},
+			{"id": &"cafe_founders_supper", "name": "Host the Founders' Supper", "description": "A longer, higher-stakes service with better company pay.", "duration_seconds": 900, "duckets": 48, "experience": 34, "items": {&"provisions": 1}, "preferred_skills": [&"Diplomacy", &"Security"], "ben_can_lead": false, "ben_can_assist": true, "boost_invention": &"serving_automaton"},
+		],
+	},
+	"Library": {
+		"description": "Turns discoveries into useful research, blueprints, and multiversal leads.",
+		"icon": "dfgui_icon-redbook.png",
+		"jobs": [
+			{"id": &"library_catalog_records", "name": "Catalog Fault-Line Records", "description": "Sort field notes into usable research for Ben's laboratory.", "duration_seconds": 480, "duckets": 22, "experience": 18, "items": {&"research_notes": 1}, "preferred_skills": [&"Research", &"Logistics"], "ben_can_lead": true, "ben_can_assist": true, "boost_invention": &"cataloging_engine"},
+			{"id": &"library_decode_echoes", "name": "Decode Mansion Echoes", "description": "Cross-reference the haunted household's impossible records.", "duration_seconds": 1200, "duckets": 62, "experience": 45, "items": {&"anchor_dust": 1}, "preferred_skills": [&"Research", &"Occult"], "ben_can_lead": true, "ben_can_assist": true, "required_invention": &"cataloging_engine", "requires_flags": [&"mansion_first_room_complete"]},
+		],
+	},
+	"Clinic": {
+		"description": "Restores residents, prepares supplies, and supports longer expeditions.",
+		"icon": "dfgui_icon-cauldron.png",
+		"jobs": [
+			{"id": &"clinic_tonic_rounds", "name": "Prepare Tonic Rounds", "description": "Brew and bottle field medicine for the company inventory.", "duration_seconds": 600, "duckets": 16, "experience": 20, "items": {&"tonic": 2}, "preferred_skills": [&"Medicine", &"Logistics"], "ben_can_lead": true, "ben_can_assist": true, "boost_invention": &"medical_kite"},
+			{"id": &"clinic_emergency_drill", "name": "Run an Emergency Drill", "description": "Train the town to respond when visitors bring trouble home.", "duration_seconds": 1200, "duckets": 55, "experience": 42, "items": {&"tonic": 1}, "preferred_skills": [&"Medicine", &"Security"], "ben_can_lead": false, "ben_can_assist": true, "boost_invention": &"medical_kite"},
+		],
+	},
+	"Armory": {
+		"description": "Outfits expeditions, buys recovered equipment, and turns multiversal salvage into dependable field gear.",
+		"icon": "dfgui_icon-sword.png",
+		"jobs": [
+			{"id": &"armory_sort_salvage", "name": "Sort Recovered Salvage", "description": "Inspect bent weapons, impossible buckles, and armor that remembers a different owner.", "duration_seconds": 600, "duckets": 32, "experience": 24, "items": {&"anchor_dust": 1}, "preferred_skills": [&"Engineering", &"Logistics"], "ben_can_lead": true, "ben_can_assist": true},
+			{"id": &"armory_field_refit", "name": "Run a Company Field Refit", "description": "Repair expedition equipment and document which pieces continue violating ordinary metallurgy.", "duration_seconds": 1200, "duckets": 78, "experience": 50, "items": {&"research_notes": 1}, "preferred_skills": [&"Engineering", &"Security"], "ben_can_lead": false, "ben_can_assist": true, "requires_flags": [&"mansion_foyer_cleared"]},
+		],
+	},
+	"Haunted Mansion": {
+		"description": "The anchored universe doubles as an observatory for supernatural echoes.",
+		"icon": "dfgui_icon-monsterbook.png",
+		"jobs": [
+			{"id": &"mansion_echo_watch", "name": "Keep the Echo Watch", "description": "Monitor displaced spirits before they wander into town.", "duration_seconds": 900, "duckets": 58, "experience": 44, "items": {&"ectoplasm": 1}, "preferred_skills": [&"Security", &"Occult"], "ben_can_lead": false, "ben_can_assist": true, "boost_invention": &"echo_snare", "requires_flags": [&"mansion_foyer_cleared"]},
+			{"id": &"mansion_anchor_calibration", "name": "Calibrate the Anchor Core", "description": "Use Ben's regulator to harvest a stable trace of the universe.", "duration_seconds": 1800, "duckets": 90, "experience": 65, "items": {&"anchor_dust": 2}, "preferred_skills": [&"Research", &"Occult"], "ben_can_lead": true, "ben_can_assist": true, "required_invention": &"anchor_regulator", "requires_flags": [&"mansion_archive_boss_defeated"]},
+		],
+	},
+	"Observatory": {
+		"description": "Maps stable universes and monitors the town's second anchor: Asterion Station.",
+		"icon": "dfgui_icon-wand.png",
+		"jobs": [
+			{"id": &"observatory_chart_faults", "name": "Chart the Fault Line", "description": "Compare Asterion telemetry with Ben's laboratory instruments.", "duration_seconds": 900, "duckets": 64, "experience": 48, "items": {&"research_notes": 1}, "preferred_skills": [&"Research", &"Navigation"], "ben_can_lead": true, "ben_can_assist": true, "requires_flags": [&"asterion_station_restored"]},
+			{"id": &"observatory_salvage_signals", "name": "Trace Salvage Signals", "description": "Locate useful debris without reopening the station's automated security net.", "duration_seconds": 1500, "duckets": 105, "experience": 70, "items": {&"anchor_dust": 1}, "preferred_skills": [&"Navigation", &"Security"], "ben_can_lead": false, "ben_can_assist": true, "requires_flags": [&"asterion_station_complete"]},
+		],
+	},
+	"Trailhead Lodge": {
+		"description": "Supplies expeditions and monitors the town's Primeval Expanse anchor.",
+		"icon": "dfgui_icon-shovel.png",
+		"jobs": [
+			{"id": &"primeval_foraging_run", "name": "Run a Primeval Foraging Route", "description": "Gather useful plants while respecting the municipal dinosaur crossing signs.", "duration_seconds": 900, "duckets": 72, "experience": 52, "items": {&"provisions": 2}, "preferred_skills": [&"Farming", &"Athletics"], "ben_can_lead": false, "ben_can_assist": true, "requires_flags": [&"primeval_grove_cleared"]},
+			{"id": &"primeval_fossil_survey", "name": "Survey Impossible Fossils", "description": "Catalog machine parts fossilized several million years before their invention.", "duration_seconds": 1500, "duckets": 112, "experience": 76, "items": {&"research_notes": 2}, "preferred_skills": [&"Research", &"Athletics"], "ben_can_lead": true, "ben_can_assist": true, "boost_invention": &"paleo_translator", "requires_flags": [&"primeval_terminal_decoded"]},
+		],
+	},
+	"Afterlight Club": {
+		"description": "Runs the town's night shift and monitors the Helios Arcology anchor after sunset.",
+		"icon": "dfgui_icon-lightning.png",
+		"jobs": [
+			{"id": &"afterlight_house_show", "name": "Run the Afterlight House Show", "description": "Keep the floor, stage, and interdimensional guest list moving in the same direction.", "duration_seconds": 900, "duckets": 86, "experience": 58, "items": {&"provisions": 1}, "preferred_skills": [&"Diplomacy", &"Logistics"], "ben_can_lead": false, "ben_can_assist": true, "requires_flags": [&"helios_skybridge_cleared"]},
+			{"id": &"afterlight_signal_run", "name": "Trace the Midnight Signal", "description": "Relay Neon Viper's stolen telemetry through the Club without waking Helios security.", "duration_seconds": 1500, "duckets": 125, "experience": 82, "items": {&"research_notes": 2}, "preferred_skills": [&"Engineering", &"Security"], "ben_can_lead": true, "ben_can_assist": true, "boost_invention": &"night_phase_inverter", "requires_flags": [&"helios_transit_node_disabled"]},
+		],
+	},
+	"Cold Storage": {
+		"description": "Preserves town supplies and monitors the Frosthold Kingdom anchor without thawing either one.",
+		"icon": "dfgui_icon-cauldron.png",
+		"jobs": [
+			{"id": &"cold_storage_inventory", "name": "Inventory the Deep Freeze", "description": "Rotate provisions before an extradimensional winter turns their labels into historical documents.", "duration_seconds": 900, "duckets": 92, "experience": 62, "items": {&"provisions": 2}, "preferred_skills": [&"Logistics", &"Research"], "ben_can_lead": true, "ben_can_assist": true, "requires_flags": [&"frosthold_gate_cleared"]},
+			{"id": &"cold_storage_permafrost_audit", "name": "Audit the Permafrost", "description": "Measure the anchor's thermal debt and recover useful residue before the royal accountants do.", "duration_seconds": 1500, "duckets": 138, "experience": 88, "items": {&"anchor_dust": 2}, "preferred_skills": [&"Occult", &"Engineering"], "ben_can_lead": true, "ben_can_assist": true, "boost_invention": &"thermal_arbitration_coil", "requires_flags": [&"frosthold_rune_clue_found"]},
+		],
+	},
+	"Tea House": {
+		"description": "Serves the town, hosts diplomatic visitors, and monitors the Moonpetal Court anchor over properly steeped tea.",
+		"icon": "dfgui_icon-goblet.png",
+		"jobs": [
+			{"id": &"tea_house_service", "name": "Host the Moonpetal Service", "description": "Serve residents and visitors while keeping genuine memories separate from decorative anecdotes.", "duration_seconds": 900, "duckets": 104, "experience": 68, "items": {&"provisions": 1}, "preferred_skills": [&"Diplomacy", &"Logistics"], "ben_can_lead": false, "ben_can_assist": true, "requires_flags": [&"moonpetal_gate_cleared"]},
+			{"id": &"tea_house_memory_audit", "name": "Audit the Memory Ledger", "description": "Compare recovered shrine vows under Ben's calibrated lantern and bottle the harmless echoes.", "duration_seconds": 1500, "duckets": 152, "experience": 96, "items": {&"research_notes": 2, &"anchor_dust": 1}, "preferred_skills": [&"Occult", &"Research"], "ben_can_lead": true, "ben_can_assist": true, "boost_invention": &"veracity_lantern", "requires_flags": [&"moonpetal_vow_clue_found"]},
+		],
+	},
+	"Belfry": {
+		"description": "Keeps the town clock, relays weather warnings, and monitors the Empyreal Court anchor without accepting divine processing fees.",
+		"icon": "dfgui_icon-crown.png",
+		"jobs": [
+			{"id": &"belfry_weather_watch", "name": "Keep the Weather Watch", "description": "Track unauthorized thunderheads before celestial auditors invoice the town for precipitation.", "duration_seconds": 900, "duckets": 116, "experience": 74, "items": {&"research_notes": 1}, "preferred_skills": [&"Navigation", &"Research"], "ben_can_lead": true, "ben_can_assist": true, "requires_flags": [&"empyreal_landing_cleared"]},
+			{"id": &"belfry_gravity_appeals", "name": "Review Gravity Appeals", "description": "Help residents dispute sudden changes in personal weight, direction, and legal altitude.", "duration_seconds": 1500, "duckets": 168, "experience": 104, "items": {&"anchor_dust": 2}, "preferred_skills": [&"Diplomacy", &"Engineering"], "ben_can_lead": true, "ben_can_assist": true, "boost_invention": &"galvanic_counterweight", "requires_flags": [&"empyreal_gravity_clue_found"]},
+		],
+	},
+}
+const INVENTION_DEFINITIONS := {
+	&"serving_automaton": {"name": "Serving-Table Automaton", "facility": "Cafe", "description": "Cuts service time and raises reward quality.", "duckets": 25, "items": {}, "icon": "dfgui_icon-crafthammer.png"},
+	&"cataloging_engine": {"name": "Electrostatic Cataloging Engine", "facility": "Library", "description": "Boosts research work and unlocks mansion decoding.", "duckets": 35, "items": {&"research_notes": 1}, "icon": "dfgui_icon-skillbook.png"},
+	&"medical_kite": {"name": "Pneumatic Medical Kite", "facility": "Clinic", "description": "Carries supplies through the ward without collisions.", "duckets": 35, "items": {&"tonic": 1}, "icon": "dfgui_icon-cauldron.png"},
+	&"echo_snare": {"name": "Harmonic Echo Snare", "facility": "Haunted Mansion", "description": "Improves supernatural work after the foyer is secured.", "duckets": 60, "items": {&"anchor_shard": 1}, "icon": "dfgui_icon-wand.png", "requires_flags": [&"mansion_foyer_cleared"]},
+	&"anchor_regulator": {"name": "Portable Anchor Regulator", "facility": "Haunted Mansion", "description": "Required to safely calibrate the captured Anchor Core.", "duckets": 80, "items": {&"anchor_dust": 1}, "icon": "dfgui_icon-craftanvil.png", "requires_flags": [&"mansion_archive_boss_defeated"]},
+	&"continuity_kite": {"name": "Continuity Kite", "facility": "Haunted Mansion", "description": "Installs the captured Anchor Core in a portable homing invention. Opens a safe route back to New Philadelphia from any unrestricted universe.", "duckets": 0, "items": {&"anchor_core": 1}, "icon": "dfgui_icon-wand.png", "requires_flags": [&"mansion_archive_boss_defeated"]},
+	&"paleo_translator": {"name": "Paleo-Linguistic Telegraph", "facility": "Trailhead Lodge", "description": "Lets Ben exchange electrical signals with a cave computer whose operating system predates language.", "duckets": 85, "items": {&"research_notes": 1, &"anchor_dust": 1}, "icon": "dfgui_icon-wand.png", "requires_flags": [&"primeval_traffic_clue_found"]},
+	&"night_phase_inverter": {"name": "Nocturnal Phase Inverter", "facility": "Afterlight Club", "description": "Convinces Helios infrastructure that midnight is a legitimate municipal service.", "duckets": 110, "items": {&"research_notes": 1, &"anchor_dust": 1}, "icon": "dfgui_icon-lightning.png", "requires_flags": [&"helios_curfew_clue_found"]},
+	&"thermal_arbitration_coil": {"name": "Thermal Arbitration Coil", "facility": "Cold Storage", "description": "Produces a legally defensible pocket of warmth inside Frosthold's regulated winter.", "duckets": 135, "items": {&"research_notes": 2, &"anchor_dust": 1}, "icon": "dfgui_icon-cauldron.png", "requires_flags": [&"frosthold_rune_clue_found"]},
+	&"veracity_lantern": {"name": "Electrostatic Veracity Lantern", "facility": "Tea House", "description": "Makes copied memories cast the wrong shadow, allowing Moonpetal's genuine vows to be separated from official counterfeits.", "duckets": 155, "items": {&"research_notes": 2, &"anchor_dust": 2}, "icon": "dfgui_icon-wand.png", "requires_flags": [&"moonpetal_vow_clue_found"]},
+	&"galvanic_counterweight": {"name": "Galvanic Counterweight", "facility": "Belfry", "description": "Pins local gravity to Franklin & Company's copper standard, allowing the party to cross Empyreal lifts without paying by the pound.", "duckets": 180, "items": {&"research_notes": 2, &"anchor_dust": 2}, "icon": "dfgui_icon-lightning.png", "requires_flags": [&"empyreal_gravity_clue_found"]},
+}
+const SKILL_TREES := {
+	&"ben": [
+		{"id": &"efficient_capacitor", "name": "Efficient Capacitor", "cost": 1, "description": "+4 Magic.", "bonuses": {&"magic": 4}, "requires": []},
+		{"id": &"voltaic_cage_training", "name": "Voltaic Cage", "cost": 1, "description": "Unlock a stronger all-target electrical invention.", "action": &"voltaic_cage", "requires": [&"efficient_capacitor"]},
+		{"id": &"field_engineering", "name": "Field Engineering", "cost": 1, "description": "+5 Spirit.", "bonuses": {&"spirit": 5}, "requires": []},
+		{"id": &"triage_protocol", "name": "Triage Protocol", "cost": 1, "description": "+10 maximum MP.", "bonuses": {&"max_mp": 10}, "requires": [&"field_engineering"]},
+	],
+	&"fighter": [
+		{"id": &"rally_training", "name": "Rally Training", "cost": 1, "description": "Unlock Rally for the entire formation.", "action": &"rally", "requires": []},
+		{"id": &"cleave_training", "name": "Cleaving Form", "cost": 1, "description": "Unlock Cleave against every enemy.", "action": &"cleave", "requires": [&"rally_training"]},
+		{"id": &"iron_body", "name": "Iron Body", "cost": 1, "description": "+5 Defense.", "bonuses": {&"defense": 5}, "requires": []},
+		{"id": &"heavy_hands", "name": "Heavy Hands", "cost": 1, "description": "+5 Attack.", "bonuses": {&"attack": 5}, "requires": [&"iron_body"]},
+	],
+	&"astronaut": [
+		{"id": &"deadeye_training", "name": "Vacuum Deadeye", "cost": 1, "description": "Unlocks Deadeye Shot.", "action": &"deadeye_shot", "requires": []},
+		{"id": &"ion_round_training", "name": "Ion Round", "cost": 1, "description": "Unlocks an electrical shot that can Shock machines.", "action": &"ion_round", "requires": [&"deadeye_training"]},
+		{"id": &"pressure_suit", "name": "Pressure Suit", "cost": 1, "description": "+5 Defense.", "bonuses": {&"defense": 5}, "requires": []},
+		{"id": &"zero_g_reflexes", "name": "Zero-G Reflexes", "cost": 1, "description": "+6 Speed.", "bonuses": {&"speed": 6}, "requires": [&"pressure_suit"]},
+	],
+	&"caveman": [
+		{"id": &"primal_roar_training", "name": "Primal Roar", "cost": 1, "description": "Unlock a formation-wide attack rally.", "action": &"primal_roar", "requires": []},
+		{"id": &"mammoth_slam_training", "name": "Mammoth Slam", "cost": 1, "description": "Unlock a crushing single-target blow.", "action": &"mammoth_slam", "requires": [&"primal_roar_training"]},
+		{"id": &"stone_hide", "name": "Stone Hide", "cost": 1, "description": "+6 Defense.", "bonuses": {&"defense": 6}, "requires": []},
+		{"id": &"hunter_endurance", "name": "Hunter Endurance", "cost": 1, "description": "+28 maximum HP.", "bonuses": {&"max_hp": 28}, "requires": [&"stone_hide"]},
+	],
+	&"crimson_oni": [
+		{"id": &"crescent_form", "name": "Crimson Focus", "cost": 1, "description": "+4 Attack.", "bonuses": {&"attack": 4}, "requires": []},
+		{"id": &"blood_moon_form", "name": "Blood-Moon Iaijutsu", "cost": 1, "description": "Unlock an all-enemy execution draw.", "action": &"blood_moon_cleave", "requires": [&"crescent_form"]},
+		{"id": &"demon_guard", "name": "Demon Guard", "cost": 1, "description": "+5 Defense.", "bonuses": {&"defense": 5}, "requires": []},
+		{"id": &"phantom_step", "name": "Phantom Step", "cost": 1, "description": "+7 Speed.", "bonuses": {&"speed": 7}, "requires": [&"demon_guard"]},
+	],
+	&"rift_jackal": [
+		{"id": &"threshold_scent", "name": "Threshold Scent", "cost": 1, "description": "+5 Speed.", "bonuses": {&"speed": 5}, "requires": []},
+		{"id": &"faultline_pounce_training", "name": "Fault-Line Pounce", "cost": 1, "description": "Unlock a high-critical strike that delays its target.", "action": &"faultline_pounce", "requires": [&"threshold_scent"]},
+		{"id": &"rift_hide", "name": "Rift Hide", "cost": 1, "description": "+6 Defense.", "bonuses": {&"defense": 6}, "requires": []},
+		{"id": &"anchor_howl_training", "name": "Anchor Howl", "cost": 1, "description": "Unlock a howl that rallies the whole formation.", "action": &"anchor_howl", "requires": [&"rift_hide"]},
+	],
+	&"mossback_surveyor": [
+		{"id": &"soil_sense", "name": "Soil Sense", "cost": 1, "description": "+5 Spirit.", "bonuses": {&"spirit": 5}, "requires": []},
+		{"id": &"rooted_red_tape_training", "name": "Rooted Red Tape", "cost": 1, "description": "Unlock a binding root attack that drains ATB and may Slow.", "action": &"rooted_red_tape", "requires": [&"soil_sense"]},
+		{"id": &"supply_lines", "name": "Supply Lines", "cost": 1, "description": "+6 Defense.", "bonuses": {&"defense": 6}, "requires": []},
+		{"id": &"hearty_provisions_training", "name": "Hearty Provisions", "cost": 1, "description": "Unlock a formation-wide restorative meal.", "action": &"hearty_provisions", "requires": [&"supply_lines"]},
+	],
+	&"cobalt_courier": [
+		{"id": &"night_route", "name": "Night Route", "cost": 1, "description": "+5 Speed.", "bonuses": {&"speed": 5}, "requires": []},
+		{"id": &"priority_delivery_training", "name": "Priority Delivery", "cost": 1, "description": "Unlock a lightning-fast strike that delays its target and may inflict Shock.", "action": &"priority_delivery", "requires": [&"night_route"]},
+		{"id": &"insulated_satchel", "name": "Insulated Satchel", "cost": 1, "description": "+6 Spirit.", "bonuses": {&"spirit": 6}, "requires": []},
+		{"id": &"emergency_dispatch_training", "name": "Emergency Dispatch", "cost": 1, "description": "Unlock a formation-wide restorative delivery.", "action": &"emergency_dispatch", "requires": [&"insulated_satchel"]},
+	],
+	&"bulkhead_warden": [
+		{"id": &"reinforced_chassis", "name": "Reinforced Chassis", "cost": 1, "description": "+6 Defense.", "bonuses": {&"defense": 6}, "requires": []},
+		{"id": &"bulkhead_drop_training", "name": "Bulkhead Drop", "cost": 1, "description": "Unlock a crushing formation-wide impact.", "action": &"bulkhead_drop", "requires": [&"reinforced_chassis"]},
+		{"id": &"emergency_bracing", "name": "Emergency Bracing", "cost": 1, "description": "+32 maximum HP.", "bonuses": {&"max_hp": 32}, "requires": []},
+		{"id": &"pressure_lock_training", "name": "Pressure Lock", "cost": 1, "description": "Unlock a pneumatic strike that drains ATB and may inflict Slow.", "action": &"pressure_lock", "requires": [&"emergency_bracing"]},
+	],
+	&"kitsune_empress": [
+		{"id": &"foxfire_lesson", "name": "Foxfire Mastery", "cost": 1, "description": "+4 Magic.", "bonuses": {&"magic": 4}, "requires": []},
+		{"id": &"nine_tail_lesson", "name": "Nine-Tailed Judgment", "cost": 1, "description": "Unlock foxfire against the enemy formation.", "action": &"nine_tail_judgment", "requires": [&"foxfire_lesson"]},
+		{"id": &"courtly_glamour", "name": "Courtly Glamour", "cost": 1, "description": "+5 Spirit.", "bonuses": {&"spirit": 5}, "requires": []},
+		{"id": &"moonlit_reflexes", "name": "Moonlit Reflexes", "cost": 1, "description": "+6 Speed.", "bonuses": {&"speed": 6}, "requires": [&"courtly_glamour"]},
+	],
+	&"neon_viper": [
+		{"id": &"viper_rush_training", "name": "Viper Reflex", "cost": 1, "description": "+4 Speed.", "bonuses": {&"speed": 4}, "requires": []},
+		{"id": &"uppercut_training", "name": "Surprise Uppercut", "cost": 1, "description": "Unlock a high-critical close-range attack.", "action": &"viper_uppercut", "requires": [&"viper_rush_training"]},
+		{"id": &"neural_accelerator", "name": "Neural Accelerator", "cost": 1, "description": "+8 Speed.", "bonuses": {&"speed": 8}, "requires": []},
+		{"id": &"subdermal_armor", "name": "Subdermal Armor", "cost": 1, "description": "+5 Defense.", "bonuses": {&"defense": 5}, "requires": [&"neural_accelerator"]},
+	],
+	&"archangel_commander": [
+		{"id": &"seraph_strike_training", "name": "Seraphic Focus", "cost": 1, "description": "+4 Spirit.", "bonuses": {&"spirit": 4}, "requires": []},
+		{"id": &"heavenly_aegis_training", "name": "Heavenly Aegis", "cost": 1, "description": "Unlock a formation-wide protective rally.", "action": &"heavenly_aegis", "requires": [&"seraph_strike_training"]},
+		{"id": &"celestial_plate", "name": "Celestial Plate", "cost": 1, "description": "+7 Defense.", "bonuses": {&"defense": 7}, "requires": []},
+		{"id": &"healing_light", "name": "Healing Light", "cost": 1, "description": "+7 Spirit.", "bonuses": {&"spirit": 7}, "requires": [&"celestial_plate"]},
+	],
+	&"frost_lich_emperor": [
+		{"id": &"frost_nova_training", "name": "Permafrost", "cost": 1, "description": "+4 Magic.", "bonuses": {&"magic": 4}, "requires": []},
+		{"id": &"soul_reaper_training", "name": "Soul Reaper", "cost": 1, "description": "Unlock a severe spectral strike.", "action": &"soul_reaper", "requires": [&"frost_nova_training"]},
+		{"id": &"frozen_soul", "name": "Frozen Soul", "cost": 1, "description": "+7 Magic.", "bonuses": {&"magic": 7}, "requires": []},
+		{"id": &"throne_of_damned", "name": "Throne of the Damned", "cost": 1, "description": "+12 maximum MP.", "bonuses": {&"max_mp": 12}, "requires": [&"frozen_soul"]},
+	],
+}
+const QUEST_DEFINITIONS := {
+	&"a_fault_in_reality": {
+		"title": "A Fault in Reality", "category": &"main", "giver": "Benjamin Franklin", "icon": "dfgui_icon-crown.png",
+		"description": "Ben's laboratory has landed beside an empty settlement on an unstable fault line of the multiverse. Establish a safe town before opening any impossible doors.",
+		"starts_active": true,
+		"steps": [
+			{"text": "Hear Ben's plan in the laboratory.", "condition": {"type": &"story_flag", "id": &"opening_complete"}},
+			{"text": "Leave the laboratory and survey the empty town.", "condition": {"type": &"story_flag", "id": &"town_entered"}},
+			{"text": "Build the Café.", "condition": {"type": &"facility_built", "id": "Cafe"}},
+			{"text": "Build the Library.", "condition": {"type": &"facility_built", "id": "Library"}},
+			{"text": "Build the Clinic.", "condition": {"type": &"facility_built", "id": "Clinic"}},
+			{"text": "Build the Armory.", "condition": {"type": &"facility_built", "id": "Armory"}},
+		],
+		"rewards": {"duckets": 40, "items": {&"tonic": 1}},
+	},
+	&"first_hire": {
+		"title": "Franklin & Company's First Hire", "category": &"main", "giver": "Benjamin Franklin", "icon": "dfgui_icon-shield.png",
+		"description": "A multiversal expedition needs somebody who can solve problems that refuse diplomacy. A Fighter is waiting beside the new Café.",
+		"requires_quests": [&"a_fault_in_reality"],
+		"steps": [
+			{"text": "Speak with the Fighter beside the Café.", "condition": {"type": &"recruit_hired", "id": &"fighter"}},
+			{"text": "Place the Fighter in Ben's active party.", "condition": {"type": &"party_has", "id": &"fighter"}},
+		],
+		"rewards": {"duckets": 25, "items": {&"tonic": 2}},
+	},
+	&"first_anchor": {
+		"title": "The First Anchor", "category": &"main", "giver": "Benjamin Franklin", "icon": "dfgui_icon-crafthammer.png",
+		"description": "The safe town is ready. Use the supplied Haunted Mansion blueprint to choose and anchor the first universe.",
+		"requires_quests": [&"first_hire"],
+		"steps": [
+			{"text": "Build the Haunted Mansion in the remaining plot.", "condition": {"type": &"facility_built", "id": "Haunted Mansion"}},
+			{"text": "Enter the Haunted Mansion's anchored universe.", "condition": {"type": &"story_flag", "id": &"mansion_entered"}},
+		],
+		"rewards": {"duckets": 50, "items": {}},
+	},
+	&"the_house_keeps_time": {
+		"title": "The House Keeps Time", "category": &"main", "giver": "The Haunted Mansion", "icon": "dfgui_icon-clock.png",
+		"description": "Every clock in the Mansion disagrees with history. Secure the house, discover its missing hour, and stabilize the universe behind its front door.",
+		"requires_quests": [&"first_anchor"],
+		"steps": [
+			{"text": "Defeat the Mansion's foyer occupants.", "condition": {"type": &"story_flag", "id": &"mansion_foyer_cleared"}},
+			{"text": "Examine the stopped grandfather clock.", "condition": {"type": &"story_flag", "id": &"mansion_clock_examined"}},
+			{"text": "Search the bookcase for the household records.", "condition": {"type": &"story_flag", "id": &"mansion_ledger_found"}},
+			{"text": "Return to the clock and set the recorded hour: 4:44.", "condition": {"type": &"story_flag", "id": &"mansion_first_room_complete"}},
+			{"text": "Activate the archive's Anchor Clock save point.", "condition": {"type": &"story_flag", "id": &"mansion_archive_save_found"}},
+			{"text": "Survive the portrait gallery's reception.", "condition": {"type": &"story_flag", "id": &"mansion_gallery_ambush_cleared"}},
+			{"text": "Recover the Silver Hour Hand from the central portrait.", "condition": {"type": &"story_flag", "id": &"mansion_hour_hand_found"}},
+			{"text": "Break the nursery's doll procession.", "condition": {"type": &"story_flag", "id": &"mansion_nursery_ambush_cleared"}},
+			{"text": "Fit the Hour Hand into the music box and recover the Brass Minute Hand.", "condition": {"type": &"story_flag", "id": &"mansion_minute_hand_found"}},
+			{"text": "Set the ballroom lock to 4:44 and keep the appointment.", "condition": {"type": &"story_flag", "id": &"mansion_ballroom_open"}},
+			{"text": "Defeat the Haunted Clock Mirror at the 4:44 appointment.", "condition": {"type": &"story_flag", "id": &"mansion_archive_boss_defeated"}},
+		],
+		"rewards": {"duckets": 200, "items": {&"tonic": 3, &"anchor_dust": 1}},
+	},
+	&"a_portable_way_home": {
+		"title": "A Portable Way Home", "category": &"main", "giver": "Benjamin Franklin", "icon": "dfgui_icon-wand.png",
+		"description": "The first Anchor Core can do more than stabilize a doorway. Ben intends to turn it into a reliable escape route for every future expedition.",
+		"requires_quests": [&"the_house_keeps_time"],
+		"steps": [
+			{"text": "Return to Ben's laboratory and build the Continuity Kite from the recovered Anchor Core.", "condition": {"type": &"invention_owned", "id": &"continuity_kite"}},
+			{"text": "Test the Continuity Kite from inside the Haunted Mansion.", "condition": {"type": &"story_flag", "id": &"continuity_kite_used"}},
+		],
+		"rewards": {"duckets": 75, "items": {&"ether": 1}},
+	},
+	&"a_second_door": {
+		"title": "A Second Door", "category": &"main", "giver": "Benjamin Franklin", "icon": "dfgui_icon-wand.png",
+		"description": "The stabilized Mansion revealed another address on the fault line. Build a town Observatory and choose Asterion Station as its anchored universe.",
+		"requires_quests": [&"the_house_keeps_time"],
+		"steps": [
+			{"text": "Build the Observatory and anchor Asterion Station.", "condition": {"type": &"facility_built", "id": "Observatory"}},
+			{"text": "Enter Asterion Station through the Observatory.", "condition": {"type": &"story_flag", "id": &"asterion_entered"}},
+		],
+		"rewards": {"duckets": 80, "items": {&"ether": 2}},
+	},
+	&"the_last_shift": {
+		"title": "The Last Shift", "category": &"main", "giver": "Asterion Station", "icon": "dfgui_icon-skillbook.png",
+		"description": "A derelict agricultural station is still enforcing a work schedule centuries after its crew vanished. Find the surviving Astronaut, restore life support, and dismiss the machine running the final shift.",
+		"requires_quests": [&"a_second_door"],
+		"steps": [
+			{"text": "Survive Asterion's docking-bay security check.", "condition": {"type": &"story_flag", "id": &"asterion_dock_cleared"}},
+			{"text": "Speak with the stranded Astronaut.", "condition": {"type": &"story_flag", "id": &"asterion_astronaut_met"}},
+			{"text": "Recover the biocircuit from Medical.", "condition": {"type": &"story_flag", "id": &"asterion_biocircuit_found"}},
+			{"text": "Restart the hydroponics oxygen loop.", "condition": {"type": &"story_flag", "id": &"asterion_station_restored"}},
+			{"text": "Defeat the Mother Computer in Station Control.", "condition": {"type": &"story_flag", "id": &"asterion_station_complete"}},
+			{"text": "Recruit the Astronaut into Franklin & Company.", "condition": {"type": &"recruit_hired", "id": &"astronaut"}},
+		],
+		"rewards": {"duckets": 240, "items": {&"phoenix_tonic": 1}, "party_experience": 120},
+	},
+	&"the_oldest_address": {
+		"title": "The Oldest Address", "category": &"main", "giver": "Asterion Navigation Archive", "icon": "dfgui_icon-shovel.png",
+		"description": "Asterion's charts identify a universe that developed traffic law before written language. Choose the Primeval Expanse and give it a Trailhead Lodge in town.",
+		"requires_quests": [&"the_last_shift"],
+		"steps": [
+			{"text": "Build the Trailhead Lodge and anchor the Primeval Expanse.", "condition": {"type": &"facility_built", "id": "Trailhead Lodge"}},
+			{"text": "Enter the Primeval Expanse through the Lodge.", "condition": {"type": &"story_flag", "id": &"primeval_entered"}},
+		],
+		"rewards": {"duckets": 110, "items": {&"tonic": 2, &"research_notes": 1}},
+	},
+	&"municipal_extinction": {
+		"title": "Municipal Extinction", "category": &"main", "giver": "Primeval Borough", "icon": "dfgui_icon-monsterbook.png",
+		"description": "A stone traffic network has mistaken a meteor siren for rush-hour control. Help the local Caveman interpret his own infrastructure before every dinosaur reports to the same intersection.",
+		"requires_quests": [&"the_oldest_address"],
+		"steps": [
+			{"text": "Survive the Primeval Grove's welcoming committee.", "condition": {"type": &"story_flag", "id": &"primeval_grove_cleared"}},
+			{"text": "Meet the Caveman maintaining Primeval Borough.", "condition": {"type": &"story_flag", "id": &"primeval_caveman_met"}},
+			{"text": "Read the stone traffic totem in the Grove.", "condition": {"type": &"story_flag", "id": &"primeval_traffic_clue_found"}},
+			{"text": "Build the Paleo-Linguistic Telegraph in Ben's laboratory.", "condition": {"type": &"invention_owned", "id": &"paleo_translator"}},
+			{"text": "Decode the cave computer in the Ruins.", "condition": {"type": &"story_flag", "id": &"primeval_terminal_decoded"}},
+			{"text": "Defend the relay nest from its dinosaur attendants.", "condition": {"type": &"story_flag", "id": &"primeval_nest_ambush_cleared"}},
+			{"text": "Reset the meteor siren at the relay nest.", "condition": {"type": &"story_flag", "id": &"primeval_caldera_open"}},
+			{"text": "Defeat the Tyrant of the Morning Commute.", "condition": {"type": &"story_flag", "id": &"primeval_scenario_complete"}},
+			{"text": "Recruit the Caveman into Franklin & Company.", "condition": {"type": &"recruit_hired", "id": &"caveman"}},
+		],
+		"rewards": {"duckets": 320, "items": {&"phoenix_tonic": 1, &"anchor_dust": 2}, "party_experience": 180},
+	},
+	&"a_brighter_night": {
+		"title": "A Brighter Night", "category": &"main", "giver": "Primeval Cave Computer", "icon": "dfgui_icon-lightning.png",
+		"description": "The cave computer has received a parking citation from a city where the sun never sets. Anchor Helios Arcology through a proper night establishment.",
+		"requires_quests": [&"municipal_extinction"],
+		"steps": [
+			{"text": "Build the Afterlight Club and anchor Helios Arcology.", "condition": {"type": &"facility_built", "id": "Afterlight Club"}},
+			{"text": "Enter Helios Arcology through the Club.", "condition": {"type": &"story_flag", "id": &"helios_entered"}},
+		],
+		"rewards": {"duckets": 140, "items": {&"ether": 2, &"research_notes": 1}},
+	},
+	&"mandatory_daylight": {
+		"title": "Mandatory Daylight", "category": &"main", "giver": "Neon Viper", "icon": "dfgui_icon-wand.png",
+		"description": "Helios replaced its night cycle with a productivity ordinance. Help Neon Viper disable the daylight network and return one honest midnight to the city.",
+		"requires_quests": [&"a_brighter_night"],
+		"steps": [
+			{"text": "Survive the Skybridge compliance inspection.", "condition": {"type": &"story_flag", "id": &"helios_skybridge_cleared"}},
+			{"text": "Find Neon Viper in the Public Market.", "condition": {"type": &"story_flag", "id": &"helios_viper_met"}},
+			{"text": "Read the mandatory-daylight ordinance.", "condition": {"type": &"story_flag", "id": &"helios_curfew_clue_found"}},
+			{"text": "Build the Nocturnal Phase Inverter in Ben's laboratory.", "condition": {"type": &"invention_owned", "id": &"night_phase_inverter"}},
+			{"text": "Disable the Transit Exchange daylight node.", "condition": {"type": &"story_flag", "id": &"helios_transit_node_disabled"}},
+			{"text": "Break the Recovery Clinic security ambush.", "condition": {"type": &"story_flag", "id": &"helios_clinic_ambush_cleared"}},
+			{"text": "Disable the Recovery Clinic daylight node.", "condition": {"type": &"story_flag", "id": &"helios_clinic_node_disabled"}},
+			{"text": "Open the Solar Core after both nodes go dark.", "condition": {"type": &"story_flag", "id": &"helios_core_open"}},
+			{"text": "Defeat the Civic Sun at the Solar Core.", "condition": {"type": &"story_flag", "id": &"helios_scenario_complete"}},
+			{"text": "Recruit Neon Viper into Franklin & Company.", "condition": {"type": &"recruit_hired", "id": &"neon_viper"}},
+		],
+		"rewards": {"duckets": 420, "items": {&"phoenix_tonic": 1, &"anchor_dust": 2}, "party_experience": 240},
+	},
+	&"a_colder_address": {
+		"title": "A Colder Address", "category": &"main", "giver": "Helios Midnight Anchor", "icon": "dfgui_icon-cauldron.png",
+		"description": "The restored Helios night cycle reveals a signal that is colder than empty space and considerably more bureaucratic. Build Cold Storage and anchor Frosthold Kingdom.",
+		"requires_quests": [&"mandatory_daylight"],
+		"steps": [
+			{"text": "Build Cold Storage and anchor Frosthold Kingdom.", "condition": {"type": &"facility_built", "id": "Cold Storage"}},
+			{"text": "Enter Frosthold Kingdom through Cold Storage.", "condition": {"type": &"story_flag", "id": &"frosthold_entered"}},
+		],
+		"rewards": {"duckets": 175, "items": {&"tonic": 2, &"research_notes": 1}},
+	},
+	&"the_frozen_ledger": {
+		"title": "The Frozen Ledger", "category": &"main", "giver": "Frost Lich Emperor", "icon": "dfgui_icon-crown.png",
+		"description": "Frosthold's treasury has classified body heat as taxable luxury property. Help its deposed Lich Emperor void the law before the kingdom's Whiteout Auditor collects every living soul.",
+		"requires_quests": [&"a_colder_address"],
+		"steps": [
+			{"text": "Break the Snow Gate's collection patrol.", "condition": {"type": &"story_flag", "id": &"frosthold_gate_cleared"}},
+			{"text": "Find the Frost Lich Emperor in the frozen market.", "condition": {"type": &"story_flag", "id": &"frost_lich_met"}},
+			{"text": "Read the royal heat-tax rune.", "condition": {"type": &"story_flag", "id": &"frosthold_rune_clue_found"}},
+			{"text": "Build the Thermal Arbitration Coil in Ben's laboratory.", "condition": {"type": &"invention_owned", "id": &"thermal_arbitration_coil"}},
+			{"text": "Warm the first seal on the Crystal Causeway.", "condition": {"type": &"story_flag", "id": &"frosthold_causeway_seal_open"}},
+			{"text": "Defeat the Rune Hall collection detail.", "condition": {"type": &"story_flag", "id": &"frosthold_rune_ambush_cleared"}},
+			{"text": "Warm the second seal and open the Ice Throne.", "condition": {"type": &"story_flag", "id": &"frosthold_throne_open"}},
+			{"text": "Defeat the Whiteout Auditor at the Ice Throne.", "condition": {"type": &"story_flag", "id": &"frosthold_scenario_complete"}},
+			{"text": "Recruit the Frost Lich Emperor into Franklin & Company.", "condition": {"type": &"recruit_hired", "id": &"frost_lich_emperor"}},
+		],
+		"rewards": {"duckets": 520, "items": {&"phoenix_tonic": 2, &"anchor_dust": 3}, "party_experience": 300},
+	},
+	&"tea_beyond_winter": {
+		"title": "Tea Beyond Winter", "category": &"main", "giver": "Frosthold Repeal Office", "icon": "dfgui_icon-goblet.png",
+		"description": "A recovered tax receipt bears a cherry blossom seal and records a warm evening that Frosthold never had. Build a Tea House and anchor the impossible address.",
+		"requires_quests": [&"the_frozen_ledger"],
+		"steps": [
+			{"text": "Build the Tea House and anchor Moonpetal Court.", "condition": {"type": &"facility_built", "id": "Tea House"}},
+			{"text": "Enter Moonpetal Court through the Tea House.", "condition": {"type": &"story_flag", "id": &"moonpetal_entered"}},
+		],
+		"rewards": {"duckets": 210, "items": {&"ether": 2, &"research_notes": 1}},
+	},
+	&"the_counterfeit_moon": {
+		"title": "The Counterfeit Moon", "category": &"main", "giver": "Kitsune Empress", "icon": "dfgui_icon-wand.png",
+		"description": "Magistrate Enma has replaced Moonpetal's citizens' memories with immaculate official copies. Help the Kitsune Empress prove which vows are real before the court's perfect festival becomes permanent.",
+		"requires_quests": [&"tea_beyond_winter"],
+		"steps": [
+			{"text": "Break the Vermilion Gate inspection patrol.", "condition": {"type": &"story_flag", "id": &"moonpetal_gate_cleared"}},
+			{"text": "Find the Kitsune Empress in Blossom Court.", "condition": {"type": &"story_flag", "id": &"kitsune_empress_met"}},
+			{"text": "Read the duplicated vow at the Mirror Garden.", "condition": {"type": &"story_flag", "id": &"moonpetal_vow_clue_found"}},
+			{"text": "Build the Electrostatic Veracity Lantern in Ben's laboratory.", "condition": {"type": &"invention_owned", "id": &"veracity_lantern"}},
+			{"text": "Expose the first false vow and open the Bell Walk.", "condition": {"type": &"story_flag", "id": &"moonpetal_bell_walk_open"}},
+			{"text": "Defeat the Bell Walk wedding procession.", "condition": {"type": &"story_flag", "id": &"moonpetal_bell_ambush_cleared"}},
+			{"text": "Expose the final false vow and open the Moon Palace.", "condition": {"type": &"story_flag", "id": &"moonpetal_palace_open"}},
+			{"text": "Defeat Magistrate Enma at the Moon Palace.", "condition": {"type": &"story_flag", "id": &"moonpetal_scenario_complete"}},
+			{"text": "Recruit the Kitsune Empress into Franklin & Company.", "condition": {"type": &"recruit_hired", "id": &"kitsune_empress"}},
+		],
+		"rewards": {"duckets": 610, "items": {&"phoenix_tonic": 2, &"anchor_dust": 3}, "party_experience": 360},
+	},
+	&"bells_above_the_clouds": {
+		"title": "Bells Above the Clouds", "category": &"main", "giver": "Moonpetal Memory Ledger", "icon": "dfgui_icon-crown.png",
+		"description": "The restored Moonpetal ledger records a bell whose sound falls upward. Build a Belfry and anchor the celestial address above the fault line.",
+		"requires_quests": [&"the_counterfeit_moon"],
+		"steps": [
+			{"text": "Build the Belfry and anchor Empyreal Court.", "condition": {"type": &"facility_built", "id": "Belfry"}},
+			{"text": "Enter Empyreal Court through the Belfry.", "condition": {"type": &"story_flag", "id": &"empyreal_entered"}},
+		],
+		"rewards": {"duckets": 245, "items": {&"ether": 2, &"research_notes": 1}},
+	},
+	&"the_weight_of_heaven": {
+		"title": "The Weight of Heaven", "category": &"main", "giver": "Archangel Commander", "icon": "dfgui_icon-lightning.png",
+		"description": "Empyreal Court has privatized gravity and begun repossessing flight from anyone behind on their miracle fees. Help the Archangel Commander overturn the ordinance at the Seraph Tribunal.",
+		"requires_quests": [&"bells_above_the_clouds"],
+		"steps": [
+			{"text": "Defeat the Cloudstep weigh-station patrol.", "condition": {"type": &"story_flag", "id": &"empyreal_landing_cleared"}},
+			{"text": "Meet the Archangel Commander in the Garden of Appeals.", "condition": {"type": &"story_flag", "id": &"archangel_commander_met"}},
+			{"text": "Read the gravity ordinance in the Forum of Measures.", "condition": {"type": &"story_flag", "id": &"empyreal_gravity_clue_found"}},
+			{"text": "Build the Galvanic Counterweight in Ben's laboratory.", "condition": {"type": &"invention_owned", "id": &"galvanic_counterweight"}},
+			{"text": "Rebalance the first gravity seal and open the Reliquary Aerie.", "condition": {"type": &"story_flag", "id": &"empyreal_aerie_open"}},
+			{"text": "Defeat the Reliquary repossession detail.", "condition": {"type": &"story_flag", "id": &"empyreal_aerie_ambush_cleared"}},
+			{"text": "Rebalance the final seal and open the Seraph Tribunal.", "condition": {"type": &"story_flag", "id": &"empyreal_tribunal_open"}},
+			{"text": "Defeat the High Comptroller of Gravity.", "condition": {"type": &"story_flag", "id": &"empyreal_scenario_complete"}},
+			{"text": "Recruit the Archangel Commander into Franklin & Company.", "condition": {"type": &"recruit_hired", "id": &"archangel_commander"}},
+		],
+		"rewards": {"duckets": 720, "items": {&"phoenix_tonic": 2, &"anchor_dust": 4}, "party_experience": 430},
+	},
+	&"the_blood_moon_clause": {
+		"title": "The Blood Moon Clause", "category": &"hidden", "giver": "Crimson Challenge Seal", "icon": "dfgui_icon-sword.png",
+		"description": "Magistrate Enma's private seal has summoned a Crimson Oni to the Bell Walk. The creature treats combat as an employment interview and refuses all conventional paperwork.",
+		"hidden": true, "requires_flags": [&"crimson_oni_met"],
+		"steps": [
+			{"text": "Answer the Crimson Challenge Seal at the Bell Walk.", "condition": {"type": &"story_flag", "id": &"crimson_oni_met"}},
+			{"text": "Defeat the Crimson Oni in the Blood Moon Trial.", "condition": {"type": &"story_flag", "id": &"crimson_oni_trial_complete"}},
+			{"text": "Recruit the Crimson Oni into Franklin & Company.", "condition": {"type": &"recruit_hired", "id": &"crimson_oni"}},
+		],
+		"rewards": {"duckets": 420, "items": {&"phoenix_tonic": 1, &"anchor_dust": 2}, "party_experience": 260},
+	},
+	&"the_fault_line_stray": {
+		"title": "The Fault-Line Stray", "category": &"hidden", "giver": "A Scent Behind the Wallpaper", "icon": "dfgui_icon-monsterbook.png",
+		"description": "Stabilizing the Haunted Mansion exposed a creature that can smell false doorways. It appears to regard combat as the only trustworthy introduction.",
+		"hidden": true, "requires_flags": [&"rift_jackal_met"],
+		"steps": [
+			{"text": "Find the creature in the stabilized Haunted Mansion.", "condition": {"type": &"story_flag", "id": &"rift_jackal_met"}},
+			{"text": "Defeat the Rift Jackal without collapsing the threshold.", "condition": {"type": &"story_flag", "id": &"rift_jackal_trial_complete"}},
+			{"text": "Recruit the Rift Jackal into Franklin & Company.", "condition": {"type": &"recruit_hired", "id": &"rift_jackal"}},
+		],
+		"rewards": {"duckets": 260, "items": {&"anchor_dust": 2, &"tonic": 2}, "party_experience": 180},
+	},
+	&"the_green_audit": {
+		"title": "The Green Audit", "category": &"hidden", "giver": "An Unauthorized Survey Stake", "icon": "dfgui_icon-monsterbook.png",
+		"description": "After the Primeval traffic crisis, a Mossback Surveyor begins auditing Franklin's use of soil, roads, and edible municipal property. It accepts combat as a legally binding site inspection.",
+		"hidden": true, "requires_flags": [&"mossback_surveyor_met"],
+		"steps": [
+			{"text": "Find the surveyor in the stabilized Primeval Borough.", "condition": {"type": &"story_flag", "id": &"mossback_surveyor_met"}},
+			{"text": "Pass the Mossback Surveyor's field inspection.", "condition": {"type": &"story_flag", "id": &"mossback_surveyor_trial_complete"}},
+			{"text": "Recruit the Mossback Surveyor into Franklin & Company.", "condition": {"type": &"recruit_hired", "id": &"mossback_surveyor"}},
+		],
+		"rewards": {"duckets": 330, "items": {&"provisions": 3, &"anchor_dust": 1}, "party_experience": 225},
+	},
+	&"the_undeliverable_parcel": {
+		"title": "The Undeliverable Parcel", "category": &"hidden", "giver": "A Stamp from Yesterday", "icon": "dfgui_icon-monsterbook.png",
+		"description": "With Helios's permanent day shift broken, a Cobalt Courier has resumed a delivery addressed to New Philadelphia before the town existed. Company policy requires combat verification before the recipient may sign.",
+		"hidden": true, "requires_flags": [&"cobalt_courier_met"],
+		"steps": [
+			{"text": "Find the courier at the stabilized Helios transit platform.", "condition": {"type": &"story_flag", "id": &"cobalt_courier_met"}},
+			{"text": "Complete the courier's combat verification.", "condition": {"type": &"story_flag", "id": &"cobalt_courier_trial_complete"}},
+			{"text": "Recruit the Cobalt Courier into Franklin & Company.", "condition": {"type": &"recruit_hired", "id": &"cobalt_courier"}},
+		],
+		"rewards": {"duckets": 390, "items": {&"ether": 2, &"research_notes": 2}, "party_experience": 250},
+	},
+	&"the_load_bearing_interview": {
+		"title": "The Load-Bearing Interview", "category": &"hidden", "giver": "Asterion Maintenance Plate", "icon": "dfgui_icon-monsterbook.png",
+		"description": "Asterion's last acting shop steward refuses to leave the station until a prospective employer survives a regulation structural interview.",
+		"hidden": true, "requires_flags": [&"bulkhead_warden_met"],
+		"steps": [
+			{"text": "Find the dormant construct in stabilized Asterion Station Control.", "condition": {"type": &"story_flag", "id": &"bulkhead_warden_met"}},
+			{"text": "Complete the Bulkhead Warden's load-bearing interview.", "condition": {"type": &"story_flag", "id": &"bulkhead_warden_trial_complete"}},
+			{"text": "Recruit the Bulkhead Warden into Franklin & Company.", "condition": {"type": &"recruit_hired", "id": &"bulkhead_warden"}},
+		],
+		"rewards": {"duckets": 300, "items": {&"research_notes": 2, &"anchor_dust": 1}, "party_experience": 210},
+	},
+	&"company_at_work": {
+		"title": "Company at Work", "category": &"side", "giver": "Franklin & Company Ledger", "icon": "dfgui_icon-pouch.png",
+		"description": "An expedition company needs revenue between adventures. Assign a permanent hire to town work and collect the finished result.",
+		"requires_flags": [&"town_foundations_complete"],
+		"steps": [
+			{"text": "Assign a recruit to any town facility.", "condition": {"type": &"facility_assignment_count", "amount": 1}},
+			{"text": "Collect one completed facility assignment.", "condition": {"type": &"completed_job_count", "amount": 1}},
+		],
+		"rewards": {"duckets": 60, "items": {&"research_notes": 1}},
+	},
+	&"open_for_business": {
+		"title": "Open for Business", "category": &"side", "giver": "New Philadelphia Service Ledger", "icon": "dfgui_icon-food.png",
+		"description": "A town is more than a set of roofs. Test the direct services at each founding facility and make certain adventurers can actually use them.",
+		"requires_flags": [&"town_foundations_complete"],
+		"steps": [
+			{"text": "Purchase one expedition supply from the Café counter.", "condition": {"type": &"story_flag", "id": &"town_service_purchase_made"}},
+			{"text": "Use the Clinic's full-party treatment service.", "condition": {"type": &"story_flag", "id": &"clinic_treatment_used"}},
+			{"text": "Archive the company's field records at the Library.", "condition": {"type": &"story_flag", "id": &"library_records_archived"}},
+		],
+		"rewards": {"duckets": 50, "items": {&"tonic": 1, &"provisions": 1}},
+	},
+	&"echoes_on_paper": {
+		"title": "Echoes on Paper", "category": &"hidden", "giver": "Household Ledger", "icon": "dfgui_icon-redbook.png",
+		"description": "The recovered ledger describes contradictions the ordinary Library cannot index. Ben will need a better machine—and somebody must decode the echoes.",
+		"hidden": true, "requires_flags": [&"mansion_first_room_complete"],
+		"steps": [
+			{"text": "Invent the Electrostatic Cataloging Engine in Ben's lab.", "condition": {"type": &"invention_owned", "id": &"cataloging_engine"}},
+			{"text": "Complete the Library assignment: Decode Mansion Echoes.", "condition": {"type": &"job_completed", "id": &"library_decode_echoes"}},
+		],
+		"rewards": {"duckets": 100, "items": {&"anchor_dust": 2}},
+	},
+}
+
+var sandbox_mode := false
+var play_time_seconds := 0.0
+var save_timestamp := 0
+var last_save_cell := Vector2i(10, 9)
+var last_location := "Laboratory"
+var town_time_minutes := 7.0 * 60.0
+var resident_states: Dictionary = {}
+var town_terrain: Dictionary = {}
+var town_objects: Array[Dictionary] = []
+var next_town_object_id := 1
+var duckets := 0
+var built_facilities: Dictionary = {}
+var universe_anchors: Dictionary = {}
+var story_flags: Dictionary = {}
+var bestiary_records: Dictionary = {}
+var inventory: Dictionary = {&"tonic": 3, &"ether": 1, &"smelling_salts": 2, &"phoenix_tonic": 1}
+var encounter_ward_steps := 0
+var encounter_pressure: Dictionary = {"active": false, "universe_id": &"", "steps": 0, "threshold": 1, "ward_steps": 0, "suppressed": false, "cooldown": 0}
+var loot_inventory: Array[Dictionary] = []
+var character_progress: Dictionary = {}
+var party: Array[StringName] = [&"ben"]
+var party_formation: Dictionary = {&"ben": &"back"}
+var recruit_status: Dictionary = {
+	&"ben": &"party", &"fighter": &"undiscovered", &"astronaut": &"undiscovered",
+	&"caveman": &"undiscovered", &"crimson_oni": &"undiscovered", &"rift_jackal": &"undiscovered", &"mossback_surveyor": &"undiscovered", &"cobalt_courier": &"undiscovered", &"bulkhead_warden": &"undiscovered", &"kitsune_empress": &"undiscovered",
+	&"neon_viper": &"undiscovered", &"archangel_commander": &"undiscovered", &"frost_lich_emperor": &"undiscovered",
+}
+var facility_assignments: Dictionary = {}
+var active_facility_jobs: Dictionary = {}
+var completed_facility_jobs: Dictionary = {}
+var owned_inventions: Array[StringName] = []
+var quest_states: Dictionary = {}
+var tracked_quest: StringName = &""
+var _job_clock_accumulator := 0.0
+var _syncing_quests := false
+var _play_session_running := false
+
+var recruit_catalog: Dictionary = {
+	&"ben": {
+		"name": "Benjamin Franklin",
+		"specialty": "Inventor and support",
+		"adjacent_skills": ["Diplomacy", "Research", "Logistics"],
+		"work_specialties": [&"Invention", &"Research"],
+		"work_adjacent": [&"Diplomacy", &"Logistics", &"Medicine"],
+		"asset_pack": "Main Character/Ben_Franklin",
+	},
+	&"fighter": {
+		"name": "Fighter",
+		"specialty": "Martial combat",
+		"adjacent_skills": ["Security", "Athletics"],
+		"work_specialties": [&"Combat", &"Security"],
+		"work_adjacent": [&"Athletics", &"Logistics"],
+		"asset_pack": "Recruitable Characters/Fighter/Fighter",
+		"field_animation_scene": "res://ben_rpg/characters/fighter_field_animation.tscn",
+	},
+	&"astronaut": {
+		"name": "Astronaut",
+		"specialty": "Ranged combat and navigation",
+		"adjacent_skills": ["Security", "Engineering"],
+		"work_specialties": [&"Navigation", &"Combat"],
+		"work_adjacent": [&"Security", &"Engineering", &"Research"],
+		"asset_pack": "Recruitable Characters/astronaut/Astronaut",
+		"field_animation_scene": "res://ben_rpg/characters/astronaut_field_animation.tscn",
+	},
+	&"caveman": {
+		"name": "Caveman", "specialty": "Survival and brute force",
+		"adjacent_skills": ["Athletics", "Farming", "Logistics"],
+		"work_specialties": [&"Athletics", &"Farming"], "work_adjacent": [&"Security", &"Logistics"],
+		"asset_pack": "Recruitable Characters/caveman/Caveman", "field_animation_scene": "res://ben_rpg/characters/caveman_field_animation.tscn", "portrait_region": Rect2(20, 21, 49, 50),
+		"combat_actions": [&"club_smash", &"pummel", &"defend", &"tonic", &"smelling_salts", &"phoenix_tonic", &"escape"],
+		"combat_stats": {"max_hp": 220, "max_mp": 10, "attack": 35, "defense": 27, "magic": 6, "spirit": 12, "speed": 24, "hp_growth": 25, "mp_growth": 1, "attack_growth": 4, "defense_growth": 3, "magic_growth": 1, "spirit_growth": 1, "speed_growth": 1},
+		"recruitment_flag": &"caveman_recruit_unlocked",
+	},
+	&"crimson_oni": {
+		"name": "Crimson Oni", "specialty": "Dueling and security",
+		"adjacent_skills": ["Athletics", "Occult"],
+		"work_specialties": [&"Combat", &"Security"], "work_adjacent": [&"Athletics", &"Occult"],
+		"asset_pack": "Recruitable Characters/crimson oni samurai", "field_animation_scene": "res://ben_rpg/characters/crimson_oni_field_animation.tscn", "portrait_region": Rect2(46, 43, 95, 101),
+		"combat_actions": [&"oni_crescent", &"pummel", &"defend", &"tonic", &"smelling_salts", &"phoenix_tonic", &"escape"],
+		"combat_stats": {"max_hp": 195, "max_mp": 22, "attack": 34, "defense": 24, "magic": 13, "spirit": 16, "speed": 36, "hp_growth": 21, "mp_growth": 2, "attack_growth": 4, "defense_growth": 3, "magic_growth": 1, "spirit_growth": 2, "speed_growth": 2},
+		"recruitment_flag": &"crimson_oni_recruit_unlocked",
+	},
+	&"rift_jackal": {
+		"name": "Rift Jackal", "specialty": "Tracking and threshold security",
+		"adjacent_skills": ["Occult", "Navigation", "Athletics"],
+		"work_specialties": [&"Security", &"Navigation"], "work_adjacent": [&"Occult", &"Athletics", &"Logistics"],
+		"asset_pack": "Topdown Monsters Part 1", "field_animation_scene": "res://ben_rpg/characters/rift_jackal_field_animation.tscn", "portrait_path": "res://game_assets/characters/Topdown Monsters Part 1/Sliced/Rift Jackal/00_idle/frame_000.png",
+		"battle_sprite": "res://game_assets/characters/Topdown Monsters Part 1/Sliced/Rift Jackal/00_idle/frame_000.png",
+		"battle_animation_root": "res://game_assets/characters/Topdown Monsters Part 1/Sliced/Rift Jackal",
+		"battle_animation_fps": 8.0,
+		"battle_animation_sequences": {
+			&"idle": {"folder": "00_idle", "frames": 6}, &"attack": {"folder": "05_attack", "frames": 6},
+			&"hit": {"folder": "06_hit", "frames": 6}, &"power": {"folder": "07_blast_attack_1", "frames": 6},
+			&"victory": {"folder": "02_victory", "frames": 8}, &"death": {"folder": "12_death_1", "frames": 8},
+		},
+		"battle_action_sequences": {&"rift_bite": &"attack", &"phase_scratch": &"power", &"faultline_pounce": &"attack", &"anchor_howl": &"power"},
+		"combat_actions": [&"rift_bite", &"phase_scratch", &"defend", &"tonic", &"smelling_salts", &"phoenix_tonic", &"escape"],
+		"combat_stats": {"max_hp": 185, "max_mp": 20, "attack": 32, "defense": 23, "magic": 18, "spirit": 19, "speed": 42, "hp_growth": 20, "mp_growth": 2, "attack_growth": 4, "defense_growth": 3, "magic_growth": 2, "spirit_growth": 2, "speed_growth": 3},
+		"recruitment_flag": &"rift_jackal_recruit_unlocked",
+	},
+	&"mossback_surveyor": {
+		"name": "Mossback Surveyor", "specialty": "Cultivation and supply logistics",
+		"adjacent_skills": ["Medicine", "Research", "Athletics"],
+		"work_specialties": [&"Farming", &"Logistics"], "work_adjacent": [&"Medicine", &"Research", &"Athletics"],
+		"asset_pack": "Topdown Monsters Part 1", "field_animation_scene": "res://ben_rpg/characters/mossback_surveyor_field_animation.tscn", "portrait_path": "res://game_assets/characters/Topdown Monsters Part 1/Sliced/Mossback Surveyor/00_idle/frame_000.png",
+		"battle_sprite": "res://game_assets/characters/Topdown Monsters Part 1/Sliced/Mossback Surveyor/00_idle/frame_000.png",
+		"battle_animation_root": "res://game_assets/characters/Topdown Monsters Part 1/Sliced/Mossback Surveyor",
+		"battle_animation_fps": 8.0,
+		"battle_animation_sequences": {
+			&"idle": {"folder": "00_idle", "frames": 6}, &"attack": {"folder": "05_attack", "frames": 6},
+			&"hit": {"folder": "06_hit", "frames": 6}, &"power": {"folder": "08_blast_attack_2", "frames": 6},
+			&"victory": {"folder": "02_victory", "frames": 8}, &"death": {"folder": "12_death_1", "frames": 8},
+		},
+		"battle_action_sequences": {&"mossback_pummel": &"attack", &"spore_receipt": &"power", &"rooted_red_tape": &"power", &"hearty_provisions": &"victory"},
+		"combat_actions": [&"mossback_pummel", &"spore_receipt", &"defend", &"tonic", &"ether", &"smelling_salts", &"phoenix_tonic", &"escape"],
+		"combat_stats": {"max_hp": 210, "max_mp": 32, "attack": 29, "defense": 31, "magic": 22, "spirit": 28, "speed": 21, "hp_growth": 24, "mp_growth": 4, "attack_growth": 3, "defense_growth": 4, "magic_growth": 2, "spirit_growth": 3, "speed_growth": 1},
+		"recruitment_flag": &"mossback_surveyor_recruit_unlocked",
+	},
+	&"cobalt_courier": {
+		"name": "Cobalt Courier", "specialty": "Navigation and rift logistics",
+		"adjacent_skills": ["Engineering", "Security", "Diplomacy"],
+		"work_specialties": [&"Navigation", &"Logistics"], "work_adjacent": [&"Engineering", &"Security", &"Diplomacy"],
+		"asset_pack": "Topdown Monsters Part 1", "field_animation_scene": "res://ben_rpg/characters/cobalt_courier_field_animation.tscn", "portrait_path": "res://game_assets/characters/Topdown Monsters Part 1/Sliced/Cobalt Courier/00_idle/frame_000.png",
+		"battle_sprite": "res://game_assets/characters/Topdown Monsters Part 1/Sliced/Cobalt Courier/00_idle/frame_000.png",
+		"battle_animation_root": "res://game_assets/characters/Topdown Monsters Part 1/Sliced/Cobalt Courier",
+		"battle_animation_fps": 8.0,
+		"battle_animation_sequences": {
+			&"idle": {"folder": "00_idle", "frames": 6}, &"attack": {"folder": "05_attack", "frames": 6},
+			&"hit": {"folder": "06_hit", "frames": 6}, &"power": {"folder": "08_blast_attack_2", "frames": 6},
+			&"victory": {"folder": "02_victory", "frames": 8}, &"death": {"folder": "12_death_1", "frames": 8},
+		},
+		"battle_action_sequences": {&"cobalt_claw": &"attack", &"express_jolt": &"power", &"priority_delivery": &"attack", &"emergency_dispatch": &"victory"},
+		"combat_actions": [&"cobalt_claw", &"express_jolt", &"defend", &"tonic", &"ether", &"smelling_salts", &"phoenix_tonic", &"escape"],
+		"combat_stats": {"max_hp": 178, "max_mp": 34, "attack": 27, "defense": 22, "magic": 29, "spirit": 23, "speed": 46, "hp_growth": 18, "mp_growth": 4, "attack_growth": 3, "defense_growth": 2, "magic_growth": 4, "spirit_growth": 3, "speed_growth": 3},
+		"recruitment_flag": &"cobalt_courier_recruit_unlocked",
+	},
+	&"bulkhead_warden": {
+		"name": "Bulkhead Warden", "specialty": "Structural engineering and security",
+		"adjacent_skills": ["Logistics", "Research", "Athletics"],
+		"work_specialties": [&"Engineering", &"Security"], "work_adjacent": [&"Logistics", &"Research", &"Athletics"],
+		"asset_pack": "Topdown Monsters Part 1", "field_animation_scene": "res://ben_rpg/characters/bulkhead_warden_field_animation.tscn", "portrait_path": "res://game_assets/characters/Topdown Monsters Part 1/Sliced/Bulkhead Warden/00_idle/frame_000.png",
+		"battle_sprite": "res://game_assets/characters/Topdown Monsters Part 1/Sliced/Bulkhead Warden/00_idle/frame_000.png",
+		"battle_animation_root": "res://game_assets/characters/Topdown Monsters Part 1/Sliced/Bulkhead Warden",
+		"battle_animation_fps": 8.0,
+		"battle_animation_sequences": {
+			&"idle": {"folder": "00_idle", "frames": 6}, &"attack": {"folder": "05_attack", "frames": 6},
+			&"hit": {"folder": "06_hit", "frames": 6}, &"power": {"folder": "08_blast_attack_2", "frames": 6},
+			&"victory": {"folder": "02_victory", "frames": 8}, &"death": {"folder": "12_death_1", "frames": 8},
+		},
+		"battle_action_sequences": {&"warden_pummel": &"attack", &"piston_surge": &"power", &"bulkhead_drop": &"power", &"pressure_lock": &"attack"},
+		"combat_actions": [&"warden_pummel", &"piston_surge", &"defend", &"tonic", &"ether", &"smelling_salts", &"phoenix_tonic", &"escape"],
+		"combat_stats": {"max_hp": 235, "max_mp": 22, "attack": 34, "defense": 38, "magic": 14, "spirit": 25, "speed": 20, "hp_growth": 27, "mp_growth": 2, "attack_growth": 4, "defense_growth": 5, "magic_growth": 1, "spirit_growth": 3, "speed_growth": 1},
+		"recruitment_flag": &"bulkhead_warden_recruit_unlocked",
+	},
+	&"kitsune_empress": {
+		"name": "Kitsune Empress", "specialty": "Illusion and diplomacy",
+		"adjacent_skills": ["Occult", "Research"],
+		"work_specialties": [&"Diplomacy", &"Occult"], "work_adjacent": [&"Research", &"Medicine"],
+		"asset_pack": "Recruitable Characters/kitsune empress", "field_animation_scene": "res://ben_rpg/characters/kitsune_field_animation.tscn", "portrait_region": Rect2(34, 36, 85, 84),
+		"combat_actions": [&"foxfire", &"field_triage", &"defend", &"tonic", &"ether", &"smelling_salts", &"phoenix_tonic", &"escape"],
+		"combat_stats": {"max_hp": 150, "max_mp": 46, "attack": 15, "defense": 18, "magic": 34, "spirit": 28, "speed": 38, "hp_growth": 15, "mp_growth": 6, "attack_growth": 1, "defense_growth": 2, "magic_growth": 4, "spirit_growth": 3, "speed_growth": 2},
+		"recruitment_flag": &"kitsune_empress_recruit_unlocked",
+	},
+	&"neon_viper": {
+		"name": "Neon Viper", "specialty": "Infiltration and engineering",
+		"adjacent_skills": ["Security", "Navigation"],
+		"work_specialties": [&"Engineering", &"Security"], "work_adjacent": [&"Navigation", &"Logistics"],
+		"asset_pack": "Recruitable Characters/neon viper - cyberpunk female", "field_animation_scene": "res://ben_rpg/characters/neon_viper_field_animation.tscn", "portrait_region": Rect2(44, 28, 39, 72),
+		"combat_actions": [&"viper_rush", &"pulse_shot", &"defend", &"tonic", &"ether", &"smelling_salts", &"phoenix_tonic", &"escape"],
+		"combat_stats": {"max_hp": 165, "max_mp": 28, "attack": 28, "defense": 21, "magic": 19, "spirit": 18, "speed": 44, "hp_growth": 17, "mp_growth": 3, "attack_growth": 3, "defense_growth": 2, "magic_growth": 2, "spirit_growth": 2, "speed_growth": 3},
+		"recruitment_flag": &"neon_viper_recruit_unlocked",
+	},
+	&"archangel_commander": {
+		"name": "Archangel Commander", "specialty": "Protection and medicine",
+		"adjacent_skills": ["Diplomacy", "Occult"],
+		"work_specialties": [&"Medicine", &"Security"], "work_adjacent": [&"Diplomacy", &"Occult"],
+		"asset_pack": "Recruitable Characters/Archangel Commander — Legendary Celestial Warrior Hero", "field_animation_scene": "res://ben_rpg/characters/archangel_field_animation.tscn", "portrait_region": Rect2(28, 30, 70, 68),
+		"combat_actions": [&"seraph_strike", &"field_triage", &"rally", &"defend", &"tonic", &"ether", &"smelling_salts", &"phoenix_tonic", &"escape"],
+		"combat_stats": {"max_hp": 205, "max_mp": 40, "attack": 29, "defense": 31, "magic": 26, "spirit": 34, "speed": 29, "hp_growth": 22, "mp_growth": 5, "attack_growth": 3, "defense_growth": 4, "magic_growth": 3, "spirit_growth": 4, "speed_growth": 1},
+		"recruitment_flag": &"archangel_commander_recruit_unlocked",
+	},
+	&"frost_lich_emperor": {
+		"name": "Frost Lich Emperor", "specialty": "Cold sorcery and occult research",
+		"adjacent_skills": ["Research", "Invention"],
+		"work_specialties": [&"Occult", &"Research"], "work_adjacent": [&"Invention", &"Diplomacy"],
+		"asset_pack": "Recruitable Characters/💀 The Frost Lich King Emperor", "field_animation_scene": "res://ben_rpg/characters/frost_lich_field_animation.tscn", "portrait_region": Rect2(28, 28, 67, 68),
+		"combat_actions": [&"frost_nova", &"borrowed_second", &"defend", &"tonic", &"ether", &"smelling_salts", &"phoenix_tonic", &"escape"],
+		"combat_stats": {"max_hp": 145, "max_mp": 58, "attack": 13, "defense": 20, "magic": 40, "spirit": 32, "speed": 26, "hp_growth": 14, "mp_growth": 7, "attack_growth": 1, "defense_growth": 2, "magic_growth": 5, "spirit_growth": 4, "speed_growth": 1},
+		"recruitment_flag": &"frost_lich_recruit_unlocked",
+	},
+}
+
+
+func _ready() -> void:
+	_ensure_default_progress()
+	_initialize_quest_states()
+	if not state_changed.is_connected(_on_internal_state_changed):
+		state_changed.connect(_on_internal_state_changed)
+	refresh_facility_jobs()
+
+
+func _process(delta: float) -> void:
+	if _play_session_running:
+		play_time_seconds += delta
+		town_time_minutes = fmod(town_time_minutes + delta, 1440.0)
+	_job_clock_accumulator += delta
+	if _job_clock_accumulator >= 1.0:
+		_job_clock_accumulator = 0.0
+		refresh_facility_jobs()
+
+
+func reset_new_game() -> void:
+	sandbox_mode = false
+	play_time_seconds = 0.0
+	save_timestamp = 0
+	last_save_cell = Vector2i(10, 9)
+	last_location = "Laboratory"
+	town_time_minutes = 7.0 * 60.0
+	resident_states.clear()
+	town_terrain.clear()
+	town_objects.clear()
+	next_town_object_id = 1
+	_play_session_running = false
+	duckets = 0
+	built_facilities.clear()
+	universe_anchors.clear()
+	story_flags.clear()
+	bestiary_records.clear()
+	inventory = {&"tonic": 3, &"ether": 1, &"smelling_salts": 2, &"phoenix_tonic": 1}
+	encounter_ward_steps = 0
+	encounter_pressure = {"active": false, "universe_id": &"", "steps": 0, "threshold": 1, "ward_steps": 0, "suppressed": false, "cooldown": 0}
+	loot_inventory.clear()
+	character_progress.clear()
+	party.assign([&"ben"])
+	party_formation = {&"ben": &"back"}
+	_reset_recruit_statuses()
+	facility_assignments.clear()
+	active_facility_jobs.clear()
+	completed_facility_jobs.clear()
+	owned_inventions.clear()
+	quest_states.clear()
+	tracked_quest = &""
+	_job_clock_accumulator = 0.0
+	_ensure_default_progress()
+	_initialize_quest_states()
+	town_objects_changed.emit()
+	town_terrain_changed.emit()
+	encounter_pressure_changed.emit(encounter_pressure.duplicate(true))
+	state_changed.emit()
+
+
+func begin_play_session() -> void:
+	_play_session_running = true
+
+
+func pause_play_session() -> void:
+	_play_session_running = false
+
+
+func setup_sandbox(start_cell := Vector2i(50, 8)) -> void:
+	reset_new_game()
+	sandbox_mode = true
+	town_time_minutes = 8.0 * 60.0
+	_ensure_sandbox_authored_objects()
+	duckets = 999999
+	inventory = {
+		&"tonic": 99, &"ether": 99, &"smelling_salts": 99, &"phoenix_tonic": 99,
+		&"provisions": 99, &"rift_ward": 99, &"research_notes": 99,
+		&"anchor_shard": 99, &"anchor_dust": 99, &"ectoplasm": 99,
+	}
+	party.assign([&"ben", &"fighter", &"astronaut"])
+	party_formation = {&"ben": &"back", &"fighter": &"front", &"astronaut": &"back"}
+	_reset_recruit_statuses()
+	for recruit_id in recruit_catalog.keys():
+		recruit_status[StringName(recruit_id)] = &"reserve"
+	for recruit_id in party:
+		recruit_status[recruit_id] = &"party"
+	owned_inventions.clear()
+	for invention_id in INVENTION_DEFINITIONS.keys():
+		owned_inventions.append(StringName(invention_id))
+	story_flags = {
+		&"opening_complete": true,
+		&"town_entered": true,
+		&"sandbox_unlocked": true,
+	}
+	bestiary_records.clear()
+	for enemy_id in CampaignCombatDatabase.bestiary_ids():
+		bestiary_records[enemy_id] = {
+			"seen": 1, "defeated": 1, "encounters": 1,
+			"first_encounter": &"sandbox_workshop", "drops": [],
+		}
+	for raw_character_id in recruit_catalog.keys():
+		var character_id := StringName(raw_character_id)
+		var progress: Dictionary = character_progress[character_id]
+		progress["level"] = 50
+		progress["skill_points"] = 99
+	last_save_cell = start_cell
+	last_location = _location_name_for_cell(start_cell)
+	_initialize_quest_states()
+	party_changed.emit()
+	state_changed.emit()
+
+
+func place_town_object(catalog_id: StringName, cell: Vector2i, flipped := false) -> String:
+	if not sandbox_mode or catalog_id == &"":
+		return ""
+	var instance_id := "town_object_%d" % next_town_object_id
+	next_town_object_id += 1
+	town_objects.append({
+		"instance_id": instance_id,
+		"catalog_id": catalog_id,
+		"x": cell.x,
+		"y": cell.y,
+		"flipped": flipped,
+	})
+	town_objects_changed.emit()
+	state_changed.emit()
+	return instance_id
+
+
+func move_town_object(instance_id: String, cell: Vector2i) -> bool:
+	var placed := town_object(instance_id)
+	if placed.is_empty():
+		return false
+	placed["x"] = cell.x
+	placed["y"] = cell.y
+	town_objects_changed.emit()
+	state_changed.emit()
+	return true
+
+
+func flip_town_object(instance_id: String) -> bool:
+	var placed := town_object(instance_id)
+	if placed.is_empty():
+		return false
+	placed["flipped"] = not bool(placed.get("flipped", false))
+	town_objects_changed.emit()
+	state_changed.emit()
+	return true
+
+
+func remove_town_object(instance_id: String) -> bool:
+	for index in range(town_objects.size()):
+		if String(town_objects[index].get("instance_id", "")) == instance_id:
+			if bool(town_objects[index].get("protected", false)):
+				return false
+			town_objects.remove_at(index)
+			town_objects_changed.emit()
+			state_changed.emit()
+			return true
+	return false
+
+
+func town_object(instance_id: String) -> Dictionary:
+	for placed in town_objects:
+		if String(placed.get("instance_id", "")) == instance_id:
+			return placed
+	return {}
+
+
+func town_object_with_role(role: StringName) -> Dictionary:
+	for placed in town_objects:
+		if StringName(placed.get("role", "")) == role:
+			return placed
+	return {}
+
+
+func paint_town_terrain(cell: Vector2i, brush_id: StringName) -> bool:
+	if not sandbox_mode or brush_id == &"":
+		return false
+	town_terrain[_terrain_cell_key(cell)] = brush_id
+	town_terrain_changed.emit()
+	state_changed.emit()
+	return true
+
+
+func clear_town_terrain(cell: Vector2i) -> bool:
+	var key := _terrain_cell_key(cell)
+	if not town_terrain.has(key):
+		return false
+	town_terrain.erase(key)
+	town_terrain_changed.emit()
+	state_changed.emit()
+	return true
+
+
+func town_terrain_at(cell: Vector2i) -> StringName:
+	return StringName(town_terrain.get(_terrain_cell_key(cell), ""))
+
+
+func town_terrain_cells() -> Array[Vector2i]:
+	var cells: Array[Vector2i] = []
+	for key in town_terrain.keys():
+		var parts := String(key).split(",")
+		if parts.size() == 2:
+			cells.append(Vector2i(int(parts[0]), int(parts[1])))
+	return cells
+
+
+func _terrain_cell_key(cell: Vector2i) -> String:
+	return "%d,%d" % [cell.x, cell.y]
+
+
+func set_resident_state(resident_id: StringName, cell: Vector2i, activity: StringName, target := Gameboard.INVALID_CELL) -> void:
+	resident_states[resident_id] = {
+		"x": cell.x,
+		"y": cell.y,
+		"activity": activity,
+		"target_x": target.x,
+		"target_y": target.y,
+	}
+
+
+func resident_state(resident_id: StringName) -> Dictionary:
+	return resident_states.get(resident_id, {})
+
+
+func _ensure_sandbox_authored_objects() -> void:
+	for authored in SANDBOX_AUTHORED_OBJECTS:
+		var instance_id := String(authored.get("instance_id", ""))
+		if not town_object(instance_id).is_empty():
+			continue
+		var cell: Vector2i = authored.get("cell", Vector2i.ZERO)
+		town_objects.append({
+			"instance_id": instance_id,
+			"catalog_id": StringName(authored.get("catalog_id", "")),
+			"x": cell.x,
+			"y": cell.y,
+			"flipped": bool(authored.get("flipped", false)),
+			"role": StringName(authored.get("role", "")),
+			"protected": bool(authored.get("protected", false)),
+		})
+	town_objects_changed.emit()
+
+
+func _ensure_default_progress() -> void:
+	for raw_character_id in recruit_catalog.keys():
+		var character_id := StringName(raw_character_id)
+		var defaults := _default_vitals(character_id)
+		ensure_character_progress(character_id, defaults.x, defaults.y)
+
+
+func _reset_recruit_statuses() -> void:
+	recruit_status.clear()
+	for raw_recruit_id in recruit_catalog.keys():
+		var recruit_id := StringName(raw_recruit_id)
+		recruit_status[recruit_id] = &"party" if recruit_id == &"ben" else &"undiscovered"
+
+
+func ensure_character_progress(character_id: StringName, max_hp: int, max_mp: int) -> Dictionary:
+	if not character_progress.has(character_id):
+		character_progress[character_id] = {
+			"level": 1, "exp": 0, "hp": max_hp, "mp": max_mp,
+			"skill_points": 0, "learned_skills": [], "equipment": {},
+		}
+	var progress: Dictionary = character_progress[character_id]
+	if not progress.has("skill_points"):
+		progress["skill_points"] = 0
+	if not progress.has("learned_skills"):
+		progress["learned_skills"] = []
+	if not progress.has("equipment"):
+		progress["equipment"] = {}
+	return progress
+
+
+func skill_tree(character_id: StringName) -> Array:
+	return SKILL_TREES.get(character_id, []).duplicate(true)
+
+
+func learn_skill(character_id: StringName, skill_id: StringName) -> bool:
+	var defaults := _default_vitals(character_id)
+	var progress := ensure_character_progress(character_id, defaults.x, defaults.y)
+	var learned: Array = progress["learned_skills"]
+	if skill_id in learned:
+		return false
+	var skill := _skill_definition(character_id, skill_id)
+	if skill.is_empty() or int(progress["skill_points"]) < int(skill.get("cost", 1)):
+		return false
+	for requirement in skill.get("requires", []):
+		if StringName(requirement) not in learned:
+			return false
+	progress["skill_points"] = int(progress["skill_points"]) - int(skill.get("cost", 1))
+	learned.append(skill_id)
+	_clamp_character_vitals(character_id)
+	state_changed.emit()
+	return true
+
+
+func reset_skill_tree(character_id: StringName) -> bool:
+	var defaults := _default_vitals(character_id)
+	var progress := ensure_character_progress(character_id, defaults.x, defaults.y)
+	var learned: Array = progress["learned_skills"]
+	if learned.is_empty():
+		return false
+	var refund := 0
+	for skill_id in learned:
+		refund += int(_skill_definition(character_id, StringName(skill_id)).get("cost", 0))
+	progress["skill_points"] = int(progress["skill_points"]) + refund
+	learned.clear()
+	_clamp_character_vitals(character_id)
+	state_changed.emit()
+	return true
+
+
+func equip_loot(character_id: StringName, instance_id: String) -> bool:
+	var item := loot_by_instance(instance_id)
+	var slot := StringName(item.get("slot", ""))
+	if item.is_empty() or slot not in EQUIPMENT_SLOTS or not recruit_catalog.has(character_id):
+		return false
+	var allowed: Array = item.get("allowed_characters", [])
+	if not allowed.is_empty() and character_id not in allowed and String(character_id) not in allowed:
+		return false
+	for other_id in character_progress.keys():
+		var other_progress: Dictionary = character_progress[other_id]
+		var other_equipment: Dictionary = other_progress.get("equipment", {})
+		for other_slot in other_equipment.keys():
+			if String(other_equipment[other_slot]) == instance_id:
+				other_equipment.erase(other_slot)
+	var defaults := _default_vitals(character_id)
+	var progress := ensure_character_progress(character_id, defaults.x, defaults.y)
+	progress["equipment"][slot] = instance_id
+	_clamp_character_vitals(character_id)
+	state_changed.emit()
+	return true
+
+
+func unequip_slot(character_id: StringName, slot: StringName) -> bool:
+	var defaults := _default_vitals(character_id)
+	var progress := ensure_character_progress(character_id, defaults.x, defaults.y)
+	if not progress["equipment"].has(slot):
+		return false
+	progress["equipment"].erase(slot)
+	_clamp_character_vitals(character_id)
+	state_changed.emit()
+	return true
+
+
+func loot_by_instance(instance_id: String) -> Dictionary:
+	for item in loot_inventory:
+		if String(item.get("instance_id", "")) == instance_id:
+			return item
+	return {}
+
+
+func equipped_loot(character_id: StringName) -> Array[Dictionary]:
+	var results: Array[Dictionary] = []
+	var progress: Dictionary = character_progress.get(character_id, {})
+	var equipment: Dictionary = progress.get("equipment", {})
+	for slot in EQUIPMENT_SLOTS:
+		var item := loot_by_instance(String(equipment.get(slot, "")))
+		if not item.is_empty():
+			results.append(item)
+	return results
+
+
+func actor_build(character_id: StringName) -> Dictionary:
+	var bonuses := {&"max_hp": 0, &"max_mp": 0, &"attack": 0, &"defense": 0, &"magic": 0, &"spirit": 0, &"speed": 0}
+	var actions: Array[StringName] = []
+	var progress: Dictionary = character_progress.get(character_id, {})
+	for skill_id in progress.get("learned_skills", []):
+		var skill := _skill_definition(character_id, StringName(skill_id))
+		for stat in skill.get("bonuses", {}).keys():
+			bonuses[StringName(stat)] = int(bonuses.get(StringName(stat), 0)) + int(skill["bonuses"][stat])
+		var action_id := StringName(skill.get("action", ""))
+		if action_id != &"" and action_id not in actions:
+			actions.append(action_id)
+	for item in equipped_loot(character_id):
+		for modifier in item.get("modifiers", []):
+			var stat := StringName(modifier.get("stat", ""))
+			if bonuses.has(stat):
+				bonuses[stat] = int(bonuses[stat]) + int(modifier.get("value", 0))
+		var granted_action := StringName(item.get("granted_action", ""))
+		if granted_action != &"" and granted_action not in actions:
+			actions.append(granted_action)
+	return {"bonuses": bonuses, "actions": actions}
+
+
+func _skill_definition(character_id: StringName, skill_id: StringName) -> Dictionary:
+	for skill in SKILL_TREES.get(character_id, []):
+		if StringName(skill.get("id", "")) == skill_id:
+			return skill
+	return {}
+
+
+func experience_for_next_level(level: int) -> int:
+	return 50 + (level - 1) * (level - 1) * 35
+
+
+func grant_experience(character_id: StringName, amount: int) -> Array[int]:
+	var defaults := _default_vitals(character_id)
+	var progress: Dictionary = ensure_character_progress(character_id, defaults.x, defaults.y)
+	progress["exp"] = int(progress.get("exp", 0)) + maxi(amount, 0)
+	var gained_levels: Array[int] = []
+	while int(progress["level"]) < 50 and int(progress["exp"]) >= experience_for_next_level(int(progress["level"])):
+		progress["exp"] = int(progress["exp"]) - experience_for_next_level(int(progress["level"]))
+		progress["level"] = int(progress["level"]) + 1
+		progress["skill_points"] = int(progress.get("skill_points", 0)) + 1
+		gained_levels.append(int(progress["level"]))
+	return gained_levels
+
+
+func apply_battle_victory(experience: int, earned_duckets: int, loot: Array[Dictionary]) -> Dictionary:
+	var level_ups := {}
+	for character_id in party:
+		var levels := grant_experience(character_id, experience)
+		if not levels.is_empty():
+			level_ups[character_id] = levels
+	duckets += maxi(earned_duckets, 0)
+	add_loot_drops(loot, false)
+	story_flags[&"won_first_battle"] = true
+	state_changed.emit()
+	return level_ups
+
+
+func add_loot_drops(loot: Array[Dictionary], notify := true) -> void:
+	for drop in loot:
+		if drop.get("kind", "gear") == "consumable":
+			add_item(StringName(drop.get("id", "tonic")), int(drop.get("quantity", 1)), false)
+		else:
+			loot_inventory.append(drop.duplicate(true))
+	if notify:
+		state_changed.emit()
+
+
+func claim_universe_treasure(cache_id: StringName, rng: RandomNumberGenerator = null) -> Dictionary:
+	var definition: Dictionary = UNIVERSE_TREASURE_CACHES.get(cache_id, {})
+	if definition.is_empty():
+		return {"claimed": false, "reason": "unknown"}
+	var flag: StringName = definition["flag"]
+	if bool(story_flags.get(flag, false)):
+		return {"claimed": false, "reason": "already_claimed", "name": definition["name"]}
+	var roller := rng
+	if not roller:
+		roller = RandomNumberGenerator.new()
+		roller.seed = hash(String(cache_id)) ^ Time.get_ticks_usec()
+	var loot: Array[Dictionary] = CampaignCombatDatabase.roll_loot(definition["loot_encounter"], roller)
+	var earned_duckets := int(definition.get("duckets", 0))
+	story_flags[flag] = true
+	duckets += earned_duckets
+	add_loot_drops(loot, false)
+	state_changed.emit()
+	return {
+		"claimed": true, "name": definition["name"],
+		"description": definition["description"], "duckets": earned_duckets,
+		"loot": loot,
+	}
+
+
+func record_bestiary_sighting(encounter_id: StringName, enemy_types: Array[StringName]) -> void:
+	if enemy_types.is_empty():
+		return
+	var encounter_counts := {}
+	for enemy_id in enemy_types:
+		if enemy_id == &"":
+			continue
+		encounter_counts[enemy_id] = int(encounter_counts.get(enemy_id, 0)) + 1
+	for enemy_id in encounter_counts.keys():
+		var record: Dictionary = bestiary_records.get(enemy_id, {
+			"seen": 0, "defeated": 0, "encounters": 0,
+			"first_encounter": encounter_id, "drops": [],
+		})
+		record["seen"] = int(record.get("seen", 0)) + int(encounter_counts[enemy_id])
+		record["encounters"] = int(record.get("encounters", 0)) + 1
+		if StringName(record.get("first_encounter", &"")) == &"":
+			record["first_encounter"] = encounter_id
+		bestiary_records[StringName(enemy_id)] = record
+	state_changed.emit()
+
+
+func record_bestiary_victory(encounter_id: StringName, enemy_types: Array[StringName], loot: Array[Dictionary]) -> void:
+	if enemy_types.is_empty():
+		return
+	var defeat_counts := {}
+	for enemy_id in enemy_types:
+		if enemy_id == &"":
+			continue
+		defeat_counts[enemy_id] = int(defeat_counts.get(enemy_id, 0)) + 1
+	for enemy_id in defeat_counts.keys():
+		var record: Dictionary = bestiary_records.get(enemy_id, {
+			"seen": int(defeat_counts[enemy_id]), "defeated": 0, "encounters": 1,
+			"first_encounter": encounter_id, "drops": [],
+		})
+		record["defeated"] = int(record.get("defeated", 0)) + int(defeat_counts[enemy_id])
+		var known_drops: Array = record.get("drops", [])
+		for raw_drop in loot:
+			var drop: Dictionary = raw_drop
+			var drop_id := StringName(drop.get("id", ""))
+			if drop_id == &"":
+				continue
+			var already_known := false
+			for known_drop in known_drops:
+				if StringName(known_drop.get("id", "")) == drop_id:
+					already_known = true
+					break
+			if not already_known:
+				known_drops.append({
+					"id": drop_id,
+					"name": String(drop.get("display_name", drop.get("base_name", String(drop_id).capitalize()))),
+					"rarity": String(drop.get("rarity", "Common")),
+					"kind": String(drop.get("kind", "gear")),
+				})
+		record["drops"] = known_drops
+		bestiary_records[StringName(enemy_id)] = record
+	state_changed.emit()
+
+
+func bestiary_record(enemy_id: StringName) -> Dictionary:
+	return bestiary_records.get(enemy_id, {}).duplicate(true)
+
+
+func discovered_bestiary_ids() -> Array[StringName]:
+	var result: Array[StringName] = []
+	for enemy_id in CampaignCombatDatabase.bestiary_ids():
+		if int(bestiary_records.get(enemy_id, {}).get("seen", 0)) > 0:
+			result.append(enemy_id)
+	return result
+
+
+func bestiary_summary() -> Dictionary:
+	var discovered := discovered_bestiary_ids()
+	var defeated_species := 0
+	var total_defeated := 0
+	var bosses_defeated := 0
+	for enemy_id in discovered:
+		var record: Dictionary = bestiary_records.get(enemy_id, {})
+		var defeated := int(record.get("defeated", 0))
+		total_defeated += defeated
+		if defeated > 0:
+			defeated_species += 1
+			if bool(CampaignCombatDatabase.bestiary_entry(enemy_id).get("boss", false)):
+				bosses_defeated += 1
+	return {
+		"species_seen": discovered.size(),
+		"species_total": CampaignCombatDatabase.bestiary_ids().size(),
+		"species_defeated": defeated_species,
+		"total_defeated": total_defeated,
+		"bosses_defeated": bosses_defeated,
+	}
+
+
+func add_item(item_id: StringName, quantity := 1, notify := true) -> void:
+	inventory[item_id] = maxi(0, int(inventory.get(item_id, 0)) + quantity)
+	if notify:
+		state_changed.emit()
+
+
+func consume_item(item_id: StringName, quantity := 1) -> bool:
+	var current := int(inventory.get(item_id, 0))
+	if quantity <= 0 or current < quantity:
+		return false
+	inventory[item_id] = current - quantity
+	state_changed.emit()
+	return true
+
+
+func field_item_definition(item_id: StringName) -> Dictionary:
+	return SERVICE_ITEM_CATALOG.get(item_id, {}).duplicate(true)
+
+
+func field_item_use_preview(item_id: StringName, target_id: StringName = &"") -> Dictionary:
+	var definition := field_item_definition(item_id)
+	var quantity := int(inventory.get(item_id, 0))
+	var result := {
+		"usable": false, "item_id": item_id, "target_id": target_id,
+		"name": String(definition.get("name", String(item_id).replace("_", " ").capitalize())),
+		"quantity": quantity, "reason": "This item is not usable from the field inventory.",
+	}
+	if quantity <= 0:
+		result["reason"] = "None remaining."
+		return result
+	if item_id == &"rift_ward":
+		result["usable"] = encounter_ward_steps < 120
+		result["reason"] = "Suppress 40 dangerous steps • %d currently protected" % encounter_ward_steps if bool(result["usable"]) else "Rift Ward protection is already at its 120-step maximum."
+		return result
+	if target_id not in party:
+		result["reason"] = "Choose an active party member."
+		return result
+	var maximums := _maximum_vitals(target_id)
+	var defaults := _default_vitals(target_id)
+	var progress := ensure_character_progress(target_id, defaults.x, defaults.y)
+	var hp := int(progress.get("hp", maximums.x))
+	var mp := int(progress.get("mp", maximums.y))
+	match item_id:
+		&"tonic":
+			result["usable"] = hp > 0 and hp < maximums.x
+			result["reason"] = "Restore up to 70 HP • %d/%d HP" % [hp, maximums.x] if bool(result["usable"]) else ("Cannot restore a knocked-out ally." if hp <= 0 else "HP is already full.")
+		&"ether":
+			result["usable"] = hp > 0 and mp < maximums.y
+			result["reason"] = "Restore up to 24 MP • %d/%d MP" % [mp, maximums.y] if bool(result["usable"]) else ("Cannot restore a knocked-out ally." if hp <= 0 else "MP is already full.")
+		&"phoenix_tonic":
+			result["usable"] = hp <= 0
+			result["reason"] = "Revive with 25%% HP • currently knocked out" if bool(result["usable"]) else "Use only on a knocked-out ally."
+		&"smelling_salts":
+			result["reason"] = "Battle ailments end after combat; use this from the battle Item command."
+		&"provisions":
+			result["reason"] = "Assignment material for facilities and specialist work."
+	return result
+
+
+func use_field_item(item_id: StringName, target_id: StringName = &"") -> Dictionary:
+	var preview := field_item_use_preview(item_id, target_id)
+	if not bool(preview.get("usable", false)):
+		return preview
+	inventory[item_id] = int(inventory.get(item_id, 0)) - 1
+	var message := ""
+	if item_id == &"rift_ward":
+		var before := encounter_ward_steps
+		encounter_ward_steps = mini(120, encounter_ward_steps + 40)
+		message = "Rift Ward activated. %d dangerous steps are protected." % (encounter_ward_steps - before)
+		encounter_pressure["ward_steps"] = encounter_ward_steps
+		encounter_pressure_changed.emit(encounter_pressure.duplicate(true))
+	else:
+		var maximums := _maximum_vitals(target_id)
+		var defaults := _default_vitals(target_id)
+		var progress := ensure_character_progress(target_id, defaults.x, defaults.y)
+		var target_name := String(recruit_catalog.get(target_id, {}).get("name", String(target_id)))
+		match item_id:
+			&"tonic":
+				var before_hp := int(progress.get("hp", maximums.x))
+				progress["hp"] = mini(maximums.x, before_hp + 70)
+				message = "%s recovered %d HP." % [target_name, int(progress["hp"]) - before_hp]
+			&"ether":
+				var before_mp := int(progress.get("mp", maximums.y))
+				progress["mp"] = mini(maximums.y, before_mp + 24)
+				message = "%s recovered %d MP." % [target_name, int(progress["mp"]) - before_mp]
+			&"phoenix_tonic":
+				progress["hp"] = maxi(1, int(ceil(float(maximums.x) * 0.25)))
+				message = "%s revived with %d HP." % [target_name, int(progress["hp"])]
+	story_flags[&"field_items_used"] = int(story_flags.get(&"field_items_used", 0)) + 1
+	if item_id == &"rift_ward":
+		story_flags[&"rift_wards_used"] = int(story_flags.get(&"rift_wards_used", 0)) + 1
+	preview["usable"] = true
+	preview["used"] = true
+	preview["message"] = message
+	preview["quantity"] = int(inventory.get(item_id, 0))
+	state_changed.emit()
+	return preview
+
+
+func report_encounter_pressure(universe_id: StringName, steps: int, threshold: int, in_danger := true, cooldown := 0, suppressed := false) -> void:
+	var next := {
+		"active": in_danger or cooldown > 0,
+		"universe_id": universe_id,
+		"steps": clampi(steps, 0, maxi(1, threshold)),
+		"threshold": maxi(1, threshold),
+		"ward_steps": encounter_ward_steps,
+		"suppressed": suppressed,
+		"cooldown": maxi(0, cooldown),
+	}
+	if next == encounter_pressure:
+		return
+	encounter_pressure = next
+	encounter_pressure_changed.emit(encounter_pressure.duplicate(true))
+
+
+func clear_encounter_pressure(universe_id: StringName = &"") -> void:
+	if universe_id != &"" and StringName(encounter_pressure.get("universe_id", &"")) not in [&"", universe_id]:
+		return
+	var next := {"active": false, "universe_id": &"", "steps": 0, "threshold": 1, "ward_steps": encounter_ward_steps, "suppressed": false, "cooldown": 0}
+	if next == encounter_pressure:
+		return
+	encounter_pressure = next
+	encounter_pressure_changed.emit(encounter_pressure.duplicate(true))
+
+
+func consume_encounter_ward_step(universe_id: StringName) -> bool:
+	if encounter_ward_steps <= 0:
+		return false
+	encounter_ward_steps -= 1
+	story_flags[&"rift_ward_steps_prevented"] = int(story_flags.get(&"rift_ward_steps_prevented", 0)) + 1
+	report_encounter_pressure(universe_id, 0, 1, true, 0, true)
+	return true
+
+
+func set_character_vitals(character_id: StringName, hp: int, mp: int, max_hp: int, max_mp: int) -> void:
+	var progress := ensure_character_progress(character_id, max_hp, max_mp)
+	progress["hp"] = clampi(hp, 0, max_hp)
+	progress["mp"] = clampi(mp, 0, max_mp)
+
+
+func restore_party() -> void:
+	for character_id in party:
+		var defaults := _default_vitals(character_id)
+		var progress := ensure_character_progress(character_id, defaults.x, defaults.y)
+		var maximums := _maximum_vitals(character_id)
+		progress["hp"] = maximums.x
+		progress["mp"] = maximums.y
+	state_changed.emit()
+
+
+func activate_save_point(save_point_id: StringName) -> bool:
+	var definition: Dictionary = UNIVERSE_SAVE_POINTS.get(save_point_id, {})
+	if definition.is_empty():
+		return false
+	restore_party()
+	story_flags[definition["flag"]] = true
+	return true
+
+
+func activated_save_point_near(cell: Vector2i, radius := 2) -> Dictionary:
+	for save_point_id in UNIVERSE_SAVE_POINTS:
+		var definition: Dictionary = UNIVERSE_SAVE_POINTS[save_point_id]
+		if not bool(story_flags.get(definition["flag"], false)):
+			continue
+		var anchor_cell: Vector2i = definition["cell"]
+		if abs(cell.x - anchor_cell.x) + abs(cell.y - anchor_cell.y) <= radius:
+			var result := definition.duplicate(true)
+			result["id"] = save_point_id
+			return result
+	return {}
+
+
+func revive_party_at_one() -> void:
+	for character_id in party:
+		var defaults := _default_vitals(character_id)
+		var progress := ensure_character_progress(character_id, defaults.x, defaults.y)
+		progress["hp"] = maxi(1, int(progress.get("hp", 0)))
+	state_changed.emit()
+
+
+func _default_vitals(character_id: StringName) -> Vector2i:
+	if character_id == &"fighter":
+		return Vector2i(190, 18)
+	if character_id == &"astronaut":
+		return Vector2i(165, 24)
+	var stats: Dictionary = recruit_catalog.get(character_id, {}).get("combat_stats", {})
+	if not stats.is_empty():
+		return Vector2i(int(stats.get("max_hp", 140)), int(stats.get("max_mp", 36)))
+	return Vector2i(140, 36)
+
+
+func _maximum_vitals(character_id: StringName) -> Vector2i:
+	var defaults := _default_vitals(character_id)
+	var progress := ensure_character_progress(character_id, defaults.x, defaults.y)
+	var level := int(progress.get("level", 1))
+	var bonuses: Dictionary = actor_build(character_id)["bonuses"]
+	var stats: Dictionary = recruit_catalog.get(character_id, {}).get("combat_stats", {})
+	var hp_growth := int(stats.get("hp_growth", 22 if character_id == &"fighter" else (18 if character_id == &"astronaut" else 14)))
+	var mp_growth := int(stats.get("mp_growth", 2 if character_id == &"fighter" else (3 if character_id == &"astronaut" else 5)))
+	return Vector2i(defaults.x + (level - 1) * hp_growth + int(bonuses[&"max_hp"]), defaults.y + (level - 1) * mp_growth + int(bonuses[&"max_mp"]))
+
+
+func _clamp_character_vitals(character_id: StringName) -> void:
+	var defaults := _default_vitals(character_id)
+	var progress := ensure_character_progress(character_id, defaults.x, defaults.y)
+	var maximums := _maximum_vitals(character_id)
+	progress["hp"] = clampi(int(progress.get("hp", maximums.x)), 0, maximums.x)
+	progress["mp"] = clampi(int(progress.get("mp", maximums.y)), 0, maximums.y)
+
+
+func quest_definition(quest_id: StringName) -> Dictionary:
+	return QUEST_DEFINITIONS.get(quest_id, {}).duplicate(true)
+
+
+func quest_state(quest_id: StringName) -> Dictionary:
+	return quest_states.get(quest_id, {}).duplicate(true)
+
+
+func visible_quests() -> Array[Dictionary]:
+	var results: Array[Dictionary] = []
+	for quest_id in QUEST_DEFINITIONS.keys():
+		var runtime: Dictionary = quest_states.get(quest_id, {})
+		if runtime.is_empty() or StringName(runtime.get("status", "locked")) == &"locked":
+			continue
+		var entry: Dictionary = QUEST_DEFINITIONS[quest_id].duplicate(true)
+		entry["id"] = StringName(quest_id)
+		entry["state"] = runtime.duplicate(true)
+		results.append(entry)
+	return results
+
+
+func set_tracked_quest(quest_id: StringName) -> bool:
+	var runtime: Dictionary = quest_states.get(quest_id, {})
+	if runtime.is_empty() or StringName(runtime.get("status", "locked")) == &"locked":
+		return false
+	if tracked_quest == quest_id:
+		return true
+	tracked_quest = quest_id
+	state_changed.emit()
+	return true
+
+
+func tracked_objective() -> Dictionary:
+	var definition: Dictionary = QUEST_DEFINITIONS.get(tracked_quest, {})
+	var runtime: Dictionary = quest_states.get(tracked_quest, {})
+	if definition.is_empty() or runtime.is_empty():
+		return {}
+	var steps: Array = definition.get("steps", [])
+	var step_index := int(runtime.get("step", 0))
+	var status := StringName(runtime.get("status", "locked"))
+	var objective := "Quest complete."
+	if status == &"active" and step_index < steps.size():
+		objective = String(steps[step_index].get("text", "Continue the quest."))
+	return {
+		"id": tracked_quest,
+		"title": definition.get("title", tracked_quest),
+		"objective": objective,
+		"icon": definition.get("icon", "dfgui_icon-info.png"),
+		"category": definition.get("category", &"side"),
+		"status": status,
+		"step": step_index,
+		"total_steps": steps.size(),
+	}
+
+
+func mark_story_flag(flag: StringName, value := true) -> bool:
+	if story_flags.get(flag, false) == value:
+		return false
+	story_flags[flag] = value
+	state_changed.emit()
+	return true
+
+
+func sync_quests(notify := true) -> bool:
+	if _syncing_quests:
+		return false
+	_syncing_quests = true
+	var changed := false
+	for _pass in range(QUEST_DEFINITIONS.size() + 1):
+		var pass_changed := false
+		for quest_id in QUEST_DEFINITIONS.keys():
+			var definition: Dictionary = QUEST_DEFINITIONS[quest_id]
+			var runtime: Dictionary = quest_states[quest_id]
+			if StringName(runtime.get("status", "locked")) == &"locked" and _quest_unlock_requirements_met(definition):
+				runtime["status"] = &"active"
+				runtime["discovered"] = true
+				pass_changed = true
+				changed = true
+			if StringName(runtime.get("status", "locked")) != &"active":
+				continue
+			var steps: Array = definition.get("steps", [])
+			while int(runtime.get("step", 0)) < steps.size() and _quest_condition_met(steps[int(runtime["step"])].get("condition", {})):
+				runtime["step"] = int(runtime.get("step", 0)) + 1
+				pass_changed = true
+				changed = true
+				quest_advanced.emit(StringName(quest_id), int(runtime["step"]))
+			if int(runtime.get("step", 0)) >= steps.size():
+				runtime["status"] = &"complete"
+				runtime["completed_at"] = _unix_time()
+				if not bool(runtime.get("reward_claimed", false)):
+					_grant_quest_rewards(definition.get("rewards", {}))
+					runtime["reward_claimed"] = true
+				quest_completed.emit(StringName(quest_id))
+				pass_changed = true
+				changed = true
+		if not pass_changed:
+			break
+	var tracked_runtime: Dictionary = quest_states.get(tracked_quest, {})
+	if tracked_quest == &"" or tracked_runtime.is_empty() or StringName(tracked_runtime.get("status", "")) == &"complete":
+		var next_tracked := _next_active_quest()
+		if next_tracked != tracked_quest:
+			tracked_quest = next_tracked
+			changed = true
+	_syncing_quests = false
+	if changed and notify:
+		state_changed.emit()
+	return changed
+
+
+func _initialize_quest_states() -> void:
+	for quest_id in QUEST_DEFINITIONS.keys():
+		if not quest_states.has(quest_id):
+			quest_states[quest_id] = {"status": &"locked", "step": 0, "discovered": false, "reward_claimed": false, "completed_at": 0}
+		else:
+			var runtime: Dictionary = quest_states[quest_id]
+			runtime["status"] = StringName(runtime.get("status", "locked"))
+			runtime["step"] = int(runtime.get("step", 0))
+			runtime["discovered"] = bool(runtime.get("discovered", false))
+			runtime["reward_claimed"] = bool(runtime.get("reward_claimed", false))
+	if tracked_quest == &"":
+		tracked_quest = &"a_fault_in_reality"
+	sync_quests(false)
+
+
+func _quest_unlock_requirements_met(definition: Dictionary) -> bool:
+	if bool(definition.get("starts_active", false)):
+		return true
+	for required_quest in definition.get("requires_quests", []):
+		if StringName(quest_states.get(StringName(required_quest), {}).get("status", "locked")) != &"complete":
+			return false
+	for required_flag in definition.get("requires_flags", []):
+		if not bool(story_flags.get(StringName(required_flag), false)):
+			return false
+	return true
+
+
+func _quest_condition_met(condition: Dictionary) -> bool:
+	var condition_type := StringName(condition.get("type", ""))
+	var condition_id: Variant = condition.get("id", "")
+	match condition_type:
+		&"story_flag":
+			return bool(story_flags.get(StringName(condition_id), false))
+		&"facility_built":
+			return String(condition_id) in built_facilities.values()
+		&"recruit_hired":
+			return StringName(recruit_status.get(StringName(condition_id), &"undiscovered")) not in [&"undiscovered", &"available"]
+		&"party_has":
+			return StringName(condition_id) in party
+		&"facility_assignment_count":
+			return facility_assignments.size() >= int(condition.get("amount", 1))
+		&"completed_job_count":
+			var total := 0
+			for count in completed_facility_jobs.values():
+				total += int(count)
+			return total >= int(condition.get("amount", 1))
+		&"invention_owned":
+			return StringName(condition_id) in owned_inventions
+		&"job_completed":
+			return int(completed_facility_jobs.get(StringName(condition_id), 0)) > 0
+	return false
+
+
+func _grant_quest_rewards(rewards: Dictionary) -> void:
+	duckets += int(rewards.get("duckets", 0))
+	for item_id in rewards.get("items", {}).keys():
+		var normalized_id := StringName(item_id)
+		inventory[normalized_id] = int(inventory.get(normalized_id, 0)) + int(rewards["items"][item_id])
+	var party_experience := int(rewards.get("party_experience", 0))
+	if party_experience > 0:
+		for character_id in party:
+			grant_experience(character_id, party_experience)
+
+
+func _next_active_quest() -> StringName:
+	for category in [&"main", &"side", &"hidden"]:
+		for quest_id in QUEST_DEFINITIONS.keys():
+			if StringName(QUEST_DEFINITIONS[quest_id].get("category", "side")) == category and StringName(quest_states[quest_id].get("status", "locked")) == &"active":
+				return StringName(quest_id)
+	return &""
+
+
+func _on_internal_state_changed() -> void:
+	sync_quests(false)
+
+
+func facility_definition(facility_name: String) -> Dictionary:
+	return FACILITY_DEFINITIONS.get(facility_name, {}).duplicate(true)
+
+
+func visible_facility_jobs(facility_name: String) -> Array[Dictionary]:
+	var results: Array[Dictionary] = []
+	for job in FACILITY_DEFINITIONS.get(facility_name, {}).get("jobs", []):
+		if _requirements_met(job):
+			results.append(job.duplicate(true))
+	return results
+
+
+func facility_job_definition(facility_name: String, job_id: StringName) -> Dictionary:
+	for job in FACILITY_DEFINITIONS.get(facility_name, {}).get("jobs", []):
+		if StringName(job.get("id", "")) == job_id:
+			return job.duplicate(true)
+	return {}
+
+
+func visible_inventions(facility_name: String) -> Array[Dictionary]:
+	var results: Array[Dictionary] = []
+	for invention_id in INVENTION_DEFINITIONS.keys():
+		var definition: Dictionary = INVENTION_DEFINITIONS[invention_id]
+		if String(definition.get("facility", "")) == facility_name and _requirements_met(definition):
+			var result := definition.duplicate(true)
+			result["id"] = StringName(invention_id)
+			results.append(result)
+	return results
+
+
+func facility_worker(facility_name: String) -> StringName:
+	return StringName(facility_assignments.get(facility_name, ""))
+
+
+func service_stock(facility_name: String) -> Array[Dictionary]:
+	var result: Array[Dictionary] = []
+	for raw_item_id in SERVICE_STOCK.get(facility_name, []):
+		var item_id := StringName(raw_item_id)
+		var entry: Dictionary = SERVICE_ITEM_CATALOG.get(item_id, {}).duplicate(true)
+		if entry.is_empty():
+			continue
+		entry["id"] = item_id
+		entry["price"] = service_item_price(facility_name, item_id)
+		result.append(entry)
+	return result
+
+
+func service_discount(facility_name: String) -> float:
+	return 0.15 if facility_worker(facility_name) != &"" else 0.0
+
+
+func service_item_price(facility_name: String, item_id: StringName) -> int:
+	if item_id not in SERVICE_STOCK.get(facility_name, []):
+		return 0
+	var base_price := int(SERVICE_ITEM_CATALOG.get(item_id, {}).get("price", 0))
+	return maxi(1, int(ceil(float(base_price) * (1.0 - service_discount(facility_name)))))
+
+
+func purchase_service_item(facility_name: String, item_id: StringName, quantity := 1) -> bool:
+	quantity = maxi(1, quantity)
+	var unit_price := service_item_price(facility_name, item_id)
+	var total := unit_price * quantity
+	if unit_price <= 0 or duckets < total:
+		return false
+	duckets -= total
+	add_item(item_id, quantity, false)
+	story_flags[&"town_service_purchase_made"] = true
+	story_flags[&"town_service_purchase_count"] = int(story_flags.get(&"town_service_purchase_count", 0)) + quantity
+	state_changed.emit()
+	return true
+
+
+func armory_stock() -> Array[Dictionary]:
+	var result: Array[Dictionary] = []
+	for stock_id in ARMORY_STOCK:
+		var entry: Dictionary = ARMORY_STOCK[stock_id]
+		if not _requirements_met(entry):
+			continue
+		var available := entry.duplicate(true)
+		available["stock_id"] = stock_id
+		available["price"] = armory_item_price(StringName(stock_id))
+		result.append(available)
+	return result
+
+
+func armory_item_price(stock_id: StringName) -> int:
+	var entry: Dictionary = ARMORY_STOCK.get(stock_id, {})
+	if entry.is_empty() or not _requirements_met(entry):
+		return 0
+	return maxi(1, int(ceil(float(entry.get("price", 0)) * (1.0 - service_discount("Armory")))))
+
+
+func purchase_armory_item(stock_id: StringName) -> Dictionary:
+	var definition: Dictionary = ARMORY_STOCK.get(stock_id, {})
+	var price := armory_item_price(stock_id)
+	if definition.is_empty() or price <= 0 or duckets < price or "Armory" not in built_facilities.values():
+		return {}
+	duckets -= price
+	var purchase_count := int(story_flags.get(&"armory_purchase_count", 0)) + 1
+	story_flags[&"armory_purchase_count"] = purchase_count
+	story_flags[&"armory_purchase_made"] = true
+	var item := definition.duplicate(true)
+	item.erase("price")
+	item.erase("requires_flags")
+	item["instance_id"] = "armory-%s-%d" % [String(stock_id), purchase_count]
+	item["display_name"] = String(item.get("base_name", stock_id))
+	item["kind"] = "gear"
+	item["source_pack"] = "armory"
+	loot_inventory.append(item)
+	state_changed.emit()
+	return item.duplicate(true)
+
+
+func gear_stat_totals(item: Dictionary) -> Dictionary:
+	var totals := {}
+	for modifier in item.get("modifiers", []):
+		var stat := StringName(modifier.get("stat", ""))
+		if stat != &"":
+			totals[stat] = int(totals.get(stat, 0)) + int(modifier.get("value", 0))
+	return totals
+
+
+func gear_comparison(item: Dictionary, character_id: StringName) -> Dictionary:
+	var slot := StringName(item.get("slot", ""))
+	var progress: Dictionary = character_progress.get(character_id, {})
+	var equipped_id := String(progress.get("equipment", {}).get(slot, ""))
+	var current := loot_by_instance(equipped_id)
+	var candidate_totals := gear_stat_totals(item)
+	var current_totals := gear_stat_totals(current)
+	var comparison := {}
+	for stat in [&"attack", &"defense", &"magic", &"spirit", &"speed", &"max_hp", &"max_mp"]:
+		var delta := int(candidate_totals.get(stat, 0)) - int(current_totals.get(stat, 0))
+		if delta != 0:
+			comparison[stat] = delta
+	return comparison
+
+
+func loot_owner(instance_id: String) -> StringName:
+	for character_id in character_progress.keys():
+		for equipped_id in character_progress[character_id].get("equipment", {}).values():
+			if String(equipped_id) == instance_id:
+				return StringName(character_id)
+	return &""
+
+
+func loot_sell_value(instance_id: String) -> int:
+	var item := loot_by_instance(instance_id)
+	if item.is_empty():
+		return 0
+	var rarity_values := {"Common": 12, "Uncommon": 24, "Rare": 50, "Epic": 100}
+	var value := int(rarity_values.get(String(item.get("rarity", "Common")), 8))
+	for modifier in item.get("modifiers", []):
+		value += maxi(0, int(modifier.get("value", 0))) * 2
+	return value
+
+
+func sell_loot(instance_id: String) -> int:
+	if loot_owner(instance_id) != &"":
+		return 0
+	var value := loot_sell_value(instance_id)
+	if value <= 0:
+		return 0
+	for index in range(loot_inventory.size()):
+		if String(loot_inventory[index].get("instance_id", "")) == instance_id:
+			loot_inventory.remove_at(index)
+			duckets += value
+			story_flags[&"town_gear_sold_count"] = int(story_flags.get(&"town_gear_sold_count", 0)) + 1
+			state_changed.emit()
+			return value
+	return 0
+
+
+func clinic_service_cost() -> int:
+	return maxi(1, int(ceil(20.0 * (1.0 - service_discount("Clinic")))))
+
+
+func use_clinic_service() -> bool:
+	var cost := clinic_service_cost()
+	if duckets < cost:
+		return false
+	duckets -= cost
+	restore_party()
+	story_flags[&"clinic_treatment_used"] = true
+	story_flags[&"clinic_visit_count"] = int(story_flags.get(&"clinic_visit_count", 0)) + 1
+	state_changed.emit()
+	return true
+
+
+func library_record_summary() -> Dictionary:
+	var visible_count := 0
+	var completed_count := 0
+	var known_recruits := 0
+	for quest_id in quest_states.keys():
+		var status := StringName(quest_states[quest_id].get("status", &"locked"))
+		if status != &"locked":
+			visible_count += 1
+		if status == &"complete":
+			completed_count += 1
+	for recruit_id in recruit_status.keys():
+		if recruit_id != &"ben" and StringName(recruit_status[recruit_id]) != &"undiscovered":
+			known_recruits += 1
+	var stabilized_universes := int(bool(story_flags.get(&"first_universe_stabilized", false))) + int(bool(story_flags.get(&"second_universe_stabilized", false))) + int(bool(story_flags.get(&"third_universe_stabilized", false))) + int(bool(story_flags.get(&"fourth_universe_stabilized", false))) + int(bool(story_flags.get(&"fifth_universe_stabilized", false))) + int(bool(story_flags.get(&"sixth_universe_stabilized", false))) + int(bool(story_flags.get(&"seventh_universe_stabilized", false)))
+	var bestiary := bestiary_summary()
+	return {
+		"quests_discovered": visible_count,
+		"quests_completed": completed_count,
+		"mansion_encounters": int(story_flags.get(&"mansion_encounter_count", 0)),
+		"universes_stabilized": stabilized_universes,
+		"inventions": owned_inventions.size(),
+		"recruits": known_recruits,
+		"bestiary_seen": int(bestiary.get("species_seen", 0)),
+		"bestiary_total": int(bestiary.get("species_total", 0)),
+		"monsters_defeated": int(bestiary.get("total_defeated", 0)),
+	}
+
+
+func worker_facility(recruit_id: StringName) -> String:
+	for facility_name in facility_assignments.keys():
+		if StringName(facility_assignments[facility_name]) == recruit_id:
+			return String(facility_name)
+	return ""
+
+
+func facility_job_status(facility_name: String) -> Dictionary:
+	return active_facility_jobs.get(facility_name, {}).duplicate(true)
+
+
+func job_estimate(facility_name: String, job_id: StringName, ben_assist := false) -> Dictionary:
+	var job := facility_job_definition(facility_name, job_id)
+	if job.is_empty():
+		return {}
+	var worker_id := facility_worker(facility_name)
+	if worker_id == &"" and ben_assist and bool(job.get("ben_can_lead", false)):
+		worker_id = &"ben"
+	if worker_id == &"":
+		return {"allowed": false, "reason": "Assign a recruit, or have Ben lead eligible work."}
+	if ben_assist and worker_id != &"ben" and not bool(job.get("ben_can_assist", false)):
+		return {"allowed": false, "reason": "Ben cannot assist this assignment."}
+	var required_invention := StringName(job.get("required_invention", ""))
+	if required_invention != &"" and required_invention not in owned_inventions:
+		return {"allowed": false, "reason": "Invent %s first." % INVENTION_DEFINITIONS.get(required_invention, {}).get("name", required_invention)}
+	if bool(job.get("one_time", false)) and int(completed_facility_jobs.get(job_id, 0)) > 0:
+		return {"allowed": false, "reason": "This assignment is already complete."}
+	var fit := _worker_job_fit(worker_id, job)
+	var duration_multiplier := 1.0 - float(fit) * 0.18
+	var quality := 1 + fit
+	if ben_assist and worker_id != &"ben":
+		duration_multiplier *= 0.88
+		quality += 1
+	var boost_invention := StringName(job.get("boost_invention", ""))
+	var invention_active := boost_invention != &"" and boost_invention in owned_inventions
+	if invention_active:
+		duration_multiplier *= 0.82
+		quality += 1
+	quality = clampi(quality, 0, JOB_QUALITY_NAMES.size() - 1)
+	return {
+		"allowed": true,
+		"worker_id": worker_id,
+		"fit": fit,
+		"duration_seconds": maxi(30, int(round(float(job.get("duration_seconds", 60)) * duration_multiplier))),
+		"quality": quality,
+		"quality_name": JOB_QUALITY_NAMES[quality],
+		"ben_assist": ben_assist,
+		"invention_active": invention_active,
+	}
+
+
+func start_facility_job(facility_name: String, job_id: StringName, ben_assist := false, now_at := -1) -> bool:
+	if facility_name not in built_facilities.values() or active_facility_jobs.has(facility_name):
+		return false
+	var visible := false
+	for job in visible_facility_jobs(facility_name):
+		if StringName(job.get("id", "")) == job_id:
+			visible = true
+			break
+	if not visible:
+		return false
+	var estimate := job_estimate(facility_name, job_id, ben_assist)
+	if not bool(estimate.get("allowed", false)):
+		return false
+	var started_at := _unix_time() if now_at < 0 else now_at
+	active_facility_jobs[facility_name] = {
+		"job_id": job_id,
+		"worker_id": estimate["worker_id"],
+		"ben_assist": ben_assist,
+		"invention_active": estimate["invention_active"],
+		"quality": estimate["quality"],
+		"quality_name": estimate["quality_name"],
+		"duration_seconds": estimate["duration_seconds"],
+		"started_at": started_at,
+		"finishes_at": started_at + int(estimate["duration_seconds"]),
+		"status": &"running",
+	}
+	state_changed.emit()
+	return true
+
+
+func refresh_facility_jobs(now_at := -1) -> bool:
+	var now := _unix_time() if now_at < 0 else now_at
+	var changed := false
+	for facility_name in active_facility_jobs.keys():
+		var active: Dictionary = active_facility_jobs[facility_name]
+		if StringName(active.get("status", "running")) == &"running" and now >= int(active.get("finishes_at", now + 1)):
+			active["status"] = &"ready"
+			changed = true
+			facility_job_ready.emit(String(facility_name), StringName(active.get("job_id", "")))
+	if changed:
+		state_changed.emit()
+	return changed
+
+
+func collect_facility_job(facility_name: String, now_at := -1) -> Dictionary:
+	refresh_facility_jobs(now_at)
+	var active: Dictionary = active_facility_jobs.get(facility_name, {})
+	if active.is_empty() or StringName(active.get("status", "")) != &"ready":
+		return {}
+	var job_id := StringName(active.get("job_id", ""))
+	var job := facility_job_definition(facility_name, job_id)
+	if job.is_empty():
+		return {}
+	var quality := int(active.get("quality", 1))
+	var earned_duckets := int(round(float(job.get("duckets", 0)) * (1.0 + maxf(0.0, float(quality - 1)) * 0.2)))
+	duckets += earned_duckets
+	var earned_items := {}
+	for item_id in job.get("items", {}).keys():
+		var quantity := int(job["items"][item_id]) + maxi(0, (quality - 1) / 2)
+		add_item(StringName(item_id), quantity, false)
+		earned_items[StringName(item_id)] = quantity
+	var earned_experience := int(job.get("experience", 0)) + maxi(0, quality - 1) * 5
+	var worker_id := StringName(active.get("worker_id", ""))
+	var level_ups: Array[int] = []
+	if worker_id != &"":
+		level_ups = grant_experience(worker_id, earned_experience)
+	completed_facility_jobs[job_id] = int(completed_facility_jobs.get(job_id, 0)) + 1
+	var completion_flag := StringName(job.get("completion_flag", ""))
+	if completion_flag != &"":
+		story_flags[completion_flag] = true
+	active_facility_jobs.erase(facility_name)
+	state_changed.emit()
+	return {
+		"facility": facility_name,
+		"job_id": job_id,
+		"job_name": job.get("name", job_id),
+		"worker_id": worker_id,
+		"quality": quality,
+		"quality_name": active.get("quality_name", JOB_QUALITY_NAMES[quality]),
+		"duckets": earned_duckets,
+		"items": earned_items,
+		"experience": earned_experience,
+		"level_ups": level_ups,
+	}
+
+
+func cancel_facility_job(facility_name: String) -> bool:
+	if not active_facility_jobs.has(facility_name):
+		return false
+	active_facility_jobs.erase(facility_name)
+	state_changed.emit()
+	return true
+
+
+func invention_availability(invention_id: StringName) -> Dictionary:
+	var definition: Dictionary = INVENTION_DEFINITIONS.get(invention_id, {})
+	if definition.is_empty():
+		return {"allowed": false, "reason": "Unknown invention."}
+	if invention_id in owned_inventions:
+		return {"allowed": false, "reason": "Already invented."}
+	if not _requirements_met(definition):
+		return {"allowed": false, "reason": "The relevant discovery has not been made."}
+	if int(definition.get("duckets", 0)) > duckets:
+		return {"allowed": false, "reason": "Not enough Duckets."}
+	for item_id in definition.get("items", {}).keys():
+		if int(inventory.get(StringName(item_id), 0)) < int(definition["items"][item_id]):
+			return {"allowed": false, "reason": "Missing %s." % String(item_id).replace("_", " ").capitalize()}
+	return {"allowed": true, "reason": "Ready to invent."}
+
+
+func craft_invention(invention_id: StringName) -> bool:
+	if not bool(invention_availability(invention_id).get("allowed", false)):
+		return false
+	var definition: Dictionary = INVENTION_DEFINITIONS[invention_id]
+	duckets -= int(definition.get("duckets", 0))
+	for item_id in definition.get("items", {}).keys():
+		consume_item(StringName(item_id), int(definition["items"][item_id]))
+	owned_inventions.append(invention_id)
+	state_changed.emit()
+	return true
+
+
+func release_facility_worker(facility_name: String) -> bool:
+	if active_facility_jobs.has(facility_name):
+		return false
+	var recruit_id := facility_worker(facility_name)
+	if recruit_id == &"":
+		return false
+	facility_assignments.erase(facility_name)
+	recruit_status[recruit_id] = &"reserve"
+	recruit_status_changed.emit(recruit_id, &"reserve")
+	state_changed.emit()
+	return true
+
+
+func _worker_job_fit(worker_id: StringName, job: Dictionary) -> int:
+	var recruit: Dictionary = recruit_catalog.get(worker_id, {})
+	var primary: Array = recruit.get("work_specialties", [])
+	var adjacent: Array = recruit.get("work_adjacent", [])
+	var fit := 0
+	for skill in job.get("preferred_skills", []):
+		var skill_id := StringName(skill)
+		if skill_id in primary:
+			fit = maxi(fit, 2)
+		elif skill_id in adjacent:
+			fit = maxi(fit, 1)
+	return fit
+
+
+func _requirements_met(definition: Dictionary) -> bool:
+	for flag in definition.get("requires_flags", []):
+		if not bool(story_flags.get(StringName(flag), false)):
+			return false
+	return true
+
+
+func _unix_time() -> int:
+	return int(Time.get_unix_time_from_system())
+
+
+func universe_definition(universe_id: StringName) -> Dictionary:
+	return UNIVERSE_DEFINITIONS.get(universe_id, {}).duplicate(true)
+
+
+func anchored_universe_at(plot_index: int) -> StringName:
+	return StringName(universe_anchors.get(plot_index, &""))
+
+
+func available_universe_anchors() -> Array[Dictionary]:
+	var available: Array[Dictionary] = []
+	for raw_universe_id in UNIVERSE_DEFINITIONS.keys():
+		var universe_id := StringName(raw_universe_id)
+		if not _universe_anchor_requirements_met(universe_id):
+			continue
+		var entry: Dictionary = UNIVERSE_DEFINITIONS[universe_id].duplicate(true)
+		entry["id"] = universe_id
+		available.append(entry)
+	return available
+
+
+func anchor_universe(plot_index: int, universe_id: StringName) -> bool:
+	if not _universe_anchor_requirements_met(universe_id):
+		return false
+	var definition: Dictionary = UNIVERSE_DEFINITIONS[universe_id]
+	return build_facility(plot_index, String(definition.get("building", "")), universe_id)
+
+
+func _universe_anchor_requirements_met(universe_id: StringName) -> bool:
+	var definition: Dictionary = UNIVERSE_DEFINITIONS.get(universe_id, {})
+	if definition.is_empty() or universe_id in universe_anchors.values():
+		return false
+	var building := String(definition.get("building", ""))
+	if building.is_empty() or building in built_facilities.values():
+		return false
+	for raw_flag in definition.get("required_flags", []):
+		if not bool(story_flags.get(StringName(raw_flag), false)):
+			return false
+	for raw_recruit_id in definition.get("required_recruits", []):
+		var recruit_id := StringName(raw_recruit_id)
+		if StringName(recruit_status.get(recruit_id, &"undiscovered")) in [&"undiscovered", &"available"]:
+			return false
+	return true
+
+
+func build_facility(plot_index: int, facility_name: String, universe_id: StringName = &"") -> bool:
+	if built_facilities.has(plot_index) or facility_name in built_facilities.values():
+		return false
+	if universe_id != &"":
+		var universe: Dictionary = UNIVERSE_DEFINITIONS.get(universe_id, {})
+		if universe.is_empty() or String(universe.get("building", "")) != facility_name or universe_id in universe_anchors.values():
+			return false
+	else:
+		# Version-11 callers and focused tests built the two authored anchors by
+		# facade name. Preserve that API while recording the explicit destination.
+		for raw_universe_id in UNIVERSE_DEFINITIONS.keys():
+			if String(UNIVERSE_DEFINITIONS[raw_universe_id].get("building", "")) == facility_name:
+				universe_id = StringName(raw_universe_id)
+				break
+	built_facilities[plot_index] = facility_name
+	if universe_id != &"":
+		universe_anchors[plot_index] = universe_id
+		var anchor_flag := StringName(UNIVERSE_DEFINITIONS[universe_id].get("anchor_flag", &""))
+		if anchor_flag != &"":
+			story_flags[anchor_flag] = true
+	if built_facilities.size() >= 3:
+		story_flags[&"town_foundations_complete"] = true
+		discover_recruit(&"fighter")
+	facility_built.emit(plot_index, facility_name)
+	if universe_id != &"":
+		universe_anchored.emit(plot_index, universe_id)
+	state_changed.emit()
+	return true
+
+
+func discover_recruit(recruit_id: StringName) -> bool:
+	if not recruit_catalog.has(recruit_id) or recruit_status.get(recruit_id, &"undiscovered") != &"undiscovered":
+		return false
+	recruit_status[recruit_id] = &"available"
+	recruit_status_changed.emit(recruit_id, &"available")
+	state_changed.emit()
+	return true
+
+
+func hire_recruit(recruit_id: StringName) -> bool:
+	if recruit_status.get(recruit_id, &"undiscovered") != &"available":
+		return false
+	recruit_status[recruit_id] = &"reserve"
+	recruit_status_changed.emit(recruit_id, &"reserve")
+	state_changed.emit()
+	return true
+
+
+func destination_party_requirements(destination_id: StringName) -> Array[StringName]:
+	var results: Array[StringName] = []
+	for recruit_id in SCENARIO_PARTY_REQUIREMENTS.get(destination_id, []):
+		results.append(StringName(recruit_id))
+	return results
+
+
+func missing_destination_party_members(destination_id: StringName) -> Array[StringName]:
+	var missing: Array[StringName] = []
+	for recruit_id in destination_party_requirements(destination_id):
+		if recruit_id not in party:
+			missing.append(recruit_id)
+	return missing
+
+
+func active_party_has(recruit_id: StringName) -> bool:
+	return recruit_id in party
+
+
+func active_party_members_with_skill(skill: StringName, include_adjacent := true) -> Array[StringName]:
+	var matches: Array[StringName] = []
+	for recruit_id in party:
+		if recruit_id == &"ben":
+			continue
+		var recruit: Dictionary = recruit_catalog.get(recruit_id, {})
+		if skill in recruit.get("work_specialties", []):
+			matches.append(recruit_id)
+		elif include_adjacent and skill in recruit.get("work_adjacent", []):
+			matches.append(recruit_id)
+	return matches
+
+
+func field_specialist_result(task_id: StringName) -> Dictionary:
+	var definition: Dictionary = FIELD_SPECIALIST_TASKS.get(task_id, {})
+	if definition.is_empty():
+		return {"available": false, "task_id": task_id, "reason": &"unknown_task"}
+	for raw_recruit_id in definition.get("preferred_recruits", []):
+		var recruit_id := StringName(raw_recruit_id)
+		if active_party_has(recruit_id):
+			return _field_specialist_result(task_id, recruit_id, &"signature", 3)
+	for raw_skill in definition.get("preferred_skills", []):
+		var skill := StringName(raw_skill)
+		for recruit_id in active_party_members_with_skill(skill, false):
+			return _field_specialist_result(task_id, recruit_id, &"specialty", 2, skill)
+	for raw_skill in definition.get("preferred_skills", []):
+		var skill := StringName(raw_skill)
+		for recruit_id in active_party_members_with_skill(skill, true):
+			var recruit: Dictionary = recruit_catalog.get(recruit_id, {})
+			if skill in recruit.get("work_adjacent", []):
+				return _field_specialist_result(task_id, recruit_id, &"adjacent", 1, skill)
+	return {
+		"available": false,
+		"task_id": task_id,
+		"label": String(definition.get("label", "Specialist task")),
+		"claimed": bool(story_flags.get(_field_specialist_flag(task_id), false)),
+		"reason": &"no_active_specialist",
+	}
+
+
+func claim_field_specialist_assist(task_id: StringName) -> Dictionary:
+	var result := field_specialist_result(task_id)
+	result["granted"] = false
+	if not bool(result.get("available", false)):
+		return result
+	var claimed_flag := _field_specialist_flag(task_id)
+	if bool(story_flags.get(claimed_flag, false)):
+		result["claimed"] = true
+		return result
+	var definition: Dictionary = FIELD_SPECIALIST_TASKS.get(task_id, {})
+	var earned_duckets := int(definition.get("duckets", 0))
+	duckets += earned_duckets
+	var earned_items: Dictionary = definition.get("items", {}).duplicate(true)
+	for raw_item_id in earned_items.keys():
+		add_item(StringName(raw_item_id), int(earned_items[raw_item_id]), false)
+	story_flags[claimed_flag] = true
+	story_flags[&"field_specialist_assist_count"] = int(story_flags.get(&"field_specialist_assist_count", 0)) + 1
+	var recruit_id := StringName(result.get("recruit_id", &""))
+	if recruit_id != &"":
+		var recruit_flag := StringName("field_assists_%s" % String(recruit_id))
+		story_flags[recruit_flag] = int(story_flags.get(recruit_flag, 0)) + 1
+	result["claimed"] = true
+	result["granted"] = true
+	result["duckets"] = earned_duckets
+	result["items"] = earned_items
+	return result
+
+
+func field_specialist_reward_text(result: Dictionary) -> String:
+	if not bool(result.get("granted", false)):
+		return ""
+	var rewards: Array[String] = []
+	var earned_duckets := int(result.get("duckets", 0))
+	if earned_duckets > 0:
+		rewards.append("%d Duckets" % earned_duckets)
+	for raw_item_id in result.get("items", {}).keys():
+		var quantity := int(result["items"][raw_item_id])
+		var item_name := String(raw_item_id).replace("_", " ").capitalize()
+		rewards.append("%d %s" % [quantity, item_name] if quantity != 1 else item_name)
+	return "Specialist assist — %s recovered %s." % [String(result.get("name", "A party member")), ", ".join(rewards)]
+
+
+func field_specialist_hint(task_id: StringName) -> String:
+	var definition: Dictionary = FIELD_SPECIALIST_TASKS.get(task_id, {})
+	if definition.is_empty() or bool(story_flags.get(_field_specialist_flag(task_id), false)):
+		return ""
+	var names: Array[String] = []
+	for raw_recruit_id in definition.get("preferred_recruits", []):
+		var recruit: Dictionary = recruit_catalog.get(StringName(raw_recruit_id), {})
+		var recruit_name := String(recruit.get("name", ""))
+		if not recruit_name.is_empty():
+			names.append(recruit_name)
+	return "Party note: return with %s active to perform a specialist assist." % ", ".join(names)
+
+
+func _field_specialist_result(task_id: StringName, recruit_id: StringName, match_kind: StringName, quality: int, skill: StringName = &"") -> Dictionary:
+	var definition: Dictionary = FIELD_SPECIALIST_TASKS.get(task_id, {})
+	return {
+		"available": true,
+		"task_id": task_id,
+		"label": String(definition.get("label", "Specialist task")),
+		"recruit_id": recruit_id,
+		"name": String(recruit_catalog.get(recruit_id, {}).get("name", String(recruit_id))),
+		"match_kind": match_kind,
+		"skill": skill,
+		"quality": quality,
+		"claimed": bool(story_flags.get(_field_specialist_flag(task_id), false)),
+	}
+
+
+func _field_specialist_flag(task_id: StringName) -> StringName:
+	return StringName("field_assist_%s_claimed" % String(task_id))
+
+
+func active_required_party_members() -> Array[StringName]:
+	if bool(story_flags.get(&"mansion_entered", false)) and not bool(story_flags.get(&"haunted_mansion_scenario_complete", false)):
+		return destination_party_requirements(&"haunted_mansion")
+	return []
+
+
+func can_remove_from_party(recruit_id: StringName) -> bool:
+	return recruit_id != &"ben" and recruit_id in party and recruit_id not in active_required_party_members()
+
+
+func formation_for(recruit_id: StringName) -> StringName:
+	return StringName(party_formation.get(recruit_id, &"back" if recruit_id == &"ben" else &"front"))
+
+
+func formation_row_count(row: StringName, exclude_id: StringName = &"") -> int:
+	var count := 0
+	for recruit_id in party:
+		if recruit_id != exclude_id and formation_for(recruit_id) == row:
+			count += 1
+	return count
+
+
+func set_party_formation(recruit_id: StringName, row: StringName) -> bool:
+	if recruit_id not in party or row not in FORMATION_ROWS or formation_for(recruit_id) == row:
+		return false
+	if formation_row_count(row, recruit_id) >= FORMATION_ROW_LIMIT:
+		return false
+	party_formation[recruit_id] = row
+	party_changed.emit()
+	state_changed.emit()
+	return true
+
+
+func move_party_member(recruit_id: StringName, direction: int) -> bool:
+	if recruit_id == &"ben" or recruit_id not in party or direction == 0:
+		return false
+	var old_index := party.find(recruit_id)
+	var new_index := clampi(old_index + signi(direction), 1, party.size() - 1)
+	if old_index == new_index:
+		return false
+	var swap_id := party[new_index]
+	party[new_index] = recruit_id
+	party[old_index] = swap_id
+	party_changed.emit()
+	state_changed.emit()
+	return true
+
+
+func _ensure_party_formation(recruit_id: StringName) -> void:
+	var preferred := formation_for(recruit_id)
+	if formation_row_count(preferred, recruit_id) >= FORMATION_ROW_LIMIT:
+		preferred = &"back" if preferred == &"front" else &"front"
+	if formation_row_count(preferred, recruit_id) >= FORMATION_ROW_LIMIT:
+		preferred = &"front"
+	party_formation[recruit_id] = preferred
+
+
+func add_to_party(recruit_id: StringName) -> bool:
+	if recruit_id in party or party.size() >= PARTY_LIMIT:
+		return false
+	if recruit_status.get(recruit_id, &"undiscovered") not in [&"reserve", &"staffed"]:
+		return false
+	var staffed_at := worker_facility(recruit_id)
+	if not staffed_at.is_empty() and active_facility_jobs.has(staffed_at):
+		return false
+	_remove_assignment(recruit_id)
+	party.append(recruit_id)
+	_ensure_party_formation(recruit_id)
+	recruit_status[recruit_id] = &"party"
+	recruit_status_changed.emit(recruit_id, &"party")
+	party_changed.emit()
+	state_changed.emit()
+	return true
+
+
+func move_to_reserve(recruit_id: StringName) -> bool:
+	if not can_remove_from_party(recruit_id):
+		return false
+	party.erase(recruit_id)
+	recruit_status[recruit_id] = &"reserve"
+	recruit_status_changed.emit(recruit_id, &"reserve")
+	party_changed.emit()
+	state_changed.emit()
+	return true
+
+
+func assign_to_facility(recruit_id: StringName, facility_name: String) -> bool:
+	if recruit_id == &"ben" or recruit_status.get(recruit_id, &"undiscovered") not in [&"party", &"reserve", &"staffed"]:
+		return false
+	if facility_name not in built_facilities.values():
+		return false
+	if recruit_id in party and not can_remove_from_party(recruit_id):
+		return false
+	if active_facility_jobs.has(facility_name):
+		return false
+	var current_worker := facility_worker(facility_name)
+	if current_worker != &"" and current_worker != recruit_id:
+		return false
+	var old_facility := worker_facility(recruit_id)
+	if not old_facility.is_empty() and active_facility_jobs.has(old_facility):
+		return false
+	party.erase(recruit_id)
+	_remove_assignment(recruit_id)
+	facility_assignments[facility_name] = recruit_id
+	recruit_status[recruit_id] = &"staffed"
+	recruit_status_changed.emit(recruit_id, &"staffed")
+	party_changed.emit()
+	state_changed.emit()
+	return true
+
+
+func _remove_assignment(recruit_id: StringName) -> void:
+	for facility_name in facility_assignments.keys():
+		if facility_assignments[facility_name] == recruit_id:
+			facility_assignments.erase(facility_name)
+			return
+
+
+func save_game(path := "") -> Error:
+	var resolved_path := path
+	if resolved_path.is_empty():
+		resolved_path = SANDBOX_SAVE_PATH if sandbox_mode else DEFAULT_SAVE_PATH
+	_capture_field_position()
+	save_timestamp = _unix_time()
+	var file := FileAccess.open(resolved_path, FileAccess.WRITE)
+	if not file:
+		return FileAccess.get_open_error()
+	file.store_string(JSON.stringify(_serialize(), "\t"))
+	return OK
+
+
+func load_game(path := DEFAULT_SAVE_PATH) -> Error:
+	if not FileAccess.file_exists(path):
+		return ERR_FILE_NOT_FOUND
+	var file := FileAccess.open(path, FileAccess.READ)
+	if not file:
+		return FileAccess.get_open_error()
+	var parsed: Variant = JSON.parse_string(file.get_as_text())
+	if not parsed is Dictionary or int(parsed.get("version", 0)) < 1 or int(parsed.get("version", 0)) > SAVE_VERSION:
+		return ERR_FILE_CORRUPT
+	_deserialize(parsed)
+	refresh_facility_jobs()
+	state_changed.emit()
+	return OK
+
+
+func has_save(path := DEFAULT_SAVE_PATH) -> bool:
+	return bool(read_save_summary(path).get("valid", false))
+
+
+func read_save_summary(path := DEFAULT_SAVE_PATH) -> Dictionary:
+	if not FileAccess.file_exists(path):
+		return {"valid": false, "error": ERR_FILE_NOT_FOUND}
+	var file := FileAccess.open(path, FileAccess.READ)
+	if not file:
+		return {"valid": false, "error": FileAccess.get_open_error()}
+	var parsed: Variant = JSON.parse_string(file.get_as_text())
+	if not parsed is Dictionary:
+		return {"valid": false, "error": ERR_FILE_CORRUPT}
+	var version := int(parsed.get("version", 0))
+	if version < 1 or version > SAVE_VERSION:
+		return {"valid": false, "error": ERR_FILE_CORRUPT}
+	var cell_data: Array = parsed.get("last_save_cell", [10, 9])
+	var cell := Vector2i(10, 9)
+	if cell_data.size() >= 2:
+		cell = Vector2i(int(cell_data[0]), int(cell_data[1]))
+	return {
+		"valid": true,
+		"version": version,
+		"sandbox_mode": bool(parsed.get("sandbox_mode", false)),
+		"duckets": int(parsed.get("duckets", 0)),
+		"facilities": (parsed.get("built_facilities", {}) as Dictionary).size(),
+		"party_size": (parsed.get("party", []) as Array).size(),
+		"play_time_seconds": float(parsed.get("play_time_seconds", 0.0)),
+		"save_timestamp": int(parsed.get("save_timestamp", 0)),
+		"last_save_cell": cell,
+		"location": String(parsed.get("last_location", _location_name_for_cell(cell))),
+	}
+
+
+func format_play_time(seconds := -1.0) -> String:
+	var total := int(play_time_seconds if seconds < 0.0 else seconds)
+	var hours := total / 3600
+	var minutes := (total % 3600) / 60
+	var remaining_seconds := total % 60
+	return "%02d:%02d:%02d" % [hours, minutes, remaining_seconds]
+
+
+func _capture_field_position() -> void:
+	if not Player.gamepiece:
+		return
+	var cell := GamepieceRegistry.get_cell(Player.gamepiece)
+	if cell == Gameboard.INVALID_CELL:
+		cell = Gameboard.pixel_to_cell(Player.gamepiece.position)
+	if cell == Gameboard.INVALID_CELL:
+		return
+	last_save_cell = cell
+	last_location = _location_name_for_cell(cell)
+
+
+func _location_name_for_cell(cell: Vector2i) -> String:
+	if Rect2i(Vector2i(216, 32), Vector2i(28, 18)).has_point(cell):
+		var empyreal_local := cell - Vector2i(216, 32)
+		if empyreal_local.y >= 10 and empyreal_local.x >= 20:
+			return "Empyreal Court — Seraph Tribunal"
+		if empyreal_local.y >= 10:
+			return "Empyreal Court — Reliquary Aerie"
+		if empyreal_local.x >= 20:
+			return "Empyreal Court — Forum of Measures"
+		return "Empyreal Court — Garden of Appeals" if empyreal_local.x >= 10 else "Empyreal Court — Cloudstep Landing"
+	if Rect2i(Vector2i(180, 32), Vector2i(28, 18)).has_point(cell):
+		var moonpetal_local := cell - Vector2i(180, 32)
+		if moonpetal_local.y >= 10 and moonpetal_local.x >= 20:
+			return "Moonpetal Court — Moon Palace"
+		if moonpetal_local.y >= 10:
+			return "Moonpetal Court — Bell Walk"
+		if moonpetal_local.x >= 20:
+			return "Moonpetal Court — Mirror Garden"
+		return "Moonpetal Court — Blossom Court" if moonpetal_local.x >= 10 else "Moonpetal Court — Vermilion Gate"
+	if Rect2i(Vector2i(144, 32), Vector2i(28, 18)).has_point(cell):
+		var frosthold_local := cell - Vector2i(144, 32)
+		if frosthold_local.y >= 10 and frosthold_local.x >= 20:
+			return "Frosthold Kingdom — Ice Throne"
+		if frosthold_local.y >= 10:
+			return "Frosthold Kingdom — Rune Hall"
+		if frosthold_local.x >= 20:
+			return "Frosthold Kingdom — Crystal Causeway"
+		return "Frosthold Kingdom — Frozen Market" if frosthold_local.x >= 10 else "Frosthold Kingdom — Snow Gate"
+	if Rect2i(Vector2i(108, 32), Vector2i(28, 18)).has_point(cell):
+		var helios_local := cell - Vector2i(108, 32)
+		if helios_local.y >= 10 and helios_local.x >= 20:
+			return "Helios Arcology — Solar Core"
+		if helios_local.y >= 10:
+			return "Helios Arcology — Recovery Clinic"
+		if helios_local.x >= 20:
+			return "Helios Arcology — Transit Exchange"
+		return "Helios Arcology — Public Market" if helios_local.x >= 10 else "Helios Arcology — Skybridge"
+	if Rect2i(Vector2i(72, 32), Vector2i(28, 18)).has_point(cell):
+		var primeval_local := cell - Vector2i(72, 32)
+		if primeval_local.y >= 10 and primeval_local.x >= 20:
+			return "Primeval Expanse — Caldera"
+		if primeval_local.y >= 10:
+			return "Primeval Expanse — Relay Nest"
+		if primeval_local.x >= 20:
+			return "Primeval Expanse — Jungle Ruins"
+		return "Primeval Expanse — Borough" if primeval_local.x >= 10 else "Primeval Expanse — Grove"
+	if Rect2i(Vector2i(36, 32), Vector2i(28, 18)).has_point(cell):
+		var station_local := cell - Vector2i(36, 32)
+		if station_local.y >= 10 and station_local.x >= 20:
+			return "Asterion Station — Control"
+		if station_local.y >= 10:
+			return "Asterion Station — Medical"
+		if station_local.x >= 20:
+			return "Asterion Station — Hydroponics"
+		return "Asterion Station — Mess Deck" if station_local.x >= 10 else "Asterion Station — Docking"
+	if cell.y >= 32:
+		var local := cell - Vector2i(0, 32)
+		if local.x >= 20:
+			return "Haunted Mansion — Ballroom"
+		if local.y >= 10 and local.x >= 10:
+			return "Haunted Mansion — Nursery"
+		if local.y >= 10:
+			return "Haunted Mansion — Portrait Gallery"
+		return "Haunted Mansion — Archive" if local.x >= 10 else "Haunted Mansion — Foyer"
+	if cell.x >= 36:
+		return "New Philadelphia"
+	return "Laboratory"
+
+
+func _serialize() -> Dictionary:
+	return {
+		"version": SAVE_VERSION, "sandbox_mode": sandbox_mode, "duckets": duckets,
+		"play_time_seconds": play_time_seconds, "save_timestamp": save_timestamp,
+		"last_save_cell": [last_save_cell.x, last_save_cell.y], "last_location": last_location,
+		"town_time_minutes": town_time_minutes, "resident_states": resident_states,
+		"town_terrain": town_terrain,
+		"town_objects": town_objects, "next_town_object_id": next_town_object_id,
+		"built_facilities": built_facilities, "universe_anchors": universe_anchors, "story_flags": story_flags,
+		"bestiary_records": bestiary_records, "inventory": inventory, "encounter_ward_steps": encounter_ward_steps,
+		"loot_inventory": loot_inventory, "character_progress": character_progress,
+		"party": Array(party), "party_formation": party_formation, "recruit_status": recruit_status, "facility_assignments": facility_assignments,
+		"active_facility_jobs": active_facility_jobs, "completed_facility_jobs": completed_facility_jobs,
+		"owned_inventions": Array(owned_inventions),
+		"quest_states": quest_states, "tracked_quest": tracked_quest,
+	}
+
+
+func _deserialize(data: Dictionary) -> void:
+	var source_version := int(data.get("version", 1))
+	sandbox_mode = bool(data.get("sandbox_mode", false))
+	play_time_seconds = float(data.get("play_time_seconds", 0.0))
+	save_timestamp = int(data.get("save_timestamp", 0))
+	var saved_cell: Array = data.get("last_save_cell", [10, 9])
+	last_save_cell = Vector2i(10, 9)
+	if saved_cell.size() >= 2:
+		last_save_cell = Vector2i(int(saved_cell[0]), int(saved_cell[1]))
+	last_location = String(data.get("last_location", _location_name_for_cell(last_save_cell)))
+	town_time_minutes = fmod(float(data.get("town_time_minutes", 7.0 * 60.0)), 1440.0)
+	resident_states.clear()
+	for resident_id in data.get("resident_states", {}).keys():
+		var resident_source: Dictionary = data.resident_states[resident_id]
+		resident_states[StringName(resident_id)] = {
+			"x": int(resident_source.get("x", 0)),
+			"y": int(resident_source.get("y", 0)),
+			"activity": StringName(resident_source.get("activity", "home")),
+			"target_x": int(resident_source.get("target_x", 0)),
+			"target_y": int(resident_source.get("target_y", 0)),
+		}
+	town_terrain.clear()
+	for terrain_key in data.get("town_terrain", {}).keys():
+		town_terrain[String(terrain_key)] = StringName(data.town_terrain[terrain_key])
+	town_objects.clear()
+	for source in data.get("town_objects", []):
+		if source is Dictionary:
+			town_objects.append({
+				"instance_id": String(source.get("instance_id", "")),
+				"catalog_id": StringName(source.get("catalog_id", "")),
+				"x": int(source.get("x", 0)),
+				"y": int(source.get("y", 0)),
+				"flipped": bool(source.get("flipped", false)),
+				"role": StringName(source.get("role", "")),
+				"protected": bool(source.get("protected", false)),
+			})
+	if sandbox_mode and source_version < 8:
+		_ensure_sandbox_authored_objects()
+	next_town_object_id = maxi(1, int(data.get("next_town_object_id", town_objects.size() + 1)))
+	_play_session_running = false
+	duckets = int(data.get("duckets", 0))
+	built_facilities = _integer_key_dictionary(data.get("built_facilities", {}))
+	universe_anchors = _integer_key_dictionary(data.get("universe_anchors", {}))
+	for plot_index in universe_anchors.keys():
+		universe_anchors[plot_index] = StringName(universe_anchors[plot_index])
+	story_flags = data.get("story_flags", {})
+	_migrate_legacy_universe_anchors()
+	bestiary_records.clear()
+	for enemy_id in data.get("bestiary_records", {}).keys():
+		var source_record: Dictionary = data.bestiary_records[enemy_id]
+		var normalized_drops: Array[Dictionary] = []
+		for raw_drop in source_record.get("drops", []):
+			if raw_drop is Dictionary:
+				var normalized_drop: Dictionary = raw_drop.duplicate(true)
+				normalized_drop["id"] = StringName(normalized_drop.get("id", ""))
+				normalized_drops.append(normalized_drop)
+		bestiary_records[StringName(enemy_id)] = {
+			"seen": int(source_record.get("seen", 0)),
+			"defeated": int(source_record.get("defeated", 0)),
+			"encounters": int(source_record.get("encounters", 0)),
+			"first_encounter": StringName(source_record.get("first_encounter", "")),
+			"drops": normalized_drops,
+		}
+	inventory = data.get("inventory", {"tonic": 3, "ether": 1, "smelling_salts": 2, "phoenix_tonic": 1})
+	encounter_ward_steps = clampi(int(data.get("encounter_ward_steps", 0)), 0, 120)
+	encounter_pressure = {"active": false, "universe_id": &"", "steps": 0, "threshold": 1, "ward_steps": encounter_ward_steps, "suppressed": false, "cooldown": 0}
+	loot_inventory.clear()
+	for loot in data.get("loot_inventory", []):
+		if loot is Dictionary:
+			loot_inventory.append(loot)
+	character_progress.clear()
+	for character_id in data.get("character_progress", {}).keys():
+		var progress: Dictionary = data.character_progress[character_id]
+		var normalized_skills: Array[StringName] = []
+		for skill_id in progress.get("learned_skills", []):
+			normalized_skills.append(StringName(skill_id))
+		progress["learned_skills"] = normalized_skills
+		var normalized_equipment := {}
+		for slot in progress.get("equipment", {}).keys():
+			normalized_equipment[StringName(slot)] = String(progress["equipment"][slot])
+		progress["equipment"] = normalized_equipment
+		character_progress[StringName(character_id)] = progress
+	party.clear()
+	for recruit_id in data.get("party", ["ben"]):
+		party.append(StringName(recruit_id))
+	party_formation.clear()
+	for recruit_id in data.get("party_formation", {}).keys():
+		party_formation[StringName(recruit_id)] = StringName(data.party_formation[recruit_id])
+	for recruit_id in party:
+		_ensure_party_formation(recruit_id)
+	recruit_status.clear()
+	for recruit_id in data.get("recruit_status", {}).keys():
+		recruit_status[StringName(recruit_id)] = StringName(data.recruit_status[recruit_id])
+	for raw_recruit_id in recruit_catalog.keys():
+		var recruit_id := StringName(raw_recruit_id)
+		if not recruit_status.has(recruit_id):
+			recruit_status[recruit_id] = &"party" if recruit_id == &"ben" else &"undiscovered"
+	facility_assignments.clear()
+	for facility_name in data.get("facility_assignments", {}).keys():
+		facility_assignments[String(facility_name)] = StringName(data.facility_assignments[facility_name])
+	active_facility_jobs.clear()
+	for facility_name in data.get("active_facility_jobs", {}).keys():
+		var active: Dictionary = data.active_facility_jobs[facility_name]
+		active["job_id"] = StringName(active.get("job_id", ""))
+		active["worker_id"] = StringName(active.get("worker_id", ""))
+		active["status"] = StringName(active.get("status", "running"))
+		active_facility_jobs[String(facility_name)] = active
+	completed_facility_jobs.clear()
+	for job_id in data.get("completed_facility_jobs", {}).keys():
+		completed_facility_jobs[StringName(job_id)] = int(data.completed_facility_jobs[job_id])
+	owned_inventions.clear()
+	for invention_id in data.get("owned_inventions", []):
+		owned_inventions.append(StringName(invention_id))
+	quest_states.clear()
+	for quest_id in data.get("quest_states", {}).keys():
+		var runtime: Dictionary = data.quest_states[quest_id]
+		runtime["status"] = StringName(runtime.get("status", "locked"))
+		quest_states[StringName(quest_id)] = runtime
+	tracked_quest = StringName(data.get("tracked_quest", ""))
+	_ensure_default_progress()
+	_initialize_quest_states()
+
+
+func _migrate_legacy_universe_anchors() -> void:
+	# Save versions through 11 only stored the facade. Recover its destination so
+	# old campaigns gain the same explicit anchor model without rebuilding town.
+	for plot_index in built_facilities.keys():
+		if universe_anchors.has(plot_index):
+			continue
+		var facility_name := String(built_facilities[plot_index])
+		for raw_universe_id in UNIVERSE_DEFINITIONS.keys():
+			var definition: Dictionary = UNIVERSE_DEFINITIONS[raw_universe_id]
+			if String(definition.get("building", "")) != facility_name:
+				continue
+			var universe_id := StringName(raw_universe_id)
+			universe_anchors[plot_index] = universe_id
+			break
+	for raw_universe_id in universe_anchors.values():
+		var universe_id := StringName(raw_universe_id)
+		var definition: Dictionary = UNIVERSE_DEFINITIONS.get(universe_id, {})
+		var anchor_flag := StringName(definition.get("anchor_flag", &""))
+		if anchor_flag != &"":
+			story_flags[anchor_flag] = true
+
+
+func _integer_key_dictionary(source: Dictionary) -> Dictionary:
+	var result := {}
+	for key in source.keys():
+		result[int(key)] = source[key]
+	return result
