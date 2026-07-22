@@ -35,8 +35,8 @@ jobs:
       - name: Run browser checks
         run: npm run check
 
-      - name: Validate assets and visual manifest
-        run: npm run validate:assets
+      - name: Validate clean-checkout runtime assets
+        run: npm run validate:runtime-assets
 
   isolated-smoke:
     name: Isolated Godot smoke

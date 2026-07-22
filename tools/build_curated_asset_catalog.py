@@ -346,9 +346,12 @@ def list_archive(path: Path, seven_zip: str | None) -> tuple[list[dict[str, str]
     return entries, None
 
 
-def inventory_archives(root: Path, extract: bool, extract_name: str, seven_zip: str | None) -> list[dict[str, Any]]:
+def inventory_archives(root: Path, extract: bool, extract_name: str, seven_zip: str | None,
+                       asset_root: Path | None = None) -> list[dict[str, Any]]:
     inventory: list[dict[str, Any]] = []
     for path in walk_files(root, ARCHIVE_EXTENSIONS):
+        if asset_root is not None and not path.is_relative_to(asset_root):
+            continue
         relative = posix_relative(path, root)
         entries, error = list_archive(path, seven_zip)
         unsafe = [entry.get("Path", "") for entry in entries if not safe_archive_member(entry.get("Path", ""))]
@@ -1169,9 +1172,11 @@ def deduplicate_sources(sources: list[dict[str, Any]]) -> None:
         canonical["aliases"] = sorted(aliases, key=lambda alias: normalized_key(alias["src"]))
 
 
-def unsupported_sources(root: Path, aliases: dict[str, list[str]]) -> list[dict[str, Any]]:
+def unsupported_sources(root: Path, aliases: dict[str, list[str]], asset_root: Path | None = None) -> list[dict[str, Any]]:
     records = []
     for path in walk_files(root, SOURCE_EXTENSIONS):
+        if asset_root is not None and not path.is_relative_to(asset_root):
+            continue
         relative = posix_relative(path, root)
         extension = path.suffix.casefold()
         represented = [
@@ -1214,8 +1219,11 @@ def validate_catalog(catalog: dict[str, Any]) -> list[str]:
 
 def build_catalog(args: argparse.Namespace) -> dict[str, Any]:
     root = args.root.resolve()
-    archives = inventory_archives(root, args.extract_archives, args.archive_extract_dir, args.seven_zip)
-    raster_paths = walk_files(root, RASTER_EXTENSIONS)
+    asset_root = root / "assets"
+    if not asset_root.is_dir():
+        raise RuntimeError(f"Expected curated asset library at {asset_root}")
+    archives = inventory_archives(root, args.extract_archives, args.archive_extract_dir, args.seven_zip, asset_root)
+    raster_paths = [path for path in walk_files(root, RASTER_EXTENSIONS) if path.is_relative_to(asset_root)]
     ignored_diagnostics = [
         posix_relative(path, root) for path in raster_paths
         if path.parent.resolve() == root and path.name.startswith("_")
@@ -1247,7 +1255,7 @@ def build_catalog(args: argparse.Namespace) -> dict[str, Any]:
             print(f"Analyzed {index}/{len(raster_paths)} raster sources...", file=sys.stderr)
     deduplicate_sources(sources)
     sources.sort(key=lambda source: (source["pack"].casefold(), source["name"].casefold(), normalized_key(source["src"])))
-    unsupported = unsupported_sources(root, source_aliases)
+    unsupported = unsupported_sources(root, source_aliases, asset_root)
     kind_counts = Counter(source["kind"] for source in sources)
     usable_sources = sum(bool(source["usable"]) for source in sources)
     usable_variants = sum(sum(bool(variant["usable"]) for variant in source["variants"]) for source in sources if source["usable"])

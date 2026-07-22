@@ -24,14 +24,18 @@ from the human, platform, licensing, and performance sign-offs that remain.
 - `release_resource_load_smoke` loaded all 557 runtime resources represented by
   the Windows preset (335 scripts, 117 scenes, 80 serialized resources, and 25
   Dialogic resources) with no missing imports or compile errors.
-- The deep curated-asset validator covered all 20,530 declared source rasters
-  in the earlier baseline with no schema, path, crop, or animation errors. At
-  approximately 1:22 PM, 488 ignored source rasters materialized under
-  `assets/board games/`; the aggregate validator now reports 20,530/21,018
-  coverage until `curated-asset-catalog.js` is rebuilt and reviewed. The NPC
-  readiness check still passes 51/51, and the generated runtime
-  visual manifest is current. This proves source-art catalog structure, not
+- The curated source-art catalog was regenerated after 488 ignored rasters
+  materialized under `assets/board games/`. `npm run validate:source-library`
+  now validates 21,018/21,018 rasters with no schema, path, crop, or animation
+  errors, and reports all 51 NPC visuals editor-ready. The generator now limits
+  itself to the canonical `assets/` library so mirrored runtime copies cannot
+  produce duplicate catalog IDs. This proves source-art catalog structure, not
   license terms or distribution permission.
+- `npm run validate:runtime-assets` now contains the tracked runtime manifest,
+  inventory, contact-sheet, and provenance checks and is the clean-checkout CI
+  gate. `npm run validate:source-library` makes the ignored local `assets/`
+  requirement explicit; `npm run validate:assets` aggregates both workstation
+  contracts. Remote evidence for the revised command remains pending.
 - A verbose isolated shutdown baseline on Godot 4.7.1 exits successfully but
   reports 61 ObjectDB instances (24 `GDScript`, 21 `Node`, five `RegEx`, four
   `Timer`, two each of `PackedScene` and `SceneState`, plus single audio/native

@@ -59,7 +59,16 @@ Progress saves automatically in one of three browser-local slots. Expand **Save 
 
 ```powershell
 npm run check
+npm run validate:runtime-assets
+```
+
+`npm run check` verifies both JavaScript files and runs the dependency-free Node tests for destination outcomes, conversations, and waypoint selection. `npm run validate:runtime-assets` checks every tracked runtime-art contract and is safe in a clean Git checkout, so it is the CI gate.
+
+The full catalog is intentionally a workstation gate because its source-art library is ignored by Git. After restoring the approved `assets/` artifact, run:
+
+```powershell
+npm run validate:source-library
 npm run validate:assets
 ```
 
-`npm run check` verifies both JavaScript files and runs the dependency-free Node tests for destination outcomes, conversations, and waypoint selection. `npm run validate:assets` checks the full curated catalog and all runtime resident art.
+`validate:source-library` verifies the curated catalog and all NPC source visuals; `validate:assets` aggregates it with the clean-checkout runtime checks.

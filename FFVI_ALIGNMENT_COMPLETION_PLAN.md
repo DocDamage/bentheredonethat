@@ -83,13 +83,71 @@ The game is closer to FFVI in combat systems than in exploration or presentation
 
 Work should proceed in dependency order. Adding more universes, props, or recruits before the P0/P1 field foundation is repaired will increase rework.
 
+### 4.1 Execution states and checkbox meaning
+
+Every work package and milestone must use one of these states:
+
+| State | Meaning |
+| --- | --- |
+| Not started | No implementation evidence exists. |
+| In progress | Work is active, but its implementation contract is incomplete. |
+| Blocked | A named dependency prevents meaningful forward progress. |
+| Implemented | The intended code/content exists and focused automated checks pass. |
+| Verified | Required automated checks, traversal/input, capture, and persistence evidence pass. |
+| Accepted | The named reviewer has approved the recorded evidence and no required rework remains. |
+
+A checked item means only that the action named by that item is complete. An
+implemented prototype is not visually accepted unless the item explicitly says
+that all Section 18 sign-off evidence was reviewed and accepted. Historical
+baseline checkboxes in Section 2 remain point-in-time evidence; current counts
+and status come from the latest dated progress audit.
+
+### 4.2 Work-package contract
+
+Before implementation begins, each batch must record:
+
+- Stable work-package ID and milestone.
+- Current state and dependencies.
+- Intended user-visible result and non-goals.
+- Primary files or data contracts expected to change.
+- Focused automated checks and the full-suite gate.
+- Required native captures, input methods, and save fixtures.
+- Performance and license/provenance impact.
+- Evidence path, responsible implementer, and required reviewer.
+
+The evidence record belongs at
+`game/validation/reviews/YYYYMMDD-<work-package>.md` and must contain the commit
+SHA, build version, scene/save used, native resolution, capture paths, keyboard
+and controller results, save/reload results, known defects, reviewer, review
+date, and an `accepted` or `rework required` decision. The user is the default
+product/visual reviewer unless approval is explicitly delegated.
+
+### 4.3 Source-control and remote-CI contract
+
+- Use a feature branch for each coherent milestone slice; avoid mixing unrelated
+  content production, architecture, and release work in one review unit.
+- Push the feature branch and open a draft pull request, or use
+  `workflow_dispatch`, before claiming remote CI evidence. The current workflow
+  runs automatically for pull requests and pushes to `main`, not ordinary
+  feature-branch pushes.
+- Record the tested head SHA and require the remote checks to match it.
+- Do not merge with an unresolved P0 or with missing required artifacts.
+- Preserve failed-run logs and link the successful replacement run rather than
+  deleting the failure history.
+
 ---
 
 ## 5. Phase 0 — Restore a trustworthy verification baseline
 
-### 5.1 Fix browser NPC asset validation — P0
+### 5.1 Separate clean-checkout and local source-library validation — P0
 
 **Problem:** `npm run validate:assets` reports `0/51 NPC visuals are editor-ready`. Runtime NPC paths use legacy prefixes such as `assets/NPCs/`, while the curated catalog indexes reorganized paths such as `assets/characters/NPCs/`. The browser resolves these through `asset-paths.js`, but `tools/validate_npc_asset_readiness.js` looks up raw paths directly.
+
+The alias defect is fixed, but the aggregate command now mixes two different
+contracts. The ignored `assets/` source library contains zero tracked files and
+cannot exist in a normal GitHub checkout, while runtime visual manifests and
+release assets are tracked. CI must never require an ignored local source tree
+unless that tree is restored explicitly as a licensed artifact.
 
 **Primary files:**
 
@@ -105,13 +163,25 @@ Work should proceed in dependency order. Adding more universes, props, or recrui
 - [x] Normalize direction-file and animation-frame paths as well as primary sheet paths.
 - [x] Add a regression test covering every declared aliased root.
 - [x] Confirm that invalid or genuinely missing assets still fail clearly.
+- [x] Add `validate:runtime-assets` for checks that work from a clean checkout:
+  runtime manifest, runtime inventory, contact sheet, provenance ledger, and
+  other tracked release contracts.
+- [x] Add `validate:source-library` for the curated catalog and NPC readiness;
+  make its requirement for the ignored `assets/` tree explicit.
+- [x] Keep `validate:assets` as the local aggregate of both contracts, not as a
+  clean-checkout CI command.
+- [x] Rebuild and review `curated-asset-catalog.js` after the 488 newly
+  synchronized source rasters are intentionally admitted or excluded.
+- [x] Change the GitHub workflow to run the clean-checkout runtime command. Run
+  source-library validation remotely only if an approved asset artifact is
+  restored first.
 
 **Acceptance criteria:**
 
-- [ ] `npm run validate:assets` exits 0. It regressed on the July 22, 2026
-  progress audit after 488 newly materialized, ignored source rasters appeared
-  under `assets/board games/`; rebuild and review `curated-asset-catalog.js`
-  before restoring this checkmark.
+- [ ] `npm run validate:runtime-assets` exits 0 from a fresh clone with no local
+  `assets/` directory.
+- [ ] `npm run validate:source-library` and the local aggregate
+  `npm run validate:assets` exit 0 when the approved source library is present.
 - [x] All 51 NPCs report editor-ready.
 - [x] Removing or misspelling a required NPC file makes the validator fail.
 - [ ] Browser network requests still resolve to the reorganized asset paths.
@@ -125,11 +195,16 @@ Work should proceed in dependency order. Adding more universes, props, or recrui
 
 ### 5.3 Make CI evidence authoritative — P1
 
-- [ ] Publish the prepared GitHub workflow.
-- [ ] Record the first clean remote 80-scene pass.
-- [x] Add browser `npm run check` and `npm run validate:assets` jobs.
+- [x] Publish the prepared GitHub workflow on a feature branch.
+- [ ] Open a draft pull request or manually dispatch the workflow for the exact
+  head SHA being evaluated.
+- [ ] Record the first clean remote pass of every smoke scene discovered at that
+  commit. Record the count as evidence; do not hard-code it as the gate.
+- [ ] Run `npm run check` plus the clean-checkout runtime-asset command in CI.
 - [x] Fail CI when the visual manifest is stale.
 - [x] Retain logs for failed Godot scenes.
+- [ ] Prove the workflow passes from a clean checkout without the ignored
+  `assets/` source library.
 
 ---
 
@@ -262,6 +337,26 @@ Refactor incrementally behind existing interfaces:
 ---
 
 ## 8. Phase 3 — Complete runtime crop and asset provenance coverage
+
+### 8.0 Establish asset eligibility before deeper integration — P0/P1
+
+Licensing cannot remain only a final release activity. Replacing an asset after
+level construction, derived-art work, collision tuning, and capture approval
+would create avoidable rework.
+
+- [ ] Give every source used by a release profile one of three explicit states:
+  `distribution_confirmed`, `review_required`, or `rejected`.
+- [ ] Prevent an asset in `review_required` from receiving final visual
+  acceptance. It may appear in a clearly labeled non-release prototype only.
+- [ ] Prevent generation or acceptance of derived assets from a rejected source.
+- [ ] Review terms for every source used by the laboratory, town, and Mansion
+  vertical slice before M2 acceptance.
+- [ ] Record attribution text and modification status when the source is first
+  accepted, rather than deferring all notice work to Phase 9.
+
+Phase 9 still owns final credits, platform packaging, and the complete
+distribution audit. This early gate only establishes that implementation is not
+building deeper dependencies on an ineligible source.
 
 ### 8.1 Expand visual profiles from five entries to full coverage — P1
 
@@ -503,7 +598,28 @@ The isolated suite succeeds but emits repeated shutdown warnings, usually 61 Obj
 
 ### 13.2 Measure real performance — P1/P2
 
+Before M2 can be accepted, record and approve the minimum development test
+machine and the numeric budgets below in `game/RELEASE_READINESS.md`. These are
+provisional engineering targets; changing one requires a dated rationale and
+reviewer approval.
+
+| Metric | Provisional target |
+| --- | --- |
+| Logical canvas | 960x540 with integer/nearest-neighbor presentation |
+| Minimum supported window | 1280x720; also verify 1920x1080, 2560x1440, 3840x2160, and a common 16:10 size |
+| Field and battle frame pacing | 60 FPS target; p95 frame time at or below 16.7 ms and p99 at or below 33.3 ms on the declared minimum machine |
+| Warm title-to-field load | At or below 5 seconds |
+| Universe transition | At or below 2 seconds |
+| Battle entry/results return | At or below 2 seconds each |
+| Early/mid/postgame save and load | At or below 1 second each |
+| Peak memory | At or below 1 GB, with no positive growth trend across the required soak |
+| Windows package | At or below 400 MB unless a reviewed content increase justifies a new budget |
+
+Browser viewport coverage remains separate and must retain the sizes listed in
+Phase 6.
+
 - [ ] Declare minimum CPU, GPU, memory, storage, and resolution.
+- [ ] Approve or revise the provisional numeric budgets and record the decision.
 - [ ] Measure title-to-field load time.
 - [ ] Measure universe transition time.
 - [ ] Measure battle transition and results time.
@@ -527,6 +643,9 @@ The current Windows executable is approximately 323 MB. The repository also reta
 ## 14. Phase 9 — Licensing and release production
 
 ### 14.1 Complete provenance — P0 for release
+
+This phase completes and packages the eligibility work begun in Phase 3; it does
+not postpone per-asset distribution decisions until the end of production.
 
 - [ ] Inventory every distributed art pack.
 - [ ] Inventory every distributed audio track and sound effect.
@@ -561,19 +680,38 @@ The current Windows executable is approximately 323 MB. The repository also reta
 
 ## 15. Verification commands
 
-### Browser
+### Browser and tracked runtime checks
 
 ```powershell
 npm run check
-npm run validate:assets
-npm run validate:visual-manifest
+npm run validate:runtime-assets
 ```
+
+`validate:runtime-assets` is the required target command after Phase 0 splits
+the validation contracts. Until then, run the tracked manifest, inventory,
+contact-sheet, and provenance commands individually. This command must pass in a
+fresh clone without `assets/`.
+
+### Local source-library checks
+
+```powershell
+if (-not (Test-Path -LiteralPath '.\assets')) { throw 'Local source-art library is required.' }
+npm run validate:source-library
+npm run validate:assets
+```
+
+These are workstation/asset-curation gates. They become remote gates only when
+CI explicitly restores an approved source-library artifact.
 
 ### Godot isolated smoke suite
 
 ```powershell
-.\tools\run_godot_isolated.ps1 -AllSmoke -TimeoutSeconds 180
+.\tools\run_godot_isolated.ps1 -AllSmoke -TimeoutSeconds 360
 ```
+
+The runner discovers every `*_smoke.tscn` scene at the tested commit. A pass
+requires all discovered scenes; the numerical count is recorded in the artifact
+report but is not hard-coded into the milestone.
 
 ### Windows release
 
@@ -588,6 +726,10 @@ Run each current or replacement validation scene with the project-local Godot
 scale. The universe visual-capture scenes must fail rather than claim success
 when run headlessly. Automated visual-scene completion does not count as visual
 approval.
+
+Create or update the corresponding
+`game/validation/reviews/YYYYMMDD-<work-package>.md` record before marking a
+visual, input, or persistence gate accepted.
 
 ---
 
@@ -616,10 +758,14 @@ approval.
 
 ### M0 — Verification green
 
-- Browser tests pass.
-- Browser asset validation passes for all 51 NPCs.
-- Godot 80-scene suite passes.
-- Remote CI records a clean run.
+- All browser tests discovered at the tested commit pass.
+- Clean-checkout runtime-asset validation passes without `assets/`.
+- Local source-library validation passes, including all 51 NPCs, when the
+  approved ignored source tree is present.
+- Every Godot smoke scene discovered at the tested commit passes through the
+  isolated runner with `sentinel=True`.
+- A draft pull request or manual dispatch records a clean remote run for the
+  exact head SHA and retains its artifacts.
 
 ### M1 — Visual foundation
 
@@ -634,6 +780,7 @@ approval.
 - Full foreground/background traversal works.
 - Crop, scale, collision, interaction, battle, save/reload, and controller sign-offs pass.
 - Native-scale captures are approved.
+- Every release asset used by the slice has `distribution_confirmed` provenance.
 
 ### M3 — Shared campaign systems presentation
 
@@ -642,6 +789,11 @@ approval.
 - Shared anchors, treasure, encounters, followers, transitions, and area metadata use the new architecture.
 
 ### M4 — Universe migration
+
+M4 implementation may exist experimentally, but M4 acceptance work does not
+start until M0 and M2 are accepted. Keep at most one universe migration in
+acceptance review at a time so visual, input, collision, and save evidence stay
+auditable.
 
 - Asterion and Primeval complete.
 - Helios and Frosthold complete.
@@ -727,23 +879,31 @@ No level, crop, collision, UI, or battle-presentation task may be marked complet
 
 Complete these tasks before adding new campaign content:
 
-1. [ ] Fix shared browser asset-path normalization and restore `npm run validate:assets`.
-   Alias normalization and all 51 NPC readiness checks are implemented, but the
-   aggregate command is currently red because the ignored source-art library
-   gained 488 uncatalogued rasters. Run
-   `python tools/build_curated_asset_catalog.py`, review the resulting catalog
-   delta, and rerun the aggregate validator.
-2. [x] Approve the field-scale bible and logical camera resolution.
-3. [ ] Extend the visual-profile schema and inventory every visual used by laboratory, town, and Mansion.
-4. [x] Build a layered laboratory area as the smallest renderer proof.
-5. [x] Migrate one town block with Y-sorted props, foreground roofs/trees, aligned collision, and doorway anchors.
-6. [x] Expand and migrate the Mansion as the full quality vertical slice.
-7. [x] Rework battle UI scale at the default 960x540 window.
-8. [x] Fix browser title-card overflow at 800x600 and 1280x720.
-9. [ ] Run native-scale visual, keyboard/mouse, controller, and save/reload sign-off for the vertical slice.
-10. [ ] Publish CI and archive the first clean remote baseline.
+1. [x] Split clean-checkout runtime validation from local source-library
+   validation and route CI to the clean-checkout command.
+2. [x] Rebuild and review `curated-asset-catalog.js` for the 488 newly
+   synchronized rasters, then restore the local aggregate asset gate.
+3. [x] Implement the field-scale bible and logical camera baseline.
+4. [ ] Record native-resolution reviewer approval for the field-scale and camera
+   decisions; the implementation checkmark above is not acceptance.
+5. [ ] Extend the visual-profile schema and inventory every visual used by
+   laboratory, town, and Mansion.
+6. [ ] Confirm distribution eligibility for every release asset used by that
+   vertical slice.
+7. [x] Implement a layered laboratory area as the smallest renderer proof.
+8. [x] Implement one town block with Y-sorted props, foreground roofs/trees,
+   aligned collision, and doorway anchors.
+9. [x] Implement the expanded Mansion vertical slice.
+10. [x] Implement the battle UI scale pass at the default 960x540 window.
+11. [x] Implement browser title-card overflow fixes at 800x600 and 1280x720.
+12. [ ] Run and record native-scale visual, keyboard/mouse, controller,
+   save/reload, and provisional performance sign-off for the vertical slice.
+13. [ ] Open a draft pull request or dispatch the workflow, then archive the
+   first clean remote baseline for the exact tested SHA.
 
-Only after this batch passes should the remaining universes be migrated and expanded.
+Only after every unchecked item in this batch is accepted should another
+universe enter acceptance review. Existing M4 work remains exploratory evidence
+until then.
 
 ---
 
@@ -812,13 +972,38 @@ parallel at the implementation/proof stage.
 
 ### Correct next sequence
 
-1. Rebuild/review the curated source catalog and restore
-   `npm run validate:assets` to green.
-2. Verify the deterministic `opening_presentation_smoke` repeatedly, then rerun
-   and archive one clean 84/84 isolated suite.
-3. Publish the prepared CI workflow and record the first clean remote browser and
-   Godot jobs.
-4. Finish the 24 unprofiled static runtime textures needed by the vertical slice
-   and complete its native-scale visual/input/save review.
-5. Only then promote the remaining universe migrations from implementation
+1. Split the asset-validation contracts and make clean-checkout CI executable.
+2. Rebuild/review the curated source catalog and restore the local aggregate
+   asset gate.
+3. Rerun and archive one clean pass of every currently discovered isolated Godot
+   smoke scene.
+4. Open a draft pull request or manually dispatch the workflow and record clean
+   remote browser, runtime-asset, and Godot jobs for the exact head SHA.
+5. Confirm distribution eligibility and finish the 24 unprofiled static runtime
+   textures needed by the vertical slice.
+6. Record its native-scale visual, input, save, performance, and reviewer
+   acceptance evidence.
+7. Only then promote the remaining universe migrations from implementation
    evidence to acceptance work.
+
+---
+
+## 21. Implementation-readiness amendment — July 22, 2026
+
+This amendment closes the planning gaps found after publishing commit `8efa95e`
+on `codex/ffvi-alignment-foundation`:
+
+- CI and local source-library validation now have separate planned contracts.
+- Test-suite success is discovery-based instead of tied to a stale numerical
+  count.
+- `implemented`, `verified`, and `accepted` are distinct states.
+- Remote evidence requires a draft pull request or manual workflow dispatch for
+  the exact head SHA.
+- Asset distribution eligibility moves ahead of deeper vertical-slice
+  integration.
+- Provisional performance budgets and a concrete reviewer-evidence record are
+  defined.
+
+With these amendments, the plan needs no further structural design work before
+the next implementation batch. M0 validation repair and M1/M2 acceptance remain
+the critical path.
