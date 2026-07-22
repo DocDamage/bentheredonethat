@@ -36,6 +36,7 @@ class ProfiledForegroundRendererTests(unittest.TestCase):
         source = MAP_VISUAL.read_text(encoding="utf-8")
         self.assertNotIn("empyreal_slices", source)
         self.assertNotIn('load("res://game_assets/Tilesets/Ancient Greek Mythology/Sliced/', source)
+        self.assertNotIn("Rect2(54, 686, 306, 114)", source)
         profile_ids = {profile["id"] for profile in json.loads(PROFILE_PATH.read_text(encoding="utf-8"))["profiles"]}
         used_ids = re.findall(r'profile_tile\(&"(empyreal_[^"]+)"', source)
         self.assertTrue(used_ids)

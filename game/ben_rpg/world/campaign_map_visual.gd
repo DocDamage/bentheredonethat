@@ -737,7 +737,7 @@ func _draw_moonpetal_processional_path(room_offset: Vector2) -> void:
 	# becomes a 57x153 path. The transform origin is placed on its upper-right
 	# corner because a clockwise rotation extends the destination to the left.
 	draw_set_transform(room_offset + Vector2(220, 174), PI * 0.5)
-	tile(sakura_paths, Rect2(54, 686, 306, 114), Rect2(Vector2.ZERO, Vector2(153, 57)))
+	profile_tile(&"moonpetal_processional_path", sakura_paths, Vector2.ZERO)
 	draw_set_transform(Vector2.ZERO, 0.0, Vector2.ONE)
 
 
