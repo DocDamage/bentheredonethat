@@ -12,6 +12,7 @@ ROOT = Path(__file__).resolve().parents[2]
 PROFILE_PATH = ROOT / "game/ben_rpg/visual_assets/visual_profiles.json"
 RENDERERS = [
     ROOT / "game/ben_rpg/world/campaign_asterion_foreground.gd",
+    ROOT / "game/ben_rpg/world/campaign_empyreal_foreground.gd",
     ROOT / "game/ben_rpg/world/campaign_frosthold_foreground.gd",
     ROOT / "game/ben_rpg/world/campaign_primeval_foreground.gd",
     ROOT / "game/ben_rpg/world/campaign_moonpetal_foreground.gd",

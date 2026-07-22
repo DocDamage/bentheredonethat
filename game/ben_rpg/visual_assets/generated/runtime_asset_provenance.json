@@ -275,9 +275,249 @@
       "localLicenseEvidence": [
         "game_assets/Tilesets/LICENSE"
       ],
+      "path": "res://game_assets/Tilesets/Ancient Greek Mythology/Sliced/appeal_fountain.png",
+      "profileIds": [
+        "empyreal_appeal_fountain"
+      ],
+      "sourceGroup": "Tilesets/Ancient Greek Mythology"
+    },
+    {
+      "distributionEligibility": "review_required",
+      "licenseReviewStatus": "review_required",
+      "localLicenseEvidence": [
+        "game_assets/Tilesets/LICENSE"
+      ],
       "path": "res://game_assets/Tilesets/Ancient Greek Mythology/Sliced/belfry_building.png",
       "profileIds": [
         "belfry_building"
+      ],
+      "sourceGroup": "Tilesets/Ancient Greek Mythology"
+    },
+    {
+      "distributionEligibility": "review_required",
+      "licenseReviewStatus": "review_required",
+      "localLicenseEvidence": [
+        "game_assets/Tilesets/LICENSE"
+      ],
+      "path": "res://game_assets/Tilesets/Ancient Greek Mythology/Sliced/blue_column.png",
+      "profileIds": [
+        "empyreal_blue_column"
+      ],
+      "sourceGroup": "Tilesets/Ancient Greek Mythology"
+    },
+    {
+      "distributionEligibility": "review_required",
+      "licenseReviewStatus": "review_required",
+      "localLicenseEvidence": [
+        "game_assets/Tilesets/LICENSE"
+      ],
+      "path": "res://game_assets/Tilesets/Ancient Greek Mythology/Sliced/crystal_altar.png",
+      "profileIds": [
+        "empyreal_crystal_altar"
+      ],
+      "sourceGroup": "Tilesets/Ancient Greek Mythology"
+    },
+    {
+      "distributionEligibility": "review_required",
+      "licenseReviewStatus": "review_required",
+      "localLicenseEvidence": [
+        "game_assets/Tilesets/LICENSE"
+      ],
+      "path": "res://game_assets/Tilesets/Ancient Greek Mythology/Sliced/flower_offering.png",
+      "profileIds": [
+        "empyreal_flower_offering"
+      ],
+      "sourceGroup": "Tilesets/Ancient Greek Mythology"
+    },
+    {
+      "distributionEligibility": "review_required",
+      "licenseReviewStatus": "review_required",
+      "localLicenseEvidence": [
+        "game_assets/Tilesets/LICENSE"
+      ],
+      "path": "res://game_assets/Tilesets/Ancient Greek Mythology/Sliced/fruit_offering.png",
+      "profileIds": [
+        "empyreal_fruit_offering"
+      ],
+      "sourceGroup": "Tilesets/Ancient Greek Mythology"
+    },
+    {
+      "distributionEligibility": "review_required",
+      "licenseReviewStatus": "review_required",
+      "localLicenseEvidence": [
+        "game_assets/Tilesets/LICENSE"
+      ],
+      "path": "res://game_assets/Tilesets/Ancient Greek Mythology/Sliced/golden_olive_tree.png",
+      "profileIds": [
+        "empyreal_golden_olive_tree"
+      ],
+      "sourceGroup": "Tilesets/Ancient Greek Mythology"
+    },
+    {
+      "distributionEligibility": "review_required",
+      "licenseReviewStatus": "review_required",
+      "localLicenseEvidence": [
+        "game_assets/Tilesets/LICENSE"
+      ],
+      "path": "res://game_assets/Tilesets/Ancient Greek Mythology/Sliced/gravity_crystal.png",
+      "profileIds": [
+        "empyreal_gravity_crystal"
+      ],
+      "sourceGroup": "Tilesets/Ancient Greek Mythology"
+    },
+    {
+      "distributionEligibility": "review_required",
+      "licenseReviewStatus": "review_required",
+      "localLicenseEvidence": [
+        "game_assets/Tilesets/LICENSE"
+      ],
+      "path": "res://game_assets/Tilesets/Ancient Greek Mythology/Sliced/griffin_statue.png",
+      "profileIds": [
+        "empyreal_griffin_statue"
+      ],
+      "sourceGroup": "Tilesets/Ancient Greek Mythology"
+    },
+    {
+      "distributionEligibility": "review_required",
+      "licenseReviewStatus": "review_required",
+      "localLicenseEvidence": [
+        "game_assets/Tilesets/LICENSE"
+      ],
+      "path": "res://game_assets/Tilesets/Ancient Greek Mythology/Sliced/horse_statue.png",
+      "profileIds": [
+        "empyreal_horse_statue"
+      ],
+      "sourceGroup": "Tilesets/Ancient Greek Mythology"
+    },
+    {
+      "distributionEligibility": "review_required",
+      "licenseReviewStatus": "review_required",
+      "localLicenseEvidence": [
+        "game_assets/Tilesets/LICENSE"
+      ],
+      "path": "res://game_assets/Tilesets/Ancient Greek Mythology/Sliced/justice_statue.png",
+      "profileIds": [
+        "empyreal_justice_statue"
+      ],
+      "sourceGroup": "Tilesets/Ancient Greek Mythology"
+    },
+    {
+      "distributionEligibility": "review_required",
+      "licenseReviewStatus": "review_required",
+      "localLicenseEvidence": [
+        "game_assets/Tilesets/LICENSE"
+      ],
+      "path": "res://game_assets/Tilesets/Ancient Greek Mythology/Sliced/lotus_altar.png",
+      "profileIds": [
+        "empyreal_lotus_altar"
+      ],
+      "sourceGroup": "Tilesets/Ancient Greek Mythology"
+    },
+    {
+      "distributionEligibility": "review_required",
+      "licenseReviewStatus": "review_required",
+      "localLicenseEvidence": [
+        "game_assets/Tilesets/LICENSE"
+      ],
+      "path": "res://game_assets/Tilesets/Ancient Greek Mythology/Sliced/music_statue.png",
+      "profileIds": [
+        "empyreal_music_statue"
+      ],
+      "sourceGroup": "Tilesets/Ancient Greek Mythology"
+    },
+    {
+      "distributionEligibility": "review_required",
+      "licenseReviewStatus": "review_required",
+      "localLicenseEvidence": [
+        "game_assets/Tilesets/LICENSE"
+      ],
+      "path": "res://game_assets/Tilesets/Ancient Greek Mythology/Sliced/ordinance_book.png",
+      "profileIds": [
+        "empyreal_ordinance_book"
+      ],
+      "sourceGroup": "Tilesets/Ancient Greek Mythology"
+    },
+    {
+      "distributionEligibility": "review_required",
+      "licenseReviewStatus": "review_required",
+      "localLicenseEvidence": [
+        "game_assets/Tilesets/LICENSE"
+      ],
+      "path": "res://game_assets/Tilesets/Ancient Greek Mythology/Sliced/pediment_door.png",
+      "profileIds": [
+        "empyreal_pediment_door"
+      ],
+      "sourceGroup": "Tilesets/Ancient Greek Mythology"
+    },
+    {
+      "distributionEligibility": "review_required",
+      "licenseReviewStatus": "review_required",
+      "localLicenseEvidence": [
+        "game_assets/Tilesets/LICENSE"
+      ],
+      "path": "res://game_assets/Tilesets/Ancient Greek Mythology/Sliced/plain_column.png",
+      "profileIds": [
+        "empyreal_plain_column"
+      ],
+      "sourceGroup": "Tilesets/Ancient Greek Mythology"
+    },
+    {
+      "distributionEligibility": "review_required",
+      "licenseReviewStatus": "review_required",
+      "localLicenseEvidence": [
+        "game_assets/Tilesets/LICENSE"
+      ],
+      "path": "res://game_assets/Tilesets/Ancient Greek Mythology/Sliced/reliquary_portal.png",
+      "profileIds": [
+        "empyreal_reliquary_portal"
+      ],
+      "sourceGroup": "Tilesets/Ancient Greek Mythology"
+    },
+    {
+      "distributionEligibility": "review_required",
+      "licenseReviewStatus": "review_required",
+      "localLicenseEvidence": [
+        "game_assets/Tilesets/LICENSE"
+      ],
+      "path": "res://game_assets/Tilesets/Ancient Greek Mythology/Sliced/silver_olive_tree.png",
+      "profileIds": [
+        "empyreal_silver_olive_tree"
+      ],
+      "sourceGroup": "Tilesets/Ancient Greek Mythology"
+    },
+    {
+      "distributionEligibility": "review_required",
+      "licenseReviewStatus": "review_required",
+      "localLicenseEvidence": [
+        "game_assets/Tilesets/LICENSE"
+      ],
+      "path": "res://game_assets/Tilesets/Ancient Greek Mythology/Sliced/tribunal_gate.png",
+      "profileIds": [
+        "empyreal_tribunal_gate"
+      ],
+      "sourceGroup": "Tilesets/Ancient Greek Mythology"
+    },
+    {
+      "distributionEligibility": "review_required",
+      "licenseReviewStatus": "review_required",
+      "localLicenseEvidence": [
+        "game_assets/Tilesets/LICENSE"
+      ],
+      "path": "res://game_assets/Tilesets/Ancient Greek Mythology/Sliced/tribunal_orrery.png",
+      "profileIds": [
+        "empyreal_tribunal_orrery"
+      ],
+      "sourceGroup": "Tilesets/Ancient Greek Mythology"
+    },
+    {
+      "distributionEligibility": "review_required",
+      "licenseReviewStatus": "review_required",
+      "localLicenseEvidence": [
+        "game_assets/Tilesets/LICENSE"
+      ],
+      "path": "res://game_assets/Tilesets/Ancient Greek Mythology/Sliced/winged_statue.png",
+      "profileIds": [
+        "empyreal_winged_statue"
       ],
       "sourceGroup": "Tilesets/Ancient Greek Mythology"
     },
@@ -2190,13 +2430,13 @@
   "schemaVersion": 2,
   "scope": "static Godot raster references; not a reachability or license-grant proof",
   "summary": {
-    "assets": 162,
+    "assets": 182,
     "distributionEligibility": {
       "distribution_confirmed": 0,
       "rejected": 0,
-      "review_required": 162
+      "review_required": 182
     },
     "needsManualLicenseConfirmation": 0,
-    "withLocalLicenseEvidence": 162
+    "withLocalLicenseEvidence": 182
   }
 }

@@ -1246,6 +1246,106 @@
       "worldDrawSize": [153, 57], "licenseReference": "game/ben_rpg/visual_assets/generated/runtime_asset_provenance.json", "cropApproval": "approved", "goldenCapture": "game/validation/moonpetal-vermilion-gate.png"
     },
     {
+      "id": "empyreal_pediment_door", "kind": "landmark",
+      "source": {"pack": "Ancient Greek Mythology", "runtimeTexture": "game/game_assets/Tilesets/Ancient Greek Mythology/Sliced/pediment_door.png", "sourceChecksum": "4e318915ba2d648bf5201e4321a68c93a19df844f4026629d8a4af869ba76120", "sourceDensity": 48, "region": [0, 0, 120, 159], "alphaBounds": [0, 0, 120, 159]},
+      "placement": {"footAnchor": [60, 158], "scaleClass": "landmark", "collisionFootprint": "temple_door"}, "worldDrawSize": [120, 159], "licenseReference": "game/ben_rpg/visual_assets/generated/runtime_asset_provenance.json", "cropApproval": "approved", "goldenCapture": "game/validation/empyreal-cloudstep-landing.png"
+    },
+    {
+      "id": "empyreal_winged_statue", "kind": "prop",
+      "source": {"pack": "Ancient Greek Mythology", "runtimeTexture": "game/game_assets/Tilesets/Ancient Greek Mythology/Sliced/winged_statue.png", "sourceChecksum": "e882091a23f1637e884bbf1b030c23b1634459181336b2a547182917c223afee", "sourceDensity": 48, "region": [0, 0, 94, 123], "alphaBounds": [0, 0, 94, 123]},
+      "placement": {"footAnchor": [47, 122], "scaleClass": "prop", "collisionFootprint": "statue_base"}, "worldDrawSize": [94, 123], "licenseReference": "game/ben_rpg/visual_assets/generated/runtime_asset_provenance.json", "cropApproval": "approved", "goldenCapture": "game/validation/empyreal-cloudstep-landing.png"
+    },
+    {
+      "id": "empyreal_silver_olive_tree", "kind": "landmark",
+      "source": {"pack": "Ancient Greek Mythology", "runtimeTexture": "game/game_assets/Tilesets/Ancient Greek Mythology/Sliced/silver_olive_tree.png", "sourceChecksum": "029d05681ef6ade684919a2ee44eefe18873076d9e491058b2362b5bdb150224", "sourceDensity": 48, "region": [0, 0, 103, 121], "alphaBounds": [0, 0, 103, 121]},
+      "placement": {"footAnchor": [51, 120], "scaleClass": "landmark", "collisionFootprint": "tree_trunk"}, "worldDrawSize": [103, 121], "licenseReference": "game/ben_rpg/visual_assets/generated/runtime_asset_provenance.json", "cropApproval": "approved", "goldenCapture": "game/validation/empyreal-garden-of-appeals.png"
+    },
+    {
+      "id": "empyreal_golden_olive_tree", "kind": "landmark",
+      "source": {"pack": "Ancient Greek Mythology", "runtimeTexture": "game/game_assets/Tilesets/Ancient Greek Mythology/Sliced/golden_olive_tree.png", "sourceChecksum": "09220bb7724b1c8ed8f91114d84dfbcd9232680b58b84c5fb5127983566474e9", "sourceDensity": 48, "region": [0, 0, 101, 121], "alphaBounds": [0, 0, 101, 121]},
+      "placement": {"footAnchor": [50, 120], "scaleClass": "landmark", "collisionFootprint": "tree_trunk"}, "worldDrawSize": [101, 121], "licenseReference": "game/ben_rpg/visual_assets/generated/runtime_asset_provenance.json", "cropApproval": "approved", "goldenCapture": "game/validation/empyreal-garden-of-appeals.png"
+    },
+    {
+      "id": "empyreal_appeal_fountain", "kind": "prop",
+      "source": {"pack": "Ancient Greek Mythology", "runtimeTexture": "game/game_assets/Tilesets/Ancient Greek Mythology/Sliced/appeal_fountain.png", "sourceChecksum": "d8739bf60c0be668c828033a27687614df260ac31b6c9e334dde79977c53bf07", "sourceDensity": 48, "region": [0, 0, 102, 138], "alphaBounds": [0, 0, 102, 138]},
+      "placement": {"footAnchor": [51, 137], "scaleClass": "prop", "collisionFootprint": "fountain_base"}, "worldDrawSize": [102, 138], "licenseReference": "game/ben_rpg/visual_assets/generated/runtime_asset_provenance.json", "cropApproval": "approved", "goldenCapture": "game/validation/empyreal-garden-of-appeals.png"
+    },
+    {
+      "id": "empyreal_flower_offering", "kind": "prop",
+      "source": {"pack": "Ancient Greek Mythology", "runtimeTexture": "game/game_assets/Tilesets/Ancient Greek Mythology/Sliced/flower_offering.png", "sourceChecksum": "003ff634ea6819d66c3120c42875064593fdaab2a82844f26ba1ba773746b1a0", "sourceDensity": 48, "region": [0, 0, 60, 65], "alphaBounds": [0, 0, 60, 65]},
+      "placement": {"footAnchor": [30, 64], "scaleClass": "prop", "collisionFootprint": "offering"}, "worldDrawSize": [60, 65], "licenseReference": "game/ben_rpg/visual_assets/generated/runtime_asset_provenance.json", "cropApproval": "approved", "goldenCapture": "game/validation/empyreal-garden-of-appeals.png"
+    },
+    {
+      "id": "empyreal_fruit_offering", "kind": "prop",
+      "source": {"pack": "Ancient Greek Mythology", "runtimeTexture": "game/game_assets/Tilesets/Ancient Greek Mythology/Sliced/fruit_offering.png", "sourceChecksum": "b4ace062008edada7c7af14e4a51fe0c441a01677628df169972bce6b37c2bd9", "sourceDensity": 48, "region": [0, 0, 61, 65], "alphaBounds": [0, 0, 61, 65]},
+      "placement": {"footAnchor": [30, 64], "scaleClass": "prop", "collisionFootprint": "offering"}, "worldDrawSize": [61, 65], "licenseReference": "game/ben_rpg/visual_assets/generated/runtime_asset_provenance.json", "cropApproval": "approved", "goldenCapture": "game/validation/empyreal-garden-of-appeals.png"
+    },
+    {
+      "id": "empyreal_plain_column", "kind": "prop",
+      "source": {"pack": "Ancient Greek Mythology", "runtimeTexture": "game/game_assets/Tilesets/Ancient Greek Mythology/Sliced/plain_column.png", "sourceChecksum": "be432e671ce9ca5f592d0995109e4b804624042da598451aae787e5cf38a6525", "sourceDensity": 48, "region": [0, 0, 48, 130], "alphaBounds": [0, 0, 48, 130]},
+      "placement": {"footAnchor": [24, 129], "scaleClass": "prop", "collisionFootprint": "column_base"}, "worldDrawSize": [48, 130], "licenseReference": "game/ben_rpg/visual_assets/generated/runtime_asset_provenance.json", "cropApproval": "approved", "goldenCapture": "game/validation/empyreal-forum-of-measures.png"
+    },
+    {
+      "id": "empyreal_blue_column", "kind": "prop",
+      "source": {"pack": "Ancient Greek Mythology", "runtimeTexture": "game/game_assets/Tilesets/Ancient Greek Mythology/Sliced/blue_column.png", "sourceChecksum": "8588c4920e30cc36bcdd3ff5797aa57fb0188fe945bf6d3f25db87789652b5de", "sourceDensity": 48, "region": [0, 0, 48, 130], "alphaBounds": [0, 0, 48, 130]},
+      "placement": {"footAnchor": [24, 129], "scaleClass": "prop", "collisionFootprint": "column_base"}, "worldDrawSize": [48, 130], "licenseReference": "game/ben_rpg/visual_assets/generated/runtime_asset_provenance.json", "cropApproval": "approved", "goldenCapture": "game/validation/empyreal-forum-of-measures.png"
+    },
+    {
+      "id": "empyreal_ordinance_book", "kind": "prop",
+      "source": {"pack": "Ancient Greek Mythology", "runtimeTexture": "game/game_assets/Tilesets/Ancient Greek Mythology/Sliced/ordinance_book.png", "sourceChecksum": "496e790468ea10fa2da43c817bca7a21fed9e7209ff58d486e9996c80567ddb8", "sourceDensity": 48, "region": [0, 0, 108, 84], "alphaBounds": [0, 0, 108, 84]},
+      "placement": {"footAnchor": [54, 83], "scaleClass": "prop", "collisionFootprint": "lectern"}, "worldDrawSize": [108, 84], "licenseReference": "game/ben_rpg/visual_assets/generated/runtime_asset_provenance.json", "cropApproval": "approved", "goldenCapture": "game/validation/empyreal-forum-of-measures.png"
+    },
+    {
+      "id": "empyreal_horse_statue", "kind": "prop",
+      "source": {"pack": "Ancient Greek Mythology", "runtimeTexture": "game/game_assets/Tilesets/Ancient Greek Mythology/Sliced/horse_statue.png", "sourceChecksum": "87a548537cb1c64f3e18320505e5e2792588c224282a4f629508ec14e7e3dc35", "sourceDensity": 48, "region": [0, 0, 59, 78], "alphaBounds": [0, 0, 59, 78]},
+      "placement": {"footAnchor": [29, 77], "scaleClass": "prop", "collisionFootprint": "statue_base"}, "worldDrawSize": [59, 78], "licenseReference": "game/ben_rpg/visual_assets/generated/runtime_asset_provenance.json", "cropApproval": "approved", "goldenCapture": "game/validation/empyreal-forum-of-measures.png"
+    },
+    {
+      "id": "empyreal_griffin_statue", "kind": "prop",
+      "source": {"pack": "Ancient Greek Mythology", "runtimeTexture": "game/game_assets/Tilesets/Ancient Greek Mythology/Sliced/griffin_statue.png", "sourceChecksum": "12d1ba62079cf69663997b9f49f60aa876de857e530863168f80a2915c2dcdec", "sourceDensity": 48, "region": [0, 0, 64, 81], "alphaBounds": [0, 0, 64, 81]},
+      "placement": {"footAnchor": [32, 80], "scaleClass": "prop", "collisionFootprint": "statue_base"}, "worldDrawSize": [64, 81], "licenseReference": "game/ben_rpg/visual_assets/generated/runtime_asset_provenance.json", "cropApproval": "approved", "goldenCapture": "game/validation/empyreal-forum-of-measures.png"
+    },
+    {
+      "id": "empyreal_reliquary_portal", "kind": "landmark",
+      "source": {"pack": "Ancient Greek Mythology", "runtimeTexture": "game/game_assets/Tilesets/Ancient Greek Mythology/Sliced/reliquary_portal.png", "sourceChecksum": "1917ddc54714ce865d9c21a79c19e7941eeaf12061ecbe68aaac674dd270c70c", "sourceDensity": 48, "region": [0, 0, 115, 132], "alphaBounds": [0, 0, 115, 132]},
+      "placement": {"footAnchor": [57, 131], "scaleClass": "landmark", "collisionFootprint": "portal_base"}, "worldDrawSize": [115, 132], "licenseReference": "game/ben_rpg/visual_assets/generated/runtime_asset_provenance.json", "cropApproval": "approved", "goldenCapture": "game/validation/empyreal-reliquary-aerie.png"
+    },
+    {
+      "id": "empyreal_crystal_altar", "kind": "prop",
+      "source": {"pack": "Ancient Greek Mythology", "runtimeTexture": "game/game_assets/Tilesets/Ancient Greek Mythology/Sliced/crystal_altar.png", "sourceChecksum": "e0eec501e32180053596dbd8e60449a522c79c6ced07f36a1f5f9da7745716d9", "sourceDensity": 48, "region": [0, 0, 83, 88], "alphaBounds": [0, 0, 83, 88]},
+      "placement": {"footAnchor": [41, 87], "scaleClass": "prop", "collisionFootprint": "altar"}, "worldDrawSize": [83, 88], "licenseReference": "game/ben_rpg/visual_assets/generated/runtime_asset_provenance.json", "cropApproval": "approved", "goldenCapture": "game/validation/empyreal-reliquary-aerie.png"
+    },
+    {
+      "id": "empyreal_lotus_altar", "kind": "prop",
+      "source": {"pack": "Ancient Greek Mythology", "runtimeTexture": "game/game_assets/Tilesets/Ancient Greek Mythology/Sliced/lotus_altar.png", "sourceChecksum": "75d84ab5971bf999bb439c93180907a491f2749cdcb1b02b869a930ee8bd451a", "sourceDensity": 48, "region": [0, 0, 87, 88], "alphaBounds": [0, 0, 87, 88]},
+      "placement": {"footAnchor": [43, 87], "scaleClass": "prop", "collisionFootprint": "altar"}, "worldDrawSize": [87, 88], "licenseReference": "game/ben_rpg/visual_assets/generated/runtime_asset_provenance.json", "cropApproval": "approved", "goldenCapture": "game/validation/empyreal-reliquary-aerie.png"
+    },
+    {
+      "id": "empyreal_gravity_crystal", "kind": "prop",
+      "source": {"pack": "Ancient Greek Mythology", "runtimeTexture": "game/game_assets/Tilesets/Ancient Greek Mythology/Sliced/gravity_crystal.png", "sourceChecksum": "f5233bde096ec6ce68e6078c5f043ed2b536dfd152f33dc5df69ad395fe4d64a", "sourceDensity": 48, "region": [0, 0, 49, 94], "alphaBounds": [0, 0, 49, 94]},
+      "placement": {"footAnchor": [24, 93], "scaleClass": "prop", "collisionFootprint": "crystal_base"}, "worldDrawSize": [49, 94], "licenseReference": "game/ben_rpg/visual_assets/generated/runtime_asset_provenance.json", "cropApproval": "approved", "goldenCapture": "game/validation/empyreal-reliquary-aerie.png"
+    },
+    {
+      "id": "empyreal_tribunal_gate", "kind": "landmark",
+      "source": {"pack": "Ancient Greek Mythology", "runtimeTexture": "game/game_assets/Tilesets/Ancient Greek Mythology/Sliced/tribunal_gate.png", "sourceChecksum": "15cda8ddc611cafaa97871b4580451119902d3b4bcb55d0670bec4d984401672", "sourceDensity": 48, "region": [0, 0, 162, 158], "alphaBounds": [0, 0, 162, 158]},
+      "placement": {"footAnchor": [81, 157], "scaleClass": "landmark", "collisionFootprint": "tribunal_gate"}, "worldDrawSize": [162, 158], "licenseReference": "game/ben_rpg/visual_assets/generated/runtime_asset_provenance.json", "cropApproval": "approved", "goldenCapture": "game/validation/empyreal-seraph-tribunal.png"
+    },
+    {
+      "id": "empyreal_justice_statue", "kind": "prop",
+      "source": {"pack": "Ancient Greek Mythology", "runtimeTexture": "game/game_assets/Tilesets/Ancient Greek Mythology/Sliced/justice_statue.png", "sourceChecksum": "7a4fff3bf284a7471bcbe8a1b3f9ce3df67aece9886f261879458feaef353e4d", "sourceDensity": 48, "region": [0, 0, 67, 126], "alphaBounds": [0, 0, 67, 126]},
+      "placement": {"footAnchor": [33, 125], "scaleClass": "prop", "collisionFootprint": "statue_base"}, "worldDrawSize": [67, 126], "licenseReference": "game/ben_rpg/visual_assets/generated/runtime_asset_provenance.json", "cropApproval": "approved", "goldenCapture": "game/validation/empyreal-seraph-tribunal.png"
+    },
+    {
+      "id": "empyreal_music_statue", "kind": "prop",
+      "source": {"pack": "Ancient Greek Mythology", "runtimeTexture": "game/game_assets/Tilesets/Ancient Greek Mythology/Sliced/music_statue.png", "sourceChecksum": "593a789da4aefe950cf67a94e8f4128ba852f443106fbaa935cb4ea65fc425ce", "sourceDensity": 48, "region": [0, 0, 59, 125], "alphaBounds": [0, 0, 59, 125]},
+      "placement": {"footAnchor": [29, 124], "scaleClass": "prop", "collisionFootprint": "statue_base"}, "worldDrawSize": [59, 125], "licenseReference": "game/ben_rpg/visual_assets/generated/runtime_asset_provenance.json", "cropApproval": "approved", "goldenCapture": "game/validation/empyreal-seraph-tribunal.png"
+    },
+    {
+      "id": "empyreal_tribunal_orrery", "kind": "prop",
+      "source": {"pack": "Ancient Greek Mythology", "runtimeTexture": "game/game_assets/Tilesets/Ancient Greek Mythology/Sliced/tribunal_orrery.png", "sourceChecksum": "98f7bba0c298e68fea5af31102e8e13c0a9dfbc9408bb5563f3aec97a2ed7a59", "sourceDensity": 48, "region": [0, 0, 93, 84], "alphaBounds": [0, 0, 93, 84]},
+      "placement": {"footAnchor": [46, 83], "scaleClass": "prop", "collisionFootprint": "orrery_base"}, "worldDrawSize": [93, 84], "licenseReference": "game/ben_rpg/visual_assets/generated/runtime_asset_provenance.json", "cropApproval": "approved", "goldenCapture": "game/validation/empyreal-seraph-tribunal.png"
+    },
+    {
       "id": "empyreal_sky_cloud_bank",
       "kind": "tile",
       "source": {"pack": "Flying Islands", "runtimeTexture": "game/game_assets/Tilesets/Flying Islands/PNG/Sliced/sky_clouds.png", "sourceChecksum": "8b459c7c69c04171a7d1d658fe0029bdfdf21514b7e824c8b054d50fcdc4f14b", "sourceDensity": 48, "region": [0, 0, 464, 208], "alphaBounds": [0, 0, 464, 208]},
