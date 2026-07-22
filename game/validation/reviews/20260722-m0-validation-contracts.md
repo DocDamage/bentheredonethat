@@ -45,4 +45,8 @@ then proved the generated contact sheet is intentionally absent from a clean
 checkout; the runtime gate must rebuild it before validating provenance. Product/
 visual reviewer: user. The subsequent retry showed that provenance also read
 ignored `assets/` license evidence; its runtime ledger now uses tracked
-game-local evidence only.
+game-local evidence only. The clean-checkout retry for
+`2e3d09a` passed browser/runtime validation but reached Godot smoke without the
+generated global-class cache, causing unresolved `class_name` references; the
+workflow now imports the project before isolated scenes and allows the clean
+LFS import plus suite to use a 45-minute job budget.

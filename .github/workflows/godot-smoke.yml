@@ -43,7 +43,7 @@ jobs:
   isolated-smoke:
     name: Isolated Godot smoke
     runs-on: windows-latest
-    timeout-minutes: 25
+    timeout-minutes: 45
 
     steps:
       - name: Check out source
@@ -66,6 +66,15 @@ jobs:
             throw 'The downloaded Godot archive did not contain the expected Windows console executable.'
           }
           "GODOT_EXECUTABLE=$($godot.FullName)" | Out-File -FilePath $env:GITHUB_ENV -Append -Encoding utf8
+
+      - name: Import project global classes
+        shell: pwsh
+        run: >
+          & "$env:GODOT_EXECUTABLE"
+          --headless
+          --path ./game
+          --editor
+          --import
 
       - name: Run isolated smoke suite
         shell: pwsh
