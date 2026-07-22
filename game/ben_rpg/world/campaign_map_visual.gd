@@ -40,6 +40,14 @@ const MANSION_PLANK_GRAIN_PROFILES := [
 	[&"mansion_plank_grain_0_2", &"mansion_plank_grain_1_2"],
 	[&"mansion_plank_grain_0_3", &"mansion_plank_grain_1_3"],
 ]
+const ASTERION_WALL_TILE_PROFILES := [
+	[&"asterion_station_wall_0_0", &"asterion_station_wall_1_0"],
+	[&"asterion_station_wall_0_1", &"asterion_station_wall_1_1"],
+]
+const ASTERION_FLOOR_TILE_PROFILES := [
+	[&"asterion_station_floor_0_0", &"asterion_station_floor_1_0"],
+	[&"asterion_station_floor_0_1", &"asterion_station_floor_1_1"],
+]
 const FACILITY_PLOTS := [
 	Rect2i(7, 5, 5, 4),
 	Rect2i(18, 5, 5, 4),
@@ -113,7 +121,7 @@ func _ready() -> void:
 	haunted_interior = visual_profiles.texture(&"mansion_archive_cabinet")
 	haunted_bedroom = visual_profiles.texture(&"mansion_nursery_bed")
 	haunted_storage = visual_profiles.texture(&"mansion_archive_shelving")
-	station_architecture = load("res://game_assets/Tilesets/Sci-Fi Spaceship Interior Tileset Pack/1.png")
+	station_architecture = visual_profiles.texture(&"asterion_station_wall_0_0")
 	primeval_ground = visual_profiles.texture(&"primeval_ground_quadrant")
 	helios_city = visual_profiles.texture(&"helios_skybridge_quadrant")
 	helios_services = visual_profiles.texture(&"helios_market_quadrant")
@@ -865,10 +873,8 @@ func _draw_station_room(room_offset: Vector2, room_kind: StringName) -> void:
 	# one complete prop; no rectangle crosses into a neighboring atlas object.
 	for y in range(8):
 		for x in range(8):
-			var source := Rect2((x % 2) * 48, (y % 2) * 48, 48, 48)
-			if y >= 4:
-				source = Rect2((x % 2) * 48, 384 + (y % 2) * 48, 48, 48)
-			tile(station_architecture, source, Rect2(room_offset + Vector2(x, y) * TILE, Vector2(TILE, TILE)))
+			var tile_profile: StringName = ASTERION_WALL_TILE_PROFILES[y % 2][x % 2] if y < 4 else ASTERION_FLOOR_TILE_PROFILES[y % 2][x % 2]
+			profile_tile(tile_profile, station_architecture, room_offset + Vector2(x, y) * TILE)
 	# A hard baseboard makes the blocked wall area and open floor legible.
 	draw_rect(Rect2(room_offset + Vector2(0, 190), Vector2(384, 4)), Color(0.08, 0.16, 0.24, 0.9), true)
 

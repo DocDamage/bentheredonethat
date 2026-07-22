@@ -527,6 +527,326 @@
     {
       "cropApproval": "approved",
       "distributionEligibility": "review_required",
+      "goldenCapture": "game/validation/asterion-dock-rebuilt.png",
+      "id": "asterion_station_floor_0_0",
+      "kind": "tile",
+      "licenseReference": "game/ben_rpg/visual_assets/generated/runtime_asset_provenance.json",
+      "placement": {
+        "collisionFootprint": "station_floor_tile",
+        "footAnchor": [
+          24,
+          47
+        ],
+        "scaleClass": "tile"
+      },
+      "releaseVisualAcceptance": "prototype_only",
+      "source": {
+        "alphaBounds": [
+          0,
+          384,
+          48,
+          48
+        ],
+        "pack": "Sci-Fi Spaceship Interior Tileset Pack",
+        "region": [
+          0,
+          384,
+          48,
+          48
+        ],
+        "runtimeTexture": "game/game_assets/Tilesets/Sci-Fi Spaceship Interior Tileset Pack/1.png",
+        "sha256": "f951e809b442dcf10106c0c890f0f07e14b48bd5ad5512af9baf16433c1800a9",
+        "sourceChecksum": "f951e809b442dcf10106c0c890f0f07e14b48bd5ad5512af9baf16433c1800a9",
+        "sourceDensity": 48
+      },
+      "worldDrawSize": [
+        48,
+        48
+      ]
+    },
+    {
+      "cropApproval": "approved",
+      "distributionEligibility": "review_required",
+      "goldenCapture": "game/validation/asterion-dock-rebuilt.png",
+      "id": "asterion_station_floor_0_1",
+      "kind": "tile",
+      "licenseReference": "game/ben_rpg/visual_assets/generated/runtime_asset_provenance.json",
+      "placement": {
+        "collisionFootprint": "station_floor_tile",
+        "footAnchor": [
+          24,
+          47
+        ],
+        "scaleClass": "tile"
+      },
+      "releaseVisualAcceptance": "prototype_only",
+      "source": {
+        "alphaBounds": [
+          0,
+          432,
+          48,
+          48
+        ],
+        "pack": "Sci-Fi Spaceship Interior Tileset Pack",
+        "region": [
+          0,
+          432,
+          48,
+          48
+        ],
+        "runtimeTexture": "game/game_assets/Tilesets/Sci-Fi Spaceship Interior Tileset Pack/1.png",
+        "sha256": "f951e809b442dcf10106c0c890f0f07e14b48bd5ad5512af9baf16433c1800a9",
+        "sourceChecksum": "f951e809b442dcf10106c0c890f0f07e14b48bd5ad5512af9baf16433c1800a9",
+        "sourceDensity": 48
+      },
+      "worldDrawSize": [
+        48,
+        48
+      ]
+    },
+    {
+      "cropApproval": "approved",
+      "distributionEligibility": "review_required",
+      "goldenCapture": "game/validation/asterion-dock-rebuilt.png",
+      "id": "asterion_station_floor_1_0",
+      "kind": "tile",
+      "licenseReference": "game/ben_rpg/visual_assets/generated/runtime_asset_provenance.json",
+      "placement": {
+        "collisionFootprint": "station_floor_tile",
+        "footAnchor": [
+          24,
+          47
+        ],
+        "scaleClass": "tile"
+      },
+      "releaseVisualAcceptance": "prototype_only",
+      "source": {
+        "alphaBounds": [
+          48,
+          384,
+          48,
+          48
+        ],
+        "pack": "Sci-Fi Spaceship Interior Tileset Pack",
+        "region": [
+          48,
+          384,
+          48,
+          48
+        ],
+        "runtimeTexture": "game/game_assets/Tilesets/Sci-Fi Spaceship Interior Tileset Pack/1.png",
+        "sha256": "f951e809b442dcf10106c0c890f0f07e14b48bd5ad5512af9baf16433c1800a9",
+        "sourceChecksum": "f951e809b442dcf10106c0c890f0f07e14b48bd5ad5512af9baf16433c1800a9",
+        "sourceDensity": 48
+      },
+      "worldDrawSize": [
+        48,
+        48
+      ]
+    },
+    {
+      "cropApproval": "approved",
+      "distributionEligibility": "review_required",
+      "goldenCapture": "game/validation/asterion-dock-rebuilt.png",
+      "id": "asterion_station_floor_1_1",
+      "kind": "tile",
+      "licenseReference": "game/ben_rpg/visual_assets/generated/runtime_asset_provenance.json",
+      "placement": {
+        "collisionFootprint": "station_floor_tile",
+        "footAnchor": [
+          24,
+          47
+        ],
+        "scaleClass": "tile"
+      },
+      "releaseVisualAcceptance": "prototype_only",
+      "source": {
+        "alphaBounds": [
+          48,
+          432,
+          48,
+          48
+        ],
+        "pack": "Sci-Fi Spaceship Interior Tileset Pack",
+        "region": [
+          48,
+          432,
+          48,
+          48
+        ],
+        "runtimeTexture": "game/game_assets/Tilesets/Sci-Fi Spaceship Interior Tileset Pack/1.png",
+        "sha256": "f951e809b442dcf10106c0c890f0f07e14b48bd5ad5512af9baf16433c1800a9",
+        "sourceChecksum": "f951e809b442dcf10106c0c890f0f07e14b48bd5ad5512af9baf16433c1800a9",
+        "sourceDensity": 48
+      },
+      "worldDrawSize": [
+        48,
+        48
+      ]
+    },
+    {
+      "cropApproval": "approved",
+      "distributionEligibility": "review_required",
+      "goldenCapture": "game/validation/asterion-dock-rebuilt.png",
+      "id": "asterion_station_wall_0_0",
+      "kind": "tile",
+      "licenseReference": "game/ben_rpg/visual_assets/generated/runtime_asset_provenance.json",
+      "placement": {
+        "collisionFootprint": "station_shell_tile",
+        "footAnchor": [
+          24,
+          47
+        ],
+        "scaleClass": "tile"
+      },
+      "releaseVisualAcceptance": "prototype_only",
+      "source": {
+        "alphaBounds": [
+          0,
+          0,
+          48,
+          48
+        ],
+        "pack": "Sci-Fi Spaceship Interior Tileset Pack",
+        "region": [
+          0,
+          0,
+          48,
+          48
+        ],
+        "runtimeTexture": "game/game_assets/Tilesets/Sci-Fi Spaceship Interior Tileset Pack/1.png",
+        "sha256": "f951e809b442dcf10106c0c890f0f07e14b48bd5ad5512af9baf16433c1800a9",
+        "sourceChecksum": "f951e809b442dcf10106c0c890f0f07e14b48bd5ad5512af9baf16433c1800a9",
+        "sourceDensity": 48
+      },
+      "worldDrawSize": [
+        48,
+        48
+      ]
+    },
+    {
+      "cropApproval": "approved",
+      "distributionEligibility": "review_required",
+      "goldenCapture": "game/validation/asterion-dock-rebuilt.png",
+      "id": "asterion_station_wall_0_1",
+      "kind": "tile",
+      "licenseReference": "game/ben_rpg/visual_assets/generated/runtime_asset_provenance.json",
+      "placement": {
+        "collisionFootprint": "station_shell_tile",
+        "footAnchor": [
+          24,
+          47
+        ],
+        "scaleClass": "tile"
+      },
+      "releaseVisualAcceptance": "prototype_only",
+      "source": {
+        "alphaBounds": [
+          0,
+          48,
+          48,
+          48
+        ],
+        "pack": "Sci-Fi Spaceship Interior Tileset Pack",
+        "region": [
+          0,
+          48,
+          48,
+          48
+        ],
+        "runtimeTexture": "game/game_assets/Tilesets/Sci-Fi Spaceship Interior Tileset Pack/1.png",
+        "sha256": "f951e809b442dcf10106c0c890f0f07e14b48bd5ad5512af9baf16433c1800a9",
+        "sourceChecksum": "f951e809b442dcf10106c0c890f0f07e14b48bd5ad5512af9baf16433c1800a9",
+        "sourceDensity": 48
+      },
+      "worldDrawSize": [
+        48,
+        48
+      ]
+    },
+    {
+      "cropApproval": "approved",
+      "distributionEligibility": "review_required",
+      "goldenCapture": "game/validation/asterion-dock-rebuilt.png",
+      "id": "asterion_station_wall_1_0",
+      "kind": "tile",
+      "licenseReference": "game/ben_rpg/visual_assets/generated/runtime_asset_provenance.json",
+      "placement": {
+        "collisionFootprint": "station_shell_tile",
+        "footAnchor": [
+          24,
+          47
+        ],
+        "scaleClass": "tile"
+      },
+      "releaseVisualAcceptance": "prototype_only",
+      "source": {
+        "alphaBounds": [
+          48,
+          0,
+          48,
+          48
+        ],
+        "pack": "Sci-Fi Spaceship Interior Tileset Pack",
+        "region": [
+          48,
+          0,
+          48,
+          48
+        ],
+        "runtimeTexture": "game/game_assets/Tilesets/Sci-Fi Spaceship Interior Tileset Pack/1.png",
+        "sha256": "f951e809b442dcf10106c0c890f0f07e14b48bd5ad5512af9baf16433c1800a9",
+        "sourceChecksum": "f951e809b442dcf10106c0c890f0f07e14b48bd5ad5512af9baf16433c1800a9",
+        "sourceDensity": 48
+      },
+      "worldDrawSize": [
+        48,
+        48
+      ]
+    },
+    {
+      "cropApproval": "approved",
+      "distributionEligibility": "review_required",
+      "goldenCapture": "game/validation/asterion-dock-rebuilt.png",
+      "id": "asterion_station_wall_1_1",
+      "kind": "tile",
+      "licenseReference": "game/ben_rpg/visual_assets/generated/runtime_asset_provenance.json",
+      "placement": {
+        "collisionFootprint": "station_shell_tile",
+        "footAnchor": [
+          24,
+          47
+        ],
+        "scaleClass": "tile"
+      },
+      "releaseVisualAcceptance": "prototype_only",
+      "source": {
+        "alphaBounds": [
+          48,
+          48,
+          48,
+          48
+        ],
+        "pack": "Sci-Fi Spaceship Interior Tileset Pack",
+        "region": [
+          48,
+          48,
+          48,
+          48
+        ],
+        "runtimeTexture": "game/game_assets/Tilesets/Sci-Fi Spaceship Interior Tileset Pack/1.png",
+        "sha256": "f951e809b442dcf10106c0c890f0f07e14b48bd5ad5512af9baf16433c1800a9",
+        "sourceChecksum": "f951e809b442dcf10106c0c890f0f07e14b48bd5ad5512af9baf16433c1800a9",
+        "sourceDensity": 48
+      },
+      "worldDrawSize": [
+        48,
+        48
+      ]
+    },
+    {
+      "cropApproval": "approved",
+      "distributionEligibility": "review_required",
       "goldenCapture": "game/validation/battle-full-company-rebuilt.png",
       "id": "astronaut_battle_actor",
       "kind": "battle_actor",
