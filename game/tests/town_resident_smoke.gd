@@ -9,6 +9,8 @@ func _ready() -> void:
 
 func _run() -> void:
 	DirAccess.remove_absolute(ProjectSettings.globalize_path(TEST_SAVE))
+	for slot_id in range(1, CampaignState.SANDBOX_LAYOUT_SLOT_COUNT + 1):
+		DirAccess.remove_absolute(ProjectSettings.globalize_path(CampaignState.sandbox_layout_slot_path(slot_id)))
 	CampaignState.setup_sandbox(Vector2i(50, 8))
 	CampaignState.town_time_minutes = 8.0 * 60.0
 	var main_scene: PackedScene = load("res://src/main.tscn")
@@ -165,6 +167,94 @@ func _run() -> void:
 	if CampaignState.town_objects.size() != objects_before_copy + 2:
 		_fail("Sandbox copy/paste did not create an independent duplicate object")
 		return
+	var editable_objects: Array[Dictionary] = []
+	for placed in CampaignState.town_objects:
+		if not bool(placed.get("protected", false)):
+			editable_objects.append(placed)
+	if editable_objects.size() < 2:
+		_fail("Sandbox did not retain two editable objects for multiselect")
+		return
+	editor._box_selection_start = Vector2i(int(editable_objects[0].get("x", 0)), int(editable_objects[0].get("y", 0)))
+	editor._commit_box_selection(Vector2i(int(editable_objects[1].get("x", 0)) + 3, int(editable_objects[1].get("y", 0)) + 1))
+	if not editor.selected_instance_ids.has(String(editable_objects[0].get("instance_id", ""))) or not editor.selected_instance_ids.has(String(editable_objects[1].get("instance_id", ""))):
+		_fail("Sandbox middle-drag box selection did not retain both editable objects")
+		return
+	editor._clear_object_selection()
+	editor._toggle_multi_selection_at(Vector2i(int(editable_objects[0].get("x", 0)), int(editable_objects[0].get("y", 0))))
+	editor._toggle_multi_selection_at(Vector2i(int(editable_objects[1].get("x", 0)), int(editable_objects[1].get("y", 0))))
+	if editor.selected_instance_ids.size() != 2:
+		_fail("Sandbox ctrl-click multiselect did not retain both editable objects")
+		return
+	editor._begin_multi_move()
+	var group_delta := Gameboard.INVALID_CELL
+	for candidate_delta in [Vector2i(1, 0), Vector2i(-1, 0), Vector2i(0, 1), Vector2i(0, -1), Vector2i(2, 0), Vector2i(0, 2)]:
+		if editor._multi_move_valid(candidate_delta):
+			group_delta = candidate_delta
+			break
+	if group_delta == Gameboard.INVALID_CELL:
+		_fail("Sandbox multiselect did not find a legal group move")
+		return
+	var group_before := CampaignState.sandbox_layout_snapshot()
+	editor.cursor_cell = editor._multi_move_origin + group_delta
+	editor._commit_multi_move()
+	if CampaignState.sandbox_layout_snapshot() == group_before:
+		_fail("Sandbox group move did not commit a batch layout command")
+		return
+	editor._undo_sandbox_edit()
+	if CampaignState.sandbox_layout_snapshot() != group_before:
+		_fail("Sandbox batch move undo did not restore the exact prior layout")
+		return
+	editor._redo_sandbox_edit()
+	if CampaignState.sandbox_layout_snapshot() == group_before:
+		_fail("Sandbox batch move redo did not restore the moved layout")
+		return
+	editor.pack_index = 1
+	editor._set_search_query("town cat")
+	var search_results: Array[StringName] = editor._pack_items()
+	if search_results.size() != 1 or search_results[0] != &"ranch_cat":
+		_fail("Sandbox pack search did not filter catalog IDs and names")
+		return
+	editor._set_search_query("")
+	var slot_layout := CampaignState.sandbox_layout_snapshot()
+	if CampaignState.save_sandbox_layout_slot(1) != OK:
+		_fail("Sandbox layout slot save failed")
+		return
+	var terrain_cell := Gameboard.INVALID_CELL
+	editor.editor_mode = &"terrain"
+	for y in range(main.TOWN_ORIGIN.y + 1, main.TOWN_ORIGIN.y + main.TOWN_SIZE.y - 1):
+		for x in range(main.TOWN_ORIGIN.x + 1, main.TOWN_ORIGIN.x + main.TOWN_SIZE.x - 1):
+			var candidate := Vector2i(x, y)
+			if editor._terrain_placement_valid(editor._current_catalog_id(), candidate) and CampaignState.town_terrain_at(candidate) != editor._current_catalog_id():
+				terrain_cell = candidate
+				break
+		if terrain_cell != Gameboard.INVALID_CELL:
+			break
+	if terrain_cell == Gameboard.INVALID_CELL:
+		_fail("Sandbox layout slot test could not find a terrain mutation cell")
+		return
+	editor.cursor_cell = terrain_cell
+	editor._paint_terrain()
+	if CampaignState.sandbox_layout_snapshot() == slot_layout:
+		_fail("Sandbox layout slot mutation did not change the current layout")
+		return
+	var loaded_slot := CampaignState.load_sandbox_layout_slot(1)
+	if not bool(loaded_slot.get("loaded", false)):
+		_fail("Sandbox layout slot load failed")
+		return
+	main.restore_sandbox_layout()
+	var slot_layout_matches := CampaignState.sandbox_layout_snapshot() == slot_layout
+	var slot_routes_valid: bool = main.sandbox_required_routes_reachable()
+	if not slot_layout_matches or not slot_routes_valid:
+		_fail("Sandbox layout slot did not preserve the exact valid layout and routes (layout=%s routes=%s)" % [slot_layout_matches, slot_routes_valid])
+		return
+	var invalid_before := CampaignState.sandbox_layout_snapshot()
+	var invalid_slot_file := FileAccess.open(CampaignState.sandbox_layout_slot_path(3), FileAccess.WRITE)
+	invalid_slot_file.store_string('{"version":1,"layout":{"town_objects":[]}}')
+	invalid_slot_file.close()
+	if bool(CampaignState.load_sandbox_layout_slot(3).get("loaded", false)) or CampaignState.sandbox_layout_snapshot() != invalid_before:
+		_fail("Malformed sandbox layout overwrote a valid current layout")
+		return
+	editor.editor_mode = &"objects"
 	editor._sync_renderer()
 	if CampaignState.save_game(TEST_SAVE) != OK:
 		_fail("Resident state save failed")
@@ -183,12 +273,16 @@ func _run() -> void:
 		return
 
 	DirAccess.remove_absolute(ProjectSettings.globalize_path(TEST_SAVE))
+	for slot_id in range(1, CampaignState.SANDBOX_LAYOUT_SLOT_COUNT + 1):
+		DirAccess.remove_absolute(ProjectSettings.globalize_path(CampaignState.sandbox_layout_slot_path(slot_id)))
 	CampaignState.reset_new_game()
-	print("TOWN_RESIDENT_SMOKE_OK residents=4 roles=true tasks=role_specific dialogue=activity_aware schedules=work+lunch+errands+home routes=town_only collision=destination_reservations+yield_recovery relocation=editor history=100_action_undo_redo clipboard=true save_load=true")
+	print("TOWN_RESIDENT_SMOKE_OK residents=4 roles=true tasks=role_specific dialogue=activity_aware schedules=work+lunch+errands+home routes=town_only collision=destination_reservations+yield_recovery relocation=editor history=100_action_undo_redo clipboard=true multiselect=batch_move search=pack_filter slots=validated save_load=true")
 	get_tree().quit(0)
 
 
 func _fail(message: String) -> void:
 	printerr("TOWN_RESIDENT_SMOKE_FAILED: " + message)
 	DirAccess.remove_absolute(ProjectSettings.globalize_path(TEST_SAVE))
+	for slot_id in range(1, CampaignState.SANDBOX_LAYOUT_SLOT_COUNT + 1):
+		DirAccess.remove_absolute(ProjectSettings.globalize_path(CampaignState.sandbox_layout_slot_path(slot_id)))
 	get_tree().quit(1)

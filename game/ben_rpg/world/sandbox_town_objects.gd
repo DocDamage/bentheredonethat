@@ -11,6 +11,8 @@ var cursor_cell := Vector2i(50, 8)
 var cursor_catalog_id: StringName = &"modern_blue_cottage"
 var cursor_valid := false
 var selected_instance_id := ""
+var selected_instance_ids: Array[String] = []
+var box_selection_rect := Rect2i()
 
 
 func _ready() -> void:
@@ -20,13 +22,15 @@ func _ready() -> void:
 	queue_redraw()
 
 
-func set_editor_state(active: bool, cell: Vector2i, catalog_id: StringName, valid: bool, selected_id := "", mode: StringName = &"objects") -> void:
+func set_editor_state(active: bool, cell: Vector2i, catalog_id: StringName, valid: bool, selected_id := "", mode: StringName = &"objects", selected_ids: Array[String] = [], selection_rect := Rect2i()) -> void:
 	editor_active = active
 	editor_mode = mode
 	cursor_cell = cell
 	cursor_catalog_id = catalog_id
 	cursor_valid = valid
 	selected_instance_id = selected_id
+	selected_instance_ids = selected_ids.duplicate()
+	box_selection_rect = selection_rect
 	queue_redraw()
 
 
@@ -71,6 +75,11 @@ func _draw() -> void:
 		var color := Color(0.35, 1.0, 0.72, 0.95) if cursor_valid else Color(1.0, 0.28, 0.32, 0.95)
 		draw_rect(rect, Color(color, 0.15), true)
 		draw_rect(rect, color, false, 4.0)
+		if not box_selection_rect.has_area():
+			return
+		var selection_pixels := Rect2(Vector2(box_selection_rect.position * TILE), Vector2(box_selection_rect.size * TILE))
+		draw_rect(selection_pixels, Color(0.28, 0.78, 1.0, 0.12), true)
+		draw_rect(selection_pixels, Color(0.28, 0.78, 1.0, 0.9), false, 3.0)
 
 
 func _draw_placed_object(placed: Dictionary) -> void:
@@ -98,6 +107,8 @@ func _draw_placed_object(placed: Dictionary) -> void:
 		draw_texture_rect_region(texture, destination, region)
 	if String(placed.get("instance_id", "")) == selected_instance_id:
 		draw_rect(footprint_rect, Color(1.0, 0.83, 0.32, 0.95), false, 4.0)
+	elif selected_instance_ids.has(String(placed.get("instance_id", ""))):
+		draw_rect(footprint_rect, Color(0.28, 0.78, 1.0, 0.95), false, 4.0)
 
 
 func _on_objects_changed() -> void:

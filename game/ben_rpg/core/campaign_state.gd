@@ -19,6 +19,12 @@ const SAVE_REPOSITORY := preload("res://ben_rpg/core/save_repository.gd")
 const SAVE_MIGRATOR := preload("res://ben_rpg/core/save_migrator.gd")
 const QUEST_DIRECTOR := preload("res://ben_rpg/core/quest_director.gd")
 const ECONOMY_LEDGER := preload("res://ben_rpg/core/economy_ledger.gd")
+const SANDBOX_OBJECT_CATALOG := preload("res://ben_rpg/world/sandbox_object_catalog.gd")
+const SANDBOX_TERRAIN_CATALOG := preload("res://ben_rpg/world/sandbox_terrain_catalog.gd")
+const SANDBOX_LAYOUT_SLOT_VERSION := 1
+const SANDBOX_LAYOUT_SLOT_COUNT := 3
+const SANDBOX_LAYOUT_SLOT_PATH := "user://sandbox_layout_slot_%d.json"
+const SANDBOX_TOWN_INTERIOR := Rect2i(Vector2i(37, 1), Vector2i(30, 26))
 const SANDBOX_AUTHORED_OBJECTS := [
 	{"instance_id": "sandbox_town_lab", "catalog_id": &"modern_warehouse", "cell": Vector2i(48, 5), "role": &"town_lab", "protected": true},
 	{"instance_id": "sandbox_tree_northwest", "catalog_id": &"ranch_sapling", "cell": Vector2i(37, 1), "role": &"town_tree"},
@@ -1349,13 +1355,166 @@ func restore_sandbox_layout(snapshot: Dictionary) -> bool:
 	var saved_objects: Array = snapshot.get("town_objects", [])
 	var saved_terrain: Dictionary = snapshot.get("town_terrain", {})
 	var saved_residents: Dictionary = snapshot.get("resident_states", {})
-	town_objects = saved_objects.duplicate(true)
-	town_terrain = saved_terrain.duplicate(true)
-	resident_states = saved_residents.duplicate(true)
+	var restored_objects: Array[Dictionary] = []
+	for raw_object in saved_objects:
+		if not raw_object is Dictionary:
+			return false
+		var restored_object: Dictionary = (raw_object as Dictionary).duplicate(true)
+		restored_object["catalog_id"] = StringName(restored_object.get("catalog_id", ""))
+		restored_object["x"] = int(restored_object.get("x", 0))
+		restored_object["y"] = int(restored_object.get("y", 0))
+		if restored_object.has("role"):
+			restored_object["role"] = StringName(restored_object.get("role", ""))
+		restored_objects.append(restored_object)
+	var restored_terrain := {}
+	for terrain_key in saved_terrain:
+		restored_terrain[String(terrain_key)] = StringName(saved_terrain[terrain_key])
+	var restored_residents := {}
+	for resident_id in saved_residents:
+		var raw_state: Variant = saved_residents[resident_id]
+		if not raw_state is Dictionary:
+			return false
+		var restored_state: Dictionary = (raw_state as Dictionary).duplicate(true)
+		for coordinate_key in ["x", "y", "target_x", "target_y"]:
+			if restored_state.has(coordinate_key):
+				restored_state[coordinate_key] = int(restored_state.get(coordinate_key, 0))
+		if restored_state.has("activity"):
+			restored_state["activity"] = StringName(restored_state.get("activity", ""))
+		restored_residents[StringName(resident_id)] = restored_state
+	town_objects = restored_objects
+	town_terrain = restored_terrain
+	resident_states = restored_residents
 	next_town_object_id = maxi(1, int(snapshot.get("next_town_object_id", town_objects.size() + 1)))
 	town_objects_changed.emit()
 	town_terrain_changed.emit()
 	state_changed.emit()
+	return true
+
+
+func sandbox_layout_slot_path(slot_id: int) -> String:
+	return SANDBOX_LAYOUT_SLOT_PATH % clampi(slot_id, 1, SANDBOX_LAYOUT_SLOT_COUNT)
+
+
+func sandbox_layout_slot_exists(slot_id: int) -> bool:
+	if slot_id < 1 or slot_id > SANDBOX_LAYOUT_SLOT_COUNT:
+		return false
+	return FileAccess.file_exists(sandbox_layout_slot_path(slot_id))
+
+
+func save_sandbox_layout_slot(slot_id: int) -> Error:
+	if not sandbox_mode or slot_id < 1 or slot_id > SANDBOX_LAYOUT_SLOT_COUNT:
+		return ERR_INVALID_PARAMETER
+	return SAVE_REPOSITORY.write_json(sandbox_layout_slot_path(slot_id), {
+		"version": SANDBOX_LAYOUT_SLOT_VERSION,
+		"slot_id": slot_id,
+		"layout": sandbox_layout_snapshot(),
+	})
+
+
+func load_sandbox_layout_slot(slot_id: int) -> Dictionary:
+	if not sandbox_mode or slot_id < 1 or slot_id > SANDBOX_LAYOUT_SLOT_COUNT:
+		return {"loaded": false, "reason": "invalid_slot"}
+	var path := sandbox_layout_slot_path(slot_id)
+	var candidates := PackedStringArray([path])
+	for recovery_path in SAVE_REPOSITORY.recovery_paths(path):
+		candidates.append(recovery_path)
+	for index in candidates.size():
+		var candidate := candidates[index]
+		var text_result := SAVE_REPOSITORY.read_text(candidate)
+		if not bool(text_result.get("ok", false)):
+			continue
+		var parser := JSON.new()
+		if parser.parse(String(text_result.get("text", ""))) != OK or not parser.data is Dictionary:
+			continue
+		var payload: Dictionary = parser.data
+		var raw_layout: Variant = payload.get("layout", {})
+		if not raw_layout is Dictionary:
+			continue
+		var layout: Dictionary = raw_layout
+		if int(payload.get("version", 0)) != SANDBOX_LAYOUT_SLOT_VERSION or not _sandbox_layout_payload_valid(layout):
+			continue
+		if not restore_sandbox_layout(layout):
+			return {"loaded": false, "reason": "restore_failed"}
+		if index > 0:
+			SAVE_REPOSITORY.restore_primary(path, String(text_result.get("text", "")))
+		return {"loaded": true, "slot_id": slot_id, "recovered": index > 0}
+	return {"loaded": false, "reason": "missing_or_invalid"}
+
+
+func _sandbox_layout_payload_valid(layout: Dictionary) -> bool:
+	var raw_objects: Variant = layout.get("town_objects", [])
+	var raw_terrain: Variant = layout.get("town_terrain", {})
+	var raw_residents: Variant = layout.get("resident_states", {})
+	if not raw_objects is Array or not raw_terrain is Dictionary or not raw_residents is Dictionary:
+		return false
+	var objects: Array = raw_objects
+	var terrain: Dictionary = raw_terrain
+	var residents: Dictionary = raw_residents
+	if objects.is_empty() or int(layout.get("next_town_object_id", 0)) < 1:
+		return false
+	var instance_ids := {}
+	var occupied_cells := {}
+	var largest_generated_id := 0
+	var required_protected_ids := {}
+	var protected_definitions := {}
+	for authored in SANDBOX_AUTHORED_OBJECTS:
+		if bool(authored.get("protected", false)):
+			var protected_id := String(authored.get("instance_id", ""))
+			required_protected_ids[protected_id] = true
+			protected_definitions[protected_id] = authored
+	for raw_object in objects:
+		if not raw_object is Dictionary:
+			return false
+		var placed: Dictionary = raw_object
+		var instance_id := String(placed.get("instance_id", ""))
+		var catalog_id := StringName(placed.get("catalog_id", ""))
+		if instance_id.is_empty() or instance_ids.has(instance_id) or SANDBOX_OBJECT_CATALOG.definition(catalog_id).is_empty():
+			return false
+		instance_ids[instance_id] = true
+		if instance_id.begins_with("town_object_"):
+			var generated_suffix := instance_id.trim_prefix("town_object_")
+			if not generated_suffix.is_valid_int():
+				return false
+			largest_generated_id = maxi(largest_generated_id, int(generated_suffix))
+		var footprint: Vector2i = SANDBOX_OBJECT_CATALOG.definition(catalog_id).get("footprint", Vector2i.ONE)
+		var rect := Rect2i(Vector2i(int(placed.get("x", -999)), int(placed.get("y", -999))), footprint)
+		if not SANDBOX_TOWN_INTERIOR.encloses(rect):
+			return false
+		if protected_definitions.has(instance_id):
+			var authored: Dictionary = protected_definitions[instance_id]
+			if not bool(placed.get("protected", false)) \
+					or StringName(authored.get("catalog_id", "")) != catalog_id \
+					or StringName(authored.get("role", "")) != StringName(placed.get("role", "")):
+				return false
+		for y in range(rect.position.y, rect.end.y):
+			for x in range(rect.position.x, rect.end.x):
+				var occupied_cell := Vector2i(x, y)
+				if occupied_cells.has(occupied_cell):
+					return false
+				occupied_cells[occupied_cell] = true
+	for protected_id in required_protected_ids:
+		if not instance_ids.has(protected_id):
+			return false
+	if int(layout.get("next_town_object_id", 0)) <= largest_generated_id:
+		return false
+	for terrain_key in terrain.keys():
+		var parts := String(terrain_key).split(",")
+		if parts.size() != 2 or not parts[0].is_valid_int() or not parts[1].is_valid_int():
+			return false
+		var cell := Vector2i(int(parts[0]), int(parts[1]))
+		if not SANDBOX_TOWN_INTERIOR.has_point(cell) or SANDBOX_TERRAIN_CATALOG.definition(StringName(terrain[terrain_key])).is_empty():
+			return false
+	var resident_cells := {}
+	for resident_id in residents.keys():
+		if String(resident_id).is_empty():
+			return false
+		var state: Variant = residents[resident_id]
+		if not state is Dictionary:
+			return false
+		var resident_cell := Vector2i(int(state.get("x", -999)), int(state.get("y", -999)))
+		if not SANDBOX_TOWN_INTERIOR.has_point(resident_cell) or occupied_cells.has(resident_cell) or resident_cells.has(resident_cell):
+			return false
+		resident_cells[resident_cell] = true
 	return true
 
 

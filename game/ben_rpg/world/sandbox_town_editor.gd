@@ -14,6 +14,7 @@ var active := false
 var editor_mode: StringName = &"objects"
 var cursor_cell := Vector2i(50, 10)
 var selected_instance_id := ""
+var selected_instance_ids: Array[String] = []
 var selected_resident_id: StringName = &""
 var pack_index := 0
 var item_index := 0
@@ -27,6 +28,10 @@ var _last_painted_cell := Gameboard.INVALID_CELL
 var _undo_stack: Array[Dictionary] = []
 var _redo_stack: Array[Dictionary] = []
 var _clipboard: Dictionary = {}
+var _box_selection_start := Gameboard.INVALID_CELL
+var _multi_move_origin := Gameboard.INVALID_CELL
+var _search_query := ""
+var _search_input: LineEdit
 
 
 func _ready() -> void:
@@ -49,6 +54,13 @@ func _input(event: InputEvent) -> void:
 		return
 	if not active:
 		return
+	if _search_input and _search_input.has_focus() and event is InputEventKey and event.pressed:
+		if event.physical_keycode == KEY_ESCAPE:
+			_search_input.release_focus()
+			get_viewport().set_input_as_handled()
+			return
+		elif not event.ctrl_pressed:
+			return
 	if event is InputEventMouseMotion and editor_mode == &"terrain":
 		var drag_cell := _screen_to_cell(event.position)
 		if drag_cell != _last_painted_cell and (event.button_mask & MOUSE_BUTTON_MASK_LEFT) != 0:
@@ -61,13 +73,17 @@ func _input(event: InputEvent) -> void:
 			_clear_terrain()
 			get_viewport().set_input_as_handled()
 			return
+	if event is InputEventMouseMotion and _box_selection_start != Gameboard.INVALID_CELL:
+		cursor_cell = _screen_to_cell(event.position)
+		_sync_renderer()
+		get_viewport().set_input_as_handled()
+		return
 
 	if event.is_action_pressed("back") or event.is_action_pressed("ui_cancel"):
-		if selected_instance_id.is_empty() and selected_resident_id == &"":
+		if selected_instance_id.is_empty() and selected_instance_ids.is_empty() and selected_resident_id == &"":
 			_set_active(false)
 		else:
-			selected_instance_id = ""
-			selected_resident_id = &""
+			_clear_object_selection()
 			_sync_renderer()
 			_refresh_hud()
 		get_viewport().set_input_as_handled()
@@ -92,6 +108,18 @@ func _input(event: InputEvent) -> void:
 			get_viewport().set_input_as_handled()
 			return
 	if event is InputEventKey and event.pressed and not event.echo:
+		if event.ctrl_pressed and event.physical_keycode == KEY_F:
+			_focus_search()
+			get_viewport().set_input_as_handled()
+			return
+		if event.shift_pressed and not event.ctrl_pressed and event.physical_keycode >= KEY_1 and event.physical_keycode <= KEY_3:
+			_load_layout_slot(event.physical_keycode - KEY_1 + 1)
+			get_viewport().set_input_as_handled()
+			return
+		if event.ctrl_pressed and event.physical_keycode >= KEY_1 and event.physical_keycode <= KEY_3:
+			_save_layout_slot(event.physical_keycode - KEY_1 + 1)
+			get_viewport().set_input_as_handled()
+			return
 		if event.ctrl_pressed and event.physical_keycode == KEY_Z:
 			_undo_sandbox_edit()
 			get_viewport().set_input_as_handled()
@@ -121,11 +149,13 @@ func _input(event: InputEvent) -> void:
 				_cycle_item(1)
 			KEY_F:
 				_flip_selected()
+			KEY_G:
+				_begin_multi_move()
 			KEY_DELETE:
 				_remove_selected_or_cursor()
 			_:
 				pass
-		if event.physical_keycode in [KEY_T, KEY_Q, KEY_E, KEY_Z, KEY_C, KEY_F, KEY_DELETE]:
+		if event.physical_keycode in [KEY_T, KEY_Q, KEY_E, KEY_Z, KEY_C, KEY_F, KEY_G, KEY_DELETE]:
 			get_viewport().set_input_as_handled()
 			return
 	if event.is_action_pressed("ui_left"):
@@ -138,11 +168,21 @@ func _input(event: InputEvent) -> void:
 		_move_cursor(Vector2i.DOWN)
 	elif event.is_action_pressed("ui_accept") or event.is_action_pressed("interact"):
 		_confirm_cursor()
-	elif event is InputEventMouseButton and event.pressed:
+	elif event is InputEventMouseButton:
 		cursor_cell = _screen_to_cell(event.position)
 		_last_painted_cell = Gameboard.INVALID_CELL
-		if event.button_index == MOUSE_BUTTON_LEFT:
-			_confirm_cursor()
+		if event.button_index == MOUSE_BUTTON_MIDDLE:
+			if event.pressed:
+				_box_selection_start = cursor_cell
+			else:
+				_commit_box_selection(cursor_cell)
+		elif not event.pressed:
+			return
+		elif event.button_index == MOUSE_BUTTON_LEFT:
+			if event.ctrl_pressed:
+				_toggle_multi_selection_at(cursor_cell)
+			else:
+				_confirm_cursor()
 		elif event.button_index == MOUSE_BUTTON_RIGHT:
 			_remove_selected_or_cursor()
 		elif event.button_index == MOUSE_BUTTON_WHEEL_UP:
@@ -156,8 +196,7 @@ func _input(event: InputEvent) -> void:
 
 func _set_active(value: bool) -> void:
 	active = value
-	selected_instance_id = ""
-	selected_resident_id = &""
+	_clear_object_selection()
 	_last_painted_cell = Gameboard.INVALID_CELL
 	if value:
 		var player_cell := GamepieceRegistry.get_cell(Player.gamepiece)
@@ -184,6 +223,12 @@ func _confirm_cursor() -> void:
 	if editor_mode == &"terrain":
 		_paint_terrain()
 		return
+	if _multi_move_origin != Gameboard.INVALID_CELL:
+		_commit_multi_move()
+		return
+	if not selected_instance_ids.is_empty():
+		_mode_label.text = "MULTISELECT READY — PRESS G TO MOVE %d OBJECTS, F TO FLIP, OR DELETE TO REMOVE" % selected_instance_ids.size()
+		return
 	if selected_resident_id != &"":
 		var before := _layout_snapshot()
 		if _resident_placement_valid(cursor_cell, selected_resident_id) and campaign.relocate_sandbox_resident(selected_resident_id, cursor_cell):
@@ -207,6 +252,7 @@ func _confirm_cursor() -> void:
 		return
 	var existing: Dictionary = renderer.object_at_cell(cursor_cell)
 	if not existing.is_empty():
+		_clear_object_selection()
 		selected_instance_id = String(existing.get("instance_id", ""))
 		cursor_cell = Vector2i(int(existing.get("x", cursor_cell.x)), int(existing.get("y", cursor_cell.y)))
 		_sync_renderer()
@@ -231,6 +277,15 @@ func _confirm_cursor() -> void:
 func _remove_selected_or_cursor() -> void:
 	if editor_mode == &"terrain":
 		_clear_terrain()
+		return
+	if not selected_instance_ids.is_empty():
+		var before_batch := _layout_snapshot()
+		for selected_id in selected_instance_ids:
+			CampaignState.remove_town_object(selected_id)
+		_clear_object_selection()
+		_after_mutation(before_batch)
+		_sync_renderer()
+		_refresh_hud()
 		return
 	if selected_resident_id != &"":
 		_mode_label.text = "PROTECTED RESIDENT — RELOCATE THEM; RESIDENTS CANNOT BE DELETED"
@@ -259,7 +314,17 @@ func _remove_selected_or_cursor() -> void:
 
 
 func _flip_selected() -> void:
-	if editor_mode == &"terrain" or selected_instance_id.is_empty() or selected_resident_id != &"":
+	if editor_mode == &"terrain" or selected_resident_id != &"":
+		return
+	if not selected_instance_ids.is_empty():
+		var before_batch := _layout_snapshot()
+		for selected_id in selected_instance_ids:
+			CampaignState.flip_town_object(selected_id)
+		_after_mutation(before_batch)
+		_sync_renderer()
+		_refresh_hud()
+		return
+	if selected_instance_id.is_empty():
 		return
 	var before := _layout_snapshot()
 	if CampaignState.flip_town_object(selected_instance_id):
@@ -267,12 +332,143 @@ func _flip_selected() -> void:
 		_sync_renderer()
 
 
-func _after_mutation(before: Dictionary = {}) -> void:
-	_record_history(before)
+func _clear_object_selection() -> void:
+	selected_instance_id = ""
+	selected_instance_ids.clear()
+	selected_resident_id = &""
+	_multi_move_origin = Gameboard.INVALID_CELL
+	_box_selection_start = Gameboard.INVALID_CELL
+
+
+func _toggle_multi_selection_at(cell: Vector2i) -> void:
+	if editor_mode != &"objects":
+		return
+	var placed: Dictionary = renderer.object_at_cell(cell)
+	if placed.is_empty():
+		return
+	var instance_id := String(placed.get("instance_id", ""))
+	if bool(placed.get("protected", false)):
+		_mode_label.text = "PROTECTED TOWN FACILITY — MOVE IT INDIVIDUALLY TO PRESERVE ITS SERVICE DOOR"
+		return
+	selected_instance_id = ""
+	selected_resident_id = &""
+	_multi_move_origin = Gameboard.INVALID_CELL
+	var selected_index := selected_instance_ids.find(instance_id)
+	if selected_index >= 0:
+		selected_instance_ids.remove_at(selected_index)
+	else:
+		selected_instance_ids.append(instance_id)
+	_sync_renderer()
+	_refresh_hud()
+
+
+func _commit_box_selection(end_cell: Vector2i) -> void:
+	if editor_mode != &"objects" or _box_selection_start == Gameboard.INVALID_CELL:
+		_box_selection_start = Gameboard.INVALID_CELL
+		return
+	var start := _box_selection_start
+	_box_selection_start = Gameboard.INVALID_CELL
+	var selection := Rect2i(
+		Vector2i(mini(start.x, end_cell.x), mini(start.y, end_cell.y)),
+		Vector2i(absi(end_cell.x - start.x) + 1, absi(end_cell.y - start.y) + 1)
+	)
+	selected_instance_id = ""
+	selected_resident_id = &""
+	selected_instance_ids.clear()
+	for placed in CampaignState.town_objects:
+		if selection.intersects(renderer.placed_cell_rect(placed)) and not bool(placed.get("protected", false)):
+			selected_instance_ids.append(String(placed.get("instance_id", "")))
+	if selected_instance_ids.is_empty():
+		_mode_label.text = "BOX SELECT FOUND NO EDITABLE OBJECTS — PROTECTED FACILITIES STAY INDIVIDUAL"
+	_sync_renderer()
+	_refresh_hud()
+
+
+func _begin_multi_move() -> void:
+	if editor_mode != &"objects" or selected_instance_ids.size() < 2:
+		_mode_label.text = "SELECT TWO OR MORE UNPROTECTED OBJECTS WITH CTRL+CLICK OR MIDDLE-DRAG"
+		return
+	var anchor := Vector2i(9999, 9999)
+	for instance_id in selected_instance_ids:
+		var placed := CampaignState.town_object(instance_id)
+		anchor.x = mini(anchor.x, int(placed.get("x", anchor.x)))
+		anchor.y = mini(anchor.y, int(placed.get("y", anchor.y)))
+	_multi_move_origin = anchor
+	cursor_cell = anchor
+	_mode_label.text = "MOVING %d OBJECTS — MOVE CURSOR, THEN PRESS ENTER OR CLICK TO COMMIT" % selected_instance_ids.size()
+	_sync_renderer()
+
+
+func _multi_move_valid(delta: Vector2i) -> bool:
+	if _multi_move_origin == Gameboard.INVALID_CELL or selected_instance_ids.is_empty():
+		return false
+	var town_inside := Rect2i(campaign.TOWN_ORIGIN + Vector2i.ONE, campaign.TOWN_SIZE - Vector2i(2, 2))
+	var selected_set := {}
+	var proposed_rects: Array[Rect2i] = []
+	for instance_id in selected_instance_ids:
+		selected_set[instance_id] = true
+		var placed := CampaignState.town_object(instance_id)
+		if placed.is_empty() or bool(placed.get("protected", false)):
+			return false
+		var proposed := Rect2i(renderer.placed_cell_rect(placed).position + delta, renderer.placed_cell_rect(placed).size)
+		if not town_inside.encloses(proposed):
+			return false
+		for earlier in proposed_rects:
+			if proposed.intersects(earlier):
+				return false
+		proposed_rects.append(proposed)
+	for plot_index in CampaignState.built_facilities.keys():
+		var facility_rect: Rect2i = campaign.FACILITY_PLOTS[int(plot_index)]
+		facility_rect.position += campaign.TOWN_ORIGIN
+		for proposed in proposed_rects:
+			if proposed.intersects(facility_rect):
+				return false
+	for placed in CampaignState.town_objects:
+		if selected_set.has(String(placed.get("instance_id", ""))):
+			continue
+		for proposed in proposed_rects:
+			if proposed.intersects(renderer.placed_cell_rect(placed)):
+				return false
+	for proposed in proposed_rects:
+		for y in range(proposed.position.y, proposed.end.y):
+			for x in range(proposed.position.x, proposed.end.x):
+				if GamepieceRegistry.get_gamepiece(Vector2i(x, y)):
+					return false
+	return true
+
+
+func _commit_multi_move() -> void:
+	var delta := cursor_cell - _multi_move_origin
+	if delta == Vector2i.ZERO:
+		_multi_move_origin = Gameboard.INVALID_CELL
+		_sync_renderer()
+		_refresh_hud()
+		return
+	if not _multi_move_valid(delta):
+		_mode_label.text = "GROUP MOVE BLOCKED — KEEP EVERY FOOTPRINT CLEAR, IN BOUNDS, AND OFF TOWN SERVICES"
+		return
+	var before := _layout_snapshot()
+	for instance_id in selected_instance_ids:
+		var placed := CampaignState.town_object(instance_id)
+		CampaignState.move_town_object(instance_id, Vector2i(int(placed.get("x", 0)), int(placed.get("y", 0))) + delta)
+	_clear_object_selection()
+	_after_mutation(before)
+	_sync_renderer()
+	_refresh_hud()
+
+
+func _after_mutation(before: Dictionary = {}) -> bool:
 	if campaign:
 		campaign.refresh_sandbox_object_collision()
+		if not campaign.sandbox_required_routes_reachable():
+			CampaignState.restore_sandbox_layout(before)
+			campaign.restore_sandbox_layout()
+			_mode_label.text = "EDIT BLOCKED — IT WOULD STRAND A REQUIRED TOWN ROUTE"
+			return false
+	_record_history(before)
 	if not suppress_persistence:
 		CampaignState.save_game()
+	return true
 
 
 func _layout_snapshot() -> Dictionary:
@@ -320,8 +516,7 @@ func _after_history_restore(message: String) -> void:
 		campaign.restore_sandbox_layout()
 	if not suppress_persistence:
 		CampaignState.save_game()
-	selected_instance_id = ""
-	selected_resident_id = &""
+	_clear_object_selection()
 	_sync_renderer()
 	_refresh_hud()
 	_mode_label.text = "%s   •   UNDO %d   •   REDO %d" % [message, _undo_stack.size(), _redo_stack.size()]
@@ -360,8 +555,7 @@ func _paste_copied_object() -> void:
 
 func _toggle_editor_mode() -> void:
 	editor_mode = &"terrain" if editor_mode == &"objects" else &"objects"
-	selected_instance_id = ""
-	selected_resident_id = &""
+	_clear_object_selection()
 	pack_index = 0
 	item_index = 0
 	_last_painted_cell = Gameboard.INVALID_CELL
@@ -453,7 +647,7 @@ func _terrain_placement_valid(brush_id: StringName, cell: Vector2i) -> bool:
 
 
 func _cycle_pack(direction: int) -> void:
-	if not selected_instance_id.is_empty() or selected_resident_id != &"":
+	if not selected_instance_id.is_empty() or not selected_instance_ids.is_empty() or selected_resident_id != &"":
 		return
 	pack_index = wrapi(pack_index + direction, 0, _pack_order().size())
 	item_index = 0
@@ -462,7 +656,7 @@ func _cycle_pack(direction: int) -> void:
 
 
 func _cycle_item(direction: int) -> void:
-	if not selected_instance_id.is_empty() or selected_resident_id != &"":
+	if not selected_instance_id.is_empty() or not selected_instance_ids.is_empty() or selected_resident_id != &"":
 		return
 	var items := _pack_items()
 	if items.is_empty():
@@ -490,11 +684,63 @@ func _pack_items() -> Array[StringName]:
 	if packs.is_empty():
 		return []
 	pack_index = clampi(pack_index, 0, packs.size() - 1)
-	return TERRAIN_CATALOG.brushes_for_pack(packs[pack_index]) if editor_mode == &"terrain" else CATALOG.items_for_pack(packs[pack_index])
+	var items: Array[StringName] = TERRAIN_CATALOG.brushes_for_pack(packs[pack_index]) if editor_mode == &"terrain" else CATALOG.items_for_pack(packs[pack_index])
+	if _search_query.is_empty():
+		return items
+	var filtered: Array[StringName] = []
+	for catalog_id in items:
+		var definition: Dictionary = TERRAIN_CATALOG.definition(catalog_id) if editor_mode == &"terrain" else CATALOG.definition(catalog_id)
+		var searchable := "%s %s" % [String(catalog_id), String(definition.get("name", ""))]
+		if searchable.to_lower().contains(_search_query):
+			filtered.append(catalog_id)
+	return filtered
 
 
 func _pack_order() -> Array:
 	return TERRAIN_CATALOG.PACK_ORDER if editor_mode == &"terrain" else CATALOG.PACK_ORDER
+
+
+func _set_search_query(next_text: String) -> void:
+	_search_query = next_text.strip_edges().to_lower()
+	item_index = 0
+	_refresh_hud()
+	_sync_renderer()
+
+
+func _focus_search() -> void:
+	if _search_input:
+		_search_input.grab_focus()
+		_search_input.select_all()
+
+
+func _save_layout_slot(slot_id: int) -> void:
+	var error := CampaignState.save_sandbox_layout_slot(slot_id)
+	if error != OK:
+		_mode_label.text = "LAYOUT %d WAS NOT SAVED — CHECK SANDBOX MODE AND THE SAVE FOLDER" % slot_id
+		return
+	_mode_label.text = "SAVED LAYOUT %d — LOAD WITH SHIFT+%d" % [slot_id, slot_id]
+
+
+func _load_layout_slot(slot_id: int) -> void:
+	var before := _layout_snapshot()
+	var result := CampaignState.load_sandbox_layout_slot(slot_id)
+	if not bool(result.get("loaded", false)):
+		_mode_label.text = "LAYOUT %d IS MISSING OR INVALID — YOUR CURRENT TOWN WAS LEFT UNCHANGED" % slot_id
+		return
+	if campaign:
+		campaign.restore_sandbox_layout()
+		if not campaign.sandbox_required_routes_reachable():
+			CampaignState.restore_sandbox_layout(before)
+			campaign.restore_sandbox_layout()
+			_mode_label.text = "LAYOUT %d WOULD STRAND A REQUIRED TOWN ROUTE — IT WAS REJECTED" % slot_id
+			return
+	_record_history(before)
+	if not suppress_persistence:
+		CampaignState.save_game()
+	_clear_object_selection()
+	_sync_renderer()
+	_refresh_hud()
+	_mode_label.text = "LOADED LAYOUT %d%s" % [slot_id, " FROM RECOVERY COPY" if bool(result.get("recovered", false)) else ""]
 
 
 func _sync_renderer() -> void:
@@ -502,10 +748,22 @@ func _sync_renderer() -> void:
 		return
 	var catalog_id := _selected_catalog_id() if not selected_instance_id.is_empty() else _current_catalog_id()
 	var valid := _terrain_placement_valid(catalog_id, cursor_cell) if editor_mode == &"terrain" else _placement_valid(catalog_id, cursor_cell, selected_instance_id)
+	if _multi_move_origin != Gameboard.INVALID_CELL:
+		catalog_id = &""
+		valid = _multi_move_valid(cursor_cell - _multi_move_origin)
 	if selected_resident_id != &"":
 		catalog_id = &""
 		valid = _resident_placement_valid(cursor_cell, selected_resident_id)
-	renderer.set_editor_state(active, cursor_cell, catalog_id, valid, selected_instance_id, editor_mode)
+	renderer.set_editor_state(active, cursor_cell, catalog_id, valid, selected_instance_id, editor_mode, selected_instance_ids, _active_box_selection_rect())
+
+
+func _active_box_selection_rect() -> Rect2i:
+	if _box_selection_start == Gameboard.INVALID_CELL:
+		return Rect2i()
+	return Rect2i(
+		Vector2i(mini(_box_selection_start.x, cursor_cell.x), mini(_box_selection_start.y, cursor_cell.y)),
+		Vector2i(absi(cursor_cell.x - _box_selection_start.x) + 1, absi(cursor_cell.y - _box_selection_start.y) + 1)
+	)
 
 
 func _screen_to_cell(screen_position: Vector2) -> Vector2i:
@@ -522,8 +780,8 @@ func _player_is_in_town() -> bool:
 
 func _build_hud() -> void:
 	_panel = PanelContainer.new()
-	_panel.position = Vector2(210, 832)
-	_panel.size = Vector2(1500, 196)
+	_panel.position = Vector2(210, 752)
+	_panel.size = Vector2(1500, 276)
 	_panel.texture_filter = CanvasItem.TEXTURE_FILTER_NEAREST
 	_panel.add_theme_stylebox_override("panel", _panel_style())
 	add_child(_panel)
@@ -543,6 +801,13 @@ func _build_hud() -> void:
 	_pack_label.add_theme_font_size_override("font_size", 25)
 	_pack_label.add_theme_color_override("font_color", Color(0.5, 0.9, 1.0))
 	details.add_child(_pack_label)
+	_search_input = LineEdit.new()
+	_search_input.placeholder_text = "SEARCH CURRENT PACK  (CTRL+F)"
+	_search_input.clear_button_enabled = true
+	_search_input.max_length = 48
+	_search_input.add_theme_font_size_override("font_size", 21)
+	_search_input.text_changed.connect(_set_search_query)
+	details.add_child(_search_input)
 	_item_label = Label.new()
 	_item_label.add_theme_font_size_override("font_size", 34)
 	_item_label.add_theme_color_override("font_color", Color(1.0, 0.86, 0.48))
@@ -564,10 +829,10 @@ func _refresh_hud() -> void:
 		var brush_id := _current_catalog_id()
 		var terrain_definition: Dictionary = TERRAIN_CATALOG.definition(brush_id)
 		var terrain_packs: Array = _pack_order()
-		_pack_label.text = "TERRAIN MODE   •   PACK  %d / %d   •   %s" % [pack_index + 1, terrain_packs.size(), String(terrain_definition.get("pack", "Unknown")).to_upper()]
+		_pack_label.text = "TERRAIN MODE   •   PACK  %d / %d   •   %s%s" % [pack_index + 1, terrain_packs.size(), String(terrain_definition.get("pack", "Unknown")).to_upper(), "   •   FILTER: " + _search_query.to_upper() if not _search_query.is_empty() else ""]
 		_item_label.text = String(terrain_definition.get("name", "No terrain brush")).to_upper()
 		_mode_label.text = "INDIVIDUAL TILE  %d / %d   •   %s" % [item_index + 1, _pack_items().size(), "BLOCKING" if bool(terrain_definition.get("blocks", false)) else "WALKABLE"]
-		_help_label.text = "D-pad/arrows: move brush  •  A/Enter/click or left-drag: paint  •  X/Delete/right-click or right-drag: restore base  •  Ctrl+Z/Y: undo/redo  •  LB/RB or Z/C: tile  •  L3 or Q/E: pack  •  Select/T: objects  •  B/Esc: close"
+		_help_label.text = "D-pad/arrows: move brush  •  A/Enter/click or left-drag: paint  •  X/Delete/right-click or right-drag: restore base  •  Ctrl+Z/Y: undo/redo  •  Ctrl+F: search  •  LB/RB or Z/C: tile  •  L3 or Q/E: pack  •  Select/T: objects  •  Ctrl+1–3: save layouts  •  Shift+1–3: load layouts"
 		var terrain_texture_path := String(terrain_definition.get("texture", ""))
 		if ResourceLoader.exists(terrain_texture_path):
 			var terrain_atlas := AtlasTexture.new()
@@ -588,14 +853,17 @@ func _refresh_hud() -> void:
 		return
 	var catalog_id := _selected_catalog_id() if not selected_instance_id.is_empty() else _current_catalog_id()
 	var definition := CATALOG.definition(catalog_id)
-	_pack_label.text = "PACK  %d / %d   •   %s" % [pack_index + 1, CATALOG.PACK_ORDER.size(), String(definition.get("pack", "Unknown")).to_upper()]
+	_pack_label.text = "PACK  %d / %d   •   %s%s" % [pack_index + 1, CATALOG.PACK_ORDER.size(), String(definition.get("pack", "Unknown")).to_upper(), "   •   FILTER: " + _search_query.to_upper() if not _search_query.is_empty() else ""]
 	_item_label.text = String(definition.get("name", "No object")).to_upper()
 	var selected := CampaignState.town_object(selected_instance_id)
 	if not selected_instance_id.is_empty() and bool(selected.get("protected", false)):
 		_mode_label.text = "EDITING PROTECTED TOWN FACILITY — MOVABLE, NOT DELETABLE"
 	else:
-		_mode_label.text = "EDITING PLACED OBJECT" if not selected_instance_id.is_empty() else "INDIVIDUAL SPRITE  %d / %d" % [item_index + 1, _pack_items().size()]
-		_help_label.text = "D-pad/arrows: move cursor  •  A/Enter or click: place/select/confirm  •  Ctrl+Z/Y: undo/redo  •  Ctrl+C/V: copy/paste  •  LB/RB or Z/C: item  •  L3 or Q/E: pack  •  X/Delete/right-click: remove  •  R3/F: flip  •  Select/T: terrain  •  B/Esc: cancel/close"
+		if not selected_instance_ids.is_empty():
+			_mode_label.text = "MULTISELECT  %d OBJECTS%s" % [selected_instance_ids.size(), " — MOVING" if _multi_move_origin != Gameboard.INVALID_CELL else ""]
+		else:
+			_mode_label.text = "EDITING PLACED OBJECT" if not selected_instance_id.is_empty() else "INDIVIDUAL SPRITE  %d / %d" % [item_index + 1, _pack_items().size()]
+		_help_label.text = "Ctrl+click/middle-drag: multiselect  •  G: move group  •  Ctrl+Z/Y: undo/redo  •  Ctrl+C/V: copy/paste  •  Ctrl+F: search  •  Ctrl+1–3: save layouts  •  Shift+1–3: load layouts  •  X/Delete: remove  •  R3/F: flip  •  Select/T: terrain"
 	var texture_path := String(definition.get("texture", ""))
 	if ResourceLoader.exists(texture_path):
 		var atlas := AtlasTexture.new()

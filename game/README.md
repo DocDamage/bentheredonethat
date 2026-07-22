@@ -28,7 +28,7 @@ Every authored combat species now feeds a persistent 38-entry Library bestiary. 
 
 ## Controls
 
-The field accepts keyboard, mouse click-to-move, and modern controllers. Menus and town-building flows expose controller navigation and direct keyboard shortcuts. The Franklin & Company OPTIONS page persists battle speed/mode, motion and flash reduction, text settings, audio levels, fullscreen, and controller preferences. The sandbox is a separate mode with terrain painting, sortable asset packs, individual sprite/building pieces, relocation of authored map objects, 100-step undo/redo, and copy/paste.
+The field accepts keyboard, mouse click-to-move, and modern controllers. Menus and town-building flows expose controller navigation and direct keyboard shortcuts. The Franklin & Company OPTIONS page persists battle speed/mode, motion and flash reduction, text settings, audio levels, fullscreen, and controller preferences. The sandbox is a separate mode with terrain painting, pack filters and Ctrl+F text search, individual sprite/building pieces, authored-object relocation, 100-step undo/redo, copy/paste, Ctrl+click or middle-drag multiselect, batch move/flip/delete, and three validated layout slots (Ctrl+1–3 save; Shift+1–3 load). It rejects overlapping, out-of-bounds, altered-anchor, malformed, or route-stranding layouts before they can replace the active town.
 
 Town residents follow role-driven daily schedules instead of roaming randomly. Mara, Elias, Ada, and Nell commute between valid town cells, rotate through job-specific work, take lunch, run errands, and return home. They reserve destinations to avoid crowding, yield and replan after repeated blockage, and describe their current work when spoken to. A compact activity plaque appears only when Ben approaches, keeping the wider map clear.
 
@@ -50,7 +50,7 @@ Open `project.godot` in Godot 4.7.1 and run the project. The bundled console exe
 
 ## Verification
 
-Automated scenes live in `tests`. The current suite contains 67 isolated smoke tests covering boot flow, movement, controllers, authored world collision footprints, collision-free field followers, town construction, conventional Armory buying/selling/comparisons, services, NPC routines, sandbox editing/history, all universe scenarios, the ending/postgame loop, quests, seven persistent save points, persistent exploration caches, roster management, jobs, encounter pressure, combat depth, save migration, persistent bestiary and monster recruitment, supplied character animation/UI/VFX/SFX, and asset slicing.
+Automated scenes live in `tests`. The current suite contains 67 isolated smoke tests covering boot flow, movement, controllers, authored world collision footprints, collision-free field followers, town construction, conventional Armory buying/selling/comparisons, services, NPC routines, sandbox history/clipboard/box selection/batch move/search/validated layouts, all universe scenarios, the ending/postgame loop, quests, seven persistent save points, persistent exploration caches, roster management, jobs, encounter pressure, combat depth, save migration, persistent bestiary and monster recruitment, supplied character animation/UI/VFX/SFX, and asset slicing.
 
 Visual review scenes live in `validation`; they render town, field, and battle captures at the actual in-game scale so atlas bleed and bad proportions can be caught by inspection.
 

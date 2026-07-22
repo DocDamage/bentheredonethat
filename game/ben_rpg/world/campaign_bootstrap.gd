@@ -964,6 +964,33 @@ func restore_sandbox_layout() -> void:
 		_resident_manager.restore_sandbox_layout_positions()
 
 
+func sandbox_required_routes_reachable() -> bool:
+	# Sandbox edits may change scenery freely, but must never isolate the lab or a
+	# constructed service from the town arrival route. Ignore moving actors while
+	# checking topology: only static collision should reject an edit.
+	if not CampaignState.sandbox_mode or not Gameboard.pathfinder.has_cell(TOWN_ARRIVAL):
+		return true
+	var required_cells: Array[Vector2i] = []
+	var laboratory := CampaignState.town_object_with_role(&"town_lab")
+	if laboratory.is_empty():
+		return false
+	var lab_definition: Dictionary = SANDBOX_OBJECT_CATALOG.definition(StringName(laboratory.get("catalog_id", "")))
+	if lab_definition.is_empty():
+		return false
+	var lab_footprint: Vector2i = lab_definition.get("footprint", Vector2i(4, 2))
+	var lab_origin := Vector2i(int(laboratory.get("x", 0)), int(laboratory.get("y", 0)))
+	required_cells.append(lab_origin + Vector2i(int(lab_footprint.x / 2), lab_footprint.y))
+	for plot_index in CampaignState.built_facilities.keys():
+		var plot: Rect2i = FACILITY_PLOTS[int(plot_index)]
+		required_cells.append(TOWN_ORIGIN + Vector2i(plot.position.x + int(plot.size.x / 2), plot.end.y - 1))
+	for target in required_cells:
+		if not Gameboard.pathfinder.has_cell(target):
+			return false
+		if Gameboard.pathfinder.get_path_to_cell(TOWN_ARRIVAL, target, Pathfinder.FLAG_ALLOW_ALL_OCCUPANTS).is_empty():
+			return false
+	return true
+
+
 func _on_recruit_status_changed(recruit_id: StringName, status: StringName) -> void:
 	if recruit_id == &"fighter":
 		if status == &"party":
