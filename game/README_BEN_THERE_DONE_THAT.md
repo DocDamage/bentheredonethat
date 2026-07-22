@@ -301,7 +301,7 @@ input, assertions, editor errors, and hot reload.
 
 ## Smoke tests
 
-There are 67 isolated smoke scenes. Run these with the bundled console
+There are 68 isolated smoke scenes. Run these with the bundled console
 executable from this directory:
 
 ```powershell

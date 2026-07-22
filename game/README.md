@@ -50,7 +50,7 @@ Open `project.godot` in Godot 4.7.1 and run the project. The bundled console exe
 
 ## Verification
 
-Automated scenes live in `tests`. The current suite contains 67 isolated smoke tests covering boot flow, movement, controllers, authored world collision footprints, collision-free field followers, town construction, conventional Armory buying/selling/comparisons, services, NPC routines, sandbox history/clipboard/box selection/batch move/search/validated layouts, all universe scenarios, the ending/postgame loop, quests, seven persistent save points, persistent exploration caches, roster management, jobs, encounter pressure, combat depth, save migration, persistent bestiary and monster recruitment, supplied character animation/UI/VFX/SFX, and asset slicing.
+Automated scenes live in `tests`. The current suite contains 68 isolated smoke tests covering boot flow, movement, controllers, authored world collision footprints, collision-free field followers, town construction, conventional Armory buying/selling/comparisons, services, NPC routines, sandbox history/clipboard/box selection/batch move/search/validated layouts, all universe scenarios, the ending/postgame loop, quests, seven persistent save points, persistent exploration caches, roster management, jobs, encounter pressure, combat depth, save migration, persistent bestiary and monster recruitment, supplied character animation/UI/VFX/SFX, asset slicing, and a release-aware resource-load sweep.
 
 Visual review scenes live in `validation`; they render town, field, and battle captures at the actual in-game scale so atlas bleed and bad proportions can be caught by inspection.
 

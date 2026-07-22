@@ -8,9 +8,12 @@ from the human, platform, licensing, and performance sign-offs that remain.
 - The project has a numeric `0.3.0` technical build version with matching Windows
   file metadata, and runs without the development-only MCP runtime bridge or
   editor plugin enabled in `project.godot`.
-- `tools/run_godot_isolated.ps1 -AllSmoke -TimeoutSeconds 180` passed all 67
+- `tools/run_godot_isolated.ps1 -AllSmoke -TimeoutSeconds 180` passed all 68
   smoke scenes on July 22, 2026. The runner used isolated user data and reported
   `sentinel=True`, so it did not alter the production save sentinel.
+- `release_resource_load_smoke` loaded all 549 runtime resources represented by
+  the Windows preset (327 scripts, 117 scenes, 80 serialized resources, and 25
+  Dialogic resources) with no missing imports or compile errors.
 - The sandbox regression covers 100-command undo/redo, clipboard duplication,
   box/Ctrl-click multiselect, batch move undo/redo, pack search, validated slot
   round-trips, route preservation, and malformed-slot rejection.
