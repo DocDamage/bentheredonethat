@@ -195,6 +195,8 @@ const SERVICE_STOCK := {
 	"Cafe": [&"tonic", &"ether", &"provisions", &"rift_ward"],
 	"Clinic": [&"tonic", &"smelling_salts", &"phoenix_tonic"],
 }
+const ARMORY_REFORGE_BASE_DUCKET_COST := 48
+const ARMORY_REFORGE_ANCHOR_DUST_COST := 1
 const ARMORY_STOCK := {
 	&"militia_saber": {
 		"id": &"militia_saber", "base_name": "Militia Saber", "slot": &"weapon", "price": 72,
@@ -2458,6 +2460,86 @@ func sell_loot(instance_id: String) -> int:
 			state_changed.emit()
 			return value
 	return 0
+
+
+func can_salvage_loot(instance_id: String) -> bool:
+	var item := loot_by_instance(instance_id)
+	return not item.is_empty() and loot_owner(instance_id) == &"" and not _protected_gear(item)
+
+
+func salvage_rewards(item: Dictionary) -> Dictionary:
+	if item.is_empty() or _protected_gear(item):
+		return {}
+	var rewards := {&"anchor_dust": 1}
+	var rarity := String(item.get("rarity", "Common"))
+	if rarity in ["Uncommon", "Rare", "Epic"]:
+		rewards[&"research_notes"] = 1
+	if rarity == "Epic":
+		rewards[&"anchor_dust"] = 2
+	return rewards
+
+
+func salvage_loot(instance_id: String) -> Dictionary:
+	if not can_salvage_loot(instance_id):
+		return {}
+	var item := loot_by_instance(instance_id)
+	var rewards := salvage_rewards(item)
+	if rewards.is_empty():
+		return {}
+	for index in range(loot_inventory.size()):
+		if String(loot_inventory[index].get("instance_id", "")) == instance_id:
+			loot_inventory.remove_at(index)
+			break
+	for item_id in rewards:
+		add_item(StringName(item_id), int(rewards[item_id]), false, &"armory_salvage", StringName(instance_id))
+	story_flags[&"armory_salvage_count"] = int(story_flags.get(&"armory_salvage_count", 0)) + 1
+	state_changed.emit()
+	return {"item": item.duplicate(true), "rewards": rewards.duplicate(true)}
+
+
+func armory_reforge_cost(instance_id: String) -> int:
+	if not can_reforge_loot(instance_id):
+		return 0
+	return maxi(1, int(ceil(float(ARMORY_REFORGE_BASE_DUCKET_COST) * (1.0 - service_discount("Armory")))))
+
+
+func can_reforge_loot(instance_id: String) -> bool:
+	var item := loot_by_instance(instance_id)
+	return not item.is_empty() and loot_owner(instance_id) == &"" and not _protected_gear(item) and not item.get("modifiers", []).is_empty() and not item.has("reforged_modifier_index")
+
+
+func reforge_loot(instance_id: String, modifier_index: int) -> Dictionary:
+	var cost := armory_reforge_cost(instance_id)
+	if cost <= 0 or duckets < cost or int(inventory.get(&"anchor_dust", 0)) < ARMORY_REFORGE_ANCHOR_DUST_COST:
+		return {}
+	for index in range(loot_inventory.size()):
+		var item: Dictionary = loot_inventory[index]
+		if String(item.get("instance_id", "")) != instance_id:
+			continue
+		var modifiers: Array = item.get("modifiers", [])
+		if modifier_index < 0 or modifier_index >= modifiers.size():
+			return {}
+		var modifier: Dictionary = modifiers[modifier_index].duplicate(true)
+		var bonus := maxi(1, int(ceil(float(maxi(1, int(modifier.get("value", 0)))) * 0.35)))
+		modifier["value"] = int(modifier.get("value", 0)) + bonus
+		modifier["name"] = "%s Reforged" % String(modifier.get("name", ""))
+		modifiers[modifier_index] = modifier
+		item["modifiers"] = modifiers
+		item["reforged_modifier_index"] = modifier_index
+		item["reforge_bonus"] = bonus
+		if not String(item.get("display_name", "")).begins_with("Refined "):
+			item["display_name"] = "Refined %s" % String(item.get("display_name", item.get("base_name", "Gear")))
+		loot_inventory[index] = item
+		adjust_duckets(-cost, &"armory_reforge", StringName(instance_id), false)
+		consume_item(&"anchor_dust", ARMORY_REFORGE_ANCHOR_DUST_COST, &"armory_reforge", StringName(instance_id))
+		story_flags[&"armory_reforge_count"] = int(story_flags.get(&"armory_reforge_count", 0)) + 1
+		state_changed.emit()
+		return {"item": item.duplicate(true), "cost": cost, "anchor_dust": ARMORY_REFORGE_ANCHOR_DUST_COST, "modifier_index": modifier_index, "bonus": bonus}
+	return {}
+
+
+func _protected_gear(item: Dictionary) -> bool:
+	return bool(item.get("unique", false)) or not String(item.get("unique_id", "")).is_empty()
 
 
 func clinic_service_cost() -> int:

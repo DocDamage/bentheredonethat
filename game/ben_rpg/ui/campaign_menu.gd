@@ -1072,7 +1072,7 @@ func _build_service_stock(facility_name: String, heading: String) -> void:
 
 
 func _build_gear_buyback() -> void:
-	_add_subheading("SELL RECOVERED EQUIPMENT")
+	_add_subheading("SELL, SALVAGE, OR REFORGE RECOVERED EQUIPMENT")
 	if CampaignState.loot_inventory.is_empty():
 		_add_notice("No recovered equipment is available to sell.", Color(0.68, 0.72, 0.8))
 		return
@@ -1089,6 +1089,30 @@ func _build_gear_buyback() -> void:
 		_apply_button_skin(button, String(item.get("icon", UI_ROOT + "/dfgui_icon-pouch.png")))
 		button.pressed.connect(_sell_service_loot.bind(instance_id))
 		_content.add_child(button)
+		var salvage := Button.new()
+		salvage.name = "Salvage_%s" % instance_id
+		var salvage_rewards := CampaignState.salvage_rewards(item)
+		salvage.text = "SALVAGE • %s%s" % [String(item.get("display_name", "Recovered Gear")), " • " + _reward_item_text(salvage_rewards).trim_prefix(" • ") if not salvage_rewards.is_empty() else ""]
+		salvage.custom_minimum_size.y = 52
+		salvage.disabled = not CampaignState.can_salvage_loot(instance_id)
+		salvage.tooltip_text = "Unequip or preserve this protected item before salvaging it." if salvage.disabled else "Break this gear down into reusable Armory materials. This cannot be undone."
+		_apply_button_skin(salvage, UI_ROOT + "/dfgui_icon-crafthammer.png")
+		salvage.pressed.connect(_salvage_service_loot.bind(instance_id))
+		_content.add_child(salvage)
+		if CampaignState.can_reforge_loot(instance_id):
+			var reforge_cost := CampaignState.armory_reforge_cost(instance_id)
+			for modifier_index in range(item.get("modifiers", []).size()):
+				var modifier: Dictionary = item["modifiers"][modifier_index]
+				var increase := maxi(1, int(ceil(float(maxi(1, int(modifier.get("value", 0)))) * 0.35)))
+				var reforge := Button.new()
+				reforge.name = "Reforge_%s_%d" % [instance_id, modifier_index]
+				reforge.text = "REFORGE %s +%d • %d D + %d ANCHOR DUST" % [String(modifier.get("stat", "Bonus")).to_upper(), increase, reforge_cost, CampaignState.ARMORY_REFORGE_ANCHOR_DUST_COST]
+				reforge.custom_minimum_size.y = 50
+				reforge.disabled = CampaignState.duckets < reforge_cost or int(CampaignState.inventory.get(&"anchor_dust", 0)) < CampaignState.ARMORY_REFORGE_ANCHOR_DUST_COST
+				reforge.tooltip_text = "Each item can receive one permanent modifier reforge." if not reforge.disabled else "Requires sufficient Duckets and Anchor Dust."
+				_apply_button_skin(reforge, UI_ROOT + "/dfgui_icon-craftanvil.png")
+				reforge.pressed.connect(_reforge_service_loot.bind(instance_id, modifier_index))
+				_content.add_child(reforge)
 
 
 func _build_clinic_service() -> void:
@@ -1326,6 +1350,22 @@ func _sell_service_loot(instance_id: String) -> void:
 	var value := CampaignState.sell_loot(instance_id)
 	if value > 0:
 		_last_service_message = "Sold %s for %d Duckets." % [item.get("display_name", "recovered gear"), value]
+		_save_changes()
+	_refresh()
+
+
+func _salvage_service_loot(instance_id: String) -> void:
+	var result := CampaignState.salvage_loot(instance_id)
+	if not result.is_empty():
+		_last_service_message = "Salvaged %s into %s." % [result["item"].get("display_name", "recovered gear"), _reward_item_text(result["rewards"]).trim_prefix(" • ")]
+		_save_changes()
+	_refresh()
+
+
+func _reforge_service_loot(instance_id: String, modifier_index: int) -> void:
+	var result := CampaignState.reforge_loot(instance_id, modifier_index)
+	if not result.is_empty():
+		_last_service_message = "Reforged %s for %d Duckets and %d Anchor Dust." % [result["item"].get("display_name", "gear"), int(result["cost"]), int(result["anchor_dust"])]
 		_save_changes()
 	_refresh()
 

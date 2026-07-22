@@ -88,11 +88,34 @@ func _run() -> void:
 	if CampaignState.sell_loot(first_id) != 0:
 		_fail("The Armory could sell gear while it was still equipped")
 		return
+	CampaignState.add_item(&"anchor_dust", 1, false)
+	var reforge_cost := CampaignState.armory_reforge_cost(spare_id)
+	var before_reforge_duckets := CampaignState.duckets
+	var reforge := CampaignState.reforge_loot(spare_id, 0)
+	if reforge.is_empty() or int(reforge.get("modifier_index", -1)) != 0 or int(reforge.get("bonus", 0)) <= 0 or CampaignState.duckets != before_reforge_duckets - reforge_cost:
+		_fail("The Armory could not spend materials to permanently reforge one modifier")
+		return
+	if not CampaignState.reforge_loot(spare_id, 0).is_empty():
+		_fail("An item could receive more than one modifier reforge")
+		return
 	var sale_value := CampaignState.loot_sell_value(spare_id)
 	var before_sale := CampaignState.duckets
 	if CampaignState.sell_loot(spare_id) != sale_value or CampaignState.duckets != before_sale + sale_value:
 		_fail("The Armory could not buy back an unequipped duplicate")
 		return
+	var salvage_saber := CampaignState.purchase_armory_item(&"militia_saber")
+	var salvage_id := String(salvage_saber.get("instance_id", ""))
+	var before_salvage_dust := int(CampaignState.inventory.get(&"anchor_dust", 0))
+	var salvage := CampaignState.salvage_loot(salvage_id)
+	if salvage.is_empty() or not CampaignState.loot_by_instance(salvage_id).is_empty() or int(CampaignState.inventory.get(&"anchor_dust", 0)) <= before_salvage_dust:
+		_fail("The Armory could not safely convert unequipped gear into reusable materials")
+		return
+	var persistent_reforge_saber := CampaignState.purchase_armory_item(&"militia_saber")
+	var persistent_reforge_id := String(persistent_reforge_saber.get("instance_id", ""))
+	if CampaignState.reforge_loot(persistent_reforge_id, 0).is_empty():
+		_fail("A salvaged material could not be reinvested into a fresh one-modifier reforge")
+		return
+	CampaignState.add_item(&"anchor_dust", 1, false)
 
 	var main: Node = load("res://src/main.tscn").instantiate()
 	main.get_node("Field").opening_cutscene = null
@@ -129,9 +152,11 @@ func _run() -> void:
 	var ui_item: Dictionary = CampaignState.loot_inventory.back()
 	var ui_item_id := String(ui_item.get("instance_id", ""))
 	var sell_button := menu.find_child("Sell_%s" % ui_item_id, true, false) as Button
+	var salvage_button := menu.find_child("Salvage_%s" % ui_item_id, true, false) as Button
+	var reforge_button := menu.find_child("Reforge_%s_0" % ui_item_id, true, false) as Button
 	var equipped_sell := menu.find_child("Sell_%s" % first_id, true, false) as Button
-	if not sell_button or sell_button.disabled or not equipped_sell or not equipped_sell.disabled:
-		_fail("The shop UI did not distinguish saleable gear from equipped gear")
+	if not sell_button or sell_button.disabled or not salvage_button or salvage_button.disabled or not reforge_button or not equipped_sell or not equipped_sell.disabled:
+		_fail("The shop UI did not expose safe sell, salvage, and reforge choices")
 		return
 
 	if CampaignState.save_game(TEST_SAVE) != OK:
@@ -149,9 +174,12 @@ func _run() -> void:
 	if CampaignState.loot_by_instance(first_id).is_empty() or CampaignState.loot_owner(first_id) != &"ben":
 		_fail("Purchased and equipped Armory gear did not survive save/load")
 		return
+	if int(CampaignState.loot_by_instance(persistent_reforge_id).get("reforged_modifier_index", -1)) != 0:
+		_fail("The permanent one-modifier reforge did not survive save/load")
+		return
 
 	DirAccess.remove_absolute(ProjectSettings.globalize_path(TEST_SAVE))
-	print("ARMORY_SERVICE_SMOKE_OK facility=fourth_foundation plots=11 stock=6+14_sidegrades slots=6 resistance=true compare=true buy+sell=true staffing=15pct controller+mouse=true persistence=true")
+	print("ARMORY_SERVICE_SMOKE_OK facility=fourth_foundation plots=11 stock=6+14_sidegrades slots=6 resistance=true compare=true buy+sell+salvage+reforge=true staffing=15pct controller+mouse=true persistence=true")
 	main.queue_free()
 	await get_tree().process_frame
 	get_tree().quit(0)
