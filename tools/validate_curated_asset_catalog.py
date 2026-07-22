@@ -31,6 +31,7 @@ except ImportError:  # pragma: no cover - handled in main
 
 
 SUPPORTED = frozenset({".png", ".jpg", ".jpeg", ".webp", ".gif", ".bmp"})
+ASSET_LIBRARY_ROOT = "assets"
 IGNORED_DIRS = frozenset(
     {".git", ".playwright-cli", "output", "music", "sfx", "node_modules", "__pycache__", "tools"}
 )
@@ -82,7 +83,11 @@ class Validator:
         return any(part.casefold() in IGNORED_DIRS for part in parts[:-1])
 
     def scan_files(self) -> None:
-        for base, dirs, files in os.walk(self.root):
+        asset_root = self.root / ASSET_LIBRARY_ROOT
+        if not asset_root.is_dir():
+            self.error("missing-asset-library", f"Expected curated asset library at {asset_root}")
+            return
+        for base, dirs, files in os.walk(asset_root):
             rel_base = Path(base).relative_to(self.root)
             dirs[:] = [
                 d for d in dirs
@@ -122,6 +127,9 @@ class Validator:
         pure = PurePosixPath(raw)
         if any(p in {"", ".", ".."} for p in pure.parts) or posixpath.normpath(raw) != raw:
             self.error("unnormalized-path", f"{label} path is not normalized: {raw!r}")
+            return None
+        if not pure.parts or pure.parts[0] != ASSET_LIBRARY_ROOT:
+            self.error("outside-asset-library", f"{label} must stay under {ASSET_LIBRARY_ROOT}/: {raw!r}")
             return None
         if pure.suffix.casefold() not in SUPPORTED:
             self.error("unsupported-path", f"{label} points to an unsupported raster type: {raw!r}")

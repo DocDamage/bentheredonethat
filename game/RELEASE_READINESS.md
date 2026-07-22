@@ -14,6 +14,10 @@ from the human, platform, licensing, and performance sign-offs that remain.
 - `release_resource_load_smoke` loaded all 549 runtime resources represented by
   the Windows preset (327 scripts, 117 scenes, 80 serialized resources, and 25
   Dialogic resources) with no missing imports or compile errors.
+- The deep curated-asset validator covers all 20,530 declared source rasters
+  with no schema, path, crop, or animation errors, and the generated runtime
+  visual manifest is current. This proves source-art catalog structure, not
+  license terms or distribution permission.
 - The sandbox regression covers 100-command undo/redo, clipboard duplication,
   box/Ctrl-click multiselect, batch move undo/redo, pack search, validated slot
   round-trips, route preservation, and malformed-slot rejection.
