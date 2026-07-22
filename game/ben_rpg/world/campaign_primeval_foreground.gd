@@ -36,19 +36,6 @@ func set_active_area(area: StringName) -> void:
 	queue_redraw()
 
 
-func _prop(texture: Texture2D, source: Rect2, destination_position: Vector2, scale_factor := 1.0) -> void:
-	if not texture:
-		return
-	# Primeval sources are either native 48px scenery or 96px Jurassic sheets.
-	# Only native and exact reciprocal dimensions are allowed in the field.
-	if scale_factor != 1.0 and scale_factor != 0.5:
-		push_error("Primeval foreground received a non-standard scale: %s" % scale_factor)
-		return
-	var size := Vector2(roundi(source.size.x * scale_factor), roundi(source.size.y * scale_factor))
-	var position := Vector2(roundf(destination_position.x), roundf(destination_position.y))
-	draw_texture_rect_region(texture, Rect2(position, size), source)
-
-
 func _profile_prop(profile_id: StringName, texture: Texture2D, destination_position: Vector2) -> void:
 	if not texture or not profiles or not profiles.has(profile_id):
 		push_error("Missing approved Primeval visual profile: %s" % profile_id)
@@ -100,9 +87,9 @@ func _draw() -> void:
 			_profile_prop(&"primeval_anchor_totem", props, room_offset + Vector2(104, 73))
 		&"primeval_caldera":
 			var room_offset := offset + Vector2(20 * TILE, 10 * TILE)
-			_prop(ruins, Rect2(548, 520, 180, 145), room_offset + Vector2(147, 18), 0.5)
-			_prop(ruins, Rect2(48, 197, 124, 132), room_offset + Vector2(30, 38), 0.5)
-			_prop(ruins, Rect2(608, 197, 125, 132), room_offset + Vector2(292, 38), 0.5)
-			_prop(ruins, Rect2(367, 712, 99, 123), room_offset + Vector2(168, 86), 0.5)
-			_prop(ruins, Rect2(48, 879, 100, 104), room_offset + Vector2(48, 132), 0.5)
-			_prop(ruins, Rect2(997, 888, 128, 96), room_offset + Vector2(274, 136), 0.5)
+			_profile_prop(&"primeval_caldera_forecourt", ruins, room_offset + Vector2(147, 18))
+			_profile_prop(&"primeval_ruins_left_wall", ruins, room_offset + Vector2(30, 38))
+			_profile_prop(&"primeval_ruins_right_wall", ruins, room_offset + Vector2(292, 38))
+			_profile_prop(&"primeval_caldera_pillar", ruins, room_offset + Vector2(168, 86))
+			_profile_prop(&"primeval_caldera_rubble_left", ruins, room_offset + Vector2(48, 132))
+			_profile_prop(&"primeval_caldera_rubble_right", ruins, room_offset + Vector2(274, 136))

@@ -64,6 +64,7 @@ func _ready() -> void:
 		&"primeval_ruins_left_wall", &"primeval_ruins_right_wall", &"primeval_ruins_left_rubble", &"primeval_ruins_right_rubble",
 		&"primeval_relay_nest",
 		&"primeval_nest_left", &"primeval_nest_right",
+		&"primeval_caldera_forecourt", &"primeval_caldera_pillar", &"primeval_caldera_rubble_left", &"primeval_caldera_rubble_right",
 		&"primeval_ground_quadrant",
 		&"helios_skybridge_quadrant",
 		&"helios_market_quadrant",
