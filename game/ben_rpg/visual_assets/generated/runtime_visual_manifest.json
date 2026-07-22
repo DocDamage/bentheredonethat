@@ -4012,6 +4012,246 @@
       "cropApproval": "approved",
       "distributionEligibility": "review_required",
       "goldenCapture": "game/validation/laboratory-layout-rebuilt.png",
+      "id": "laboratory_center_storage",
+      "kind": "prop",
+      "licenseReference": "game/ben_rpg/visual_assets/generated/runtime_asset_provenance.json",
+      "placement": {
+        "collisionFootprint": "storage_base",
+        "footAnchor": [
+          46,
+          95
+        ],
+        "scaleClass": "prop"
+      },
+      "releaseVisualAcceptance": "prototype_only",
+      "source": {
+        "alphaBounds": [
+          146,
+          384,
+          93,
+          96
+        ],
+        "pack": "Modern Laboratory Pixel Art Tileset Pack",
+        "region": [
+          146,
+          384,
+          93,
+          96
+        ],
+        "runtimeTexture": "game/game_assets/Tilesets/Modern Laboratory Pixel Art Tileset Pack/3.png",
+        "sha256": "13d20b3b195dea611e566554265088e3b6fd08788eccdd2ae9837ba68c634466",
+        "sourceChecksum": "13d20b3b195dea611e566554265088e3b6fd08788eccdd2ae9837ba68c634466",
+        "sourceDensity": 48
+      },
+      "worldDrawSize": [
+        93,
+        96
+      ]
+    },
+    {
+      "cropApproval": "approved",
+      "distributionEligibility": "review_required",
+      "goldenCapture": "game/validation/laboratory-layout-rebuilt.png",
+      "id": "laboratory_east_calibrator",
+      "kind": "prop",
+      "licenseReference": "game/ben_rpg/visual_assets/generated/runtime_asset_provenance.json",
+      "placement": {
+        "collisionFootprint": "workstation_base",
+        "footAnchor": [
+          47,
+          72
+        ],
+        "scaleClass": "prop"
+      },
+      "releaseVisualAcceptance": "prototype_only",
+      "source": {
+        "alphaBounds": [
+          577,
+          166,
+          95,
+          73
+        ],
+        "pack": "Modern Laboratory Pixel Art Tileset Pack",
+        "region": [
+          577,
+          166,
+          95,
+          73
+        ],
+        "runtimeTexture": "game/game_assets/Tilesets/Modern Laboratory Pixel Art Tileset Pack/3.png",
+        "sha256": "13d20b3b195dea611e566554265088e3b6fd08788eccdd2ae9837ba68c634466",
+        "sourceChecksum": "13d20b3b195dea611e566554265088e3b6fd08788eccdd2ae9837ba68c634466",
+        "sourceDensity": 48
+      },
+      "worldDrawSize": [
+        95,
+        73
+      ]
+    },
+    {
+      "cropApproval": "approved",
+      "distributionEligibility": "review_required",
+      "goldenCapture": "game/validation/laboratory-layout-rebuilt.png",
+      "id": "laboratory_east_coolant",
+      "kind": "prop",
+      "licenseReference": "game/ben_rpg/visual_assets/generated/runtime_asset_provenance.json",
+      "placement": {
+        "collisionFootprint": "generator_base",
+        "footAnchor": [
+          46,
+          140
+        ],
+        "scaleClass": "prop"
+      },
+      "releaseVisualAcceptance": "prototype_only",
+      "source": {
+        "alphaBounds": [
+          482,
+          384,
+          93,
+          141
+        ],
+        "pack": "Modern Laboratory Pixel Art Tileset Pack",
+        "region": [
+          482,
+          384,
+          93,
+          141
+        ],
+        "runtimeTexture": "game/game_assets/Tilesets/Modern Laboratory Pixel Art Tileset Pack/3.png",
+        "sha256": "13d20b3b195dea611e566554265088e3b6fd08788eccdd2ae9837ba68c634466",
+        "sourceChecksum": "13d20b3b195dea611e566554265088e3b6fd08788eccdd2ae9837ba68c634466",
+        "sourceDensity": 48
+      },
+      "worldDrawSize": [
+        93,
+        141
+      ]
+    },
+    {
+      "cropApproval": "approved",
+      "distributionEligibility": "review_required",
+      "goldenCapture": "game/validation/laboratory-layout-rebuilt.png",
+      "id": "laboratory_east_fabricator",
+      "kind": "prop",
+      "licenseReference": "game/ben_rpg/visual_assets/generated/runtime_asset_provenance.json",
+      "placement": {
+        "collisionFootprint": "workstation_base",
+        "footAnchor": [
+          47,
+          72
+        ],
+        "scaleClass": "prop"
+      },
+      "releaseVisualAcceptance": "prototype_only",
+      "source": {
+        "alphaBounds": [
+          385,
+          166,
+          95,
+          73
+        ],
+        "pack": "Modern Laboratory Pixel Art Tileset Pack",
+        "region": [
+          385,
+          166,
+          95,
+          73
+        ],
+        "runtimeTexture": "game/game_assets/Tilesets/Modern Laboratory Pixel Art Tileset Pack/3.png",
+        "sha256": "13d20b3b195dea611e566554265088e3b6fd08788eccdd2ae9837ba68c634466",
+        "sourceChecksum": "13d20b3b195dea611e566554265088e3b6fd08788eccdd2ae9837ba68c634466",
+        "sourceDensity": 48
+      },
+      "worldDrawSize": [
+        95,
+        73
+      ]
+    },
+    {
+      "cropApproval": "approved",
+      "distributionEligibility": "review_required",
+      "goldenCapture": "game/validation/laboratory-layout-rebuilt.png",
+      "id": "laboratory_east_generator",
+      "kind": "prop",
+      "licenseReference": "game/ben_rpg/visual_assets/generated/runtime_asset_provenance.json",
+      "placement": {
+        "collisionFootprint": "generator_base",
+        "footAnchor": [
+          46,
+          140
+        ],
+        "scaleClass": "prop"
+      },
+      "releaseVisualAcceptance": "prototype_only",
+      "source": {
+        "alphaBounds": [
+          386,
+          384,
+          93,
+          141
+        ],
+        "pack": "Modern Laboratory Pixel Art Tileset Pack",
+        "region": [
+          386,
+          384,
+          93,
+          141
+        ],
+        "runtimeTexture": "game/game_assets/Tilesets/Modern Laboratory Pixel Art Tileset Pack/3.png",
+        "sha256": "13d20b3b195dea611e566554265088e3b6fd08788eccdd2ae9837ba68c634466",
+        "sourceChecksum": "13d20b3b195dea611e566554265088e3b6fd08788eccdd2ae9837ba68c634466",
+        "sourceDensity": 48
+      },
+      "worldDrawSize": [
+        93,
+        141
+      ]
+    },
+    {
+      "cropApproval": "approved",
+      "distributionEligibility": "review_required",
+      "goldenCapture": "game/validation/laboratory-layout-rebuilt.png",
+      "id": "laboratory_east_reactor",
+      "kind": "prop",
+      "licenseReference": "game/ben_rpg/visual_assets/generated/runtime_asset_provenance.json",
+      "placement": {
+        "collisionFootprint": "workstation_base",
+        "footAnchor": [
+          47,
+          72
+        ],
+        "scaleClass": "prop"
+      },
+      "releaseVisualAcceptance": "prototype_only",
+      "source": {
+        "alphaBounds": [
+          481,
+          166,
+          95,
+          73
+        ],
+        "pack": "Modern Laboratory Pixel Art Tileset Pack",
+        "region": [
+          481,
+          166,
+          95,
+          73
+        ],
+        "runtimeTexture": "game/game_assets/Tilesets/Modern Laboratory Pixel Art Tileset Pack/3.png",
+        "sha256": "13d20b3b195dea611e566554265088e3b6fd08788eccdd2ae9837ba68c634466",
+        "sourceChecksum": "13d20b3b195dea611e566554265088e3b6fd08788eccdd2ae9837ba68c634466",
+        "sourceDensity": 48
+      },
+      "worldDrawSize": [
+        95,
+        73
+      ]
+    },
+    {
+      "cropApproval": "approved",
+      "distributionEligibility": "review_required",
+      "goldenCapture": "game/validation/laboratory-layout-rebuilt.png",
       "id": "laboratory_exit_doors",
       "kind": "building",
       "licenseReference": "game/ben_rpg/visual_assets/generated/runtime_asset_provenance.json",
@@ -4174,6 +4414,206 @@
       "worldDrawSize": [
         192,
         96
+      ]
+    },
+    {
+      "cropApproval": "approved",
+      "distributionEligibility": "review_required",
+      "goldenCapture": "game/validation/laboratory-layout-rebuilt.png",
+      "id": "laboratory_ventilation_run",
+      "kind": "building",
+      "licenseReference": "game/ben_rpg/visual_assets/generated/runtime_asset_provenance.json",
+      "placement": {
+        "collisionFootprint": "ventilation_bank",
+        "footAnchor": [
+          192,
+          191
+        ],
+        "scaleClass": "building"
+      },
+      "releaseVisualAcceptance": "prototype_only",
+      "source": {
+        "alphaBounds": [
+          384,
+          0,
+          384,
+          192
+        ],
+        "pack": "Modern Laboratory Pixel Art Tileset Pack",
+        "region": [
+          384,
+          0,
+          384,
+          192
+        ],
+        "runtimeTexture": "game/game_assets/Tilesets/Modern Laboratory Pixel Art Tileset Pack/2.png",
+        "sha256": "687dcf013dbed050704e4d8b8f3cd400791e8902cac8eb34224f759dc70eb232",
+        "sourceChecksum": "687dcf013dbed050704e4d8b8f3cd400791e8902cac8eb34224f759dc70eb232",
+        "sourceDensity": 48
+      },
+      "worldDrawSize": [
+        384,
+        192
+      ]
+    },
+    {
+      "cropApproval": "approved",
+      "distributionEligibility": "review_required",
+      "goldenCapture": "game/validation/laboratory-layout-rebuilt.png",
+      "id": "laboratory_wall_tile",
+      "kind": "tile",
+      "licenseReference": "game/ben_rpg/visual_assets/generated/runtime_asset_provenance.json",
+      "placement": {
+        "collisionFootprint": "wall_tile",
+        "footAnchor": [
+          24,
+          47
+        ],
+        "scaleClass": "tile"
+      },
+      "releaseVisualAcceptance": "prototype_only",
+      "source": {
+        "alphaBounds": [
+          192,
+          0,
+          48,
+          48
+        ],
+        "pack": "Modern Laboratory Pixel Art Tileset Pack",
+        "region": [
+          192,
+          0,
+          48,
+          48
+        ],
+        "runtimeTexture": "game/game_assets/Tilesets/Modern Laboratory Pixel Art Tileset Pack/1.png",
+        "sha256": "e97da1407e7c224b69d2acba7080bc2d22f9c66d61933b96972fdb75210959e5",
+        "sourceChecksum": "e97da1407e7c224b69d2acba7080bc2d22f9c66d61933b96972fdb75210959e5",
+        "sourceDensity": 48
+      },
+      "worldDrawSize": [
+        48,
+        48
+      ]
+    },
+    {
+      "cropApproval": "approved",
+      "distributionEligibility": "review_required",
+      "goldenCapture": "game/validation/laboratory-layout-rebuilt.png",
+      "id": "laboratory_west_spectrometer",
+      "kind": "prop",
+      "licenseReference": "game/ben_rpg/visual_assets/generated/runtime_asset_provenance.json",
+      "placement": {
+        "collisionFootprint": "workstation_base",
+        "footAnchor": [
+          47,
+          72
+        ],
+        "scaleClass": "prop"
+      },
+      "releaseVisualAcceptance": "prototype_only",
+      "source": {
+        "alphaBounds": [
+          289,
+          166,
+          95,
+          73
+        ],
+        "pack": "Modern Laboratory Pixel Art Tileset Pack",
+        "region": [
+          289,
+          166,
+          95,
+          73
+        ],
+        "runtimeTexture": "game/game_assets/Tilesets/Modern Laboratory Pixel Art Tileset Pack/3.png",
+        "sha256": "13d20b3b195dea611e566554265088e3b6fd08788eccdd2ae9837ba68c634466",
+        "sourceChecksum": "13d20b3b195dea611e566554265088e3b6fd08788eccdd2ae9837ba68c634466",
+        "sourceDensity": 48
+      },
+      "worldDrawSize": [
+        95,
+        73
+      ]
+    },
+    {
+      "cropApproval": "approved",
+      "distributionEligibility": "review_required",
+      "goldenCapture": "game/validation/laboratory-layout-rebuilt.png",
+      "id": "laboratory_west_storage",
+      "kind": "prop",
+      "licenseReference": "game/ben_rpg/visual_assets/generated/runtime_asset_provenance.json",
+      "placement": {
+        "collisionFootprint": "storage_base",
+        "footAnchor": [
+          46,
+          95
+        ],
+        "scaleClass": "prop"
+      },
+      "releaseVisualAcceptance": "prototype_only",
+      "source": {
+        "alphaBounds": [
+          2,
+          384,
+          93,
+          96
+        ],
+        "pack": "Modern Laboratory Pixel Art Tileset Pack",
+        "region": [
+          2,
+          384,
+          93,
+          96
+        ],
+        "runtimeTexture": "game/game_assets/Tilesets/Modern Laboratory Pixel Art Tileset Pack/3.png",
+        "sha256": "13d20b3b195dea611e566554265088e3b6fd08788eccdd2ae9837ba68c634466",
+        "sourceChecksum": "13d20b3b195dea611e566554265088e3b6fd08788eccdd2ae9837ba68c634466",
+        "sourceDensity": 48
+      },
+      "worldDrawSize": [
+        93,
+        96
+      ]
+    },
+    {
+      "cropApproval": "approved",
+      "distributionEligibility": "review_required",
+      "goldenCapture": "game/validation/laboratory-layout-rebuilt.png",
+      "id": "laboratory_west_terminal",
+      "kind": "prop",
+      "licenseReference": "game/ben_rpg/visual_assets/generated/runtime_asset_provenance.json",
+      "placement": {
+        "collisionFootprint": "workstation_base",
+        "footAnchor": [
+          47,
+          72
+        ],
+        "scaleClass": "prop"
+      },
+      "releaseVisualAcceptance": "prototype_only",
+      "source": {
+        "alphaBounds": [
+          145,
+          166,
+          95,
+          73
+        ],
+        "pack": "Modern Laboratory Pixel Art Tileset Pack",
+        "region": [
+          145,
+          166,
+          95,
+          73
+        ],
+        "runtimeTexture": "game/game_assets/Tilesets/Modern Laboratory Pixel Art Tileset Pack/3.png",
+        "sha256": "13d20b3b195dea611e566554265088e3b6fd08788eccdd2ae9837ba68c634466",
+        "sourceChecksum": "13d20b3b195dea611e566554265088e3b6fd08788eccdd2ae9837ba68c634466",
+        "sourceDensity": 48
+      },
+      "worldDrawSize": [
+        95,
+        73
       ]
     },
     {

@@ -243,31 +243,31 @@ func draw_laboratory() -> void:
 		return
 	for y in range(LAB_SIZE.y):
 		for x in range(LAB_SIZE.x):
-			var source := Rect2(192, 0, 48, 48) if y <= 2 else Rect2(0, 0, 48, 48)
-			tile(lab_wall, source, Rect2(x * TILE, y * TILE, TILE, TILE))
+			var floor_profile: StringName = &"laboratory_wall_tile" if y <= 2 else &"laboratory_floor_tile"
+			profile_tile(floor_profile, lab_wall, Vector2(x * TILE, y * TILE))
 	# Rear-wall architecture remains in two coherent banks: a labeled observation
 	# bay and one complete ventilation run. The floor equipment below is cut into
 	# individual alpha islands; the previous 336px/384px row crops reproduced the
 	# atlas's presentation rows and made unrelated benches touch edge-to-edge.
-	tile(lab_utility, Rect2(192, 0, 192, 96), Rect2(TILE, TILE, 192, 96))
-	tile(lab_utility, Rect2(384, 0, 384, 192), Rect2(11 * TILE, 0, 384, 192))
+	profile_tile(&"laboratory_utility_bank", lab_utility, Vector2(TILE, TILE))
+	profile_tile(&"laboratory_ventilation_run", lab_utility, Vector2(11 * TILE, 0))
 	# West analysis bank: three distinct stations with breathing room.
-	tile(lab_props, Rect2(1, 166, 95, 122), Rect2(Vector2(48, 190), Vector2(95, 122)))
-	tile(lab_props, Rect2(145, 166, 95, 73), Rect2(Vector2(166, 198), Vector2(95, 73)))
-	tile(lab_props, Rect2(289, 166, 95, 73), Rect2(Vector2(282, 198), Vector2(95, 73)))
+	profile_tile(&"laboratory_analysis_station", lab_props, Vector2(48, 190))
+	profile_tile(&"laboratory_west_terminal", lab_props, Vector2(166, 198))
+	profile_tile(&"laboratory_west_spectrometer", lab_props, Vector2(282, 198))
 	# East fabrication bank mirrors the footprint without duplicating the art.
-	tile(lab_props, Rect2(385, 166, 95, 73), Rect2(Vector2(528, 198), Vector2(95, 73)))
-	tile(lab_props, Rect2(481, 166, 95, 73), Rect2(Vector2(646, 198), Vector2(95, 73)))
-	tile(lab_props, Rect2(577, 166, 95, 73), Rect2(Vector2(764, 198), Vector2(95, 73)))
+	profile_tile(&"laboratory_east_fabricator", lab_props, Vector2(528, 198))
+	profile_tile(&"laboratory_east_reactor", lab_props, Vector2(646, 198))
+	profile_tile(&"laboratory_east_calibrator", lab_props, Vector2(764, 198))
 	# Two contained fume hoods define the lower work alcoves. They stay entirely
 	# outside the central invention aisle and no longer include neighbouring atlas
 	# stools, cabinets, or blank presentation cells.
-	tile(lab_props, Rect2(2, 384, 93, 96), Rect2(Vector2(48, 384), Vector2(93, 96)))
-	tile(lab_props, Rect2(146, 384, 93, 96), Rect2(Vector2(190, 384), Vector2(93, 96)))
-	tile(lab_props, Rect2(386, 384, 93, 141), Rect2(Vector2(676, 350), Vector2(93, 141)))
-	tile(lab_props, Rect2(482, 384, 93, 141), Rect2(Vector2(790, 350), Vector2(93, 141)))
+	profile_tile(&"laboratory_west_storage", lab_props, Vector2(48, 384))
+	profile_tile(&"laboratory_center_storage", lab_props, Vector2(190, 384))
+	profile_tile(&"laboratory_east_generator", lab_props, Vector2(676, 350))
+	profile_tile(&"laboratory_east_coolant", lab_props, Vector2(790, 350))
 	# A coherent double-door crop marks the physical exit at the bottom wall.
-	tile(lab_doors, Rect2(0, 0, 96, 96), Rect2(9 * TILE, 10 * TILE, 96, 96))
+	profile_tile(&"laboratory_exit_doors", lab_doors, Vector2(9 * TILE, 10 * TILE))
 
 
 func draw_town() -> void:

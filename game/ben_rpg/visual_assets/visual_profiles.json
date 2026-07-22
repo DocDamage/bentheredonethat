@@ -799,6 +799,50 @@
       "worldDrawSize": [96, 96], "licenseReference": "game/ben_rpg/visual_assets/generated/runtime_asset_provenance.json", "cropApproval": "approved", "goldenCapture": "game/validation/laboratory-layout-rebuilt.png"
     },
     {
+      "id": "laboratory_wall_tile", "kind": "tile",
+      "source": {"pack": "Modern Laboratory Pixel Art Tileset Pack", "runtimeTexture": "game/game_assets/Tilesets/Modern Laboratory Pixel Art Tileset Pack/1.png", "sourceChecksum": "e97da1407e7c224b69d2acba7080bc2d22f9c66d61933b96972fdb75210959e5", "sourceDensity": 48, "region": [192, 0, 48, 48], "alphaBounds": [192, 0, 48, 48]}, "placement": {"footAnchor": [24, 47], "scaleClass": "tile", "collisionFootprint": "wall_tile"}, "worldDrawSize": [48, 48], "licenseReference": "game/ben_rpg/visual_assets/generated/runtime_asset_provenance.json", "cropApproval": "approved", "goldenCapture": "game/validation/laboratory-layout-rebuilt.png"
+    },
+    {
+      "id": "laboratory_ventilation_run", "kind": "building",
+      "source": {"pack": "Modern Laboratory Pixel Art Tileset Pack", "runtimeTexture": "game/game_assets/Tilesets/Modern Laboratory Pixel Art Tileset Pack/2.png", "sourceChecksum": "687dcf013dbed050704e4d8b8f3cd400791e8902cac8eb34224f759dc70eb232", "sourceDensity": 48, "region": [384, 0, 384, 192], "alphaBounds": [384, 0, 384, 192]}, "placement": {"footAnchor": [192, 191], "scaleClass": "building", "collisionFootprint": "ventilation_bank"}, "worldDrawSize": [384, 192], "licenseReference": "game/ben_rpg/visual_assets/generated/runtime_asset_provenance.json", "cropApproval": "approved", "goldenCapture": "game/validation/laboratory-layout-rebuilt.png"
+    },
+    {
+      "id": "laboratory_west_terminal", "kind": "prop",
+      "source": {"pack": "Modern Laboratory Pixel Art Tileset Pack", "runtimeTexture": "game/game_assets/Tilesets/Modern Laboratory Pixel Art Tileset Pack/3.png", "sourceChecksum": "13d20b3b195dea611e566554265088e3b6fd08788eccdd2ae9837ba68c634466", "sourceDensity": 48, "region": [145, 166, 95, 73], "alphaBounds": [145, 166, 95, 73]}, "placement": {"footAnchor": [47, 72], "scaleClass": "prop", "collisionFootprint": "workstation_base"}, "worldDrawSize": [95, 73], "licenseReference": "game/ben_rpg/visual_assets/generated/runtime_asset_provenance.json", "cropApproval": "approved", "goldenCapture": "game/validation/laboratory-layout-rebuilt.png"
+    },
+    {
+      "id": "laboratory_west_spectrometer", "kind": "prop",
+      "source": {"pack": "Modern Laboratory Pixel Art Tileset Pack", "runtimeTexture": "game/game_assets/Tilesets/Modern Laboratory Pixel Art Tileset Pack/3.png", "sourceChecksum": "13d20b3b195dea611e566554265088e3b6fd08788eccdd2ae9837ba68c634466", "sourceDensity": 48, "region": [289, 166, 95, 73], "alphaBounds": [289, 166, 95, 73]}, "placement": {"footAnchor": [47, 72], "scaleClass": "prop", "collisionFootprint": "workstation_base"}, "worldDrawSize": [95, 73], "licenseReference": "game/ben_rpg/visual_assets/generated/runtime_asset_provenance.json", "cropApproval": "approved", "goldenCapture": "game/validation/laboratory-layout-rebuilt.png"
+    },
+    {
+      "id": "laboratory_east_fabricator", "kind": "prop",
+      "source": {"pack": "Modern Laboratory Pixel Art Tileset Pack", "runtimeTexture": "game/game_assets/Tilesets/Modern Laboratory Pixel Art Tileset Pack/3.png", "sourceChecksum": "13d20b3b195dea611e566554265088e3b6fd08788eccdd2ae9837ba68c634466", "sourceDensity": 48, "region": [385, 166, 95, 73], "alphaBounds": [385, 166, 95, 73]}, "placement": {"footAnchor": [47, 72], "scaleClass": "prop", "collisionFootprint": "workstation_base"}, "worldDrawSize": [95, 73], "licenseReference": "game/ben_rpg/visual_assets/generated/runtime_asset_provenance.json", "cropApproval": "approved", "goldenCapture": "game/validation/laboratory-layout-rebuilt.png"
+    },
+    {
+      "id": "laboratory_east_reactor", "kind": "prop",
+      "source": {"pack": "Modern Laboratory Pixel Art Tileset Pack", "runtimeTexture": "game/game_assets/Tilesets/Modern Laboratory Pixel Art Tileset Pack/3.png", "sourceChecksum": "13d20b3b195dea611e566554265088e3b6fd08788eccdd2ae9837ba68c634466", "sourceDensity": 48, "region": [481, 166, 95, 73], "alphaBounds": [481, 166, 95, 73]}, "placement": {"footAnchor": [47, 72], "scaleClass": "prop", "collisionFootprint": "workstation_base"}, "worldDrawSize": [95, 73], "licenseReference": "game/ben_rpg/visual_assets/generated/runtime_asset_provenance.json", "cropApproval": "approved", "goldenCapture": "game/validation/laboratory-layout-rebuilt.png"
+    },
+    {
+      "id": "laboratory_east_calibrator", "kind": "prop",
+      "source": {"pack": "Modern Laboratory Pixel Art Tileset Pack", "runtimeTexture": "game/game_assets/Tilesets/Modern Laboratory Pixel Art Tileset Pack/3.png", "sourceChecksum": "13d20b3b195dea611e566554265088e3b6fd08788eccdd2ae9837ba68c634466", "sourceDensity": 48, "region": [577, 166, 95, 73], "alphaBounds": [577, 166, 95, 73]}, "placement": {"footAnchor": [47, 72], "scaleClass": "prop", "collisionFootprint": "workstation_base"}, "worldDrawSize": [95, 73], "licenseReference": "game/ben_rpg/visual_assets/generated/runtime_asset_provenance.json", "cropApproval": "approved", "goldenCapture": "game/validation/laboratory-layout-rebuilt.png"
+    },
+    {
+      "id": "laboratory_west_storage", "kind": "prop",
+      "source": {"pack": "Modern Laboratory Pixel Art Tileset Pack", "runtimeTexture": "game/game_assets/Tilesets/Modern Laboratory Pixel Art Tileset Pack/3.png", "sourceChecksum": "13d20b3b195dea611e566554265088e3b6fd08788eccdd2ae9837ba68c634466", "sourceDensity": 48, "region": [2, 384, 93, 96], "alphaBounds": [2, 384, 93, 96]}, "placement": {"footAnchor": [46, 95], "scaleClass": "prop", "collisionFootprint": "storage_base"}, "worldDrawSize": [93, 96], "licenseReference": "game/ben_rpg/visual_assets/generated/runtime_asset_provenance.json", "cropApproval": "approved", "goldenCapture": "game/validation/laboratory-layout-rebuilt.png"
+    },
+    {
+      "id": "laboratory_center_storage", "kind": "prop",
+      "source": {"pack": "Modern Laboratory Pixel Art Tileset Pack", "runtimeTexture": "game/game_assets/Tilesets/Modern Laboratory Pixel Art Tileset Pack/3.png", "sourceChecksum": "13d20b3b195dea611e566554265088e3b6fd08788eccdd2ae9837ba68c634466", "sourceDensity": 48, "region": [146, 384, 93, 96], "alphaBounds": [146, 384, 93, 96]}, "placement": {"footAnchor": [46, 95], "scaleClass": "prop", "collisionFootprint": "storage_base"}, "worldDrawSize": [93, 96], "licenseReference": "game/ben_rpg/visual_assets/generated/runtime_asset_provenance.json", "cropApproval": "approved", "goldenCapture": "game/validation/laboratory-layout-rebuilt.png"
+    },
+    {
+      "id": "laboratory_east_generator", "kind": "prop",
+      "source": {"pack": "Modern Laboratory Pixel Art Tileset Pack", "runtimeTexture": "game/game_assets/Tilesets/Modern Laboratory Pixel Art Tileset Pack/3.png", "sourceChecksum": "13d20b3b195dea611e566554265088e3b6fd08788eccdd2ae9837ba68c634466", "sourceDensity": 48, "region": [386, 384, 93, 141], "alphaBounds": [386, 384, 93, 141]}, "placement": {"footAnchor": [46, 140], "scaleClass": "prop", "collisionFootprint": "generator_base"}, "worldDrawSize": [93, 141], "licenseReference": "game/ben_rpg/visual_assets/generated/runtime_asset_provenance.json", "cropApproval": "approved", "goldenCapture": "game/validation/laboratory-layout-rebuilt.png"
+    },
+    {
+      "id": "laboratory_east_coolant", "kind": "prop",
+      "source": {"pack": "Modern Laboratory Pixel Art Tileset Pack", "runtimeTexture": "game/game_assets/Tilesets/Modern Laboratory Pixel Art Tileset Pack/3.png", "sourceChecksum": "13d20b3b195dea611e566554265088e3b6fd08788eccdd2ae9837ba68c634466", "sourceDensity": 48, "region": [482, 384, 93, 141], "alphaBounds": [482, 384, 93, 141]}, "placement": {"footAnchor": [46, 140], "scaleClass": "prop", "collisionFootprint": "generator_base"}, "worldDrawSize": [93, 141], "licenseReference": "game/ben_rpg/visual_assets/generated/runtime_asset_provenance.json", "cropApproval": "approved", "goldenCapture": "game/validation/laboratory-layout-rebuilt.png"
+    },
+    {
       "id": "town_grass_tile",
       "kind": "tile",
       "source": {"pack": "Modern World Overworld Pixel Tileset", "runtimeTexture": "game/game_assets/Tilesets/Modern World Overworld Pixel Tileset/2.png", "sourceChecksum": "97686cd26987e55ab202949329b3da68550e2c9298e665edb65d8d7a3b262a00", "sourceDensity": 48, "region": [336, 96, 48, 48], "alphaBounds": [336, 96, 48, 48]},
