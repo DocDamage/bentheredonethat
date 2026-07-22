@@ -205,6 +205,31 @@
       "placement": {"footAnchor": [92, 173], "scaleClass": "prop", "collisionFootprint": "garden_island"}, "worldDrawSize": [92, 87], "licenseReference": "game/ben_rpg/visual_assets/generated/runtime_asset_provenance.json", "cropApproval": "approved", "goldenCapture": "game/validation/moonpetal-mirror-garden.png"
     },
     {
+      "id": "moonpetal_bell_walk_gate_left", "kind": "prop",
+      "source": {"pack": "Sakura Temple Asset Pack", "runtimeTexture": "game/game_assets/Tilesets/Sakura Temple Asset Pack/Shrine Gates.png", "sourceChecksum": "30858e7af8c3ef584025c31fd0af890fb063584ab16bdf99b3337df95947ecb2", "sourceDensity": 48, "region": [170, 398, 140, 142], "alphaBounds": [170, 398, 140, 142]},
+      "placement": {"footAnchor": [70, 141], "scaleClass": "landmark", "collisionFootprint": "gate_base"}, "worldDrawSize": [140, 142], "licenseReference": "game/ben_rpg/visual_assets/generated/runtime_asset_provenance.json", "cropApproval": "approved", "goldenCapture": "game/validation/moonpetal-bell-walk.png"
+    },
+    {
+      "id": "moonpetal_bell_walk_gate_right", "kind": "prop",
+      "source": {"pack": "Sakura Temple Asset Pack", "runtimeTexture": "game/game_assets/Tilesets/Sakura Temple Asset Pack/Shrine Gates.png", "sourceChecksum": "30858e7af8c3ef584025c31fd0af890fb063584ab16bdf99b3337df95947ecb2", "sourceDensity": 48, "region": [321, 398, 140, 142], "alphaBounds": [321, 398, 140, 142]},
+      "placement": {"footAnchor": [70, 141], "scaleClass": "landmark", "collisionFootprint": "gate_base"}, "worldDrawSize": [140, 142], "licenseReference": "game/ben_rpg/visual_assets/generated/runtime_asset_provenance.json", "cropApproval": "approved", "goldenCapture": "game/validation/moonpetal-bell-walk.png"
+    },
+    {
+      "id": "moonpetal_palace_facade", "kind": "building",
+      "source": {"pack": "Sakura Temple Asset Pack", "runtimeTexture": "game/game_assets/Tilesets/Sakura Temple Asset Pack/temple building parts.png", "sourceChecksum": "05e50ffd37717eb4a1841ba3d03582646b1a53a8ed0d3e41270655d13d4d3813", "sourceDensity": 48, "region": [42, 580, 318, 177], "alphaBounds": [42, 580, 318, 177]},
+      "placement": {"footAnchor": [159, 176], "scaleClass": "landmark", "collisionFootprint": "temple_facade"}, "worldDrawSize": [318, 177], "licenseReference": "game/ben_rpg/visual_assets/generated/runtime_asset_provenance.json", "cropApproval": "approved", "goldenCapture": "game/validation/moonpetal-moon-palace.png"
+    },
+    {
+      "id": "moonpetal_palace_garden_left", "kind": "prop",
+      "source": {"pack": "Sakura Temple Asset Pack", "runtimeTexture": "game/game_assets/Tilesets/Sakura Temple Asset Pack/Decorative framed garden tiles.png", "sourceChecksum": "547defef4a445eb67840e091edf7db7fc48780ba7b904c532b2df63d20aba49f", "sourceDensity": 48, "region": [368, 496, 187, 181], "alphaBounds": [368, 496, 187, 181]},
+      "placement": {"footAnchor": [93, 180], "scaleClass": "prop", "collisionFootprint": "garden_island"}, "worldDrawSize": [94, 91], "licenseReference": "game/ben_rpg/visual_assets/generated/runtime_asset_provenance.json", "cropApproval": "approved", "goldenCapture": "game/validation/moonpetal-moon-palace.png"
+    },
+    {
+      "id": "moonpetal_palace_garden_right", "kind": "prop",
+      "source": {"pack": "Sakura Temple Asset Pack", "runtimeTexture": "game/game_assets/Tilesets/Sakura Temple Asset Pack/Decorative framed garden tiles.png", "sourceChecksum": "547defef4a445eb67840e091edf7db7fc48780ba7b904c532b2df63d20aba49f", "sourceDensity": 48, "region": [575, 496, 187, 181], "alphaBounds": [575, 496, 187, 181]},
+      "placement": {"footAnchor": [93, 180], "scaleClass": "prop", "collisionFootprint": "garden_island"}, "worldDrawSize": [94, 91], "licenseReference": "game/ben_rpg/visual_assets/generated/runtime_asset_provenance.json", "cropApproval": "approved", "goldenCapture": "game/validation/moonpetal-moon-palace.png"
+    },
+    {
       "id": "moonpetal_gate_lantern",
       "kind": "prop",
       "source": {

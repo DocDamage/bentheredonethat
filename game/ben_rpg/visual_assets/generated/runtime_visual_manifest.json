@@ -8507,6 +8507,86 @@
     {
       "cropApproval": "approved",
       "distributionEligibility": "review_required",
+      "goldenCapture": "game/validation/moonpetal-bell-walk.png",
+      "id": "moonpetal_bell_walk_gate_left",
+      "kind": "prop",
+      "licenseReference": "game/ben_rpg/visual_assets/generated/runtime_asset_provenance.json",
+      "placement": {
+        "collisionFootprint": "gate_base",
+        "footAnchor": [
+          70,
+          141
+        ],
+        "scaleClass": "landmark"
+      },
+      "releaseVisualAcceptance": "prototype_only",
+      "source": {
+        "alphaBounds": [
+          170,
+          398,
+          140,
+          142
+        ],
+        "pack": "Sakura Temple Asset Pack",
+        "region": [
+          170,
+          398,
+          140,
+          142
+        ],
+        "runtimeTexture": "game/game_assets/Tilesets/Sakura Temple Asset Pack/Shrine Gates.png",
+        "sha256": "30858e7af8c3ef584025c31fd0af890fb063584ab16bdf99b3337df95947ecb2",
+        "sourceChecksum": "30858e7af8c3ef584025c31fd0af890fb063584ab16bdf99b3337df95947ecb2",
+        "sourceDensity": 48
+      },
+      "worldDrawSize": [
+        140,
+        142
+      ]
+    },
+    {
+      "cropApproval": "approved",
+      "distributionEligibility": "review_required",
+      "goldenCapture": "game/validation/moonpetal-bell-walk.png",
+      "id": "moonpetal_bell_walk_gate_right",
+      "kind": "prop",
+      "licenseReference": "game/ben_rpg/visual_assets/generated/runtime_asset_provenance.json",
+      "placement": {
+        "collisionFootprint": "gate_base",
+        "footAnchor": [
+          70,
+          141
+        ],
+        "scaleClass": "landmark"
+      },
+      "releaseVisualAcceptance": "prototype_only",
+      "source": {
+        "alphaBounds": [
+          321,
+          398,
+          140,
+          142
+        ],
+        "pack": "Sakura Temple Asset Pack",
+        "region": [
+          321,
+          398,
+          140,
+          142
+        ],
+        "runtimeTexture": "game/game_assets/Tilesets/Sakura Temple Asset Pack/Shrine Gates.png",
+        "sha256": "30858e7af8c3ef584025c31fd0af890fb063584ab16bdf99b3337df95947ecb2",
+        "sourceChecksum": "30858e7af8c3ef584025c31fd0af890fb063584ab16bdf99b3337df95947ecb2",
+        "sourceDensity": 48
+      },
+      "worldDrawSize": [
+        140,
+        142
+      ]
+    },
+    {
+      "cropApproval": "approved",
+      "distributionEligibility": "review_required",
       "goldenCapture": "game/validation/moonpetal-blossom-court.png",
       "id": "moonpetal_court_battle_backdrop",
       "kind": "battle_backdrop",
@@ -8982,6 +9062,126 @@
       "worldDrawSize": [
         176,
         176
+      ]
+    },
+    {
+      "cropApproval": "approved",
+      "distributionEligibility": "review_required",
+      "goldenCapture": "game/validation/moonpetal-moon-palace.png",
+      "id": "moonpetal_palace_facade",
+      "kind": "building",
+      "licenseReference": "game/ben_rpg/visual_assets/generated/runtime_asset_provenance.json",
+      "placement": {
+        "collisionFootprint": "temple_facade",
+        "footAnchor": [
+          159,
+          176
+        ],
+        "scaleClass": "landmark"
+      },
+      "releaseVisualAcceptance": "prototype_only",
+      "source": {
+        "alphaBounds": [
+          42,
+          580,
+          318,
+          177
+        ],
+        "pack": "Sakura Temple Asset Pack",
+        "region": [
+          42,
+          580,
+          318,
+          177
+        ],
+        "runtimeTexture": "game/game_assets/Tilesets/Sakura Temple Asset Pack/temple building parts.png",
+        "sha256": "05e50ffd37717eb4a1841ba3d03582646b1a53a8ed0d3e41270655d13d4d3813",
+        "sourceChecksum": "05e50ffd37717eb4a1841ba3d03582646b1a53a8ed0d3e41270655d13d4d3813",
+        "sourceDensity": 48
+      },
+      "worldDrawSize": [
+        318,
+        177
+      ]
+    },
+    {
+      "cropApproval": "approved",
+      "distributionEligibility": "review_required",
+      "goldenCapture": "game/validation/moonpetal-moon-palace.png",
+      "id": "moonpetal_palace_garden_left",
+      "kind": "prop",
+      "licenseReference": "game/ben_rpg/visual_assets/generated/runtime_asset_provenance.json",
+      "placement": {
+        "collisionFootprint": "garden_island",
+        "footAnchor": [
+          93,
+          180
+        ],
+        "scaleClass": "prop"
+      },
+      "releaseVisualAcceptance": "prototype_only",
+      "source": {
+        "alphaBounds": [
+          368,
+          496,
+          187,
+          181
+        ],
+        "pack": "Sakura Temple Asset Pack",
+        "region": [
+          368,
+          496,
+          187,
+          181
+        ],
+        "runtimeTexture": "game/game_assets/Tilesets/Sakura Temple Asset Pack/Decorative framed garden tiles.png",
+        "sha256": "547defef4a445eb67840e091edf7db7fc48780ba7b904c532b2df63d20aba49f",
+        "sourceChecksum": "547defef4a445eb67840e091edf7db7fc48780ba7b904c532b2df63d20aba49f",
+        "sourceDensity": 48
+      },
+      "worldDrawSize": [
+        94,
+        91
+      ]
+    },
+    {
+      "cropApproval": "approved",
+      "distributionEligibility": "review_required",
+      "goldenCapture": "game/validation/moonpetal-moon-palace.png",
+      "id": "moonpetal_palace_garden_right",
+      "kind": "prop",
+      "licenseReference": "game/ben_rpg/visual_assets/generated/runtime_asset_provenance.json",
+      "placement": {
+        "collisionFootprint": "garden_island",
+        "footAnchor": [
+          93,
+          180
+        ],
+        "scaleClass": "prop"
+      },
+      "releaseVisualAcceptance": "prototype_only",
+      "source": {
+        "alphaBounds": [
+          575,
+          496,
+          187,
+          181
+        ],
+        "pack": "Sakura Temple Asset Pack",
+        "region": [
+          575,
+          496,
+          187,
+          181
+        ],
+        "runtimeTexture": "game/game_assets/Tilesets/Sakura Temple Asset Pack/Decorative framed garden tiles.png",
+        "sha256": "547defef4a445eb67840e091edf7db7fc48780ba7b904c532b2df63d20aba49f",
+        "sourceChecksum": "547defef4a445eb67840e091edf7db7fc48780ba7b904c532b2df63d20aba49f",
+        "sourceDensity": 48
+      },
+      "worldDrawSize": [
+        94,
+        91
       ]
     },
     {

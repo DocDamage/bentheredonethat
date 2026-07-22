@@ -920,7 +920,9 @@
       "path": "res://game_assets/Tilesets/Sakura Temple Asset Pack/Decorative framed garden tiles.png",
       "profileIds": [
         "moonpetal_framed_garden_island",
-        "moonpetal_framed_garden_island_right"
+        "moonpetal_framed_garden_island_right",
+        "moonpetal_palace_garden_left",
+        "moonpetal_palace_garden_right"
       ],
       "sourceGroup": "Tilesets/Sakura Temple Asset Pack"
     },
@@ -974,6 +976,8 @@
       ],
       "path": "res://game_assets/Tilesets/Sakura Temple Asset Pack/Shrine Gates.png",
       "profileIds": [
+        "moonpetal_bell_walk_gate_left",
+        "moonpetal_bell_walk_gate_right",
         "moonpetal_vermilion_gate"
       ],
       "sourceGroup": "Tilesets/Sakura Temple Asset Pack"
@@ -1011,6 +1015,7 @@
       "path": "res://game_assets/Tilesets/Sakura Temple Asset Pack/temple building parts.png",
       "profileIds": [
         "moonpetal_court_temple",
+        "moonpetal_palace_facade",
         "town_tea_house_facade"
       ],
       "sourceGroup": "Tilesets/Sakura Temple Asset Pack"

@@ -38,15 +38,6 @@ func set_active_area(area: StringName) -> void:
 	queue_redraw()
 
 
-func _prop(texture: Texture2D, source: Rect2, destination_position: Vector2, scale: float) -> void:
-	if texture:
-		# Exact reciprocal source scaling is allowed, but destination dimensions
-		# still land on whole world pixels so the foreground cannot shimmer.
-		var size := Vector2(roundi(source.size.x * scale), roundi(source.size.y * scale))
-		var position := Vector2(roundf(destination_position.x), roundf(destination_position.y))
-		draw_texture_rect_region(texture, Rect2(position, size), source)
-
-
 func _profile_prop(profile_id: StringName, texture: Texture2D, destination_position: Vector2) -> void:
 	if not profiles or not profiles.has(profile_id):
 		push_error("Missing approved Moonpetal visual profile: %s" % profile_id)
@@ -78,12 +69,12 @@ func _draw() -> void:
 			_profile_prop(&"moonpetal_framed_garden_island_right", gardens, room_offset + Vector2(277, 99))
 		&"moonpetal_bell_walk":
 			var room_offset := offset + Vector2(10 * TILE, 10 * TILE)
-			_prop(gates, Rect2(170, 398, 140, 142), room_offset + Vector2(40, 42), 1.0)
-			_prop(gates, Rect2(321, 398, 140, 142), room_offset + Vector2(204, 42), 1.0)
-			_prop(lanterns, Rect2(37, 331, 115, 145), room_offset + Vector2(2, 115), 0.5)
-			_prop(lanterns, Rect2(164, 331, 114, 145), room_offset + Vector2(325, 115), 0.5)
+			_profile_prop(&"moonpetal_bell_walk_gate_left", gates, room_offset + Vector2(40, 42))
+			_profile_prop(&"moonpetal_bell_walk_gate_right", gates, room_offset + Vector2(204, 42))
+			_profile_prop(&"moonpetal_gate_lantern", lanterns, room_offset + Vector2(2, 115))
+			_profile_prop(&"moonpetal_gate_lantern_right", lanterns, room_offset + Vector2(325, 115))
 		&"moonpetal_palace":
 			var room_offset := offset + Vector2(20 * TILE, 10 * TILE)
-			_prop(temple, Rect2(42, 580, 318, 177), room_offset + Vector2(33, 18), 1.0)
-			_prop(gardens, Rect2(368, 496, 187, 181), room_offset + Vector2(18, 196), 0.5)
-			_prop(gardens, Rect2(575, 496, 187, 181), room_offset + Vector2(273, 196), 0.5)
+			_profile_prop(&"moonpetal_palace_facade", temple, room_offset + Vector2(33, 18))
+			_profile_prop(&"moonpetal_palace_garden_left", gardens, room_offset + Vector2(18, 196))
+			_profile_prop(&"moonpetal_palace_garden_right", gardens, room_offset + Vector2(273, 196))
