@@ -16,6 +16,24 @@ receive build-catalog categories, which can be overridden per source when needed
 python tools\build_curated_asset_catalog.py
 ```
 
+## Godot runtime visual profiles
+
+The visual profile registry at `game/ben_rpg/visual_assets/visual_profiles.json`
+is the shared runtime contract for reviewed crops. Each profile records its source
+pack, runtime texture, crop and alpha bounds, foot/doorway anchors, scale class,
+world draw size, and license reference. Build the deterministic runtime manifest
+and verify it is current with:
+
+```powershell
+python tools\build_godot_visual_manifest.py
+python tools\build_godot_visual_manifest.py --check
+```
+
+The generated manifest is committed under
+`game/ben_rpg/visual_assets/generated/`. The initial profiles are reference
+examples for the Town/Lab/Mansion vertical slice; add a profile before reusing
+a visual in new authored areas.
+
 Useful options:
 
 ```powershell

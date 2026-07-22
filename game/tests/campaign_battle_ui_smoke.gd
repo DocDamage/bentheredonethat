@@ -46,9 +46,13 @@ func _ready() -> void:
 	var enemy: Dictionary = battle.model.living("enemy")[0]
 	await battle._animate_action_vfx(&"static_discharge", [{"type": "damage", "target": enemy["id"]}])
 	assert(battle._frame_cache.size() == 30 and battle._sfx_player.stream != null, "Battle UI should play the complete supplied VFX and SFX assets")
+	var duckets_before_victory := CampaignState.duckets
+	battle.debug_force_victory()
+	var duckets_after_first_victory := CampaignState.duckets
 	battle.debug_force_victory()
 	await get_tree().process_frame
 	assert(battle._results_panel.visible, "Victory rewards should replace the command UI")
+	assert(duckets_after_first_victory > duckets_before_victory and CampaignState.duckets == duckets_after_first_victory, "Repeated victory signals must not duplicate battle rewards")
 	print("CAMPAIGN_BATTLE_UI_SMOKE_OK actors=%d party=5+pet formation=3+2 slots=unique status=8 commands=grid items=contextual vfx=30frames sfx=true results=true" % battle.model.actors.size())
 	get_tree().quit()
 

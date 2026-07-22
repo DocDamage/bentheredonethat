@@ -15,6 +15,7 @@ signal encounter_pressure_changed(data: Dictionary)
 const SAVE_VERSION := 18
 const DEFAULT_SAVE_PATH := "user://save_slot_1.json"
 const SANDBOX_SAVE_PATH := "user://sandbox_slot.json"
+const SAVE_REPOSITORY := preload("res://ben_rpg/core/save_repository.gd")
 const SANDBOX_AUTHORED_OBJECTS := [
 	{"instance_id": "sandbox_town_lab", "catalog_id": &"modern_warehouse", "cell": Vector2i(48, 5), "role": &"town_lab", "protected": true},
 	{"instance_id": "sandbox_tree_northwest", "catalog_id": &"ranch_sapling", "cell": Vector2i(37, 1), "role": &"town_tree"},
@@ -2638,23 +2639,18 @@ func save_game(path := "") -> Error:
 		resolved_path = SANDBOX_SAVE_PATH if sandbox_mode else DEFAULT_SAVE_PATH
 	_capture_field_position()
 	save_timestamp = _unix_time()
-	var file := FileAccess.open(resolved_path, FileAccess.WRITE)
-	if not file:
-		return FileAccess.get_open_error()
-	file.store_string(JSON.stringify(_serialize(), "\t"))
-	return OK
+	return SAVE_REPOSITORY.write_json(resolved_path, _serialize())
 
 
 func load_game(path := DEFAULT_SAVE_PATH) -> Error:
-	if not FileAccess.file_exists(path):
-		return ERR_FILE_NOT_FOUND
-	var file := FileAccess.open(path, FileAccess.READ)
-	if not file:
-		return FileAccess.get_open_error()
-	var parsed: Variant = JSON.parse_string(file.get_as_text())
-	if not parsed is Dictionary or int(parsed.get("version", 0)) < 1 or int(parsed.get("version", 0)) > SAVE_VERSION:
-		return ERR_FILE_CORRUPT
-	_deserialize(parsed)
+	var read_result := _read_valid_save_payload(path)
+	if not bool(read_result.get("valid", false)):
+		return int(read_result.get("error", ERR_FILE_CORRUPT))
+	if bool(read_result.get("recovered", false)):
+		var repair_error := SAVE_REPOSITORY.restore_primary(path, String(read_result.get("text", "")))
+		if repair_error != OK:
+			push_warning("Recovered a campaign save from backup, but could not repair the primary file: %s" % error_string(repair_error))
+	_deserialize(read_result.get("data", {}))
 	refresh_facility_jobs()
 	state_changed.emit()
 	return OK
@@ -2665,17 +2661,11 @@ func has_save(path := DEFAULT_SAVE_PATH) -> bool:
 
 
 func read_save_summary(path := DEFAULT_SAVE_PATH) -> Dictionary:
-	if not FileAccess.file_exists(path):
-		return {"valid": false, "error": ERR_FILE_NOT_FOUND}
-	var file := FileAccess.open(path, FileAccess.READ)
-	if not file:
-		return {"valid": false, "error": FileAccess.get_open_error()}
-	var parsed: Variant = JSON.parse_string(file.get_as_text())
-	if not parsed is Dictionary:
-		return {"valid": false, "error": ERR_FILE_CORRUPT}
+	var read_result := _read_valid_save_payload(path)
+	if not bool(read_result.get("valid", false)):
+		return {"valid": false, "error": int(read_result.get("error", ERR_FILE_CORRUPT))}
+	var parsed: Dictionary = read_result.get("data", {})
 	var version := int(parsed.get("version", 0))
-	if version < 1 or version > SAVE_VERSION:
-		return {"valid": false, "error": ERR_FILE_CORRUPT}
 	var cell_data: Array = parsed.get("last_save_cell", [10, 9])
 	var cell := Vector2i(10, 9)
 	if cell_data.size() >= 2:
@@ -2691,7 +2681,40 @@ func read_save_summary(path := DEFAULT_SAVE_PATH) -> Dictionary:
 		"save_timestamp": int(parsed.get("save_timestamp", 0)),
 		"last_save_cell": cell,
 		"location": String(parsed.get("last_location", _location_name_for_cell(cell))),
+		"recovered_from_backup": bool(read_result.get("recovered", false)),
 	}
+
+
+func _read_valid_save_payload(path: String) -> Dictionary:
+	var candidates: PackedStringArray = PackedStringArray([path])
+	for recovery_path in SAVE_REPOSITORY.recovery_paths(path):
+		candidates.append(recovery_path)
+	var first_error := ERR_FILE_NOT_FOUND
+	for index in candidates.size():
+		var candidate := candidates[index]
+		var text_result: Dictionary = SAVE_REPOSITORY.read_text(candidate)
+		if not bool(text_result.get("ok", false)):
+			if index == 0:
+				first_error = int(text_result.get("error", ERR_FILE_NOT_FOUND))
+			continue
+		var parser := JSON.new()
+		if parser.parse(String(text_result.get("text", ""))) != OK:
+			if index == 0:
+				first_error = ERR_FILE_CORRUPT
+			continue
+		var parsed: Variant = parser.data
+		if parsed is Dictionary and int(parsed.get("version", 0)) >= 1 and int(parsed.get("version", 0)) <= SAVE_VERSION:
+			return {
+				"valid": true,
+				"error": OK,
+				"data": parsed,
+				"text": String(text_result.get("text", "")),
+				"recovered": index > 0,
+				"source_path": candidate,
+			}
+		if index == 0:
+			first_error = ERR_FILE_CORRUPT
+	return {"valid": false, "error": first_error}
 
 
 func format_play_time(seconds := -1.0) -> String:

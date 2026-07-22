@@ -1,0 +1,182 @@
+{
+  "profiles": [
+    {
+      "id": "haunted_mansion_exterior",
+      "kind": "building",
+      "licenseReference": "game/CREDITS.md",
+      "placement": {
+        "doorway": [
+          120,
+          159
+        ],
+        "footAnchor": [
+          120,
+          159
+        ],
+        "scaleClass": "landmark"
+      },
+      "source": {
+        "alphaBounds": [
+          384,
+          0,
+          240,
+          160
+        ],
+        "pack": "Haunted Mansion Pixel Art Tileset Pack",
+        "region": [
+          384,
+          0,
+          240,
+          160
+        ],
+        "runtimeTexture": "game/game_assets/Tilesets/Haunted Mansion Pixel Art Tileset Pack/1.png",
+        "sha256": "acdcde19e54d70050d03f77c719e0e7d4285c68c54f7261863f3ce3e44f604cc"
+      },
+      "worldDrawSize": [
+        240,
+        160
+      ]
+    },
+    {
+      "id": "laboratory_exterior",
+      "kind": "building",
+      "licenseReference": "game/CREDITS.md",
+      "placement": {
+        "doorway": [
+          48,
+          90
+        ],
+        "footAnchor": [
+          48,
+          90
+        ],
+        "scaleClass": "building"
+      },
+      "source": {
+        "alphaBounds": [
+          672,
+          5,
+          96,
+          91
+        ],
+        "pack": "Modern World Overworld Pixel Tileset",
+        "region": [
+          672,
+          5,
+          96,
+          91
+        ],
+        "runtimeTexture": "game/game_assets/Tilesets/Modern World Overworld Pixel Tileset/3.png",
+        "sha256": "64a43b2b6abdcb31777d129b9121ef85e7ebf9a04aef43200c169f01690019e2"
+      },
+      "worldDrawSize": [
+        192,
+        182
+      ]
+    },
+    {
+      "id": "moonpetal_gate_left",
+      "kind": "prop",
+      "licenseReference": "game/CREDITS.md",
+      "placement": {
+        "footAnchor": [
+          63,
+          159
+        ],
+        "scaleClass": "landmark"
+      },
+      "source": {
+        "alphaBounds": [
+          176,
+          401,
+          126,
+          160
+        ],
+        "pack": "Sakura Temple Asset Pack",
+        "region": [
+          176,
+          401,
+          126,
+          160
+        ],
+        "runtimeTexture": "game/game_assets/Tilesets/Sakura Temple Asset Pack/Shrine Gates.png",
+        "sha256": "30858e7af8c3ef584025c31fd0af890fb063584ab16bdf99b3337df95947ecb2"
+      },
+      "worldDrawSize": [
+        126,
+        160
+      ]
+    },
+    {
+      "id": "town_cafe_facade",
+      "kind": "building",
+      "licenseReference": "game/CREDITS.md",
+      "placement": {
+        "doorway": [
+          48,
+          79
+        ],
+        "footAnchor": [
+          48,
+          79
+        ],
+        "scaleClass": "building"
+      },
+      "source": {
+        "alphaBounds": [
+          672,
+          208,
+          96,
+          80
+        ],
+        "pack": "Modern World Overworld Pixel Tileset",
+        "region": [
+          672,
+          208,
+          96,
+          80
+        ],
+        "runtimeTexture": "game/game_assets/Tilesets/Modern World Overworld Pixel Tileset/3.png",
+        "sha256": "64a43b2b6abdcb31777d129b9121ef85e7ebf9a04aef43200c169f01690019e2"
+      },
+      "worldDrawSize": [
+        192,
+        160
+      ]
+    },
+    {
+      "id": "town_ranch_tree",
+      "kind": "prop",
+      "licenseReference": "game/CREDITS.md",
+      "placement": {
+        "footAnchor": [
+          8,
+          15
+        ],
+        "scaleClass": "prop"
+      },
+      "source": {
+        "alphaBounds": [
+          0,
+          0,
+          16,
+          16
+        ],
+        "pack": "Ranch Stuff",
+        "region": [
+          0,
+          0,
+          16,
+          16
+        ],
+        "runtimeTexture": "game/game_assets/Tilesets/Ranch Stuff/assets/tiles/tree_01_16x16.png",
+        "sha256": "beb7a51939da3804aa982df1e6e43aa705c00568b041d530a63c433591086123"
+      },
+      "worldDrawSize": [
+        48,
+        48
+      ]
+    }
+  ],
+  "schemaVersion": 1
+}

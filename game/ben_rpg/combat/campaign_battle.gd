@@ -39,6 +39,9 @@ var _field_node: CanvasItem
 var _field_ui_node: CanvasItem
 var _sfx_player: AudioStreamPlayer
 var _frame_cache: Dictionary = {}
+var _battle_instance_id := 0
+var _result_applied_instance_id := -1
+var _leave_applied_instance_id := -1
 
 
 func _ready() -> void:
@@ -63,6 +66,9 @@ func _unhandled_input(event: InputEvent) -> void:
 func begin(encounter_id: StringName, seed: int = 0) -> bool:
 	if active or CampaignState.party.is_empty():
 		return false
+	_battle_instance_id += 1
+	_result_applied_instance_id = -1
+	_leave_applied_instance_id = -1
 	active = true
 	CampaignState.clear_encounter_pressure()
 	model.setup(encounter_id, CampaignState.party, CampaignState.character_progress, seed)
@@ -594,6 +600,9 @@ func _animate_effect(event: Dictionary) -> void:
 
 
 func _show_victory() -> void:
+	if not active or _result_applied_instance_id == _battle_instance_id:
+		return
+	_result_applied_instance_id = _battle_instance_id
 	_action_lock = true
 	_command_panel.hide()
 	_target_panel.hide()
@@ -670,6 +679,9 @@ func _return_to_town() -> void:
 
 
 func _leave_battle(victory: bool) -> void:
+	if _leave_applied_instance_id == _battle_instance_id:
+		return
+	_leave_applied_instance_id = _battle_instance_id
 	var finished_id := model.encounter_id
 	active = false
 	hide()
@@ -687,6 +699,10 @@ func debug_force_victory() -> void:
 			actor["hp"] = 0
 			actor["alive"] = false
 	_show_victory()
+
+
+func battle_instance_id() -> int:
+	return _battle_instance_id
 
 
 func _actor_animation(actor_id: StringName) -> CampaignBattleActorAnimation:

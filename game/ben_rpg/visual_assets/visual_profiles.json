@@ -1,0 +1,88 @@
+{
+  "schemaVersion": 1,
+  "profiles": [
+    {
+      "id": "town_cafe_facade",
+      "kind": "building",
+      "source": {
+        "pack": "Modern World Overworld Pixel Tileset",
+        "runtimeTexture": "game/game_assets/Tilesets/Modern World Overworld Pixel Tileset/3.png",
+        "region": [672, 208, 96, 80],
+        "alphaBounds": [672, 208, 96, 80]
+      },
+      "placement": {
+        "footAnchor": [48, 79],
+        "doorway": [48, 79],
+        "scaleClass": "building"
+      },
+      "worldDrawSize": [192, 160],
+      "licenseReference": "game/CREDITS.md"
+    },
+    {
+      "id": "laboratory_exterior",
+      "kind": "building",
+      "source": {
+        "pack": "Modern World Overworld Pixel Tileset",
+        "runtimeTexture": "game/game_assets/Tilesets/Modern World Overworld Pixel Tileset/3.png",
+        "region": [672, 5, 96, 91],
+        "alphaBounds": [672, 5, 96, 91]
+      },
+      "placement": {
+        "footAnchor": [48, 90],
+        "doorway": [48, 90],
+        "scaleClass": "building"
+      },
+      "worldDrawSize": [192, 182],
+      "licenseReference": "game/CREDITS.md"
+    },
+    {
+      "id": "haunted_mansion_exterior",
+      "kind": "building",
+      "source": {
+        "pack": "Haunted Mansion Pixel Art Tileset Pack",
+        "runtimeTexture": "game/game_assets/Tilesets/Haunted Mansion Pixel Art Tileset Pack/1.png",
+        "region": [384, 0, 240, 160],
+        "alphaBounds": [384, 0, 240, 160]
+      },
+      "placement": {
+        "footAnchor": [120, 159],
+        "doorway": [120, 159],
+        "scaleClass": "landmark"
+      },
+      "worldDrawSize": [240, 160],
+      "licenseReference": "game/CREDITS.md"
+    },
+    {
+      "id": "moonpetal_gate_left",
+      "kind": "prop",
+      "source": {
+        "pack": "Sakura Temple Asset Pack",
+        "runtimeTexture": "game/game_assets/Tilesets/Sakura Temple Asset Pack/Shrine Gates.png",
+        "region": [176, 401, 126, 160],
+        "alphaBounds": [176, 401, 126, 160]
+      },
+      "placement": {
+        "footAnchor": [63, 159],
+        "scaleClass": "landmark"
+      },
+      "worldDrawSize": [126, 160],
+      "licenseReference": "game/CREDITS.md"
+    },
+    {
+      "id": "town_ranch_tree",
+      "kind": "prop",
+      "source": {
+        "pack": "Ranch Stuff",
+        "runtimeTexture": "game/game_assets/Tilesets/Ranch Stuff/assets/tiles/tree_01_16x16.png",
+        "region": [0, 0, 16, 16],
+        "alphaBounds": [0, 0, 16, 16]
+      },
+      "placement": {
+        "footAnchor": [8, 15],
+        "scaleClass": "prop"
+      },
+      "worldDrawSize": [48, 48],
+      "licenseReference": "game/CREDITS.md"
+    }
+  ]
+}
