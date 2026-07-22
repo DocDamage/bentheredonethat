@@ -47,17 +47,33 @@ func _run() -> void:
 		_fail("Purchased Armory gear could not be equipped from the conventional equipment system")
 		return
 	CampaignState.mark_story_flag(&"mansion_archive_boss_defeated")
-	if CampaignState.armory_stock().size() != 7:
-		_fail("Mansion progression did not expand the Armory stock")
+	if CampaignState.armory_stock().size() != 8:
+		_fail("Mansion progression did not unlock two deterministic Armory sidegrades")
 		return
 	var stronger := CampaignState.ARMORY_STOCK[&"tempered_saber"]
 	var comparison := CampaignState.gear_comparison(stronger, &"ben")
 	if int(comparison.get(&"attack", 0)) != 3 or int(comparison.get(&"speed", 0)) != 2:
 		_fail("Live stat comparison did not measure a weapon against Ben's equipped weapon")
 		return
+	var timekeeper := CampaignState.purchase_armory_item(&"timekeeper_charm")
+	if timekeeper.is_empty() or not CampaignState.equip_loot(&"ben", String(timekeeper.get("instance_id", ""))):
+		_fail("The Mansion resistance sidegrade could not be purchased and equipped")
+		return
+	var ben_actor := CampaignCombatDatabase.party_actor(&"ben", CampaignState.character_progress[&"ben"])
+	if not is_equal_approx(float(ben_actor.get("element_rates", {}).get(&"time", 1.0)), 0.75):
+		_fail("Equipped resistance gear did not reach the battle actor's elemental damage rates")
+		return
 	CampaignState.mark_story_flag(&"asterion_station_complete")
-	if CampaignState.armory_stock().size() != 8:
-		_fail("Later-universe progression did not expand the Armory stock again")
+	if CampaignState.armory_stock().size() != 10:
+		_fail("Asterion progression did not unlock two Armory sidegrades")
+		return
+	CampaignState.mark_story_flag(&"primeval_scenario_complete")
+	CampaignState.mark_story_flag(&"helios_scenario_complete")
+	CampaignState.mark_story_flag(&"frosthold_scenario_complete")
+	CampaignState.mark_story_flag(&"moonpetal_scenario_complete")
+	CampaignState.mark_story_flag(&"empyreal_scenario_complete")
+	if CampaignState.armory_stock().size() != 20:
+		_fail("Every completed universe did not add its pair of deterministic Armory sidegrades")
 		return
 	CampaignState.mark_story_flag(&"mansion_foyer_cleared")
 	if CampaignState.visible_facility_jobs("Armory").size() != 2:
@@ -93,11 +109,15 @@ func _run() -> void:
 	armory_service.run()
 	await get_tree().process_frame
 	var compare_button := menu.find_child("BuyGear_tempered_saber", true, false) as Button
-	if not menu.visible or menu.selected_tab != &"services" or menu.selected_service != "Armory" or not compare_button:
+	var resistance_button := menu.find_child("BuyGear_timekeeper_charm", true, false) as Button
+	if not menu.visible or menu.selected_tab != &"services" or menu.selected_service != "Armory" or not compare_button or not resistance_button:
 		_fail("The Armory doorway did not open its controller-ready equipment shop")
 		return
 	if "VS EQUIPPED: ATK +3" not in compare_button.text:
 		_fail("The shop UI did not show the live equipped-stat comparison")
+		return
+	if "TIME RESIST 25%" not in resistance_button.text:
+		_fail("The shop UI did not state the sidegrade's elemental counterplay")
 		return
 	var buy_button := menu.find_child("BuyGear_militia_saber", true, false) as Button
 	var before_ui_purchase := CampaignState.loot_inventory.size()
@@ -131,7 +151,7 @@ func _run() -> void:
 		return
 
 	DirAccess.remove_absolute(ProjectSettings.globalize_path(TEST_SAVE))
-	print("ARMORY_SERVICE_SMOKE_OK facility=fourth_foundation plots=11 stock=6+progression slots=6 compare=true buy+sell=true staffing=15pct controller+mouse=true persistence=true")
+	print("ARMORY_SERVICE_SMOKE_OK facility=fourth_foundation plots=11 stock=6+14_sidegrades slots=6 resistance=true compare=true buy+sell=true staffing=15pct controller+mouse=true persistence=true")
 	main.queue_free()
 	await get_tree().process_frame
 	get_tree().quit(0)

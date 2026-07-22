@@ -1438,6 +1438,9 @@ func _modifier_summary(item: Dictionary) -> String:
 	var parts: Array[String] = []
 	for modifier in item.get("modifiers", []):
 		parts.append("%s +%d" % [String(modifier.get("stat", "")).to_upper(), int(modifier.get("value", 0))])
+	for raw_element in (item.get("element_rates", {}) as Dictionary):
+		var resistance := int(round((1.0 - float(item["element_rates"][raw_element])) * 100.0))
+		parts.append("%s RESIST %d%%" % [String(raw_element).to_upper(), resistance])
 	if item.get("granted_action", &"") != &"":
 		parts.append("ABILITY: %s" % String(item["granted_action"]).replace("_", " ").to_upper())
 	return "   ".join(parts)

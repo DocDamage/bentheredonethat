@@ -17,6 +17,7 @@ static func validate_all() -> PackedStringArray:
 	_validate_encounters(errors)
 	_validate_universes(errors)
 	_validate_facilities(errors)
+	_validate_armory_stock(errors)
 	_validate_facility_upgrades(errors)
 	_validate_quests(errors)
 	_validate_skill_trees(errors)
@@ -129,6 +130,32 @@ static func _validate_facilities(errors: Array[String]) -> void:
 			for item_id in (job.get("items", {}) as Dictionary).keys():
 				if not _known_item_id(StringName(item_id)):
 					errors.append("Facility job '%s' grants unknown item '%s'." % [job_id, item_id])
+
+
+static func _validate_armory_stock(errors: Array[String]) -> void:
+	var supported_elements := {}
+	for action_id in CampaignCombatDatabase.action_ids():
+		var element := StringName(CampaignCombatDatabase.action(action_id).get("element", &""))
+		if element != &"":
+			supported_elements[element] = true
+	for stock_id in CampaignState.ARMORY_STOCK:
+		var item: Dictionary = CampaignState.ARMORY_STOCK[stock_id]
+		if StringName(item.get("id", &"")) != StringName(stock_id):
+			errors.append("Armory item '%s' has a missing or mismatched id." % stock_id)
+		if String(item.get("base_name", "")).is_empty() or int(item.get("price", 0)) <= 0:
+			errors.append("Armory item '%s' is missing a name or positive price." % stock_id)
+		if StringName(item.get("slot", &"")) not in CampaignState.EQUIPMENT_SLOTS:
+			errors.append("Armory item '%s' uses invalid equipment slot '%s'." % [stock_id, item.get("slot", "")])
+		var icon_path := String(item.get("icon", ""))
+		if icon_path.is_empty() or not ResourceLoader.exists(icon_path):
+			errors.append("Armory item '%s' has a missing icon: %s." % [stock_id, icon_path])
+		for raw_element in (item.get("element_rates", {}) as Dictionary):
+			var element := StringName(raw_element)
+			var rate := float(item["element_rates"][raw_element])
+			if not supported_elements.has(element):
+				errors.append("Armory item '%s' resists unsupported element '%s'." % [stock_id, element])
+			elif rate < 0.25 or rate > 0.9:
+				errors.append("Armory item '%s' has invalid resistance rate %.2f for '%s'." % [stock_id, rate, element])
 
 
 static func _validate_facility_upgrades(errors: Array[String]) -> void:

@@ -232,11 +232,83 @@ const ARMORY_STOCK := {
 		"rarity": "Uncommon", "rarity_color": "#62d67b", "modifiers": [{"name": "of Tempering", "stat": "attack", "value": 7}, {"name": "of Quick Draw", "stat": "speed", "value": 2}],
 		"requires_flags": [&"mansion_archive_boss_defeated"],
 	},
+	&"timekeeper_charm": {
+		"id": &"timekeeper_charm", "base_name": "Timekeeper's Safety Charm", "slot": &"charm", "price": 142,
+		"icon": "res://game_assets/items/resources_items_artifacts_loot/PNG/Transperent/Icon42.png",
+		"rarity": "Uncommon", "rarity_color": "#62d67b", "modifiers": [{"name": "of Punctuality", "stat": "spirit", "value": 5}, {"name": "of Preparedness", "stat": "speed", "value": 1}],
+		"element_rates": {&"time": 0.75}, "requires_flags": [&"mansion_archive_boss_defeated"],
+	},
 	&"vacuum_plate": {
 		"id": &"vacuum_plate", "base_name": "Asterion Vacuum Plate", "slot": &"body", "price": 184,
 		"icon": "res://game_assets/items/armory/Singles/Armor_Singles/Iron/Iron_Chestplate1.png",
 		"rarity": "Uncommon", "rarity_color": "#62d67b", "modifiers": [{"name": "of Pressure", "stat": "defense", "value": 8}, {"name": "of Reserve Air", "stat": "max_hp", "value": 24}],
 		"requires_flags": [&"asterion_station_complete"],
+	},
+	&"grounded_signal_lens": {
+		"id": &"grounded_signal_lens", "base_name": "Grounded Signal Lens", "slot": &"accessory", "price": 188,
+		"icon": "res://game_assets/items/resources_items_artifacts_loot/PNG/Transperent/Icon15.png",
+		"rarity": "Uncommon", "rarity_color": "#62d67b", "modifiers": [{"name": "of Diagnostics", "stat": "magic", "value": 5}, {"name": "of Isolation", "stat": "spirit", "value": 3}],
+		"element_rates": {&"lightning": 0.75}, "requires_flags": [&"asterion_station_complete"],
+	},
+	&"caldera_field_gloves": {
+		"id": &"caldera_field_gloves", "base_name": "Caldera Field Gloves", "slot": &"hands", "price": 212,
+		"icon": "res://game_assets/items/armory/Singles/Armor_Singles/Iron/Iron_Gloves5.png",
+		"rarity": "Rare", "rarity_color": "#58a6ff", "modifiers": [{"name": "of the Hunt", "stat": "attack", "value": 5}, {"name": "of Sure Footing", "stat": "speed", "value": 3}],
+		"element_rates": {&"nature": 0.75}, "requires_flags": [&"primeval_scenario_complete"],
+	},
+	&"paleo_signal_lens": {
+		"id": &"paleo_signal_lens", "base_name": "Paleo Signal Lens", "slot": &"accessory", "price": 206,
+		"icon": "res://game_assets/items/resources_items_artifacts_loot/PNG/Transperent/Icon9.png",
+		"rarity": "Rare", "rarity_color": "#58a6ff", "modifiers": [{"name": "of Translation", "stat": "magic", "value": 6}, {"name": "of Bedrock", "stat": "defense", "value": 4}],
+		"element_rates": {&"spectral": 0.8}, "requires_flags": [&"primeval_scenario_complete"],
+	},
+	&"noonshade_visored_cap": {
+		"id": &"noonshade_visored_cap", "base_name": "Noonshade Visored Cap", "slot": &"head", "price": 246,
+		"icon": "res://game_assets/items/armory/Singles/Armor_Singles/Iron/Iron_Helmet5.png",
+		"rarity": "Rare", "rarity_color": "#58a6ff", "modifiers": [{"name": "of the Night Shift", "stat": "defense", "value": 5}, {"name": "of Escape Routes", "stat": "speed", "value": 4}],
+		"element_rates": {&"radiant": 0.75}, "requires_flags": [&"helios_scenario_complete"],
+	},
+	&"afterlight_coil": {
+		"id": &"afterlight_coil", "base_name": "Afterlight Discharge Coil", "slot": &"charm", "price": 238,
+		"icon": "res://game_assets/items/resources_items_artifacts_loot/PNG/Transperent/Icon42.png",
+		"rarity": "Rare", "rarity_color": "#58a6ff", "modifiers": [{"name": "of Countercurrent", "stat": "magic", "value": 5}, {"name": "of Nerve", "stat": "spirit", "value": 5}],
+		"element_rates": {&"lightning": 0.7}, "requires_flags": [&"helios_scenario_complete"],
+	},
+	&"thermal_arbitration_coat": {
+		"id": &"thermal_arbitration_coat", "base_name": "Thermal Arbitration Coat", "slot": &"body", "price": 278,
+		"icon": "res://game_assets/items/armory/Singles/Armor_Singles/Iron/Iron_Chestplate5.png",
+		"rarity": "Rare", "rarity_color": "#58a6ff", "modifiers": [{"name": "of Insulation", "stat": "defense", "value": 9}, {"name": "of Warm Rations", "stat": "max_hp", "value": 28}],
+		"element_rates": {&"frost": 0.7}, "requires_flags": [&"frosthold_scenario_complete"],
+	},
+	&"winter_ledger_locket": {
+		"id": &"winter_ledger_locket", "base_name": "Winter Ledger Locket", "slot": &"accessory", "price": 266,
+		"icon": "res://game_assets/items/resources_items_artifacts_loot/PNG/Transperent/Icon15.png",
+		"rarity": "Rare", "rarity_color": "#58a6ff", "modifiers": [{"name": "of Forbearance", "stat": "spirit", "value": 7}, {"name": "of Reserves", "stat": "max_mp", "value": 10}],
+		"element_rates": {&"spectral": 0.75}, "requires_flags": [&"frosthold_scenario_complete"],
+	},
+	&"veracity_lantern_locket": {
+		"id": &"veracity_lantern_locket", "base_name": "Veracity Lantern Locket", "slot": &"accessory", "price": 308,
+		"icon": "res://game_assets/items/resources_items_artifacts_loot/PNG/Transperent/Icon15.png",
+		"rarity": "Epic", "rarity_color": "#bd77ff", "modifiers": [{"name": "of Witness", "stat": "magic", "value": 8}, {"name": "of the Record", "stat": "spirit", "value": 4}],
+		"element_rates": {&"spectral": 0.7}, "requires_flags": [&"moonpetal_scenario_complete"],
+	},
+	&"moonpetal_courier_gloves": {
+		"id": &"moonpetal_courier_gloves", "base_name": "Moonpetal Courier Gloves", "slot": &"hands", "price": 296,
+		"icon": "res://game_assets/items/armory/Singles/Armor_Singles/Iron/Iron_Gloves9.png",
+		"rarity": "Epic", "rarity_color": "#bd77ff", "modifiers": [{"name": "of the Procession", "stat": "attack", "value": 7}, {"name": "of Swift Recall", "stat": "speed", "value": 4}],
+		"element_rates": {&"time": 0.75}, "requires_flags": [&"moonpetal_scenario_complete"],
+	},
+	&"galvanic_counterweight": {
+		"id": &"galvanic_counterweight", "base_name": "Galvanic Counterweight", "slot": &"charm", "price": 348,
+		"icon": "res://game_assets/items/resources_items_artifacts_loot/PNG/Transperent/Icon42.png",
+		"rarity": "Epic", "rarity_color": "#bd77ff", "modifiers": [{"name": "of Grounding", "stat": "defense", "value": 9}, {"name": "of Ballast", "stat": "max_hp", "value": 30}],
+		"element_rates": {&"lightning": 0.7}, "requires_flags": [&"empyreal_scenario_complete"],
+	},
+	&"aerie_ward_helm": {
+		"id": &"aerie_ward_helm", "base_name": "Aerie Ward Helm", "slot": &"head", "price": 336,
+		"icon": "res://game_assets/items/armory/Singles/Armor_Singles/Iron/Iron_Helmet8.png",
+		"rarity": "Epic", "rarity_color": "#bd77ff", "modifiers": [{"name": "of Appeals", "stat": "spirit", "value": 8}, {"name": "of Flight", "stat": "speed", "value": 4}],
+		"element_rates": {&"radiant": 0.7}, "requires_flags": [&"empyreal_scenario_complete"],
 	},
 }
 const FACILITY_DEFINITIONS := {
@@ -1370,6 +1442,7 @@ func equipped_loot(character_id: StringName) -> Array[Dictionary]:
 func actor_build(character_id: StringName) -> Dictionary:
 	var bonuses := {&"max_hp": 0, &"max_mp": 0, &"attack": 0, &"defense": 0, &"magic": 0, &"spirit": 0, &"speed": 0}
 	var actions: Array[StringName] = []
+	var element_rates: Dictionary = {}
 	var progress: Dictionary = character_progress.get(character_id, {})
 	for skill_id in progress.get("learned_skills", []):
 		var skill := _skill_definition(character_id, StringName(skill_id))
@@ -1386,7 +1459,11 @@ func actor_build(character_id: StringName) -> Dictionary:
 		var granted_action := StringName(item.get("granted_action", ""))
 		if granted_action != &"" and granted_action not in actions:
 			actions.append(granted_action)
-	return {"bonuses": bonuses, "actions": actions}
+		for raw_element in (item.get("element_rates", {}) as Dictionary):
+			var element := StringName(raw_element)
+			var rate := clampf(float(item["element_rates"][raw_element]), 0.25, 1.0)
+			element_rates[element] = maxf(0.25, float(element_rates.get(element, 1.0)) * rate)
+	return {"bonuses": bonuses, "actions": actions, "element_rates": element_rates}
 
 
 func _skill_definition(character_id: StringName, skill_id: StringName) -> Dictionary:
@@ -2362,6 +2439,8 @@ func loot_sell_value(instance_id: String) -> int:
 	var value := int(rarity_values.get(String(item.get("rarity", "Common")), 8))
 	for modifier in item.get("modifiers", []):
 		value += maxi(0, int(modifier.get("value", 0))) * 2
+	for raw_element in (item.get("element_rates", {}) as Dictionary):
+		value += maxi(0, int(round((1.0 - float(item["element_rates"][raw_element])) * 20.0)))
 	return value
 
 

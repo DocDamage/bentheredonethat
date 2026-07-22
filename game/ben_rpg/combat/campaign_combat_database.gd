@@ -235,6 +235,7 @@ static func party_actor(character_id: StringName, progress: Dictionary) -> Dicti
 		var fighter := _actor(character_id, "Fighter", "party", 190 + (level - 1) * 22 + int(bonuses[&"max_hp"]), 18 + (level - 1) * 2 + int(bonuses[&"max_mp"]),
 			32 + level * 4 + int(bonuses[&"attack"]), 24 + level * 3 + int(bonuses[&"defense"]), 8 + level + int(bonuses[&"magic"]), 13 + level * 2 + int(bonuses[&"spirit"]), 34 + level + int(bonuses[&"speed"]),
 			FIGHTER_SPRITE, fighter_actions, progress)
+		_apply_build_element_rates(fighter, build)
 		fighter["formation"] = CampaignState.formation_for(character_id)
 		_attach_authored_battle_animation(fighter, character_id)
 		return fighter
@@ -244,6 +245,7 @@ static func party_actor(character_id: StringName, progress: Dictionary) -> Dicti
 		var astronaut := _actor(character_id, "Astronaut", "party", 165 + (level - 1) * 18 + int(bonuses[&"max_hp"]), 24 + (level - 1) * 3 + int(bonuses[&"max_mp"]),
 			29 + level * 3 + int(bonuses[&"attack"]), 21 + level * 2 + int(bonuses[&"defense"]), 17 + level * 2 + int(bonuses[&"magic"]), 18 + level * 2 + int(bonuses[&"spirit"]), 38 + level * 2 + int(bonuses[&"speed"]),
 			ASTRONAUT_SPRITE, astronaut_actions, progress)
+		_apply_build_element_rates(astronaut, build)
 		astronaut["formation"] = CampaignState.formation_for(character_id)
 		_attach_authored_battle_animation(astronaut, character_id)
 		return astronaut
@@ -255,6 +257,7 @@ static func party_actor(character_id: StringName, progress: Dictionary) -> Dicti
 		var ben := _actor(&"ben", "Benjamin Franklin", "party", 140 + (level - 1) * 14 + int(bonuses[&"max_hp"]), 36 + (level - 1) * 5 + int(bonuses[&"max_mp"]),
 			14 + level * 2 + int(bonuses[&"attack"]), 17 + level * 2 + int(bonuses[&"defense"]), 29 + level * 3 + int(bonuses[&"magic"]), 24 + level * 2 + int(bonuses[&"spirit"]), 27 + level + int(bonuses[&"speed"]),
 			BEN_SPRITE, ben_actions, progress)
+		_apply_build_element_rates(ben, build)
 		ben["formation"] = CampaignState.formation_for(&"ben")
 		_attach_authored_battle_animation(ben, &"ben")
 		return ben
@@ -280,9 +283,14 @@ static func party_actor(character_id: StringName, progress: Dictionary) -> Dicti
 		int(stats.get("spirit", 18)) + level * int(stats.get("spirit_growth", 2)) + int(bonuses[&"spirit"]),
 		int(stats.get("speed", 30)) + level * int(stats.get("speed_growth", 1)) + int(bonuses[&"speed"]),
 		sprite_path, generic_actions, progress)
+	_apply_build_element_rates(generic, build)
 	generic["formation"] = CampaignState.formation_for(character_id)
 	_attach_authored_battle_animation(generic, character_id, recruit)
 	return generic
+
+
+static func _apply_build_element_rates(actor: Dictionary, build: Dictionary) -> void:
+	actor["element_rates"] = (build.get("element_rates", {}) as Dictionary).duplicate(true)
 
 
 static func raptor_actor() -> Dictionary:
