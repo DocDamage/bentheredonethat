@@ -3,6 +3,7 @@ extends CanvasLayer
 
 signal battle_finished(victory: bool, encounter_id: StringName)
 signal return_to_town_requested
+signal victory_autosave_committed(encounter_id: StringName, result: int)
 
 const MANSION_ATLAS := "res://game_assets/Tilesets/Haunted Mansion Pixel Art Tileset Pack/2.png"
 const UI_ROOT := "res://game_assets/Tilesets/Dark RPG GUI Kit - Pixel Art Asset Pack"
@@ -21,6 +22,7 @@ var _message_label: Label
 var _encounter_label: Label
 var _command_panel: PanelContainer
 var _command_header: Label
+var _battle_mode_button: Button
 var _command_buttons: GridContainer
 var _description_label: Label
 var _target_panel: PanelContainer
@@ -42,6 +44,7 @@ var _frame_cache: Dictionary = {}
 var _battle_instance_id := 0
 var _result_applied_instance_id := -1
 var _leave_applied_instance_id := -1
+var _autosave_pending_instance_id := -1
 
 
 func _ready() -> void:
@@ -69,6 +72,7 @@ func begin(encounter_id: StringName, seed: int = 0) -> bool:
 	_battle_instance_id += 1
 	_result_applied_instance_id = -1
 	_leave_applied_instance_id = -1
+	_autosave_pending_instance_id = -1
 	active = true
 	CampaignState.clear_encounter_pressure()
 	model.setup(encounter_id, CampaignState.party, CampaignState.character_progress, seed)
@@ -82,6 +86,7 @@ func begin(encounter_id: StringName, seed: int = 0) -> bool:
 	_command_actor = &""
 	_chosen_action = &""
 	_action_lock = false
+	_configure_battle_timing()
 	_results_panel.hide()
 	_command_panel.hide()
 	_target_panel.hide()
@@ -210,6 +215,12 @@ func _build_interface() -> void:
 	_command_header.add_theme_font_size_override("font_size", 34)
 	_command_header.add_theme_color_override("font_color", Color(1.0, 0.88, 0.52))
 	left.add_child(_command_header)
+	_battle_mode_button = Button.new()
+	_battle_mode_button.custom_minimum_size = Vector2(0, 36)
+	_battle_mode_button.add_theme_font_size_override("font_size", 18)
+	_battle_mode_button.tooltip_text = "Toggle whether enemy gauges pause while choosing a command."
+	_battle_mode_button.pressed.connect(_toggle_battle_mode)
+	left.add_child(_battle_mode_button)
 	_command_buttons = GridContainer.new()
 	_command_buttons.columns = 2
 	_command_buttons.add_theme_constant_override("h_separation", 7)
@@ -426,7 +437,8 @@ func _show_commands(actor_id: StringName) -> void:
 		return
 	_command_actor = actor_id
 	_command_header.text = "%s is ready" % actor["display_name"]
-	_description_label.text = "Choose a command. Enemy gauges remain active."
+	model.command_input_open = true
+	_description_label.text = _timing_description()
 	_clear_children(_command_buttons)
 	for action_id in actor["actions"]:
 		var data := CampaignCombatDatabase.action(StringName(action_id))
@@ -454,6 +466,29 @@ func _show_commands(actor_id: StringName) -> void:
 	var first := _first_enabled_button(_command_buttons)
 	if first:
 		first.grab_focus()
+
+
+func _configure_battle_timing() -> void:
+	var speed := float(SettingsRepository.value(&"battle", &"atb_speed", 1.0))
+	var wait_mode := bool(SettingsRepository.value(&"battle", &"wait_mode", false))
+	model.configure_timing(speed, wait_mode)
+	if _battle_mode_button:
+		_battle_mode_button.text = "MODE: %s  •  SPEED %.1fx" % ["WAIT" if wait_mode else "ACTIVE", speed]
+
+
+func _toggle_battle_mode() -> void:
+	var next_wait_mode := not bool(SettingsRepository.value(&"battle", &"wait_mode", false))
+	SettingsRepository.set_value(&"battle", &"wait_mode", next_wait_mode)
+	SettingsRepository.save_to_disk()
+	_configure_battle_timing()
+	if _command_actor != &"":
+		_description_label.text = _timing_description()
+
+
+func _timing_description() -> String:
+	if model.wait_mode:
+		return "Wait mode: enemy gauges pause while you choose a command or target."
+	return "Active mode: enemy gauges keep filling while you choose a command."
 
 
 func _on_action_focused(action_id: StringName) -> void:
@@ -494,6 +529,7 @@ func _commit_player_action(target_ids: Array[StringName]) -> void:
 	_ready_players.erase(actor_id)
 	_command_actor = &""
 	_chosen_action = &""
+	model.command_input_open = false
 	_command_panel.hide()
 	_target_panel.hide()
 	_perform_action(actor_id, action_id, target_ids)
@@ -604,6 +640,7 @@ func _show_victory() -> void:
 		return
 	_result_applied_instance_id = _battle_instance_id
 	_action_lock = true
+	model.command_input_open = false
 	_command_panel.hide()
 	_target_panel.hide()
 	model.sync_party_vitals()
@@ -619,7 +656,7 @@ func _show_victory() -> void:
 	if model.encounter_id == &"mansion_foyer_intro":
 		CampaignState.story_flags[&"mansion_foyer_cleared"] = true
 	if not suppress_persistence:
-		CampaignState.save_game()
+		_autosave_pending_instance_id = _battle_instance_id
 	_clear_children(_results_content)
 	_add_result_title("VICTORY", Color(1.0, 0.82, 0.3))
 	_add_result_text("The party gained %d EXP and %d Duckets." % [reward["experience"], reward["duckets"]])
@@ -640,6 +677,7 @@ func _show_victory() -> void:
 
 func _show_defeat() -> void:
 	_action_lock = true
+	model.command_input_open = false
 	_command_panel.hide()
 	_target_panel.hide()
 	model.sync_party_vitals()
@@ -691,6 +729,10 @@ func _leave_battle(victory: bool) -> void:
 		_field_ui_node.show()
 	FieldEvents.input_paused.emit(false)
 	battle_finished.emit(victory, finished_id)
+	if victory and _autosave_pending_instance_id == _battle_instance_id:
+		_autosave_pending_instance_id = -1
+		var autosave_result := CampaignState.save_game()
+		victory_autosave_committed.emit(finished_id, autosave_result)
 
 
 func debug_force_victory() -> void:

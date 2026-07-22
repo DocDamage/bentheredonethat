@@ -3,9 +3,18 @@ extends Interaction
 
 @export var clue_kind: StringName = &"clock"
 
+const CLOCK_DIAL_SETTINGS := [&"12:01", &"01:13", &"02:22", &"03:13", &"04:44", &"05:05", &"06:06", &"07:07", &"08:08", &"09:09", &"10:10", &"11:11", &"13:13"]
+
 
 func _execute() -> void:
+	if clue_kind == &"clock" and _can_set_clock():
+		_show_clock_dial()
+		return
 	var events := apply_interaction()
+	_show_events(events)
+
+
+func _show_events(events: Array[String]) -> void:
 	var timeline := DialogicTimeline.new()
 	timeline.events = events
 	Dialogic.start_timeline(timeline)
@@ -52,6 +61,64 @@ func _inspect_clock() -> Array[String]:
 		]
 	if not CampaignState.story_flags.get(&"mansion_ledger_found", false):
 		return ["The clock has thirteen settings and no labels. The missing instruction must be somewhere in the foyer."]
+	if CampaignState.story_flags.get(&"mansion_first_room_complete", false):
+		return ["The clock holds at 4:44. A narrow servants' passage now waits beyond the foyer."]
+	var current_setting := String(CampaignState.story_flags.get(&"mansion_clock_time", "12:01"))
+	return ["The clock currently reads %s. The ledger's underlined appointment gives Ben a specific time to set on the dial." % current_setting]
+
+
+func set_clock_time(setting: StringName, save_after: bool = true) -> Array[String]:
+	if not _can_set_clock():
+		return ["The clock's dial is still missing its written instruction."]
+	if setting not in CLOCK_DIAL_SETTINGS:
+		return ["That setting does not exist on the clock's impossible dial."]
+	CampaignState.story_flags[&"mansion_clock_time"] = setting
+	var events: Array[String]
+	if setting != &"04:44":
+		events = ["Ben sets the dial to %s. The pendulum recoils, and a different room answers with one disapproving knock. The servants' passage remains closed." % setting]
+	else:
+		events = _complete_clock_puzzle()
+	CampaignState.state_changed.emit()
+	if save_after:
+		CampaignState.save_game()
+	return events
+
+
+func _can_set_clock() -> bool:
+	return CampaignState.story_flags.get(&"mansion_foyer_cleared", false) \
+		and CampaignState.story_flags.get(&"mansion_clock_examined", false) \
+		and CampaignState.story_flags.get(&"mansion_ledger_found", false) \
+		and not CampaignState.story_flags.get(&"mansion_first_room_complete", false)
+
+
+func _show_clock_dial() -> void:
+	var dialog := AcceptDialog.new()
+	dialog.title = "THE CLOCK AT 4:44"
+	dialog.dialog_text = "Choose one of the thirteen impossible settings. The household ledger records the servants' passage appointment."
+	dialog.exclusive = true
+	dialog.min_size = Vector2i(620, 420)
+	var choices := GridContainer.new()
+	choices.columns = 4
+	choices.add_theme_constant_override("h_separation", 10)
+	choices.add_theme_constant_override("v_separation", 10)
+	dialog.add_child(choices)
+	for setting in CLOCK_DIAL_SETTINGS:
+		var button := Button.new()
+		button.text = String(setting)
+		button.custom_minimum_size = Vector2(118, 46)
+		button.pressed.connect(_select_clock_setting.bind(setting, dialog))
+		choices.add_child(button)
+	get_tree().root.add_child(dialog)
+	dialog.popup_centered()
+
+
+func _select_clock_setting(setting: StringName, dialog: AcceptDialog) -> void:
+	var events := set_clock_time(setting)
+	dialog.queue_free()
+	_show_events(events)
+
+
+func _complete_clock_puzzle() -> Array[String]:
 	if CampaignState.story_flags.get(&"mansion_first_room_complete", false):
 		return ["The clock holds at 4:44. A narrow servants' passage now waits beyond the foyer."]
 	CampaignState.story_flags[&"mansion_clock_puzzle_solved"] = true

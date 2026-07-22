@@ -18,7 +18,7 @@ static func default_settings() -> Dictionary:
 		"version": SETTINGS_VERSION,
 		"audio": {"master_volume": 1.0, "music_volume": 0.8, "sfx_volume": 0.8},
 		"display": {"fullscreen": false, "pixel_scale": 1},
-		"battle": {"atb_speed": 1.0, "auto_advance_results": false},
+		"battle": {"atb_speed": 1.0, "wait_mode": false, "auto_advance_results": false},
 		"accessibility": {"text_speed": 1.0, "reduce_motion": false, "reduce_flashes": false, "weather_density": 1.0},
 		"input": {"deadzone": 0.5, "vibration": true},
 		"telemetry": {"enabled": false},
@@ -97,6 +97,7 @@ static func normalize(source: Dictionary) -> Dictionary:
 	var battle: Dictionary = source.get("battle", {})
 	normalized["battle"] = {
 		"atb_speed": clampf(float(battle.get("atb_speed", 1.0)), 0.5, 2.0),
+		"wait_mode": bool(battle.get("wait_mode", false)),
 		"auto_advance_results": bool(battle.get("auto_advance_results", false)),
 	}
 	var accessibility: Dictionary = source.get("accessibility", {})

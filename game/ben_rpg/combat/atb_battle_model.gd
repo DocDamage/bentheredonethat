@@ -11,6 +11,9 @@ var encounter_data: Dictionary
 var rng := RandomNumberGenerator.new()
 var elapsed_time := 0.0
 var escaped := false
+var battle_speed := 1.0
+var wait_mode := false
+var command_input_open := false
 
 
 func setup(new_encounter_id: StringName, party_ids: Array[StringName], progression: Dictionary, seed: int = 0) -> void:
@@ -34,11 +37,20 @@ func setup(new_encounter_id: StringName, party_ids: Array[StringName], progressi
 		actor["atb"] = rng.randf_range(0.0, 16.0)
 
 
+func configure_timing(new_battle_speed: float, new_wait_mode: bool, new_command_input_open: bool = false) -> void:
+	battle_speed = clampf(new_battle_speed, 0.5, 2.0)
+	wait_mode = new_wait_mode
+	command_input_open = new_command_input_open
+
+
 func tick_atb(delta: float) -> Array[StringName]:
-	elapsed_time += delta
+	var scaled_delta := delta * battle_speed
+	elapsed_time += scaled_delta
 	var newly_ready: Array[StringName] = []
 	for actor in actors:
 		if not actor["alive"] or float(actor["atb"]) >= 100.0:
+			continue
+		if wait_mode and command_input_open and actor["team"] == "enemy":
 			continue
 		var speed_rate := 1.0
 		var statuses: Dictionary = actor.get("statuses", {})
@@ -46,7 +58,7 @@ func tick_atb(delta: float) -> Array[StringName]:
 			if statuses.has(status_id):
 				speed_rate *= float(STATUS_SPEED_RATES[status_id])
 		var before := float(actor["atb"])
-		actor["atb"] = minf(100.0, before + delta * float(actor["speed"]) * speed_rate * ATB_RATE)
+		actor["atb"] = minf(100.0, before + scaled_delta * float(actor["speed"]) * speed_rate * ATB_RATE)
 		if before < 100.0 and float(actor["atb"]) >= 100.0:
 			newly_ready.append(StringName(actor["id"]))
 	return newly_ready
