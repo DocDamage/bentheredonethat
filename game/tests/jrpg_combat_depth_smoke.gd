@@ -87,9 +87,9 @@ func _test_smart_ai_and_escape() -> void:
 	var boss_model := AtbBattleModel.new()
 	boss_model.setup(&"mansion_archive_boss", CampaignState.party, CampaignState.character_progress, 9)
 	var boss: Dictionary = boss_model.living("enemy")[0]
-	boss["turn_count"] = 2
+	boss["atb"] = 100.0
 	var boss_choice := boss_model.choose_ai_action(StringName(boss["id"]))
-	assert(boss_choice["action"] == &"late_fee", "Boss AI should use a readable three-action pattern")
+	assert(boss_choice["action"] == &"spectral_touch" and boss_model.status_summary(StringName(boss["id"])).contains("TICKING"), "Boss AI should begin in a readable clock state")
 	assert(not boss_model.can_escape(), "Boss encounters must seal escape")
 	var ben := boss_model.get_actor(&"ben")
 	ben["atb"] = 100.0
@@ -122,4 +122,3 @@ func _test_supplied_presentation_assets() -> void:
 		unique_folders[frames.front().get_base_dir()] = true
 		assert(ResourceLoader.exists(PRESENTATION.action_sound(action_id)), "Each combat family should use supplied RPG sound effects")
 	assert(unique_folders.size() == 8, "The combat layer should exercise eight distinct supplied VFX families")
-

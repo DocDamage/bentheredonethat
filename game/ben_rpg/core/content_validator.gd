@@ -1,10 +1,10 @@
 class_name ContentValidator
 extends RefCounted
 
-const ACTION_KINDS := [&"physical", &"magic", &"heal", &"item_heal", &"item_mp", &"revive", &"cleanse", &"defend", &"rally", &"aegis", &"delay", &"damage_delay", &"escape"]
+const ACTION_KINDS := [&"physical", &"magic", &"heal", &"item_heal", &"item_mp", &"revive", &"cleanse", &"defend", &"rally", &"aegis", &"delay", &"damage_delay", &"time_tune", &"escape"]
 const ACTION_SELECTORS := [&"single", &"all", &"ko_single", &"self"]
 const ACTION_RELATIONS := [&"hostile", &"ally", &"self"]
-const HOSTILE_KINDS := [&"physical", &"magic", &"delay", &"damage_delay"]
+const HOSTILE_KINDS := [&"physical", &"magic", &"delay", &"damage_delay", &"time_tune"]
 const ALLY_KINDS := [&"heal", &"item_heal", &"item_mp", &"revive", &"cleanse", &"rally", &"aegis"]
 const SAVE_MIGRATOR := preload("res://ben_rpg/core/save_migrator.gd")
 const SETTINGS_REPOSITORY := preload("res://ben_rpg/core/settings_repository.gd")
@@ -142,6 +142,20 @@ static func _validate_quests(errors: Array[String]) -> void:
 		for item_id in (quest.get("rewards", {}).get("items", {}) as Dictionary).keys():
 			if not _known_item_id(StringName(item_id)):
 				errors.append("Quest '%s' rewards unknown item '%s'." % [quest_id, item_id])
+		var objectives_by_id := {}
+		for raw_objective in quest.get("objectives", []):
+			var objective: Dictionary = raw_objective
+			var objective_id := StringName(objective.get("id", ""))
+			if objective_id == &"" or objectives_by_id.has(objective_id):
+				errors.append("Quest '%s' has a missing or duplicate objective id '%s'." % [quest_id, objective_id])
+			objectives_by_id[objective_id] = objective
+		for objective_id in objectives_by_id:
+			for required_id in objectives_by_id[objective_id].get("requires", []):
+				if not objectives_by_id.has(StringName(required_id)):
+					errors.append("Quest '%s' objective '%s' requires missing objective '%s'." % [quest_id, objective_id, required_id])
+		var objective_visit_states := {}
+		for objective_id in objectives_by_id:
+			_visit_objective_dependencies(StringName(objective_id), objectives_by_id, objective_visit_states, errors, StringName(quest_id))
 	for quest_id in CampaignState.QUEST_DEFINITIONS:
 		_visit_quest_dependencies(StringName(quest_id), visit_states, errors)
 
@@ -205,6 +219,21 @@ static func _visit_skill_dependencies(node_id: StringName, nodes_by_id: Dictiona
 		if nodes_by_id.has(required_node):
 			_visit_skill_dependencies(StringName(required_node), nodes_by_id, visit_states, errors, character_id)
 	visit_states[node_id] = 2
+
+
+static func _visit_objective_dependencies(objective_id: StringName, objectives_by_id: Dictionary, visit_states: Dictionary, errors: Array[String], quest_id: StringName) -> void:
+	var state := int(visit_states.get(objective_id, 0))
+	if state == 1:
+		errors.append("Quest '%s' objective tree has a dependency cycle at '%s'." % [quest_id, objective_id])
+		return
+	if state == 2:
+		return
+	visit_states[objective_id] = 1
+	for required_id in objectives_by_id[objective_id].get("requires", []):
+		var normalized_id := StringName(required_id)
+		if objectives_by_id.has(normalized_id):
+			_visit_objective_dependencies(normalized_id, objectives_by_id, visit_states, errors, quest_id)
+	visit_states[objective_id] = 2
 
 
 static func _known_item_id(item_id: StringName) -> bool:

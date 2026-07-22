@@ -135,10 +135,13 @@ func _process(delta: float) -> void:
 			var ai_id: StringName = _pending_ai.pop_front()
 			var choice: Dictionary = model.choose_ai_action(ai_id)
 			if not choice.is_empty():
-				var ai_targets: Array[StringName] = []
-				for target_id in choice["targets"]:
-					ai_targets.append(StringName(target_id))
-				_perform_action(StringName(choice["actor"]), StringName(choice["action"]), ai_targets)
+				if choice.has("telegraph"):
+					_perform_boss_telegraph(StringName(choice["actor"]), String(choice["telegraph"]))
+				else:
+					var ai_targets: Array[StringName] = []
+					for target_id in choice["targets"]:
+						ai_targets.append(StringName(target_id))
+					_perform_action(StringName(choice["actor"]), StringName(choice["action"]), ai_targets)
 		elif _command_actor == &"" and not _ready_players.is_empty():
 			_show_commands(_ready_players.front())
 	_update_status_display()
@@ -582,6 +585,18 @@ func _perform_action(actor_id: StringName, action_id: StringName, targets: Array
 		_leave_battle(false)
 	else:
 		_action_lock = false
+
+
+func _perform_boss_telegraph(actor_id: StringName, telegraph: String) -> void:
+	if _action_lock or not model.commit_boss_telegraph(actor_id):
+		return
+	_action_lock = true
+	_set_message(telegraph)
+	_play_actor_once(actor_id, &"power")
+	_play_stream(PRESENTATION.action_sound(&"steal_time"))
+	await get_tree().create_timer(0.9).timeout
+	_update_status_display()
+	_action_lock = false
 
 
 func _animate_effect(event: Dictionary) -> void:

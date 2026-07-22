@@ -61,6 +61,13 @@ func _ready() -> void:
 	if int(CampaignState.quest_state(&"the_house_keeps_time").get("step", 0)) != 5:
 		_fail("Mansion encounter, clue, puzzle, and save events did not advance in order")
 		return
+	var mansion_objectives := CampaignState.available_quest_objectives(&"the_house_keeps_time")
+	var available_objective_ids: Array[StringName] = []
+	for objective in mansion_objectives:
+		available_objective_ids.append(StringName(objective.get("id", "")))
+	if &"gallery_hand" not in available_objective_ids or &"nursery_hand" not in available_objective_ids:
+		_fail("The Mansion objective tree did not expose the gallery and nursery as parallel routes")
+		return
 	if not _quest_visible(&"echoes_on_paper"):
 		_fail("Household information did not reveal the hidden Library quest")
 		return
@@ -88,7 +95,7 @@ func _ready() -> void:
 		return
 
 	DirAccess.remove_absolute(ProjectSettings.globalize_path(TEST_SAVE))
-	print("QUEST_PROGRESSION_SMOKE_OK main=opening>hire>anchor>mansion side=staffing hidden=information rewards=once save_load=true")
+	print("QUEST_PROGRESSION_SMOKE_OK main=opening>hire>anchor>mansion tree=parallel_gallery+nursery side=staffing hidden=information rewards=once save_load=true")
 	get_tree().quit(0)
 
 

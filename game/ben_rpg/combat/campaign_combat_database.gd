@@ -125,6 +125,7 @@ static func _action_catalog() -> Dictionary:
 		&"ink_blight": {"name": "Ink Blight", "kind": "magic", "power": 10, "target": "enemy", "element": &"spectral", "status": &"poisoned", "status_chance": 0.7, "description": "Cursed ink harms and poisons one target."},
 		&"steal_time": {"name": "Steal Time", "kind": "damage_delay", "power": 10, "delay": 24, "target": "enemy", "element": &"time", "status": &"slow", "status_chance": 0.55, "description": "The clock wounds a target, drains ATB, and may inflict Slow."},
 		&"late_fee": {"name": "Late Fee", "kind": "magic", "power": 24, "target": "all_enemies", "element": &"spectral", "description": "The house collects spectral interest from the whole party."},
+		&"temporal_tuning": {"name": "Temporal Tuning", "kind": "time_tune", "power": 55, "mp": 6, "target": "enemy", "element": &"time", "description": "Use the Temporal Tuning Fork to drain an enemy's ATB and cancel a telegraphed clock attack."},
 		&"unfinished_refrain": {"name": "Unfinished Refrain", "kind": "magic", "power": 17, "target": "all_enemies", "element": &"spectral", "status": &"slow", "status_chance": 0.32, "description": "A painted orchestra attacks the party and may inflict Slow."},
 		&"splinter_needle": {"name": "Splinter Needle", "kind": "physical", "power": 18, "target": "enemy", "status": &"poisoned", "status_chance": 0.42, "description": "A toy needle strikes one target and may inflict Poison."},
 		&"nursery_wail": {"name": "Nursery Wail", "kind": "damage_delay", "power": 12, "delay": 20, "target": "all_enemies", "element": &"spectral", "description": "A broken lullaby harms and delays the whole party."},
@@ -248,6 +249,8 @@ static func party_actor(character_id: StringName, progress: Dictionary) -> Dicti
 		return astronaut
 	if character_id == &"ben":
 		var ben_actions: Array = [&"cane_tap", &"static_discharge", &"field_triage", &"defend", &"tonic", &"ether", &"smelling_salts", &"phoenix_tonic", &"escape"]
+		if &"temporal_tuning_fork" in CampaignState.owned_inventions:
+			ben_actions.append(&"temporal_tuning")
 		ben_actions.append_array(learned_actions)
 		var ben := _actor(&"ben", "Benjamin Franklin", "party", 140 + (level - 1) * 14 + int(bonuses[&"max_hp"]), 36 + (level - 1) * 5 + int(bonuses[&"max_mp"]),
 			14 + level * 2 + int(bonuses[&"attack"]), 17 + level * 2 + int(bonuses[&"defense"]), 29 + level * 3 + int(bonuses[&"magic"]), 24 + level * 2 + int(bonuses[&"spirit"]), 27 + level + int(bonuses[&"speed"]),
@@ -413,7 +416,17 @@ static func _encounter_catalog() -> Dictionary:
 		&"mansion_nursery_ambush": {"name": "Children Should Be Seen and Feared", "enemies": [&"haunted_doll", &"haunted_doll"], "backdrop_region": Rect2(0, 0, 384, 360), "scripted": true},
 		&"mansion_doll_procession": {"name": "The Doll Procession", "enemies": [&"haunted_doll", &"schoolgirl_ghost"], "backdrop_region": Rect2(0, 0, 384, 360)},
 		&"mansion_last_dance": {"name": "The Last Dance", "enemies": [&"composer_portrait", &"clock_mirror"], "backdrop_region": Rect2(0, 384, 384, 360)},
-		&"mansion_archive_boss": {"name": "Your Appointment Was 250 Years Ago", "enemies": [&"clock_mirror_boss"], "backdrop_region": Rect2(0, 384, 384, 360), "scripted": true, "boss": true},
+		&"mansion_archive_boss": {
+			"name": "Your Appointment Was 250 Years Ago", "enemies": [&"clock_mirror_boss"], "backdrop_region": Rect2(0, 384, 384, 360), "scripted": true, "boss": true,
+			"boss_policy": {
+				"id": &"mansion_clock_mirror",
+				"phases": [
+					{"id": &"ticking", "label": "TICKING", "minimum_hp_ratio": 0.67, "actions": [{"action": &"spectral_touch"}, {"action": &"steal_time", "telegraph": "TICKING: The mirror's hands climb toward your ready gauges. Steal Time is coming—Defend, delay it, or tune the clock."}]},
+					{"id": &"appointment", "label": "4:44 APPOINTMENT", "minimum_hp_ratio": 0.34, "actions": [{"action": &"steal_time", "telegraph": "4:44 APPOINTMENT: The clock fixes on a single future. Steal Time is coming—Defend, delay it, or tune the clock."}, {"action": &"late_fee"}]},
+					{"id": &"midnight", "label": "THIRTEENTH HOUR", "minimum_hp_ratio": 0.0, "actions": [{"action": &"late_fee"}, {"action": &"steal_time", "telegraph": "THIRTEENTH HOUR: The mirror tries to take tomorrow itself. Steal Time is coming—Defend, delay it, or tune the clock."}]},
+				],
+			},
+		},
 		&"mansion_rift_jackal_trial": {"name": "The Fault-Line Stray", "enemies": [&"rift_jackal_challenger"], "backdrop_region": Rect2(0, 384, 384, 360), "scripted": true, "boss": true},
 		&"asterion_dock_intro": {"name": "Please Present Crew Identification", "enemies": [&"sentry_drone", &"work_robot"], "backdrop_path": "res://game_assets/Tilesets/Sci-Fi Spaceship Interior Tileset Pack/1.png", "backdrop_region": Rect2(0, 0, 384, 360), "scripted": true},
 		&"asterion_maintenance_detail": {"name": "Unscheduled Maintenance", "enemies": [&"work_robot", &"work_robot"], "backdrop_path": "res://game_assets/Tilesets/Sci-Fi Spaceship Interior Tileset Pack/1.png", "backdrop_region": Rect2(0, 0, 384, 360)},

@@ -17,6 +17,7 @@ const DEFAULT_SAVE_PATH := "user://save_slot_1.json"
 const SANDBOX_SAVE_PATH := "user://sandbox_slot.json"
 const SAVE_REPOSITORY := preload("res://ben_rpg/core/save_repository.gd")
 const SAVE_MIGRATOR := preload("res://ben_rpg/core/save_migrator.gd")
+const QUEST_DIRECTOR := preload("res://ben_rpg/core/quest_director.gd")
 const SANDBOX_AUTHORED_OBJECTS := [
 	{"instance_id": "sandbox_town_lab", "catalog_id": &"modern_warehouse", "cell": Vector2i(48, 5), "role": &"town_lab", "protected": true},
 	{"instance_id": "sandbox_tree_northwest", "catalog_id": &"ranch_sapling", "cell": Vector2i(37, 1), "role": &"town_tree"},
@@ -28,6 +29,9 @@ const PARTY_LIMIT := 5
 const FORMATION_ROW_LIMIT := 3
 const FORMATION_ROWS := [&"front", &"back"]
 const SCENARIO_PARTY_REQUIREMENTS := {&"haunted_mansion": [&"fighter"]}
+const RESERVE_EXPERIENCE_RATIO := 0.78
+const MAX_HIRED_LEVEL_GAP := 2
+const NEW_HIRE_LEVEL_GAP := 1
 const FIELD_SPECIALIST_TASKS := {
 	&"asterion_cargo_override": {
 		"preferred_recruits": [&"astronaut"], "preferred_skills": [&"Navigation"],
@@ -329,6 +333,7 @@ const INVENTION_DEFINITIONS := {
 	&"cataloging_engine": {"name": "Electrostatic Cataloging Engine", "facility": "Library", "description": "Boosts research work and unlocks mansion decoding.", "duckets": 35, "items": {&"research_notes": 1}, "icon": "dfgui_icon-skillbook.png"},
 	&"medical_kite": {"name": "Pneumatic Medical Kite", "facility": "Clinic", "description": "Carries supplies through the ward without collisions.", "duckets": 35, "items": {&"tonic": 1}, "icon": "dfgui_icon-cauldron.png"},
 	&"echo_snare": {"name": "Harmonic Echo Snare", "facility": "Haunted Mansion", "description": "Improves supernatural work after the foyer is secured.", "duckets": 60, "items": {&"anchor_shard": 1}, "icon": "dfgui_icon-wand.png", "requires_flags": [&"mansion_foyer_cleared"]},
+	&"temporal_tuning_fork": {"name": "Temporal Tuning Fork", "facility": "Haunted Mansion", "description": "Turns Mansion clock resonance into a reusable battle command that cancels a telegraphed Steal Time attack and delays its source.", "duckets": 25, "items": {&"anchor_shard": 1}, "icon": "dfgui_icon-clock.png", "requires_flags": [&"mansion_first_room_complete"]},
 	&"anchor_regulator": {"name": "Portable Anchor Regulator", "facility": "Haunted Mansion", "description": "Required to safely calibrate the captured Anchor Core.", "duckets": 80, "items": {&"anchor_dust": 1}, "icon": "dfgui_icon-craftanvil.png", "requires_flags": [&"mansion_archive_boss_defeated"]},
 	&"continuity_kite": {"name": "Continuity Kite", "facility": "Haunted Mansion", "description": "Installs the captured Anchor Core in a portable homing invention. Opens a safe route back to New Philadelphia from any unrestricted universe.", "duckets": 0, "items": {&"anchor_core": 1}, "icon": "dfgui_icon-wand.png", "requires_flags": [&"mansion_archive_boss_defeated"]},
 	&"paleo_translator": {"name": "Paleo-Linguistic Telegraph", "facility": "Trailhead Lodge", "description": "Lets Ben exchange electrical signals with a cave computer whose operating system predates language.", "duckets": 85, "items": {&"research_notes": 1, &"anchor_dust": 1}, "icon": "dfgui_icon-wand.png", "requires_flags": [&"primeval_traffic_clue_found"]},
@@ -468,6 +473,15 @@ const QUEST_DEFINITIONS := {
 			{"text": "Fit the Hour Hand into the music box and recover the Brass Minute Hand.", "condition": {"type": &"story_flag", "id": &"mansion_minute_hand_found"}},
 			{"text": "Set the ballroom lock to 4:44 and keep the appointment.", "condition": {"type": &"story_flag", "id": &"mansion_ballroom_open"}},
 			{"text": "Defeat the Haunted Clock Mirror at the 4:44 appointment.", "condition": {"type": &"story_flag", "id": &"mansion_archive_boss_defeated"}},
+		],
+		"objectives": [
+			{"id": &"secure_foyer", "text": "Defeat the Mansion's foyer occupants.", "condition": {"type": &"story_flag", "id": &"mansion_foyer_cleared"}},
+			{"id": &"read_the_house", "text": "Pair the stopped clock with the household ledger.", "requires": [&"secure_foyer"], "condition": {"type": &"all", "conditions": [{"type": &"story_flag", "id": &"mansion_clock_examined"}, {"type": &"story_flag", "id": &"mansion_ledger_found"}]}},
+			{"id": &"tune_the_clock", "text": "Set the Mansion clock to the recorded hour: 4:44.", "requires": [&"read_the_house"], "condition": {"type": &"any", "conditions": [{"type": &"event", "id": &"mansion_clock_setting", "equals": &"04:44"}, {"type": &"story_flag", "id": &"mansion_first_room_complete"}]}},
+			{"id": &"prepare_archive", "text": "Activate the archive Anchor Clock and unlock both wings.", "requires": [&"tune_the_clock"], "condition": {"type": &"all", "conditions": [{"type": &"story_flag", "id": &"mansion_archive_save_found"}, {"type": &"story_flag", "id": &"mansion_ballroom_open"}]}},
+			{"id": &"gallery_hand", "text": "Recover the Silver Hour Hand from the portrait gallery.", "requires": [&"tune_the_clock"], "condition": {"type": &"all", "conditions": [{"type": &"story_flag", "id": &"mansion_gallery_ambush_cleared"}, {"type": &"story_flag", "id": &"mansion_hour_hand_found"}]}},
+			{"id": &"nursery_hand", "text": "Recover the Brass Minute Hand from the nursery music box.", "requires": [&"tune_the_clock"], "condition": {"type": &"all", "conditions": [{"type": &"story_flag", "id": &"mansion_nursery_ambush_cleared"}, {"type": &"story_flag", "id": &"mansion_minute_hand_found"}]}},
+			{"id": &"keep_appointment", "text": "Defeat the Haunted Clock Mirror at the 4:44 appointment.", "requires": [&"prepare_archive", &"gallery_hand", &"nursery_hand"], "condition": {"type": &"story_flag", "id": &"mansion_archive_boss_defeated"}},
 		],
 		"rewards": {"duckets": 200, "items": {&"tonic": 3, &"anchor_dust": 1}},
 	},
@@ -761,6 +775,7 @@ var active_facility_jobs: Dictionary = {}
 var completed_facility_jobs: Dictionary = {}
 var owned_inventions: Array[StringName] = []
 var quest_states: Dictionary = {}
+var quest_events: Dictionary = {}
 var tracked_quest: StringName = &""
 var _job_clock_accumulator := 0.0
 var _syncing_quests := false
@@ -970,6 +985,7 @@ func reset_new_game() -> void:
 	completed_facility_jobs.clear()
 	owned_inventions.clear()
 	quest_states.clear()
+	quest_events.clear()
 	tracked_quest = &""
 	_job_clock_accumulator = 0.0
 	_ensure_default_progress()
@@ -1330,12 +1346,82 @@ func grant_experience(character_id: StringName, amount: int) -> Array[int]:
 	return gained_levels
 
 
-func apply_battle_victory(experience: int, earned_duckets: int, loot: Array[Dictionary]) -> Dictionary:
+func active_party_median_level() -> int:
+	var levels: Array[int] = []
+	for character_id in party:
+		var defaults := _default_vitals(character_id)
+		var progress := ensure_character_progress(character_id, defaults.x, defaults.y)
+		levels.append(int(progress.get("level", 1)))
+	if levels.is_empty():
+		return 1
+	levels.sort()
+	var upper_index := levels.size() / 2
+	if levels.size() % 2 == 1:
+		return levels[upper_index]
+	return int(round((float(levels[upper_index - 1]) + float(levels[upper_index])) / 2.0))
+
+
+func progression_chapter_floor() -> int:
+	var stabilized := 0
+	for flag in [&"first_universe_stabilized", &"second_universe_stabilized", &"third_universe_stabilized", &"fourth_universe_stabilized", &"fifth_universe_stabilized", &"sixth_universe_stabilized", &"seventh_universe_stabilized"]:
+		if bool(story_flags.get(flag, false)):
+			stabilized += 1
+	return clampi(1 + stabilized * 3, 1, 35)
+
+
+func grant_expedition_experience(experience: int) -> Dictionary:
 	var level_ups := {}
 	for character_id in party:
 		var levels := grant_experience(character_id, experience)
 		if not levels.is_empty():
 			level_ups[character_id] = levels
+	for raw_character_id in recruit_status.keys():
+		var character_id := StringName(raw_character_id)
+		if character_id in party:
+			continue
+		var status := StringName(recruit_status[character_id])
+		if status == &"reserve":
+			grant_experience(character_id, int(round(float(experience) * RESERVE_EXPERIENCE_RATIO)))
+		elif status == &"staffed":
+			grant_experience(character_id, _rested_catch_up_experience(character_id, experience))
+	_enforce_hired_progression_floor()
+	return level_ups
+
+
+func _rested_catch_up_experience(character_id: StringName, reference_experience: int) -> int:
+	var defaults := _default_vitals(character_id)
+	var progress := ensure_character_progress(character_id, defaults.x, defaults.y)
+	var level_gap := maxi(0, active_party_median_level() - int(progress.get("level", 1)))
+	if level_gap <= 0:
+		return 0
+	return int(ceil(float(reference_experience) * minf(0.5, 0.25 * float(level_gap))))
+
+
+func _enforce_hired_progression_floor() -> void:
+	var target_level := maxi(progression_chapter_floor(), active_party_median_level() - MAX_HIRED_LEVEL_GAP)
+	for raw_character_id in recruit_status.keys():
+		var character_id := StringName(raw_character_id)
+		if StringName(recruit_status[character_id]) in [&"reserve", &"staffed"]:
+			_raise_character_to_level(character_id, target_level)
+
+
+func _raise_character_to_level(character_id: StringName, target_level: int) -> bool:
+	var defaults := _default_vitals(character_id)
+	var progress := ensure_character_progress(character_id, defaults.x, defaults.y)
+	var current_level := int(progress.get("level", 1))
+	if target_level <= current_level:
+		return false
+	var applied_level := clampi(target_level, current_level, 50)
+	progress["level"] = applied_level
+	progress["skill_points"] = int(progress.get("skill_points", 0)) + applied_level - current_level
+	var maximums := _maximum_vitals(character_id)
+	progress["hp"] = maximums.x
+	progress["mp"] = maximums.y
+	return true
+
+
+func apply_battle_victory(experience: int, earned_duckets: int, loot: Array[Dictionary]) -> Dictionary:
+	var level_ups := grant_expedition_experience(experience)
 	duckets += maxi(earned_duckets, 0)
 	add_loot_drops(loot, false)
 	story_flags[&"won_first_battle"] = true
@@ -1687,6 +1773,10 @@ func quest_state(quest_id: StringName) -> Dictionary:
 	return quest_states.get(quest_id, {}).duplicate(true)
 
 
+func available_quest_objectives(quest_id: StringName) -> Array[Dictionary]:
+	return QUEST_DIRECTOR.available_objectives(QUEST_DEFINITIONS.get(quest_id, {}), quest_states.get(quest_id, {}))
+
+
 func visible_quests() -> Array[Dictionary]:
 	var results: Array[Dictionary] = []
 	for quest_id in QUEST_DEFINITIONS.keys():
@@ -1720,7 +1810,10 @@ func tracked_objective() -> Dictionary:
 	var step_index := int(runtime.get("step", 0))
 	var status := StringName(runtime.get("status", "locked"))
 	var objective := "Quest complete."
-	if status == &"active" and step_index < steps.size():
+	var active_tree_objectives: Array[Dictionary] = QUEST_DIRECTOR.available_objectives(definition, runtime)
+	if status == &"active" and not active_tree_objectives.is_empty():
+		objective = String(active_tree_objectives[0].get("text", "Continue the quest."))
+	elif status == &"active" and step_index < steps.size():
 		objective = String(steps[step_index].get("text", "Continue the quest."))
 	return {
 		"id": tracked_quest,
@@ -1731,6 +1824,7 @@ func tracked_objective() -> Dictionary:
 		"status": status,
 		"step": step_index,
 		"total_steps": steps.size(),
+		"objective_tree": active_tree_objectives,
 	}
 
 
@@ -1740,6 +1834,11 @@ func mark_story_flag(flag: StringName, value := true) -> bool:
 	story_flags[flag] = value
 	state_changed.emit()
 	return true
+
+
+func record_quest_event(event_id: StringName, value: Variant = true) -> void:
+	quest_events[event_id] = value
+	state_changed.emit()
 
 
 func sync_quests(notify := true) -> bool:
@@ -1765,7 +1864,12 @@ func sync_quests(notify := true) -> bool:
 				pass_changed = true
 				changed = true
 				quest_advanced.emit(StringName(quest_id), int(runtime["step"]))
-			if int(runtime.get("step", 0)) >= steps.size():
+			var tree_result := QUEST_DIRECTOR.synchronize(definition, runtime, Callable(self, "_quest_condition_met"))
+			if bool(tree_result.get("changed", false)):
+				pass_changed = true
+				changed = true
+			var tree_is_complete: bool = definition.get("objectives", []).is_empty() or bool(tree_result.get("complete", false))
+			if int(runtime.get("step", 0)) >= steps.size() and tree_is_complete:
 				runtime["status"] = &"complete"
 				runtime["completed_at"] = _unix_time()
 				if not bool(runtime.get("reward_claimed", false)):
@@ -1791,13 +1895,14 @@ func sync_quests(notify := true) -> bool:
 func _initialize_quest_states() -> void:
 	for quest_id in QUEST_DEFINITIONS.keys():
 		if not quest_states.has(quest_id):
-			quest_states[quest_id] = {"status": &"locked", "step": 0, "discovered": false, "reward_claimed": false, "completed_at": 0}
+			quest_states[quest_id] = {"status": &"locked", "step": 0, "discovered": false, "reward_claimed": false, "completed_at": 0, "objective_states": {}}
 		else:
 			var runtime: Dictionary = quest_states[quest_id]
 			runtime["status"] = StringName(runtime.get("status", "locked"))
 			runtime["step"] = int(runtime.get("step", 0))
 			runtime["discovered"] = bool(runtime.get("discovered", false))
 			runtime["reward_claimed"] = bool(runtime.get("reward_claimed", false))
+			runtime["objective_states"] = runtime.get("objective_states", {})
 	if tracked_quest == &"":
 		tracked_quest = &"a_fault_in_reality"
 	sync_quests(false)
@@ -1819,6 +1924,20 @@ func _quest_condition_met(condition: Dictionary) -> bool:
 	var condition_type := StringName(condition.get("type", ""))
 	var condition_id: Variant = condition.get("id", "")
 	match condition_type:
+		&"all":
+			for nested_condition in condition.get("conditions", []):
+				if not _quest_condition_met(nested_condition):
+					return false
+			return true
+		&"any":
+			for nested_condition in condition.get("conditions", []):
+				if _quest_condition_met(nested_condition):
+					return true
+			return false
+		&"event":
+			if not quest_events.has(StringName(condition_id)):
+				return false
+			return quest_events[StringName(condition_id)] == condition.get("equals", true)
 		&"story_flag":
 			return bool(story_flags.get(StringName(condition_id), false))
 		&"facility_built":
@@ -1848,8 +1967,7 @@ func _grant_quest_rewards(rewards: Dictionary) -> void:
 		inventory[normalized_id] = int(inventory.get(normalized_id, 0)) + int(rewards["items"][item_id])
 	var party_experience := int(rewards.get("party_experience", 0))
 	if party_experience > 0:
-		for character_id in party:
-			grant_experience(character_id, party_experience)
+		grant_expedition_experience(party_experience)
 
 
 func _next_active_quest() -> StringName:
@@ -2196,7 +2314,9 @@ func collect_facility_job(facility_name: String, now_at := -1) -> Dictionary:
 	var worker_id := StringName(active.get("worker_id", ""))
 	var level_ups: Array[int] = []
 	if worker_id != &"":
-		level_ups = grant_experience(worker_id, earned_experience)
+		var rested_experience := _rested_catch_up_experience(worker_id, earned_experience)
+		level_ups = grant_experience(worker_id, earned_experience + rested_experience)
+		_enforce_hired_progression_floor()
 	completed_facility_jobs[job_id] = int(completed_facility_jobs.get(job_id, 0)) + 1
 	var completion_flag := StringName(job.get("completion_flag", ""))
 	if completion_flag != &"":
@@ -2378,6 +2498,7 @@ func hire_recruit(recruit_id: StringName) -> bool:
 	if recruit_status.get(recruit_id, &"undiscovered") != &"available":
 		return false
 	recruit_status[recruit_id] = &"reserve"
+	_raise_character_to_level(recruit_id, maxi(progression_chapter_floor(), active_party_median_level() - NEW_HIRE_LEVEL_GAP))
 	recruit_status_changed.emit(recruit_id, &"reserve")
 	state_changed.emit()
 	return true
@@ -2827,7 +2948,7 @@ func _serialize() -> Dictionary:
 		"party": Array(party), "party_formation": party_formation, "recruit_status": recruit_status, "facility_assignments": facility_assignments,
 		"active_facility_jobs": active_facility_jobs, "completed_facility_jobs": completed_facility_jobs,
 		"owned_inventions": Array(owned_inventions),
-		"quest_states": quest_states, "tracked_quest": tracked_quest,
+		"quest_states": quest_states, "quest_events": quest_events, "tracked_quest": tracked_quest,
 	}
 
 
@@ -2949,6 +3070,9 @@ func _deserialize(data: Dictionary, source_version_override := -1) -> void:
 		var runtime: Dictionary = data.quest_states[quest_id]
 		runtime["status"] = StringName(runtime.get("status", "locked"))
 		quest_states[StringName(quest_id)] = runtime
+	quest_events.clear()
+	for event_id in data.get("quest_events", {}).keys():
+		quest_events[StringName(event_id)] = data.quest_events[event_id]
 	tracked_quest = StringName(data.get("tracked_quest", ""))
 	_ensure_default_progress()
 	_initialize_quest_states()

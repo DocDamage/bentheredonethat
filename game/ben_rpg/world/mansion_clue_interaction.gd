@@ -73,6 +73,7 @@ func set_clock_time(setting: StringName, save_after: bool = true) -> Array[Strin
 	if setting not in CLOCK_DIAL_SETTINGS:
 		return ["That setting does not exist on the clock's impossible dial."]
 	CampaignState.story_flags[&"mansion_clock_time"] = setting
+	CampaignState.record_quest_event(&"mansion_clock_setting", setting)
 	var events: Array[String]
 	if setting != &"04:44":
 		events = ["Ben sets the dial to %s. The pendulum recoils, and a different room answers with one disapproving knock. The servants' passage remains closed." % setting]
@@ -142,5 +143,6 @@ func _complete_clock_puzzle() -> Array[String]:
 		"Ben turns the thirteenth notch and sets the impossible dial to 4:44.",
 		"The clock strikes once. Every other clock in the house answers from a different century.",
 		"A brass fragment drops from the mechanism, still anchored to this reality.",
+		"The fragment hums in time with the clock. Ben can build a Temporal Tuning Fork at the Mansion facility to interrupt clock attacks.",
 		"Obtained: Rare House-Key Fragment of Continuity, Anchor Shard, and 30 Duckets.",
 	]

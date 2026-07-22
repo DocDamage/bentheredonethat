@@ -707,14 +707,19 @@ func _build_quest_page() -> void:
 		var quest_id := StringName(quest.get("id", ""))
 		var runtime: Dictionary = quest.get("state", {})
 		var step := int(runtime.get("step", 0))
-		var total: int = quest.get("steps", []).size()
+		var objective_tree: Array = quest.get("objectives", [])
+		var total: int = objective_tree.size() if not objective_tree.is_empty() else quest.get("steps", []).size()
+		var completed_objectives := 0
+		for completed in (runtime.get("objective_states", {}) as Dictionary).values():
+			if bool(completed):
+				completed_objectives += 1
 		var status := StringName(runtime.get("status", "active"))
 		var category := String(quest.get("category", "side")).to_upper()
 		var button := Button.new()
 		button.text = "%s  [%s]  %s\n%s" % [
 			"◆" if CampaignState.tracked_quest == quest_id else ("✓" if status == &"complete" else "◇"),
 			category, quest.get("title", quest_id),
-			"COMPLETE" if status == &"complete" else "STEP %d / %d" % [mini(step + 1, total), total],
+			"COMPLETE" if status == &"complete" else ("OBJECTIVES %d / %d" % [completed_objectives, total] if not objective_tree.is_empty() else "STEP %d / %d" % [mini(step + 1, total), total]),
 		]
 		button.custom_minimum_size.y = 68
 		button.tooltip_text = String(quest.get("description", ""))
@@ -729,13 +734,28 @@ func _build_quest_page() -> void:
 	_add_subheading(String(definition.get("title", selected_quest)).to_upper())
 	_add_notice("Giver: %s • %s" % [definition.get("giver", "Unknown"), String(definition.get("category", "side")).to_upper()], Color(1.0, 0.84, 0.42))
 	_add_notice(String(definition.get("description", "")), Color(0.86, 0.89, 0.98))
-	var current_step := int(runtime.get("step", 0))
 	var is_complete := StringName(runtime.get("status", "active")) == &"complete"
-	for index in range(definition.get("steps", []).size()):
-		var step_definition: Dictionary = definition["steps"][index]
-		var marker := "✓" if index < current_step else ("▶" if index == current_step and not is_complete else "◇")
-		var color := Color(0.48, 1.0, 0.62) if index < current_step else (Color(1.0, 0.86, 0.48) if index == current_step and not is_complete else Color(0.62, 0.68, 0.78))
-		_add_notice("%s  %s" % [marker, step_definition.get("text", "Continue the quest.")], color)
+	var objective_tree: Array = definition.get("objectives", [])
+	if not objective_tree.is_empty():
+		var completed_states: Dictionary = runtime.get("objective_states", {})
+		var active_nodes := CampaignState.available_quest_objectives(selected_quest)
+		var active_ids: Array[StringName] = []
+		for active_node in active_nodes:
+			active_ids.append(StringName(active_node.get("id", "")))
+		for objective_definition in objective_tree:
+			var objective_id := StringName(objective_definition.get("id", ""))
+			var is_done := bool(completed_states.get(objective_id, false))
+			var is_active := objective_id in active_ids and not is_complete
+			var marker := "✓" if is_done else ("▶" if is_active else "◇")
+			var color := Color(0.48, 1.0, 0.62) if is_done else (Color(1.0, 0.86, 0.48) if is_active else Color(0.62, 0.68, 0.78))
+			_add_notice("%s  %s" % [marker, objective_definition.get("text", "Continue the quest.")], color)
+	else:
+		var current_step := int(runtime.get("step", 0))
+		for index in range(definition.get("steps", []).size()):
+			var step_definition: Dictionary = definition["steps"][index]
+			var marker := "✓" if index < current_step else ("▶" if index == current_step and not is_complete else "◇")
+			var color := Color(0.48, 1.0, 0.62) if index < current_step else (Color(1.0, 0.86, 0.48) if index == current_step and not is_complete else Color(0.62, 0.68, 0.78))
+			_add_notice("%s  %s" % [marker, step_definition.get("text", "Continue the quest.")], color)
 	var rewards: Dictionary = definition.get("rewards", {})
 	_add_notice("REWARDS • %d Duckets%s" % [int(rewards.get("duckets", 0)), _reward_item_text(rewards.get("items", {}))], Color(0.55, 0.92, 1.0))
 	var track := Button.new()

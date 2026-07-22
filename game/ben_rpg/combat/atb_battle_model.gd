@@ -4,6 +4,7 @@ extends RefCounted
 const ATB_RATE := 0.82
 const STATUS_SPEED_RATES := {&"slow": 0.62, &"shocked": 0.78}
 const STATUS_LABELS := {&"poisoned": "POISON", &"slow": "SLOW", &"shocked": "SHOCK"}
+const BOSS_POLICY_ENGINE := preload("res://ben_rpg/combat/boss_policy_engine.gd")
 
 var actors: Array[Dictionary] = []
 var encounter_id: StringName
@@ -14,12 +15,16 @@ var escaped := false
 var battle_speed := 1.0
 var wait_mode := false
 var command_input_open := false
+var boss_policies: Dictionary = {}
+var boss_policy_runtime: Dictionary = {}
 
 
 func setup(new_encounter_id: StringName, party_ids: Array[StringName], progression: Dictionary, seed: int = 0) -> void:
 	encounter_id = new_encounter_id
 	encounter_data = CampaignCombatDatabase.encounter(encounter_id)
 	actors.clear()
+	boss_policies.clear()
+	boss_policy_runtime.clear()
 	escaped = false
 	elapsed_time = 0.0
 	if seed == 0:
@@ -35,6 +40,13 @@ func setup(new_encounter_id: StringName, party_ids: Array[StringName], progressi
 		enemy_index += 1
 	for actor in actors:
 		actor["atb"] = rng.randf_range(0.0, 16.0)
+	var policy: Dictionary = encounter_data.get("boss_policy", {})
+	if not policy.is_empty():
+		for actor in actors:
+			if actor["team"] == "enemy":
+				var actor_id := StringName(actor["id"])
+				boss_policies[actor_id] = policy.duplicate(true)
+				boss_policy_runtime[actor_id] = BOSS_POLICY_ENGINE.initialize(policy)
 
 
 func configure_timing(new_battle_speed: float, new_wait_mode: bool, new_command_input_open: bool = false) -> void:
@@ -152,6 +164,13 @@ func resolve_action(actor_id: StringName, action_id: StringName, target_ids: Arr
 			for target in targets:
 				target["atb"] = maxf(0.0, float(target["atb"]) - float(action["power"]))
 				events.append({"type": "delay", "target": target["id"], "amount": int(action["power"])})
+		"time_tune":
+			for target in targets:
+				target["atb"] = maxf(0.0, float(target["atb"]) - float(action["power"]))
+				events.append({"type": "delay", "target": target["id"], "amount": int(action["power"])})
+				var interrupted := interrupt_boss_telegraph(StringName(target["id"]))
+				if interrupted != &"":
+					events.append({"type": "status", "target": target["id"], "status": &"time_tuned", "text": "%s's %s telegraph is canceled by the Temporal Tuning Fork." % [target["display_name"], CampaignCombatDatabase.action(interrupted).get("name", interrupted)]})
 		"damage_delay":
 			for target in targets:
 				_apply_damage(source, target, action, events)
@@ -172,6 +191,16 @@ func choose_ai_action(actor_id: StringName) -> Dictionary:
 	var actions: Array = actor["actions"]
 	if actions.is_empty():
 		return {}
+	if boss_policies.has(actor_id):
+		var boss_choice := BOSS_POLICY_ENGINE.choose(boss_policies[actor_id], actor, boss_policy_runtime[actor_id])
+		if boss_choice.has("telegraph"):
+			return {"actor": actor_id, "telegraph": boss_choice["telegraph"], "phase_label": boss_choice.get("phase_label", "")}
+		var boss_action_id := StringName(boss_choice.get("action", ""))
+		var boss_targets := valid_targets(actor_id, boss_action_id)
+		if boss_action_id == &"" or boss_targets.is_empty():
+			return {}
+		var boss_target := _choose_ai_target(actor, boss_action_id, boss_targets)
+		return {"actor": actor_id, "action": boss_action_id, "targets": [StringName(boss_target["id"])]}
 	var action_id := _choose_ai_action_id(actor, actions)
 	var targets := valid_targets(actor_id, action_id)
 	if targets.is_empty():
@@ -197,7 +226,26 @@ func status_summary(actor_id: StringName) -> String:
 		labels.append("GUARD")
 	if int(actor.get("attack_bonus_turns", 0)) > 0:
 		labels.append("RALLY")
+	if boss_policies.has(actor_id):
+		labels.append(BOSS_POLICY_ENGINE.phase_label(boss_policies[actor_id], actor))
+		if not BOSS_POLICY_ENGINE.pending_telegraph(boss_policy_runtime[actor_id]).is_empty():
+			labels.append("STEAL TIME!")
 	return " ".join(labels)
+
+
+func commit_boss_telegraph(actor_id: StringName) -> bool:
+	var actor := get_actor(actor_id)
+	if actor.is_empty() or not boss_policies.has(actor_id) or float(actor.get("atb", 0.0)) < 99.9:
+		return false
+	actor["atb"] = 0.0
+	actor["turn_count"] = int(actor.get("turn_count", 0)) + 1
+	return true
+
+
+func interrupt_boss_telegraph(actor_id: StringName) -> StringName:
+	if not boss_policy_runtime.has(actor_id):
+		return &""
+	return BOSS_POLICY_ENGINE.interrupt_pending_action(boss_policy_runtime[actor_id])
 
 
 func outcome() -> StringName:
