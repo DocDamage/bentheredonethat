@@ -31,7 +31,6 @@ Music="*res://src/common/music/music_player.tscn"
 Player="*res://src/common/player.gd"
 Transition="*res://src/common/screen_transitions/ScreenTransition.tscn"
 Dialogic="*uid://ds2q0uclmolvu"
-McpXRuntime="*res://addons/godot_mcp_x/runtime/runtime_bridge.gd"
 CampaignState="*res://ben_rpg/core/campaign_state.gd"
 SettingsRepository="*res://ben_rpg/core/settings_repository.gd"
 LocalTelemetry="*res://ben_rpg/core/local_telemetry.gd"
@@ -134,7 +133,7 @@ window/stretch/aspect="expand"
 
 [editor_plugins]
 
-enabled=PackedStringArray("res://addons/dialogic/plugin.cfg", "res://addons/godot_mcp_x/plugin.cfg")
+enabled=PackedStringArray("res://addons/dialogic/plugin.cfg")
 
 [filesystem]
 
