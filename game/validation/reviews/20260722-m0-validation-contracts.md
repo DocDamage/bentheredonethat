@@ -2,7 +2,8 @@
 
 - Work-package ID: `M0-validation-contracts`
 - Milestone/state: M0 — Implemented; remote verification pending
-- Commit SHA: pending checkpoint commit
+- Commit SHA: `a3078811824aec5438f091ff9d2c92be828a5060` (initial checkpoint);
+  follow-up CI configuration commit pending.
 - Build version: 0.3.0
 - Intended result: CI validates tracked runtime assets from a clean checkout;
   curator workstations validate the ignored source library separately.
@@ -34,5 +35,8 @@ required for M0 acceptance.
 
 ## Review decision
 
-Rework required before acceptance: push this head, obtain a clean remote CI run
-for the exact SHA, and record its artifacts. Product/visual reviewer: user.
+Rework required before acceptance: the first remote run
+([29946389799](https://github.com/DocDamage/bentheredonethat/actions/runs/29946389799))
+proved that checkout omitted Git LFS runtime images. Preserve that failure, push
+the LFS-enabled workflow follow-up, then obtain a clean remote CI run for its
+exact SHA. Product/visual reviewer: user.
