@@ -1,0 +1,53 @@
+name: Godot smoke
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  isolated-smoke:
+    name: Isolated Godot smoke
+    runs-on: windows-latest
+    timeout-minutes: 25
+
+    steps:
+      - name: Check out source
+        uses: actions/checkout@v4
+
+      - name: Download Godot 4.7.1
+        shell: pwsh
+        run: |
+          $release = '4.7.1-stable'
+          $archive = Join-Path $env:RUNNER_TEMP "Godot_v${release}_win64.exe.zip"
+          $destination = Join-Path $env:RUNNER_TEMP 'godot'
+          $url = "https://github.com/godotengine/godot/releases/download/$release/Godot_v${release}_win64.exe.zip"
+          Invoke-WebRequest -Uri $url -OutFile $archive
+          Expand-Archive -LiteralPath $archive -DestinationPath $destination -Force
+          $godot = Get-ChildItem -LiteralPath $destination -Recurse -Filter 'Godot_v4.7.1-stable_win64_console.exe' |
+            Select-Object -First 1
+          if ($null -eq $godot) {
+            throw 'The downloaded Godot archive did not contain the expected Windows console executable.'
+          }
+          "GODOT_EXECUTABLE=$($godot.FullName)" | Out-File -FilePath $env:GITHUB_ENV -Append -Encoding utf8
+
+      - name: Run isolated smoke suite
+        shell: pwsh
+        run: >
+          ./tools/run_godot_isolated.ps1
+          -GodotExecutable "$env:GODOT_EXECUTABLE"
+          -AllSmoke
+          -TimeoutSeconds 240
+
+      - name: Upload test artifacts
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: godot-smoke-${{ github.run_id }}
+          path: test-artifacts
+          if-no-files-found: warn
+          retention-days: 14
