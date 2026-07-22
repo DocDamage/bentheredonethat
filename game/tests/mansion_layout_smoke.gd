@@ -18,6 +18,8 @@ const FOREGROUND_PROFILES := [
 	&"mansion_foyer_clock", &"mansion_foyer_wall_tableau",
 	&"mansion_archive_wall_plain_tile", &"mansion_archive_wall_lit_tile",
 	&"mansion_nursery_left_wall_panel", &"mansion_nursery_right_wall_panel",
+	&"mansion_interior_wall_0_0", &"mansion_interior_wall_1_0", &"mansion_interior_wall_2_0", &"mansion_interior_wall_3_0",
+	&"mansion_interior_wall_0_1", &"mansion_interior_wall_1_1", &"mansion_interior_wall_2_1", &"mansion_interior_wall_3_1",
 ]
 
 
@@ -33,8 +35,15 @@ func _run() -> void:
 	get_tree().root.add_child(main)
 	for _frame in range(5):
 		await get_tree().process_frame
+	var expected_profiles: Array = FOREGROUND_PROFILES.duplicate()
+	for row in range(2):
+		for column in range(8):
+			expected_profiles.append(StringName("mansion_nursery_wall_%d_%d" % [column, row]))
+	for row in range(4):
+		for column in range(2):
+			expected_profiles.append(StringName("mansion_plank_grain_%d_%d" % [column, row]))
 	var profiles := CampaignVisualProfileRegistry.new()
-	for profile_id in FOREGROUND_PROFILES:
+	for profile_id in expected_profiles:
 		if not profiles.has(profile_id):
 			_fail("missing Mansion foreground profile: %s" % profile_id)
 			return
@@ -73,7 +82,7 @@ func _run() -> void:
 			_fail("opening puzzle did not create the %s loop" % shortcut_name)
 			return
 
-	print("MANSION_LAYOUT_SMOKE_OK rooms=5 foreground_profiles=%d open_cells=%d floor=8x4 gates+props=solid loop=service_shortcut" % [FOREGROUND_PROFILES.size(), total_open])
+	print("MANSION_LAYOUT_SMOKE_OK rooms=5 renderer_profiles=%d open_cells=%d floor=8x4 gates+props=solid loop=service_shortcut" % [expected_profiles.size(), total_open])
 	main.queue_free()
 	await get_tree().process_frame
 	get_tree().quit(0)

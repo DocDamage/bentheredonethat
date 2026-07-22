@@ -26,6 +26,20 @@ const MANSION_ARCHIVE_OFFSET := Vector2i(10, 0)
 const MANSION_GALLERY_OFFSET := Vector2i(0, 10)
 const MANSION_NURSERY_OFFSET := Vector2i(10, 10)
 const MANSION_BALLROOM_OFFSET := Vector2i(20, 5)
+const MANSION_INTERIOR_WALL_PROFILES := [
+	[&"mansion_interior_wall_0_0", &"mansion_interior_wall_1_0", &"mansion_interior_wall_2_0", &"mansion_interior_wall_3_0"],
+	[&"mansion_interior_wall_0_1", &"mansion_interior_wall_1_1", &"mansion_interior_wall_2_1", &"mansion_interior_wall_3_1"],
+]
+const MANSION_NURSERY_WALL_PROFILES := [
+	[&"mansion_nursery_wall_0_0", &"mansion_nursery_wall_1_0", &"mansion_nursery_wall_2_0", &"mansion_nursery_wall_3_0", &"mansion_nursery_wall_4_0", &"mansion_nursery_wall_5_0", &"mansion_nursery_wall_6_0", &"mansion_nursery_wall_7_0"],
+	[&"mansion_nursery_wall_0_1", &"mansion_nursery_wall_1_1", &"mansion_nursery_wall_2_1", &"mansion_nursery_wall_3_1", &"mansion_nursery_wall_4_1", &"mansion_nursery_wall_5_1", &"mansion_nursery_wall_6_1", &"mansion_nursery_wall_7_1"],
+]
+const MANSION_PLANK_GRAIN_PROFILES := [
+	[&"mansion_plank_grain_0_0", &"mansion_plank_grain_1_0"],
+	[&"mansion_plank_grain_0_1", &"mansion_plank_grain_1_1"],
+	[&"mansion_plank_grain_0_2", &"mansion_plank_grain_1_2"],
+	[&"mansion_plank_grain_0_3", &"mansion_plank_grain_1_3"],
+]
 const FACILITY_PLOTS := [
 	Rect2i(7, 5, 5, 4),
 	Rect2i(18, 5, 5, 4),
@@ -942,13 +956,12 @@ func _draw_station_room(room_offset: Vector2, room_kind: StringName) -> void:
 func _draw_mansion_room_shell(room_offset: Vector2, bedroom_wall: bool) -> void:
 	for y in range(4):
 		for x in range(8):
-			var source := Rect2(0, 0, 48, 48)
-			var texture := haunted_bedroom if bedroom_wall else haunted_interior
 			if bedroom_wall:
-				source = Rect2((x % 8) * 48, (y % 2) * 48, 48, 48)
+				var nursery_profile_id: StringName = MANSION_NURSERY_WALL_PROFILES[y % 2][x % 8]
+				profile_tile(nursery_profile_id, haunted_bedroom, room_offset + Vector2(x, y) * TILE)
 			else:
-				source = Rect2((x % 4) * 48, (y % 2) * 48, 48, 48)
-			tile(texture, source, Rect2(room_offset + Vector2(x, y) * TILE, Vector2(TILE, TILE)))
+				var profile_id: StringName = MANSION_INTERIOR_WALL_PROFILES[y % 2][x % 4]
+				profile_tile(profile_id, haunted_interior, room_offset + Vector2(x, y) * TILE)
 	_draw_mansion_plank_floor(room_offset)
 
 
@@ -975,11 +988,13 @@ func _draw_mansion_plank_floor(room_offset: Vector2) -> void:
 			var destination := Rect2(room_offset + Vector2(left, y), Vector2(right - left, board_height))
 			draw_rect(destination, color, true)
 			# Reuse narrow native-resolution grain strips from the clean lower-right
-			# portion of the pack's wood floor. Shuffling 16px strips keeps its actual
-			# pixel texture without stamping the same 96px crack cluster everywhere.
-			var source_x := 96 + ((row + board_index) % 2) * 32
-			var source_y := 320 + ((row * 3 + board_index) % 4) * 16
-			tile(haunted_interior, Rect2(source_x, source_y, right - left, board_height), destination)
+			# portion of the pack's wood floor. Each strip is an approved profile, so
+			# this procedural tiling does not reintroduce anonymous atlas rectangles.
+			for grain_x in range(left, right, 32):
+				var grain_row := (row * 3 + board_index) % 4
+				var grain_column := (row + board_index + int((grain_x - left) / 32.0)) % 2
+				var grain_profile: StringName = MANSION_PLANK_GRAIN_PROFILES[grain_row][grain_column]
+				profile_tile(grain_profile, haunted_interior, room_offset + Vector2(grain_x, y))
 			draw_line(room_offset + Vector2(left, y), room_offset + Vector2(right, y), Color("2a1c19"), 2.0)
 			if left > 0:
 				draw_line(room_offset + Vector2(left, y), room_offset + Vector2(left, y + board_height), Color("34231e"), 1.0)
