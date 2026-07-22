@@ -11,6 +11,7 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[2]
 PROFILE_PATH = ROOT / "game/ben_rpg/visual_assets/visual_profiles.json"
 MAP_VISUAL = ROOT / "game/ben_rpg/world/campaign_map_visual.gd"
+EMPYREAL_GROUND = ROOT / "game/ben_rpg/world/campaign_empyreal_ground.gd"
 RENDERERS = [
     ROOT / "game/ben_rpg/world/campaign_asterion_foreground.gd",
     ROOT / "game/ben_rpg/world/campaign_empyreal_foreground.gd",
@@ -41,7 +42,8 @@ class ProfiledForegroundRendererTests(unittest.TestCase):
         self.assertNotIn("plain_tiles", source)
         self.assertNotIn("showcase_tile", source)
         profile_ids = {profile["id"] for profile in json.loads(PROFILE_PATH.read_text(encoding="utf-8"))["profiles"]}
-        used_ids = re.findall(r'profile_tile\(&"(empyreal_[^"]+)"', source)
+        empyreal_source = EMPYREAL_GROUND.read_text(encoding="utf-8")
+        used_ids = re.findall(r'_profile_tile\(&"(empyreal_[^"]+)"', empyreal_source)
         self.assertTrue(used_ids)
         self.assertTrue(set(used_ids) <= profile_ids)
 
