@@ -126,6 +126,12 @@ static func _action_catalog() -> Dictionary:
 		&"steal_time": {"name": "Steal Time", "kind": "damage_delay", "power": 10, "delay": 24, "target": "enemy", "element": &"time", "status": &"slow", "status_chance": 0.55, "description": "The clock wounds a target, drains ATB, and may inflict Slow."},
 		&"late_fee": {"name": "Late Fee", "kind": "magic", "power": 24, "target": "all_enemies", "element": &"spectral", "description": "The house collects spectral interest from the whole party."},
 		&"temporal_tuning": {"name": "Temporal Tuning", "kind": "time_tune", "power": 55, "mp": 6, "target": "enemy", "element": &"time", "description": "Use the Temporal Tuning Fork to drain an enemy's ATB and cancel a telegraphed clock attack."},
+		&"continuity_aegis": {"name": "Continuity Aegis", "kind": "aegis", "power": 0, "mp": 8, "target": "all_allies", "description": "Use the Continuity Kite to shield the formation until each ally acts again."},
+		&"paleo_signal": {"name": "Paleo Signal", "kind": "delay", "power": 24, "mp": 6, "target": "all_enemies", "description": "Broadcast an ancient stop signal that reduces every enemy's ATB."},
+		&"night_phase": {"name": "Night Phase", "kind": "aegis", "power": 0, "mp": 7, "target": "all_allies", "description": "Invert the formation into a brief, protective midnight phase."},
+		&"thermal_rally": {"name": "Thermal Arbitration", "kind": "rally", "power": 7, "mp": 6, "target": "all_allies", "description": "Settle the party's thermal balance and raise its attack for three actions."},
+		&"veracity_flash": {"name": "Veracity Flash", "kind": "magic", "power": 20, "mp": 8, "target": "all_enemies", "element": &"lightning", "status": &"shocked", "status_chance": 0.35, "description": "Expose every hostile falsehood with a lightning flash that may inflict Shock."},
+		&"gravity_grounding": {"name": "Gravity Grounding", "kind": "delay", "power": 30, "mp": 8, "target": "all_enemies", "description": "Anchor the enemy formation to the floor and reduce every target's ATB."},
 		&"unfinished_refrain": {"name": "Unfinished Refrain", "kind": "magic", "power": 17, "target": "all_enemies", "element": &"spectral", "status": &"slow", "status_chance": 0.32, "description": "A painted orchestra attacks the party and may inflict Slow."},
 		&"splinter_needle": {"name": "Splinter Needle", "kind": "physical", "power": 18, "target": "enemy", "status": &"poisoned", "status_chance": 0.42, "description": "A toy needle strikes one target and may inflict Poison."},
 		&"nursery_wail": {"name": "Nursery Wail", "kind": "damage_delay", "power": 12, "delay": 20, "target": "all_enemies", "element": &"spectral", "description": "A broken lullaby harms and delays the whole party."},
@@ -251,8 +257,9 @@ static func party_actor(character_id: StringName, progress: Dictionary) -> Dicti
 		return astronaut
 	if character_id == &"ben":
 		var ben_actions: Array = [&"cane_tap", &"static_discharge", &"field_triage", &"defend", &"tonic", &"ether", &"smelling_salts", &"phoenix_tonic", &"escape"]
-		if &"temporal_tuning_fork" in CampaignState.owned_inventions:
-			ben_actions.append(&"temporal_tuning")
+		for action_id in CampaignState.expedition_invention_actions():
+			if action_id not in ben_actions:
+				ben_actions.append(action_id)
 		ben_actions.append_array(learned_actions)
 		var ben := _actor(&"ben", "Benjamin Franklin", "party", 140 + (level - 1) * 14 + int(bonuses[&"max_hp"]), 36 + (level - 1) * 5 + int(bonuses[&"max_mp"]),
 			14 + level * 2 + int(bonuses[&"attack"]), 17 + level * 2 + int(bonuses[&"defense"]), 29 + level * 3 + int(bonuses[&"magic"]), 24 + level * 2 + int(bonuses[&"spirit"]), 27 + level + int(bonuses[&"speed"]),

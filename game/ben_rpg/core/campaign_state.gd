@@ -365,8 +365,8 @@ const FACILITY_DEFINITIONS := {
 		"description": "The anchored universe doubles as an observatory for supernatural echoes.",
 		"icon": "dfgui_icon-monsterbook.png",
 		"jobs": [
-			{"id": &"mansion_echo_watch", "name": "Keep the Echo Watch", "description": "Monitor displaced spirits before they wander into town.", "duration_seconds": 900, "duckets": 58, "experience": 44, "items": {&"ectoplasm": 1}, "preferred_skills": [&"Security", &"Occult"], "ben_can_lead": false, "ben_can_assist": true, "boost_invention": &"echo_snare", "requires_flags": [&"mansion_foyer_cleared"]},
-			{"id": &"mansion_anchor_calibration", "name": "Calibrate the Anchor Core", "description": "Use Ben's regulator to harvest a stable trace of the universe.", "duration_seconds": 1800, "duckets": 90, "experience": 65, "items": {&"anchor_dust": 2}, "preferred_skills": [&"Research", &"Occult"], "ben_can_lead": true, "ben_can_assist": true, "required_invention": &"anchor_regulator", "requires_flags": [&"mansion_archive_boss_defeated"]},
+			{"id": &"mansion_echo_watch", "name": "Keep the Echo Watch", "description": "Monitor displaced spirits before they wander into town.", "duration_seconds": 900, "duckets": 58, "experience": 44, "items": {&"ectoplasm": 1}, "preferred_skills": [&"Security", &"Occult"], "ben_can_lead": false, "ben_can_assist": true, "boost_invention": &"echo_snare", "boost_inventions": [&"echo_snare", &"temporal_tuning_fork"], "requires_flags": [&"mansion_foyer_cleared"]},
+			{"id": &"mansion_anchor_calibration", "name": "Calibrate the Anchor Core", "description": "Use Ben's regulator to harvest a stable trace of the universe.", "duration_seconds": 1800, "duckets": 90, "experience": 65, "items": {&"anchor_dust": 2}, "preferred_skills": [&"Research", &"Occult"], "ben_can_lead": true, "ben_can_assist": true, "required_invention": &"anchor_regulator", "boost_inventions": [&"anchor_regulator", &"continuity_kite"], "requires_flags": [&"mansion_archive_boss_defeated"]},
 		],
 	},
 	"Observatory": {
@@ -431,6 +431,15 @@ const INVENTION_DEFINITIONS := {
 	&"thermal_arbitration_coil": {"name": "Thermal Arbitration Coil", "facility": "Cold Storage", "description": "Produces a legally defensible pocket of warmth inside Frosthold's regulated winter.", "duckets": 135, "items": {&"research_notes": 2, &"anchor_dust": 1}, "icon": "dfgui_icon-cauldron.png", "requires_flags": [&"frosthold_rune_clue_found"]},
 	&"veracity_lantern": {"name": "Electrostatic Veracity Lantern", "facility": "Tea House", "description": "Makes copied memories cast the wrong shadow, allowing Moonpetal's genuine vows to be separated from official counterfeits.", "duckets": 155, "items": {&"research_notes": 2, &"anchor_dust": 2}, "icon": "dfgui_icon-wand.png", "requires_flags": [&"moonpetal_vow_clue_found"]},
 	&"galvanic_counterweight": {"name": "Galvanic Counterweight", "facility": "Belfry", "description": "Pins local gravity to Franklin & Company's copper standard, allowing the party to cross Empyreal lifts without paying by the pound.", "duckets": 180, "items": {&"research_notes": 2, &"anchor_dust": 2}, "icon": "dfgui_icon-lightning.png", "requires_flags": [&"empyreal_gravity_clue_found"]},
+}
+const EXPEDITION_TOOL_CONTRACTS := {
+	&"temporal_tuning_fork": {"story_use": "Counter the Mansion boss's 4:44 telegraph as an alternate story solution.", "optional_use": "Return to the solved clock and set 13:13 to recover a temporal field note.", "battle_action": &"temporal_tuning", "town_job": &"mansion_echo_watch", "town_use": "Accelerates the Mansion Echo Watch after stabilization."},
+	&"continuity_kite": {"story_use": "Prove the recovered Anchor Core can route the party home.", "optional_use": "Recall from any unrestricted universe instead of retracing the full route.", "battle_action": &"continuity_aegis", "town_job": &"mansion_anchor_calibration", "town_use": "Stabilizes Anchor Core calibration work at the Mansion."},
+	&"paleo_translator": {"story_use": "Decode the Primeval cave computer and open the relay route.", "optional_use": "Revisit the decoded terminal for the optional Primeval relay survey.", "battle_action": &"paleo_signal", "town_job": &"primeval_fossil_survey", "town_use": "Improves the Trailhead's fossil-survey assignment."},
+	&"night_phase_inverter": {"story_use": "Disable Helios daylight nodes and restore the route to the Solar Core.", "optional_use": "Revisit Transit for its optional midnight-signal specialist route.", "battle_action": &"night_phase", "town_job": &"afterlight_signal_run", "town_use": "Improves the Afterlight signal-run assignment."},
+	&"thermal_arbitration_coil": {"story_use": "Open Frosthold's two thermal seals.", "optional_use": "Revisit the Causeway for an optional thermal-counsel route.", "battle_action": &"thermal_rally", "town_job": &"cold_storage_permafrost_audit", "town_use": "Improves the Cold Storage permafrost audit."},
+	&"veracity_lantern": {"story_use": "Expose Moonpetal's false vows and open the Moon Palace.", "optional_use": "Revisit the Mirror Garden for an optional memory-audit route.", "battle_action": &"veracity_flash", "town_job": &"tea_house_memory_audit", "town_use": "Improves the Tea House memory audit."},
+	&"galvanic_counterweight": {"story_use": "Ground Empyreal's gravity seals and lower the Seraph Tribunal.", "optional_use": "Revisit the Aerie for an optional weight-appeal route.", "battle_action": &"gravity_grounding", "town_job": &"belfry_gravity_appeals", "town_use": "Improves the Belfry's gravity-appeals assignment."},
 }
 const FACILITY_UPGRADE_DEFINITIONS := {
 	&"cafe_hearth_exchange": {
@@ -2406,6 +2415,34 @@ func visible_inventions(facility_name: String) -> Array[Dictionary]:
 	return results
 
 
+func invention_category(invention_id: StringName) -> StringName:
+	return &"expedition_tool" if EXPEDITION_TOOL_CONTRACTS.has(invention_id) else &"facility_upgrade"
+
+
+func expedition_tool_contract(invention_id: StringName) -> Dictionary:
+	return EXPEDITION_TOOL_CONTRACTS.get(invention_id, {}).duplicate(true)
+
+
+func expedition_invention_actions() -> Array[StringName]:
+	var actions: Array[StringName] = []
+	for invention_id in owned_inventions:
+		var contract := expedition_tool_contract(invention_id)
+		var action_id := StringName(contract.get("battle_action", &""))
+		if action_id != &"" and action_id not in actions:
+			actions.append(action_id)
+	return actions
+
+
+func job_supports_invention(facility_name: String, job_id: StringName, invention_id: StringName) -> bool:
+	var job := facility_job_definition(facility_name, job_id)
+	if StringName(job.get("boost_invention", &"")) == invention_id:
+		return true
+	for raw_invention_id in job.get("boost_inventions", []):
+		if StringName(raw_invention_id) == invention_id:
+			return true
+	return false
+
+
 func facility_worker(facility_name: String) -> StringName:
 	return StringName(facility_assignments.get(facility_name, ""))
 
@@ -2726,8 +2763,15 @@ func job_estimate(facility_name: String, job_id: StringName, ben_assist := false
 	if ben_assist and worker_id != &"ben":
 		duration_multiplier *= 0.88
 		quality += 1
+	var active_inventions: Array[StringName] = []
 	var boost_invention := StringName(job.get("boost_invention", ""))
-	var invention_active := boost_invention != &"" and boost_invention in owned_inventions
+	if boost_invention != &"" and boost_invention in owned_inventions:
+		active_inventions.append(boost_invention)
+	for raw_boost_invention in job.get("boost_inventions", []):
+		var boost_id := StringName(raw_boost_invention)
+		if boost_id != &"" and boost_id in owned_inventions and boost_id not in active_inventions:
+			active_inventions.append(boost_id)
+	var invention_active := not active_inventions.is_empty()
 	if invention_active:
 		duration_multiplier *= 0.82
 		quality += 1
@@ -2741,6 +2785,7 @@ func job_estimate(facility_name: String, job_id: StringName, ben_assist := false
 		"quality_name": JOB_QUALITY_NAMES[quality],
 		"ben_assist": ben_assist,
 		"invention_active": invention_active,
+		"active_inventions": active_inventions,
 	}
 
 

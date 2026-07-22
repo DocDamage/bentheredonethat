@@ -7,7 +7,7 @@ const CLOCK_DIAL_SETTINGS := [&"12:01", &"01:13", &"02:22", &"03:13", &"04:44", 
 
 
 func _execute() -> void:
-	if clue_kind == &"clock" and _can_set_clock():
+	if clue_kind == &"clock" and (_can_set_clock() or _can_tune_temporal_secret()):
 		_show_clock_dial()
 		return
 	var events := apply_interaction()
@@ -68,14 +68,16 @@ func _inspect_clock() -> Array[String]:
 
 
 func set_clock_time(setting: StringName, save_after: bool = true) -> Array[String]:
-	if not _can_set_clock():
+	if not _can_set_clock() and not _can_tune_temporal_secret():
 		return ["The clock's dial is still missing its written instruction."]
 	if setting not in CLOCK_DIAL_SETTINGS:
 		return ["That setting does not exist on the clock's impossible dial."]
 	CampaignState.story_flags[&"mansion_clock_time"] = setting
 	CampaignState.record_quest_event(&"mansion_clock_setting", setting)
 	var events: Array[String]
-	if setting != &"04:44":
+	if _can_tune_temporal_secret():
+		events = _complete_temporal_secret() if setting == &"13:13" else ["Ben sets the solved clock to %s. The tuning fork hums once, but only the hidden thirteenth resonance will answer it." % setting]
+	elif setting != &"04:44":
 		events = ["Ben sets the dial to %s. The pendulum recoils, and a different room answers with one disapproving knock. The servants' passage remains closed." % setting]
 	else:
 		events = _complete_clock_puzzle()
@@ -92,10 +94,19 @@ func _can_set_clock() -> bool:
 		and not CampaignState.story_flags.get(&"mansion_first_room_complete", false)
 
 
+func _can_tune_temporal_secret() -> bool:
+	return clue_kind == &"clock" \
+		and CampaignState.story_flags.get(&"mansion_first_room_complete", false) \
+		and &"temporal_tuning_fork" in CampaignState.owned_inventions \
+		and not CampaignState.story_flags.get(&"mansion_temporal_secret_found", false)
+
+
 func _show_clock_dial() -> void:
 	var dialog := AcceptDialog.new()
 	dialog.title = "THE CLOCK AT 4:44"
 	dialog.dialog_text = "Choose one of the thirteen impossible settings. The household ledger records the servants' passage appointment."
+	if _can_tune_temporal_secret():
+		dialog.dialog_text = "The solved clock recognizes Ben's tuning fork. Its hidden thirteenth resonance may answer a later hour."
 	dialog.exclusive = true
 	dialog.min_size = Vector2i(620, 420)
 	var choices := GridContainer.new()
@@ -145,4 +156,15 @@ func _complete_clock_puzzle() -> Array[String]:
 		"A brass fragment drops from the mechanism, still anchored to this reality.",
 		"The fragment hums in time with the clock. Ben can build a Temporal Tuning Fork at the Mansion facility to interrupt clock attacks.",
 		"Obtained: Rare House-Key Fragment of Continuity, Anchor Shard, and 30 Duckets.",
+	]
+
+
+func _complete_temporal_secret() -> Array[String]:
+	CampaignState.story_flags[&"mansion_temporal_secret_found"] = true
+	CampaignState.add_item(&"research_notes", 1, false, &"mansion_temporal_secret", &"mansion_clock")
+	CampaignState.add_item(&"anchor_dust", 1, false, &"mansion_temporal_secret", &"mansion_clock")
+	return [
+		"Ben sets the solved clock to 13:13. The tuning fork resolves a second, quieter chime behind the faceplate.",
+		"A folded temporal field note and a pinch of anchor dust slide into the pendulum case.",
+		"Optional Mansion resonance recovered: Research Note and Anchor Dust.",
 	]

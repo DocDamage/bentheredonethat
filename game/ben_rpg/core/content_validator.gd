@@ -18,6 +18,7 @@ static func validate_all() -> PackedStringArray:
 	_validate_encounters(errors)
 	_validate_universes(errors)
 	_validate_facilities(errors)
+	_validate_inventions(errors)
 	_validate_armory_stock(errors)
 	_validate_facility_upgrades(errors)
 	_validate_quests(errors)
@@ -132,6 +133,39 @@ static func _validate_facilities(errors: Array[String]) -> void:
 			for item_id in (job.get("items", {}) as Dictionary).keys():
 				if not _known_item_id(StringName(item_id)):
 					errors.append("Facility job '%s' grants unknown item '%s'." % [job_id, item_id])
+
+
+static func _validate_inventions(errors: Array[String]) -> void:
+	for invention_id in CampaignState.INVENTION_DEFINITIONS:
+		var invention: Dictionary = CampaignState.INVENTION_DEFINITIONS[invention_id]
+		if String(invention.get("name", "")).is_empty():
+			errors.append("Invention '%s' is missing a display name." % invention_id)
+		if not CampaignState.FACILITY_DEFINITIONS.has(String(invention.get("facility", ""))):
+			errors.append("Invention '%s' references missing facility '%s'." % [invention_id, invention.get("facility", "")])
+		for item_id in (invention.get("items", {}) as Dictionary).keys():
+			if not _known_item_id(StringName(item_id)):
+				errors.append("Invention '%s' requires unknown item '%s'." % [invention_id, item_id])
+	for invention_id in CampaignState.EXPEDITION_TOOL_CONTRACTS:
+		if not CampaignState.INVENTION_DEFINITIONS.has(invention_id):
+			errors.append("Expedition tool '%s' has no invention definition." % invention_id)
+			continue
+		if CampaignState.invention_category(StringName(invention_id)) != &"expedition_tool":
+			errors.append("Expedition tool '%s' has the wrong invention category." % invention_id)
+		var contract: Dictionary = CampaignState.EXPEDITION_TOOL_CONTRACTS[invention_id]
+		for required_field in [&"story_use", &"optional_use", &"town_use"]:
+			if String(contract.get(required_field, "")).is_empty():
+				errors.append("Expedition tool '%s' is missing %s." % [invention_id, required_field])
+		var action_id := StringName(contract.get("battle_action", &""))
+		if CampaignCombatDatabase.action(action_id).is_empty():
+			errors.append("Expedition tool '%s' references missing battle action '%s'." % [invention_id, action_id])
+		var town_job_id := StringName(contract.get("town_job", &""))
+		var town_use_found := false
+		for facility_name in CampaignState.FACILITY_DEFINITIONS:
+			for job in (CampaignState.FACILITY_DEFINITIONS[facility_name] as Dictionary).get("jobs", []):
+				if StringName(job.get("id", &"")) == town_job_id:
+					town_use_found = CampaignState.job_supports_invention(String(facility_name), town_job_id, StringName(invention_id))
+		if not town_use_found:
+			errors.append("Expedition tool '%s' does not accelerate its declared town job '%s'." % [invention_id, town_job_id])
 
 
 static func _validate_armory_stock(errors: Array[String]) -> void:
@@ -292,4 +326,4 @@ static func _visit_objective_dependencies(objective_id: StringName, objectives_b
 
 
 static func _known_item_id(item_id: StringName) -> bool:
-	return CampaignState.SERVICE_ITEM_CATALOG.has(item_id) or item_id in [&"research_notes", &"anchor_dust", &"ectoplasm"]
+	return CampaignState.SERVICE_ITEM_CATALOG.has(item_id) or item_id in [&"research_notes", &"anchor_dust", &"anchor_shard", &"anchor_core", &"ectoplasm"]

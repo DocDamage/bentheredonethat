@@ -1017,8 +1017,18 @@ func _build_invention_section() -> void:
 		var owned := invention_id in CampaignState.owned_inventions
 		var availability := CampaignState.invention_availability(invention_id)
 		var button := Button.new()
-		button.text = "%s %s\n%s • %s" % ["◆" if owned else "◇", invention.get("name", invention_id), invention.get("description", ""), "OWNED" if owned else _invention_cost_text(invention)]
-		button.custom_minimum_size.y = 72
+		var tool_contract := CampaignState.expedition_tool_contract(invention_id)
+		if tool_contract.is_empty():
+			button.text = "%s %s\n%s • %s" % ["◆" if owned else "◇", invention.get("name", invention_id), invention.get("description", ""), "OWNED" if owned else _invention_cost_text(invention)]
+			button.custom_minimum_size.y = 72
+		else:
+			var battle_action := CampaignCombatDatabase.action(StringName(tool_contract.get("battle_action", &"")))
+			button.text = "%s %s\n%s\nSTORY • %s\nOPTIONAL • %s\nBATTLE • %s\nTOWN • %s\n%s" % [
+				"◆" if owned else "◇", invention.get("name", invention_id), invention.get("description", ""),
+				tool_contract.get("story_use", ""), tool_contract.get("optional_use", ""), battle_action.get("name", tool_contract.get("battle_action", "")), tool_contract.get("town_use", ""),
+				"OWNED" if owned else _invention_cost_text(invention),
+			]
+			button.custom_minimum_size.y = 166
 		button.disabled = owned or not _at_laboratory() or not bool(availability.get("allowed", false))
 		button.tooltip_text = "Already installed." if owned else ("Return to Ben's laboratory." if not _at_laboratory() else String(availability.get("reason", "")))
 		_apply_button_skin(button, UI_ROOT + "/" + String(invention.get("icon", "dfgui_icon-crafthammer.png")))
