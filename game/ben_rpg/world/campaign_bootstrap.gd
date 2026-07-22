@@ -170,6 +170,7 @@ const MOONPETAL_FOREGROUND_SCRIPT := preload("res://ben_rpg/world/campaign_moonp
 const EMPYREAL_FOREGROUND_SCRIPT := preload("res://ben_rpg/world/campaign_empyreal_foreground.gd")
 const FROSTHOLD_FOREGROUND_SCRIPT := preload("res://ben_rpg/world/campaign_frosthold_foreground.gd")
 const PRIMEVAL_FOREGROUND_SCRIPT := preload("res://ben_rpg/world/campaign_primeval_foreground.gd")
+const HELIOS_FOREGROUND_SCRIPT := preload("res://ben_rpg/world/campaign_helios_foreground.gd")
 const WEATHER_OVERLAY_SCRIPT := preload("res://ben_rpg/world/campaign_weather_overlay.gd")
 const AREA_TRANSITION := preload("res://src/field/cutscenes/templates/area_transitions/area_transition.tscn")
 const RESTRICTED_AREA_TRANSITION := preload("res://ben_rpg/world/restricted_area_transition.tscn")
@@ -238,6 +239,7 @@ var _moonpetal_foreground
 var _empyreal_foreground
 var _frosthold_foreground
 var _primeval_foreground
+var _helios_foreground
 var _weather_overlay
 var _battle: CampaignBattle
 var _mansion_boss_marker: Sprite2D
@@ -354,6 +356,9 @@ func _enter_tree() -> void:
 	_primeval_foreground = PRIMEVAL_FOREGROUND_SCRIPT.new()
 	_primeval_foreground.name = "PrimevalForeground"
 	foreground_layer.add_child(_primeval_foreground)
+	_helios_foreground = HELIOS_FOREGROUND_SCRIPT.new()
+	_helios_foreground.name = "HeliosForeground"
+	foreground_layer.add_child(_helios_foreground)
 	_weather_overlay = WEATHER_OVERLAY_SCRIPT.new()
 	_weather_overlay.name = "WeatherOverlay"
 	_weather_overlay.z_index = 2
@@ -753,6 +758,8 @@ func _update_camera_limits(force := false) -> void:
 		_frosthold_foreground.set_active_area(StringName(area))
 	if _primeval_foreground:
 		_primeval_foreground.set_active_area(StringName(area))
+	if _helios_foreground:
+		_helios_foreground.set_active_area(StringName(area))
 	if _weather_overlay:
 		_weather_overlay.set_active_area(StringName(area))
 	if area == "town":

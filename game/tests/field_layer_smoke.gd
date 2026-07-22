@@ -37,7 +37,8 @@ func _run() -> void:
 	var empyreal_foreground := foreground.get_node_or_null("EmpyrealForeground") as Node2D
 	var frosthold_foreground := foreground.get_node_or_null("FrostholdForeground") as Node2D
 	var primeval_foreground := foreground.get_node_or_null("PrimevalForeground") as Node2D
-	if not visual or not mansion_foreground or not town_foreground or not asterion_foreground or not moonpetal_foreground or not empyreal_foreground or not frosthold_foreground or not primeval_foreground:
+	var helios_foreground := foreground.get_node_or_null("HeliosForeground") as Node2D
+	if not visual or not mansion_foreground or not town_foreground or not asterion_foreground or not moonpetal_foreground or not empyreal_foreground or not frosthold_foreground or not primeval_foreground or not helios_foreground:
 		_fail("field background or foreground renderer was not attached")
 		return
 	Player.gamepiece.position = Gameboard.cell_to_pixel(Vector2i(12, 36))
@@ -82,7 +83,13 @@ func _run() -> void:
 	if primeval_foreground.get("active_area") != &"primeval_grove":
 		_fail("Primeval foreground did not follow area activation")
 		return
-	print("FIELD_LAYER_SMOKE_OK layers=7 mansion+town+asterion+moonpetal+empyreal+frosthold+primeval_foreground=active y_sort=enabled")
+	Player.gamepiece.position = Gameboard.cell_to_pixel(Vector2i(112, 38))
+	main._update_camera_limits(true)
+	await get_tree().process_frame
+	if helios_foreground.get("active_area") != &"helios_skybridge":
+		_fail("Helios foreground did not follow area activation")
+		return
+	print("FIELD_LAYER_SMOKE_OK layers=7 mansion+town+asterion+moonpetal+empyreal+frosthold+primeval+helios_foreground=active y_sort=enabled")
 	main.queue_free()
 	await get_tree().process_frame
 	get_tree().quit(0)
