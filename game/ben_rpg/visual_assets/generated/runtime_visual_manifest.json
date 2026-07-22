@@ -8627,6 +8627,46 @@
     {
       "cropApproval": "approved",
       "distributionEligibility": "review_required",
+      "goldenCapture": "game/validation/moonpetal-blossom-court.png",
+      "id": "moonpetal_court_tree_canopy_right",
+      "kind": "prop",
+      "licenseReference": "game/ben_rpg/visual_assets/generated/runtime_asset_provenance.json",
+      "placement": {
+        "collisionFootprint": "tree_trunk",
+        "footAnchor": [
+          122,
+          249
+        ],
+        "scaleClass": "landmark"
+      },
+      "releaseVisualAcceptance": "prototype_only",
+      "source": {
+        "alphaBounds": [
+          326,
+          548,
+          245,
+          250
+        ],
+        "pack": "Sakura Temple Asset Pack",
+        "region": [
+          326,
+          548,
+          245,
+          250
+        ],
+        "runtimeTexture": "game/game_assets/Tilesets/Sakura Temple Asset Pack/Sakura trees.png",
+        "sha256": "08210d2fda670b8f8ee1ebafaa7664011a763628321799064f7e95c7d55e89bb",
+        "sourceChecksum": "08210d2fda670b8f8ee1ebafaa7664011a763628321799064f7e95c7d55e89bb",
+        "sourceDensity": 48
+      },
+      "worldDrawSize": [
+        123,
+        125
+      ]
+    },
+    {
+      "cropApproval": "approved",
+      "distributionEligibility": "review_required",
       "goldenCapture": "game/validation/moonpetal-mirror-garden.png",
       "id": "moonpetal_framed_garden_island",
       "kind": "prop",

@@ -960,7 +960,8 @@
       ],
       "path": "res://game_assets/Tilesets/Sakura Temple Asset Pack/Sakura trees.png",
       "profileIds": [
-        "moonpetal_court_tree_canopy"
+        "moonpetal_court_tree_canopy",
+        "moonpetal_court_tree_canopy_right"
       ],
       "sourceGroup": "Tilesets/Sakura Temple Asset Pack"
     },

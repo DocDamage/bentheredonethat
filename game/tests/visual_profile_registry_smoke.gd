@@ -23,6 +23,7 @@ func _ready() -> void:
 		&"moonpetal_vermilion_gate",
 		&"moonpetal_court_temple",
 		&"moonpetal_court_tree_canopy",
+		&"moonpetal_court_tree_canopy_right",
 		&"moonpetal_mirror_pond",
 		&"moonpetal_framed_garden_island",
 		&"moonpetal_gate_lantern",

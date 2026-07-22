@@ -153,6 +153,11 @@
       "goldenCapture": "game/validation/moonpetal-blossom-court.png"
     },
     {
+      "id": "moonpetal_court_tree_canopy_right", "kind": "prop",
+      "source": {"pack": "Sakura Temple Asset Pack", "runtimeTexture": "game/game_assets/Tilesets/Sakura Temple Asset Pack/Sakura trees.png", "sourceChecksum": "08210d2fda670b8f8ee1ebafaa7664011a763628321799064f7e95c7d55e89bb", "sourceDensity": 48, "region": [326, 548, 245, 250], "alphaBounds": [326, 548, 245, 250]},
+      "placement": {"footAnchor": [122, 249], "scaleClass": "landmark", "collisionFootprint": "tree_trunk"}, "worldDrawSize": [123, 125], "licenseReference": "game/ben_rpg/visual_assets/generated/runtime_asset_provenance.json", "cropApproval": "approved", "goldenCapture": "game/validation/moonpetal-blossom-court.png"
+    },
+    {
       "id": "moonpetal_mirror_pond",
       "kind": "prop",
       "source": {
