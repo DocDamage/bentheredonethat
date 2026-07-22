@@ -9467,6 +9467,86 @@
     {
       "cropApproval": "approved",
       "distributionEligibility": "review_required",
+      "goldenCapture": "game/validation/primeval-nest-rebuilt.png",
+      "id": "primeval_nest_left",
+      "kind": "prop",
+      "licenseReference": "game/ben_rpg/visual_assets/generated/runtime_asset_provenance.json",
+      "placement": {
+        "collisionFootprint": "nest_base",
+        "footAnchor": [
+          85,
+          133
+        ],
+        "scaleClass": "prop"
+      },
+      "releaseVisualAcceptance": "prototype_only",
+      "source": {
+        "alphaBounds": [
+          19,
+          454,
+          170,
+          134
+        ],
+        "pack": "Jurassic World Pixel Art Megapack",
+        "region": [
+          19,
+          454,
+          170,
+          134
+        ],
+        "runtimeTexture": "game/game_assets/Tilesets/Jurassic world/Jurassic World Pixel Art Megapack/11. Dinosaur nests and eggs.png",
+        "sha256": "13d6547c31a25aafa7890c596dd679adcb0d17dfdb9ea76b4516b062b8c9ee56",
+        "sourceChecksum": "13d6547c31a25aafa7890c596dd679adcb0d17dfdb9ea76b4516b062b8c9ee56",
+        "sourceDensity": 96
+      },
+      "worldDrawSize": [
+        85,
+        67
+      ]
+    },
+    {
+      "cropApproval": "approved",
+      "distributionEligibility": "review_required",
+      "goldenCapture": "game/validation/primeval-nest-rebuilt.png",
+      "id": "primeval_nest_right",
+      "kind": "prop",
+      "licenseReference": "game/ben_rpg/visual_assets/generated/runtime_asset_provenance.json",
+      "placement": {
+        "collisionFootprint": "nest_base",
+        "footAnchor": [
+          86,
+          141
+        ],
+        "scaleClass": "prop"
+      },
+      "releaseVisualAcceptance": "prototype_only",
+      "source": {
+        "alphaBounds": [
+          391,
+          448,
+          172,
+          142
+        ],
+        "pack": "Jurassic World Pixel Art Megapack",
+        "region": [
+          391,
+          448,
+          172,
+          142
+        ],
+        "runtimeTexture": "game/game_assets/Tilesets/Jurassic world/Jurassic World Pixel Art Megapack/11. Dinosaur nests and eggs.png",
+        "sha256": "13d6547c31a25aafa7890c596dd679adcb0d17dfdb9ea76b4516b062b8c9ee56",
+        "sourceChecksum": "13d6547c31a25aafa7890c596dd679adcb0d17dfdb9ea76b4516b062b8c9ee56",
+        "sourceDensity": 96
+      },
+      "worldDrawSize": [
+        86,
+        71
+      ]
+    },
+    {
+      "cropApproval": "approved",
+      "distributionEligibility": "review_required",
       "goldenCapture": "game/validation/primeval-grove-rebuilt.png",
       "id": "primeval_raptor_battle_actor",
       "kind": "battle_actor",

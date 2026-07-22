@@ -596,6 +596,8 @@
       ],
       "path": "res://game_assets/Tilesets/Jurassic world/Jurassic World Pixel Art Megapack/11. Dinosaur nests and eggs.png",
       "profileIds": [
+        "primeval_nest_left",
+        "primeval_nest_right",
         "primeval_relay_nest"
       ],
       "sourceGroup": "Tilesets/Jurassic world"

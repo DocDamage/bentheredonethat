@@ -769,6 +769,16 @@
       "worldDrawSize": [88, 77], "licenseReference": "game/ben_rpg/visual_assets/generated/runtime_asset_provenance.json", "cropApproval": "approved", "goldenCapture": "game/validation/primeval-nest-rebuilt.png"
     },
     {
+      "id": "primeval_nest_left", "kind": "prop",
+      "source": {"pack": "Jurassic World Pixel Art Megapack", "runtimeTexture": "game/game_assets/Tilesets/Jurassic world/Jurassic World Pixel Art Megapack/11. Dinosaur nests and eggs.png", "sourceChecksum": "13d6547c31a25aafa7890c596dd679adcb0d17dfdb9ea76b4516b062b8c9ee56", "sourceDensity": 96, "region": [19, 454, 170, 134], "alphaBounds": [19, 454, 170, 134]},
+      "placement": {"footAnchor": [85, 133], "scaleClass": "prop", "collisionFootprint": "nest_base"}, "worldDrawSize": [85, 67], "licenseReference": "game/ben_rpg/visual_assets/generated/runtime_asset_provenance.json", "cropApproval": "approved", "goldenCapture": "game/validation/primeval-nest-rebuilt.png"
+    },
+    {
+      "id": "primeval_nest_right", "kind": "prop",
+      "source": {"pack": "Jurassic World Pixel Art Megapack", "runtimeTexture": "game/game_assets/Tilesets/Jurassic world/Jurassic World Pixel Art Megapack/11. Dinosaur nests and eggs.png", "sourceChecksum": "13d6547c31a25aafa7890c596dd679adcb0d17dfdb9ea76b4516b062b8c9ee56", "sourceDensity": 96, "region": [391, 448, 172, 142], "alphaBounds": [391, 448, 172, 142]},
+      "placement": {"footAnchor": [86, 141], "scaleClass": "prop", "collisionFootprint": "nest_base"}, "worldDrawSize": [86, 71], "licenseReference": "game/ben_rpg/visual_assets/generated/runtime_asset_provenance.json", "cropApproval": "approved", "goldenCapture": "game/validation/primeval-nest-rebuilt.png"
+    },
+    {
       "id": "helios_skybridge_quadrant",
       "kind": "tile",
       "source": {"pack": "Bright Cyberpunk Pixel Art Tileset Pack", "runtimeTexture": "game/game_assets/Tilesets/Bright Cyberpunk Pixel Art Tileset Pack/1.png", "sourceChecksum": "b1d940e8f99fd06af695e576999b6d016a23202e59173f93eab9c8b58b9f7910", "sourceDensity": 48, "region": [384, 0, 384, 384], "alphaBounds": [384, 0, 384, 384]},
