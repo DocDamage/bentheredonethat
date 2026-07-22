@@ -107,6 +107,65 @@ func _run() -> void:
 	if GamepieceRegistry.get_cell(chosen_gamepiece) != target or editor.selected_resident_id != &"":
 		_fail("Sandbox editor did not persistently relocate the selected resident")
 		return
+	var before_history := CampaignState.sandbox_layout_snapshot()
+	var undo_before: int = editor._undo_stack.size()
+	editor.editor_mode = &"terrain"
+	editor.pack_index = 0
+	editor.item_index = 0
+	for edit_index in range(100):
+		editor.cursor_cell = Vector2i(37 + edit_index % 25, 20 + int(edit_index / 25))
+		editor._paint_terrain()
+	if editor._undo_stack.size() != mini(100, undo_before + 100):
+		_fail("Sandbox history did not retain every committed paint action")
+		return
+	var after_history := CampaignState.sandbox_layout_snapshot()
+	for _undo in range(100):
+		editor._undo_sandbox_edit()
+	if CampaignState.sandbox_layout_snapshot() != before_history:
+		_fail("A 100-action sandbox undo sequence did not restore the exact prior layout")
+		return
+	for _redo in range(100):
+		editor._redo_sandbox_edit()
+	if CampaignState.sandbox_layout_snapshot() != after_history:
+		_fail("A 100-action sandbox redo sequence did not restore the exact painted layout")
+		return
+	editor.editor_mode = &"objects"
+	var copy_source := Gameboard.INVALID_CELL
+	for y in range(main.TOWN_ORIGIN.y + 1, main.TOWN_ORIGIN.y + main.TOWN_SIZE.y - 3):
+		for x in range(main.TOWN_ORIGIN.x + 1, main.TOWN_ORIGIN.x + main.TOWN_SIZE.x - 3):
+			var candidate := Vector2i(x, y)
+			if editor._placement_valid(editor._current_catalog_id(), candidate):
+				copy_source = candidate
+				break
+		if copy_source != Gameboard.INVALID_CELL:
+			break
+	if copy_source == Gameboard.INVALID_CELL:
+		_fail("Sandbox object placement unexpectedly blocked the clipboard test")
+		return
+	var objects_before_copy := CampaignState.town_objects.size()
+	editor.cursor_cell = copy_source
+	editor._confirm_cursor()
+	editor.cursor_cell = copy_source
+	editor._confirm_cursor()
+	editor._copy_selected_object()
+	var copy_target := Gameboard.INVALID_CELL
+	for y in range(main.TOWN_ORIGIN.y + 1, main.TOWN_ORIGIN.y + main.TOWN_SIZE.y - 3):
+		for x in range(main.TOWN_ORIGIN.x + 1, main.TOWN_ORIGIN.x + main.TOWN_SIZE.x - 3):
+			var candidate := Vector2i(x, y)
+			if editor._placement_valid(editor._current_catalog_id(), candidate):
+				copy_target = candidate
+				break
+		if copy_target != Gameboard.INVALID_CELL:
+			break
+	if copy_target == Gameboard.INVALID_CELL:
+		_fail("Sandbox copy target unexpectedly had no legal cell")
+		return
+	editor.cursor_cell = copy_target
+	editor._paste_copied_object()
+	if CampaignState.town_objects.size() != objects_before_copy + 2:
+		_fail("Sandbox copy/paste did not create an independent duplicate object")
+		return
+	editor._sync_renderer()
 	if CampaignState.save_game(TEST_SAVE) != OK:
 		_fail("Resident state save failed")
 		return
@@ -125,7 +184,7 @@ func _run() -> void:
 
 	DirAccess.remove_absolute(ProjectSettings.globalize_path(TEST_SAVE))
 	CampaignState.reset_new_game()
-	print("TOWN_RESIDENT_SMOKE_OK residents=4 roles=true tasks=role_specific dialogue=activity_aware schedules=work+lunch+errands+home routes=town_only collision=destination_reservations+yield_recovery relocation=editor save_load=true")
+	print("TOWN_RESIDENT_SMOKE_OK residents=4 roles=true tasks=role_specific dialogue=activity_aware schedules=work+lunch+errands+home routes=town_only collision=destination_reservations+yield_recovery relocation=editor history=100_action_undo_redo clipboard=true save_load=true")
 	get_tree().quit(0)
 
 

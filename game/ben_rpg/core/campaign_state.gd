@@ -1257,6 +1257,8 @@ func place_town_object(catalog_id: StringName, cell: Vector2i, flipped := false)
 
 
 func move_town_object(instance_id: String, cell: Vector2i) -> bool:
+	if not sandbox_mode:
+		return false
 	var placed := town_object(instance_id)
 	if placed.is_empty():
 		return false
@@ -1268,6 +1270,8 @@ func move_town_object(instance_id: String, cell: Vector2i) -> bool:
 
 
 func flip_town_object(instance_id: String) -> bool:
+	if not sandbox_mode:
+		return false
 	var placed := town_object(instance_id)
 	if placed.is_empty():
 		return false
@@ -1278,6 +1282,8 @@ func flip_town_object(instance_id: String) -> bool:
 
 
 func remove_town_object(instance_id: String) -> bool:
+	if not sandbox_mode:
+		return false
 	for index in range(town_objects.size()):
 		if String(town_objects[index].get("instance_id", "")) == instance_id:
 			if bool(town_objects[index].get("protected", false)):
@@ -1313,10 +1319,41 @@ func paint_town_terrain(cell: Vector2i, brush_id: StringName) -> bool:
 
 
 func clear_town_terrain(cell: Vector2i) -> bool:
+	if not sandbox_mode:
+		return false
 	var key := _terrain_cell_key(cell)
 	if not town_terrain.has(key):
 		return false
 	town_terrain.erase(key)
+	town_terrain_changed.emit()
+	state_changed.emit()
+	return true
+
+
+func sandbox_layout_snapshot() -> Dictionary:
+	if not sandbox_mode:
+		return {}
+	return {
+		"town_objects": town_objects.duplicate(true),
+		"town_terrain": town_terrain.duplicate(true),
+		"resident_states": resident_states.duplicate(true),
+		"next_town_object_id": next_town_object_id,
+	}
+
+
+func restore_sandbox_layout(snapshot: Dictionary) -> bool:
+	# Editor history is deliberately restricted to the sandbox document. It may
+	# never rewrite campaign facilities, anchors, currency, quests, or recruits.
+	if not sandbox_mode or snapshot.is_empty():
+		return false
+	var saved_objects: Array = snapshot.get("town_objects", [])
+	var saved_terrain: Dictionary = snapshot.get("town_terrain", {})
+	var saved_residents: Dictionary = snapshot.get("resident_states", {})
+	town_objects = saved_objects.duplicate(true)
+	town_terrain = saved_terrain.duplicate(true)
+	resident_states = saved_residents.duplicate(true)
+	next_town_object_id = maxi(1, int(snapshot.get("next_town_object_id", town_objects.size() + 1)))
+	town_objects_changed.emit()
 	town_terrain_changed.emit()
 	state_changed.emit()
 	return true

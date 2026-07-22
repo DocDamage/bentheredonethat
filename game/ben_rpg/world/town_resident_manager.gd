@@ -232,6 +232,34 @@ func relocate_resident(resident_id: StringName, cell: Vector2i) -> bool:
 	return true
 
 
+func restore_sandbox_layout_positions() -> void:
+	if not CampaignState.sandbox_mode:
+		return
+	sync_residents()
+	for resident_id in residents.keys():
+		var saved := CampaignState.resident_state(StringName(resident_id))
+		if saved.is_empty():
+			continue
+		var target := Vector2i(int(saved.get("x", -1)), int(saved.get("y", -1)))
+		var entry: Dictionary = residents[resident_id]
+		var gamepiece := entry.get("gamepiece") as Gamepiece
+		if not gamepiece or not _town_contains(target) or not Gameboard.pathfinder.has_cell(target):
+			continue
+		var occupant := GamepieceRegistry.get_gamepiece(target)
+		if occupant and occupant != gamepiece:
+			continue
+		if gamepiece.is_moving():
+			gamepiece.stop()
+		var current := GamepieceRegistry.get_cell(gamepiece)
+		if current != target:
+			GamepieceRegistry.move_gamepiece(gamepiece, target)
+		gamepiece.position = Gameboard.cell_to_pixel(target)
+		gamepiece.rest_position = gamepiece.position
+		var controller = entry.get("controller")
+		if controller:
+			controller.force_replan()
+
+
 func record_resident_state(resident_id: StringName, cell: Vector2i, activity: StringName, target: Vector2i) -> void:
 	CampaignState.set_resident_state(resident_id, cell, activity, target)
 

@@ -5,6 +5,7 @@ const UI_ROOT := "res://game_assets/Tilesets/Dark RPG GUI Kit - Pixel Art Asset 
 const UI_PARTY_HUD := UI_ROOT + "/dfgui_partyhud.png"
 const CATALOG := preload("res://ben_rpg/world/sandbox_object_catalog.gd")
 const TERRAIN_CATALOG := preload("res://ben_rpg/world/sandbox_terrain_catalog.gd")
+const HISTORY_LIMIT := 100
 
 var campaign: Node
 var renderer
@@ -23,6 +24,9 @@ var _mode_label: Label
 var _preview: TextureRect
 var _help_label: Label
 var _last_painted_cell := Gameboard.INVALID_CELL
+var _undo_stack: Array[Dictionary] = []
+var _redo_stack: Array[Dictionary] = []
+var _clipboard: Dictionary = {}
 
 
 func _ready() -> void:
@@ -88,6 +92,22 @@ func _input(event: InputEvent) -> void:
 			get_viewport().set_input_as_handled()
 			return
 	if event is InputEventKey and event.pressed and not event.echo:
+		if event.ctrl_pressed and event.physical_keycode == KEY_Z:
+			_undo_sandbox_edit()
+			get_viewport().set_input_as_handled()
+			return
+		if event.ctrl_pressed and event.physical_keycode == KEY_Y:
+			_redo_sandbox_edit()
+			get_viewport().set_input_as_handled()
+			return
+		if event.ctrl_pressed and event.physical_keycode == KEY_C:
+			_copy_selected_object()
+			get_viewport().set_input_as_handled()
+			return
+		if event.ctrl_pressed and event.physical_keycode == KEY_V:
+			_paste_copied_object()
+			get_viewport().set_input_as_handled()
+			return
 		match event.physical_keycode:
 			KEY_T:
 				_toggle_editor_mode()
@@ -165,9 +185,9 @@ func _confirm_cursor() -> void:
 		_paint_terrain()
 		return
 	if selected_resident_id != &"":
+		var before := _layout_snapshot()
 		if _resident_placement_valid(cursor_cell, selected_resident_id) and campaign.relocate_sandbox_resident(selected_resident_id, cursor_cell):
-			if not suppress_persistence:
-				CampaignState.save_game()
+			_after_mutation(before)
 			cursor_cell.x = mini(cursor_cell.x + 2, campaign.TOWN_ORIGIN.x + campaign.TOWN_SIZE.x - 2)
 		selected_resident_id = &""
 		_sync_renderer()
@@ -176,8 +196,9 @@ func _confirm_cursor() -> void:
 	if not selected_instance_id.is_empty():
 		var moved_catalog_id := _selected_catalog_id()
 		if _placement_valid(moved_catalog_id, cursor_cell, selected_instance_id):
+			var before := _layout_snapshot()
 			CampaignState.move_town_object(selected_instance_id, cursor_cell)
-			_after_mutation()
+			_after_mutation(before)
 			var moved_footprint: Vector2i = CATALOG.definition(moved_catalog_id).get("footprint", Vector2i.ONE)
 			cursor_cell.x = mini(cursor_cell.x + moved_footprint.x + 1, campaign.TOWN_ORIGIN.x + campaign.TOWN_SIZE.x - 2)
 		selected_instance_id = ""
@@ -199,8 +220,9 @@ func _confirm_cursor() -> void:
 		return
 	var catalog_id := _current_catalog_id()
 	if _placement_valid(catalog_id, cursor_cell):
+		var before := _layout_snapshot()
 		CampaignState.place_town_object(catalog_id, cursor_cell)
-		_after_mutation()
+		_after_mutation(before)
 		var footprint: Vector2i = CATALOG.definition(catalog_id).get("footprint", Vector2i.ONE)
 		cursor_cell.x = mini(cursor_cell.x + footprint.x + 1, campaign.TOWN_ORIGIN.x + campaign.TOWN_SIZE.x - 2)
 	_sync_renderer()
@@ -228,9 +250,10 @@ func _remove_selected_or_cursor() -> void:
 	if bool(placed.get("protected", false)):
 		_mode_label.text = "PROTECTED TOWN FACILITY — RELOCATE OR FLIP; IT CANNOT BE DESTROYED"
 		return
+	var before := _layout_snapshot()
 	CampaignState.remove_town_object(instance_id)
 	selected_instance_id = ""
-	_after_mutation()
+	_after_mutation(before)
 	_sync_renderer()
 	_refresh_hud()
 
@@ -238,16 +261,101 @@ func _remove_selected_or_cursor() -> void:
 func _flip_selected() -> void:
 	if editor_mode == &"terrain" or selected_instance_id.is_empty() or selected_resident_id != &"":
 		return
+	var before := _layout_snapshot()
 	if CampaignState.flip_town_object(selected_instance_id):
-		_after_mutation()
+		_after_mutation(before)
 		_sync_renderer()
 
 
-func _after_mutation() -> void:
+func _after_mutation(before: Dictionary = {}) -> void:
+	_record_history(before)
 	if campaign:
 		campaign.refresh_sandbox_object_collision()
 	if not suppress_persistence:
 		CampaignState.save_game()
+
+
+func _layout_snapshot() -> Dictionary:
+	return CampaignState.sandbox_layout_snapshot()
+
+
+func _record_history(before: Dictionary) -> void:
+	if before.is_empty():
+		return
+	var after := _layout_snapshot()
+	if after == before:
+		return
+	_undo_stack.append({"before": before, "after": after})
+	if _undo_stack.size() > HISTORY_LIMIT:
+		_undo_stack.pop_front()
+	_redo_stack.clear()
+
+
+func _undo_sandbox_edit() -> void:
+	if _undo_stack.is_empty():
+		_mode_label.text = "NOTHING TO UNDO — THE SANDBOX HISTORY IS CLEAR"
+		return
+	var command: Dictionary = _undo_stack.pop_back()
+	var before: Dictionary = command.get("before", {})
+	if not CampaignState.restore_sandbox_layout(before):
+		return
+	_redo_stack.append(command)
+	_after_history_restore("UNDID EDIT")
+
+
+func _redo_sandbox_edit() -> void:
+	if _redo_stack.is_empty():
+		_mode_label.text = "NOTHING TO REDO — MAKE A NEW EDIT TO START A NEW BRANCH"
+		return
+	var command: Dictionary = _redo_stack.pop_back()
+	var after: Dictionary = command.get("after", {})
+	if not CampaignState.restore_sandbox_layout(after):
+		return
+	_undo_stack.append(command)
+	_after_history_restore("REDID EDIT")
+
+
+func _after_history_restore(message: String) -> void:
+	if campaign:
+		campaign.restore_sandbox_layout()
+	if not suppress_persistence:
+		CampaignState.save_game()
+	selected_instance_id = ""
+	selected_resident_id = &""
+	_sync_renderer()
+	_refresh_hud()
+	_mode_label.text = "%s   •   UNDO %d   •   REDO %d" % [message, _undo_stack.size(), _redo_stack.size()]
+
+
+func _copy_selected_object() -> void:
+	if selected_instance_id.is_empty():
+		_mode_label.text = "SELECT AN UNPROTECTED OBJECT BEFORE COPYING"
+		return
+	var placed := CampaignState.town_object(selected_instance_id)
+	if placed.is_empty() or bool(placed.get("protected", false)):
+		_mode_label.text = "PROTECTED ANCHORS CANNOT BE COPIED"
+		return
+	_clipboard = {
+		"catalog_id": StringName(placed.get("catalog_id", "")),
+		"flipped": bool(placed.get("flipped", false)),
+	}
+	_mode_label.text = "COPIED %s — MOVE THE CURSOR AND PRESS CTRL+V" % String(CATALOG.definition(_clipboard["catalog_id"]).get("name", "OBJECT")).to_upper()
+
+
+func _paste_copied_object() -> void:
+	if editor_mode != &"objects" or _clipboard.is_empty():
+		_mode_label.text = "COPY AN OBJECT BEFORE PASTING"
+		return
+	var catalog_id := StringName(_clipboard.get("catalog_id", ""))
+	if not _placement_valid(catalog_id, cursor_cell):
+		_mode_label.text = "PASTE BLOCKED — CHOOSE A CLEAR, REACHABLE TOWN CELL"
+		return
+	var before := _layout_snapshot()
+	if CampaignState.place_town_object(catalog_id, cursor_cell, bool(_clipboard.get("flipped", false))).is_empty():
+		return
+	_after_mutation(before)
+	_sync_renderer()
+	_refresh_hud()
 
 
 func _toggle_editor_mode() -> void:
@@ -266,16 +374,18 @@ func _paint_terrain() -> void:
 	if not _terrain_placement_valid(brush_id, cursor_cell):
 		_sync_renderer()
 		return
+	var before := _layout_snapshot()
 	if CampaignState.paint_town_terrain(cursor_cell, brush_id):
 		_last_painted_cell = cursor_cell
-		_after_mutation()
+		_after_mutation(before)
 		_sync_renderer()
 
 
 func _clear_terrain() -> void:
+	var before := _layout_snapshot()
 	if CampaignState.clear_town_terrain(cursor_cell):
 		_last_painted_cell = cursor_cell
-		_after_mutation()
+		_after_mutation(before)
 		_sync_renderer()
 
 
@@ -457,7 +567,7 @@ func _refresh_hud() -> void:
 		_pack_label.text = "TERRAIN MODE   •   PACK  %d / %d   •   %s" % [pack_index + 1, terrain_packs.size(), String(terrain_definition.get("pack", "Unknown")).to_upper()]
 		_item_label.text = String(terrain_definition.get("name", "No terrain brush")).to_upper()
 		_mode_label.text = "INDIVIDUAL TILE  %d / %d   •   %s" % [item_index + 1, _pack_items().size(), "BLOCKING" if bool(terrain_definition.get("blocks", false)) else "WALKABLE"]
-		_help_label.text = "D-pad/arrows: move brush  •  A/Enter/click or left-drag: paint  •  X/Delete/right-click or right-drag: restore base  •  LB/RB or Z/C: tile  •  L3 or Q/E: pack  •  Select/T: objects  •  B/Esc: close"
+		_help_label.text = "D-pad/arrows: move brush  •  A/Enter/click or left-drag: paint  •  X/Delete/right-click or right-drag: restore base  •  Ctrl+Z/Y: undo/redo  •  LB/RB or Z/C: tile  •  L3 or Q/E: pack  •  Select/T: objects  •  B/Esc: close"
 		var terrain_texture_path := String(terrain_definition.get("texture", ""))
 		if ResourceLoader.exists(terrain_texture_path):
 			var terrain_atlas := AtlasTexture.new()
@@ -472,7 +582,7 @@ func _refresh_hud() -> void:
 		_pack_label.text = "RESIDENT PACK   •   %s" % String(resident.get("pack", "Cozy Village NPC")).to_upper()
 		_item_label.text = String(resident.get("name", "Resident")).to_upper()
 		_mode_label.text = "EDITING RESIDENT HOME POSITION — %s" % String(resident.get("role", "Town resident")).to_upper()
-		_help_label.text = "D-pad/arrows: choose a clear cell  •  A/Enter or click: confirm relocation  •  B/Esc: cancel  •  Residents resume their purposeful routine when editing closes"
+		_help_label.text = "D-pad/arrows: choose a clear cell  •  A/Enter or click: confirm relocation  •  Ctrl+Z/Y: undo/redo  •  B/Esc: cancel  •  Residents resume their purposeful routine when editing closes"
 		var resident_texture := String(resident.get("texture", ""))
 		_preview.texture = load(resident_texture) if ResourceLoader.exists(resident_texture) else null
 		return
@@ -485,7 +595,7 @@ func _refresh_hud() -> void:
 		_mode_label.text = "EDITING PROTECTED TOWN FACILITY — MOVABLE, NOT DELETABLE"
 	else:
 		_mode_label.text = "EDITING PLACED OBJECT" if not selected_instance_id.is_empty() else "INDIVIDUAL SPRITE  %d / %d" % [item_index + 1, _pack_items().size()]
-	_help_label.text = "D-pad/arrows: move cursor  •  A/Enter or click: place/select/confirm  •  LB/RB or Z/C: item  •  L3 or Q/E: pack  •  X/Delete/right-click: remove  •  R3/F: flip  •  Select/T: terrain  •  B/Esc: cancel/close"
+		_help_label.text = "D-pad/arrows: move cursor  •  A/Enter or click: place/select/confirm  •  Ctrl+Z/Y: undo/redo  •  Ctrl+C/V: copy/paste  •  LB/RB or Z/C: item  •  L3 or Q/E: pack  •  X/Delete/right-click: remove  •  R3/F: flip  •  Select/T: terrain  •  B/Esc: cancel/close"
 	var texture_path := String(definition.get("texture", ""))
 	if ResourceLoader.exists(texture_path):
 		var atlas := AtlasTexture.new()

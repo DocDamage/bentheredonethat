@@ -958,6 +958,12 @@ func relocate_sandbox_resident(resident_id: StringName, cell: Vector2i) -> bool:
 	return _resident_manager.relocate_resident(resident_id, cell) if _resident_manager else false
 
 
+func restore_sandbox_layout() -> void:
+	refresh_sandbox_object_collision()
+	if _resident_manager:
+		_resident_manager.restore_sandbox_layout_positions()
+
+
 func _on_recruit_status_changed(recruit_id: StringName, status: StringName) -> void:
 	if recruit_id == &"fighter":
 		if status == &"party":
