@@ -18,6 +18,12 @@ from the human, platform, licensing, and performance sign-offs that remain.
   with no schema, path, crop, or animation errors, and the generated runtime
   visual manifest is current. This proves source-art catalog structure, not
   license terms or distribution permission.
+- A verbose isolated shutdown baseline on Godot 4.7.1 exits successfully but
+  reports 61 ObjectDB instances (24 `GDScript`, 21 `Node`, five `RegEx`, four
+  `Timer`, two each of `PackedScene` and `SceneState`, plus single audio/native
+  class entries), 26 resources, and 470 `StringName`s at exit. The release
+  launch shows the same 61/26 signature; this is a bounded baseline, not proof
+  of no growth during a multi-hour session.
 - The sandbox regression covers 100-command undo/redo, clipboard duplication,
   box/Ctrl-click multiselect, batch move undo/redo, pack search, validated slot
   round-trips, route preservation, and malformed-slot rejection.
