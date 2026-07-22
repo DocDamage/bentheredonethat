@@ -32,6 +32,7 @@ Transition="*res://src/common/screen_transitions/ScreenTransition.tscn"
 Dialogic="*uid://ds2q0uclmolvu"
 McpXRuntime="*res://addons/godot_mcp_x/runtime/runtime_bridge.gd"
 CampaignState="*res://ben_rpg/core/campaign_state.gd"
+SettingsRepository="*res://ben_rpg/core/settings_repository.gd"
 
 [dialogic]
 

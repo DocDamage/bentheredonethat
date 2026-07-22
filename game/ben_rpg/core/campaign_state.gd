@@ -16,6 +16,7 @@ const SAVE_VERSION := 18
 const DEFAULT_SAVE_PATH := "user://save_slot_1.json"
 const SANDBOX_SAVE_PATH := "user://sandbox_slot.json"
 const SAVE_REPOSITORY := preload("res://ben_rpg/core/save_repository.gd")
+const SAVE_MIGRATOR := preload("res://ben_rpg/core/save_migrator.gd")
 const SANDBOX_AUTHORED_OBJECTS := [
 	{"instance_id": "sandbox_town_lab", "catalog_id": &"modern_warehouse", "cell": Vector2i(48, 5), "role": &"town_lab", "protected": true},
 	{"instance_id": "sandbox_tree_northwest", "catalog_id": &"ranch_sapling", "cell": Vector2i(37, 1), "role": &"town_tree"},
@@ -2650,7 +2651,7 @@ func load_game(path := DEFAULT_SAVE_PATH) -> Error:
 		var repair_error := SAVE_REPOSITORY.restore_primary(path, String(read_result.get("text", "")))
 		if repair_error != OK:
 			push_warning("Recovered a campaign save from backup, but could not repair the primary file: %s" % error_string(repair_error))
-	_deserialize(read_result.get("data", {}))
+	_deserialize(read_result.get("data", {}), int(read_result.get("source_version", SAVE_VERSION)))
 	refresh_facility_jobs()
 	state_changed.emit()
 	return OK
@@ -2703,14 +2704,20 @@ func _read_valid_save_payload(path: String) -> Dictionary:
 				first_error = ERR_FILE_CORRUPT
 			continue
 		var parsed: Variant = parser.data
-		if parsed is Dictionary and int(parsed.get("version", 0)) >= 1 and int(parsed.get("version", 0)) <= SAVE_VERSION:
+		if parsed is Dictionary:
+			var migration: Dictionary = SAVE_MIGRATOR.migrate(parsed)
+			if not bool(migration.get("ok", false)):
+				if index == 0:
+					first_error = int(migration.get("error", ERR_FILE_CORRUPT))
+				continue
 			return {
 				"valid": true,
 				"error": OK,
-				"data": parsed,
+				"data": migration.get("data", {}),
 				"text": String(text_result.get("text", "")),
 				"recovered": index > 0,
 				"source_path": candidate,
+				"source_version": int(migration.get("source_version", SAVE_VERSION)),
 			}
 		if index == 0:
 			first_error = ERR_FILE_CORRUPT
@@ -2824,8 +2831,8 @@ func _serialize() -> Dictionary:
 	}
 
 
-func _deserialize(data: Dictionary) -> void:
-	var source_version := int(data.get("version", 1))
+func _deserialize(data: Dictionary, source_version_override := -1) -> void:
+	var source_version := source_version_override if source_version_override >= 1 else int(data.get("version", 1))
 	sandbox_mode = bool(data.get("sandbox_mode", false))
 	play_time_seconds = float(data.get("play_time_seconds", 0.0))
 	save_timestamp = int(data.get("save_timestamp", 0))

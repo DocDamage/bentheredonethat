@@ -72,18 +72,7 @@ func valid_targets(actor_id: StringName, action_id: StringName) -> Array[Diction
 	var action := CampaignCombatDatabase.action(action_id)
 	if actor.is_empty() or action.is_empty():
 		return []
-	var target_type: String = action["target"]
-	if target_type in ["enemy", "all_enemies"]:
-		return living("enemy" if actor["team"] == "party" else "party")
-	if target_type in ["ally", "all_allies"]:
-		return living(String(actor["team"]))
-	if target_type == "ko_ally":
-		var fallen: Array[Dictionary] = []
-		for candidate in actors:
-			if candidate["team"] == actor["team"] and not candidate["alive"] and candidate.get("counts_for_defeat", true):
-				fallen.append(candidate)
-		return fallen
-	return [actor]
+	return _targets_for_contract(actor_id, action)
 
 
 func resolve_action(actor_id: StringName, action_id: StringName, target_ids: Array[StringName]) -> Array[Dictionary]:
@@ -143,6 +132,10 @@ func resolve_action(actor_id: StringName, action_id: StringName, target_ids: Arr
 				target["attack_bonus"] = maxi(int(target["attack_bonus"]), int(action["power"]))
 				target["attack_bonus_turns"] = 3
 				events.append({"type": "status", "target": target["id"], "status": &"rally", "text": "%s is rallied." % target["display_name"]})
+		"aegis":
+			for target in targets:
+				target["guarding"] = true
+				events.append({"type": "status", "target": target["id"], "status": &"aegis", "text": "%s is protected by the Heavenly Aegis." % target["display_name"]})
 		"delay":
 			for target in targets:
 				target["atb"] = maxf(0.0, float(target["atb"]) - float(action["power"]))
@@ -224,11 +217,12 @@ func sync_party_vitals() -> void:
 
 func _resolve_targets(actor_id: StringName, action: Dictionary, target_ids: Array[StringName]) -> Array[Dictionary]:
 	var targets: Array[Dictionary] = []
-	if action["target"] in ["all_enemies", "all_allies"]:
-		return valid_targets(actor_id, StringName(action.get("id", &""))) if action.has("id") else _targets_for_type(actor_id, String(action["target"]))
-	if action["target"] == "self":
+	var selector := StringName(action.get("selector", &""))
+	if selector == &"all":
+		return _targets_for_contract(actor_id, action)
+	if selector == &"self":
 		return [get_actor(actor_id)]
-	var valid: Array[Dictionary] = _targets_for_type(actor_id, String(action["target"]))
+	var valid := _targets_for_contract(actor_id, action)
 	for target_id in target_ids:
 		var target := get_actor(target_id)
 		if not target.is_empty() and target in valid:
@@ -236,19 +230,25 @@ func _resolve_targets(actor_id: StringName, action: Dictionary, target_ids: Arra
 	return targets
 
 
-func _targets_for_type(actor_id: StringName, target_type: String) -> Array[Dictionary]:
+func _targets_for_contract(actor_id: StringName, action: Dictionary) -> Array[Dictionary]:
 	var actor := get_actor(actor_id)
-	if target_type in ["enemy", "all_enemies"]:
+	if actor.is_empty():
+		return []
+	var relation := StringName(action.get("relation", &""))
+	var selector := StringName(action.get("selector", &""))
+	if relation == &"hostile":
 		return living("enemy" if actor["team"] == "party" else "party")
-	if target_type in ["ally", "all_allies"]:
+	if relation == &"ally" and selector != &"ko_single":
 		return living(String(actor["team"]))
-	if target_type == "ko_ally":
+	if relation == &"ally" and selector == &"ko_single":
 		var result: Array[Dictionary] = []
 		for candidate in actors:
 			if candidate["team"] == actor["team"] and not candidate["alive"] and candidate.get("counts_for_defeat", true):
 				result.append(candidate)
 		return result
-	return [actor]
+	if relation == &"self":
+		return [actor]
+	return []
 
 
 func _update_attack_bonus(source: Dictionary) -> void:

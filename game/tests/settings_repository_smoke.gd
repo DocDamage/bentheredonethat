@@ -1,0 +1,34 @@
+extends Node
+
+const SETTINGS_REPOSITORY := preload("res://ben_rpg/core/settings_repository.gd")
+const SAVE_REPOSITORY := preload("res://ben_rpg/core/save_repository.gd")
+const TEST_PATH := "user://settings_repository_smoke.json"
+
+
+func _ready() -> void:
+	SAVE_REPOSITORY.cleanup(TEST_PATH)
+	var repository := SETTINGS_REPOSITORY.new()
+	var missing := repository.load_from_disk(TEST_PATH)
+	assert(not bool(missing.get("ok", false)), "A missing settings file should use defaults without pretending it loaded")
+	assert(is_equal_approx(float(repository.value(&"audio", &"master_volume")), 1.0), "Defaults should provide audio settings")
+	repository.set_value(&"audio", &"master_volume", 4.0)
+	repository.set_value(&"accessibility", &"weather_density", -1.0)
+	repository.set_value(&"input", &"deadzone", 0.75)
+	assert(repository.save_to_disk(TEST_PATH) == OK, "Settings should save through the repository")
+	var reloaded := SETTINGS_REPOSITORY.new()
+	var loaded := reloaded.load_from_disk(TEST_PATH)
+	assert(bool(loaded.get("ok", false)), "Settings should reload after saving")
+	assert(is_equal_approx(float(reloaded.value(&"audio", &"master_volume")), 1.0), "Settings normalization should clamp audio")
+	assert(is_equal_approx(float(reloaded.value(&"accessibility", &"weather_density")), 0.0), "Settings normalization should clamp weather density")
+	assert(is_equal_approx(float(reloaded.value(&"input", &"deadzone")), 0.75), "Settings should preserve valid preferences")
+	reloaded.set_value(&"battle", &"atb_speed", 1.5)
+	assert(reloaded.save_to_disk(TEST_PATH) == OK, "A second save should create a recoverable backup")
+	var damaged := FileAccess.open(ProjectSettings.globalize_path(TEST_PATH), FileAccess.WRITE)
+	damaged.store_string("{ not valid json")
+	damaged.close()
+	var recovered := SETTINGS_REPOSITORY.read_settings(TEST_PATH)
+	assert(bool(recovered.get("ok", false)) and bool(recovered.get("recovered", false)), "Settings should recover a corrupt primary from backup")
+	assert(is_equal_approx(float(recovered["settings"]["input"]["deadzone"]), 0.75), "Recovered settings should retain the previous complete payload")
+	SAVE_REPOSITORY.cleanup(TEST_PATH)
+	print("SETTINGS_REPOSITORY_SMOKE_OK defaults=typed normalized=true backup_recovery=true")
+	get_tree().quit()

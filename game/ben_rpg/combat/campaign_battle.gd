@@ -845,7 +845,7 @@ func _action_icon(action_id: StringName) -> String:
 			return UI_ROOT + "/dfgui_icon-sword.png"
 		&"pummel":
 			return UI_ROOT + "/dfgui_icon-axe.png"
-		&"defend", &"rally":
+		&"defend", &"rally", &"heavenly_aegis":
 			return UI_ROOT + "/dfgui_icon-shield.png"
 		&"tonic", &"field_triage", &"ether", &"smelling_salts", &"phoenix_tonic", &"hearty_provisions":
 			return UI_ROOT + "/dfgui_icon-cauldron.png"

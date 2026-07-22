@@ -1,5 +1,6 @@
 extends Node2D
 
+const CONTENT_VALIDATOR := preload("res://ben_rpg/core/content_validator.gd")
 const TILE := 48
 const LAB_SIZE := Vector2i(20, 12)
 const TOWN_ORIGIN := Vector2i(36, 0)
@@ -350,6 +351,9 @@ func _enter_tree() -> void:
 
 
 func _ready() -> void:
+	if OS.is_debug_build():
+		var content_errors := CONTENT_VALIDATOR.validate_all()
+		assert(content_errors.is_empty(), "Content validation failed at startup:\n%s" % "\n".join(content_errors))
 	_restore_campaign_state()
 	_spawn_available_recruits()
 	_update_camera_limits(true)
