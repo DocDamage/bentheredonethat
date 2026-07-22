@@ -685,6 +685,31 @@
       "worldDrawSize": [67, 89], "licenseReference": "game/ben_rpg/visual_assets/generated/runtime_asset_provenance.json", "cropApproval": "approved", "goldenCapture": "game/validation/primeval-grove-rebuilt.png"
     },
     {
+      "id": "primeval_grove_canopy_mid_left", "kind": "prop",
+      "source": {"pack": "Jurassic World Pixel Art Megapack", "runtimeTexture": "game/game_assets/Tilesets/Jurassic world/Jurassic World Pixel Art Megapack/7. Tropical trees and ferns.png", "sourceChecksum": "d370882c9da0811d364f5674e475b9ca132bececd2f7b05ff1e5c02ee569cc61", "sourceDensity": 96, "region": [196, 453, 121, 172], "alphaBounds": [196, 453, 121, 172]},
+      "placement": {"footAnchor": [60, 171], "scaleClass": "prop", "collisionFootprint": "tree_trunk"}, "worldDrawSize": [61, 86], "licenseReference": "game/ben_rpg/visual_assets/generated/runtime_asset_provenance.json", "cropApproval": "approved", "goldenCapture": "game/validation/primeval-grove-rebuilt.png"
+    },
+    {
+      "id": "primeval_grove_canopy_mid", "kind": "prop",
+      "source": {"pack": "Jurassic World Pixel Art Megapack", "runtimeTexture": "game/game_assets/Tilesets/Jurassic world/Jurassic World Pixel Art Megapack/7. Tropical trees and ferns.png", "sourceChecksum": "d370882c9da0811d364f5674e475b9ca132bececd2f7b05ff1e5c02ee569cc61", "sourceDensity": 96, "region": [509, 451, 132, 176], "alphaBounds": [509, 451, 132, 176]},
+      "placement": {"footAnchor": [66, 175], "scaleClass": "prop", "collisionFootprint": "tree_trunk"}, "worldDrawSize": [66, 88], "licenseReference": "game/ben_rpg/visual_assets/generated/runtime_asset_provenance.json", "cropApproval": "approved", "goldenCapture": "game/validation/primeval-grove-rebuilt.png"
+    },
+    {
+      "id": "primeval_grove_canopy_right", "kind": "prop",
+      "source": {"pack": "Jurassic World Pixel Art Megapack", "runtimeTexture": "game/game_assets/Tilesets/Jurassic world/Jurassic World Pixel Art Megapack/7. Tropical trees and ferns.png", "sourceChecksum": "d370882c9da0811d364f5674e475b9ca132bececd2f7b05ff1e5c02ee569cc61", "sourceDensity": 96, "region": [665, 450, 132, 176], "alphaBounds": [665, 450, 132, 176]},
+      "placement": {"footAnchor": [66, 175], "scaleClass": "prop", "collisionFootprint": "tree_trunk"}, "worldDrawSize": [66, 88], "licenseReference": "game/ben_rpg/visual_assets/generated/runtime_asset_provenance.json", "cropApproval": "approved", "goldenCapture": "game/validation/primeval-grove-rebuilt.png"
+    },
+    {
+      "id": "primeval_grove_fern_left", "kind": "prop",
+      "source": {"pack": "Jurassic World Pixel Art Megapack", "runtimeTexture": "game/game_assets/Tilesets/Jurassic world/Jurassic World Pixel Art Megapack/7. Tropical trees and ferns.png", "sourceChecksum": "d370882c9da0811d364f5674e475b9ca132bececd2f7b05ff1e5c02ee569cc61", "sourceDensity": 96, "region": [49, 665, 105, 80], "alphaBounds": [49, 665, 105, 80]},
+      "placement": {"footAnchor": [52, 79], "scaleClass": "prop", "collisionFootprint": "fern_base"}, "worldDrawSize": [53, 40], "licenseReference": "game/ben_rpg/visual_assets/generated/runtime_asset_provenance.json", "cropApproval": "approved", "goldenCapture": "game/validation/primeval-grove-rebuilt.png"
+    },
+    {
+      "id": "primeval_grove_fern_right", "kind": "prop",
+      "source": {"pack": "Jurassic World Pixel Art Megapack", "runtimeTexture": "game/game_assets/Tilesets/Jurassic world/Jurassic World Pixel Art Megapack/7. Tropical trees and ferns.png", "sourceChecksum": "d370882c9da0811d364f5674e475b9ca132bececd2f7b05ff1e5c02ee569cc61", "sourceDensity": 96, "region": [1125, 664, 108, 82], "alphaBounds": [1125, 664, 108, 82]},
+      "placement": {"footAnchor": [54, 81], "scaleClass": "prop", "collisionFootprint": "fern_base"}, "worldDrawSize": [54, 41], "licenseReference": "game/ben_rpg/visual_assets/generated/runtime_asset_provenance.json", "cropApproval": "approved", "goldenCapture": "game/validation/primeval-grove-rebuilt.png"
+    },
+    {
       "id": "primeval_ruin_forecourt",
       "kind": "building",
       "source": {"pack": "Jurassic World Pixel Art Megapack", "runtimeTexture": "game/game_assets/Tilesets/Jurassic world/Jurassic World Pixel Art Megapack/19. Modular jungle ruins.png", "sourceChecksum": "f92378dcbb1f0bab0191299438b05b5f2981da7e3fc2a0a72e4a42a215c932ab", "sourceDensity": 96, "region": [1315, 504, 155, 167], "alphaBounds": [1315, 504, 155, 167]},

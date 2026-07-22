@@ -65,11 +65,11 @@ func _draw() -> void:
 	match active_area:
 		&"primeval_grove":
 			_profile_prop(&"primeval_grove_canopy", trees, offset + Vector2(-8, 20))
-			_prop(trees, Rect2(196, 453, 121, 172), offset + Vector2(58, 14), 0.5)
-			_prop(trees, Rect2(509, 451, 132, 176), offset + Vector2(258, 16), 0.5)
-			_prop(trees, Rect2(665, 450, 132, 176), offset + Vector2(325, 20), 0.5)
-			_prop(trees, Rect2(49, 665, 105, 80), offset + Vector2(14, 152), 0.5)
-			_prop(trees, Rect2(1125, 664, 108, 82), offset + Vector2(320, 152), 0.5)
+			_profile_prop(&"primeval_grove_canopy_mid_left", trees, offset + Vector2(58, 14))
+			_profile_prop(&"primeval_grove_canopy_mid", trees, offset + Vector2(258, 16))
+			_profile_prop(&"primeval_grove_canopy_right", trees, offset + Vector2(325, 20))
+			_profile_prop(&"primeval_grove_fern_left", trees, offset + Vector2(14, 152))
+			_profile_prop(&"primeval_grove_fern_right", trees, offset + Vector2(320, 152))
 			_profile_prop(&"primeval_anchor_totem", props, offset + Vector2(176, 74))
 		&"primeval_village":
 			var room_offset := offset + Vector2(10 * TILE, 0)

@@ -9268,6 +9268,206 @@
       "cropApproval": "approved",
       "distributionEligibility": "review_required",
       "goldenCapture": "game/validation/primeval-grove-rebuilt.png",
+      "id": "primeval_grove_canopy_mid",
+      "kind": "prop",
+      "licenseReference": "game/ben_rpg/visual_assets/generated/runtime_asset_provenance.json",
+      "placement": {
+        "collisionFootprint": "tree_trunk",
+        "footAnchor": [
+          66,
+          175
+        ],
+        "scaleClass": "prop"
+      },
+      "releaseVisualAcceptance": "prototype_only",
+      "source": {
+        "alphaBounds": [
+          509,
+          451,
+          132,
+          176
+        ],
+        "pack": "Jurassic World Pixel Art Megapack",
+        "region": [
+          509,
+          451,
+          132,
+          176
+        ],
+        "runtimeTexture": "game/game_assets/Tilesets/Jurassic world/Jurassic World Pixel Art Megapack/7. Tropical trees and ferns.png",
+        "sha256": "d370882c9da0811d364f5674e475b9ca132bececd2f7b05ff1e5c02ee569cc61",
+        "sourceChecksum": "d370882c9da0811d364f5674e475b9ca132bececd2f7b05ff1e5c02ee569cc61",
+        "sourceDensity": 96
+      },
+      "worldDrawSize": [
+        66,
+        88
+      ]
+    },
+    {
+      "cropApproval": "approved",
+      "distributionEligibility": "review_required",
+      "goldenCapture": "game/validation/primeval-grove-rebuilt.png",
+      "id": "primeval_grove_canopy_mid_left",
+      "kind": "prop",
+      "licenseReference": "game/ben_rpg/visual_assets/generated/runtime_asset_provenance.json",
+      "placement": {
+        "collisionFootprint": "tree_trunk",
+        "footAnchor": [
+          60,
+          171
+        ],
+        "scaleClass": "prop"
+      },
+      "releaseVisualAcceptance": "prototype_only",
+      "source": {
+        "alphaBounds": [
+          196,
+          453,
+          121,
+          172
+        ],
+        "pack": "Jurassic World Pixel Art Megapack",
+        "region": [
+          196,
+          453,
+          121,
+          172
+        ],
+        "runtimeTexture": "game/game_assets/Tilesets/Jurassic world/Jurassic World Pixel Art Megapack/7. Tropical trees and ferns.png",
+        "sha256": "d370882c9da0811d364f5674e475b9ca132bececd2f7b05ff1e5c02ee569cc61",
+        "sourceChecksum": "d370882c9da0811d364f5674e475b9ca132bececd2f7b05ff1e5c02ee569cc61",
+        "sourceDensity": 96
+      },
+      "worldDrawSize": [
+        61,
+        86
+      ]
+    },
+    {
+      "cropApproval": "approved",
+      "distributionEligibility": "review_required",
+      "goldenCapture": "game/validation/primeval-grove-rebuilt.png",
+      "id": "primeval_grove_canopy_right",
+      "kind": "prop",
+      "licenseReference": "game/ben_rpg/visual_assets/generated/runtime_asset_provenance.json",
+      "placement": {
+        "collisionFootprint": "tree_trunk",
+        "footAnchor": [
+          66,
+          175
+        ],
+        "scaleClass": "prop"
+      },
+      "releaseVisualAcceptance": "prototype_only",
+      "source": {
+        "alphaBounds": [
+          665,
+          450,
+          132,
+          176
+        ],
+        "pack": "Jurassic World Pixel Art Megapack",
+        "region": [
+          665,
+          450,
+          132,
+          176
+        ],
+        "runtimeTexture": "game/game_assets/Tilesets/Jurassic world/Jurassic World Pixel Art Megapack/7. Tropical trees and ferns.png",
+        "sha256": "d370882c9da0811d364f5674e475b9ca132bececd2f7b05ff1e5c02ee569cc61",
+        "sourceChecksum": "d370882c9da0811d364f5674e475b9ca132bececd2f7b05ff1e5c02ee569cc61",
+        "sourceDensity": 96
+      },
+      "worldDrawSize": [
+        66,
+        88
+      ]
+    },
+    {
+      "cropApproval": "approved",
+      "distributionEligibility": "review_required",
+      "goldenCapture": "game/validation/primeval-grove-rebuilt.png",
+      "id": "primeval_grove_fern_left",
+      "kind": "prop",
+      "licenseReference": "game/ben_rpg/visual_assets/generated/runtime_asset_provenance.json",
+      "placement": {
+        "collisionFootprint": "fern_base",
+        "footAnchor": [
+          52,
+          79
+        ],
+        "scaleClass": "prop"
+      },
+      "releaseVisualAcceptance": "prototype_only",
+      "source": {
+        "alphaBounds": [
+          49,
+          665,
+          105,
+          80
+        ],
+        "pack": "Jurassic World Pixel Art Megapack",
+        "region": [
+          49,
+          665,
+          105,
+          80
+        ],
+        "runtimeTexture": "game/game_assets/Tilesets/Jurassic world/Jurassic World Pixel Art Megapack/7. Tropical trees and ferns.png",
+        "sha256": "d370882c9da0811d364f5674e475b9ca132bececd2f7b05ff1e5c02ee569cc61",
+        "sourceChecksum": "d370882c9da0811d364f5674e475b9ca132bececd2f7b05ff1e5c02ee569cc61",
+        "sourceDensity": 96
+      },
+      "worldDrawSize": [
+        53,
+        40
+      ]
+    },
+    {
+      "cropApproval": "approved",
+      "distributionEligibility": "review_required",
+      "goldenCapture": "game/validation/primeval-grove-rebuilt.png",
+      "id": "primeval_grove_fern_right",
+      "kind": "prop",
+      "licenseReference": "game/ben_rpg/visual_assets/generated/runtime_asset_provenance.json",
+      "placement": {
+        "collisionFootprint": "fern_base",
+        "footAnchor": [
+          54,
+          81
+        ],
+        "scaleClass": "prop"
+      },
+      "releaseVisualAcceptance": "prototype_only",
+      "source": {
+        "alphaBounds": [
+          1125,
+          664,
+          108,
+          82
+        ],
+        "pack": "Jurassic World Pixel Art Megapack",
+        "region": [
+          1125,
+          664,
+          108,
+          82
+        ],
+        "runtimeTexture": "game/game_assets/Tilesets/Jurassic world/Jurassic World Pixel Art Megapack/7. Tropical trees and ferns.png",
+        "sha256": "d370882c9da0811d364f5674e475b9ca132bececd2f7b05ff1e5c02ee569cc61",
+        "sourceChecksum": "d370882c9da0811d364f5674e475b9ca132bececd2f7b05ff1e5c02ee569cc61",
+        "sourceDensity": 96
+      },
+      "worldDrawSize": [
+        54,
+        41
+      ]
+    },
+    {
+      "cropApproval": "approved",
+      "distributionEligibility": "review_required",
+      "goldenCapture": "game/validation/primeval-grove-rebuilt.png",
       "id": "primeval_raptor_battle_actor",
       "kind": "battle_actor",
       "licenseReference": "game/ben_rpg/visual_assets/generated/runtime_asset_provenance.json",

@@ -56,6 +56,8 @@ func _ready() -> void:
 		&"primeval_village_dwelling",
 		&"primeval_anchor_totem",
 		&"primeval_grove_canopy",
+		&"primeval_grove_canopy_mid_left", &"primeval_grove_canopy_mid", &"primeval_grove_canopy_right",
+		&"primeval_grove_fern_left", &"primeval_grove_fern_right",
 		&"primeval_ruin_forecourt",
 		&"primeval_relay_nest",
 		&"primeval_ground_quadrant",
