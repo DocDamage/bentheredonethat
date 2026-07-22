@@ -418,7 +418,9 @@
       ],
       "path": "res://game_assets/Tilesets/Frozen kingdom/Frozen Kingdom – Top-Down Pixel Art Asset Pack/16. Frozen market stalls.png",
       "profileIds": [
-        "frosthold_market_stall"
+        "frosthold_market_stall",
+        "frosthold_market_stall_right",
+        "frosthold_market_supply_stall"
       ],
       "sourceGroup": "Tilesets/Frozen kingdom"
     },
@@ -443,6 +445,7 @@
       "path": "res://game_assets/Tilesets/Frozen kingdom/Frozen Kingdom – Top-Down Pixel Art Asset Pack/7. Nordic wooden houses.png",
       "profileIds": [
         "frosthold_market_house",
+        "frosthold_market_house_right",
         "town_cold_storage_facade"
       ],
       "sourceGroup": "Tilesets/Frozen kingdom"

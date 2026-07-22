@@ -81,10 +81,10 @@ func _draw() -> void:
 		&"frosthold_market":
 			var room_offset := offset + Vector2(10 * TILE, 0)
 			_profile_prop(&"frosthold_market_house", houses, room_offset + Vector2(-8, 12))
-			_prop(houses, Rect2(478, 183, 202, 255), room_offset + Vector2(290, 8))
+			_profile_prop(&"frosthold_market_house_right", houses, room_offset + Vector2(290, 8))
 			_profile_prop(&"frosthold_market_stall", market, room_offset + Vector2(44, 72))
-			_prop(market, Rect2(326, 202, 201, 233), room_offset + Vector2(238, 72))
-			_prop(market, Rect2(1082, 460, 126, 194), room_offset + Vector2(160, 92))
+			_profile_prop(&"frosthold_market_stall_right", market, room_offset + Vector2(238, 72))
+			_profile_prop(&"frosthold_market_supply_stall", market, room_offset + Vector2(160, 92))
 		&"frosthold_causeway":
 			var room_offset := offset + Vector2(20 * TILE, 0)
 			_profile_prop(&"frosthold_causeway_crystal_bank", crystals, room_offset + Vector2(10, 36))

@@ -3252,6 +3252,46 @@
       "cropApproval": "approved",
       "distributionEligibility": "review_required",
       "goldenCapture": "game/validation/frosthold-frozen-market.png",
+      "id": "frosthold_market_house_right",
+      "kind": "building",
+      "licenseReference": "game/ben_rpg/visual_assets/generated/runtime_asset_provenance.json",
+      "placement": {
+        "collisionFootprint": "house_facade",
+        "footAnchor": [
+          101,
+          254
+        ],
+        "scaleClass": "building"
+      },
+      "releaseVisualAcceptance": "prototype_only",
+      "source": {
+        "alphaBounds": [
+          478,
+          183,
+          202,
+          255
+        ],
+        "pack": "Frozen Kingdom Top-Down Pixel Art Asset Pack",
+        "region": [
+          478,
+          183,
+          202,
+          255
+        ],
+        "runtimeTexture": "game/game_assets/Tilesets/Frozen kingdom/Frozen Kingdom – Top-Down Pixel Art Asset Pack/7. Nordic wooden houses.png",
+        "sha256": "7ecd9577a3f6d4ef3e3681707a544f8855fe52f50bf95116e39ad60553cf3934",
+        "sourceChecksum": "7ecd9577a3f6d4ef3e3681707a544f8855fe52f50bf95116e39ad60553cf3934",
+        "sourceDensity": 96
+      },
+      "worldDrawSize": [
+        101,
+        128
+      ]
+    },
+    {
+      "cropApproval": "approved",
+      "distributionEligibility": "review_required",
+      "goldenCapture": "game/validation/frosthold-frozen-market.png",
       "id": "frosthold_market_stall",
       "kind": "prop",
       "licenseReference": "game/ben_rpg/visual_assets/generated/runtime_asset_provenance.json",
@@ -3286,6 +3326,86 @@
       "worldDrawSize": [
         103,
         117
+      ]
+    },
+    {
+      "cropApproval": "approved",
+      "distributionEligibility": "review_required",
+      "goldenCapture": "game/validation/frosthold-frozen-market.png",
+      "id": "frosthold_market_stall_right",
+      "kind": "prop",
+      "licenseReference": "game/ben_rpg/visual_assets/generated/runtime_asset_provenance.json",
+      "placement": {
+        "collisionFootprint": "stall_base",
+        "footAnchor": [
+          100,
+          232
+        ],
+        "scaleClass": "prop"
+      },
+      "releaseVisualAcceptance": "prototype_only",
+      "source": {
+        "alphaBounds": [
+          326,
+          202,
+          201,
+          233
+        ],
+        "pack": "Frozen Kingdom Top-Down Pixel Art Asset Pack",
+        "region": [
+          326,
+          202,
+          201,
+          233
+        ],
+        "runtimeTexture": "game/game_assets/Tilesets/Frozen kingdom/Frozen Kingdom – Top-Down Pixel Art Asset Pack/16. Frozen market stalls.png",
+        "sha256": "0c3a55cadc0fdd991640c8dbcdcb3deb9d2ef8851e048051250e1eade7c62010",
+        "sourceChecksum": "0c3a55cadc0fdd991640c8dbcdcb3deb9d2ef8851e048051250e1eade7c62010",
+        "sourceDensity": 96
+      },
+      "worldDrawSize": [
+        101,
+        117
+      ]
+    },
+    {
+      "cropApproval": "approved",
+      "distributionEligibility": "review_required",
+      "goldenCapture": "game/validation/frosthold-frozen-market.png",
+      "id": "frosthold_market_supply_stall",
+      "kind": "prop",
+      "licenseReference": "game/ben_rpg/visual_assets/generated/runtime_asset_provenance.json",
+      "placement": {
+        "collisionFootprint": "stall_base",
+        "footAnchor": [
+          63,
+          193
+        ],
+        "scaleClass": "prop"
+      },
+      "releaseVisualAcceptance": "prototype_only",
+      "source": {
+        "alphaBounds": [
+          1082,
+          460,
+          126,
+          194
+        ],
+        "pack": "Frozen Kingdom Top-Down Pixel Art Asset Pack",
+        "region": [
+          1082,
+          460,
+          126,
+          194
+        ],
+        "runtimeTexture": "game/game_assets/Tilesets/Frozen kingdom/Frozen Kingdom – Top-Down Pixel Art Asset Pack/16. Frozen market stalls.png",
+        "sha256": "0c3a55cadc0fdd991640c8dbcdcb3deb9d2ef8851e048051250e1eade7c62010",
+        "sourceChecksum": "0c3a55cadc0fdd991640c8dbcdcb3deb9d2ef8851e048051250e1eade7c62010",
+        "sourceDensity": 96
+      },
+      "worldDrawSize": [
+        63,
+        97
       ]
     },
     {

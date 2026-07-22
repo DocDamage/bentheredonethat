@@ -425,6 +425,21 @@
       "worldDrawSize": [103, 117], "licenseReference": "game/ben_rpg/visual_assets/generated/runtime_asset_provenance.json", "cropApproval": "approved", "goldenCapture": "game/validation/frosthold-frozen-market.png"
     },
     {
+      "id": "frosthold_market_house_right", "kind": "building",
+      "source": {"pack": "Frozen Kingdom Top-Down Pixel Art Asset Pack", "runtimeTexture": "game/game_assets/Tilesets/Frozen kingdom/Frozen Kingdom – Top-Down Pixel Art Asset Pack/7. Nordic wooden houses.png", "sourceChecksum": "7ecd9577a3f6d4ef3e3681707a544f8855fe52f50bf95116e39ad60553cf3934", "sourceDensity": 96, "region": [478, 183, 202, 255], "alphaBounds": [478, 183, 202, 255]},
+      "placement": {"footAnchor": [101, 254], "scaleClass": "building", "collisionFootprint": "house_facade"}, "worldDrawSize": [101, 128], "licenseReference": "game/ben_rpg/visual_assets/generated/runtime_asset_provenance.json", "cropApproval": "approved", "goldenCapture": "game/validation/frosthold-frozen-market.png"
+    },
+    {
+      "id": "frosthold_market_stall_right", "kind": "prop",
+      "source": {"pack": "Frozen Kingdom Top-Down Pixel Art Asset Pack", "runtimeTexture": "game/game_assets/Tilesets/Frozen kingdom/Frozen Kingdom – Top-Down Pixel Art Asset Pack/16. Frozen market stalls.png", "sourceChecksum": "0c3a55cadc0fdd991640c8dbcdcb3deb9d2ef8851e048051250e1eade7c62010", "sourceDensity": 96, "region": [326, 202, 201, 233], "alphaBounds": [326, 202, 201, 233]},
+      "placement": {"footAnchor": [100, 232], "scaleClass": "prop", "collisionFootprint": "stall_base"}, "worldDrawSize": [101, 117], "licenseReference": "game/ben_rpg/visual_assets/generated/runtime_asset_provenance.json", "cropApproval": "approved", "goldenCapture": "game/validation/frosthold-frozen-market.png"
+    },
+    {
+      "id": "frosthold_market_supply_stall", "kind": "prop",
+      "source": {"pack": "Frozen Kingdom Top-Down Pixel Art Asset Pack", "runtimeTexture": "game/game_assets/Tilesets/Frozen kingdom/Frozen Kingdom – Top-Down Pixel Art Asset Pack/16. Frozen market stalls.png", "sourceChecksum": "0c3a55cadc0fdd991640c8dbcdcb3deb9d2ef8851e048051250e1eade7c62010", "sourceDensity": 96, "region": [1082, 460, 126, 194], "alphaBounds": [1082, 460, 126, 194]},
+      "placement": {"footAnchor": [63, 193], "scaleClass": "prop", "collisionFootprint": "stall_base"}, "worldDrawSize": [63, 97], "licenseReference": "game/ben_rpg/visual_assets/generated/runtime_asset_provenance.json", "cropApproval": "approved", "goldenCapture": "game/validation/frosthold-frozen-market.png"
+    },
+    {
       "id": "frosthold_causeway_crystal_bank",
       "kind": "prop",
       "source": {"pack": "Frozen Kingdom Top-Down Pixel Art Asset Pack", "runtimeTexture": "game/game_assets/Tilesets/Frozen kingdom/Frozen Kingdom – Top-Down Pixel Art Asset Pack/9. Crystal formations.png", "sourceChecksum": "f27b53a6eb53b4c667852a7793010bda7081109930d765814c0ddf5ca2a51506", "sourceDensity": 96, "region": [59, 170, 168, 242], "alphaBounds": [59, 170, 168, 242]},

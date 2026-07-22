@@ -33,6 +33,7 @@ func _ready() -> void:
 		&"frosthold_gate_ruin_right", &"frosthold_gate_torch_right",
 		&"frosthold_blue_torch",
 		&"frosthold_market_house",
+		&"frosthold_market_house_right", &"frosthold_market_stall_right", &"frosthold_market_supply_stall",
 		&"frosthold_market_stall",
 		&"frosthold_causeway_crystal_bank",
 		&"frosthold_causeway_bridge",
