@@ -39,4 +39,8 @@ Rework required before acceptance: the first remote run
 ([29946389799](https://github.com/DocDamage/bentheredonethat/actions/runs/29946389799))
 proved that checkout omitted Git LFS runtime images. Preserve that failure, push
 the LFS-enabled workflow follow-up, then obtain a clean remote CI run for its
-exact SHA. Product/visual reviewer: user.
+exact SHA. The LFS-enabled retry
+([29946979206](https://github.com/DocDamage/bentheredonethat/actions/runs/29946979206))
+then proved the generated contact sheet is intentionally absent from a clean
+checkout; the runtime gate must rebuild it before validating provenance. Product/
+visual reviewer: user.
