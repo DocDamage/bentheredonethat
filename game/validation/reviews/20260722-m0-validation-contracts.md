@@ -43,4 +43,6 @@ exact SHA. The LFS-enabled retry
 ([29946979206](https://github.com/DocDamage/bentheredonethat/actions/runs/29946979206))
 then proved the generated contact sheet is intentionally absent from a clean
 checkout; the runtime gate must rebuild it before validating provenance. Product/
-visual reviewer: user.
+visual reviewer: user. The subsequent retry showed that provenance also read
+ignored `assets/` license evidence; its runtime ledger now uses tracked
+game-local evidence only.

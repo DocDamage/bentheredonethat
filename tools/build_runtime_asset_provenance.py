@@ -47,25 +47,6 @@ def local_license_evidence(root: Path, source: Path) -> list[str]:
     return sorted(set(found))
 
 
-def mirrored_asset_evidence(workspace: Path, source: Path) -> list[str]:
-    game_root = workspace / "game"
-    relative = source.relative_to(game_root)
-    if relative.parts[0] not in {"game_assets", "assets"}:
-        return []
-    mirrored = workspace / "assets" / Path(*relative.parts[1:])
-    if not mirrored.parent.is_dir():
-        return []
-    found: list[str] = []
-    current = mirrored.parent
-    asset_root = workspace / "assets"
-    while current != asset_root.parent and asset_root in current.parents:
-        for candidate in current.iterdir():
-            if candidate.is_file() and candidate.name.casefold() in LICENSE_NAMES:
-                found.append(candidate.relative_to(workspace).as_posix())
-        current = current.parent
-    return sorted(set(found))
-
-
 def source_group(path: str) -> str:
     parts = Path(path.removeprefix("res://")).parts
     if len(parts) >= 3 and parts[:2] == ("game_assets", "Tilesets"):
@@ -86,12 +67,9 @@ def build(root: Path) -> dict[str, Any]:
         evidence = []
         if source.is_file():
             evidence = local_license_evidence(root / "game", source)
-            evidence.extend(mirrored_asset_evidence(root, source))
-            evidence = sorted(set(evidence))
-        # Workspace policy: licenses supplied in assets/ cover the imported
-        # runtime copies. Retain the shipped project license as the explicit
-        # coverage record for paths that do not preserve their source folder
-        # (addons, generated derivatives, and legacy runtime resources).
+        # The runtime ledger must reproduce from a clean checkout. Source-library
+        # licensing remains a separate curator-workstation concern, so only
+        # tracked game-local evidence can contribute to this artifact.
         if not evidence:
             evidence = ["game/LICENSE"]
         assets.append({
