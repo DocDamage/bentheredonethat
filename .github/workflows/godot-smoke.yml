@@ -73,7 +73,6 @@ jobs:
           & "$env:GODOT_EXECUTABLE"
           --headless
           --path ./game
-          --editor
           --import
 
       - name: Run isolated smoke suite

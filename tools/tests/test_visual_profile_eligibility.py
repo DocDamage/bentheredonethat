@@ -55,6 +55,21 @@ class VisualProfileEligibilityTests(unittest.TestCase):
         with temporary:
             result = manifest.validate(root, raw)
         self.assertEqual(result["profiles"][0]["distributionEligibility"], "review_required")
+        self.assertEqual(result["profiles"][0]["releaseVisualAcceptance"], "prototype_only")
+
+    def test_review_required_source_cannot_receive_final_visual_acceptance(self) -> None:
+        temporary, root, raw = self._root_with_profile("review_required")
+        raw["profiles"][0]["releaseVisualAcceptance"] = "final_approved"
+        with temporary:
+            with self.assertRaisesRegex(ValueError, "cannot receive final visual acceptance"):
+                manifest.validate(root, raw)
+
+    def test_confirmed_source_can_receive_final_visual_acceptance(self) -> None:
+        temporary, root, raw = self._root_with_profile("distribution_confirmed")
+        raw["profiles"][0]["releaseVisualAcceptance"] = "final_approved"
+        with temporary:
+            result = manifest.validate(root, raw)
+        self.assertEqual(result["profiles"][0]["releaseVisualAcceptance"], "final_approved")
 
     def test_rejected_source_cannot_generate_runtime_manifest(self) -> None:
         temporary, root, raw = self._root_with_profile("rejected")

@@ -15,6 +15,7 @@ from PIL import Image
 SCALE_CLASSES = {"actor", "building", "landmark", "prop", "tile"}
 CROP_APPROVAL_STATES = {"approved"}
 DISTRIBUTION_ELIGIBILITY_STATES = {"distribution_confirmed", "review_required", "rejected"}
+RELEASE_VISUAL_ACCEPTANCE_STATES = {"prototype_only", "final_approved"}
 
 
 def fail(message: str) -> None:
@@ -89,6 +90,11 @@ def validate(root: Path, raw: dict[str, Any]) -> dict[str, Any]:
             fail(f"{profile_id} has no distribution eligibility record for {runtime_path}")
         if eligibility == "rejected":
             fail(f"{profile_id} cannot use rejected source {runtime_path}")
+        release_visual_acceptance = profile.get("releaseVisualAcceptance", "prototype_only")
+        if release_visual_acceptance not in RELEASE_VISUAL_ACCEPTANCE_STATES:
+            fail(f"{profile_id}.releaseVisualAcceptance must be prototype_only or final_approved")
+        if release_visual_acceptance == "final_approved" and eligibility != "distribution_confirmed":
+            fail(f"{profile_id} cannot receive final visual acceptance while {runtime_path} is {eligibility}")
         source_region = rect(source.get("region"), f"{profile_id}.source.region")
         alpha_bounds = rect(source.get("alphaBounds", source_region), f"{profile_id}.source.alphaBounds")
         with Image.open(texture_path) as image:
@@ -144,6 +150,7 @@ def validate(root: Path, raw: dict[str, Any]) -> dict[str, Any]:
             "worldDrawSize": pair(profile.get("worldDrawSize"), f"{profile_id}.worldDrawSize", positive=True),
             "licenseReference": license_reference.replace("\\", "/"),
             "distributionEligibility": eligibility,
+            "releaseVisualAcceptance": release_visual_acceptance,
             "cropApproval": crop_approval,
             "goldenCapture": golden_capture.replace("\\", "/"),
         }

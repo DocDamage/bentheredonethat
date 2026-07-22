@@ -17,6 +17,11 @@ The visual-manifest generator reads that ledger and fails a build if any profile
 uses a rejected source. This prevents rejected material from entering runtime
 visual manifests or profile-derived contact sheets.
 
+Each profile also has a generated `releaseVisualAcceptance` state. It defaults
+to `prototype_only`; a profile may be marked `final_approved` only when its
+source is `distribution_confirmed`. Crop approval remains a prototype-quality
+decision and is deliberately not treated as distribution clearance.
+
 ## Current evidence
 
 - 159 static runtime sources are represented; all are explicitly

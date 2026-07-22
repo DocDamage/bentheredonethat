@@ -346,7 +346,7 @@ would create avoidable rework.
 
 - [x] Give every source used by a release profile one of three explicit states:
   `distribution_confirmed`, `review_required`, or `rejected`.
-- [ ] Prevent an asset in `review_required` from receiving final visual
+- [x] Prevent an asset in `review_required` from receiving final visual
   acceptance. It may appear in a clearly labeled non-release prototype only.
 - [x] Prevent generation or acceptance of derived assets from a rejected source.
 - [ ] Review terms for every source used by the laboratory, town, and Mansion
