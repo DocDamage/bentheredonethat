@@ -38,12 +38,6 @@ func set_active_area(area: StringName) -> void:
 	queue_redraw()
 
 
-func _prop(texture: Texture2D, source: Rect2, destination_position: Vector2) -> void:
-	if texture:
-		var position := Vector2(roundf(destination_position.x), roundf(destination_position.y))
-		draw_texture_rect_region(texture, Rect2(position, source.size), source)
-
-
 func _profile_prop(profile_id: StringName, texture: Texture2D, destination_position: Vector2) -> void:
 	if not texture or not profiles or not profiles.has(profile_id):
 		push_error("Missing approved Asterion visual profile: %s" % profile_id)
@@ -60,30 +54,30 @@ func _draw() -> void:
 	match active_area:
 		&"station_dock":
 			_profile_prop(&"asterion_dock_hull", exterior, offset + Vector2(68, 12))
-			_prop(exterior, Rect2(2, 98, 94, 94), offset + Vector2(2, 92))
+			_profile_prop(&"asterion_dock_bulkhead", exterior, offset + Vector2(2, 92))
 			_profile_prop(&"asterion_station_architecture", architecture, offset + Vector2(297, 108))
 		&"station_mess":
 			var room_offset := offset + Vector2(10 * TILE, 0)
-			_prop(architecture, Rect2(7, 200, 80, 78), room_offset + Vector2(7, 108))
-			_prop(architecture, Rect2(7, 200, 80, 78), room_offset + Vector2(297, 108))
+			_profile_prop(&"asterion_station_architecture", architecture, room_offset + Vector2(7, 108))
+			_profile_prop(&"asterion_station_architecture", architecture, room_offset + Vector2(297, 108))
 			_profile_prop(&"asterion_mess_banner", mess, room_offset + Vector2(117, 10))
-			_prop(mess, Rect2(289, 0, 46, 96), room_offset + Vector2(164, 10))
-			_prop(mess, Rect2(337, 0, 46, 96), room_offset + Vector2(212, 10))
-			_prop(exterior, Rect2(675, 105, 91, 81), room_offset + Vector2(76, 104))
-			_prop(mess, Rect2(98, 4, 93, 45), room_offset + Vector2(214, 136))
+			_profile_prop(&"asterion_mess_wall_fixture_left", mess, room_offset + Vector2(164, 10))
+			_profile_prop(&"asterion_mess_wall_fixture_right", mess, room_offset + Vector2(212, 10))
+			_profile_prop(&"asterion_mess_service_hatch", exterior, room_offset + Vector2(76, 104))
+			_profile_prop(&"asterion_mess_counter", mess, room_offset + Vector2(214, 136))
 		&"station_hydro":
 			var room_offset := offset + Vector2(20 * TILE, 0)
-			_prop(architecture, Rect2(7, 200, 80, 78), room_offset + Vector2(7, 108))
+			_profile_prop(&"asterion_station_architecture", architecture, room_offset + Vector2(7, 108))
 			_profile_prop(&"asterion_hydroponics_bed", hydro, room_offset + Vector2(72, 16))
-			_prop(hydro, Rect2(0, 147, 96, 45), room_offset + Vector2(100, 132))
-			_prop(hydro, Rect2(686, 195, 69, 92), room_offset + Vector2(304, 86))
+			_profile_prop(&"asterion_hydro_control_bank", hydro, room_offset + Vector2(100, 132))
+			_profile_prop(&"asterion_hydro_reservoir", hydro, room_offset + Vector2(304, 86))
 		&"station_medical":
 			var room_offset := offset + Vector2(10 * TILE, 10 * TILE)
 			_profile_prop(&"asterion_medical_station", medical, room_offset + Vector2(14, 12))
-			_prop(medical, Rect2(145, 10, 45, 86), room_offset + Vector2(70, 12))
-			_prop(medical, Rect2(194, 124, 92, 62), room_offset + Vector2(108, 116))
-			_prop(medical, Rect2(531, 115, 42, 77), room_offset + Vector2(224, 101))
-			_prop(command, Rect2(290, 21, 93, 116), room_offset + Vector2(286, 62))
+			_profile_prop(&"asterion_medical_cabinet", medical, room_offset + Vector2(70, 12))
+			_profile_prop(&"asterion_medical_treatment_bed", medical, room_offset + Vector2(108, 116))
+			_profile_prop(&"asterion_medical_supply_cart", medical, room_offset + Vector2(224, 101))
+			_profile_prop(&"asterion_medical_control_console", command, room_offset + Vector2(286, 62))
 		&"station_control":
 			var room_offset := offset + Vector2(20 * TILE, 10 * TILE)
 			_profile_prop(&"asterion_command_console", command, room_offset + Vector2(48, 18))

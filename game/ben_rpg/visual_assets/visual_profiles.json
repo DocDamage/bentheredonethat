@@ -494,6 +494,61 @@
       "worldDrawSize": [48, 48], "licenseReference": "game/ben_rpg/visual_assets/generated/runtime_asset_provenance.json", "cropApproval": "approved", "goldenCapture": "game/validation/asterion-dock-rebuilt.png"
     },
     {
+      "id": "asterion_dock_bulkhead", "kind": "prop",
+      "source": {"pack": "Sci-Fi Spaceship Interior Tileset Pack", "runtimeTexture": "game/game_assets/Tilesets/Sci-Fi Spaceship Interior Tileset Pack/8.png", "sourceChecksum": "7a478d49c1f6c04297a5727c3d7988ecdaa42f16fe32038ce8afe7e66e78002e", "sourceDensity": 48, "region": [2, 98, 94, 94], "alphaBounds": [2, 98, 94, 94]},
+      "placement": {"footAnchor": [47, 93], "scaleClass": "prop", "collisionFootprint": "bulkhead_base"}, "worldDrawSize": [94, 94], "licenseReference": "game/ben_rpg/visual_assets/generated/runtime_asset_provenance.json", "cropApproval": "approved", "goldenCapture": "game/validation/asterion-dock-rebuilt.png"
+    },
+    {
+      "id": "asterion_mess_wall_fixture_left", "kind": "prop",
+      "source": {"pack": "Sci-Fi Spaceship Interior Tileset Pack", "runtimeTexture": "game/game_assets/Tilesets/Sci-Fi Spaceship Interior Tileset Pack/2.png", "sourceChecksum": "66afbd31951e4a49df26b0d53bf1ae1027221ddbbd85d0e546cffd922a7fa074", "sourceDensity": 48, "region": [289, 0, 46, 96], "alphaBounds": [289, 0, 46, 96]},
+      "placement": {"footAnchor": [23, 95], "scaleClass": "prop", "collisionFootprint": "wall_fixture"}, "worldDrawSize": [46, 96], "licenseReference": "game/ben_rpg/visual_assets/generated/runtime_asset_provenance.json", "cropApproval": "approved", "goldenCapture": "game/validation/asterion-mess-rebuilt.png"
+    },
+    {
+      "id": "asterion_mess_wall_fixture_right", "kind": "prop",
+      "source": {"pack": "Sci-Fi Spaceship Interior Tileset Pack", "runtimeTexture": "game/game_assets/Tilesets/Sci-Fi Spaceship Interior Tileset Pack/2.png", "sourceChecksum": "66afbd31951e4a49df26b0d53bf1ae1027221ddbbd85d0e546cffd922a7fa074", "sourceDensity": 48, "region": [337, 0, 46, 96], "alphaBounds": [337, 0, 46, 96]},
+      "placement": {"footAnchor": [23, 95], "scaleClass": "prop", "collisionFootprint": "wall_fixture"}, "worldDrawSize": [46, 96], "licenseReference": "game/ben_rpg/visual_assets/generated/runtime_asset_provenance.json", "cropApproval": "approved", "goldenCapture": "game/validation/asterion-mess-rebuilt.png"
+    },
+    {
+      "id": "asterion_mess_service_hatch", "kind": "prop",
+      "source": {"pack": "Sci-Fi Spaceship Interior Tileset Pack", "runtimeTexture": "game/game_assets/Tilesets/Sci-Fi Spaceship Interior Tileset Pack/8.png", "sourceChecksum": "7a478d49c1f6c04297a5727c3d7988ecdaa42f16fe32038ce8afe7e66e78002e", "sourceDensity": 48, "region": [675, 105, 91, 81], "alphaBounds": [675, 105, 91, 81]},
+      "placement": {"footAnchor": [45, 80], "scaleClass": "prop", "collisionFootprint": "service_hatch"}, "worldDrawSize": [91, 81], "licenseReference": "game/ben_rpg/visual_assets/generated/runtime_asset_provenance.json", "cropApproval": "approved", "goldenCapture": "game/validation/asterion-mess-rebuilt.png"
+    },
+    {
+      "id": "asterion_mess_counter", "kind": "prop",
+      "source": {"pack": "Sci-Fi Spaceship Interior Tileset Pack", "runtimeTexture": "game/game_assets/Tilesets/Sci-Fi Spaceship Interior Tileset Pack/2.png", "sourceChecksum": "66afbd31951e4a49df26b0d53bf1ae1027221ddbbd85d0e546cffd922a7fa074", "sourceDensity": 48, "region": [98, 4, 93, 45], "alphaBounds": [98, 4, 93, 45]},
+      "placement": {"footAnchor": [46, 44], "scaleClass": "prop", "collisionFootprint": "counter_base"}, "worldDrawSize": [93, 45], "licenseReference": "game/ben_rpg/visual_assets/generated/runtime_asset_provenance.json", "cropApproval": "approved", "goldenCapture": "game/validation/asterion-mess-rebuilt.png"
+    },
+    {
+      "id": "asterion_hydro_control_bank", "kind": "prop",
+      "source": {"pack": "Sci-Fi Spaceship Interior Tileset Pack", "runtimeTexture": "game/game_assets/Tilesets/Sci-Fi Spaceship Interior Tileset Pack/3.png", "sourceChecksum": "2eb0c74cdeb4f894d115bee3b12c2a6cacc9ac910513e5e23aad829c46d6fd4b", "sourceDensity": 48, "region": [0, 147, 96, 45], "alphaBounds": [0, 147, 96, 45]},
+      "placement": {"footAnchor": [48, 44], "scaleClass": "prop", "collisionFootprint": "control_bank"}, "worldDrawSize": [96, 45], "licenseReference": "game/ben_rpg/visual_assets/generated/runtime_asset_provenance.json", "cropApproval": "approved", "goldenCapture": "game/validation/asterion-hydroponics-rebuilt.png"
+    },
+    {
+      "id": "asterion_hydro_reservoir", "kind": "prop",
+      "source": {"pack": "Sci-Fi Spaceship Interior Tileset Pack", "runtimeTexture": "game/game_assets/Tilesets/Sci-Fi Spaceship Interior Tileset Pack/3.png", "sourceChecksum": "2eb0c74cdeb4f894d115bee3b12c2a6cacc9ac910513e5e23aad829c46d6fd4b", "sourceDensity": 48, "region": [686, 195, 69, 92], "alphaBounds": [686, 195, 69, 92]},
+      "placement": {"footAnchor": [34, 91], "scaleClass": "prop", "collisionFootprint": "reservoir_base"}, "worldDrawSize": [69, 92], "licenseReference": "game/ben_rpg/visual_assets/generated/runtime_asset_provenance.json", "cropApproval": "approved", "goldenCapture": "game/validation/asterion-hydroponics-rebuilt.png"
+    },
+    {
+      "id": "asterion_medical_cabinet", "kind": "prop",
+      "source": {"pack": "Sci-Fi Spaceship Interior Tileset Pack", "runtimeTexture": "game/game_assets/Tilesets/Sci-Fi Spaceship Interior Tileset Pack/10.png", "sourceChecksum": "3ce47f2bcb28174406b84a82189ad04cb29297568069d70c740bc70063405211", "sourceDensity": 48, "region": [145, 10, 45, 86], "alphaBounds": [145, 10, 45, 86]},
+      "placement": {"footAnchor": [22, 85], "scaleClass": "prop", "collisionFootprint": "cabinet_base"}, "worldDrawSize": [45, 86], "licenseReference": "game/ben_rpg/visual_assets/generated/runtime_asset_provenance.json", "cropApproval": "approved", "goldenCapture": "game/validation/asterion-medical-rebuilt.png"
+    },
+    {
+      "id": "asterion_medical_treatment_bed", "kind": "prop",
+      "source": {"pack": "Sci-Fi Spaceship Interior Tileset Pack", "runtimeTexture": "game/game_assets/Tilesets/Sci-Fi Spaceship Interior Tileset Pack/10.png", "sourceChecksum": "3ce47f2bcb28174406b84a82189ad04cb29297568069d70c740bc70063405211", "sourceDensity": 48, "region": [194, 124, 92, 62], "alphaBounds": [194, 124, 92, 62]},
+      "placement": {"footAnchor": [46, 61], "scaleClass": "prop", "collisionFootprint": "treatment_bed"}, "worldDrawSize": [92, 62], "licenseReference": "game/ben_rpg/visual_assets/generated/runtime_asset_provenance.json", "cropApproval": "approved", "goldenCapture": "game/validation/asterion-medical-rebuilt.png"
+    },
+    {
+      "id": "asterion_medical_supply_cart", "kind": "prop",
+      "source": {"pack": "Sci-Fi Spaceship Interior Tileset Pack", "runtimeTexture": "game/game_assets/Tilesets/Sci-Fi Spaceship Interior Tileset Pack/10.png", "sourceChecksum": "3ce47f2bcb28174406b84a82189ad04cb29297568069d70c740bc70063405211", "sourceDensity": 48, "region": [531, 115, 42, 77], "alphaBounds": [531, 115, 42, 77]},
+      "placement": {"footAnchor": [21, 76], "scaleClass": "prop", "collisionFootprint": "supply_cart"}, "worldDrawSize": [42, 77], "licenseReference": "game/ben_rpg/visual_assets/generated/runtime_asset_provenance.json", "cropApproval": "approved", "goldenCapture": "game/validation/asterion-medical-rebuilt.png"
+    },
+    {
+      "id": "asterion_medical_control_console", "kind": "prop",
+      "source": {"pack": "Sci-Fi Spaceship Interior Tileset Pack", "runtimeTexture": "game/game_assets/Tilesets/Sci-Fi Spaceship Interior Tileset Pack/6.png", "sourceChecksum": "87fe33a05b31cb2a6c1945e1dd45c0222ea0ad2adc27f92b6fb5a81ea4fd46f3", "sourceDensity": 48, "region": [290, 21, 93, 116], "alphaBounds": [290, 21, 93, 116]},
+      "placement": {"footAnchor": [46, 115], "scaleClass": "prop", "collisionFootprint": "console_base"}, "worldDrawSize": [93, 116], "licenseReference": "game/ben_rpg/visual_assets/generated/runtime_asset_provenance.json", "cropApproval": "approved", "goldenCapture": "game/validation/asterion-medical-rebuilt.png"
+    },
+    {
       "id": "asterion_mess_banner",
       "kind": "prop",
       "source": {"pack": "Sci-Fi Spaceship Interior Tileset Pack", "runtimeTexture": "game/game_assets/Tilesets/Sci-Fi Spaceship Interior Tileset Pack/2.png", "sourceChecksum": "66afbd31951e4a49df26b0d53bf1ae1027221ddbbd85d0e546cffd922a7fa074", "sourceDensity": 48, "region": [241, 0, 45, 96], "alphaBounds": [241, 0, 45, 96]},

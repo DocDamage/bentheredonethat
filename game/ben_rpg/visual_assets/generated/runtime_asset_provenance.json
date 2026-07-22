@@ -1004,7 +1004,10 @@
       "path": "res://game_assets/Tilesets/Sci-Fi Spaceship Interior Tileset Pack/10.png",
       "profileIds": [
         "asterion_medical_battle_backdrop",
-        "asterion_medical_station"
+        "asterion_medical_cabinet",
+        "asterion_medical_station",
+        "asterion_medical_supply_cart",
+        "asterion_medical_treatment_bed"
       ],
       "sourceGroup": "Tilesets/Sci-Fi Spaceship Interior Tileset Pack"
     },
@@ -1016,7 +1019,10 @@
       ],
       "path": "res://game_assets/Tilesets/Sci-Fi Spaceship Interior Tileset Pack/2.png",
       "profileIds": [
-        "asterion_mess_banner"
+        "asterion_mess_banner",
+        "asterion_mess_counter",
+        "asterion_mess_wall_fixture_left",
+        "asterion_mess_wall_fixture_right"
       ],
       "sourceGroup": "Tilesets/Sci-Fi Spaceship Interior Tileset Pack"
     },
@@ -1029,6 +1035,8 @@
       "path": "res://game_assets/Tilesets/Sci-Fi Spaceship Interior Tileset Pack/3.png",
       "profileIds": [
         "asterion_hydro_battle_backdrop",
+        "asterion_hydro_control_bank",
+        "asterion_hydro_reservoir",
         "asterion_hydroponics_bed"
       ],
       "sourceGroup": "Tilesets/Sci-Fi Spaceship Interior Tileset Pack"
@@ -1042,7 +1050,8 @@
       "path": "res://game_assets/Tilesets/Sci-Fi Spaceship Interior Tileset Pack/6.png",
       "profileIds": [
         "asterion_command_battle_backdrop",
-        "asterion_command_console"
+        "asterion_command_console",
+        "asterion_medical_control_console"
       ],
       "sourceGroup": "Tilesets/Sci-Fi Spaceship Interior Tileset Pack"
     },
@@ -1054,7 +1063,9 @@
       ],
       "path": "res://game_assets/Tilesets/Sci-Fi Spaceship Interior Tileset Pack/8.png",
       "profileIds": [
-        "asterion_dock_hull"
+        "asterion_dock_bulkhead",
+        "asterion_dock_hull",
+        "asterion_mess_service_hatch"
       ],
       "sourceGroup": "Tilesets/Sci-Fi Spaceship Interior Tileset Pack"
     },
