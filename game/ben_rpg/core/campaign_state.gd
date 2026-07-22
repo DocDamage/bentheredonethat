@@ -787,6 +787,7 @@ var completed_facility_jobs: Dictionary = {}
 var owned_inventions: Array[StringName] = []
 var facility_upgrades: Dictionary = {}
 var expedition_meal_charges := 0
+var equipment_loadouts: Dictionary = {}
 var economy_transactions: Array[Dictionary] = []
 var encounter_director_states: Dictionary = {}
 var quest_states: Dictionary = {}
@@ -1001,6 +1002,7 @@ func reset_new_game() -> void:
 	owned_inventions.clear()
 	facility_upgrades.clear()
 	expedition_meal_charges = 0
+	equipment_loadouts.clear()
 	economy_transactions.clear()
 	encounter_director_states.clear()
 	quest_states.clear()
@@ -1296,6 +1298,52 @@ func unequip_slot(character_id: StringName, slot: StringName) -> bool:
 	if not progress["equipment"].has(slot):
 		return false
 	progress["equipment"].erase(slot)
+	_clamp_character_vitals(character_id)
+	state_changed.emit()
+	return true
+
+
+func save_equipment_loadout(character_id: StringName, loadout_name: String) -> bool:
+	var normalized_name := loadout_name.strip_edges().left(24)
+	if normalized_name.is_empty() or not character_progress.has(character_id):
+		return false
+	var equipment: Dictionary = character_progress[character_id].get("equipment", {})
+	if equipment.is_empty():
+		return false
+	if not equipment_loadouts.has(character_id):
+		equipment_loadouts[character_id] = {}
+	equipment_loadouts[character_id][normalized_name] = equipment.duplicate(true)
+	state_changed.emit()
+	return true
+
+
+func equipment_loadouts_for(character_id: StringName) -> Dictionary:
+	return equipment_loadouts.get(character_id, {}).duplicate(true)
+
+
+func apply_equipment_loadout(character_id: StringName, loadout_name: String) -> bool:
+	if not equipment_loadouts.has(character_id) or not equipment_loadouts[character_id].has(loadout_name):
+		return false
+	var requested: Dictionary = equipment_loadouts[character_id][loadout_name]
+	var restored := {}
+	for raw_slot in requested.keys():
+		var slot := StringName(raw_slot)
+		var instance_id := String(requested[raw_slot])
+		var item := loot_by_instance(instance_id)
+		if slot not in EQUIPMENT_SLOTS or item.is_empty() or StringName(item.get("slot", "")) != slot:
+			return false
+		var allowed: Array = item.get("allowed_characters", [])
+		if not allowed.is_empty() and character_id not in allowed and String(character_id) not in allowed:
+			return false
+		restored[slot] = instance_id
+	for other_id in character_progress.keys():
+		var other_equipment: Dictionary = character_progress[other_id].get("equipment", {})
+		for slot in other_equipment.keys():
+			if String(other_equipment[slot]) in restored.values():
+				other_equipment.erase(slot)
+	var defaults := _default_vitals(character_id)
+	var progress := ensure_character_progress(character_id, defaults.x, defaults.y)
+	progress["equipment"] = restored
 	_clamp_character_vitals(character_id)
 	state_changed.emit()
 	return true
@@ -3129,7 +3177,7 @@ func _serialize() -> Dictionary:
 		"loot_inventory": loot_inventory, "character_progress": character_progress,
 		"party": Array(party), "party_formation": party_formation, "recruit_status": recruit_status, "facility_assignments": facility_assignments,
 		"active_facility_jobs": active_facility_jobs, "completed_facility_jobs": completed_facility_jobs,
-		"owned_inventions": Array(owned_inventions), "facility_upgrades": facility_upgrades, "expedition_meal_charges": expedition_meal_charges,
+		"owned_inventions": Array(owned_inventions), "facility_upgrades": facility_upgrades, "expedition_meal_charges": expedition_meal_charges, "equipment_loadouts": equipment_loadouts,
 		"quest_states": quest_states, "quest_events": quest_events, "tracked_quest": tracked_quest,
 	}
 
@@ -3272,6 +3320,20 @@ func _deserialize(data: Dictionary, source_version_override := -1) -> void:
 		if not upgrades.is_empty():
 			facility_upgrades[String(facility_name)] = upgrades
 	expedition_meal_charges = clampi(int(data.get("expedition_meal_charges", 0)), 0, 1)
+	equipment_loadouts.clear()
+	for raw_character_id in data.get("equipment_loadouts", {}).keys():
+		var character_id := StringName(raw_character_id)
+		var saved_loadouts: Dictionary = data.equipment_loadouts[raw_character_id]
+		for raw_name in saved_loadouts.keys():
+			var saved_equipment: Dictionary = saved_loadouts[raw_name]
+			var normalized_equipment := {}
+			for raw_slot in saved_equipment.keys():
+				var slot := StringName(raw_slot)
+				if slot in EQUIPMENT_SLOTS:
+					normalized_equipment[slot] = String(saved_equipment[raw_slot])
+			if not normalized_equipment.is_empty():
+				if not equipment_loadouts.has(character_id): equipment_loadouts[character_id] = {}
+				equipment_loadouts[character_id][String(raw_name).left(24)] = normalized_equipment
 	quest_states.clear()
 	for quest_id in data.get("quest_states", {}).keys():
 		var runtime: Dictionary = data.quest_states[quest_id]

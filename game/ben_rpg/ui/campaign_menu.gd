@@ -369,6 +369,7 @@ func _build_equipment_page() -> void:
 		slots.add_child(button)
 		if slot == selected_slot:
 			button.add_theme_color_override("font_color", Color(0.45, 0.92, 1.0))
+	_build_loadout_section()
 
 	_add_subheading("AVAILABLE FOR %s" % String(selected_slot).to_upper())
 	var equipped_id := String(equipment.get(selected_slot, ""))
@@ -397,6 +398,26 @@ func _build_equipment_page() -> void:
 		_content.add_child(button)
 	if candidates == 0:
 		_add_notice("No %s gear has been recovered yet." % selected_slot, Color(0.68, 0.72, 0.8))
+
+
+func _build_loadout_section() -> void:
+	_add_subheading("SAVED LOADOUTS")
+	var save := Button.new()
+	save.name = "SaveLoadout"
+	save.text = "SAVE CURRENT LOADOUT • FIELD"
+	save.custom_minimum_size.y = 48
+	save.disabled = CampaignState.equipped_loot(selected_character).is_empty()
+	save.pressed.connect(_save_equipment_loadout)
+	_apply_button_skin(save, UI_ROOT + "/dfgui_icon-wardrobe.png")
+	_content.add_child(save)
+	for loadout_name in CampaignState.equipment_loadouts_for(selected_character).keys():
+		var apply := Button.new()
+		apply.name = "ApplyLoadout_%s" % String(loadout_name).to_snake_case()
+		apply.text = "APPLY LOADOUT • %s" % String(loadout_name).to_upper()
+		apply.custom_minimum_size.y = 46
+		apply.pressed.connect(_apply_equipment_loadout.bind(String(loadout_name)))
+		_apply_button_skin(apply, UI_ROOT + "/dfgui_icon-helmet.png")
+		_content.add_child(apply)
 
 
 func _build_skill_page() -> void:
@@ -1195,6 +1216,18 @@ func _equip_item(instance_id: String) -> void:
 
 func _unequip_selected() -> void:
 	if CampaignState.unequip_slot(selected_character, selected_slot):
+		_save_changes()
+	_refresh()
+
+
+func _save_equipment_loadout() -> void:
+	if CampaignState.save_equipment_loadout(selected_character, "Field"):
+		_save_changes()
+	_refresh()
+
+
+func _apply_equipment_loadout(loadout_name: String) -> void:
+	if CampaignState.apply_equipment_loadout(selected_character, loadout_name):
 		_save_changes()
 	_refresh()
 
