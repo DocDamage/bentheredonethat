@@ -200,6 +200,11 @@
       "goldenCapture": "game/validation/moonpetal-mirror-garden.png"
     },
     {
+      "id": "moonpetal_framed_garden_island_right", "kind": "prop",
+      "source": {"pack": "Sakura Temple Asset Pack", "runtimeTexture": "game/game_assets/Tilesets/Sakura Temple Asset Pack/Decorative framed garden tiles.png", "sourceChecksum": "547defef4a445eb67840e091edf7db7fc48780ba7b904c532b2df63d20aba49f", "sourceDensity": 48, "region": [681, 133, 184, 174], "alphaBounds": [681, 133, 184, 174]},
+      "placement": {"footAnchor": [92, 173], "scaleClass": "prop", "collisionFootprint": "garden_island"}, "worldDrawSize": [92, 87], "licenseReference": "game/ben_rpg/visual_assets/generated/runtime_asset_provenance.json", "cropApproval": "approved", "goldenCapture": "game/validation/moonpetal-mirror-garden.png"
+    },
+    {
       "id": "moonpetal_gate_lantern",
       "kind": "prop",
       "source": {

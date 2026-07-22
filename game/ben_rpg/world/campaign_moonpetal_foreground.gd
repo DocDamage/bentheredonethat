@@ -75,7 +75,7 @@ func _draw() -> void:
 			var room_offset := offset + Vector2(20 * TILE, 0)
 			_profile_prop(&"moonpetal_mirror_pond", water, room_offset + Vector2(60, 24))
 			_profile_prop(&"moonpetal_framed_garden_island", gardens, room_offset + Vector2(14, 99))
-			_prop(gardens, Rect2(681, 133, 184, 174), room_offset + Vector2(277, 99), 0.5)
+			_profile_prop(&"moonpetal_framed_garden_island_right", gardens, room_offset + Vector2(277, 99))
 		&"moonpetal_bell_walk":
 			var room_offset := offset + Vector2(10 * TILE, 10 * TILE)
 			_prop(gates, Rect2(170, 398, 140, 142), room_offset + Vector2(40, 42), 1.0)

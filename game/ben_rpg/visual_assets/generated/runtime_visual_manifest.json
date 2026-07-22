@@ -8708,6 +8708,46 @@
       "cropApproval": "approved",
       "distributionEligibility": "review_required",
       "goldenCapture": "game/validation/moonpetal-mirror-garden.png",
+      "id": "moonpetal_framed_garden_island_right",
+      "kind": "prop",
+      "licenseReference": "game/ben_rpg/visual_assets/generated/runtime_asset_provenance.json",
+      "placement": {
+        "collisionFootprint": "garden_island",
+        "footAnchor": [
+          92,
+          173
+        ],
+        "scaleClass": "prop"
+      },
+      "releaseVisualAcceptance": "prototype_only",
+      "source": {
+        "alphaBounds": [
+          681,
+          133,
+          184,
+          174
+        ],
+        "pack": "Sakura Temple Asset Pack",
+        "region": [
+          681,
+          133,
+          184,
+          174
+        ],
+        "runtimeTexture": "game/game_assets/Tilesets/Sakura Temple Asset Pack/Decorative framed garden tiles.png",
+        "sha256": "547defef4a445eb67840e091edf7db7fc48780ba7b904c532b2df63d20aba49f",
+        "sourceChecksum": "547defef4a445eb67840e091edf7db7fc48780ba7b904c532b2df63d20aba49f",
+        "sourceDensity": 48
+      },
+      "worldDrawSize": [
+        92,
+        87
+      ]
+    },
+    {
+      "cropApproval": "approved",
+      "distributionEligibility": "review_required",
+      "goldenCapture": "game/validation/moonpetal-mirror-garden.png",
       "id": "moonpetal_garden_battle_backdrop",
       "kind": "battle_backdrop",
       "licenseReference": "game/ben_rpg/visual_assets/generated/runtime_asset_provenance.json",

@@ -919,7 +919,8 @@
       ],
       "path": "res://game_assets/Tilesets/Sakura Temple Asset Pack/Decorative framed garden tiles.png",
       "profileIds": [
-        "moonpetal_framed_garden_island"
+        "moonpetal_framed_garden_island",
+        "moonpetal_framed_garden_island_right"
       ],
       "sourceGroup": "Tilesets/Sakura Temple Asset Pack"
     },
