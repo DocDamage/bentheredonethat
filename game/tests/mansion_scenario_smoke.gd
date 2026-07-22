@@ -61,6 +61,13 @@ func _run() -> void:
 	if int(CampaignState.inventory.get(&"brass_minute_hand", 0)) != 1:
 		_fail("The nursery music box did not grant the Brass Minute Hand")
 		return
+	var respite: MansionSavePoint = main.get_node("Field/Map/CampaignWorld/NurseryRespiteClock")
+	CampaignState.character_progress[&"ben"]["hp"] = 1
+	CampaignState.character_progress[&"ben"]["mp"] = 0
+	respite.activate_anchor(false)
+	if not CampaignState.story_flags.get(&"mansion_ballroom_respite_found", false) or int(CampaignState.character_progress[&"ben"]["hp"]) != 140:
+		_fail("The nursery antechamber did not provide a persistent recovery point before the ballroom")
+		return
 	var ballroom_gate = main.get_node("Field/Map/CampaignWorld/BallroomGate")
 	ballroom_gate.apply_interaction(false)
 	await get_tree().process_frame
@@ -102,7 +109,7 @@ func _run() -> void:
 		_fail("Boss victory did not complete and stabilize the first universe")
 		return
 
-	print("MANSION_SCENARIO_SMOKE_OK rooms=5 gate=4:44 hands=gallery+nursery save=full_restore boss=ballroom reward=anchor_core+epic_chronometer")
+	print("MANSION_SCENARIO_SMOKE_OK rooms=5 gate=4:44 hands=gallery+nursery respite=pre_boss_save boss=ballroom reward=anchor_core+epic_chronometer")
 	main.queue_free()
 	await get_tree().process_frame
 	get_tree().quit(0)

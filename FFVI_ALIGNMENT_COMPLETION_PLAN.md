@@ -430,7 +430,7 @@ Each universe should include:
 - [ ] At least one optional treasure or interaction off the critical path.
 - [ ] At least one environmental set piece.
 - [ ] A distinct puzzle or traversal grammar.
-- [ ] A safe or low-pressure room before the main boss.
+- [x] A safe or low-pressure room before the main boss.
 - [ ] A boss arena sized for the battle's narrative importance.
 - [ ] Clear landmarks that prevent navigation from becoming identical corridors.
 - [ ] Meaningful reuse after stabilization when the story calls for it.

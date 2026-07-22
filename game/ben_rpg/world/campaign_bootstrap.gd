@@ -1810,10 +1810,21 @@ func _add_mansion_interaction(world: Node2D, node_name: String, kind: StringName
 
 
 func _spawn_mansion_save_point(world: Node2D) -> void:
-	var save_point := MANSION_SAVE_POINT.instantiate()
-	save_point.name = "ArchiveAnchorClock"
-	save_point.position = Gameboard.cell_to_pixel(MANSION_ORIGIN + Vector2i(12, 3))
-	world.add_child(save_point)
+	var archive_anchor := MANSION_SAVE_POINT.instantiate() as MansionSavePoint
+	archive_anchor.name = "ArchiveAnchorClock"
+	archive_anchor.save_point_id = &"mansion_archive"
+	archive_anchor.anchor_name = "archive clock"
+	archive_anchor.position = Gameboard.cell_to_pixel(MANSION_ORIGIN + Vector2i(12, 3))
+	world.add_child(archive_anchor)
+	# The nursery's quiet antechamber is deliberately placed after the clue
+	# encounter and before the ballroom gate. It gives a player one low-pressure
+	# recovery, save, and party-management point before the 4:44 appointment.
+	var ballroom_respite := MANSION_SAVE_POINT.instantiate() as MansionSavePoint
+	ballroom_respite.name = "NurseryRespiteClock"
+	ballroom_respite.save_point_id = &"mansion_ballroom_antechamber"
+	ballroom_respite.anchor_name = "nursery respite clock"
+	ballroom_respite.position = Gameboard.cell_to_pixel(MANSION_ORIGIN + Vector2i(13, 17))
+	world.add_child(ballroom_respite)
 
 
 func _spawn_mansion_boss_marker(world: Node2D) -> void:

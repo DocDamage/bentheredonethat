@@ -161,6 +161,7 @@ const TOWN_STATE_OVERLAYS := {
 # future room rearrangement cannot silently leave the menu checking an old prop.
 const UNIVERSE_SAVE_POINTS := {
 	&"mansion_archive": {"name": "Archive Anchor Clock", "cell": Vector2i(12, 35), "flag": &"mansion_archive_save_found"},
+	&"mansion_ballroom_antechamber": {"name": "Nursery Respite Clock", "cell": Vector2i(13, 49), "flag": &"mansion_ballroom_respite_found"},
 	&"asterion_medical": {"name": "Asterion Medical Beacon", "cell": Vector2i(52, 45), "flag": &"asterion_save_found"},
 	&"primeval_nest": {"name": "Relay Nest Anchor Totem", "cell": Vector2i(84, 45), "flag": &"primeval_save_found"},
 	&"helios_clinic": {"name": "Afterlight Clinic Beacon", "cell": Vector2i(122, 45), "flag": &"helios_save_found"},

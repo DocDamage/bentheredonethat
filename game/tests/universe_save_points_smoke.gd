@@ -3,6 +3,7 @@ extends Node
 
 const POINTS := {
 	&"mansion_archive": {"node": "ArchiveAnchorClock", "cell": Vector2i(12, 35), "flag": &"mansion_archive_save_found"},
+	&"mansion_ballroom_antechamber": {"node": "NurseryRespiteClock", "cell": Vector2i(13, 49), "flag": &"mansion_ballroom_respite_found"},
 	&"asterion_medical": {"node": "AsterionSaveBeacon", "cell": Vector2i(52, 45), "flag": &"asterion_save_found"},
 	&"primeval_nest": {"node": "PrimevalAnchorTotem", "cell": Vector2i(84, 45), "flag": &"primeval_save_found"},
 	&"helios_clinic": {"node": "HeliosSaveBeacon", "cell": Vector2i(122, 45), "flag": &"helios_save_found"},
@@ -29,7 +30,7 @@ func _run() -> void:
 	menu.suppress_persistence = true
 	var player: Gamepiece = Player.gamepiece
 	if not player or CampaignState.UNIVERSE_SAVE_POINTS.size() != POINTS.size():
-		_fail("The shared seven-point registry or field player is missing")
+		_fail("The shared eight-point registry or field player is missing")
 		return
 	if CampaignState.activate_save_point(&"not_a_real_anchor"):
 		_fail("An unknown save-point id was accepted")
@@ -57,7 +58,7 @@ func _run() -> void:
 			_fail("An unactivated save point unlocked roster editing: %s" % point_id)
 			return
 		CampaignState.set_character_vitals(&"ben", 1, 0, 140, 36)
-		if point_id == &"mansion_archive":
+		if String(point_id).begins_with("mansion_"):
 			interaction.activate_anchor(false)
 		else:
 			interaction.apply_interaction(false)
@@ -97,7 +98,7 @@ func _run() -> void:
 		_fail("The final save point was not recorded as the retry location")
 		return
 
-	print("UNIVERSE_SAVE_POINTS_SMOKE_OK points=7 restore=true retry=true roster=true controller+mouse=true pack_props=true persistence=true")
+	print("UNIVERSE_SAVE_POINTS_SMOKE_OK points=8 mansion_respite=true restore=true retry=true roster=true controller+mouse=true pack_props=true persistence=true")
 	main.queue_free()
 	await get_tree().process_frame
 	get_tree().quit(0)
