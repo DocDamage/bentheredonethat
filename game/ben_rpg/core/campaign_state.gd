@@ -603,7 +603,7 @@ const QUEST_DEFINITIONS := {
 			{"text": "Build the Observatory and anchor Asterion Station.", "condition": {"type": &"facility_built", "id": "Observatory"}},
 			{"text": "Enter Asterion Station through the Observatory.", "condition": {"type": &"story_flag", "id": &"asterion_entered"}},
 		],
-		"rewards": {"duckets": 80, "items": {&"ether": 2}},
+		"rewards": {"duckets": 80, "items": {&"ether": 2, &"research_notes": 1, &"anchor_dust": 1}},
 	},
 	&"the_last_shift": {
 		"title": "The Last Shift", "category": &"main", "giver": "Asterion Station", "icon": "dfgui_icon-skillbook.png",
@@ -644,7 +644,7 @@ const QUEST_DEFINITIONS := {
 			{"text": "Defeat the Tyrant of the Morning Commute.", "condition": {"type": &"story_flag", "id": &"primeval_scenario_complete"}},
 			{"text": "Recruit the Caveman into Franklin & Company.", "condition": {"type": &"recruit_hired", "id": &"caveman"}},
 		],
-		"rewards": {"duckets": 320, "items": {&"phoenix_tonic": 1, &"anchor_dust": 2}, "party_experience": 180},
+		"rewards": {"duckets": 320, "items": {&"phoenix_tonic": 1, &"research_notes": 1, &"anchor_dust": 2}, "party_experience": 180},
 	},
 	&"a_brighter_night": {
 		"title": "A Brighter Night", "category": &"main", "giver": "Primeval Cave Computer", "icon": "dfgui_icon-lightning.png",
@@ -654,7 +654,7 @@ const QUEST_DEFINITIONS := {
 			{"text": "Build the Afterlight Club and anchor Helios Arcology.", "condition": {"type": &"facility_built", "id": "Afterlight Club"}},
 			{"text": "Enter Helios Arcology through the Club.", "condition": {"type": &"story_flag", "id": &"helios_entered"}},
 		],
-		"rewards": {"duckets": 140, "items": {&"ether": 2, &"research_notes": 1}},
+		"rewards": {"duckets": 140, "items": {&"ether": 2, &"research_notes": 1, &"anchor_dust": 1}},
 	},
 	&"mandatory_daylight": {
 		"title": "Mandatory Daylight", "category": &"main", "giver": "Neon Viper", "icon": "dfgui_icon-wand.png",
@@ -672,7 +672,7 @@ const QUEST_DEFINITIONS := {
 			{"text": "Defeat the Civic Sun at the Solar Core.", "condition": {"type": &"story_flag", "id": &"helios_scenario_complete"}},
 			{"text": "Recruit Neon Viper into Franklin & Company.", "condition": {"type": &"recruit_hired", "id": &"neon_viper"}},
 		],
-		"rewards": {"duckets": 420, "items": {&"phoenix_tonic": 1, &"anchor_dust": 2}, "party_experience": 240},
+		"rewards": {"duckets": 420, "items": {&"phoenix_tonic": 1, &"research_notes": 1, &"anchor_dust": 2}, "party_experience": 240},
 	},
 	&"a_colder_address": {
 		"title": "A Colder Address", "category": &"main", "giver": "Helios Midnight Anchor", "icon": "dfgui_icon-cauldron.png",
@@ -682,7 +682,7 @@ const QUEST_DEFINITIONS := {
 			{"text": "Build Cold Storage and anchor Frosthold Kingdom.", "condition": {"type": &"facility_built", "id": "Cold Storage"}},
 			{"text": "Enter Frosthold Kingdom through Cold Storage.", "condition": {"type": &"story_flag", "id": &"frosthold_entered"}},
 		],
-		"rewards": {"duckets": 175, "items": {&"tonic": 2, &"research_notes": 1}},
+		"rewards": {"duckets": 175, "items": {&"tonic": 2, &"research_notes": 2, &"anchor_dust": 1}},
 	},
 	&"the_frozen_ledger": {
 		"title": "The Frozen Ledger", "category": &"main", "giver": "Frost Lich Emperor", "icon": "dfgui_icon-crown.png",
@@ -699,7 +699,7 @@ const QUEST_DEFINITIONS := {
 			{"text": "Defeat the Whiteout Auditor at the Ice Throne.", "condition": {"type": &"story_flag", "id": &"frosthold_scenario_complete"}},
 			{"text": "Recruit the Frost Lich Emperor into Franklin & Company.", "condition": {"type": &"recruit_hired", "id": &"frost_lich_emperor"}},
 		],
-		"rewards": {"duckets": 520, "items": {&"phoenix_tonic": 2, &"anchor_dust": 3}, "party_experience": 300},
+		"rewards": {"duckets": 520, "items": {&"phoenix_tonic": 2, &"research_notes": 1, &"anchor_dust": 3}, "party_experience": 300},
 	},
 	&"tea_beyond_winter": {
 		"title": "Tea Beyond Winter", "category": &"main", "giver": "Frosthold Repeal Office", "icon": "dfgui_icon-goblet.png",
@@ -709,7 +709,7 @@ const QUEST_DEFINITIONS := {
 			{"text": "Build the Tea House and anchor Moonpetal Court.", "condition": {"type": &"facility_built", "id": "Tea House"}},
 			{"text": "Enter Moonpetal Court through the Tea House.", "condition": {"type": &"story_flag", "id": &"moonpetal_entered"}},
 		],
-		"rewards": {"duckets": 210, "items": {&"ether": 2, &"research_notes": 1}},
+		"rewards": {"duckets": 210, "items": {&"ether": 2, &"research_notes": 2, &"anchor_dust": 1}},
 	},
 	&"the_counterfeit_moon": {
 		"title": "The Counterfeit Moon", "category": &"main", "giver": "Kitsune Empress", "icon": "dfgui_icon-wand.png",
@@ -726,7 +726,7 @@ const QUEST_DEFINITIONS := {
 			{"text": "Defeat Magistrate Enma at the Moon Palace.", "condition": {"type": &"story_flag", "id": &"moonpetal_scenario_complete"}},
 			{"text": "Recruit the Kitsune Empress into Franklin & Company.", "condition": {"type": &"recruit_hired", "id": &"kitsune_empress"}},
 		],
-		"rewards": {"duckets": 610, "items": {&"phoenix_tonic": 2, &"anchor_dust": 3}, "party_experience": 360},
+		"rewards": {"duckets": 610, "items": {&"phoenix_tonic": 2, &"research_notes": 1, &"anchor_dust": 3}, "party_experience": 360},
 	},
 	&"bells_above_the_clouds": {
 		"title": "Bells Above the Clouds", "category": &"main", "giver": "Moonpetal Memory Ledger", "icon": "dfgui_icon-crown.png",
@@ -736,7 +736,7 @@ const QUEST_DEFINITIONS := {
 			{"text": "Build the Belfry and anchor Empyreal Court.", "condition": {"type": &"facility_built", "id": "Belfry"}},
 			{"text": "Enter Empyreal Court through the Belfry.", "condition": {"type": &"story_flag", "id": &"empyreal_entered"}},
 		],
-		"rewards": {"duckets": 245, "items": {&"ether": 2, &"research_notes": 1}},
+		"rewards": {"duckets": 245, "items": {&"ether": 2, &"research_notes": 2, &"anchor_dust": 1}},
 	},
 	&"the_weight_of_heaven": {
 		"title": "The Weight of Heaven", "category": &"main", "giver": "Archangel Commander", "icon": "dfgui_icon-lightning.png",

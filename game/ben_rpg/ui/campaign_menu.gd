@@ -560,6 +560,13 @@ func _build_telemetry_page() -> void:
 	var summary := LocalTelemetry.summary()
 	_add_subheading("STATUS • %s" % ("RECORDING LOCALLY" if enabled else "OFF BY DEFAULT"))
 	_add_notice("This session: %d events\nLog: %s" % [int(summary.get("events", 0)), String(summary.get("output_path", "user://local_telemetry.jsonl"))], Color(0.58, 0.9, 0.72) if enabled else Color(0.78, 0.72, 0.52))
+	var balance := CampaignState.balance_report()
+	var economy: Dictionary = balance.get("economy", {})
+	_add_subheading("CURRENT BALANCE SNAPSHOT")
+	_add_notice("CHAPTER %s   •   PARTY MEDIAN LV %d   •   RESERVE GAP %d\nDUCKETS HELD %d   •   EARNED %d   •   SPENT %d" % [
+		String(balance.get("chapter", "founding")).to_upper(), int(balance.get("active_party_median_level", 1)), int(balance.get("reserve_level_gap", 0)),
+		int(economy.get("duckets_held", 0)), int(economy.get("duckets_earned", 0)), int(economy.get("duckets_spent", 0)),
+	], Color(0.62, 0.86, 1.0))
 	var toggle := Button.new()
 	toggle.name = "LocalTelemetryToggle"
 	toggle.text = "DISABLE LOCAL DIAGNOSTICS" if enabled else "ENABLE LOCAL DIAGNOSTICS"

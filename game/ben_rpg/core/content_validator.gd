@@ -8,6 +8,7 @@ const HOSTILE_KINDS := [&"physical", &"magic", &"delay", &"damage_delay", &"time
 const ALLY_KINDS := [&"heal", &"item_heal", &"item_mp", &"revive", &"cleanse", &"rally", &"aegis"]
 const SAVE_MIGRATOR := preload("res://ben_rpg/core/save_migrator.gd")
 const SETTINGS_REPOSITORY := preload("res://ben_rpg/core/settings_repository.gd")
+const CAMPAIGN_BALANCE_HARNESS := preload("res://ben_rpg/core/campaign_balance_harness.gd")
 
 
 static func validate_all() -> PackedStringArray:
@@ -21,6 +22,7 @@ static func validate_all() -> PackedStringArray:
 	_validate_facility_upgrades(errors)
 	_validate_quests(errors)
 	_validate_skill_trees(errors)
+	_validate_balance_contracts(errors)
 	_validate_persistence_contracts(errors)
 	return PackedStringArray(errors)
 
@@ -226,6 +228,11 @@ static func _validate_skill_trees(errors: Array[String]) -> void:
 		var visit_states := {}
 		for node_id in nodes_by_id:
 			_visit_skill_dependencies(node_id, nodes_by_id, visit_states, errors, StringName(character_id))
+
+
+static func _validate_balance_contracts(errors: Array[String]) -> void:
+	for source_error in CAMPAIGN_BALANCE_HARNESS.validate_material_sources():
+		errors.append("Balance material contract: %s." % source_error)
 
 
 static func _validate_persistence_contracts(errors: Array[String]) -> void:
