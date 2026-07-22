@@ -15,6 +15,7 @@ compatibility/default_parent_skeleton_in_mesh_instance_3d=true
 [application]
 
 config/name="Ben There, Done That"
+config/version="0.3.0-dev"
 run/main_scene="res://src/main.tscn"
 config/features=PackedStringArray("4.7", "GL Compatibility")
 config/icon="res://icon.svg"
@@ -33,6 +34,7 @@ Dialogic="*uid://ds2q0uclmolvu"
 McpXRuntime="*res://addons/godot_mcp_x/runtime/runtime_bridge.gd"
 CampaignState="*res://ben_rpg/core/campaign_state.gd"
 SettingsRepository="*res://ben_rpg/core/settings_repository.gd"
+LocalTelemetry="*res://ben_rpg/core/local_telemetry.gd"
 
 [dialogic]
 

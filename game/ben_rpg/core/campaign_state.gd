@@ -1622,6 +1622,12 @@ func apply_battle_victory(experience: int, earned_duckets: int, loot: Array[Dict
 	adjust_duckets(maxi(earned_duckets, 0), &"battle_victory", &"encounter", false)
 	add_loot_drops(loot, false, &"battle_victory", &"encounter")
 	story_flags[&"won_first_battle"] = true
+	LocalTelemetry.record(&"battle_victory", {
+		"experience": awarded_experience,
+		"duckets": maxi(earned_duckets, 0),
+		"loot_count": loot.size(),
+		"level_up_count": level_ups.size(),
+	})
 	state_changed.emit()
 	return level_ups
 
@@ -1775,7 +1781,7 @@ func adjust_duckets(delta: int, reason_id: StringName, source_context: StringNam
 
 
 func record_economy_transaction(reason_id: StringName, currency_or_item: StringName, delta: int, source_context: StringName = &"") -> Dictionary:
-	return ECONOMY_LEDGER.record(
+	var entry := ECONOMY_LEDGER.record(
 		economy_transactions,
 		reason_id,
 		current_economy_chapter(),
@@ -1784,6 +1790,9 @@ func record_economy_transaction(reason_id: StringName, currency_or_item: StringN
 		source_context,
 		_unix_time()
 	)
+	if not entry.is_empty():
+		LocalTelemetry.record(&"economy_transaction", entry)
+	return entry
 
 
 func current_economy_chapter() -> StringName:
@@ -1811,6 +1820,54 @@ func current_economy_chapter() -> StringName:
 
 func economy_report() -> Dictionary:
 	return ECONOMY_LEDGER.report(economy_transactions, duckets)
+
+
+func balance_report() -> Dictionary:
+	var active_levels := {}
+	var inactive_levels := {}
+	for raw_character_id in recruit_status.keys():
+		var character_id := StringName(raw_character_id)
+		var status := StringName(recruit_status.get(character_id, &"undiscovered"))
+		if status not in [&"party", &"reserve", &"staffed"]:
+			continue
+		var progress: Dictionary = character_progress.get(character_id, {})
+		var level := int(progress.get("level", 1))
+		if status == &"party":
+			active_levels[character_id] = level
+		else:
+			inactive_levels[character_id] = level
+	var inactive_values: Array[int] = []
+	for level in inactive_levels.values():
+		inactive_values.append(int(level))
+	inactive_values.sort()
+	var inactive_median := 0
+	if not inactive_values.is_empty():
+		var upper_index := inactive_values.size() / 2
+		inactive_median = inactive_values[upper_index] if inactive_values.size() % 2 == 1 else int(round((float(inactive_values[upper_index - 1]) + float(inactive_values[upper_index])) / 2.0))
+	var active_median := active_party_median_level()
+	return {
+		"chapter": current_economy_chapter(),
+		"active_party_median_level": active_median,
+		"active_party_levels": active_levels,
+		"inactive_levels": inactive_levels,
+		"inactive_median_level": inactive_median,
+		"reserve_level_gap": maxi(0, active_median - inactive_median) if inactive_median > 0 else 0,
+		"economy": economy_report(),
+		"telemetry": LocalTelemetry.summary(),
+	}
+
+
+func telemetry_world_state() -> Dictionary:
+	var stabilized_universes := 0
+	for flag in [&"first_universe_stabilized", &"second_universe_stabilized", &"third_universe_stabilized", &"fourth_universe_stabilized", &"fifth_universe_stabilized", &"sixth_universe_stabilized", &"seventh_universe_stabilized"]:
+		if bool(story_flags.get(flag, false)):
+			stabilized_universes += 1
+	return {
+		"sandbox": sandbox_mode,
+		"anchors": universe_anchors.size(),
+		"facilities": built_facilities.size(),
+		"stabilized_universes": stabilized_universes,
+	}
 
 
 func encounter_director_state(universe_id: StringName) -> Dictionary:

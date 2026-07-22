@@ -83,8 +83,21 @@ func _run() -> void:
 	if menu._at_laboratory():
 		_fail("Skill reset remained available outside Ben's laboratory")
 		return
+	menu._select_tab(&"telemetry")
+	await get_tree().process_frame
+	if menu._content.get_node_or_null("LocalTelemetryToggle") == null:
+		_fail("Company menu did not expose the local telemetry opt-in")
+		return
+	menu._toggle_local_telemetry()
+	if not LocalTelemetry.is_enabled() or int(LocalTelemetry.summary().get("events", 0)) < 1:
+		_fail("Local telemetry opt-in did not start a local diagnostics session")
+		return
+	menu._toggle_local_telemetry()
+	if LocalTelemetry.is_enabled():
+		_fail("Local telemetry opt-out did not persist")
+		return
 	menu.close_menu()
-	print("CAMPAIGN_MENU_SMOKE_OK slots=6 gear_stats=true equipment_ability=true skills=prerequisites+refund controller_menu=true")
+	print("CAMPAIGN_MENU_SMOKE_OK slots=6 gear_stats=true equipment_ability=true skills=prerequisites+refund controller_menu=true telemetry_opt_in=true")
 	main.queue_free()
 	await get_tree().process_frame
 	get_tree().quit(0)

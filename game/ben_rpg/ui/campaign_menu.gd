@@ -104,7 +104,7 @@ func _unhandled_input(event: InputEvent) -> void:
 func open_menu(initial_tab: StringName = &"") -> void:
 	if CampaignState.party.is_empty():
 		return
-	if initial_tab in [&"equipment", &"skills", &"inventory", &"facilities", &"quests", &"bestiary", &"roster", &"recall", &"services"]:
+	if initial_tab in [&"equipment", &"skills", &"inventory", &"facilities", &"quests", &"bestiary", &"roster", &"recall", &"telemetry", &"services"]:
 		selected_tab = initial_tab
 	if not _is_menu_character_available(selected_character):
 		selected_character = CampaignState.party[0]
@@ -279,6 +279,8 @@ func _refresh() -> void:
 			_build_quest_page()
 		&"bestiary":
 			_build_bestiary_page()
+		&"telemetry":
+			_build_telemetry_page()
 		&"facilities":
 			_build_facilities_page()
 		&"skills":
@@ -313,6 +315,7 @@ func _refresh_tabs() -> void:
 		[&"bestiary", "BESTIARY", "/dfgui_icon-monsterbook.png"],
 		[&"roster", "ROSTER", "/dfgui_icon-shield.png"],
 		[&"recall", "RECALL", "/dfgui_icon-wand.png"],
+		[&"telemetry", "TELEMETRY", "/dfgui_icon-info.png"],
 	]
 	if selected_tab == &"services" and not selected_service.is_empty():
 		var service_icon := String(CampaignState.facility_definition(selected_service).get("icon", "dfgui_icon-info.png"))
@@ -548,6 +551,29 @@ func _build_bestiary_page() -> void:
 		if enemy_id == selected_enemy:
 			button.add_theme_color_override("font_color", Color(0.45, 0.92, 1.0))
 		catalog_grid.add_child(button)
+
+
+func _build_telemetry_page() -> void:
+	_add_heading("LOCAL PLAYTEST DIAGNOSTICS", UI_ROOT + "/dfgui_icon-info.png")
+	var enabled := LocalTelemetry.is_enabled()
+	_add_notice("Optional diagnostics stay on this device in a local JSONL file. They never transmit network identity, raw input, or personal information.", Color(0.78, 0.84, 0.96))
+	var summary := LocalTelemetry.summary()
+	_add_subheading("STATUS • %s" % ("RECORDING LOCALLY" if enabled else "OFF BY DEFAULT"))
+	_add_notice("This session: %d events\nLog: %s" % [int(summary.get("events", 0)), String(summary.get("output_path", "user://local_telemetry.jsonl"))], Color(0.58, 0.9, 0.72) if enabled else Color(0.78, 0.72, 0.52))
+	var toggle := Button.new()
+	toggle.name = "LocalTelemetryToggle"
+	toggle.text = "DISABLE LOCAL DIAGNOSTICS" if enabled else "ENABLE LOCAL DIAGNOSTICS"
+	toggle.custom_minimum_size.y = 74
+	_apply_button_skin(toggle, UI_ROOT + "/dfgui_icon-info.png")
+	toggle.pressed.connect(_toggle_local_telemetry)
+	_content.add_child(toggle)
+	var clear := Button.new()
+	clear.name = "ClearLocalTelemetry"
+	clear.text = "CLEAR LOCAL DIAGNOSTIC LOG"
+	clear.custom_minimum_size.y = 68
+	_apply_button_skin(clear, UI_ROOT + "/dfgui_icon-chest.png")
+	clear.pressed.connect(_clear_local_telemetry)
+	_content.add_child(clear)
 
 
 func _build_bestiary_detail(enemy_id: StringName) -> void:
@@ -1638,6 +1664,22 @@ func _use_anchor_recall() -> void:
 	close_menu()
 	if not campaign or not campaign.has_method("anchor_recall_to_town") or not campaign.anchor_recall_to_town():
 		open_menu(&"recall")
+
+
+func _toggle_local_telemetry() -> void:
+	var enabled := not LocalTelemetry.is_enabled()
+	SettingsRepository.set_value(&"telemetry", &"enabled", enabled)
+	SettingsRepository.save_to_disk()
+	if enabled:
+		LocalTelemetry.begin_session()
+		LocalTelemetry.record(&"telemetry_opt_in", {"local_only": true})
+	_refresh()
+
+
+func _clear_local_telemetry() -> void:
+	LocalTelemetry.clear_output()
+	LocalTelemetry.begin_session()
+	_refresh()
 
 
 func _save_changes() -> void:
