@@ -94,11 +94,12 @@ from the human, platform, licensing, and performance sign-offs that remain.
 - `CREDITS.md`, the base `LICENSE`, and several supplied asset-pack license files
   are tracked in the repository.
 - `runtime_asset_provenance.json` is generated from the static runtime visual
-  inventory and checked by `npm run validate:assets`. It currently records 159
-  static raster sources after excluding editor/example-only paths stripped from
-  release builds; two have asset-local license evidence and 157 are
-  explicitly queued for manual terms and shipped-credit confirmation. This is
-  a review ledger, not a claim that the other assets are unlicensed.
+  inventory and checked by `npm run validate:assets`. Its companion
+  `distribution_eligibility.json` assigns every tracked runtime source one of
+  `distribution_confirmed`, `review_required`, or `rejected`; all 159 currently
+  remain `review_required` pending terms, attribution, and redistribution
+  confirmation. The visual-manifest generator rejects a profile sourced from a
+  rejected asset. This is a review ledger, not a claim of distribution rights.
 - The runtime visual registry currently contains 193 approved profiles covering
   135 of the 159 static source textures, including the active Town, Primeval,
   Frosthold, Moonpetal, Empyreal, Mansion, and Asterion battle materials. The

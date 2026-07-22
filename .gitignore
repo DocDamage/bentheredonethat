@@ -20,6 +20,7 @@
 **/.godot/
 **/.mono/
 **/.import/
+**/__pycache__/
 *.import
 *.translation
 mono_crash.*.json

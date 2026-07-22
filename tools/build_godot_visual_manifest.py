@@ -14,6 +14,7 @@ from PIL import Image
 
 SCALE_CLASSES = {"actor", "building", "landmark", "prop", "tile"}
 CROP_APPROVAL_STATES = {"approved"}
+DISTRIBUTION_ELIGIBILITY_STATES = {"distribution_confirmed", "review_required", "rejected"}
 
 
 def fail(message: str) -> None:
@@ -56,6 +57,12 @@ def validate(root: Path, raw: dict[str, Any]) -> dict[str, Any]:
     if not isinstance(profiles, list) or not profiles:
         fail("profiles must be a non-empty list")
     seen: set[str] = set()
+    provenance_path = root / "game/ben_rpg/visual_assets/generated/runtime_asset_provenance.json"
+    provenance = json.loads(provenance_path.read_text(encoding="utf-8"))
+    eligibility_by_path = {
+        str(asset.get("path")): asset.get("distributionEligibility")
+        for asset in provenance.get("assets", []) if isinstance(asset, dict)
+    }
     output: list[dict[str, Any]] = []
     for profile in profiles:
         if not isinstance(profile, dict):
@@ -76,6 +83,12 @@ def validate(root: Path, raw: dict[str, Any]) -> dict[str, Any]:
         texture_path = (root / texture).resolve()
         if not texture_path.is_file() or root not in texture_path.parents:
             fail(f"{profile_id} references missing texture {texture!r}")
+        runtime_path = "res://" + texture.removeprefix("game/").replace("\\", "/")
+        eligibility = eligibility_by_path.get(runtime_path)
+        if eligibility not in DISTRIBUTION_ELIGIBILITY_STATES:
+            fail(f"{profile_id} has no distribution eligibility record for {runtime_path}")
+        if eligibility == "rejected":
+            fail(f"{profile_id} cannot use rejected source {runtime_path}")
         source_region = rect(source.get("region"), f"{profile_id}.source.region")
         alpha_bounds = rect(source.get("alphaBounds", source_region), f"{profile_id}.source.alphaBounds")
         with Image.open(texture_path) as image:
@@ -130,6 +143,7 @@ def validate(root: Path, raw: dict[str, Any]) -> dict[str, Any]:
             "placement": {"footAnchor": foot_anchor, "scaleClass": scale_class, "collisionFootprint": collision_footprint},
             "worldDrawSize": pair(profile.get("worldDrawSize"), f"{profile_id}.worldDrawSize", positive=True),
             "licenseReference": license_reference.replace("\\", "/"),
+            "distributionEligibility": eligibility,
             "cropApproval": crop_approval,
             "goldenCapture": golden_capture.replace("\\", "/"),
         }

@@ -14,6 +14,27 @@ from pathlib import Path
 from typing import Any
 
 LICENSE_NAMES = {"license", "license.txt", "licence", "licence.txt", "copying", "notice", "notice.txt", "credits", "credits.md", "attribution", "attribution.txt", "readme", "readme.md"}
+ELIGIBILITY_STATES = {"distribution_confirmed", "review_required", "rejected"}
+
+
+def load_eligibility(root: Path) -> tuple[str, dict[str, str]]:
+    path = root / "game/ben_rpg/visual_assets/distribution_eligibility.json"
+    raw = json.loads(path.read_text(encoding="utf-8"))
+    if raw.get("schemaVersion") != 1:
+        raise ValueError("distribution eligibility ledger must use schemaVersion 1")
+    default = raw.get("default")
+    if default not in ELIGIBILITY_STATES:
+        raise ValueError("distribution eligibility ledger default must be a known state")
+    entries = raw.get("assets", {})
+    if not isinstance(entries, dict):
+        raise ValueError("distribution eligibility ledger assets must be an object")
+    result: dict[str, str] = {}
+    for asset_path, entry in entries.items():
+        status = entry.get("status") if isinstance(entry, dict) else entry
+        if not isinstance(asset_path, str) or not asset_path.startswith("res://") or status not in ELIGIBILITY_STATES:
+            raise ValueError("distribution eligibility asset entries need a res:// path and known state")
+        result[asset_path] = status
+    return default, result
 
 
 def pack_root(root: Path, source: Path) -> Path:
@@ -60,6 +81,7 @@ def source_group(path: str) -> str:
 
 def build(root: Path) -> dict[str, Any]:
     inventory = json.loads((root / "game/ben_rpg/visual_assets/generated/runtime_visual_inventory.json").read_text(encoding="utf-8"))
+    default_eligibility, eligibility_overrides = load_eligibility(root)
     assets: list[dict[str, Any]] = []
     for entry in inventory.get("assets", []):
         path = str(entry["path"])
@@ -72,21 +94,25 @@ def build(root: Path) -> dict[str, Any]:
         # tracked game-local evidence can contribute to this artifact.
         if not evidence:
             evidence = ["game/LICENSE"]
+        eligibility = eligibility_overrides.get(path, default_eligibility)
         assets.append({
             "path": path,
             "sourceGroup": source_group(path),
             "profileIds": sorted(entry.get("profileIds", [])),
             "localLicenseEvidence": evidence,
-            "licenseReviewStatus": "workspace_license_coverage_declared",
+            "distributionEligibility": eligibility,
+            "licenseReviewStatus": eligibility,
         })
     with_evidence = sum(bool(asset["localLicenseEvidence"]) for asset in assets)
+    eligibility_counts = {state: sum(asset["distributionEligibility"] == state for asset in assets) for state in sorted(ELIGIBILITY_STATES)}
     return {
-        "schemaVersion": 1,
+        "schemaVersion": 2,
         "scope": "static Godot raster references; not a reachability or license-grant proof",
         "summary": {
             "assets": len(assets),
             "withLocalLicenseEvidence": with_evidence,
             "needsManualLicenseConfirmation": len(assets) - with_evidence,
+            "distributionEligibility": eligibility_counts,
         },
         "assets": assets,
     }

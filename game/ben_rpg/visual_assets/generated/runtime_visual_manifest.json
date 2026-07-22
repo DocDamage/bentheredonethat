@@ -2,6 +2,7 @@
   "profiles": [
     {
       "cropApproval": "approved",
+      "distributionEligibility": "review_required",
       "goldenCapture": "game/validation/town-facilities-overview-rebuilt.png",
       "id": "afterlight_club_sign",
       "kind": "prop",
@@ -40,6 +41,7 @@
     },
     {
       "cropApproval": "approved",
+      "distributionEligibility": "review_required",
       "goldenCapture": "game/validation/battle-full-company-rebuilt.png",
       "id": "archangel_commander_battle_actor",
       "kind": "battle_actor",
@@ -78,6 +80,7 @@
     },
     {
       "cropApproval": "approved",
+      "distributionEligibility": "review_required",
       "goldenCapture": "game/validation/asterion-boss-battle-live.png",
       "id": "asterion_command_battle_backdrop",
       "kind": "battle_backdrop",
@@ -116,6 +119,7 @@
     },
     {
       "cropApproval": "approved",
+      "distributionEligibility": "review_required",
       "goldenCapture": "game/validation/asterion-control-rebuilt.png",
       "id": "asterion_command_console",
       "kind": "building",
@@ -154,6 +158,7 @@
     },
     {
       "cropApproval": "approved",
+      "distributionEligibility": "review_required",
       "goldenCapture": "game/validation/asterion-boss-battle-live.png",
       "id": "asterion_dock_battle_backdrop",
       "kind": "battle_backdrop",
@@ -192,6 +197,7 @@
     },
     {
       "cropApproval": "approved",
+      "distributionEligibility": "review_required",
       "goldenCapture": "game/validation/asterion-dock-rebuilt.png",
       "id": "asterion_dock_hull",
       "kind": "building",
@@ -230,6 +236,7 @@
     },
     {
       "cropApproval": "approved",
+      "distributionEligibility": "review_required",
       "goldenCapture": "game/validation/asterion-hydroponics-live.png",
       "id": "asterion_hydro_battle_backdrop",
       "kind": "battle_backdrop",
@@ -268,6 +275,7 @@
     },
     {
       "cropApproval": "approved",
+      "distributionEligibility": "review_required",
       "goldenCapture": "game/validation/asterion-hydroponics-rebuilt.png",
       "id": "asterion_hydroponics_bed",
       "kind": "prop",
@@ -306,6 +314,7 @@
     },
     {
       "cropApproval": "approved",
+      "distributionEligibility": "review_required",
       "goldenCapture": "game/validation/asterion-medical-live.png",
       "id": "asterion_medical_battle_backdrop",
       "kind": "battle_backdrop",
@@ -344,6 +353,7 @@
     },
     {
       "cropApproval": "approved",
+      "distributionEligibility": "review_required",
       "goldenCapture": "game/validation/asterion-medical-rebuilt.png",
       "id": "asterion_medical_station",
       "kind": "prop",
@@ -382,6 +392,7 @@
     },
     {
       "cropApproval": "approved",
+      "distributionEligibility": "review_required",
       "goldenCapture": "game/validation/asterion-mess-rebuilt.png",
       "id": "asterion_mess_banner",
       "kind": "prop",
@@ -420,6 +431,7 @@
     },
     {
       "cropApproval": "approved",
+      "distributionEligibility": "review_required",
       "goldenCapture": "game/validation/asterion-dock-rebuilt.png",
       "id": "asterion_station_architecture",
       "kind": "building",
@@ -458,6 +470,7 @@
     },
     {
       "cropApproval": "approved",
+      "distributionEligibility": "review_required",
       "goldenCapture": "game/validation/battle-full-company-rebuilt.png",
       "id": "astronaut_battle_actor",
       "kind": "battle_actor",
@@ -496,6 +509,7 @@
     },
     {
       "cropApproval": "approved",
+      "distributionEligibility": "review_required",
       "goldenCapture": "game/validation/company-menu-equipment-live.png",
       "id": "astronaut_company_portrait",
       "kind": "portrait",
@@ -534,6 +548,7 @@
     },
     {
       "cropApproval": "approved",
+      "distributionEligibility": "review_required",
       "goldenCapture": "game/validation/atb-battle-supplied-ui-live.png",
       "id": "battle_ui_action_button",
       "kind": "ui_panel",
@@ -572,6 +587,7 @@
     },
     {
       "cropApproval": "approved",
+      "distributionEligibility": "review_required",
       "goldenCapture": "game/validation/atb-battle-supplied-ui-live.png",
       "id": "battle_ui_action_button_disabled",
       "kind": "ui_panel",
@@ -610,6 +626,7 @@
     },
     {
       "cropApproval": "approved",
+      "distributionEligibility": "review_required",
       "goldenCapture": "game/validation/atb-battle-supplied-ui-live.png",
       "id": "battle_ui_action_button_focused",
       "kind": "ui_panel",
@@ -648,6 +665,7 @@
     },
     {
       "cropApproval": "approved",
+      "distributionEligibility": "review_required",
       "goldenCapture": "game/validation/atb-battle-supplied-ui-live.png",
       "id": "battle_ui_action_button_pressed",
       "kind": "ui_panel",
@@ -686,6 +704,7 @@
     },
     {
       "cropApproval": "approved",
+      "distributionEligibility": "review_required",
       "goldenCapture": "game/validation/atb-battle-supplied-ui-live.png",
       "id": "battle_ui_action_description",
       "kind": "ui_panel",
@@ -724,6 +743,7 @@
     },
     {
       "cropApproval": "approved",
+      "distributionEligibility": "review_required",
       "goldenCapture": "game/validation/atb-battle-supplied-ui-live.png",
       "id": "battle_ui_battler_hud",
       "kind": "ui_panel",
@@ -762,6 +782,7 @@
     },
     {
       "cropApproval": "approved",
+      "distributionEligibility": "review_required",
       "goldenCapture": "game/validation/atb-battle-supplied-ui-live.png",
       "id": "battle_ui_energy_fill",
       "kind": "ui_icon",
@@ -800,6 +821,7 @@
     },
     {
       "cropApproval": "approved",
+      "distributionEligibility": "review_required",
       "goldenCapture": "game/validation/atb-battle-supplied-ui-live.png",
       "id": "battle_ui_energy_point",
       "kind": "ui_icon",
@@ -838,6 +860,7 @@
     },
     {
       "cropApproval": "approved",
+      "distributionEligibility": "review_required",
       "goldenCapture": "game/validation/atb-battle-supplied-ui-live.png",
       "id": "battle_ui_life_bar",
       "kind": "ui_panel",
@@ -876,6 +899,7 @@
     },
     {
       "cropApproval": "approved",
+      "distributionEligibility": "review_required",
       "goldenCapture": "game/validation/atb-battle-supplied-ui-live.png",
       "id": "battle_ui_life_fill",
       "kind": "ui_panel",
@@ -914,6 +938,7 @@
     },
     {
       "cropApproval": "approved",
+      "distributionEligibility": "review_required",
       "goldenCapture": "game/validation/atb-battle-supplied-ui-live.png",
       "id": "battle_ui_selection_arrow",
       "kind": "ui_icon",
@@ -952,6 +977,7 @@
     },
     {
       "cropApproval": "approved",
+      "distributionEligibility": "review_required",
       "goldenCapture": "game/validation/battle-full-company-rebuilt.png",
       "id": "ben_battle_actor",
       "kind": "battle_actor",
@@ -990,6 +1016,7 @@
     },
     {
       "cropApproval": "approved",
+      "distributionEligibility": "review_required",
       "goldenCapture": "game/validation/title-screen-live.png",
       "id": "ben_company_portrait",
       "kind": "portrait",
@@ -1028,6 +1055,7 @@
     },
     {
       "cropApproval": "approved",
+      "distributionEligibility": "review_required",
       "goldenCapture": "game/validation/bulkhead-warden-battle.png",
       "id": "bulkhead_warden_battle_actor",
       "kind": "battle_actor",
@@ -1066,6 +1094,7 @@
     },
     {
       "cropApproval": "approved",
+      "distributionEligibility": "review_required",
       "goldenCapture": "game/validation/battle-full-company-rebuilt.png",
       "id": "caveman_battle_actor",
       "kind": "battle_actor",
@@ -1104,6 +1133,7 @@
     },
     {
       "cropApproval": "approved",
+      "distributionEligibility": "review_required",
       "goldenCapture": "game/validation/helios-civic-sun-battle.png",
       "id": "civic_sun_battle_actor",
       "kind": "battle_actor",
@@ -1142,6 +1172,7 @@
     },
     {
       "cropApproval": "approved",
+      "distributionEligibility": "review_required",
       "goldenCapture": "game/validation/mansion-gallery-layout-pass.png",
       "id": "clock_mirror_battle_actor",
       "kind": "battle_actor",
@@ -1180,6 +1211,7 @@
     },
     {
       "cropApproval": "approved",
+      "distributionEligibility": "review_required",
       "goldenCapture": "game/validation/cobalt-courier-battle.png",
       "id": "cobalt_courier_battle_actor",
       "kind": "battle_actor",
@@ -1218,6 +1250,7 @@
     },
     {
       "cropApproval": "approved",
+      "distributionEligibility": "review_required",
       "goldenCapture": "game/validation/primeval-boss-battle-rebuilt.png",
       "id": "commute_tyrant_battle_actor",
       "kind": "battle_actor",
@@ -1256,6 +1289,7 @@
     },
     {
       "cropApproval": "approved",
+      "distributionEligibility": "review_required",
       "goldenCapture": "game/validation/mansion-gallery-layout-pass.png",
       "id": "composer_portrait_battle_actor",
       "kind": "battle_actor",
@@ -1294,6 +1328,7 @@
     },
     {
       "cropApproval": "approved",
+      "distributionEligibility": "review_required",
       "goldenCapture": "game/validation/moonpetal-moon-palace.png",
       "id": "crimson_oni_challenger_battle_actor",
       "kind": "battle_actor",
@@ -1332,6 +1367,7 @@
     },
     {
       "cropApproval": "approved",
+      "distributionEligibility": "review_required",
       "goldenCapture": "game/validation/empyreal-reliquary-aerie.png",
       "id": "empyreal_aerie_battle_backdrop",
       "kind": "battle_backdrop",
@@ -1370,6 +1406,7 @@
     },
     {
       "cropApproval": "approved",
+      "distributionEligibility": "review_required",
       "goldenCapture": "game/validation/empyreal-forum-of-measures.png",
       "id": "empyreal_forum_battle_backdrop",
       "kind": "battle_backdrop",
@@ -1408,6 +1445,7 @@
     },
     {
       "cropApproval": "approved",
+      "distributionEligibility": "review_required",
       "goldenCapture": "game/validation/empyreal-garden-of-appeals.png",
       "id": "empyreal_garden_battle_backdrop",
       "kind": "battle_backdrop",
@@ -1446,6 +1484,7 @@
     },
     {
       "cropApproval": "approved",
+      "distributionEligibility": "review_required",
       "goldenCapture": "game/validation/empyreal-cloudstep-landing.png",
       "id": "empyreal_landing_battle_backdrop",
       "kind": "battle_backdrop",
@@ -1484,6 +1523,7 @@
     },
     {
       "cropApproval": "approved",
+      "distributionEligibility": "review_required",
       "goldenCapture": "game/validation/empyreal-cloudstep-landing.png",
       "id": "empyreal_sky_cloud_bank",
       "kind": "tile",
@@ -1522,6 +1562,7 @@
     },
     {
       "cropApproval": "approved",
+      "distributionEligibility": "review_required",
       "goldenCapture": "game/validation/empyreal-seraph-tribunal.png",
       "id": "empyreal_tribunal_battle_backdrop",
       "kind": "battle_backdrop",
@@ -1560,6 +1601,7 @@
     },
     {
       "cropApproval": "approved",
+      "distributionEligibility": "review_required",
       "goldenCapture": "game/validation/empyreal-reliquary-aerie.png",
       "id": "empyreal_upper_aerie_battle_backdrop",
       "kind": "battle_backdrop",
@@ -1598,6 +1640,7 @@
     },
     {
       "cropApproval": "approved",
+      "distributionEligibility": "review_required",
       "goldenCapture": "game/validation/empyreal-forum-of-measures.png",
       "id": "fallen_notary_battle_actor",
       "kind": "battle_actor",
@@ -1636,6 +1679,7 @@
     },
     {
       "cropApproval": "approved",
+      "distributionEligibility": "review_required",
       "goldenCapture": "game/validation/battle-full-company-rebuilt.png",
       "id": "fighter_battle_actor",
       "kind": "battle_actor",
@@ -1674,6 +1718,7 @@
     },
     {
       "cropApproval": "approved",
+      "distributionEligibility": "review_required",
       "goldenCapture": "game/validation/company-menu-equipment-live.png",
       "id": "fighter_company_portrait",
       "kind": "portrait",
@@ -1712,6 +1757,7 @@
     },
     {
       "cropApproval": "approved",
+      "distributionEligibility": "review_required",
       "goldenCapture": "game/validation/moonpetal-mirror-garden.png",
       "id": "fox_attendant_battle_actor",
       "kind": "battle_actor",
@@ -1750,6 +1796,7 @@
     },
     {
       "cropApproval": "approved",
+      "distributionEligibility": "review_required",
       "goldenCapture": "game/validation/frosthold-snow-gate.png",
       "id": "frost_collector_battle_actor",
       "kind": "battle_actor",
@@ -1788,6 +1835,7 @@
     },
     {
       "cropApproval": "approved",
+      "distributionEligibility": "review_required",
       "goldenCapture": "game/validation/battle-full-company-rebuilt.png",
       "id": "frost_lich_emperor_battle_actor",
       "kind": "battle_actor",
@@ -1826,6 +1874,7 @@
     },
     {
       "cropApproval": "approved",
+      "distributionEligibility": "review_required",
       "goldenCapture": "game/validation/frosthold-snow-gate.png",
       "id": "frost_necromancer_battle_actor",
       "kind": "battle_actor",
@@ -1864,6 +1913,7 @@
     },
     {
       "cropApproval": "approved",
+      "distributionEligibility": "review_required",
       "goldenCapture": "game/validation/frosthold-snow-gate.png",
       "id": "frosthold_blue_torch",
       "kind": "prop",
@@ -1902,6 +1952,7 @@
     },
     {
       "cropApproval": "approved",
+      "distributionEligibility": "review_required",
       "goldenCapture": "game/validation/frosthold-crystal-causeway.png",
       "id": "frosthold_causeway_bridge",
       "kind": "prop",
@@ -1940,6 +1991,7 @@
     },
     {
       "cropApproval": "approved",
+      "distributionEligibility": "review_required",
       "goldenCapture": "game/validation/frosthold-crystal-causeway.png",
       "id": "frosthold_causeway_crystal_bank",
       "kind": "prop",
@@ -1978,6 +2030,7 @@
     },
     {
       "cropApproval": "approved",
+      "distributionEligibility": "review_required",
       "goldenCapture": "game/validation/frosthold-crystal-causeway.png",
       "id": "frosthold_causeway_rune",
       "kind": "prop",
@@ -2016,6 +2069,7 @@
     },
     {
       "cropApproval": "approved",
+      "distributionEligibility": "review_required",
       "goldenCapture": "game/validation/frosthold-snow-gate.png",
       "id": "frosthold_gate_castle",
       "kind": "building",
@@ -2054,6 +2108,7 @@
     },
     {
       "cropApproval": "approved",
+      "distributionEligibility": "review_required",
       "goldenCapture": "game/validation/frosthold-snow-gate.png",
       "id": "frosthold_gate_ruin",
       "kind": "prop",
@@ -2092,6 +2147,7 @@
     },
     {
       "cropApproval": "approved",
+      "distributionEligibility": "review_required",
       "goldenCapture": "game/validation/frosthold-snow-gate.png",
       "id": "frosthold_gate_tree",
       "kind": "prop",
@@ -2130,6 +2186,7 @@
     },
     {
       "cropApproval": "approved",
+      "distributionEligibility": "review_required",
       "goldenCapture": "game/validation/frosthold-frozen-market.png",
       "id": "frosthold_market_house",
       "kind": "building",
@@ -2168,6 +2225,7 @@
     },
     {
       "cropApproval": "approved",
+      "distributionEligibility": "review_required",
       "goldenCapture": "game/validation/frosthold-frozen-market.png",
       "id": "frosthold_market_stall",
       "kind": "prop",
@@ -2206,6 +2264,7 @@
     },
     {
       "cropApproval": "approved",
+      "distributionEligibility": "review_required",
       "goldenCapture": "game/validation/frosthold-ice-throne.png",
       "id": "frosthold_snow_battle_backdrop",
       "kind": "battle_backdrop",
@@ -2244,6 +2303,7 @@
     },
     {
       "cropApproval": "approved",
+      "distributionEligibility": "review_required",
       "goldenCapture": "game/validation/frosthold-snow-gate.png",
       "id": "frosthold_snow_ground_tile",
       "kind": "tile",
@@ -2282,6 +2342,7 @@
     },
     {
       "cropApproval": "approved",
+      "distributionEligibility": "review_required",
       "goldenCapture": "game/validation/empyreal-reliquary-aerie.png",
       "id": "gravity_knight_battle_actor",
       "kind": "battle_actor",
@@ -2320,6 +2381,7 @@
     },
     {
       "cropApproval": "approved",
+      "distributionEligibility": "review_required",
       "goldenCapture": "game/validation/mansion-nursery-layout-pass.png",
       "id": "haunted_doll_battle_actor",
       "kind": "battle_actor",
@@ -2358,6 +2420,7 @@
     },
     {
       "cropApproval": "approved",
+      "distributionEligibility": "review_required",
       "goldenCapture": "game/validation/mansion-foyer-native-scale-live.png",
       "id": "haunted_mansion_exterior",
       "kind": "building",
@@ -2400,6 +2463,7 @@
     },
     {
       "cropApproval": "approved",
+      "distributionEligibility": "review_required",
       "goldenCapture": "game/validation/helios-skybridge.png",
       "id": "helios_assassin_battle_actor",
       "kind": "battle_actor",
@@ -2438,6 +2502,7 @@
     },
     {
       "cropApproval": "approved",
+      "distributionEligibility": "review_required",
       "goldenCapture": "game/validation/helios-civic-sun-battle.png",
       "id": "helios_civic_sun_battle_backdrop",
       "kind": "battle_backdrop",
@@ -2476,6 +2541,7 @@
     },
     {
       "cropApproval": "approved",
+      "distributionEligibility": "review_required",
       "goldenCapture": "game/validation/helios-clinic.png",
       "id": "helios_clinic_battle_backdrop",
       "kind": "battle_backdrop",
@@ -2514,6 +2580,7 @@
     },
     {
       "cropApproval": "approved",
+      "distributionEligibility": "review_required",
       "goldenCapture": "game/validation/helios-transit.png",
       "id": "helios_gunner_battle_actor",
       "kind": "battle_actor",
@@ -2552,6 +2619,7 @@
     },
     {
       "cropApproval": "approved",
+      "distributionEligibility": "review_required",
       "goldenCapture": "game/validation/helios-market.png",
       "id": "helios_market_battle_backdrop",
       "kind": "battle_backdrop",
@@ -2590,6 +2658,7 @@
     },
     {
       "cropApproval": "approved",
+      "distributionEligibility": "review_required",
       "goldenCapture": "game/validation/helios-market.png",
       "id": "helios_market_quadrant",
       "kind": "tile",
@@ -2628,6 +2697,7 @@
     },
     {
       "cropApproval": "approved",
+      "distributionEligibility": "review_required",
       "goldenCapture": "game/validation/helios-skybridge.png",
       "id": "helios_mech_battle_actor",
       "kind": "battle_actor",
@@ -2666,6 +2736,7 @@
     },
     {
       "cropApproval": "approved",
+      "distributionEligibility": "review_required",
       "goldenCapture": "game/validation/town-facilities-overview-rebuilt.png",
       "id": "helios_observatory_facade",
       "kind": "building",
@@ -2708,6 +2779,7 @@
     },
     {
       "cropApproval": "approved",
+      "distributionEligibility": "review_required",
       "goldenCapture": "game/validation/helios-clinic.png",
       "id": "helios_security_battle_actor",
       "kind": "battle_actor",
@@ -2746,6 +2818,7 @@
     },
     {
       "cropApproval": "approved",
+      "distributionEligibility": "review_required",
       "goldenCapture": "game/validation/helios-civic-sun-battle.png",
       "id": "helios_skybridge_battle_backdrop",
       "kind": "battle_backdrop",
@@ -2784,6 +2857,7 @@
     },
     {
       "cropApproval": "approved",
+      "distributionEligibility": "review_required",
       "goldenCapture": "game/validation/helios-skybridge.png",
       "id": "helios_skybridge_quadrant",
       "kind": "tile",
@@ -2822,6 +2896,7 @@
     },
     {
       "cropApproval": "approved",
+      "distributionEligibility": "review_required",
       "goldenCapture": "game/validation/helios-transit.png",
       "id": "helios_transit_battle_backdrop",
       "kind": "battle_backdrop",
@@ -2860,6 +2935,7 @@
     },
     {
       "cropApproval": "approved",
+      "distributionEligibility": "review_required",
       "goldenCapture": "game/validation/empyreal-seraph-tribunal.png",
       "id": "high_comptroller_battle_actor",
       "kind": "battle_actor",
@@ -2898,6 +2974,7 @@
     },
     {
       "cropApproval": "approved",
+      "distributionEligibility": "review_required",
       "goldenCapture": "game/validation/frosthold-crystal-causeway.png",
       "id": "ice_colossus_battle_actor",
       "kind": "battle_actor",
@@ -2936,6 +3013,7 @@
     },
     {
       "cropApproval": "approved",
+      "distributionEligibility": "review_required",
       "goldenCapture": "game/validation/field-inventory.png",
       "id": "interaction_emote_combat",
       "kind": "ui_icon",
@@ -2974,6 +3052,7 @@
     },
     {
       "cropApproval": "approved",
+      "distributionEligibility": "review_required",
       "goldenCapture": "game/validation/laboratory-layout-rebuilt.png",
       "id": "interaction_emote_empty",
       "kind": "ui_icon",
@@ -3012,6 +3091,7 @@
     },
     {
       "cropApproval": "approved",
+      "distributionEligibility": "review_required",
       "goldenCapture": "game/validation/field-inventory.png",
       "id": "interaction_emote_exclamation",
       "kind": "ui_icon",
@@ -3050,6 +3130,7 @@
     },
     {
       "cropApproval": "approved",
+      "distributionEligibility": "review_required",
       "goldenCapture": "game/validation/field-inventory.png",
       "id": "interaction_emote_question",
       "kind": "ui_icon",
@@ -3088,6 +3169,7 @@
     },
     {
       "cropApproval": "approved",
+      "distributionEligibility": "review_required",
       "goldenCapture": "game/validation/company-menu-equipment-live.png",
       "id": "item_artifact_15",
       "kind": "item_icon",
@@ -3126,6 +3208,7 @@
     },
     {
       "cropApproval": "approved",
+      "distributionEligibility": "review_required",
       "goldenCapture": "game/validation/company-menu-equipment-live.png",
       "id": "item_artifact_18",
       "kind": "item_icon",
@@ -3164,6 +3247,7 @@
     },
     {
       "cropApproval": "approved",
+      "distributionEligibility": "review_required",
       "goldenCapture": "game/validation/company-menu-equipment-live.png",
       "id": "item_artifact_20",
       "kind": "item_icon",
@@ -3202,6 +3286,7 @@
     },
     {
       "cropApproval": "approved",
+      "distributionEligibility": "review_required",
       "goldenCapture": "game/validation/company-menu-equipment-live.png",
       "id": "item_artifact_31",
       "kind": "item_icon",
@@ -3240,6 +3325,7 @@
     },
     {
       "cropApproval": "approved",
+      "distributionEligibility": "review_required",
       "goldenCapture": "game/validation/company-menu-equipment-live.png",
       "id": "item_artifact_42",
       "kind": "item_icon",
@@ -3278,6 +3364,7 @@
     },
     {
       "cropApproval": "approved",
+      "distributionEligibility": "review_required",
       "goldenCapture": "game/validation/company-menu-equipment-live.png",
       "id": "item_artifact_9",
       "kind": "item_icon",
@@ -3316,6 +3403,7 @@
     },
     {
       "cropApproval": "approved",
+      "distributionEligibility": "review_required",
       "goldenCapture": "game/validation/company-menu-equipment-live.png",
       "id": "item_copper_chestplate_1",
       "kind": "item_icon",
@@ -3354,6 +3442,7 @@
     },
     {
       "cropApproval": "approved",
+      "distributionEligibility": "review_required",
       "goldenCapture": "game/validation/company-menu-equipment-live.png",
       "id": "item_copper_gloves_1",
       "kind": "item_icon",
@@ -3392,6 +3481,7 @@
     },
     {
       "cropApproval": "approved",
+      "distributionEligibility": "review_required",
       "goldenCapture": "game/validation/company-menu-equipment-live.png",
       "id": "item_copper_helmet_1",
       "kind": "item_icon",
@@ -3430,6 +3520,7 @@
     },
     {
       "cropApproval": "approved",
+      "distributionEligibility": "review_required",
       "goldenCapture": "game/validation/company-menu-equipment-live.png",
       "id": "item_iron_chestplate_1",
       "kind": "item_icon",
@@ -3468,6 +3559,7 @@
     },
     {
       "cropApproval": "approved",
+      "distributionEligibility": "review_required",
       "goldenCapture": "game/validation/company-menu-equipment-live.png",
       "id": "item_iron_chestplate_5",
       "kind": "item_icon",
@@ -3506,6 +3598,7 @@
     },
     {
       "cropApproval": "approved",
+      "distributionEligibility": "review_required",
       "goldenCapture": "game/validation/company-menu-equipment-live.png",
       "id": "item_iron_gloves_5",
       "kind": "item_icon",
@@ -3544,6 +3637,7 @@
     },
     {
       "cropApproval": "approved",
+      "distributionEligibility": "review_required",
       "goldenCapture": "game/validation/company-menu-equipment-live.png",
       "id": "item_iron_gloves_9",
       "kind": "item_icon",
@@ -3582,6 +3676,7 @@
     },
     {
       "cropApproval": "approved",
+      "distributionEligibility": "review_required",
       "goldenCapture": "game/validation/company-menu-equipment-live.png",
       "id": "item_iron_helmet_5",
       "kind": "item_icon",
@@ -3620,6 +3715,7 @@
     },
     {
       "cropApproval": "approved",
+      "distributionEligibility": "review_required",
       "goldenCapture": "game/validation/company-menu-equipment-live.png",
       "id": "item_iron_helmet_8",
       "kind": "item_icon",
@@ -3658,6 +3754,7 @@
     },
     {
       "cropApproval": "approved",
+      "distributionEligibility": "review_required",
       "goldenCapture": "game/validation/company-menu-equipment-live.png",
       "id": "item_iron_weapon_1",
       "kind": "item_icon",
@@ -3696,6 +3793,7 @@
     },
     {
       "cropApproval": "approved",
+      "distributionEligibility": "review_required",
       "goldenCapture": "game/validation/company-menu-equipment-live.png",
       "id": "item_iron_weapon_8",
       "kind": "item_icon",
@@ -3734,6 +3832,7 @@
     },
     {
       "cropApproval": "approved",
+      "distributionEligibility": "review_required",
       "goldenCapture": "game/validation/battle-full-company-rebuilt.png",
       "id": "kitsune_empress_battle_actor",
       "kind": "battle_actor",
@@ -3772,6 +3871,7 @@
     },
     {
       "cropApproval": "approved",
+      "distributionEligibility": "review_required",
       "goldenCapture": "game/validation/laboratory-layout-rebuilt.png",
       "id": "laboratory_analysis_station",
       "kind": "prop",
@@ -3810,6 +3910,7 @@
     },
     {
       "cropApproval": "approved",
+      "distributionEligibility": "review_required",
       "goldenCapture": "game/validation/laboratory-layout-rebuilt.png",
       "id": "laboratory_exit_doors",
       "kind": "building",
@@ -3852,6 +3953,7 @@
     },
     {
       "cropApproval": "approved",
+      "distributionEligibility": "review_required",
       "goldenCapture": "game/validation/laboratory-layout-rebuilt.png",
       "id": "laboratory_exterior",
       "kind": "building",
@@ -3894,6 +3996,7 @@
     },
     {
       "cropApproval": "approved",
+      "distributionEligibility": "review_required",
       "goldenCapture": "game/validation/laboratory-layout-rebuilt.png",
       "id": "laboratory_floor_tile",
       "kind": "tile",
@@ -3932,6 +4035,7 @@
     },
     {
       "cropApproval": "approved",
+      "distributionEligibility": "review_required",
       "goldenCapture": "game/validation/laboratory-layout-rebuilt.png",
       "id": "laboratory_utility_bank",
       "kind": "building",
@@ -3970,6 +4074,7 @@
     },
     {
       "cropApproval": "approved",
+      "distributionEligibility": "review_required",
       "goldenCapture": "game/validation/asterion-control-rebuilt.png",
       "id": "machine_commander_battle_actor",
       "kind": "battle_actor",
@@ -4008,6 +4113,7 @@
     },
     {
       "cropApproval": "approved",
+      "distributionEligibility": "review_required",
       "goldenCapture": "game/validation/moonpetal-moon-palace.png",
       "id": "magistrate_enma_battle_actor",
       "kind": "battle_actor",
@@ -4046,6 +4152,7 @@
     },
     {
       "cropApproval": "approved",
+      "distributionEligibility": "review_required",
       "goldenCapture": "game/validation/mansion-archive-live.png",
       "id": "mansion_archive_cabinet",
       "kind": "prop",
@@ -4084,6 +4191,7 @@
     },
     {
       "cropApproval": "approved",
+      "distributionEligibility": "review_required",
       "goldenCapture": "game/validation/mansion-archive-live.png",
       "id": "mansion_archive_shelving",
       "kind": "building",
@@ -4122,6 +4230,7 @@
     },
     {
       "cropApproval": "approved",
+      "distributionEligibility": "review_required",
       "goldenCapture": "game/validation/mansion-boss-battle-live.png",
       "id": "mansion_foyer_battle_backdrop",
       "kind": "battle_backdrop",
@@ -4160,6 +4269,7 @@
     },
     {
       "cropApproval": "approved",
+      "distributionEligibility": "review_required",
       "goldenCapture": "game/validation/mansion-boss-battle-live.png",
       "id": "mansion_gallery_battle_backdrop",
       "kind": "battle_backdrop",
@@ -4198,6 +4308,7 @@
     },
     {
       "cropApproval": "approved",
+      "distributionEligibility": "review_required",
       "goldenCapture": "game/validation/mansion-nursery-live.png",
       "id": "mansion_nursery_bed",
       "kind": "prop",
@@ -4236,6 +4347,7 @@
     },
     {
       "cropApproval": "approved",
+      "distributionEligibility": "review_required",
       "goldenCapture": "game/validation/asterion-medical-rebuilt.png",
       "id": "medical_robot_battle_actor",
       "kind": "battle_actor",
@@ -4274,6 +4386,7 @@
     },
     {
       "cropApproval": "approved",
+      "distributionEligibility": "review_required",
       "goldenCapture": "game/validation/moonpetal-blossom-court.png",
       "id": "memory_inspector_battle_actor",
       "kind": "battle_actor",
@@ -4312,6 +4425,7 @@
     },
     {
       "cropApproval": "approved",
+      "distributionEligibility": "review_required",
       "goldenCapture": "game/validation/moonpetal-bell-walk.png",
       "id": "moonpetal_bell_battle_backdrop",
       "kind": "battle_backdrop",
@@ -4350,6 +4464,7 @@
     },
     {
       "cropApproval": "approved",
+      "distributionEligibility": "review_required",
       "goldenCapture": "game/validation/moonpetal-blossom-court.png",
       "id": "moonpetal_court_battle_backdrop",
       "kind": "battle_backdrop",
@@ -4388,6 +4503,7 @@
     },
     {
       "cropApproval": "approved",
+      "distributionEligibility": "review_required",
       "goldenCapture": "game/validation/moonpetal-blossom-court.png",
       "id": "moonpetal_court_temple",
       "kind": "building",
@@ -4426,6 +4542,7 @@
     },
     {
       "cropApproval": "approved",
+      "distributionEligibility": "review_required",
       "goldenCapture": "game/validation/moonpetal-blossom-court.png",
       "id": "moonpetal_court_tree_canopy",
       "kind": "prop",
@@ -4464,6 +4581,7 @@
     },
     {
       "cropApproval": "approved",
+      "distributionEligibility": "review_required",
       "goldenCapture": "game/validation/moonpetal-mirror-garden.png",
       "id": "moonpetal_framed_garden_island",
       "kind": "prop",
@@ -4502,6 +4620,7 @@
     },
     {
       "cropApproval": "approved",
+      "distributionEligibility": "review_required",
       "goldenCapture": "game/validation/moonpetal-mirror-garden.png",
       "id": "moonpetal_garden_battle_backdrop",
       "kind": "battle_backdrop",
@@ -4540,6 +4659,7 @@
     },
     {
       "cropApproval": "approved",
+      "distributionEligibility": "review_required",
       "goldenCapture": "game/validation/moonpetal-vermilion-gate.png",
       "id": "moonpetal_gate_battle_backdrop",
       "kind": "battle_backdrop",
@@ -4578,6 +4698,7 @@
     },
     {
       "cropApproval": "approved",
+      "distributionEligibility": "review_required",
       "goldenCapture": "game/validation/moonpetal-vermilion-gate.png",
       "id": "moonpetal_gate_lantern",
       "kind": "prop",
@@ -4616,6 +4737,7 @@
     },
     {
       "cropApproval": "approved",
+      "distributionEligibility": "review_required",
       "goldenCapture": "game/validation/moonpetal-mirror-garden.png",
       "id": "moonpetal_mirror_pond",
       "kind": "prop",
@@ -4654,6 +4776,7 @@
     },
     {
       "cropApproval": "approved",
+      "distributionEligibility": "review_required",
       "goldenCapture": "game/validation/moonpetal-moon-palace.png",
       "id": "moonpetal_palace_battle_backdrop",
       "kind": "battle_backdrop",
@@ -4692,6 +4815,7 @@
     },
     {
       "cropApproval": "approved",
+      "distributionEligibility": "review_required",
       "goldenCapture": "game/validation/moonpetal-vermilion-gate.png",
       "id": "moonpetal_processional_path",
       "kind": "tile",
@@ -4730,6 +4854,7 @@
     },
     {
       "cropApproval": "approved",
+      "distributionEligibility": "review_required",
       "goldenCapture": "game/validation/moonpetal-vermilion-gate.png",
       "id": "moonpetal_vermilion_gate",
       "kind": "prop",
@@ -4768,6 +4893,7 @@
     },
     {
       "cropApproval": "approved",
+      "distributionEligibility": "review_required",
       "goldenCapture": "game/validation/mossback-surveyor-battle.png",
       "id": "mossback_surveyor_battle_actor",
       "kind": "battle_actor",
@@ -4806,6 +4932,7 @@
     },
     {
       "cropApproval": "approved",
+      "distributionEligibility": "review_required",
       "goldenCapture": "game/validation/asterion-control-rebuilt.png",
       "id": "mother_computer_battle_actor",
       "kind": "battle_actor",
@@ -4844,6 +4971,7 @@
     },
     {
       "cropApproval": "approved",
+      "distributionEligibility": "review_required",
       "goldenCapture": "game/validation/primeval-nest-rebuilt.png",
       "id": "municipal_spinosaur_battle_actor",
       "kind": "battle_actor",
@@ -4882,6 +5010,7 @@
     },
     {
       "cropApproval": "approved",
+      "distributionEligibility": "review_required",
       "goldenCapture": "game/validation/battle-full-company-rebuilt.png",
       "id": "neon_viper_battle_actor",
       "kind": "battle_actor",
@@ -4920,6 +5049,7 @@
     },
     {
       "cropApproval": "approved",
+      "distributionEligibility": "review_required",
       "goldenCapture": "game/validation/primeval-grove-rebuilt.png",
       "id": "primeval_anchor_totem",
       "kind": "prop",
@@ -4958,6 +5088,7 @@
     },
     {
       "cropApproval": "approved",
+      "distributionEligibility": "review_required",
       "goldenCapture": "game/validation/primeval-boss-battle-rebuilt.png",
       "id": "primeval_ground_battle_backdrop",
       "kind": "battle_backdrop",
@@ -4996,6 +5127,7 @@
     },
     {
       "cropApproval": "approved",
+      "distributionEligibility": "review_required",
       "goldenCapture": "game/validation/primeval-grove-rebuilt.png",
       "id": "primeval_ground_quadrant",
       "kind": "tile",
@@ -5034,6 +5166,7 @@
     },
     {
       "cropApproval": "approved",
+      "distributionEligibility": "review_required",
       "goldenCapture": "game/validation/primeval-grove-rebuilt.png",
       "id": "primeval_grove_canopy",
       "kind": "prop",
@@ -5072,6 +5205,7 @@
     },
     {
       "cropApproval": "approved",
+      "distributionEligibility": "review_required",
       "goldenCapture": "game/validation/primeval-grove-rebuilt.png",
       "id": "primeval_raptor_battle_actor",
       "kind": "battle_actor",
@@ -5110,6 +5244,7 @@
     },
     {
       "cropApproval": "approved",
+      "distributionEligibility": "review_required",
       "goldenCapture": "game/validation/primeval-nest-rebuilt.png",
       "id": "primeval_relay_nest",
       "kind": "prop",
@@ -5148,6 +5283,7 @@
     },
     {
       "cropApproval": "approved",
+      "distributionEligibility": "review_required",
       "goldenCapture": "game/validation/primeval-ruins-rebuilt.png",
       "id": "primeval_ruin_forecourt",
       "kind": "building",
@@ -5186,6 +5322,7 @@
     },
     {
       "cropApproval": "approved",
+      "distributionEligibility": "review_required",
       "goldenCapture": "game/validation/primeval-village-rebuilt.png",
       "id": "primeval_village_dwelling",
       "kind": "building",
@@ -5224,6 +5361,7 @@
     },
     {
       "cropApproval": "approved",
+      "distributionEligibility": "review_required",
       "goldenCapture": "game/validation/rift-jackal-battle.png",
       "id": "rift_jackal_battle_actor",
       "kind": "battle_actor",
@@ -5262,6 +5400,7 @@
     },
     {
       "cropApproval": "approved",
+      "distributionEligibility": "review_required",
       "goldenCapture": "game/validation/sandbox-terrain-editor-live.png",
       "id": "sandbox_haunted_facade",
       "kind": "sandbox_object",
@@ -5300,6 +5439,7 @@
     },
     {
       "cropApproval": "approved",
+      "distributionEligibility": "review_required",
       "goldenCapture": "game/validation/sandbox-terrain-editor-live.png",
       "id": "sandbox_haunted_passage_door",
       "kind": "sandbox_object",
@@ -5338,6 +5478,7 @@
     },
     {
       "cropApproval": "approved",
+      "distributionEligibility": "review_required",
       "goldenCapture": "game/validation/sandbox-terrain-editor-live.png",
       "id": "sandbox_haunted_planks",
       "kind": "terrain",
@@ -5376,6 +5517,7 @@
     },
     {
       "cropApproval": "approved",
+      "distributionEligibility": "review_required",
       "goldenCapture": "game/validation/sandbox-terrain-editor-live.png",
       "id": "sandbox_haunted_stone",
       "kind": "terrain",
@@ -5414,6 +5556,7 @@
     },
     {
       "cropApproval": "approved",
+      "distributionEligibility": "review_required",
       "goldenCapture": "game/validation/sandbox-terrain-editor-live.png",
       "id": "sandbox_lab_blue_panel",
       "kind": "terrain",
@@ -5452,6 +5595,7 @@
     },
     {
       "cropApproval": "approved",
+      "distributionEligibility": "review_required",
       "goldenCapture": "game/validation/sandbox-terrain-editor-live.png",
       "id": "sandbox_lab_computer",
       "kind": "sandbox_object",
@@ -5490,6 +5634,7 @@
     },
     {
       "cropApproval": "approved",
+      "distributionEligibility": "review_required",
       "goldenCapture": "game/validation/sandbox-terrain-editor-live.png",
       "id": "sandbox_lab_green_panel",
       "kind": "terrain",
@@ -5528,6 +5673,7 @@
     },
     {
       "cropApproval": "approved",
+      "distributionEligibility": "review_required",
       "goldenCapture": "game/validation/sandbox-terrain-editor-live.png",
       "id": "sandbox_lab_schedule",
       "kind": "sandbox_object",
@@ -5566,6 +5712,7 @@
     },
     {
       "cropApproval": "approved",
+      "distributionEligibility": "review_required",
       "goldenCapture": "game/validation/sandbox-terrain-editor-live.png",
       "id": "sandbox_lab_steel_panel",
       "kind": "terrain",
@@ -5604,6 +5751,7 @@
     },
     {
       "cropApproval": "approved",
+      "distributionEligibility": "review_required",
       "goldenCapture": "game/validation/sandbox-terrain-editor-live.png",
       "id": "sandbox_lab_white_panel",
       "kind": "terrain",
@@ -5642,6 +5790,7 @@
     },
     {
       "cropApproval": "approved",
+      "distributionEligibility": "review_required",
       "goldenCapture": "game/validation/sandbox-terrain-editor-live.png",
       "id": "sandbox_lab_workbench",
       "kind": "sandbox_object",
@@ -5680,6 +5829,7 @@
     },
     {
       "cropApproval": "approved",
+      "distributionEligibility": "review_required",
       "goldenCapture": "game/validation/sandbox-terrain-editor-live.png",
       "id": "sandbox_modern_blue_cottage",
       "kind": "sandbox_object",
@@ -5718,6 +5868,7 @@
     },
     {
       "cropApproval": "approved",
+      "distributionEligibility": "review_required",
       "goldenCapture": "game/validation/sandbox-terrain-editor-live.png",
       "id": "sandbox_modern_clock_hall",
       "kind": "sandbox_object",
@@ -5756,6 +5907,7 @@
     },
     {
       "cropApproval": "approved",
+      "distributionEligibility": "review_required",
       "goldenCapture": "game/validation/sandbox-terrain-editor-live.png",
       "id": "sandbox_modern_cobble",
       "kind": "terrain",
@@ -5794,6 +5946,7 @@
     },
     {
       "cropApproval": "approved",
+      "distributionEligibility": "review_required",
       "goldenCapture": "game/validation/sandbox-terrain-editor-live.png",
       "id": "sandbox_modern_dirt",
       "kind": "terrain",
@@ -5832,6 +5985,7 @@
     },
     {
       "cropApproval": "approved",
+      "distributionEligibility": "review_required",
       "goldenCapture": "game/validation/sandbox-terrain-editor-live.png",
       "id": "sandbox_modern_grass",
       "kind": "terrain",
@@ -5870,6 +6024,7 @@
     },
     {
       "cropApproval": "approved",
+      "distributionEligibility": "review_required",
       "goldenCapture": "game/validation/sandbox-terrain-editor-live.png",
       "id": "sandbox_modern_red_cottage",
       "kind": "sandbox_object",
@@ -5908,6 +6063,7 @@
     },
     {
       "cropApproval": "approved",
+      "distributionEligibility": "review_required",
       "goldenCapture": "game/validation/sandbox-terrain-editor-live.png",
       "id": "sandbox_modern_sand",
       "kind": "terrain",
@@ -5946,6 +6102,7 @@
     },
     {
       "cropApproval": "approved",
+      "distributionEligibility": "review_required",
       "goldenCapture": "game/validation/sandbox-terrain-editor-live.png",
       "id": "sandbox_ranch_cat",
       "kind": "sandbox_object",
@@ -5984,6 +6141,7 @@
     },
     {
       "cropApproval": "approved",
+      "distributionEligibility": "review_required",
       "goldenCapture": "game/validation/sandbox-terrain-editor-live.png",
       "id": "sandbox_ranch_corn",
       "kind": "sandbox_object",
@@ -6022,6 +6180,7 @@
     },
     {
       "cropApproval": "approved",
+      "distributionEligibility": "review_required",
       "goldenCapture": "game/validation/sandbox-terrain-editor-live.png",
       "id": "sandbox_ranch_cow",
       "kind": "sandbox_object",
@@ -6060,6 +6219,7 @@
     },
     {
       "cropApproval": "approved",
+      "distributionEligibility": "review_required",
       "goldenCapture": "game/validation/sandbox-terrain-editor-live.png",
       "id": "sandbox_ranch_dirt",
       "kind": "terrain",
@@ -6098,6 +6258,7 @@
     },
     {
       "cropApproval": "approved",
+      "distributionEligibility": "review_required",
       "goldenCapture": "game/validation/sandbox-terrain-editor-live.png",
       "id": "sandbox_ranch_farmland",
       "kind": "terrain",
@@ -6136,6 +6297,7 @@
     },
     {
       "cropApproval": "approved",
+      "distributionEligibility": "review_required",
       "goldenCapture": "game/validation/sandbox-terrain-editor-live.png",
       "id": "sandbox_ranch_house",
       "kind": "sandbox_object",
@@ -6174,6 +6336,7 @@
     },
     {
       "cropApproval": "approved",
+      "distributionEligibility": "review_required",
       "goldenCapture": "game/validation/sandbox-terrain-editor-live.png",
       "id": "sandbox_ranch_light_grass",
       "kind": "terrain",
@@ -6212,6 +6375,7 @@
     },
     {
       "cropApproval": "approved",
+      "distributionEligibility": "review_required",
       "goldenCapture": "game/validation/sandbox-terrain-editor-live.png",
       "id": "sandbox_ranch_meadow",
       "kind": "terrain",
@@ -6250,6 +6414,7 @@
     },
     {
       "cropApproval": "approved",
+      "distributionEligibility": "review_required",
       "goldenCapture": "game/validation/sandbox-terrain-editor-live.png",
       "id": "sandbox_ranch_oak",
       "kind": "sandbox_object",
@@ -6288,6 +6453,7 @@
     },
     {
       "cropApproval": "approved",
+      "distributionEligibility": "review_required",
       "goldenCapture": "game/validation/sandbox-terrain-editor-live.png",
       "id": "sandbox_ranch_pumpkin",
       "kind": "sandbox_object",
@@ -6326,6 +6492,7 @@
     },
     {
       "cropApproval": "approved",
+      "distributionEligibility": "review_required",
       "goldenCapture": "game/validation/sandbox-terrain-editor-live.png",
       "id": "sandbox_ranch_sapling",
       "kind": "sandbox_object",
@@ -6364,6 +6531,7 @@
     },
     {
       "cropApproval": "approved",
+      "distributionEligibility": "review_required",
       "goldenCapture": "game/validation/sandbox-terrain-editor-live.png",
       "id": "sandbox_ranch_snow",
       "kind": "terrain",
@@ -6402,6 +6570,7 @@
     },
     {
       "cropApproval": "approved",
+      "distributionEligibility": "review_required",
       "goldenCapture": "game/validation/sandbox-terrain-editor-live.png",
       "id": "sandbox_ranch_water",
       "kind": "terrain",
@@ -6440,6 +6609,7 @@
     },
     {
       "cropApproval": "approved",
+      "distributionEligibility": "review_required",
       "goldenCapture": "game/validation/sandbox-terrain-editor-live.png",
       "id": "sandbox_scifi_blue_panel",
       "kind": "terrain",
@@ -6478,6 +6648,7 @@
     },
     {
       "cropApproval": "approved",
+      "distributionEligibility": "review_required",
       "goldenCapture": "game/validation/sandbox-terrain-editor-live.png",
       "id": "sandbox_scifi_grate",
       "kind": "terrain",
@@ -6516,6 +6687,7 @@
     },
     {
       "cropApproval": "approved",
+      "distributionEligibility": "review_required",
       "goldenCapture": "game/validation/sandbox-terrain-editor-live.png",
       "id": "sandbox_scifi_gray_panel",
       "kind": "terrain",
@@ -6554,6 +6726,7 @@
     },
     {
       "cropApproval": "approved",
+      "distributionEligibility": "review_required",
       "goldenCapture": "game/validation/sandbox-terrain-editor-live.png",
       "id": "sandbox_scifi_steel_floor",
       "kind": "terrain",
@@ -6592,6 +6765,7 @@
     },
     {
       "cropApproval": "approved",
+      "distributionEligibility": "review_required",
       "goldenCapture": "game/validation/mansion-foyer-layout-pass.png",
       "id": "schoolgirl_ghost_battle_actor",
       "kind": "battle_actor",
@@ -6630,6 +6804,7 @@
     },
     {
       "cropApproval": "approved",
+      "distributionEligibility": "review_required",
       "goldenCapture": "game/validation/asterion-dock-rebuilt.png",
       "id": "sentry_drone_battle_actor",
       "kind": "battle_actor",
@@ -6668,6 +6843,7 @@
     },
     {
       "cropApproval": "approved",
+      "distributionEligibility": "review_required",
       "goldenCapture": "game/validation/primeval-village-rebuilt.png",
       "id": "stone_triceratops_battle_actor",
       "kind": "battle_actor",
@@ -6706,6 +6882,7 @@
     },
     {
       "cropApproval": "approved",
+      "distributionEligibility": "review_required",
       "goldenCapture": "game/validation/empyreal-garden-of-appeals.png",
       "id": "storm_repossessor_battle_actor",
       "kind": "battle_actor",
@@ -6744,6 +6921,7 @@
     },
     {
       "cropApproval": "approved",
+      "distributionEligibility": "review_required",
       "goldenCapture": "game/validation/town-facilities-overview-rebuilt.png",
       "id": "town_armory_facade",
       "kind": "building",
@@ -6786,6 +6964,7 @@
     },
     {
       "cropApproval": "approved",
+      "distributionEligibility": "review_required",
       "goldenCapture": "game/validation/town-cafe-service-live.png",
       "id": "town_cafe_facade",
       "kind": "building",
@@ -6828,6 +7007,7 @@
     },
     {
       "cropApproval": "approved",
+      "distributionEligibility": "review_required",
       "goldenCapture": "game/validation/town-facilities-overview-rebuilt.png",
       "id": "town_clinic_facade",
       "kind": "building",
@@ -6870,6 +7050,7 @@
     },
     {
       "cropApproval": "approved",
+      "distributionEligibility": "review_required",
       "goldenCapture": "game/validation/town-facilities-overview-rebuilt.png",
       "id": "town_cold_storage_facade",
       "kind": "building",
@@ -6912,6 +7093,7 @@
     },
     {
       "cropApproval": "approved",
+      "distributionEligibility": "review_required",
       "goldenCapture": "game/validation/town-facilities-overview-rebuilt.png",
       "id": "town_grass_tile",
       "kind": "tile",
@@ -6950,6 +7132,7 @@
     },
     {
       "cropApproval": "approved",
+      "distributionEligibility": "review_required",
       "goldenCapture": "game/validation/town-facilities-overview-rebuilt.png",
       "id": "town_ranch_tree_small",
       "kind": "prop",
@@ -6988,6 +7171,7 @@
     },
     {
       "cropApproval": "approved",
+      "distributionEligibility": "review_required",
       "goldenCapture": "game/validation/town-facilities-overview-rebuilt.png",
       "id": "town_ranch_tree_tall",
       "kind": "prop",
@@ -7026,6 +7210,7 @@
     },
     {
       "cropApproval": "approved",
+      "distributionEligibility": "review_required",
       "goldenCapture": "game/validation/town-facilities-overview-rebuilt.png",
       "id": "town_tea_house_facade",
       "kind": "building",
@@ -7068,6 +7253,7 @@
     },
     {
       "cropApproval": "approved",
+      "distributionEligibility": "review_required",
       "goldenCapture": "game/validation/town-facilities-overview-rebuilt.png",
       "id": "town_trailhead_lodge_facade",
       "kind": "building",
@@ -7110,6 +7296,7 @@
     },
     {
       "cropApproval": "approved",
+      "distributionEligibility": "review_required",
       "goldenCapture": "game/validation/field-inventory.png",
       "id": "universe_treasure_chest",
       "kind": "field_prop",
@@ -7148,6 +7335,7 @@
     },
     {
       "cropApproval": "approved",
+      "distributionEligibility": "review_required",
       "goldenCapture": "game/validation/battle-full-company-rebuilt.png",
       "id": "velociraptor_battle_actor",
       "kind": "battle_actor",
@@ -7186,6 +7374,7 @@
     },
     {
       "cropApproval": "approved",
+      "distributionEligibility": "review_required",
       "goldenCapture": "game/validation/moonpetal-bell-walk.png",
       "id": "vow_spider_battle_actor",
       "kind": "battle_actor",
@@ -7224,6 +7413,7 @@
     },
     {
       "cropApproval": "approved",
+      "distributionEligibility": "review_required",
       "goldenCapture": "game/validation/mansion-foyer-layout-pass.png",
       "id": "war_book_battle_actor",
       "kind": "battle_actor",
@@ -7262,6 +7452,7 @@
     },
     {
       "cropApproval": "approved",
+      "distributionEligibility": "review_required",
       "goldenCapture": "game/validation/frosthold-ice-throne.png",
       "id": "whiteout_auditor_battle_actor",
       "kind": "battle_actor",
@@ -7300,6 +7491,7 @@
     },
     {
       "cropApproval": "approved",
+      "distributionEligibility": "review_required",
       "goldenCapture": "game/validation/empyreal-cloudstep-landing.png",
       "id": "wind_bailiff_battle_actor",
       "kind": "battle_actor",
@@ -7338,6 +7530,7 @@
     },
     {
       "cropApproval": "approved",
+      "distributionEligibility": "review_required",
       "goldenCapture": "game/validation/asterion-dock-rebuilt.png",
       "id": "work_robot_battle_actor",
       "kind": "battle_actor",
