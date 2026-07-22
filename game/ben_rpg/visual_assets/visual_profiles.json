@@ -671,6 +671,31 @@
       "worldDrawSize": [90, 92], "licenseReference": "game/ben_rpg/visual_assets/generated/runtime_asset_provenance.json", "cropApproval": "approved", "goldenCapture": "game/validation/primeval-village-rebuilt.png"
     },
     {
+      "id": "primeval_village_dwelling_right", "kind": "building",
+      "source": {"pack": "Stone Age Modern Life Pixel Art Tileset Pack", "runtimeTexture": "game/game_assets/Tilesets/Stone Age Modern Life Pixel Art Tileset Pack/1.png", "sourceChecksum": "5215c9938a7028a24d1ae4f6e0d615f997e059718356fa25bd41c242d6416770", "sourceDensity": 48, "region": [483, 1, 90, 95], "alphaBounds": [483, 1, 90, 95]},
+      "placement": {"footAnchor": [45, 94], "scaleClass": "building", "collisionFootprint": "dwelling_base"}, "worldDrawSize": [90, 95], "licenseReference": "game/ben_rpg/visual_assets/generated/runtime_asset_provenance.json", "cropApproval": "approved", "goldenCapture": "game/validation/primeval-village-rebuilt.png"
+    },
+    {
+      "id": "primeval_village_longhouse", "kind": "building",
+      "source": {"pack": "Stone Age Modern Life Pixel Art Tileset Pack", "runtimeTexture": "game/game_assets/Tilesets/Stone Age Modern Life Pixel Art Tileset Pack/1.png", "sourceChecksum": "5215c9938a7028a24d1ae4f6e0d615f997e059718356fa25bd41c242d6416770", "sourceDensity": 48, "region": [203, 197, 170, 88], "alphaBounds": [203, 197, 170, 88]},
+      "placement": {"footAnchor": [85, 87], "scaleClass": "building", "collisionFootprint": "longhouse_base"}, "worldDrawSize": [170, 88], "licenseReference": "game/ben_rpg/visual_assets/generated/runtime_asset_provenance.json", "cropApproval": "approved", "goldenCapture": "game/validation/primeval-village-rebuilt.png"
+    },
+    {
+      "id": "primeval_village_firepit", "kind": "prop",
+      "source": {"pack": "Stone Age Modern Life Pixel Art Tileset Pack", "runtimeTexture": "game/game_assets/Tilesets/Stone Age Modern Life Pixel Art Tileset Pack/1.png", "sourceChecksum": "5215c9938a7028a24d1ae4f6e0d615f997e059718356fa25bd41c242d6416770", "sourceDensity": 48, "region": [491, 190, 50, 50], "alphaBounds": [491, 190, 50, 50]},
+      "placement": {"footAnchor": [25, 49], "scaleClass": "prop", "collisionFootprint": "firepit_base"}, "worldDrawSize": [50, 50], "licenseReference": "game/ben_rpg/visual_assets/generated/runtime_asset_provenance.json", "cropApproval": "approved", "goldenCapture": "game/validation/primeval-village-rebuilt.png"
+    },
+    {
+      "id": "primeval_village_awning_left", "kind": "prop",
+      "source": {"pack": "Stone Age Modern Life Pixel Art Tileset Pack", "runtimeTexture": "game/game_assets/Tilesets/Stone Age Modern Life Pixel Art Tileset Pack/1.png", "sourceChecksum": "5215c9938a7028a24d1ae4f6e0d615f997e059718356fa25bd41c242d6416770", "sourceDensity": 48, "region": [7, 394, 178, 90], "alphaBounds": [7, 394, 178, 90]},
+      "placement": {"footAnchor": [89, 89], "scaleClass": "prop", "collisionFootprint": "awning_base"}, "worldDrawSize": [89, 45], "licenseReference": "game/ben_rpg/visual_assets/generated/runtime_asset_provenance.json", "cropApproval": "approved", "goldenCapture": "game/validation/primeval-village-rebuilt.png"
+    },
+    {
+      "id": "primeval_village_awning_right", "kind": "prop",
+      "source": {"pack": "Stone Age Modern Life Pixel Art Tileset Pack", "runtimeTexture": "game/game_assets/Tilesets/Stone Age Modern Life Pixel Art Tileset Pack/1.png", "sourceChecksum": "5215c9938a7028a24d1ae4f6e0d615f997e059718356fa25bd41c242d6416770", "sourceDensity": 48, "region": [195, 394, 180, 90], "alphaBounds": [195, 394, 180, 90]},
+      "placement": {"footAnchor": [90, 89], "scaleClass": "prop", "collisionFootprint": "awning_base"}, "worldDrawSize": [90, 45], "licenseReference": "game/ben_rpg/visual_assets/generated/runtime_asset_provenance.json", "cropApproval": "approved", "goldenCapture": "game/validation/primeval-village-rebuilt.png"
+    },
+    {
       "id": "primeval_anchor_totem",
       "kind": "prop",
       "source": {"pack": "Stone Age Modern Life Pixel Art Tileset Pack", "runtimeTexture": "game/game_assets/Tilesets/Stone Age Modern Life Pixel Art Tileset Pack/7.png", "sourceChecksum": "d57a33c1e0c630459b4fb043d411e2ae23eb280a4f146cf6017a122d109613a4", "sourceDensity": 96, "region": [689, 4, 65, 190], "alphaBounds": [689, 4, 65, 190]},

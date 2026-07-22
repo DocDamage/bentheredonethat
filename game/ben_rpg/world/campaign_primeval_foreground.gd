@@ -74,13 +74,13 @@ func _draw() -> void:
 		&"primeval_village":
 			var room_offset := offset + Vector2(10 * TILE, 0)
 			_profile_prop(&"primeval_village_dwelling", structures, room_offset + Vector2(24, 36))
-			_prop(structures, Rect2(483, 1, 90, 95), room_offset + Vector2(270, 32))
-			_prop(structures, Rect2(203, 197, 170, 88), room_offset + Vector2(107, 62))
-			_prop(structures, Rect2(491, 190, 50, 50), room_offset + Vector2(167, 142))
+			_profile_prop(&"primeval_village_dwelling_right", structures, room_offset + Vector2(270, 32))
+			_profile_prop(&"primeval_village_longhouse", structures, room_offset + Vector2(107, 62))
+			_profile_prop(&"primeval_village_firepit", structures, room_offset + Vector2(167, 142))
 			# The old 0.65 presentation scale was neither native nor reciprocal.
 			# These perimeter awnings are now 0.5x and retain their clear route.
-			_prop(structures, Rect2(7, 394, 178, 90), room_offset + Vector2(-8, 132), 0.5)
-			_prop(structures, Rect2(195, 394, 180, 90), room_offset + Vector2(280, 132), 0.5)
+			_profile_prop(&"primeval_village_awning_left", structures, room_offset + Vector2(-8, 132))
+			_profile_prop(&"primeval_village_awning_right", structures, room_offset + Vector2(280, 132))
 		&"primeval_ruins":
 			var room_offset := offset + Vector2(20 * TILE, 0)
 			_profile_prop(&"primeval_ruin_forecourt", ruins, room_offset + Vector2(153, 20))

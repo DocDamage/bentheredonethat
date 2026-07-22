@@ -54,6 +54,8 @@ func _ready() -> void:
 		&"asterion_dock_hull",
 		&"asterion_medical_station",
 		&"primeval_village_dwelling",
+		&"primeval_village_dwelling_right", &"primeval_village_longhouse", &"primeval_village_firepit",
+		&"primeval_village_awning_left", &"primeval_village_awning_right",
 		&"primeval_anchor_totem",
 		&"primeval_grove_canopy",
 		&"primeval_grove_canopy_mid_left", &"primeval_grove_canopy_mid", &"primeval_grove_canopy_right",

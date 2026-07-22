@@ -1109,7 +1109,12 @@
       ],
       "path": "res://game_assets/Tilesets/Stone Age Modern Life Pixel Art Tileset Pack/1.png",
       "profileIds": [
+        "primeval_village_awning_left",
+        "primeval_village_awning_right",
         "primeval_village_dwelling",
+        "primeval_village_dwelling_right",
+        "primeval_village_firepit",
+        "primeval_village_longhouse",
         "town_trailhead_lodge_facade"
       ],
       "sourceGroup": "Tilesets/Stone Age Modern Life Pixel Art Tileset Pack"
