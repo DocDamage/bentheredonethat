@@ -26,6 +26,7 @@ func _ready() -> void:
 		&"moonpetal_mirror_pond",
 		&"moonpetal_framed_garden_island",
 		&"moonpetal_gate_lantern",
+		&"moonpetal_gate_lantern_right",
 		&"frosthold_gate_tree",
 		&"frosthold_gate_tree_right",
 		&"frosthold_gate_castle",

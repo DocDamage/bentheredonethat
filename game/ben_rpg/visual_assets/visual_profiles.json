@@ -841,6 +841,11 @@
       "worldDrawSize": [240, 190], "licenseReference": "game/ben_rpg/visual_assets/generated/runtime_asset_provenance.json", "cropApproval": "approved", "goldenCapture": "game/validation/town-facilities-belfry.png"
     },
     {
+      "id": "moonpetal_gate_lantern_right", "kind": "prop",
+      "source": {"pack": "Sakura Temple Asset Pack", "runtimeTexture": "game/game_assets/Tilesets/Sakura Temple Asset Pack/Lanterns and lights.png", "sourceChecksum": "8d713b344c1b5250616f20302cc489617fff4acaf80578b8c8f8c7c93d84a117", "sourceDensity": 48, "region": [164, 331, 114, 145], "alphaBounds": [164, 331, 114, 145]},
+      "placement": {"footAnchor": [57, 144], "scaleClass": "prop", "collisionFootprint": "lantern_base"}, "worldDrawSize": [57, 73], "licenseReference": "game/ben_rpg/visual_assets/generated/runtime_asset_provenance.json", "cropApproval": "approved", "goldenCapture": "game/validation/moonpetal-vermilion-gate.png"
+    },
+    {
       "id": "mansion_archive_shelving",
       "kind": "building",
       "source": {"pack": "Haunted Mansion Pixel Art Tileset Pack", "runtimeTexture": "game/game_assets/Tilesets/Haunted Mansion Pixel Art Tileset Pack/4.png", "sourceChecksum": "fabb60e8d270cf106674b7669dda3e7fe75c8ae9072ff86a4d867a259ed6ea7b", "sourceDensity": 48, "region": [0, 0, 190, 180], "alphaBounds": [0, 0, 190, 180]},

@@ -65,7 +65,7 @@ func _draw() -> void:
 		&"moonpetal_gate":
 			_profile_prop(&"moonpetal_vermilion_gate", gates, offset + Vector2(120, 20))
 			_profile_prop(&"moonpetal_gate_lantern", lanterns, offset + Vector2(2, 115))
-			_prop(lanterns, Rect2(164, 331, 114, 145), offset + Vector2(325, 115), 0.5)
+			_profile_prop(&"moonpetal_gate_lantern_right", lanterns, offset + Vector2(325, 115))
 		&"moonpetal_court":
 			var room_offset := offset + Vector2(10 * TILE, 0)
 			_profile_prop(&"moonpetal_court_temple", temple, room_offset + Vector2(99, 18))

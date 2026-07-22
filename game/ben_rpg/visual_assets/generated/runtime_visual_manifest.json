@@ -8787,6 +8787,46 @@
     {
       "cropApproval": "approved",
       "distributionEligibility": "review_required",
+      "goldenCapture": "game/validation/moonpetal-vermilion-gate.png",
+      "id": "moonpetal_gate_lantern_right",
+      "kind": "prop",
+      "licenseReference": "game/ben_rpg/visual_assets/generated/runtime_asset_provenance.json",
+      "placement": {
+        "collisionFootprint": "lantern_base",
+        "footAnchor": [
+          57,
+          144
+        ],
+        "scaleClass": "prop"
+      },
+      "releaseVisualAcceptance": "prototype_only",
+      "source": {
+        "alphaBounds": [
+          164,
+          331,
+          114,
+          145
+        ],
+        "pack": "Sakura Temple Asset Pack",
+        "region": [
+          164,
+          331,
+          114,
+          145
+        ],
+        "runtimeTexture": "game/game_assets/Tilesets/Sakura Temple Asset Pack/Lanterns and lights.png",
+        "sha256": "8d713b344c1b5250616f20302cc489617fff4acaf80578b8c8f8c7c93d84a117",
+        "sourceChecksum": "8d713b344c1b5250616f20302cc489617fff4acaf80578b8c8f8c7c93d84a117",
+        "sourceDensity": 48
+      },
+      "worldDrawSize": [
+        57,
+        73
+      ]
+    },
+    {
+      "cropApproval": "approved",
+      "distributionEligibility": "review_required",
       "goldenCapture": "game/validation/moonpetal-mirror-garden.png",
       "id": "moonpetal_mirror_pond",
       "kind": "prop",

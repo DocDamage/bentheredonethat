@@ -947,7 +947,8 @@
       ],
       "path": "res://game_assets/Tilesets/Sakura Temple Asset Pack/Lanterns and lights.png",
       "profileIds": [
-        "moonpetal_gate_lantern"
+        "moonpetal_gate_lantern",
+        "moonpetal_gate_lantern_right"
       ],
       "sourceGroup": "Tilesets/Sakura Temple Asset Pack"
     },
