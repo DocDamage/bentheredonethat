@@ -287,7 +287,8 @@ those changes when updating the upstream template.
   one-time quest rewards, tracked objectives, party order, formation rows, play
   time, town clock, resident positions/activities, save timestamp, last field
   cell, named location, and sandbox terrain overrides. Version-1 through
-  version-18 saves remain loadable.
+  version-19 saves remain loadable, and archived version-18 saves migrate through
+  the explicit v18-to-v19 boundary when next saved.
 - Per-area camera limits keep the laboratory and town framed without showing
   another area or large editor windows.
 
@@ -300,7 +301,7 @@ input, assertions, editor errors, and hot reload.
 
 ## Smoke tests
 
-There are 39 headless smoke scenes. Run these with the bundled console
+There are 67 isolated smoke scenes. Run these with the bundled console
 executable from this directory:
 
 ```powershell
