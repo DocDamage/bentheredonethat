@@ -96,6 +96,16 @@ func _run() -> void:
 	if LocalTelemetry.is_enabled():
 		_fail("Local telemetry opt-out did not persist")
 		return
+	menu._select_tab(&"settings")
+	await get_tree().process_frame
+	if menu._content.get_node_or_null("OptionBattleSpeed") == null or menu._content.get_node_or_null("OptionReduceMotion") == null:
+		_fail("Company menu did not expose the options and accessibility controls")
+		return
+	menu._cycle_setting(&"battle", &"atb_speed", [0.5, 1.0, 1.5, 2.0])
+	menu._toggle_setting(&"accessibility", &"reduce_motion")
+	if not is_equal_approx(float(SettingsRepository.value(&"battle", &"atb_speed", 0.0)), 1.5) or not bool(SettingsRepository.value(&"accessibility", &"reduce_motion", false)):
+		_fail("Options controls did not save battle-speed or reduce-motion preferences")
+		return
 	CampaignState.story_flags[&"empyreal_scenario_complete"] = true
 	if not CampaignState.commit_campaign_ending_result() or not CampaignState.complete_campaign_ending(town_cell):
 		_fail("Postgame menu setup could not commit the ending state")
@@ -107,7 +117,7 @@ func _run() -> void:
 		_fail("Postgame Tribunal Ledger did not expose the town rematch path")
 		return
 	menu.close_menu()
-	print("CAMPAIGN_MENU_SMOKE_OK slots=6 gear_stats=true equipment_ability=true skills=prerequisites+refund controller_menu=true telemetry_opt_in=true postgame_ledger=true")
+	print("CAMPAIGN_MENU_SMOKE_OK slots=6 gear_stats=true equipment_ability=true skills=prerequisites+refund controller_menu=true telemetry_opt_in=true accessibility_options=true postgame_ledger=true")
 	main.queue_free()
 	await get_tree().process_frame
 	get_tree().quit(0)

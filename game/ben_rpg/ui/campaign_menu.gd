@@ -104,7 +104,7 @@ func _unhandled_input(event: InputEvent) -> void:
 func open_menu(initial_tab: StringName = &"") -> void:
 	if CampaignState.party.is_empty():
 		return
-	if initial_tab in [&"equipment", &"skills", &"inventory", &"facilities", &"quests", &"bestiary", &"roster", &"recall", &"telemetry", &"postgame", &"services"]:
+	if initial_tab in [&"equipment", &"skills", &"inventory", &"facilities", &"quests", &"bestiary", &"roster", &"recall", &"telemetry", &"settings", &"postgame", &"services"]:
 		selected_tab = initial_tab
 	if not _is_menu_character_available(selected_character):
 		selected_character = CampaignState.party[0]
@@ -281,6 +281,8 @@ func _refresh() -> void:
 			_build_bestiary_page()
 		&"telemetry":
 			_build_telemetry_page()
+		&"settings":
+			_build_settings_page()
 		&"postgame":
 			_build_postgame_page()
 		&"facilities":
@@ -318,6 +320,7 @@ func _refresh_tabs() -> void:
 		[&"roster", "ROSTER", "/dfgui_icon-shield.png"],
 		[&"recall", "RECALL", "/dfgui_icon-wand.png"],
 		[&"telemetry", "TELEMETRY", "/dfgui_icon-info.png"],
+		[&"settings", "OPTIONS", "/dfgui_icon-settings.png"],
 	]
 	if CampaignState.postgame_rematch_available():
 		tabs.append([&"postgame", "POSTGAME", "/dfgui_icon-crown.png"])
@@ -328,7 +331,7 @@ func _refresh_tabs() -> void:
 		var button := Button.new()
 		button.text = data[1]
 		button.name = "%sTab" % String(data[0]).capitalize()
-		button.custom_minimum_size = Vector2(156, 56)
+		button.custom_minimum_size = Vector2(142, 56)
 		_apply_button_skin(button, UI_ROOT + data[2])
 		button.pressed.connect(_select_tab.bind(StringName(data[0])))
 		_tab_buttons.add_child(button)
@@ -585,6 +588,80 @@ func _build_telemetry_page() -> void:
 	_apply_button_skin(clear, UI_ROOT + "/dfgui_icon-chest.png")
 	clear.pressed.connect(_clear_local_telemetry)
 	_content.add_child(clear)
+
+
+func _build_settings_page() -> void:
+	_add_heading("OPTIONS & ACCESSIBILITY", UI_ROOT + "/dfgui_icon-settings.png")
+	_add_notice("Preferences save locally and apply to future battles immediately. Gameplay clues are always paired with readable text or icons; these options further reduce motion and visual intensity.", Color(0.78, 0.84, 0.96))
+	var battle_speed := float(SettingsRepository.value(&"battle", &"atb_speed", 1.0))
+	var wait_mode := bool(SettingsRepository.value(&"battle", &"wait_mode", false))
+	_add_subheading("BATTLE")
+	_add_option_button("OptionBattleSpeed", "ATB SPEED  %.1fx" % battle_speed, "Cycle 0.5×, 1.0×, 1.5×, and 2.0× battle speed.", _cycle_setting.bind(&"battle", &"atb_speed", [0.5, 1.0, 1.5, 2.0]))
+	_add_option_button("OptionBattleMode", "BATTLE MODE  %s" % ("WAIT" if wait_mode else "ACTIVE"), "Wait pauses enemy gauges while a command or target is being chosen.", _toggle_setting.bind(&"battle", &"wait_mode"))
+
+	var accessibility: Dictionary = SettingsRepository.settings.get("accessibility", {})
+	_add_subheading("READABILITY & MOTION")
+	_add_option_button("OptionTextSpeed", "TEXT SPEED  %.2fx" % float(accessibility.get("text_speed", 1.0)), "Cycle dialogue text reveal speed from 0.5× to 2.0×.", _cycle_setting.bind(&"accessibility", &"text_speed", [0.5, 0.75, 1.0, 1.5, 2.0]))
+	_add_option_button("OptionTextScale", "TEXT SCALE  %.2fx" % float(accessibility.get("text_scale", 1.0)), "Set the preferred text-scale preset for dialogue and future UI surfaces.", _cycle_setting.bind(&"accessibility", &"text_scale", [0.75, 1.0, 1.25, 1.5]))
+	_add_option_button("OptionReduceMotion", "REDUCE MOTION  %s" % ("ON" if bool(accessibility.get("reduce_motion", false)) else "OFF"), "Reduce non-essential camera and environmental motion.", _toggle_setting.bind(&"accessibility", &"reduce_motion"))
+	_add_option_button("OptionReduceFlashes", "REDUCE FLASHES  %s" % ("ON" if bool(accessibility.get("reduce_flashes", false)) else "OFF"), "Reduce high-intensity flash effects while preserving combat feedback.", _toggle_setting.bind(&"accessibility", &"reduce_flashes"))
+	_add_option_button("OptionWeatherDensity", "WEATHER DENSITY  %d%%" % int(round(float(accessibility.get("weather_density", 1.0)) * 100.0)), "Cycle environmental particle density from off to full.", _cycle_setting.bind(&"accessibility", &"weather_density", [0.0, 0.5, 1.0]))
+
+	var audio: Dictionary = SettingsRepository.settings.get("audio", {})
+	_add_subheading("AUDIO")
+	_add_option_button("OptionMasterVolume", "MASTER VOLUME  %d%%" % int(round(float(audio.get("master_volume", 1.0)) * 100.0)), "Cycle the master output level.", _cycle_setting.bind(&"audio", &"master_volume", [0.0, 0.5, 0.75, 1.0]))
+	_add_option_button("OptionMusicVolume", "MUSIC VOLUME  %d%%" % int(round(float(audio.get("music_volume", 0.8)) * 100.0)), "Cycle the music-level preference.", _cycle_setting.bind(&"audio", &"music_volume", [0.0, 0.5, 0.75, 1.0]))
+	_add_option_button("OptionSfxVolume", "SFX VOLUME  %d%%" % int(round(float(audio.get("sfx_volume", 0.8)) * 100.0)), "Cycle the sound-effect level preference.", _cycle_setting.bind(&"audio", &"sfx_volume", [0.0, 0.5, 0.75, 1.0]))
+
+	var input: Dictionary = SettingsRepository.settings.get("input", {})
+	var display: Dictionary = SettingsRepository.settings.get("display", {})
+	_add_subheading("DISPLAY & CONTROLLER")
+	_add_option_button("OptionFullscreen", "FULLSCREEN  %s" % ("ON" if bool(display.get("fullscreen", false)) else "OFF"), "Toggle fullscreen presentation.", _toggle_setting.bind(&"display", &"fullscreen"))
+	_add_option_button("OptionDeadzone", "ANALOG DEAD ZONE  %d%%" % int(round(float(input.get("deadzone", 0.5)) * 100.0)), "Cycle the analog-stick dead zone.", _cycle_setting.bind(&"input", &"deadzone", [0.25, 0.5, 0.75]))
+	_add_option_button("OptionVibration", "CONTROLLER VIBRATION  %s" % ("ON" if bool(input.get("vibration", true)) else "OFF"), "Toggle controller vibration where the platform supports it.", _toggle_setting.bind(&"input", &"vibration"))
+
+
+func _add_option_button(node_name: String, text: String, tooltip: String, callback: Callable) -> void:
+	var option := Button.new()
+	option.name = node_name
+	option.text = text
+	option.tooltip_text = tooltip
+	option.custom_minimum_size.y = 60
+	_apply_button_skin(option, UI_ROOT + "/dfgui_icon-settings.png")
+	option.pressed.connect(callback)
+	_content.add_child(option)
+
+
+func _toggle_setting(section: StringName, key: StringName) -> void:
+	SettingsRepository.set_value(section, key, not bool(SettingsRepository.value(section, key, false)))
+	_apply_runtime_setting(section, key)
+	SettingsRepository.save_to_disk()
+	_refresh()
+
+
+func _cycle_setting(section: StringName, key: StringName, values: Array) -> void:
+	if values.is_empty():
+		return
+	var current: Variant = SettingsRepository.value(section, key, values[0])
+	var next_index := 0
+	for index in values.size():
+		if is_equal_approx(float(values[index]), float(current)):
+			next_index = (index + 1) % values.size()
+			break
+	SettingsRepository.set_value(section, key, values[next_index])
+	_apply_runtime_setting(section, key)
+	SettingsRepository.save_to_disk()
+	_refresh()
+
+
+func _apply_runtime_setting(section: StringName, key: StringName) -> void:
+	if section == &"display" and key == &"fullscreen":
+		DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_FULLSCREEN if bool(SettingsRepository.value(section, key, false)) else DisplayServer.WINDOW_MODE_WINDOWED)
+	if section == &"audio" and key == &"master_volume":
+		var master_bus := AudioServer.get_bus_index("Master")
+		if master_bus >= 0:
+			var volume := float(SettingsRepository.value(&"audio", &"master_volume", 1.0))
+			AudioServer.set_bus_volume_db(master_bus, linear_to_db(maxf(volume, 0.001)))
 
 
 func _build_bestiary_detail(enemy_id: StringName) -> void:

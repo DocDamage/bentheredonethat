@@ -2,7 +2,7 @@ extends Node
 
 signal settings_changed(settings: Dictionary)
 
-const SETTINGS_VERSION := 1
+const SETTINGS_VERSION := 2
 const DEFAULT_SETTINGS_PATH := "user://settings.json"
 const SAVE_REPOSITORY := preload("res://ben_rpg/core/save_repository.gd")
 
@@ -16,10 +16,10 @@ func _ready() -> void:
 static func default_settings() -> Dictionary:
 	return {
 		"version": SETTINGS_VERSION,
-		"audio": {"master_volume": 1.0, "music_volume": 0.8, "sfx_volume": 0.8},
-		"display": {"fullscreen": false, "pixel_scale": 1},
+		"audio": {"master_volume": 1.0, "music_volume": 0.8, "ambience_volume": 0.8, "sfx_volume": 0.8, "ui_volume": 0.8},
+		"display": {"fullscreen": false, "pixel_scale": 1, "ui_scale": 1.0},
 		"battle": {"atb_speed": 1.0, "wait_mode": false, "auto_advance_results": false},
-		"accessibility": {"text_speed": 1.0, "reduce_motion": false, "reduce_flashes": false, "weather_density": 1.0},
+		"accessibility": {"text_speed": 1.0, "text_scale": 1.0, "reduce_motion": false, "reduce_flashes": false, "weather_density": 1.0},
 		"input": {"deadzone": 0.5, "vibration": true},
 		"telemetry": {"enabled": false},
 	}
@@ -87,12 +87,15 @@ static func normalize(source: Dictionary) -> Dictionary:
 	normalized["audio"] = {
 		"master_volume": clampf(float(audio.get("master_volume", 1.0)), 0.0, 1.0),
 		"music_volume": clampf(float(audio.get("music_volume", 0.8)), 0.0, 1.0),
+		"ambience_volume": clampf(float(audio.get("ambience_volume", 0.8)), 0.0, 1.0),
 		"sfx_volume": clampf(float(audio.get("sfx_volume", 0.8)), 0.0, 1.0),
+		"ui_volume": clampf(float(audio.get("ui_volume", 0.8)), 0.0, 1.0),
 	}
 	var display: Dictionary = source.get("display", {})
 	normalized["display"] = {
 		"fullscreen": bool(display.get("fullscreen", false)),
 		"pixel_scale": clampi(int(display.get("pixel_scale", 1)), 1, 4),
+		"ui_scale": clampf(float(display.get("ui_scale", 1.0)), 0.75, 1.5),
 	}
 	var battle: Dictionary = source.get("battle", {})
 	normalized["battle"] = {
@@ -103,6 +106,7 @@ static func normalize(source: Dictionary) -> Dictionary:
 	var accessibility: Dictionary = source.get("accessibility", {})
 	normalized["accessibility"] = {
 		"text_speed": clampf(float(accessibility.get("text_speed", 1.0)), 0.25, 4.0),
+		"text_scale": clampf(float(accessibility.get("text_scale", 1.0)), 0.75, 1.5),
 		"reduce_motion": bool(accessibility.get("reduce_motion", false)),
 		"reduce_flashes": bool(accessibility.get("reduce_flashes", false)),
 		"weather_density": clampf(float(accessibility.get("weather_density", 1.0)), 0.0, 1.0),
