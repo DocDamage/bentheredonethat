@@ -84,10 +84,10 @@ func _draw() -> void:
 		&"primeval_ruins":
 			var room_offset := offset + Vector2(20 * TILE, 0)
 			_profile_prop(&"primeval_ruin_forecourt", ruins, room_offset + Vector2(153, 20))
-			_prop(ruins, Rect2(48, 197, 124, 132), room_offset + Vector2(34, 42), 0.5)
-			_prop(ruins, Rect2(608, 197, 125, 132), room_offset + Vector2(288, 42), 0.5)
-			_prop(ruins, Rect2(53, 380, 121, 104), room_offset + Vector2(36, 139), 0.5)
-			_prop(ruins, Rect2(803, 380, 143, 103), room_offset + Vector2(276, 139), 0.5)
+			_profile_prop(&"primeval_ruins_left_wall", ruins, room_offset + Vector2(34, 42))
+			_profile_prop(&"primeval_ruins_right_wall", ruins, room_offset + Vector2(288, 42))
+			_profile_prop(&"primeval_ruins_left_rubble", ruins, room_offset + Vector2(36, 139))
+			_profile_prop(&"primeval_ruins_right_rubble", ruins, room_offset + Vector2(276, 139))
 		&"primeval_nest":
 			var room_offset := offset + Vector2(10 * TILE, 10 * TILE)
 			_profile_prop(&"primeval_grove_canopy", trees, room_offset + Vector2(8, 26))

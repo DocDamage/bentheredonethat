@@ -61,6 +61,7 @@ func _ready() -> void:
 		&"primeval_grove_canopy_mid_left", &"primeval_grove_canopy_mid", &"primeval_grove_canopy_right",
 		&"primeval_grove_fern_left", &"primeval_grove_fern_right",
 		&"primeval_ruin_forecourt",
+		&"primeval_ruins_left_wall", &"primeval_ruins_right_wall", &"primeval_ruins_left_rubble", &"primeval_ruins_right_rubble",
 		&"primeval_relay_nest",
 		&"primeval_ground_quadrant",
 		&"helios_skybridge_quadrant",

@@ -742,6 +742,26 @@
       "worldDrawSize": [78, 84], "licenseReference": "game/ben_rpg/visual_assets/generated/runtime_asset_provenance.json", "cropApproval": "approved", "goldenCapture": "game/validation/primeval-ruins-rebuilt.png"
     },
     {
+      "id": "primeval_ruins_left_wall", "kind": "building",
+      "source": {"pack": "Jurassic World Pixel Art Megapack", "runtimeTexture": "game/game_assets/Tilesets/Jurassic world/Jurassic World Pixel Art Megapack/19. Modular jungle ruins.png", "sourceChecksum": "f92378dcbb1f0bab0191299438b05b5f2981da7e3fc2a0a72e4a42a215c932ab", "sourceDensity": 96, "region": [48, 197, 124, 132], "alphaBounds": [48, 197, 124, 132]},
+      "placement": {"footAnchor": [62, 131], "scaleClass": "building", "collisionFootprint": "ruin_base"}, "worldDrawSize": [62, 66], "licenseReference": "game/ben_rpg/visual_assets/generated/runtime_asset_provenance.json", "cropApproval": "approved", "goldenCapture": "game/validation/primeval-ruins-rebuilt.png"
+    },
+    {
+      "id": "primeval_ruins_right_wall", "kind": "building",
+      "source": {"pack": "Jurassic World Pixel Art Megapack", "runtimeTexture": "game/game_assets/Tilesets/Jurassic world/Jurassic World Pixel Art Megapack/19. Modular jungle ruins.png", "sourceChecksum": "f92378dcbb1f0bab0191299438b05b5f2981da7e3fc2a0a72e4a42a215c932ab", "sourceDensity": 96, "region": [608, 197, 125, 132], "alphaBounds": [608, 197, 125, 132]},
+      "placement": {"footAnchor": [62, 131], "scaleClass": "building", "collisionFootprint": "ruin_base"}, "worldDrawSize": [63, 66], "licenseReference": "game/ben_rpg/visual_assets/generated/runtime_asset_provenance.json", "cropApproval": "approved", "goldenCapture": "game/validation/primeval-ruins-rebuilt.png"
+    },
+    {
+      "id": "primeval_ruins_left_rubble", "kind": "prop",
+      "source": {"pack": "Jurassic World Pixel Art Megapack", "runtimeTexture": "game/game_assets/Tilesets/Jurassic world/Jurassic World Pixel Art Megapack/19. Modular jungle ruins.png", "sourceChecksum": "f92378dcbb1f0bab0191299438b05b5f2981da7e3fc2a0a72e4a42a215c932ab", "sourceDensity": 96, "region": [53, 380, 121, 104], "alphaBounds": [53, 380, 121, 104]},
+      "placement": {"footAnchor": [60, 103], "scaleClass": "prop", "collisionFootprint": "rubble_base"}, "worldDrawSize": [61, 52], "licenseReference": "game/ben_rpg/visual_assets/generated/runtime_asset_provenance.json", "cropApproval": "approved", "goldenCapture": "game/validation/primeval-ruins-rebuilt.png"
+    },
+    {
+      "id": "primeval_ruins_right_rubble", "kind": "prop",
+      "source": {"pack": "Jurassic World Pixel Art Megapack", "runtimeTexture": "game/game_assets/Tilesets/Jurassic world/Jurassic World Pixel Art Megapack/19. Modular jungle ruins.png", "sourceChecksum": "f92378dcbb1f0bab0191299438b05b5f2981da7e3fc2a0a72e4a42a215c932ab", "sourceDensity": 96, "region": [803, 380, 143, 103], "alphaBounds": [803, 380, 143, 103]},
+      "placement": {"footAnchor": [71, 102], "scaleClass": "prop", "collisionFootprint": "rubble_base"}, "worldDrawSize": [72, 52], "licenseReference": "game/ben_rpg/visual_assets/generated/runtime_asset_provenance.json", "cropApproval": "approved", "goldenCapture": "game/validation/primeval-ruins-rebuilt.png"
+    },
+    {
       "id": "primeval_relay_nest",
       "kind": "prop",
       "source": {"pack": "Jurassic World Pixel Art Megapack", "runtimeTexture": "game/game_assets/Tilesets/Jurassic world/Jurassic World Pixel Art Megapack/11. Dinosaur nests and eggs.png", "sourceChecksum": "13d6547c31a25aafa7890c596dd679adcb0d17dfdb9ea76b4516b062b8c9ee56", "sourceDensity": 96, "region": [15, 265, 176, 153], "alphaBounds": [15, 265, 176, 153]},

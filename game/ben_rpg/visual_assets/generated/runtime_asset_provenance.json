@@ -608,7 +608,11 @@
       ],
       "path": "res://game_assets/Tilesets/Jurassic world/Jurassic World Pixel Art Megapack/19. Modular jungle ruins.png",
       "profileIds": [
-        "primeval_ruin_forecourt"
+        "primeval_ruin_forecourt",
+        "primeval_ruins_left_rubble",
+        "primeval_ruins_left_wall",
+        "primeval_ruins_right_rubble",
+        "primeval_ruins_right_wall"
       ],
       "sourceGroup": "Tilesets/Jurassic world"
     },
