@@ -2892,6 +2892,46 @@
       "cropApproval": "approved",
       "distributionEligibility": "review_required",
       "goldenCapture": "game/validation/frosthold-crystal-causeway.png",
+      "id": "frosthold_causeway_bridge_lower",
+      "kind": "prop",
+      "licenseReference": "game/ben_rpg/visual_assets/generated/runtime_asset_provenance.json",
+      "placement": {
+        "collisionFootprint": "bridge_deck",
+        "footAnchor": [
+          85,
+          214
+        ],
+        "scaleClass": "prop"
+      },
+      "releaseVisualAcceptance": "prototype_only",
+      "source": {
+        "alphaBounds": [
+          280,
+          174,
+          170,
+          215
+        ],
+        "pack": "Frozen Kingdom Top-Down Pixel Art Asset Pack",
+        "region": [
+          280,
+          174,
+          170,
+          215
+        ],
+        "runtimeTexture": "game/game_assets/Tilesets/Frozen kingdom/Frozen Kingdom – Top-Down Pixel Art Asset Pack/8. Icy bridges.png",
+        "sha256": "b7f9ff9aa315da305607ef2debdfcaa1db32a4fd2086f53a660721af3b873a95",
+        "sourceChecksum": "b7f9ff9aa315da305607ef2debdfcaa1db32a4fd2086f53a660721af3b873a95",
+        "sourceDensity": 96
+      },
+      "worldDrawSize": [
+        85,
+        108
+      ]
+    },
+    {
+      "cropApproval": "approved",
+      "distributionEligibility": "review_required",
+      "goldenCapture": "game/validation/frosthold-crystal-causeway.png",
       "id": "frosthold_causeway_crystal_bank",
       "kind": "prop",
       "licenseReference": "game/ben_rpg/visual_assets/generated/runtime_asset_provenance.json",
@@ -2926,6 +2966,46 @@
       "worldDrawSize": [
         84,
         121
+      ]
+    },
+    {
+      "cropApproval": "approved",
+      "distributionEligibility": "review_required",
+      "goldenCapture": "game/validation/frosthold-crystal-causeway.png",
+      "id": "frosthold_causeway_crystal_bank_right",
+      "kind": "prop",
+      "licenseReference": "game/ben_rpg/visual_assets/generated/runtime_asset_provenance.json",
+      "placement": {
+        "collisionFootprint": "crystal_bank",
+        "footAnchor": [
+          92,
+          229
+        ],
+        "scaleClass": "prop"
+      },
+      "releaseVisualAcceptance": "prototype_only",
+      "source": {
+        "alphaBounds": [
+          286,
+          176,
+          184,
+          230
+        ],
+        "pack": "Frozen Kingdom Top-Down Pixel Art Asset Pack",
+        "region": [
+          286,
+          176,
+          184,
+          230
+        ],
+        "runtimeTexture": "game/game_assets/Tilesets/Frozen kingdom/Frozen Kingdom – Top-Down Pixel Art Asset Pack/9. Crystal formations.png",
+        "sha256": "f27b53a6eb53b4c667852a7793010bda7081109930d765814c0ddf5ca2a51506",
+        "sourceChecksum": "f27b53a6eb53b4c667852a7793010bda7081109930d765814c0ddf5ca2a51506",
+        "sourceDensity": 96
+      },
+      "worldDrawSize": [
+        92,
+        115
       ]
     },
     {

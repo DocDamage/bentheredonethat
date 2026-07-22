@@ -454,6 +454,16 @@
       "worldDrawSize": [85, 108], "licenseReference": "game/ben_rpg/visual_assets/generated/runtime_asset_provenance.json", "cropApproval": "approved", "goldenCapture": "game/validation/frosthold-crystal-causeway.png"
     },
     {
+      "id": "frosthold_causeway_crystal_bank_right", "kind": "prop",
+      "source": {"pack": "Frozen Kingdom Top-Down Pixel Art Asset Pack", "runtimeTexture": "game/game_assets/Tilesets/Frozen kingdom/Frozen Kingdom – Top-Down Pixel Art Asset Pack/9. Crystal formations.png", "sourceChecksum": "f27b53a6eb53b4c667852a7793010bda7081109930d765814c0ddf5ca2a51506", "sourceDensity": 96, "region": [286, 176, 184, 230], "alphaBounds": [286, 176, 184, 230]},
+      "placement": {"footAnchor": [92, 229], "scaleClass": "prop", "collisionFootprint": "crystal_bank"}, "worldDrawSize": [92, 115], "licenseReference": "game/ben_rpg/visual_assets/generated/runtime_asset_provenance.json", "cropApproval": "approved", "goldenCapture": "game/validation/frosthold-crystal-causeway.png"
+    },
+    {
+      "id": "frosthold_causeway_bridge_lower", "kind": "prop",
+      "source": {"pack": "Frozen Kingdom Top-Down Pixel Art Asset Pack", "runtimeTexture": "game/game_assets/Tilesets/Frozen kingdom/Frozen Kingdom – Top-Down Pixel Art Asset Pack/8. Icy bridges.png", "sourceChecksum": "b7f9ff9aa315da305607ef2debdfcaa1db32a4fd2086f53a660721af3b873a95", "sourceDensity": 96, "region": [280, 174, 170, 215], "alphaBounds": [280, 174, 170, 215]},
+      "placement": {"footAnchor": [85, 214], "scaleClass": "prop", "collisionFootprint": "bridge_deck"}, "worldDrawSize": [85, 108], "licenseReference": "game/ben_rpg/visual_assets/generated/runtime_asset_provenance.json", "cropApproval": "approved", "goldenCapture": "game/validation/frosthold-crystal-causeway.png"
+    },
+    {
       "id": "frosthold_causeway_rune",
       "kind": "prop",
       "source": {"pack": "Frozen Kingdom Top-Down Pixel Art Asset Pack", "runtimeTexture": "game/game_assets/Tilesets/Frozen kingdom/Frozen Kingdom – Top-Down Pixel Art Asset Pack/14. Magical runes.png", "sourceChecksum": "dfbf6d94877b512af25a1f80c6e8b13fbd64dbe745422bc284964215a3ca52c7", "sourceDensity": 96, "region": [61, 736, 127, 128], "alphaBounds": [61, 736, 127, 128]},

@@ -458,7 +458,8 @@
       ],
       "path": "res://game_assets/Tilesets/Frozen kingdom/Frozen Kingdom – Top-Down Pixel Art Asset Pack/8. Icy bridges.png",
       "profileIds": [
-        "frosthold_causeway_bridge"
+        "frosthold_causeway_bridge",
+        "frosthold_causeway_bridge_lower"
       ],
       "sourceGroup": "Tilesets/Frozen kingdom"
     },
@@ -470,7 +471,8 @@
       ],
       "path": "res://game_assets/Tilesets/Frozen kingdom/Frozen Kingdom – Top-Down Pixel Art Asset Pack/9. Crystal formations.png",
       "profileIds": [
-        "frosthold_causeway_crystal_bank"
+        "frosthold_causeway_crystal_bank",
+        "frosthold_causeway_crystal_bank_right"
       ],
       "sourceGroup": "Tilesets/Frozen kingdom"
     },

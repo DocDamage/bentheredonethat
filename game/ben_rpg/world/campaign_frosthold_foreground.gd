@@ -88,9 +88,9 @@ func _draw() -> void:
 		&"frosthold_causeway":
 			var room_offset := offset + Vector2(20 * TILE, 0)
 			_profile_prop(&"frosthold_causeway_crystal_bank", crystals, room_offset + Vector2(10, 36))
-			_prop(crystals, Rect2(286, 176, 184, 230), room_offset + Vector2(286, 40))
+			_profile_prop(&"frosthold_causeway_crystal_bank_right", crystals, room_offset + Vector2(286, 40))
 			_profile_prop(&"frosthold_causeway_bridge", bridges, room_offset + Vector2(149, 20))
-			_prop(bridges, Rect2(280, 174, 170, 215), room_offset + Vector2(149, 122))
+			_profile_prop(&"frosthold_causeway_bridge_lower", bridges, room_offset + Vector2(149, 122))
 			_profile_prop(&"frosthold_causeway_rune", runes, room_offset + Vector2(160, 226))
 		&"frosthold_rune_hall":
 			var room_offset := offset + Vector2(10 * TILE, 10 * TILE)
