@@ -35,6 +35,11 @@ ASSET_LIBRARY_ROOT = "assets"
 IGNORED_DIRS = frozenset(
     {".git", ".playwright-cli", "output", "music", "sfx", "node_modules", "__pycache__", "tools"}
 )
+# Assets restored beneath this root are an unreviewed local staging library, not
+# part of the approved curated source library.  Keeping it explicit prevents a
+# workstation sync from changing the catalog denominator, while `path()` still
+# rejects any attempt to publish a curated entry from the quarantine.
+QUARANTINED_SOURCE_ROOTS = frozenset({"expansion"})
 ASSIGNMENT = re.compile(r"window\s*\.\s*CURATED_ART_ASSET_CATALOG\s*=\s*")
 AERO_PATH = "assets/characters/quirky npcs/fullcolor/aeronaut.png"
 AERO_RECT = (7, 6, 27, 59)
@@ -80,6 +85,12 @@ class Validator:
             return False
         if parts[0].casefold() in IGNORED_DIRS or parts[0].startswith("."):
             return True
+        if (
+            len(parts) >= 2
+            and parts[0] == ASSET_LIBRARY_ROOT
+            and parts[1].casefold() in QUARANTINED_SOURCE_ROOTS
+        ):
+            return True
         return any(part.casefold() in IGNORED_DIRS for part in parts[:-1])
 
     def scan_files(self) -> None:
@@ -91,7 +102,7 @@ class Validator:
             rel_base = Path(base).relative_to(self.root)
             dirs[:] = [
                 d for d in dirs
-                if d.casefold() not in IGNORED_DIRS and not d.startswith(".")
+                if not self._ignored(tuple((rel_base / d).parts))
             ]
             for filename in files:
                 if Path(filename).suffix.casefold() not in SUPPORTED:

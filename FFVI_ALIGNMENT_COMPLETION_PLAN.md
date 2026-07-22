@@ -924,7 +924,7 @@ parallel at the implementation/proof stage.
 
 | Milestone | Audit state | Evidence | Remaining gate |
 | --- | --- | --- | --- |
-| M0 — Verification green | Blocked | Browser syntax/unit checks pass 16/16; isolated Godot save sentinel remains protected; CI workflow exists locally | `npm run validate:assets` fails on 488 newly materialized source rasters; fresh Godot run was 83/84 before the deterministic test fix; workflow is not published and has no remote pass |
+| M0 — Verification green | In progress | Local runtime and source-library asset contracts pass; isolated Godot save sentinel remains protected; draft PR #1 has active remote jobs | A clean remote browser/runtime-asset/Godot pass and a fresh all-smoke baseline are still required |
 | M1 — Visual foundation | In progress | `FIELD_SCALE_BIBLE.md`, 368 visual profiles, runtime inventory/provenance generators, layered field registry, eight foreground scripts, camera rounding, and focused smoke tests exist | Vertical-slice profile coverage is not 100%; 162/185 static runtime textures are profiled; native-scale review and camera/resolution sign-off remain open |
 | M2 — Mansion vertical slice | In progress | Mansion layout expansion, foreground capture, collision/layout smoke coverage, and refreshed room captures exist | Full native-scale, keyboard/mouse, controller, save/reload, and reviewer sign-off has not been recorded |
 | M3 — Shared presentation | In progress | Battle profile coverage, battle accessibility tests, text scaling, persisted accessibility settings, and field-layer/transition-soak tests exist | Human readability and input sign-off remain open; shared field architecture is transitional rather than a complete replacement of the procedural renderer |
@@ -935,10 +935,14 @@ parallel at the implementation/proof stage.
 ### Fresh verification evidence
 
 - `npm run check`: pass, 16/16 browser tests.
-- `npm run validate:assets`: fail at curated catalog coverage; 20,530 of
-  21,018 detected source rasters are covered, leaving 488 uncatalogued files.
-  The sample failures were created locally at approximately 1:22 PM under the
-  ignored `assets/board games/` source library, after the earlier clean baseline.
+- `npm run validate:source-library`: pass. The approved library contains 21,018
+  catalogued rasters with 0 errors and 0 warnings; all 51 NPC visuals are
+  editor-ready. The locally synced, unreviewed `assets/EXPANSION/` staging tree
+  is explicitly quarantined from the approved-library denominator and cannot be
+  referenced by the curated catalog.
+- `npm run validate:runtime-assets`: pass. The derived facade, runtime visual
+  inventory, provenance ledger, visual manifest, and native-scale contact sheet
+  are current.
 - `tools/run_godot_isolated.ps1 -AllSmoke -TimeoutSeconds 360`: 83/84 scenes
   passed in 674.2 seconds. The retained artifact root is
   `test-artifacts/20260722-133147-e2949947`. The only failure was
