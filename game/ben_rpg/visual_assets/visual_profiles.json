@@ -24,6 +24,28 @@
       "goldenCapture": "game/validation/town-cafe-service-live.png"
     },
     {
+      "id": "town_library_facade",
+      "kind": "building",
+      "source": {
+        "pack": "Modern World Overworld Pixel Tileset",
+        "runtimeTexture": "game/ben_rpg/visual_assets/derived/town_library_facade.png",
+        "sourceChecksum": "a1942e5972560d3a6169261eae62761c6e31f72ea979a6539a3862ed16fa05c4",
+        "sourceDensity": 48,
+        "region": [0, 0, 102, 96],
+        "alphaBounds": [0, 0, 102, 96]
+      },
+      "placement": {
+        "footAnchor": [51, 95],
+        "doorway": [52, 95],
+        "scaleClass": "building",
+        "collisionFootprint": "facade_doorway"
+      },
+      "worldDrawSize": [204, 192],
+      "licenseReference": "game/ben_rpg/visual_assets/generated/runtime_asset_provenance.json",
+      "cropApproval": "approved",
+      "goldenCapture": "game/validation/town-facilities-overview-rebuilt.png"
+    },
+    {
       "id": "laboratory_exterior",
       "kind": "building",
       "source": {

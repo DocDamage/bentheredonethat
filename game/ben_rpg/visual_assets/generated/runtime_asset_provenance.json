@@ -176,6 +176,18 @@
       "localLicenseEvidence": [
         "game/LICENSE"
       ],
+      "path": "res://ben_rpg/visual_assets/derived/town_library_facade.png",
+      "profileIds": [
+        "town_library_facade"
+      ],
+      "sourceGroup": "ben_rpg/visual_assets"
+    },
+    {
+      "distributionEligibility": "review_required",
+      "licenseReviewStatus": "review_required",
+      "localLicenseEvidence": [
+        "game/LICENSE"
+      ],
       "path": "res://combat/arenas/steppes.png",
       "profileIds": [],
       "sourceGroup": "combat/arenas"
@@ -2104,13 +2116,13 @@
   "schemaVersion": 2,
   "scope": "static Godot raster references; not a reachability or license-grant proof",
   "summary": {
-    "assets": 160,
+    "assets": 161,
     "distributionEligibility": {
       "distribution_confirmed": 0,
       "rejected": 0,
-      "review_required": 160
+      "review_required": 161
     },
     "needsManualLicenseConfirmation": 0,
-    "withLocalLicenseEvidence": 160
+    "withLocalLicenseEvidence": 161
   }
 }

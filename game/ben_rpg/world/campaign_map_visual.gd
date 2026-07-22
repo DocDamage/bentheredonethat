@@ -53,81 +53,32 @@ const FACILITY_PLOTS := [
 	Rect2i(25, 20, 5, 5),
 	Rect2i(7, 20, 5, 5),
 ]
-const FACILITY_CROPS := {
-	"Cafe": Rect2(672, 208, 96, 80),
-	# This is the complete clock-school facade inside the authored town sample.
-	# Its facade proper begins at x=141 and ends at x=242; the wider connected
-	# component also contains foliage from the showcase scene. The previous x=144
-	# crop removed the left cornice, while the later component-wide crop exposed
-	# narrow tree/lawn strips on both sides. These are the actual facade bounds.
-	"Library": Rect2(141, 290, 102, 96),
-	"Clinic": Rect2(288, 300, 96, 84),
-	# Complete two-bay civic workshop facade with its roof, crest, and doors.
-	"Armory": Rect2(576, 304, 96, 80),
-	"Trailhead Lodge": Rect2(387, 2, 90, 92),
-	"Cold Storage": Rect2(29, 198, 182, 240),
-	"Tea House": Rect2(572, 802, 220, 165),
-}
 const FACILITY_PROFILE_IDS := {
 	"Cafe": &"town_cafe_facade",
+	"Library": &"town_library_facade",
 	"Clinic": &"town_clinic_facade",
 	"Armory": &"town_armory_facade",
+	"Haunted Mansion": &"haunted_mansion_exterior",
 	"Trailhead Lodge": &"town_trailhead_lodge_facade",
 	"Cold Storage": &"town_cold_storage_facade",
 	"Tea House": &"town_tea_house_facade",
 }
-const FACILITY_SCALES := {
-	"Cafe": 2.0,
-	"Library": 2.0,
-	"Clinic": 2.0,
-	"Armory": 2.0,
-	"Haunted Mansion": 1.0,
-	"Observatory": 2.0,
-	"Trailhead Lodge": 2.0,
-	"Afterlight Club": 2.0,
-	"Cold Storage": 1.0,
-	"Tea House": 1.0,
-	"Belfry": 1.0,
-}
-# Horizontal doorway anchors measured within each exact source crop. Aligning
-# these—not the sprite's bounding-box center—to the functional plot doorway
-# keeps interaction, collision, and the painted entrance in the same place.
-const FACILITY_DOOR_X := {
-	"Cafe": 48.0,
-	"Library": 52.0,
-	"Clinic": 48.0,
-	"Armory": 48.0,
-	"Haunted Mansion": 72.0,
-	"Observatory": 45.0,
-	"Trailhead Lodge": 45.0,
-	"Afterlight Club": 47.0,
-	"Cold Storage": 91.0,
-	"Tea House": 110.0,
-	"Belfry": 112.0,
-}
-const HAUNTED_EXTERIOR_CROP := Rect2(384, 0, 240, 160)
 
 var lab_wall: Texture2D
 var lab_utility: Texture2D
 var lab_props: Texture2D
 var lab_doors: Texture2D
 var town_ground: Texture2D
-var town_structures: Texture2D
-var library_facade: Texture2D
-var haunted_exterior: Texture2D
 var haunted_interior: Texture2D
 var haunted_storage: Texture2D
 var haunted_bedroom: Texture2D
 var station_architecture: Texture2D
 var primeval_ground: Texture2D
-var primeval_structures: Texture2D
 var helios_city: Texture2D
 var helios_services: Texture2D
 var helios_structures: Texture2D
 var nightclub_signs: Texture2D
 var frozen_ground: Texture2D
-var frozen_houses: Texture2D
-var sakura_temple: Texture2D
 var sakura_paths: Texture2D
 var empyreal_floor: Texture2D
 var empyreal_columns: Texture2D
@@ -159,22 +110,16 @@ func _ready() -> void:
 	lab_props = visual_profiles.texture(&"laboratory_analysis_station")
 	lab_doors = visual_profiles.texture(&"laboratory_exit_doors")
 	town_ground = visual_profiles.texture(&"town_grass_tile")
-	town_structures = visual_profiles.texture(&"town_cafe_facade")
-	library_facade = _slice_sample_facade(town_structures, FACILITY_CROPS["Library"])
-	haunted_exterior = visual_profiles.texture(&"haunted_mansion_exterior")
 	haunted_interior = visual_profiles.texture(&"mansion_archive_cabinet")
 	haunted_bedroom = visual_profiles.texture(&"mansion_nursery_bed")
 	haunted_storage = visual_profiles.texture(&"mansion_archive_shelving")
 	station_architecture = load("res://game_assets/Tilesets/Sci-Fi Spaceship Interior Tileset Pack/1.png")
 	primeval_ground = visual_profiles.texture(&"primeval_ground_quadrant")
-	primeval_structures = visual_profiles.texture(&"primeval_village_dwelling")
 	helios_city = visual_profiles.texture(&"helios_skybridge_quadrant")
 	helios_services = visual_profiles.texture(&"helios_market_quadrant")
 	helios_structures = visual_profiles.texture(&"helios_observatory_facade")
 	nightclub_signs = visual_profiles.texture(&"afterlight_club_sign")
 	frozen_ground = visual_profiles.texture(&"frosthold_snow_ground_tile")
-	frozen_houses = visual_profiles.texture(&"frosthold_market_house")
-	sakura_temple = visual_profiles.texture(&"moonpetal_court_temple")
 	sakura_paths = visual_profiles.texture(&"moonpetal_processional_path")
 	empyreal_clouds = visual_profiles.texture(&"empyreal_sky_cloud_bank")
 	for slice_name in ["marble_plain", "marble_cracked", "marble_silver", "marble_gold", "marble_gold_quarter", "pediment_door", "tribunal_gate", "blue_balustrade", "winged_statue", "horse_statue", "griffin_statue", "justice_statue", "music_statue", "silver_olive_tree", "golden_olive_tree", "appeal_fountain", "ordinance_book", "reliquary_portal", "gravity_crystal", "tribunal_orrery", "celestial_flame", "plain_column", "blue_column", "flower_offering", "fruit_offering", "crystal_altar", "lotus_altar", "belfry_facade"]:
@@ -201,26 +146,15 @@ func profile_tile(profile_id: StringName, texture: Texture2D, destination_positi
 	tile(texture, source, Rect2(position, size))
 
 
-func _slice_sample_facade(texture: Texture2D, source: Rect2) -> Texture2D:
-	# Some authored showcase maps paint their buildings directly onto a lawn.
-	# Extract the measured facade and remove only that pack's narrow lawn-color
-	# range in memory. This preserves the actual facade/hedges while preventing a
-	# rectangular sample-map seam from being stamped over the town's own grass.
-	var image := texture.get_image().get_region(Rect2i(source))
-	for y in range(image.get_height()):
-		for x in range(image.get_width()):
-			var pixel := image.get_pixel(x, y)
-			var is_sample_lawn := (
-				pixel.a > 0.0
-				and pixel.r >= 0.45 and pixel.r <= 0.60
-				and pixel.g >= 0.68 and pixel.g <= 0.82
-				and pixel.b >= 0.25 and pixel.b <= 0.48
-				and pixel.g - pixel.r >= 0.14
-			)
-			if is_sample_lawn:
-				pixel.a = 0.0
-				image.set_pixel(x, y, pixel)
-	return ImageTexture.create_from_image(image)
+func profile_doorway_world_x(profile_id: StringName) -> float:
+	# Doorway anchors live in source pixels; facades may draw at a larger world
+	# size. Convert once here so every profile-backed facility aligns its painted
+	# entrance with the functional plot doorway.
+	var source: Rect2 = visual_profiles.region(profile_id)
+	var size: Vector2 = visual_profiles.world_draw_size(profile_id)
+	if source.size.x <= 0.0:
+		return size.x * 0.5
+	return visual_profiles.doorway(profile_id).x * size.x / source.size.x
 
 
 func _draw() -> void:
@@ -400,29 +334,18 @@ func _draw_facility(plot: Rect2, facility_name: String) -> void:
 		_draw_belfry_facility(plot)
 		return
 	_draw_facility_foundation(plot)
-	var source: Rect2 = HAUNTED_EXTERIOR_CROP if facility_name == "Haunted Mansion" else FACILITY_CROPS[facility_name]
-	var texture := haunted_exterior if facility_name == "Haunted Mansion" else (primeval_structures if facility_name == "Trailhead Lodge" else (frozen_houses if facility_name == "Cold Storage" else (sakura_temple if facility_name == "Tea House" else town_structures)))
-	if facility_name == "Library" and library_facade:
-		texture = library_facade
-		source = Rect2(Vector2.ZERO, library_facade.get_size())
-	var authored_scale: float = FACILITY_SCALES.get(facility_name, 1.0)
-	var destination_size: Vector2 = source.size * authored_scale
-	var door_x: float = float(FACILITY_DOOR_X.get(facility_name, source.size.x * 0.5)) * authored_scale
 	var profile_id: StringName = FACILITY_PROFILE_IDS.get(facility_name, &"")
-	if profile_id != &"":
-		texture = visual_profiles.texture(profile_id)
-		source = visual_profiles.region(profile_id)
-		destination_size = visual_profiles.world_draw_size(profile_id)
-		door_x = visual_profiles.doorway(profile_id).x
-	elif facility_name == "Haunted Mansion":
-		source = visual_profiles.region(&"haunted_mansion_exterior")
-		destination_size = visual_profiles.world_draw_size(&"haunted_mansion_exterior")
-		door_x = visual_profiles.doorway(&"haunted_mansion_exterior").x
+	if profile_id == &"":
+		push_error("Missing facility visual profile: %s" % facility_name)
+		return
+	var texture: Texture2D = visual_profiles.texture(profile_id)
+	var destination_size: Vector2 = visual_profiles.world_draw_size(profile_id)
+	var door_x: float = profile_doorway_world_x(profile_id)
 	var destination := Rect2(
 		Vector2(roundf(plot.get_center().x - door_x), roundf(plot.end.y - destination_size.y - 8)),
 		destination_size
 	)
-	tile(texture, source, destination)
+	profile_tile(profile_id, texture, destination.position)
 	if facility_name == "Cafe" and CampaignState.facility_has_upgrade("Cafe", &"cafe_hearth_exchange"):
 		# The installed hearth is readable from the field: a warm service awning
 		# and two window lights travel with the building when it is relocated.
@@ -461,9 +384,8 @@ func _draw_observatory_facility(plot: Rect2) -> void:
 	# contains its roof, curved observation windows, walls, and centered entrance.
 	_draw_facility_foundation(plot)
 	var profile_id := &"helios_observatory_facade"
-	var building_source: Rect2 = visual_profiles.region(profile_id)
 	var building_size: Vector2 = visual_profiles.world_draw_size(profile_id)
-	var door_x: float = visual_profiles.doorway(profile_id).x * building_size.x / building_source.size.x
+	var door_x: float = profile_doorway_world_x(profile_id)
 	var building_origin := Vector2(
 		roundf(plot.get_center().x - door_x),
 		roundf(plot.end.y - building_size.y - 6)
@@ -477,9 +399,8 @@ func _draw_afterlight_club_facility(plot: Rect2) -> void:
 	# reduced by exactly 1/2 so both packs share the town's pixel density.
 	_draw_facility_foundation(plot)
 	var building_profile := &"afterlight_club_facade"
-	var building_source: Rect2 = visual_profiles.region(building_profile)
 	var building_size: Vector2 = visual_profiles.world_draw_size(building_profile)
-	var door_x: float = visual_profiles.doorway(building_profile).x * building_size.x / building_source.size.x
+	var door_x: float = profile_doorway_world_x(building_profile)
 	var building_origin := Vector2(
 		roundf(plot.get_center().x - door_x),
 		roundf(plot.end.y - building_size.y - 6)

@@ -9,6 +9,7 @@ func _ready() -> void:
 	var registry = PROFILE_REGISTRY.new()
 	for profile_id in [
 		&"laboratory_exterior",
+		&"town_library_facade",
 		&"town_ranch_tree_small",
 		&"town_ranch_tree_tall",
 		&"town_clinic_facade",
