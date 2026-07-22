@@ -108,7 +108,7 @@ const UNIVERSE_DEFINITIONS := {
 		"description": "A spotless sky city that outlawed night after deciding sleep was economically suspicious.",
 		"mandatory_first": false,
 		"required_recruits": [],
-		"required_flags": [&"primeval_scenario_complete"],
+		"required_flags": [&"asterion_station_complete"],
 		"anchor_flag": &"helios_anchor_built",
 	},
 	&"frosthold_kingdom": {
@@ -118,7 +118,8 @@ const UNIVERSE_DEFINITIONS := {
 		"description": "A frozen court where winter is permanent, heat is contraband, and the royal treasury has begun auditing body temperature.",
 		"mandatory_first": false,
 		"required_recruits": [],
-		"required_flags": [&"helios_scenario_complete"],
+		"required_flags": [],
+		"required_any_flags": [&"primeval_scenario_complete", &"helios_scenario_complete"],
 		"anchor_flag": &"frosthold_anchor_built",
 	},
 	&"moonpetal_court": {
@@ -128,7 +129,7 @@ const UNIVERSE_DEFINITIONS := {
 		"description": "A shrine-city trapped in a perfect festival night, where a smiling magistrate taxes memories and notarizes illusions.",
 		"mandatory_first": false,
 		"required_recruits": [],
-		"required_flags": [&"frosthold_scenario_complete"],
+		"required_flags": [&"primeval_scenario_complete", &"helios_scenario_complete", &"frosthold_scenario_complete"],
 		"anchor_flag": &"moonpetal_anchor_built",
 	},
 	&"empyreal_court": {
@@ -141,6 +142,13 @@ const UNIVERSE_DEFINITIONS := {
 		"required_flags": [&"moonpetal_scenario_complete"],
 		"anchor_flag": &"empyreal_anchor_built",
 	},
+}
+const TOWN_STATE_OVERLAYS := {
+	&"survey": {"name": "Survey", "description": "Fresh stakes, quiet roads, and enough room for a company to become a town.", "tint": Color(0.24, 0.15, 0.05, 0.035), "accent": Color(0.96, 0.76, 0.30, 0.52)},
+	&"founding": {"name": "Founding", "description": "The first civic block is lit; construction still has the stronger voice.", "tint": Color(0.08, 0.18, 0.07, 0.035), "accent": Color(0.58, 0.92, 0.42, 0.54)},
+	&"early_anchors": {"name": "Early Anchors", "description": "The town has begun importing impossible weather, visitors, and practical optimism.", "tint": Color(0.05, 0.15, 0.22, 0.055), "accent": Color(0.35, 0.88, 1.0, 0.58)},
+	&"multiversal": {"name": "Multiversal Town", "description": "Several stabilized worlds now leave visible traces in New Philadelphia's evening glow.", "tint": Color(0.16, 0.08, 0.24, 0.065), "accent": Color(0.82, 0.50, 1.0, 0.62)},
+	&"finale": {"name": "Finale and Postgame", "description": "All anchors are steady. The town's shared lights now answer one another across worlds.", "tint": Color(0.22, 0.16, 0.03, 0.075), "accent": Color(1.0, 0.84, 0.36, 0.70)},
 }
 # Every scenario anchor uses this single source of truth for saving, recovery,
 # retry metadata, and roster access. Cells are absolute gameboard cells so a
@@ -656,9 +664,9 @@ const QUEST_DEFINITIONS := {
 		"rewards": {"duckets": 320, "items": {&"phoenix_tonic": 1, &"research_notes": 1, &"anchor_dust": 2}, "party_experience": 180},
 	},
 	&"a_brighter_night": {
-		"title": "A Brighter Night", "category": &"main", "giver": "Primeval Cave Computer", "icon": "dfgui_icon-lightning.png",
-		"description": "The cave computer has received a parking citation from a city where the sun never sets. Anchor Helios Arcology through a proper night establishment.",
-		"requires_quests": [&"municipal_extinction"],
+		"title": "A Brighter Night", "category": &"main", "giver": "Asterion Navigation Archive", "icon": "dfgui_icon-lightning.png",
+		"description": "Asterion's recovered navigation archive identifies a city where the sun never sets. Anchor Helios Arcology through a proper night establishment; Primeval's cave computer can explain the connection later.",
+		"requires_quests": [&"the_last_shift"],
 		"steps": [
 			{"text": "Build the Afterlight Club and anchor Helios Arcology.", "condition": {"type": &"facility_built", "id": "Afterlight Club"}},
 			{"text": "Enter Helios Arcology through the Club.", "condition": {"type": &"story_flag", "id": &"helios_entered"}},
@@ -686,7 +694,7 @@ const QUEST_DEFINITIONS := {
 	&"a_colder_address": {
 		"title": "A Colder Address", "category": &"main", "giver": "Helios Midnight Anchor", "icon": "dfgui_icon-cauldron.png",
 		"description": "The restored Helios night cycle reveals a signal that is colder than empty space and considerably more bureaucratic. Build Cold Storage and anchor Frosthold Kingdom.",
-		"requires_quests": [&"mandatory_daylight"],
+		"requires_any_quests": [&"municipal_extinction", &"mandatory_daylight"],
 		"steps": [
 			{"text": "Build Cold Storage and anchor Frosthold Kingdom.", "condition": {"type": &"facility_built", "id": "Cold Storage"}},
 			{"text": "Enter Frosthold Kingdom through Cold Storage.", "condition": {"type": &"story_flag", "id": &"frosthold_entered"}},
@@ -713,7 +721,7 @@ const QUEST_DEFINITIONS := {
 	&"tea_beyond_winter": {
 		"title": "Tea Beyond Winter", "category": &"main", "giver": "Frosthold Repeal Office", "icon": "dfgui_icon-goblet.png",
 		"description": "A recovered tax receipt bears a cherry blossom seal and records a warm evening that Frosthold never had. Build a Tea House and anchor the impossible address.",
-		"requires_quests": [&"the_frozen_ledger"],
+		"requires_quests": [&"the_frozen_ledger", &"municipal_extinction", &"mandatory_daylight"],
 		"steps": [
 			{"text": "Build the Tea House and anchor Moonpetal Court.", "condition": {"type": &"facility_built", "id": "Tea House"}},
 			{"text": "Enter Moonpetal Court through the Tea House.", "condition": {"type": &"story_flag", "id": &"moonpetal_entered"}},
@@ -849,6 +857,19 @@ const QUEST_DEFINITIONS := {
 			{"text": "Complete the Library assignment: Decode Mansion Echoes.", "condition": {"type": &"job_completed", "id": &"library_decode_echoes"}},
 		],
 		"rewards": {"duckets": 100, "items": {&"anchor_dust": 2}},
+	},
+	&"the_mansions_second_opinion": {
+		"title": "The Mansion's Second Opinion", "category": &"side", "giver": "The Solved Clock", "icon": "dfgui_icon-clock.png",
+		"description": "The household records leave Ben with one practical decision: preserve their resonance for research or turn it into immediate public safety supplies. Either choice is permanent, visible in the journal, and never blocks the campaign.",
+		"requires_flags": [&"mansion_first_room_complete"],
+		"steps": [
+			{"text": "Choose how Franklin & Company will use the Mansion's recovered field notes.", "condition": {"type": &"choice_selected", "quest_id": &"the_mansions_second_opinion"}},
+		],
+		"choices": [
+			{"id": &"archive", "name": "Archive the Resonance", "description": "Send the notes to the Library so future inventions have a better paper trail.", "outcome": "The Library preserves the Mansion's contradictory field notes for Ben's next laboratory project.", "rewards": {"duckets": 10, "items": {&"research_notes": 2, &"anchor_dust": 1}}, "story_flags": {&"mansion_notes_archived": true}},
+			{"id": &"circulate", "name": "Fund the Watch", "description": "Convert the notes into immediate supplies and an evening safety fund for New Philadelphia.", "outcome": "The Café and Clinic circulate the notes as a practical evening-watch program for residents.", "rewards": {"duckets": 55, "items": {&"tonic": 2, &"provisions": 1}}, "story_flags": {&"mansion_notes_circulated": true}},
+		],
+		"rewards": {"duckets": 20, "items": {}},
 	},
 }
 
@@ -2113,6 +2134,45 @@ func quest_state(quest_id: StringName) -> Dictionary:
 	return quest_states.get(quest_id, {}).duplicate(true)
 
 
+func quest_choices(quest_id: StringName) -> Array[Dictionary]:
+	var definition: Dictionary = QUEST_DEFINITIONS.get(quest_id, {})
+	var runtime: Dictionary = quest_states.get(quest_id, {})
+	if definition.is_empty() or runtime.is_empty():
+		return []
+	var selected_choice_id := StringName(runtime.get("choice_id", &""))
+	var results: Array[Dictionary] = []
+	for raw_choice in definition.get("choices", []):
+		var choice: Dictionary = raw_choice.duplicate(true)
+		choice["selected"] = StringName(choice.get("id", &"")) == selected_choice_id
+		results.append(choice)
+	return results
+
+
+func select_quest_choice(quest_id: StringName, choice_id: StringName) -> bool:
+	var definition: Dictionary = QUEST_DEFINITIONS.get(quest_id, {})
+	var runtime: Dictionary = quest_states.get(quest_id, {})
+	if definition.is_empty() or StringName(runtime.get("status", &"locked")) != &"active" or StringName(runtime.get("choice_id", &"")) != &"":
+		return false
+	var selected: Dictionary = {}
+	for raw_choice in definition.get("choices", []):
+		var choice: Dictionary = raw_choice
+		if StringName(choice.get("id", &"")) == choice_id:
+			selected = choice
+			break
+	if selected.is_empty():
+		return false
+	runtime["choice_id"] = choice_id
+	runtime["choice_outcome"] = String(selected.get("outcome", ""))
+	if not bool(runtime.get("choice_reward_claimed", false)):
+		_grant_quest_rewards(selected.get("rewards", {}), &"quest_choice_reward", quest_id)
+		runtime["choice_reward_claimed"] = true
+	for raw_flag in (selected.get("story_flags", {}) as Dictionary):
+		story_flags[StringName(raw_flag)] = selected["story_flags"][raw_flag]
+	quest_events[StringName("quest_choice_%s" % quest_id)] = choice_id
+	state_changed.emit()
+	return true
+
+
 func available_quest_objectives(quest_id: StringName) -> Array[Dictionary]:
 	return QUEST_DIRECTOR.available_objectives(QUEST_DEFINITIONS.get(quest_id, {}), quest_states.get(quest_id, {}))
 
@@ -2213,7 +2273,7 @@ func sync_quests(notify := true) -> bool:
 				runtime["status"] = &"complete"
 				runtime["completed_at"] = _unix_time()
 				if not bool(runtime.get("reward_claimed", false)):
-					_grant_quest_rewards(definition.get("rewards", {}))
+					_grant_quest_rewards(definition.get("rewards", {}), &"quest_reward", StringName(quest_id))
 					runtime["reward_claimed"] = true
 				quest_completed.emit(StringName(quest_id))
 				pass_changed = true
@@ -2235,7 +2295,7 @@ func sync_quests(notify := true) -> bool:
 func _initialize_quest_states() -> void:
 	for quest_id in QUEST_DEFINITIONS.keys():
 		if not quest_states.has(quest_id):
-			quest_states[quest_id] = {"status": &"locked", "step": 0, "discovered": false, "reward_claimed": false, "completed_at": 0, "objective_states": {}}
+			quest_states[quest_id] = {"status": &"locked", "step": 0, "discovered": false, "reward_claimed": false, "completed_at": 0, "objective_states": {}, "choice_id": &"", "choice_outcome": "", "choice_reward_claimed": false}
 		else:
 			var runtime: Dictionary = quest_states[quest_id]
 			runtime["status"] = StringName(runtime.get("status", "locked"))
@@ -2243,6 +2303,9 @@ func _initialize_quest_states() -> void:
 			runtime["discovered"] = bool(runtime.get("discovered", false))
 			runtime["reward_claimed"] = bool(runtime.get("reward_claimed", false))
 			runtime["objective_states"] = runtime.get("objective_states", {})
+			runtime["choice_id"] = StringName(runtime.get("choice_id", &""))
+			runtime["choice_outcome"] = String(runtime.get("choice_outcome", ""))
+			runtime["choice_reward_claimed"] = bool(runtime.get("choice_reward_claimed", false))
 	if tracked_quest == &"":
 		tracked_quest = &"a_fault_in_reality"
 	sync_quests(false)
@@ -2253,6 +2316,15 @@ func _quest_unlock_requirements_met(definition: Dictionary) -> bool:
 		return true
 	for required_quest in definition.get("requires_quests", []):
 		if StringName(quest_states.get(StringName(required_quest), {}).get("status", "locked")) != &"complete":
+			return false
+	var any_required_quests: Array = definition.get("requires_any_quests", [])
+	if not any_required_quests.is_empty():
+		var any_quest_complete := false
+		for required_quest in any_required_quests:
+			if StringName(quest_states.get(StringName(required_quest), {}).get("status", "locked")) == &"complete":
+				any_quest_complete = true
+				break
+		if not any_quest_complete:
 			return false
 	for required_flag in definition.get("requires_flags", []):
 		if not bool(story_flags.get(StringName(required_flag), false)):
@@ -2297,14 +2369,19 @@ func _quest_condition_met(condition: Dictionary) -> bool:
 			return StringName(condition_id) in owned_inventions
 		&"job_completed":
 			return int(completed_facility_jobs.get(StringName(condition_id), 0)) > 0
+		&"choice_selected":
+			var choice_quest_id := StringName(condition.get("quest_id", condition_id))
+			var selected_choice_id := StringName(quest_states.get(choice_quest_id, {}).get("choice_id", &""))
+			var expected_choice_id := StringName(condition.get("choice_id", &""))
+			return selected_choice_id != &"" and (expected_choice_id == &"" or selected_choice_id == expected_choice_id)
 	return false
 
 
-func _grant_quest_rewards(rewards: Dictionary) -> void:
-	adjust_duckets(int(rewards.get("duckets", 0)), &"quest_reward", &"quest", false)
+func _grant_quest_rewards(rewards: Dictionary, reason: StringName = &"quest_reward", source_id: StringName = &"quest") -> void:
+	adjust_duckets(int(rewards.get("duckets", 0)), reason, source_id, false)
 	for item_id in rewards.get("items", {}).keys():
 		var normalized_id := StringName(item_id)
-		add_item(normalized_id, int(rewards["items"][item_id]), false, &"quest_reward", &"quest")
+		add_item(normalized_id, int(rewards["items"][item_id]), false, reason, source_id)
 	var party_experience := int(rewards.get("party_experience", 0))
 	if party_experience > 0:
 		grant_expedition_experience(party_experience)
@@ -2959,6 +3036,31 @@ func anchored_universe_at(plot_index: int) -> StringName:
 	return StringName(universe_anchors.get(plot_index, &""))
 
 
+func stabilized_universe_count() -> int:
+	var total := 0
+	for flag in [&"haunted_mansion_scenario_complete", &"asterion_station_complete", &"primeval_scenario_complete", &"helios_scenario_complete", &"frosthold_scenario_complete", &"moonpetal_scenario_complete", &"empyreal_scenario_complete"]:
+		if bool(story_flags.get(flag, false)):
+			total += 1
+	return total
+
+
+func town_state_overlay() -> Dictionary:
+	var state_id: StringName = &"survey"
+	var stabilized := stabilized_universe_count()
+	if stabilized >= 7 or bool(story_flags.get(&"empyreal_scenario_complete", false)):
+		state_id = &"finale"
+	elif stabilized >= 3:
+		state_id = &"multiversal"
+	elif stabilized >= 1:
+		state_id = &"early_anchors"
+	elif built_facilities.size() >= 4:
+		state_id = &"founding"
+	var overlay: Dictionary = TOWN_STATE_OVERLAYS[state_id].duplicate(true)
+	overlay["id"] = state_id
+	overlay["stabilized_universes"] = stabilized
+	return overlay
+
+
 func available_universe_anchors() -> Array[Dictionary]:
 	var available: Array[Dictionary] = []
 	for raw_universe_id in UNIVERSE_DEFINITIONS.keys():
@@ -2987,6 +3089,15 @@ func _universe_anchor_requirements_met(universe_id: StringName) -> bool:
 		return false
 	for raw_flag in definition.get("required_flags", []):
 		if not bool(story_flags.get(StringName(raw_flag), false)):
+			return false
+	var any_flags: Array = definition.get("required_any_flags", [])
+	if not any_flags.is_empty():
+		var any_flag_met := false
+		for raw_flag in any_flags:
+			if bool(story_flags.get(StringName(raw_flag), false)):
+				any_flag_met = true
+				break
+		if not any_flag_met:
 			return false
 	for raw_recruit_id in definition.get("required_recruits", []):
 		var recruit_id := StringName(raw_recruit_id)

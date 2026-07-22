@@ -516,6 +516,13 @@ func _update_hud() -> void:
 			_set_objective("ASTERION STATION  •  Enter through the Observatory and investigate its final shift.")
 			_build_panel.show()
 			_build_label.text = "M / controller Select: staff facilities, run idle jobs, and collect rewards"
+		elif CampaignState.story_flags.get(&"asterion_station_complete", false) and not CampaignState.available_universe_anchors().is_empty():
+			var discovered_names: Array[String] = []
+			for anchor in CampaignState.available_universe_anchors():
+				discovered_names.append(String(anchor.get("name", "Unknown Universe")))
+			_set_objective("CHOOSE THE NEXT ANCHOR  •  %s" % " or ".join(discovered_names))
+			_build_panel.show()
+			_build_label.text = _anchor_build_prompt() if is_active else "Press B or controller Y to compare discovered universes and choose a town plot"
 		elif CampaignState.story_flags.get(&"asterion_station_complete", false) and not CampaignState.story_flags.get(&"primeval_anchor_built", false):
 			_set_objective("THE OLDEST ADDRESS  •  Build the Trailhead Lodge and anchor the Primeval Expanse.")
 			_build_panel.show()

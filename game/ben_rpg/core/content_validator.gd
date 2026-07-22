@@ -223,9 +223,24 @@ static func _validate_quests(errors: Array[String]) -> void:
 		for required_quest in quest.get("requires_quests", []):
 			if not CampaignState.QUEST_DEFINITIONS.has(required_quest):
 				errors.append("Quest '%s' requires missing quest '%s'." % [quest_id, required_quest])
+		for required_quest in quest.get("requires_any_quests", []):
+			if not CampaignState.QUEST_DEFINITIONS.has(required_quest):
+				errors.append("Quest '%s' has missing alternate prerequisite '%s'." % [quest_id, required_quest])
 		for item_id in (quest.get("rewards", {}).get("items", {}) as Dictionary).keys():
 			if not _known_item_id(StringName(item_id)):
 				errors.append("Quest '%s' rewards unknown item '%s'." % [quest_id, item_id])
+		var choice_ids := {}
+		for raw_choice in quest.get("choices", []):
+			var choice: Dictionary = raw_choice
+			var choice_id := StringName(choice.get("id", &""))
+			if choice_id == &"" or choice_ids.has(choice_id):
+				errors.append("Quest '%s' has a missing or duplicate choice id '%s'." % [quest_id, choice_id])
+			choice_ids[choice_id] = true
+			if String(choice.get("name", "")).is_empty() or String(choice.get("outcome", "")).is_empty():
+				errors.append("Quest '%s' choice '%s' is missing a name or committed outcome." % [quest_id, choice_id])
+			for item_id in (choice.get("rewards", {}).get("items", {}) as Dictionary).keys():
+				if not _known_item_id(StringName(item_id)):
+					errors.append("Quest '%s' choice '%s' rewards unknown item '%s'." % [quest_id, choice_id, item_id])
 		var objectives_by_id := {}
 		for raw_objective in quest.get("objectives", []):
 			var objective: Dictionary = raw_objective

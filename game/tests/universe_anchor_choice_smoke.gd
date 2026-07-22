@@ -48,25 +48,25 @@ func _run() -> void:
 		return
 	CampaignState.mark_story_flag(&"asterion_station_complete")
 	var third_choices := CampaignState.available_universe_anchors()
-	if third_choices.size() != 1 or StringName(third_choices[0].get("id", &"")) != &"primeval_expanse":
-		_fail("Primeval Expanse did not become the discovered post-Asterion destination")
+	var third_choice_ids: Array[StringName] = []
+	for choice in third_choices:
+		third_choice_ids.append(StringName(choice.get("id", &"")))
+	if third_choice_ids.size() != 2 or &"primeval_expanse" not in third_choice_ids or &"helios_arcology" not in third_choice_ids:
+		_fail("Asterion did not expose Primeval and Helios as two valid discovered destinations")
 		return
 	if not CampaignState.anchor_universe(5, &"primeval_expanse") or CampaignState.built_facilities.get(5) != "Trailhead Lodge":
 		_fail("The selected Primeval destination did not construct its Trailhead Lodge shell")
 		return
-	if not CampaignState.available_universe_anchors().is_empty():
-		_fail("Helios Arcology was revealed before Primeval was stabilized")
-		return
 	CampaignState.mark_story_flag(&"primeval_scenario_complete")
 	var fourth_choices := CampaignState.available_universe_anchors()
-	if fourth_choices.size() != 1 or StringName(fourth_choices[0].get("id", &"")) != &"helios_arcology":
-		_fail("Helios Arcology did not become the discovered post-Primeval destination")
+	var fourth_choice_ids: Array[StringName] = []
+	for choice in fourth_choices:
+		fourth_choice_ids.append(StringName(choice.get("id", &"")))
+	if fourth_choice_ids.size() != 2 or &"helios_arcology" not in fourth_choice_ids or &"frosthold_kingdom" not in fourth_choice_ids:
+		_fail("Completing either Asterion branch did not preserve the other branch while unlocking Frosthold")
 		return
 	if not CampaignState.anchor_universe(6, &"helios_arcology") or CampaignState.built_facilities.get(6) != "Afterlight Club":
 		_fail("The selected Helios destination did not construct its Afterlight Club shell")
-		return
-	if not CampaignState.available_universe_anchors().is_empty():
-		_fail("Frosthold Kingdom was revealed before Helios was stabilized")
 		return
 	CampaignState.mark_story_flag(&"helios_scenario_complete")
 	var fifth_choices := CampaignState.available_universe_anchors()
@@ -114,7 +114,7 @@ func _run() -> void:
 	DirAccess.remove_absolute(ProjectSettings.globalize_path(TEST_SAVE))
 	DirAccess.remove_absolute(ProjectSettings.globalize_path(LEGACY_SAVE))
 	CampaignState.reset_new_game()
-	print("UNIVERSE_ANCHOR_CHOICE_SMOKE_OK mandatory=mansion asterion=discovery_gated primeval=post_asterion helios=post_primeval frosthold=post_helios moonpetal=post_frosthold duplicate=false save_load=true migration=v11")
+	print("UNIVERSE_ANCHOR_CHOICE_SMOKE_OK mandatory=mansion asterion=discovery_gated branches=primeval+helios frosthold=after_either_branch moonpetal=after_all_branches duplicate=false save_load=true migration=v11")
 	get_tree().quit(0)
 
 

@@ -205,6 +205,8 @@ func _ready() -> void:
 		empyreal_slices[slice_name] = load("res://game_assets/Tilesets/Ancient Greek Mythology/Sliced/%s.png" % slice_name)
 	if not CampaignState.town_terrain_changed.is_connected(_on_town_terrain_changed):
 		CampaignState.town_terrain_changed.connect(_on_town_terrain_changed)
+	if not CampaignState.state_changed.is_connected(_on_campaign_state_changed):
+		CampaignState.state_changed.connect(_on_campaign_state_changed)
 	queue_redraw()
 
 
@@ -326,6 +328,7 @@ func draw_town() -> void:
 			var size := Vector2(96, 128) if entry[2] else Vector2(64, 96)
 			var center := offset + Vector2(entry[0], entry[1]) * TILE
 			tile(trees, source, Rect2(center - Vector2(size.x * 0.5, size.y * 0.75), size))
+		_draw_town_state_overlay(offset)
 
 
 func _draw_terrain_overrides() -> void:
@@ -346,6 +349,28 @@ func _draw_terrain_overrides() -> void:
 
 func _on_town_terrain_changed() -> void:
 	queue_redraw()
+
+
+func _on_campaign_state_changed() -> void:
+	queue_redraw()
+
+
+func _draw_town_state_overlay(offset: Vector2) -> void:
+	var overlay := CampaignState.town_state_overlay()
+	var tint := overlay.get("tint", Color.TRANSPARENT) as Color
+	if tint.a > 0.0:
+		draw_rect(Rect2(offset, Vector2(TOWN_SIZE) * TILE), tint, true)
+	var accent := overlay.get("accent", Color.WHITE) as Color
+	var stabilized := int(overlay.get("stabilized_universes", 0))
+	var lights := maxi(1, stabilized + 1)
+	var positions := [Vector2i(4, 3), Vector2i(28, 4), Vector2i(4, 23), Vector2i(28, 23), Vector2i(14, 18), Vector2i(14, 3), Vector2i(14, 25)]
+	for index in range(mini(lights, positions.size())):
+		var point := offset + (Vector2(positions[index]) + Vector2(0.5, 0.5)) * TILE
+		draw_circle(point, 12.0, Color(accent, 0.16))
+		draw_circle(point, 4.0, accent)
+	if StringName(overlay.get("id", &"")) == &"finale":
+		var center := offset + (Vector2(14.5, 10.5)) * TILE
+		draw_arc(center, 42.0, 0.0, TAU, 32, Color(accent, 0.76), 2.0, true)
 
 
 func _draw_facility_approaches(offset: Vector2) -> void:

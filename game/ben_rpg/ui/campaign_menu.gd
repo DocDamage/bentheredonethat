@@ -830,6 +830,25 @@ func _build_quest_page() -> void:
 			_add_notice("%s  %s" % [marker, step_definition.get("text", "Continue the quest.")], color)
 	var rewards: Dictionary = definition.get("rewards", {})
 	_add_notice("REWARDS • %d Duckets%s" % [int(rewards.get("duckets", 0)), _reward_item_text(rewards.get("items", {}))], Color(0.55, 0.92, 1.0))
+	var choices := CampaignState.quest_choices(selected_quest)
+	if not choices.is_empty():
+		var selected_choice_id := StringName(runtime.get("choice_id", &""))
+		_add_subheading("COMMITTED DECISION" if selected_choice_id != &"" else "CHOOSE A COMPANY RESPONSE")
+		for choice in choices:
+			var choice_id := StringName(choice.get("id", &""))
+			var is_selected := choice_id == selected_choice_id
+			if is_selected:
+				_add_notice("✓  %s\n%s\nOUTCOME • %s\nCHOICE REWARDS • %d Duckets%s" % [choice.get("name", choice_id), choice.get("description", ""), runtime.get("choice_outcome", choice.get("outcome", "")), int(choice.get("rewards", {}).get("duckets", 0)), _reward_item_text(choice.get("rewards", {}).get("items", {}))], Color(0.54, 0.96, 0.66))
+			else:
+				var choice_button := Button.new()
+				choice_button.name = "QuestChoice_%s_%s" % [selected_quest, choice_id]
+				choice_button.text = "%s\n%s\nCHOICE REWARDS • %d Duckets%s" % [choice.get("name", choice_id), choice.get("description", ""), int(choice.get("rewards", {}).get("duckets", 0)), _reward_item_text(choice.get("rewards", {}).get("items", {}))]
+				choice_button.custom_minimum_size.y = 96
+				choice_button.disabled = is_complete or selected_choice_id != &""
+				choice_button.tooltip_text = "This choice is already committed." if choice_button.disabled else "Commit this non-blocking quest outcome."
+				_apply_button_skin(choice_button, UI_ROOT + "/" + String(definition.get("icon", "dfgui_icon-info.png")))
+				choice_button.pressed.connect(_select_quest_choice.bind(selected_quest, choice_id))
+				_content.add_child(choice_button)
 	var track := Button.new()
 	track.text = "TRACKED ON FIELD HUD" if CampaignState.tracked_quest == selected_quest else "TRACK THIS QUEST ON FIELD HUD"
 	track.custom_minimum_size.y = 54
@@ -842,6 +861,8 @@ func _build_quest_page() -> void:
 func _build_facilities_page() -> void:
 	var facilities := _built_facility_names()
 	_add_heading("TOWN OPERATIONS", UI_ROOT + "/dfgui_icon-crafthammer.png")
+	var overlay := CampaignState.town_state_overlay()
+	_add_notice("TOWN STATE • %s\n%s" % [String(overlay.get("name", "Survey")).to_upper(), overlay.get("description", "")], Color(0.74, 0.86, 1.0))
 	if facilities.is_empty():
 		_add_notice("Build the Café, Library, and Clinic before assigning company work.", Color(0.68, 0.72, 0.8))
 		return
@@ -1380,6 +1401,12 @@ func _cancel_facility_job() -> void:
 
 func _craft_invention(invention_id: StringName) -> void:
 	if _at_laboratory() and CampaignState.craft_invention(invention_id):
+		_save_changes()
+		_refresh()
+
+
+func _select_quest_choice(quest_id: StringName, choice_id: StringName) -> void:
+	if CampaignState.select_quest_choice(quest_id, choice_id):
 		_save_changes()
 		_refresh()
 
