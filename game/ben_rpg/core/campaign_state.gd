@@ -343,6 +343,16 @@ const INVENTION_DEFINITIONS := {
 	&"veracity_lantern": {"name": "Electrostatic Veracity Lantern", "facility": "Tea House", "description": "Makes copied memories cast the wrong shadow, allowing Moonpetal's genuine vows to be separated from official counterfeits.", "duckets": 155, "items": {&"research_notes": 2, &"anchor_dust": 2}, "icon": "dfgui_icon-wand.png", "requires_flags": [&"moonpetal_vow_clue_found"]},
 	&"galvanic_counterweight": {"name": "Galvanic Counterweight", "facility": "Belfry", "description": "Pins local gravity to Franklin & Company's copper standard, allowing the party to cross Empyreal lifts without paying by the pound.", "duckets": 180, "items": {&"research_notes": 2, &"anchor_dust": 2}, "icon": "dfgui_icon-lightning.png", "requires_flags": [&"empyreal_gravity_clue_found"]},
 }
+const FACILITY_UPGRADE_DEFINITIONS := {
+	&"cafe_hearth_exchange": {
+		"name": "Hearth Exchange", "facility": "Cafe",
+		"description": "Adds a warm dispatch counter: Café services cost less, work finishes faster, and Ben can pack one meal that boosts the next expedition victory.",
+		"duckets": 55, "items": {&"provisions": 2}, "icon": "dfgui_icon-food.png",
+		"requires_flags": [&"mansion_first_room_complete"],
+		"service_discount": 0.05, "job_duration_multiplier": 0.90, "job_quality_bonus": 1,
+		"field_benefit": "Pack one Expedition Meal at the Café; the next battle victory grants 20% more experience.",
+	},
+}
 const SKILL_TREES := {
 	&"ben": [
 		{"id": &"efficient_capacitor", "name": "Efficient Capacitor", "cost": 1, "description": "+4 Magic.", "bonuses": {&"magic": 4}, "requires": []},
@@ -775,6 +785,8 @@ var facility_assignments: Dictionary = {}
 var active_facility_jobs: Dictionary = {}
 var completed_facility_jobs: Dictionary = {}
 var owned_inventions: Array[StringName] = []
+var facility_upgrades: Dictionary = {}
+var expedition_meal_charges := 0
 var economy_transactions: Array[Dictionary] = []
 var encounter_director_states: Dictionary = {}
 var quest_states: Dictionary = {}
@@ -987,6 +999,8 @@ func reset_new_game() -> void:
 	active_facility_jobs.clear()
 	completed_facility_jobs.clear()
 	owned_inventions.clear()
+	facility_upgrades.clear()
+	expedition_meal_charges = 0
 	economy_transactions.clear()
 	encounter_director_states.clear()
 	quest_states.clear()
@@ -1426,7 +1440,11 @@ func _raise_character_to_level(character_id: StringName, target_level: int) -> b
 
 
 func apply_battle_victory(experience: int, earned_duckets: int, loot: Array[Dictionary]) -> Dictionary:
-	var level_ups := grant_expedition_experience(experience)
+	var awarded_experience := experience
+	if expedition_meal_charges > 0:
+		awarded_experience = int(ceil(float(experience) * 1.2))
+		expedition_meal_charges -= 1
+	var level_ups := grant_expedition_experience(awarded_experience)
 	adjust_duckets(maxi(earned_duckets, 0), &"battle_victory", &"encounter", false)
 	add_loot_drops(loot, false, &"battle_victory", &"encounter")
 	story_flags[&"won_first_battle"] = true
@@ -2068,6 +2086,69 @@ func facility_definition(facility_name: String) -> Dictionary:
 	return FACILITY_DEFINITIONS.get(facility_name, {}).duplicate(true)
 
 
+func visible_facility_upgrades(facility_name: String) -> Array[Dictionary]:
+	var results: Array[Dictionary] = []
+	for upgrade_id in FACILITY_UPGRADE_DEFINITIONS:
+		var definition: Dictionary = FACILITY_UPGRADE_DEFINITIONS[upgrade_id]
+		if String(definition.get("facility", "")) == facility_name and _requirements_met(definition):
+			var result := definition.duplicate(true)
+			result["id"] = StringName(upgrade_id)
+			results.append(result)
+	return results
+
+
+func facility_has_upgrade(facility_name: String, upgrade_id: StringName = &"") -> bool:
+	var owned: Array = facility_upgrades.get(facility_name, [])
+	if upgrade_id == &"":
+		return not owned.is_empty()
+	return upgrade_id in owned
+
+
+func facility_upgrade_availability(upgrade_id: StringName) -> Dictionary:
+	var definition: Dictionary = FACILITY_UPGRADE_DEFINITIONS.get(upgrade_id, {})
+	if definition.is_empty():
+		return {"allowed": false, "reason": "Unknown facility upgrade."}
+	var facility_name := String(definition.get("facility", ""))
+	if facility_name not in built_facilities.values():
+		return {"allowed": false, "reason": "Build %s first." % facility_name}
+	if facility_has_upgrade(facility_name, upgrade_id):
+		return {"allowed": false, "reason": "Already upgraded."}
+	if not _requirements_met(definition):
+		return {"allowed": false, "reason": "The relevant discovery has not been made."}
+	if duckets < int(definition.get("duckets", 0)):
+		return {"allowed": false, "reason": "Not enough Duckets."}
+	for item_id in definition.get("items", {}).keys():
+		if int(inventory.get(StringName(item_id), 0)) < int(definition["items"][item_id]):
+			return {"allowed": false, "reason": "Missing %s." % String(item_id).replace("_", " ").capitalize()}
+	return {"allowed": true, "reason": "Ready to upgrade."}
+
+
+func upgrade_facility(upgrade_id: StringName) -> bool:
+	if not bool(facility_upgrade_availability(upgrade_id).get("allowed", false)):
+		return false
+	var definition: Dictionary = FACILITY_UPGRADE_DEFINITIONS[upgrade_id]
+	var facility_name := String(definition["facility"])
+	adjust_duckets(-int(definition.get("duckets", 0)), &"facility_upgrade", upgrade_id, false)
+	for item_id in definition.get("items", {}).keys():
+		consume_item(StringName(item_id), int(definition["items"][item_id]), &"facility_upgrade", upgrade_id)
+	if not facility_upgrades.has(facility_name):
+		facility_upgrades[facility_name] = []
+	facility_upgrades[facility_name].append(upgrade_id)
+	story_flags[StringName("facility_%s_upgraded" % facility_name.to_snake_case())] = true
+	state_changed.emit()
+	return true
+
+
+func facility_upgrade_modifiers(facility_name: String) -> Dictionary:
+	var result := {"service_discount": 0.0, "job_duration_multiplier": 1.0, "job_quality_bonus": 0}
+	for upgrade_id in facility_upgrades.get(facility_name, []):
+		var definition: Dictionary = FACILITY_UPGRADE_DEFINITIONS.get(StringName(upgrade_id), {})
+		result["service_discount"] = float(result["service_discount"]) + float(definition.get("service_discount", 0.0))
+		result["job_duration_multiplier"] = float(result["job_duration_multiplier"]) * float(definition.get("job_duration_multiplier", 1.0))
+		result["job_quality_bonus"] = int(result["job_quality_bonus"]) + int(definition.get("job_quality_bonus", 0))
+	return result
+
+
 func visible_facility_jobs(facility_name: String) -> Array[Dictionary]:
 	var results: Array[Dictionary] = []
 	for job in FACILITY_DEFINITIONS.get(facility_name, {}).get("jobs", []):
@@ -2112,7 +2193,23 @@ func service_stock(facility_name: String) -> Array[Dictionary]:
 
 
 func service_discount(facility_name: String) -> float:
-	return 0.15 if facility_worker(facility_name) != &"" else 0.0
+	return minf(0.30, (0.15 if facility_worker(facility_name) != &"" else 0.0) + float(facility_upgrade_modifiers(facility_name).get("service_discount", 0.0)))
+
+
+func cafe_expedition_meal_cost() -> int:
+	return maxi(1, int(ceil(14.0 * (1.0 - service_discount("Cafe")))))
+
+
+func prepare_cafe_expedition_meal() -> bool:
+	if not facility_has_upgrade("Cafe", &"cafe_hearth_exchange") or expedition_meal_charges > 0:
+		return false
+	var cost := cafe_expedition_meal_cost()
+	if duckets < cost:
+		return false
+	adjust_duckets(-cost, &"cafe_expedition_meal", &"Cafe", false)
+	expedition_meal_charges = 1
+	state_changed.emit()
+	return true
 
 
 func service_item_price(facility_name: String, item_id: StringName) -> int:
@@ -2310,6 +2407,9 @@ func job_estimate(facility_name: String, job_id: StringName, ben_assist := false
 	var fit := _worker_job_fit(worker_id, job)
 	var duration_multiplier := 1.0 - float(fit) * 0.18
 	var quality := 1 + fit
+	var upgrade_modifiers := facility_upgrade_modifiers(facility_name)
+	duration_multiplier *= float(upgrade_modifiers.get("job_duration_multiplier", 1.0))
+	quality += int(upgrade_modifiers.get("job_quality_bonus", 0))
 	if ben_assist and worker_id != &"ben":
 		duration_multiplier *= 0.88
 		quality += 1
@@ -3029,7 +3129,7 @@ func _serialize() -> Dictionary:
 		"loot_inventory": loot_inventory, "character_progress": character_progress,
 		"party": Array(party), "party_formation": party_formation, "recruit_status": recruit_status, "facility_assignments": facility_assignments,
 		"active_facility_jobs": active_facility_jobs, "completed_facility_jobs": completed_facility_jobs,
-		"owned_inventions": Array(owned_inventions),
+		"owned_inventions": Array(owned_inventions), "facility_upgrades": facility_upgrades, "expedition_meal_charges": expedition_meal_charges,
 		"quest_states": quest_states, "quest_events": quest_events, "tracked_quest": tracked_quest,
 	}
 
@@ -3163,6 +3263,15 @@ func _deserialize(data: Dictionary, source_version_override := -1) -> void:
 	owned_inventions.clear()
 	for invention_id in data.get("owned_inventions", []):
 		owned_inventions.append(StringName(invention_id))
+	facility_upgrades.clear()
+	for facility_name in data.get("facility_upgrades", {}).keys():
+		var upgrades: Array[StringName] = []
+		for upgrade_id in data.facility_upgrades[facility_name]:
+			if FACILITY_UPGRADE_DEFINITIONS.has(StringName(upgrade_id)):
+				upgrades.append(StringName(upgrade_id))
+		if not upgrades.is_empty():
+			facility_upgrades[String(facility_name)] = upgrades
+	expedition_meal_charges = clampi(int(data.get("expedition_meal_charges", 0)), 0, 1)
 	quest_states.clear()
 	for quest_id in data.get("quest_states", {}).keys():
 		var runtime: Dictionary = data.quest_states[quest_id]

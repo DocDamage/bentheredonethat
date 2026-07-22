@@ -17,6 +17,7 @@ static func validate_all() -> PackedStringArray:
 	_validate_encounters(errors)
 	_validate_universes(errors)
 	_validate_facilities(errors)
+	_validate_facility_upgrades(errors)
 	_validate_quests(errors)
 	_validate_skill_trees(errors)
 	_validate_persistence_contracts(errors)
@@ -128,6 +129,19 @@ static func _validate_facilities(errors: Array[String]) -> void:
 			for item_id in (job.get("items", {}) as Dictionary).keys():
 				if not _known_item_id(StringName(item_id)):
 					errors.append("Facility job '%s' grants unknown item '%s'." % [job_id, item_id])
+
+
+static func _validate_facility_upgrades(errors: Array[String]) -> void:
+	for upgrade_id in CampaignState.FACILITY_UPGRADE_DEFINITIONS:
+		var upgrade: Dictionary = CampaignState.FACILITY_UPGRADE_DEFINITIONS[upgrade_id]
+		var facility_name := String(upgrade.get("facility", ""))
+		if not CampaignState.FACILITY_DEFINITIONS.has(facility_name):
+			errors.append("Facility upgrade '%s' references missing facility '%s'." % [upgrade_id, facility_name])
+		if String(upgrade.get("field_benefit", "")).is_empty():
+			errors.append("Facility upgrade '%s' is missing its field benefit." % upgrade_id)
+		for item_id in (upgrade.get("items", {}) as Dictionary).keys():
+			if not _known_item_id(StringName(item_id)):
+				errors.append("Facility upgrade '%s' requires unknown item '%s'." % [upgrade_id, item_id])
 
 
 static func _validate_quests(errors: Array[String]) -> void:

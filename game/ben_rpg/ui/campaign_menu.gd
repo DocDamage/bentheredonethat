@@ -808,6 +808,7 @@ func _build_facilities_page() -> void:
 	_build_active_job_section()
 	_build_available_jobs_section()
 	_build_invention_section()
+	_build_facility_upgrade_section()
 
 
 func _build_staffing_section() -> void:
@@ -953,6 +954,26 @@ func _build_invention_section() -> void:
 		_content.add_child(button)
 
 
+func _build_facility_upgrade_section() -> void:
+	var upgrades := CampaignState.visible_facility_upgrades(selected_facility)
+	if upgrades.is_empty():
+		return
+	_add_subheading("FACILITY UPGRADES • BUILT ONLY IN BEN'S LAB")
+	for upgrade in upgrades:
+		var upgrade_id := StringName(upgrade.get("id", ""))
+		var owned := CampaignState.facility_has_upgrade(selected_facility, upgrade_id)
+		var availability := CampaignState.facility_upgrade_availability(upgrade_id)
+		var button := Button.new()
+		button.name = "Upgrade_%s" % upgrade_id
+		button.text = "%s %s\n%s • %s" % ["◆" if owned else "◇", upgrade.get("name", upgrade_id), upgrade.get("description", ""), "INSTALLED" if owned else _invention_cost_text(upgrade)]
+		button.custom_minimum_size.y = 82
+		button.disabled = owned or not _at_laboratory() or not bool(availability.get("allowed", false))
+		button.tooltip_text = String(upgrade.get("field_benefit", "")) if owned else ("Return to Ben's laboratory." if not _at_laboratory() else String(availability.get("reason", "")))
+		_apply_button_skin(button, UI_ROOT + "/" + String(upgrade.get("icon", "dfgui_icon-crafthammer.png")))
+		button.pressed.connect(_upgrade_facility.bind(upgrade_id))
+		_content.add_child(button)
+
+
 func _build_service_page() -> void:
 	var definition := CampaignState.facility_definition(selected_service)
 	var icon_path := UI_ROOT + "/" + String(definition.get("icon", "dfgui_icon-info.png"))
@@ -967,6 +988,7 @@ func _build_service_page() -> void:
 		_add_notice(_last_service_message, Color(0.5, 0.92, 1.0))
 	match selected_service:
 		"Cafe":
+			_build_cafe_upgrade_service()
 			_build_service_stock("Cafe", "EXPEDITION COUNTER")
 		"Clinic":
 			_build_clinic_service()
@@ -976,6 +998,22 @@ func _build_service_page() -> void:
 		"Armory":
 			_build_armory_stock()
 			_build_gear_buyback()
+
+
+func _build_cafe_upgrade_service() -> void:
+	if not CampaignState.facility_has_upgrade("Cafe", &"cafe_hearth_exchange"):
+		return
+	_add_subheading("HEARTH EXCHANGE")
+	var cost := CampaignState.cafe_expedition_meal_cost()
+	var meal := Button.new()
+	meal.name = "CafeExpeditionMeal"
+	meal.text = "PACK EXPEDITION MEAL • %d D\nThe next battle victory grants 20%% more experience.%s" % [cost, " • MEAL READY" if CampaignState.expedition_meal_charges > 0 else ""]
+	meal.custom_minimum_size.y = 82
+	meal.disabled = CampaignState.expedition_meal_charges > 0 or CampaignState.duckets < cost
+	meal.tooltip_text = "One meal is already packed." if CampaignState.expedition_meal_charges > 0 else "A portable field benefit from the Café upgrade."
+	_apply_button_skin(meal, UI_ROOT + "/dfgui_icon-food.png")
+	meal.pressed.connect(_prepare_cafe_expedition_meal)
+	_content.add_child(meal)
 
 
 func _build_armory_stock() -> void:
@@ -1210,6 +1248,19 @@ func _craft_invention(invention_id: StringName) -> void:
 	if _at_laboratory() and CampaignState.craft_invention(invention_id):
 		_save_changes()
 		_refresh()
+
+
+func _upgrade_facility(upgrade_id: StringName) -> void:
+	if _at_laboratory() and CampaignState.upgrade_facility(upgrade_id):
+		_save_changes()
+		_refresh()
+
+
+func _prepare_cafe_expedition_meal() -> void:
+	if CampaignState.prepare_cafe_expedition_meal():
+		_last_service_message = "The Hearth Exchange packs a hot meal for the next victory."
+		_save_changes()
+	_refresh()
 
 
 func _use_field_inventory_item(item_id: StringName) -> void:

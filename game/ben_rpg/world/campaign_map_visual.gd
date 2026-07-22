@@ -412,6 +412,13 @@ func _draw_facility(plot: Rect2, facility_name: String) -> void:
 		destination_size
 	)
 	tile(texture, source, destination)
+	if facility_name == "Cafe" and CampaignState.facility_has_upgrade("Cafe", &"cafe_hearth_exchange"):
+		# The installed hearth is readable from the field: a warm service awning
+		# and two window lights travel with the building when it is relocated.
+		var awning := Rect2(destination.position + Vector2(20, destination.size.y - 42), Vector2(destination.size.x - 40, 12))
+		draw_rect(awning, Color(0.86, 0.39, 0.16, 0.96), true)
+		draw_circle(awning.position + Vector2(18, 20), 6.0, Color(1.0, 0.78, 0.32, 0.92))
+		draw_circle(awning.end - Vector2(18, -20), 6.0, Color(1.0, 0.78, 0.32, 0.92))
 
 
 func _draw_belfry_facility(plot: Rect2) -> void:
