@@ -4339,6 +4339,126 @@
     {
       "cropApproval": "approved",
       "distributionEligibility": "review_required",
+      "goldenCapture": "game/validation/mansion-archive-live.png",
+      "id": "mansion_archive_tall_shelving",
+      "kind": "building",
+      "licenseReference": "game/ben_rpg/visual_assets/generated/runtime_asset_provenance.json",
+      "placement": {
+        "collisionFootprint": "shelving_base",
+        "footAnchor": [
+          95,
+          175
+        ],
+        "scaleClass": "building"
+      },
+      "releaseVisualAcceptance": "prototype_only",
+      "source": {
+        "alphaBounds": [
+          190,
+          0,
+          190,
+          176
+        ],
+        "pack": "Haunted Mansion Pixel Art Tileset Pack",
+        "region": [
+          190,
+          0,
+          190,
+          176
+        ],
+        "runtimeTexture": "game/game_assets/Tilesets/Haunted Mansion Pixel Art Tileset Pack/4.png",
+        "sha256": "fabb60e8d270cf106674b7669dda3e7fe75c8ae9072ff86a4d867a259ed6ea7b",
+        "sourceChecksum": "fabb60e8d270cf106674b7669dda3e7fe75c8ae9072ff86a4d867a259ed6ea7b",
+        "sourceDensity": 48
+      },
+      "worldDrawSize": [
+        190,
+        176
+      ]
+    },
+    {
+      "cropApproval": "approved",
+      "distributionEligibility": "review_required",
+      "goldenCapture": "game/validation/mansion-foyer-layout-pass.png",
+      "id": "mansion_ballroom_chandelier",
+      "kind": "building",
+      "licenseReference": "game/ben_rpg/visual_assets/generated/runtime_asset_provenance.json",
+      "placement": {
+        "collisionFootprint": "ballroom_chandelier",
+        "footAnchor": [
+          95,
+          87
+        ],
+        "scaleClass": "building"
+      },
+      "releaseVisualAcceptance": "prototype_only",
+      "source": {
+        "alphaBounds": [
+          575,
+          9,
+          191,
+          88
+        ],
+        "pack": "Haunted Mansion Pixel Art Tileset Pack",
+        "region": [
+          575,
+          9,
+          191,
+          88
+        ],
+        "runtimeTexture": "game/game_assets/Tilesets/Haunted Mansion Pixel Art Tileset Pack/2.png",
+        "sha256": "7b703a7e5eabd9017bfd4ae47bc8c5c328c9e237448a025d7e9de0d49a0b1bca",
+        "sourceChecksum": "7b703a7e5eabd9017bfd4ae47bc8c5c328c9e237448a025d7e9de0d49a0b1bca",
+        "sourceDensity": 48
+      },
+      "worldDrawSize": [
+        191,
+        88
+      ]
+    },
+    {
+      "cropApproval": "approved",
+      "distributionEligibility": "review_required",
+      "goldenCapture": "game/validation/mansion-foyer-layout-pass.png",
+      "id": "mansion_ballroom_door_frame",
+      "kind": "building",
+      "licenseReference": "game/ben_rpg/visual_assets/generated/runtime_asset_provenance.json",
+      "placement": {
+        "collisionFootprint": "door_frame",
+        "footAnchor": [
+          38,
+          76
+        ],
+        "scaleClass": "building"
+      },
+      "releaseVisualAcceptance": "prototype_only",
+      "source": {
+        "alphaBounds": [
+          490,
+          12,
+          76,
+          77
+        ],
+        "pack": "Haunted Mansion Pixel Art Tileset Pack",
+        "region": [
+          490,
+          12,
+          76,
+          77
+        ],
+        "runtimeTexture": "game/game_assets/Tilesets/Haunted Mansion Pixel Art Tileset Pack/2.png",
+        "sha256": "7b703a7e5eabd9017bfd4ae47bc8c5c328c9e237448a025d7e9de0d49a0b1bca",
+        "sourceChecksum": "7b703a7e5eabd9017bfd4ae47bc8c5c328c9e237448a025d7e9de0d49a0b1bca",
+        "sourceDensity": 48
+      },
+      "worldDrawSize": [
+        76,
+        77
+      ]
+    },
+    {
+      "cropApproval": "approved",
+      "distributionEligibility": "review_required",
       "goldenCapture": "game/validation/mansion-boss-battle-live.png",
       "id": "mansion_foyer_battle_backdrop",
       "kind": "battle_backdrop",
@@ -4374,6 +4494,46 @@
       "worldDrawSize": [
         384,
         360
+      ]
+    },
+    {
+      "cropApproval": "approved",
+      "distributionEligibility": "review_required",
+      "goldenCapture": "game/validation/mansion-foyer-layout-pass.png",
+      "id": "mansion_foyer_passage_door",
+      "kind": "prop",
+      "licenseReference": "game/ben_rpg/visual_assets/generated/runtime_asset_provenance.json",
+      "placement": {
+        "collisionFootprint": "passage_door",
+        "footAnchor": [
+          44,
+          95
+        ],
+        "scaleClass": "prop"
+      },
+      "releaseVisualAcceptance": "prototype_only",
+      "source": {
+        "alphaBounds": [
+          296,
+          672,
+          88,
+          96
+        ],
+        "pack": "Haunted Mansion Pixel Art Tileset Pack",
+        "region": [
+          296,
+          672,
+          88,
+          96
+        ],
+        "runtimeTexture": "game/game_assets/Tilesets/Haunted Mansion Pixel Art Tileset Pack/4.png",
+        "sha256": "fabb60e8d270cf106674b7669dda3e7fe75c8ae9072ff86a4d867a259ed6ea7b",
+        "sourceChecksum": "fabb60e8d270cf106674b7669dda3e7fe75c8ae9072ff86a4d867a259ed6ea7b",
+        "sourceDensity": 48
+      },
+      "worldDrawSize": [
+        66,
+        72
       ]
     },
     {
@@ -4419,6 +4579,286 @@
     {
       "cropApproval": "approved",
       "distributionEligibility": "review_required",
+      "goldenCapture": "game/validation/mansion-gallery-layout-pass.png",
+      "id": "mansion_gallery_left_portrait",
+      "kind": "prop",
+      "licenseReference": "game/ben_rpg/visual_assets/generated/runtime_asset_provenance.json",
+      "placement": {
+        "collisionFootprint": "wall_portrait",
+        "footAnchor": [
+          45,
+          136
+        ],
+        "scaleClass": "prop"
+      },
+      "releaseVisualAcceptance": "prototype_only",
+      "source": {
+        "alphaBounds": [
+          194,
+          5,
+          91,
+          137
+        ],
+        "pack": "Haunted Mansion Pixel Art Tileset Pack",
+        "region": [
+          194,
+          5,
+          91,
+          137
+        ],
+        "runtimeTexture": "game/game_assets/Tilesets/Haunted Mansion Pixel Art Tileset Pack/4.png",
+        "sha256": "fabb60e8d270cf106674b7669dda3e7fe75c8ae9072ff86a4d867a259ed6ea7b",
+        "sourceChecksum": "fabb60e8d270cf106674b7669dda3e7fe75c8ae9072ff86a4d867a259ed6ea7b",
+        "sourceDensity": 48
+      },
+      "worldDrawSize": [
+        91,
+        137
+      ]
+    },
+    {
+      "cropApproval": "approved",
+      "distributionEligibility": "review_required",
+      "goldenCapture": "game/validation/mansion-gallery-layout-pass.png",
+      "id": "mansion_gallery_lower_left_frame",
+      "kind": "prop",
+      "licenseReference": "game/ben_rpg/visual_assets/generated/runtime_asset_provenance.json",
+      "placement": {
+        "collisionFootprint": "wall_frame",
+        "footAnchor": [
+          18,
+          40
+        ],
+        "scaleClass": "prop"
+      },
+      "releaseVisualAcceptance": "prototype_only",
+      "source": {
+        "alphaBounds": [
+          678,
+          440,
+          36,
+          41
+        ],
+        "pack": "Haunted Mansion Pixel Art Tileset Pack",
+        "region": [
+          678,
+          440,
+          36,
+          41
+        ],
+        "runtimeTexture": "game/game_assets/Tilesets/Haunted Mansion Pixel Art Tileset Pack/4.png",
+        "sha256": "fabb60e8d270cf106674b7669dda3e7fe75c8ae9072ff86a4d867a259ed6ea7b",
+        "sourceChecksum": "fabb60e8d270cf106674b7669dda3e7fe75c8ae9072ff86a4d867a259ed6ea7b",
+        "sourceDensity": 48
+      },
+      "worldDrawSize": [
+        36,
+        41
+      ]
+    },
+    {
+      "cropApproval": "approved",
+      "distributionEligibility": "review_required",
+      "goldenCapture": "game/validation/mansion-gallery-layout-pass.png",
+      "id": "mansion_gallery_lower_right_frame",
+      "kind": "prop",
+      "licenseReference": "game/ben_rpg/visual_assets/generated/runtime_asset_provenance.json",
+      "placement": {
+        "collisionFootprint": "wall_frame",
+        "footAnchor": [
+          18,
+          49
+        ],
+        "scaleClass": "prop"
+      },
+      "releaseVisualAcceptance": "prototype_only",
+      "source": {
+        "alphaBounds": [
+          726,
+          431,
+          37,
+          50
+        ],
+        "pack": "Haunted Mansion Pixel Art Tileset Pack",
+        "region": [
+          726,
+          431,
+          37,
+          50
+        ],
+        "runtimeTexture": "game/game_assets/Tilesets/Haunted Mansion Pixel Art Tileset Pack/4.png",
+        "sha256": "fabb60e8d270cf106674b7669dda3e7fe75c8ae9072ff86a4d867a259ed6ea7b",
+        "sourceChecksum": "fabb60e8d270cf106674b7669dda3e7fe75c8ae9072ff86a4d867a259ed6ea7b",
+        "sourceDensity": 48
+      },
+      "worldDrawSize": [
+        37,
+        50
+      ]
+    },
+    {
+      "cropApproval": "approved",
+      "distributionEligibility": "review_required",
+      "goldenCapture": "game/validation/mansion-gallery-layout-pass.png",
+      "id": "mansion_gallery_right_portrait",
+      "kind": "prop",
+      "licenseReference": "game/ben_rpg/visual_assets/generated/runtime_asset_provenance.json",
+      "placement": {
+        "collisionFootprint": "wall_portrait",
+        "footAnchor": [
+          45,
+          136
+        ],
+        "scaleClass": "prop"
+      },
+      "releaseVisualAcceptance": "prototype_only",
+      "source": {
+        "alphaBounds": [
+          291,
+          5,
+          91,
+          137
+        ],
+        "pack": "Haunted Mansion Pixel Art Tileset Pack",
+        "region": [
+          291,
+          5,
+          91,
+          137
+        ],
+        "runtimeTexture": "game/game_assets/Tilesets/Haunted Mansion Pixel Art Tileset Pack/4.png",
+        "sha256": "fabb60e8d270cf106674b7669dda3e7fe75c8ae9072ff86a4d867a259ed6ea7b",
+        "sourceChecksum": "fabb60e8d270cf106674b7669dda3e7fe75c8ae9072ff86a4d867a259ed6ea7b",
+        "sourceDensity": 48
+      },
+      "worldDrawSize": [
+        91,
+        137
+      ]
+    },
+    {
+      "cropApproval": "approved",
+      "distributionEligibility": "review_required",
+      "goldenCapture": "game/validation/mansion-gallery-layout-pass.png",
+      "id": "mansion_gallery_stage_curtain",
+      "kind": "building",
+      "licenseReference": "game/ben_rpg/visual_assets/generated/runtime_asset_provenance.json",
+      "placement": {
+        "collisionFootprint": "stage_curtain",
+        "footAnchor": [
+          105,
+          81
+        ],
+        "scaleClass": "building"
+      },
+      "releaseVisualAcceptance": "prototype_only",
+      "source": {
+        "alphaBounds": [
+          423,
+          679,
+          210,
+          82
+        ],
+        "pack": "Haunted Mansion Pixel Art Tileset Pack",
+        "region": [
+          423,
+          679,
+          210,
+          82
+        ],
+        "runtimeTexture": "game/game_assets/Tilesets/Haunted Mansion Pixel Art Tileset Pack/2.png",
+        "sha256": "7b703a7e5eabd9017bfd4ae47bc8c5c328c9e237448a025d7e9de0d49a0b1bca",
+        "sourceChecksum": "7b703a7e5eabd9017bfd4ae47bc8c5c328c9e237448a025d7e9de0d49a0b1bca",
+        "sourceDensity": 48
+      },
+      "worldDrawSize": [
+        210,
+        82
+      ]
+    },
+    {
+      "cropApproval": "approved",
+      "distributionEligibility": "review_required",
+      "goldenCapture": "game/validation/mansion-gallery-layout-pass.png",
+      "id": "mansion_gallery_upper_left_frame",
+      "kind": "prop",
+      "licenseReference": "game/ben_rpg/visual_assets/generated/runtime_asset_provenance.json",
+      "placement": {
+        "collisionFootprint": "wall_frame",
+        "footAnchor": [
+          18,
+          42
+        ],
+        "scaleClass": "prop"
+      },
+      "releaseVisualAcceptance": "prototype_only",
+      "source": {
+        "alphaBounds": [
+          681,
+          386,
+          37,
+          43
+        ],
+        "pack": "Haunted Mansion Pixel Art Tileset Pack",
+        "region": [
+          681,
+          386,
+          37,
+          43
+        ],
+        "runtimeTexture": "game/game_assets/Tilesets/Haunted Mansion Pixel Art Tileset Pack/4.png",
+        "sha256": "fabb60e8d270cf106674b7669dda3e7fe75c8ae9072ff86a4d867a259ed6ea7b",
+        "sourceChecksum": "fabb60e8d270cf106674b7669dda3e7fe75c8ae9072ff86a4d867a259ed6ea7b",
+        "sourceDensity": 48
+      },
+      "worldDrawSize": [
+        37,
+        43
+      ]
+    },
+    {
+      "cropApproval": "approved",
+      "distributionEligibility": "review_required",
+      "goldenCapture": "game/validation/mansion-gallery-layout-pass.png",
+      "id": "mansion_gallery_upper_right_frame",
+      "kind": "prop",
+      "licenseReference": "game/ben_rpg/visual_assets/generated/runtime_asset_provenance.json",
+      "placement": {
+        "collisionFootprint": "wall_frame",
+        "footAnchor": [
+          23,
+          42
+        ],
+        "scaleClass": "prop"
+      },
+      "releaseVisualAcceptance": "prototype_only",
+      "source": {
+        "alphaBounds": [
+          721,
+          386,
+          46,
+          43
+        ],
+        "pack": "Haunted Mansion Pixel Art Tileset Pack",
+        "region": [
+          721,
+          386,
+          46,
+          43
+        ],
+        "runtimeTexture": "game/game_assets/Tilesets/Haunted Mansion Pixel Art Tileset Pack/4.png",
+        "sha256": "fabb60e8d270cf106674b7669dda3e7fe75c8ae9072ff86a4d867a259ed6ea7b",
+        "sourceChecksum": "fabb60e8d270cf106674b7669dda3e7fe75c8ae9072ff86a4d867a259ed6ea7b",
+        "sourceDensity": 48
+      },
+      "worldDrawSize": [
+        46,
+        43
+      ]
+    },
+    {
+      "cropApproval": "approved",
+      "distributionEligibility": "review_required",
       "goldenCapture": "game/validation/mansion-nursery-live.png",
       "id": "mansion_nursery_bed",
       "kind": "prop",
@@ -4454,6 +4894,46 @@
       "worldDrawSize": [
         56,
         78
+      ]
+    },
+    {
+      "cropApproval": "approved",
+      "distributionEligibility": "review_required",
+      "goldenCapture": "game/validation/mansion-nursery-layout-pass.png",
+      "id": "mansion_nursery_music_box",
+      "kind": "prop",
+      "licenseReference": "game/ben_rpg/visual_assets/generated/runtime_asset_provenance.json",
+      "placement": {
+        "collisionFootprint": "music_box",
+        "footAnchor": [
+          23,
+          65
+        ],
+        "scaleClass": "prop"
+      },
+      "releaseVisualAcceptance": "prototype_only",
+      "source": {
+        "alphaBounds": [
+          583,
+          69,
+          46,
+          66
+        ],
+        "pack": "Haunted Mansion Pixel Art Tileset Pack",
+        "region": [
+          583,
+          69,
+          46,
+          66
+        ],
+        "runtimeTexture": "game/game_assets/Tilesets/Haunted Mansion Pixel Art Tileset Pack/4.png",
+        "sha256": "fabb60e8d270cf106674b7669dda3e7fe75c8ae9072ff86a4d867a259ed6ea7b",
+        "sourceChecksum": "fabb60e8d270cf106674b7669dda3e7fe75c8ae9072ff86a4d867a259ed6ea7b",
+        "sourceDensity": 48
+      },
+      "worldDrawSize": [
+        46,
+        66
       ]
     },
     {

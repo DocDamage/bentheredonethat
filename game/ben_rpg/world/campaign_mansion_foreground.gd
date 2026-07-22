@@ -23,8 +23,8 @@ var profiles
 func _ready() -> void:
 	texture_filter = CanvasItem.TEXTURE_FILTER_NEAREST
 	profiles = VISUAL_PROFILE_REGISTRY.new()
-	# These foreground source paths come from reviewed profiles rather than raw
-	# literals. The remaining per-room crops can be converted independently.
+	# Every foreground prop resolves through a reviewed profile.  This keeps crop,
+	# scale, pivot, provenance, and eligibility out of the draw routine.
 	haunted_interior = profiles.texture(&"mansion_archive_cabinet")
 	haunted_bedroom = profiles.texture(&"mansion_nursery_bed")
 	haunted_storage = profiles.texture(&"mansion_archive_shelving")
@@ -61,28 +61,28 @@ func _draw() -> void:
 	var mansion_offset := Vector2(MANSION_ORIGIN * TILE)
 	match active_area:
 		&"mansion_foyer":
-			_tile(haunted_storage, Rect2(296, 672, 88, 96), Rect2(mansion_offset + Vector2(6.6, 2.65) * TILE, Vector2(66, 72)))
+			_profile_tile(&"mansion_foyer_passage_door", haunted_storage, mansion_offset + Vector2(6.6, 2.65) * TILE)
 		&"mansion_archive":
 			var room_offset := mansion_offset + Vector2(MANSION_ARCHIVE_OFFSET * TILE)
 			_profile_tile(&"mansion_archive_shelving", haunted_storage, room_offset)
-			_tile(haunted_storage, Rect2(190, 0, 190, 176), Rect2(room_offset + Vector2(4 * TILE, 0), Vector2(190, 176)))
-			_tile(haunted_storage, Rect2(296, 672, 88, 96), Rect2(room_offset + Vector2(0.05, 2.65) * TILE, Vector2(66, 72)))
+			_profile_tile(&"mansion_archive_tall_shelving", haunted_storage, room_offset + Vector2(4 * TILE, 0))
+			_profile_tile(&"mansion_foyer_passage_door", haunted_storage, room_offset + Vector2(0.05, 2.65) * TILE)
 			_profile_tile(&"mansion_archive_cabinet", haunted_interior, room_offset + Vector2(2.35, 1.55) * TILE)
 		&"mansion_gallery":
 			var room_offset := mansion_offset + Vector2(MANSION_GALLERY_OFFSET * TILE)
-			_tile(haunted_storage, Rect2(194, 5, 91, 137), Rect2(room_offset + Vector2(18, 14), Vector2(91, 137)))
-			_tile(haunted_storage, Rect2(291, 5, 91, 137), Rect2(room_offset + Vector2(275, 14), Vector2(91, 137)))
-			_tile(haunted_storage, Rect2(681, 386, 37, 43), Rect2(room_offset + Vector2(126, 44), Vector2(37, 43)))
-			_tile(haunted_storage, Rect2(721, 386, 46, 43), Rect2(room_offset + Vector2(210, 44), Vector2(46, 43)))
-			_tile(haunted_storage, Rect2(678, 440, 36, 41), Rect2(room_offset + Vector2(128, 99), Vector2(36, 41)))
-			_tile(haunted_storage, Rect2(726, 431, 37, 50), Rect2(room_offset + Vector2(214, 93), Vector2(37, 50)))
-			_tile(haunted_interior, Rect2(423, 679, 210, 82), Rect2(room_offset + Vector2(87, 221), Vector2(210, 82)))
+			_profile_tile(&"mansion_gallery_left_portrait", haunted_storage, room_offset + Vector2(18, 14))
+			_profile_tile(&"mansion_gallery_right_portrait", haunted_storage, room_offset + Vector2(275, 14))
+			_profile_tile(&"mansion_gallery_upper_left_frame", haunted_storage, room_offset + Vector2(126, 44))
+			_profile_tile(&"mansion_gallery_upper_right_frame", haunted_storage, room_offset + Vector2(210, 44))
+			_profile_tile(&"mansion_gallery_lower_left_frame", haunted_storage, room_offset + Vector2(128, 99))
+			_profile_tile(&"mansion_gallery_lower_right_frame", haunted_storage, room_offset + Vector2(214, 93))
+			_profile_tile(&"mansion_gallery_stage_curtain", haunted_interior, room_offset + Vector2(87, 221))
 		&"mansion_nursery":
 			var room_offset := mansion_offset + Vector2(MANSION_NURSERY_OFFSET * TILE)
-			_tile(haunted_storage, Rect2(583, 69, 46, 66), Rect2(room_offset + Vector2(5.85, 2.35) * TILE, Vector2(46, 66)))
+			_profile_tile(&"mansion_nursery_music_box", haunted_storage, room_offset + Vector2(5.85, 2.35) * TILE)
 			_profile_tile(&"mansion_nursery_bed", haunted_bedroom, room_offset + Vector2(1.1, 2.15) * TILE)
 		&"mansion_ballroom":
 			var room_offset := mansion_offset + Vector2(MANSION_BALLROOM_OFFSET * TILE)
-			_tile(haunted_interior, Rect2(575, 9, 191, 88), Rect2(room_offset + Vector2(97, 22), Vector2(191, 88)))
-			_tile(haunted_interior, Rect2(490, 12, 76, 77), Rect2(room_offset + Vector2(17, 40), Vector2(76, 77)))
-			_tile(haunted_interior, Rect2(490, 12, 76, 77), Rect2(room_offset + Vector2(291, 40), Vector2(76, 77)))
+			_profile_tile(&"mansion_ballroom_chandelier", haunted_interior, room_offset + Vector2(97, 22))
+			_profile_tile(&"mansion_ballroom_door_frame", haunted_interior, room_offset + Vector2(17, 40))
+			_profile_tile(&"mansion_ballroom_door_frame", haunted_interior, room_offset + Vector2(291, 40))
