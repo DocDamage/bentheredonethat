@@ -3052,6 +3052,86 @@
       "cropApproval": "approved",
       "distributionEligibility": "review_required",
       "goldenCapture": "game/validation/frosthold-snow-gate.png",
+      "id": "frosthold_gate_ruin_right",
+      "kind": "prop",
+      "licenseReference": "game/ben_rpg/visual_assets/generated/runtime_asset_provenance.json",
+      "placement": {
+        "collisionFootprint": "ruin_base",
+        "footAnchor": [
+          82,
+          177
+        ],
+        "scaleClass": "prop"
+      },
+      "releaseVisualAcceptance": "prototype_only",
+      "source": {
+        "alphaBounds": [
+          228,
+          172,
+          164,
+          178
+        ],
+        "pack": "Frozen Kingdom Top-Down Pixel Art Asset Pack",
+        "region": [
+          228,
+          172,
+          164,
+          178
+        ],
+        "runtimeTexture": "game/game_assets/Tilesets/Frozen kingdom/Frozen Kingdom – Top-Down Pixel Art Asset Pack/13. Frozen ruins.png",
+        "sha256": "8a599455e714e3d9b8619f84abf007bd1f9d3f5a2ada6df5d5617c7b54712e6e",
+        "sourceChecksum": "8a599455e714e3d9b8619f84abf007bd1f9d3f5a2ada6df5d5617c7b54712e6e",
+        "sourceDensity": 96
+      },
+      "worldDrawSize": [
+        82,
+        89
+      ]
+    },
+    {
+      "cropApproval": "approved",
+      "distributionEligibility": "review_required",
+      "goldenCapture": "game/validation/frosthold-snow-gate.png",
+      "id": "frosthold_gate_torch_right",
+      "kind": "prop",
+      "licenseReference": "game/ben_rpg/visual_assets/generated/runtime_asset_provenance.json",
+      "placement": {
+        "collisionFootprint": "torch_base",
+        "footAnchor": [
+          47,
+          204
+        ],
+        "scaleClass": "prop"
+      },
+      "releaseVisualAcceptance": "prototype_only",
+      "source": {
+        "alphaBounds": [
+          246,
+          170,
+          94,
+          205
+        ],
+        "pack": "Frozen Kingdom Top-Down Pixel Art Asset Pack",
+        "region": [
+          246,
+          170,
+          94,
+          205
+        ],
+        "runtimeTexture": "game/game_assets/Tilesets/Frozen kingdom/Frozen Kingdom – Top-Down Pixel Art Asset Pack/12. Torches and blue flames.png",
+        "sha256": "63463a841603413863c19f5727dece8a11ccb9cb4cafcb96712180161952892f",
+        "sourceChecksum": "63463a841603413863c19f5727dece8a11ccb9cb4cafcb96712180161952892f",
+        "sourceDensity": 96
+      },
+      "worldDrawSize": [
+        47,
+        103
+      ]
+    },
+    {
+      "cropApproval": "approved",
+      "distributionEligibility": "review_required",
+      "goldenCapture": "game/validation/frosthold-snow-gate.png",
       "id": "frosthold_gate_tree",
       "kind": "prop",
       "licenseReference": "game/ben_rpg/visual_assets/generated/runtime_asset_provenance.json",
@@ -3085,6 +3165,46 @@
       },
       "worldDrawSize": [
         94,
+        130
+      ]
+    },
+    {
+      "cropApproval": "approved",
+      "distributionEligibility": "review_required",
+      "goldenCapture": "game/validation/frosthold-snow-gate.png",
+      "id": "frosthold_gate_tree_right",
+      "kind": "landmark",
+      "licenseReference": "game/ben_rpg/visual_assets/generated/runtime_asset_provenance.json",
+      "placement": {
+        "collisionFootprint": "tree_trunk",
+        "footAnchor": [
+          92,
+          259
+        ],
+        "scaleClass": "landmark"
+      },
+      "releaseVisualAcceptance": "prototype_only",
+      "source": {
+        "alphaBounds": [
+          1180,
+          184,
+          184,
+          260
+        ],
+        "pack": "Frozen Kingdom Top-Down Pixel Art Asset Pack",
+        "region": [
+          1180,
+          184,
+          184,
+          260
+        ],
+        "runtimeTexture": "game/game_assets/Tilesets/Frozen kingdom/Frozen Kingdom – Top-Down Pixel Art Asset Pack/10. Frozen Trees and pines.png",
+        "sha256": "ffd607f39aa12f47cd70e975213c3069197cd9cd391fbcdcfc96855b09f31a02",
+        "sourceChecksum": "ffd607f39aa12f47cd70e975213c3069197cd9cd391fbcdcfc96855b09f31a02",
+        "sourceDensity": 96
+      },
+      "worldDrawSize": [
+        92,
         130
       ]
     },

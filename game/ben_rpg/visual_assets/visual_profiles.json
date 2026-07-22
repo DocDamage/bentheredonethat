@@ -382,6 +382,11 @@
       "worldDrawSize": [174, 112], "licenseReference": "game/ben_rpg/visual_assets/generated/runtime_asset_provenance.json", "cropApproval": "approved", "goldenCapture": "game/validation/frosthold-snow-gate.png"
     },
     {
+      "id": "frosthold_gate_tree_right", "kind": "landmark",
+      "source": {"pack": "Frozen Kingdom Top-Down Pixel Art Asset Pack", "runtimeTexture": "game/game_assets/Tilesets/Frozen kingdom/Frozen Kingdom – Top-Down Pixel Art Asset Pack/10. Frozen Trees and pines.png", "sourceChecksum": "ffd607f39aa12f47cd70e975213c3069197cd9cd391fbcdcfc96855b09f31a02", "sourceDensity": 96, "region": [1180, 184, 184, 260], "alphaBounds": [1180, 184, 184, 260]},
+      "placement": {"footAnchor": [92, 259], "scaleClass": "landmark", "collisionFootprint": "tree_trunk"}, "worldDrawSize": [92, 130], "licenseReference": "game/ben_rpg/visual_assets/generated/runtime_asset_provenance.json", "cropApproval": "approved", "goldenCapture": "game/validation/frosthold-snow-gate.png"
+    },
+    {
       "id": "frosthold_gate_ruin",
       "kind": "prop",
       "source": {"pack": "Frozen Kingdom Top-Down Pixel Art Asset Pack", "runtimeTexture": "game/game_assets/Tilesets/Frozen kingdom/Frozen Kingdom – Top-Down Pixel Art Asset Pack/13. Frozen ruins.png", "sourceChecksum": "8a599455e714e3d9b8619f84abf007bd1f9d3f5a2ada6df5d5617c7b54712e6e", "sourceDensity": 96, "region": [39, 172, 165, 178], "alphaBounds": [39, 172, 165, 178]},
@@ -389,11 +394,21 @@
       "worldDrawSize": [83, 89], "licenseReference": "game/ben_rpg/visual_assets/generated/runtime_asset_provenance.json", "cropApproval": "approved", "goldenCapture": "game/validation/frosthold-snow-gate.png"
     },
     {
+      "id": "frosthold_gate_ruin_right", "kind": "prop",
+      "source": {"pack": "Frozen Kingdom Top-Down Pixel Art Asset Pack", "runtimeTexture": "game/game_assets/Tilesets/Frozen kingdom/Frozen Kingdom – Top-Down Pixel Art Asset Pack/13. Frozen ruins.png", "sourceChecksum": "8a599455e714e3d9b8619f84abf007bd1f9d3f5a2ada6df5d5617c7b54712e6e", "sourceDensity": 96, "region": [228, 172, 164, 178], "alphaBounds": [228, 172, 164, 178]},
+      "placement": {"footAnchor": [82, 177], "scaleClass": "prop", "collisionFootprint": "ruin_base"}, "worldDrawSize": [82, 89], "licenseReference": "game/ben_rpg/visual_assets/generated/runtime_asset_provenance.json", "cropApproval": "approved", "goldenCapture": "game/validation/frosthold-snow-gate.png"
+    },
+    {
       "id": "frosthold_blue_torch",
       "kind": "prop",
       "source": {"pack": "Frozen Kingdom Top-Down Pixel Art Asset Pack", "runtimeTexture": "game/ben_rpg/visual_assets/derived/frosthold_blue_torch.png", "sourceChecksum": "cb607350db40e1242b3dd3434fedd8d1d45bac7741a98faa1b5c2314955d46ea", "sourceDensity": 48, "region": [0, 0, 47, 103], "alphaBounds": [0, 0, 47, 103]},
       "placement": {"footAnchor": [23, 102], "scaleClass": "prop", "collisionFootprint": "torch_base"},
       "worldDrawSize": [47, 103], "licenseReference": "game/ben_rpg/visual_assets/generated/runtime_asset_provenance.json", "cropApproval": "approved", "goldenCapture": "game/validation/frosthold-snow-gate.png"
+    },
+    {
+      "id": "frosthold_gate_torch_right", "kind": "prop",
+      "source": {"pack": "Frozen Kingdom Top-Down Pixel Art Asset Pack", "runtimeTexture": "game/game_assets/Tilesets/Frozen kingdom/Frozen Kingdom – Top-Down Pixel Art Asset Pack/12. Torches and blue flames.png", "sourceChecksum": "63463a841603413863c19f5727dece8a11ccb9cb4cafcb96712180161952892f", "sourceDensity": 96, "region": [246, 170, 94, 205], "alphaBounds": [246, 170, 94, 205]},
+      "placement": {"footAnchor": [47, 204], "scaleClass": "prop", "collisionFootprint": "torch_base"}, "worldDrawSize": [47, 103], "licenseReference": "game/ben_rpg/visual_assets/generated/runtime_asset_provenance.json", "cropApproval": "approved", "goldenCapture": "game/validation/frosthold-snow-gate.png"
     },
     {
       "id": "frosthold_market_house",

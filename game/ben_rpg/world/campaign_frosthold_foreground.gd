@@ -18,6 +18,7 @@ var trees: Texture2D
 var bridges: Texture2D
 var market: Texture2D
 var torches: Texture2D
+var gate_torches: Texture2D
 var profiles
 
 
@@ -33,6 +34,7 @@ func _ready() -> void:
 	bridges = profiles.texture(&"frosthold_causeway_bridge")
 	market = profiles.texture(&"frosthold_market_stall")
 	torches = profiles.texture(&"frosthold_blue_torch")
+	gate_torches = profiles.texture(&"frosthold_gate_torch_right")
 	queue_redraw()
 
 
@@ -70,12 +72,12 @@ func _draw() -> void:
 	match active_area:
 		&"frosthold_gate":
 			_profile_prop(&"frosthold_gate_tree", trees, offset + Vector2(-8, 32))
-			_prop(trees, Rect2(1180, 184, 184, 260), offset + Vector2(300, 34))
+			_profile_prop(&"frosthold_gate_tree_right", trees, offset + Vector2(300, 34))
 			_profile_prop(&"frosthold_gate_castle", castle, offset + Vector2(105, 24))
 			_profile_prop(&"frosthold_gate_ruin", ruins, offset + Vector2(22, 103))
-			_prop(ruins, Rect2(228, 172, 164, 178), offset + Vector2(280, 103))
+			_profile_prop(&"frosthold_gate_ruin_right", ruins, offset + Vector2(280, 103))
 			_profile_prop(&"frosthold_blue_torch", torches, offset + Vector2(120, 89))
-			_prop(torches, Rect2(246, 170, 94, 205), offset + Vector2(220, 89))
+			_profile_prop(&"frosthold_gate_torch_right", gate_torches, offset + Vector2(220, 89))
 		&"frosthold_market":
 			var room_offset := offset + Vector2(10 * TILE, 0)
 			_profile_prop(&"frosthold_market_house", houses, room_offset + Vector2(-8, 12))

@@ -368,7 +368,20 @@
       ],
       "path": "res://game_assets/Tilesets/Frozen kingdom/Frozen Kingdom – Top-Down Pixel Art Asset Pack/10. Frozen Trees and pines.png",
       "profileIds": [
-        "frosthold_gate_tree"
+        "frosthold_gate_tree",
+        "frosthold_gate_tree_right"
+      ],
+      "sourceGroup": "Tilesets/Frozen kingdom"
+    },
+    {
+      "distributionEligibility": "review_required",
+      "licenseReviewStatus": "review_required",
+      "localLicenseEvidence": [
+        "game_assets/Tilesets/LICENSE"
+      ],
+      "path": "res://game_assets/Tilesets/Frozen kingdom/Frozen Kingdom – Top-Down Pixel Art Asset Pack/12. Torches and blue flames.png",
+      "profileIds": [
+        "frosthold_gate_torch_right"
       ],
       "sourceGroup": "Tilesets/Frozen kingdom"
     },
@@ -380,7 +393,8 @@
       ],
       "path": "res://game_assets/Tilesets/Frozen kingdom/Frozen Kingdom – Top-Down Pixel Art Asset Pack/13. Frozen ruins.png",
       "profileIds": [
-        "frosthold_gate_ruin"
+        "frosthold_gate_ruin",
+        "frosthold_gate_ruin_right"
       ],
       "sourceGroup": "Tilesets/Frozen kingdom"
     },
@@ -2135,13 +2149,13 @@
   "schemaVersion": 2,
   "scope": "static Godot raster references; not a reachability or license-grant proof",
   "summary": {
-    "assets": 161,
+    "assets": 162,
     "distributionEligibility": {
       "distribution_confirmed": 0,
       "rejected": 0,
-      "review_required": 161
+      "review_required": 162
     },
     "needsManualLicenseConfirmation": 0,
-    "withLocalLicenseEvidence": 161
+    "withLocalLicenseEvidence": 162
   }
 }
