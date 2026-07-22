@@ -35,6 +35,10 @@ from the human, platform, licensing, and performance sign-offs that remain.
   log contained neither an MCP bridge nor an engine/script error.
 - `tools/build_windows_release.ps1` reproduces the local Windows export and
   fails clearly when its preset or matching export templates are absent.
+- `.github/workflows/godot-smoke.yml` pins Godot 4.7.1 on a Windows runner and
+  runs the isolated smoke suite from a clean checkout, retaining test artifacts.
+  It has not yet executed remotely because the local commits have not been
+  published to `origin`.
 - The Windows preset excludes the inactive MCP addon, Dialogic editor-only
   resources, smoke tests, and visual captures; the export log confirms those
   paths are absent. Runtime Dialogic code reads the required character
@@ -50,7 +54,8 @@ from the human, platform, licensing, and performance sign-offs that remain.
   is an initial local baseline, not a declaration of the final platform list.
 - [ ] Install the matching Godot 4.7.1 export templates in CI/release machines,
   then reproduce the clean Windows release export and launch it outside the
-  editor. The local 4.7.1 x86_64 templates and baseline export are verified.
+  editor. Push the prepared smoke workflow and record its first clean remote
+  pass. The local 4.7.1 x86_64 templates and baseline export are verified.
 - [ ] Set the approved shipping version and final Windows publisher/signing metadata.
 - [ ] Complete a license/provenance inventory for every distributed art, audio,
   font, addon, and source-derived runtime asset; consolidate required notices
