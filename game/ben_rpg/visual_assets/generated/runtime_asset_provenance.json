@@ -1345,7 +1345,9 @@
         "asterion_medical_cabinet",
         "asterion_medical_station",
         "asterion_medical_supply_cart",
-        "asterion_medical_treatment_bed"
+        "asterion_medical_treatment_bed",
+        "sandbox_scifi_drug_cabinet",
+        "sandbox_scifi_med_scanner"
       ],
       "sourceGroup": "Tilesets/Sci-Fi Spaceship Interior Tileset Pack"
     },
@@ -1360,7 +1362,11 @@
         "asterion_mess_banner",
         "asterion_mess_counter",
         "asterion_mess_wall_fixture_left",
-        "asterion_mess_wall_fixture_right"
+        "asterion_mess_wall_fixture_right",
+        "sandbox_scifi_food_locker",
+        "sandbox_scifi_mess_table",
+        "sandbox_scifi_prep_locker",
+        "sandbox_scifi_water_cooler"
       ],
       "sourceGroup": "Tilesets/Sci-Fi Spaceship Interior Tileset Pack"
     },
@@ -1375,7 +1381,9 @@
         "asterion_hydro_battle_backdrop",
         "asterion_hydro_control_bank",
         "asterion_hydro_reservoir",
-        "asterion_hydroponics_bed"
+        "asterion_hydroponics_bed",
+        "sandbox_scifi_bio_pod",
+        "sandbox_scifi_seed_bed"
       ],
       "sourceGroup": "Tilesets/Sci-Fi Spaceship Interior Tileset Pack"
     },
@@ -1389,7 +1397,9 @@
       "profileIds": [
         "asterion_command_battle_backdrop",
         "asterion_command_console",
-        "asterion_medical_control_console"
+        "asterion_medical_control_console",
+        "sandbox_scifi_hologram_beacon",
+        "sandbox_scifi_porthole"
       ],
       "sourceGroup": "Tilesets/Sci-Fi Spaceship Interior Tileset Pack"
     },
@@ -1403,7 +1413,8 @@
       "profileIds": [
         "asterion_dock_bulkhead",
         "asterion_dock_hull",
-        "asterion_mess_service_hatch"
+        "asterion_mess_service_hatch",
+        "sandbox_scifi_cargo_module"
       ],
       "sourceGroup": "Tilesets/Sci-Fi Spaceship Interior Tileset Pack"
     },

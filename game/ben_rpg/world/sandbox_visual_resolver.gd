@@ -1,40 +1,35 @@
 class_name SandboxVisualResolver
 extends RefCounted
 
-## Resolves sandbox catalog entries through approved visual profiles while
-## retaining a checked fallback for catalog entries still awaiting migration.
+## Resolves sandbox catalog entries through approved visual profiles. Sandbox
+## content is part of the runtime visual surface, so it cannot silently fall
+## back to raw texture paths and atlas rectangles.
 
 const VISUAL_PROFILE_REGISTRY := preload("res://ben_rpg/world/campaign_visual_profile_registry.gd")
 
 var _profiles
 
 
-func texture_path(definition: Dictionary) -> String:
+func _profile_id(definition: Dictionary) -> StringName:
 	var profile_id := StringName(definition.get("visual_profile", &""))
-	if profile_id != &"":
-		if not _profiles:
-			_profiles = VISUAL_PROFILE_REGISTRY.new()
-		if _profiles.has(profile_id):
-			return _profiles.texture_path(profile_id)
-	return String(definition.get("texture", ""))
+	if not _profiles:
+		_profiles = VISUAL_PROFILE_REGISTRY.new()
+	if profile_id == &"" or not _profiles.has(profile_id):
+		push_error("Sandbox catalog entry lacks an approved visual profile")
+		return &""
+	return profile_id
+
+
+func texture_path(definition: Dictionary) -> String:
+	var profile_id := _profile_id(definition)
+	return _profiles.texture_path(profile_id) if profile_id != &"" else ""
 
 
 func texture(definition: Dictionary) -> Texture2D:
-	var profile_id := StringName(definition.get("visual_profile", &""))
-	if profile_id != &"":
-		if not _profiles:
-			_profiles = VISUAL_PROFILE_REGISTRY.new()
-		if _profiles.has(profile_id):
-			return _profiles.texture(profile_id)
-	var path := texture_path(definition)
-	return load(path) as Texture2D if ResourceLoader.exists(path) else null
+	var profile_id := _profile_id(definition)
+	return _profiles.texture(profile_id) if profile_id != &"" else null
 
 
 func region(definition: Dictionary, texture: Texture2D = null) -> Rect2:
-	var profile_id := StringName(definition.get("visual_profile", &""))
-	if profile_id != &"":
-		if not _profiles:
-			_profiles = VISUAL_PROFILE_REGISTRY.new()
-		if _profiles.has(profile_id):
-			return _profiles.region(profile_id)
-	return definition.get("region", Rect2(Vector2.ZERO, texture.get_size() if texture else Vector2.ZERO))
+	var profile_id := _profile_id(definition)
+	return _profiles.region(profile_id) if profile_id != &"" else Rect2()

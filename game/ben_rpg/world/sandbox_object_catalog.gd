@@ -108,7 +108,7 @@ const ITEMS := {
 	&"scifi_cargo_module": {
 		"name": "Cargo Module", "pack": &"Sci-Fi Spaceship",
 		"texture": "res://game_assets/Tilesets/Sci-Fi Spaceship Interior Tileset Pack/8.png",
-		"region": Rect2(675, 105, 91, 81), "draw_size": Vector2(91, 81), "footprint": Vector2i(2, 2), "blocks": true,
+		"region": Rect2(675, 105, 91, 81), "visual_profile": &"sandbox_scifi_cargo_module", "draw_size": Vector2(91, 81), "footprint": Vector2i(2, 2), "blocks": true,
 	},
 	&"scifi_ration_locker": {
 		"name": "Ration Locker", "pack": &"Sci-Fi Spaceship",
@@ -118,22 +118,22 @@ const ITEMS := {
 	&"scifi_prep_locker": {
 		"name": "Food Prep Locker", "pack": &"Sci-Fi Spaceship",
 		"texture": "res://game_assets/Tilesets/Sci-Fi Spaceship Interior Tileset Pack/2.png",
-		"region": Rect2(289, 0, 46, 96), "draw_size": Vector2(46, 96), "footprint": Vector2i(1, 2), "blocks": true,
+		"region": Rect2(289, 0, 46, 96), "visual_profile": &"sandbox_scifi_prep_locker", "draw_size": Vector2(46, 96), "footprint": Vector2i(1, 2), "blocks": true,
 	},
 	&"scifi_food_locker": {
 		"name": "Cold Food Locker", "pack": &"Sci-Fi Spaceship",
 		"texture": "res://game_assets/Tilesets/Sci-Fi Spaceship Interior Tileset Pack/2.png",
-		"region": Rect2(337, 0, 46, 96), "draw_size": Vector2(46, 96), "footprint": Vector2i(1, 2), "blocks": true,
+		"region": Rect2(337, 0, 46, 96), "visual_profile": &"sandbox_scifi_food_locker", "draw_size": Vector2(46, 96), "footprint": Vector2i(1, 2), "blocks": true,
 	},
 	&"scifi_mess_table": {
 		"name": "Mess Hall Table", "pack": &"Sci-Fi Spaceship",
 		"texture": "res://game_assets/Tilesets/Sci-Fi Spaceship Interior Tileset Pack/2.png",
-		"region": Rect2(2, 2, 93, 47), "draw_size": Vector2(93, 47), "footprint": Vector2i(2, 1), "blocks": true,
+		"region": Rect2(2, 2, 93, 47), "visual_profile": &"sandbox_scifi_mess_table", "draw_size": Vector2(93, 47), "footprint": Vector2i(2, 1), "blocks": true,
 	},
 	&"scifi_water_cooler": {
 		"name": "Water Recycler", "pack": &"Sci-Fi Spaceship",
 		"texture": "res://game_assets/Tilesets/Sci-Fi Spaceship Interior Tileset Pack/2.png",
-		"region": Rect2(537, 112, 31, 80), "draw_size": Vector2(31, 80), "footprint": Vector2i(1, 2), "blocks": true,
+		"region": Rect2(537, 112, 31, 80), "visual_profile": &"sandbox_scifi_water_cooler", "draw_size": Vector2(31, 80), "footprint": Vector2i(1, 2), "blocks": true,
 	},
 	&"scifi_grow_rack": {
 		"name": "Hydroponic Grow Rack", "pack": &"Sci-Fi Spaceship",
@@ -143,12 +143,12 @@ const ITEMS := {
 	&"scifi_seed_bed": {
 		"name": "Hydroponic Seed Bed", "pack": &"Sci-Fi Spaceship",
 		"texture": "res://game_assets/Tilesets/Sci-Fi Spaceship Interior Tileset Pack/3.png",
-		"region": Rect2(0, 147, 96, 45), "draw_size": Vector2(96, 45), "footprint": Vector2i(2, 1), "blocks": true,
+		"region": Rect2(0, 147, 96, 45), "visual_profile": &"sandbox_scifi_seed_bed", "draw_size": Vector2(96, 45), "footprint": Vector2i(2, 1), "blocks": true,
 	},
 	&"scifi_bio_pod": {
 		"name": "Specimen Bio-Pod", "pack": &"Sci-Fi Spaceship",
 		"texture": "res://game_assets/Tilesets/Sci-Fi Spaceship Interior Tileset Pack/3.png",
-		"region": Rect2(686, 195, 69, 92), "draw_size": Vector2(69, 92), "footprint": Vector2i(2, 2), "blocks": true,
+		"region": Rect2(686, 195, 69, 92), "visual_profile": &"sandbox_scifi_bio_pod", "draw_size": Vector2(69, 92), "footprint": Vector2i(2, 2), "blocks": true,
 	},
 	&"scifi_command_bank": {
 		"name": "Command Console Bank", "pack": &"Sci-Fi Spaceship",
@@ -158,12 +158,12 @@ const ITEMS := {
 	&"scifi_porthole": {
 		"name": "Observation Porthole", "pack": &"Sci-Fi Spaceship",
 		"texture": "res://game_assets/Tilesets/Sci-Fi Spaceship Interior Tileset Pack/6.png",
-		"region": Rect2(5, 149, 87, 87), "draw_size": Vector2(87, 87), "footprint": Vector2i(2, 2), "blocks": true,
+		"region": Rect2(5, 149, 87, 87), "visual_profile": &"sandbox_scifi_porthole", "draw_size": Vector2(87, 87), "footprint": Vector2i(2, 2), "blocks": true,
 	},
 	&"scifi_hologram_beacon": {
 		"name": "Hologram Beacon", "pack": &"Sci-Fi Spaceship",
 		"texture": "res://game_assets/Tilesets/Sci-Fi Spaceship Interior Tileset Pack/6.png",
-		"region": Rect2(290, 21, 93, 116), "draw_size": Vector2(93, 116), "footprint": Vector2i(2, 3), "blocks": true,
+		"region": Rect2(290, 21, 93, 116), "visual_profile": &"sandbox_scifi_hologram_beacon", "draw_size": Vector2(93, 116), "footprint": Vector2i(2, 3), "blocks": true,
 	},
 	&"scifi_med_bed": {
 		"name": "Medical Bed", "pack": &"Sci-Fi Spaceship",
@@ -173,12 +173,12 @@ const ITEMS := {
 	&"scifi_med_scanner": {
 		"name": "Medical Scanner", "pack": &"Sci-Fi Spaceship",
 		"texture": "res://game_assets/Tilesets/Sci-Fi Spaceship Interior Tileset Pack/10.png",
-		"region": Rect2(194, 124, 92, 62), "draw_size": Vector2(92, 62), "footprint": Vector2i(2, 2), "blocks": true,
+		"region": Rect2(194, 124, 92, 62), "visual_profile": &"sandbox_scifi_med_scanner", "draw_size": Vector2(92, 62), "footprint": Vector2i(2, 2), "blocks": true,
 	},
 	&"scifi_drug_cabinet": {
 		"name": "Pharmacy Cabinet", "pack": &"Sci-Fi Spaceship",
 		"texture": "res://game_assets/Tilesets/Sci-Fi Spaceship Interior Tileset Pack/10.png",
-		"region": Rect2(531, 115, 42, 77), "draw_size": Vector2(42, 77), "footprint": Vector2i(1, 2), "blocks": true,
+		"region": Rect2(531, 115, 42, 77), "visual_profile": &"sandbox_scifi_drug_cabinet", "draw_size": Vector2(42, 77), "footprint": Vector2i(1, 2), "blocks": true,
 	},
 }
 

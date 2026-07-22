@@ -788,7 +788,7 @@
       "references": [
         {
           "file": "game/ben_rpg/visual_assets/visual_profiles.json",
-          "line": 1909,
+          "line": 1920,
           "profileId": "universe_treasure_chest",
           "resolution": "profile_runtime_texture"
         }
@@ -1131,7 +1131,7 @@
         },
         {
           "file": "game/ben_rpg/visual_assets/visual_profiles.json",
-          "line": 1915,
+          "line": 1926,
           "profileId": "sandbox_haunted_facade",
           "resolution": "profile_runtime_texture"
         },
@@ -1578,7 +1578,7 @@
         },
         {
           "file": "game/ben_rpg/visual_assets/visual_profiles.json",
-          "line": 1916,
+          "line": 1927,
           "profileId": "sandbox_haunted_passage_door",
           "resolution": "profile_runtime_texture"
         },
@@ -1958,7 +1958,7 @@
         },
         {
           "file": "game/ben_rpg/visual_assets/visual_profiles.json",
-          "line": 1917,
+          "line": 1928,
           "profileId": "sandbox_lab_workbench",
           "resolution": "profile_runtime_texture"
         },
@@ -1985,13 +1985,13 @@
         },
         {
           "file": "game/ben_rpg/visual_assets/visual_profiles.json",
-          "line": 1918,
+          "line": 1929,
           "profileId": "sandbox_lab_computer",
           "resolution": "profile_runtime_texture"
         },
         {
           "file": "game/ben_rpg/visual_assets/visual_profiles.json",
-          "line": 1919,
+          "line": 1930,
           "profileId": "sandbox_lab_schedule",
           "resolution": "profile_runtime_texture"
         },
@@ -2128,19 +2128,19 @@
         },
         {
           "file": "game/ben_rpg/visual_assets/visual_profiles.json",
-          "line": 1910,
+          "line": 1921,
           "profileId": "sandbox_modern_blue_cottage",
           "resolution": "profile_runtime_texture"
         },
         {
           "file": "game/ben_rpg/visual_assets/visual_profiles.json",
-          "line": 1911,
+          "line": 1922,
           "profileId": "sandbox_modern_red_cottage",
           "resolution": "profile_runtime_texture"
         },
         {
           "file": "game/ben_rpg/visual_assets/visual_profiles.json",
-          "line": 1912,
+          "line": 1923,
           "profileId": "sandbox_modern_clock_hall",
           "resolution": "profile_runtime_texture"
         },
@@ -2368,13 +2368,13 @@
         },
         {
           "file": "game/ben_rpg/visual_assets/visual_profiles.json",
-          "line": 1913,
+          "line": 1924,
           "profileId": "sandbox_ranch_oak",
           "resolution": "profile_runtime_texture"
         },
         {
           "file": "game/ben_rpg/visual_assets/visual_profiles.json",
-          "line": 1914,
+          "line": 1925,
           "profileId": "sandbox_ranch_sapling",
           "resolution": "profile_runtime_texture"
         },
@@ -2744,7 +2744,9 @@
         "asterion_medical_cabinet",
         "asterion_medical_station",
         "asterion_medical_supply_cart",
-        "asterion_medical_treatment_bed"
+        "asterion_medical_treatment_bed",
+        "sandbox_scifi_drug_cabinet",
+        "sandbox_scifi_med_scanner"
       ],
       "references": [
         {
@@ -2778,6 +2780,18 @@
           "resolution": "profile_runtime_texture"
         },
         {
+          "file": "game/ben_rpg/visual_assets/visual_profiles.json",
+          "line": 1918,
+          "profileId": "sandbox_scifi_med_scanner",
+          "resolution": "profile_runtime_texture"
+        },
+        {
+          "file": "game/ben_rpg/visual_assets/visual_profiles.json",
+          "line": 1919,
+          "profileId": "sandbox_scifi_drug_cabinet",
+          "resolution": "profile_runtime_texture"
+        },
+        {
           "file": "game/ben_rpg/world/sandbox_object_catalog.gd",
           "line": 170,
           "resolution": "literal"
@@ -2800,7 +2814,11 @@
         "asterion_mess_banner",
         "asterion_mess_counter",
         "asterion_mess_wall_fixture_left",
-        "asterion_mess_wall_fixture_right"
+        "asterion_mess_wall_fixture_right",
+        "sandbox_scifi_food_locker",
+        "sandbox_scifi_mess_table",
+        "sandbox_scifi_prep_locker",
+        "sandbox_scifi_water_cooler"
       ],
       "references": [
         {
@@ -2825,6 +2843,30 @@
           "file": "game/ben_rpg/visual_assets/visual_profiles.json",
           "line": 669,
           "profileId": "asterion_mess_banner",
+          "resolution": "profile_runtime_texture"
+        },
+        {
+          "file": "game/ben_rpg/visual_assets/visual_profiles.json",
+          "line": 1910,
+          "profileId": "sandbox_scifi_prep_locker",
+          "resolution": "profile_runtime_texture"
+        },
+        {
+          "file": "game/ben_rpg/visual_assets/visual_profiles.json",
+          "line": 1911,
+          "profileId": "sandbox_scifi_food_locker",
+          "resolution": "profile_runtime_texture"
+        },
+        {
+          "file": "game/ben_rpg/visual_assets/visual_profiles.json",
+          "line": 1912,
+          "profileId": "sandbox_scifi_mess_table",
+          "resolution": "profile_runtime_texture"
+        },
+        {
+          "file": "game/ben_rpg/visual_assets/visual_profiles.json",
+          "line": 1913,
+          "profileId": "sandbox_scifi_water_cooler",
           "resolution": "profile_runtime_texture"
         },
         {
@@ -2860,7 +2902,9 @@
         "asterion_hydro_battle_backdrop",
         "asterion_hydro_control_bank",
         "asterion_hydro_reservoir",
-        "asterion_hydroponics_bed"
+        "asterion_hydroponics_bed",
+        "sandbox_scifi_bio_pod",
+        "sandbox_scifi_seed_bed"
       ],
       "references": [
         {
@@ -2888,6 +2932,18 @@
           "resolution": "profile_runtime_texture"
         },
         {
+          "file": "game/ben_rpg/visual_assets/visual_profiles.json",
+          "line": 1914,
+          "profileId": "sandbox_scifi_seed_bed",
+          "resolution": "profile_runtime_texture"
+        },
+        {
+          "file": "game/ben_rpg/visual_assets/visual_profiles.json",
+          "line": 1915,
+          "profileId": "sandbox_scifi_bio_pod",
+          "resolution": "profile_runtime_texture"
+        },
+        {
           "file": "game/ben_rpg/world/sandbox_object_catalog.gd",
           "line": 140,
           "resolution": "literal"
@@ -2909,7 +2965,9 @@
       "profileIds": [
         "asterion_command_battle_backdrop",
         "asterion_command_console",
-        "asterion_medical_control_console"
+        "asterion_medical_control_console",
+        "sandbox_scifi_hologram_beacon",
+        "sandbox_scifi_porthole"
       ],
       "references": [
         {
@@ -2928,6 +2986,18 @@
           "file": "game/ben_rpg/visual_assets/visual_profiles.json",
           "line": 1463,
           "profileId": "asterion_command_battle_backdrop",
+          "resolution": "profile_runtime_texture"
+        },
+        {
+          "file": "game/ben_rpg/visual_assets/visual_profiles.json",
+          "line": 1916,
+          "profileId": "sandbox_scifi_porthole",
+          "resolution": "profile_runtime_texture"
+        },
+        {
+          "file": "game/ben_rpg/visual_assets/visual_profiles.json",
+          "line": 1917,
+          "profileId": "sandbox_scifi_hologram_beacon",
           "resolution": "profile_runtime_texture"
         },
         {
@@ -2952,7 +3022,8 @@
       "profileIds": [
         "asterion_dock_bulkhead",
         "asterion_dock_hull",
-        "asterion_mess_service_hatch"
+        "asterion_mess_service_hatch",
+        "sandbox_scifi_cargo_module"
       ],
       "references": [
         {
@@ -2971,6 +3042,12 @@
           "file": "game/ben_rpg/visual_assets/visual_profiles.json",
           "line": 690,
           "profileId": "asterion_dock_hull",
+          "resolution": "profile_runtime_texture"
+        },
+        {
+          "file": "game/ben_rpg/visual_assets/visual_profiles.json",
+          "line": 1909,
+          "profileId": "sandbox_scifi_cargo_module",
           "resolution": "profile_runtime_texture"
         },
         {
@@ -3362,7 +3439,7 @@
       "references": [
         {
           "file": "game/ben_rpg/visual_assets/visual_profiles.json",
-          "line": 1922,
+          "line": 1933,
           "profileId": "velociraptor_battle_actor",
           "resolution": "profile_runtime_texture"
         }

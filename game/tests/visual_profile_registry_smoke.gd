@@ -151,7 +151,9 @@ func _ready() -> void:
 		var object_definition: Dictionary = SANDBOX_OBJECT_CATALOG.ITEMS[object_id]
 		var object_profile_id := StringName(object_definition.get("visual_profile", &""))
 		if object_profile_id == &"":
-			continue
+			printerr("VISUAL_PROFILE_REGISTRY_SMOKE_FAILED sandbox_object_profile=" + object_id)
+			get_tree().quit(1)
+			return
 		if not registry.has(object_profile_id):
 			printerr("VISUAL_PROFILE_REGISTRY_SMOKE_FAILED sandbox_object_profile=" + object_id)
 			get_tree().quit(1)
