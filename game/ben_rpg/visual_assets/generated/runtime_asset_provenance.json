@@ -263,6 +263,18 @@
       "localLicenseEvidence": [
         "game_assets/Tilesets/LICENSE"
       ],
+      "path": "res://game_assets/Tilesets/Ancient Greek Mythology/Sliced/belfry_building.png",
+      "profileIds": [
+        "belfry_building"
+      ],
+      "sourceGroup": "Tilesets/Ancient Greek Mythology"
+    },
+    {
+      "distributionEligibility": "review_required",
+      "licenseReviewStatus": "review_required",
+      "localLicenseEvidence": [
+        "game_assets/Tilesets/LICENSE"
+      ],
       "path": "res://game_assets/Tilesets/Bright Cyberpunk Pixel Art Tileset Pack/1.png",
       "profileIds": [
         "helios_civic_sun_battle_backdrop",
@@ -280,6 +292,7 @@
       ],
       "path": "res://game_assets/Tilesets/Bright Cyberpunk Pixel Art Tileset Pack/3.png",
       "profileIds": [
+        "afterlight_club_facade",
         "helios_observatory_facade"
       ],
       "sourceGroup": "Tilesets/Bright Cyberpunk Pixel Art Tileset Pack"
@@ -454,8 +467,31 @@
       "path": "res://game_assets/Tilesets/Haunted Mansion Pixel Art Tileset Pack/2.png",
       "profileIds": [
         "mansion_archive_cabinet",
+        "mansion_archive_wall_lit_tile",
+        "mansion_archive_wall_plain_tile",
+        "mansion_ballroom_chandelier",
+        "mansion_ballroom_door_frame",
         "mansion_foyer_battle_backdrop",
+        "mansion_foyer_clock",
+        "mansion_foyer_wall_tableau",
         "mansion_gallery_battle_backdrop",
+        "mansion_gallery_stage_curtain",
+        "mansion_interior_wall_0_0",
+        "mansion_interior_wall_0_1",
+        "mansion_interior_wall_1_0",
+        "mansion_interior_wall_1_1",
+        "mansion_interior_wall_2_0",
+        "mansion_interior_wall_2_1",
+        "mansion_interior_wall_3_0",
+        "mansion_interior_wall_3_1",
+        "mansion_plank_grain_0_0",
+        "mansion_plank_grain_0_1",
+        "mansion_plank_grain_0_2",
+        "mansion_plank_grain_0_3",
+        "mansion_plank_grain_1_0",
+        "mansion_plank_grain_1_1",
+        "mansion_plank_grain_1_2",
+        "mansion_plank_grain_1_3",
         "sandbox_haunted_planks",
         "sandbox_haunted_stone"
       ],
@@ -469,7 +505,25 @@
       ],
       "path": "res://game_assets/Tilesets/Haunted Mansion Pixel Art Tileset Pack/3.png",
       "profileIds": [
-        "mansion_nursery_bed"
+        "mansion_nursery_bed",
+        "mansion_nursery_left_wall_panel",
+        "mansion_nursery_right_wall_panel",
+        "mansion_nursery_wall_0_0",
+        "mansion_nursery_wall_0_1",
+        "mansion_nursery_wall_1_0",
+        "mansion_nursery_wall_1_1",
+        "mansion_nursery_wall_2_0",
+        "mansion_nursery_wall_2_1",
+        "mansion_nursery_wall_3_0",
+        "mansion_nursery_wall_3_1",
+        "mansion_nursery_wall_4_0",
+        "mansion_nursery_wall_4_1",
+        "mansion_nursery_wall_5_0",
+        "mansion_nursery_wall_5_1",
+        "mansion_nursery_wall_6_0",
+        "mansion_nursery_wall_6_1",
+        "mansion_nursery_wall_7_0",
+        "mansion_nursery_wall_7_1"
       ],
       "sourceGroup": "Tilesets/Haunted Mansion Pixel Art Tileset Pack"
     },
@@ -482,6 +536,15 @@
       "path": "res://game_assets/Tilesets/Haunted Mansion Pixel Art Tileset Pack/4.png",
       "profileIds": [
         "mansion_archive_shelving",
+        "mansion_archive_tall_shelving",
+        "mansion_foyer_passage_door",
+        "mansion_gallery_left_portrait",
+        "mansion_gallery_lower_left_frame",
+        "mansion_gallery_lower_right_frame",
+        "mansion_gallery_right_portrait",
+        "mansion_gallery_upper_left_frame",
+        "mansion_gallery_upper_right_frame",
+        "mansion_nursery_music_box",
         "sandbox_haunted_passage_door"
       ],
       "sourceGroup": "Tilesets/Haunted Mansion Pixel Art Tileset Pack"
@@ -558,6 +621,7 @@
       "path": "res://game_assets/Tilesets/Modern Laboratory Pixel Art Tileset Pack/1.png",
       "profileIds": [
         "laboratory_floor_tile",
+        "laboratory_wall_tile",
         "sandbox_lab_blue_panel",
         "sandbox_lab_green_panel",
         "sandbox_lab_steel_panel",
@@ -573,7 +637,8 @@
       ],
       "path": "res://game_assets/Tilesets/Modern Laboratory Pixel Art Tileset Pack/2.png",
       "profileIds": [
-        "laboratory_utility_bank"
+        "laboratory_utility_bank",
+        "laboratory_ventilation_run"
       ],
       "sourceGroup": "Tilesets/Modern Laboratory Pixel Art Tileset Pack"
     },
@@ -586,6 +651,15 @@
       "path": "res://game_assets/Tilesets/Modern Laboratory Pixel Art Tileset Pack/3.png",
       "profileIds": [
         "laboratory_analysis_station",
+        "laboratory_center_storage",
+        "laboratory_east_calibrator",
+        "laboratory_east_coolant",
+        "laboratory_east_fabricator",
+        "laboratory_east_generator",
+        "laboratory_east_reactor",
+        "laboratory_west_spectrometer",
+        "laboratory_west_storage",
+        "laboratory_west_terminal",
         "sandbox_lab_workbench"
       ],
       "sourceGroup": "Tilesets/Modern Laboratory Pixel Art Tileset Pack"
@@ -627,7 +701,9 @@
       ],
       "path": "res://game_assets/Tilesets/Modern World Overworld Pixel Tileset/2.png",
       "profileIds": [
-        "town_grass_tile"
+        "town_foundation_stone_tile",
+        "town_grass_tile",
+        "town_road_tile"
       ],
       "sourceGroup": "Tilesets/Modern World Overworld Pixel Tileset"
     },
@@ -2028,13 +2104,13 @@
   "schemaVersion": 2,
   "scope": "static Godot raster references; not a reachability or license-grant proof",
   "summary": {
-    "assets": 159,
+    "assets": 160,
     "distributionEligibility": {
       "distribution_confirmed": 0,
       "rejected": 0,
-      "review_required": 159
+      "review_required": 160
     },
     "needsManualLicenseConfirmation": 0,
-    "withLocalLicenseEvidence": 159
+    "withLocalLicenseEvidence": 160
   }
 }

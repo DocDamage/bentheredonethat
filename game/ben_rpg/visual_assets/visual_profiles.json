@@ -514,6 +514,20 @@
       "worldDrawSize": [48, 56], "licenseReference": "game/ben_rpg/visual_assets/generated/runtime_asset_provenance.json", "cropApproval": "approved", "goldenCapture": "game/validation/town-facilities-overview-rebuilt.png"
     },
     {
+      "id": "afterlight_club_facade",
+      "kind": "building",
+      "source": {"pack": "Bright Cyberpunk Pixel Art Tileset Pack", "runtimeTexture": "game/game_assets/Tilesets/Bright Cyberpunk Pixel Art Tileset Pack/3.png", "sourceChecksum": "23e26dd9a3a6120c3b93e6fc348dd6268c6def291e6815373c4ab69bfd534afe", "sourceDensity": 48, "region": [386, 2, 93, 94], "alphaBounds": [386, 2, 93, 94]},
+      "placement": {"footAnchor": [46, 93], "doorway": [47, 93], "scaleClass": "building", "collisionFootprint": "facade_doorway"},
+      "worldDrawSize": [186, 188], "licenseReference": "game/ben_rpg/visual_assets/generated/runtime_asset_provenance.json", "cropApproval": "approved", "goldenCapture": "game/validation/town-facilities-overview-rebuilt.png"
+    },
+    {
+      "id": "belfry_building",
+      "kind": "building",
+      "source": {"pack": "Ancient Greek Mythology", "runtimeTexture": "game/game_assets/Tilesets/Ancient Greek Mythology/Sliced/belfry_building.png", "sourceChecksum": "e9364dcdee7d5ea9b7e62f64b71eb0313ecd111f0387262e134cfa91388909e3", "sourceDensity": 48, "region": [0, 0, 240, 190], "alphaBounds": [0, 0, 240, 190]},
+      "placement": {"footAnchor": [120, 189], "doorway": [112, 189], "scaleClass": "building", "collisionFootprint": "facade_doorway"},
+      "worldDrawSize": [240, 190], "licenseReference": "game/ben_rpg/visual_assets/generated/runtime_asset_provenance.json", "cropApproval": "approved", "goldenCapture": "game/validation/town-facilities-belfry.png"
+    },
+    {
       "id": "mansion_archive_shelving",
       "kind": "building",
       "source": {"pack": "Haunted Mansion Pixel Art Tileset Pack", "runtimeTexture": "game/game_assets/Tilesets/Haunted Mansion Pixel Art Tileset Pack/4.png", "sourceChecksum": "fabb60e8d270cf106674b7669dda3e7fe75c8ae9072ff86a4d867a259ed6ea7b", "sourceDensity": 48, "region": [0, 0, 190, 180], "alphaBounds": [0, 0, 190, 180]},

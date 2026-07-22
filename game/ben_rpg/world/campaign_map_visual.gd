@@ -177,7 +177,7 @@ func _ready() -> void:
 	sakura_temple = visual_profiles.texture(&"moonpetal_court_temple")
 	sakura_paths = visual_profiles.texture(&"moonpetal_processional_path")
 	empyreal_clouds = visual_profiles.texture(&"empyreal_sky_cloud_bank")
-	for slice_name in ["marble_plain", "marble_cracked", "marble_silver", "marble_gold", "marble_gold_quarter", "pediment_door", "tribunal_gate", "blue_balustrade", "winged_statue", "horse_statue", "griffin_statue", "justice_statue", "music_statue", "silver_olive_tree", "golden_olive_tree", "appeal_fountain", "ordinance_book", "reliquary_portal", "gravity_crystal", "tribunal_orrery", "celestial_flame", "plain_column", "blue_column", "flower_offering", "fruit_offering", "crystal_altar", "lotus_altar", "belfry_facade", "belfry_building"]:
+	for slice_name in ["marble_plain", "marble_cracked", "marble_silver", "marble_gold", "marble_gold_quarter", "pediment_door", "tribunal_gate", "blue_balustrade", "winged_statue", "horse_statue", "griffin_statue", "justice_statue", "music_statue", "silver_olive_tree", "golden_olive_tree", "appeal_fountain", "ordinance_book", "reliquary_portal", "gravity_crystal", "tribunal_orrery", "celestial_flame", "plain_column", "blue_column", "flower_offering", "fruit_offering", "crystal_altar", "lotus_altar", "belfry_facade"]:
 		empyreal_slices[slice_name] = load("res://game_assets/Tilesets/Ancient Greek Mythology/Sliced/%s.png" % slice_name)
 	if not CampaignState.town_terrain_changed.is_connected(_on_town_terrain_changed):
 		CampaignState.town_terrain_changed.connect(_on_town_terrain_changed)
@@ -437,10 +437,11 @@ func _draw_belfry_facility(plot: Rect2) -> void:
 	# Greek pack's matching wall, column, doorway, and beacon pieces. Runtime draws
 	# one individual sprite; it does not balance a giant atlas crop on the grass.
 	_draw_facility_foundation(plot)
-	var facade := empyreal_slices.get("belfry_building") as Texture2D
-	var size := facade.get_size()
+	var profile_id := &"belfry_building"
+	var facade: Texture2D = visual_profiles.texture(profile_id)
+	var size: Vector2 = visual_profiles.world_draw_size(profile_id)
 	var origin := Vector2(roundf(plot.get_center().x - size.x * 0.5), roundf(plot.end.y - size.y - 7))
-	tile(facade, Rect2(Vector2.ZERO, size), Rect2(origin, size))
+	profile_tile(profile_id, facade, origin)
 
 
 func _draw_facility_foundation(plot: Rect2) -> void:
@@ -459,15 +460,15 @@ func _draw_observatory_facility(plot: Rect2) -> void:
 	# loosely stacked props instead of a building. This 91x94 alpha island already
 	# contains its roof, curved observation windows, walls, and centered entrance.
 	_draw_facility_foundation(plot)
-	var building_source := Rect2(483, 2, 91, 94)
-	var building_scale: float = FACILITY_SCALES["Observatory"]
-	var building_size := building_source.size * building_scale
-	var door_x: float = FACILITY_DOOR_X["Observatory"] * building_scale
+	var profile_id := &"helios_observatory_facade"
+	var building_source: Rect2 = visual_profiles.region(profile_id)
+	var building_size: Vector2 = visual_profiles.world_draw_size(profile_id)
+	var door_x: float = visual_profiles.doorway(profile_id).x * building_size.x / building_source.size.x
 	var building_origin := Vector2(
 		roundf(plot.get_center().x - door_x),
 		roundf(plot.end.y - building_size.y - 6)
 	)
-	tile(helios_structures, building_source, Rect2(building_origin, building_size))
+	profile_tile(profile_id, helios_structures, building_origin)
 
 
 func _draw_afterlight_club_facility(plot: Rect2) -> void:
@@ -475,22 +476,22 @@ func _draw_afterlight_club_facility(plot: Rect2) -> void:
 	# scale. Its BAR roof sign is one complete sign from the nightclub pack,
 	# reduced by exactly 1/2 so both packs share the town's pixel density.
 	_draw_facility_foundation(plot)
-	var building_source := Rect2(386, 2, 93, 94)
-	var building_scale: float = FACILITY_SCALES["Afterlight Club"]
-	var building_size := building_source.size * building_scale
-	var door_x: float = FACILITY_DOOR_X["Afterlight Club"] * building_scale
+	var building_profile := &"afterlight_club_facade"
+	var building_source: Rect2 = visual_profiles.region(building_profile)
+	var building_size: Vector2 = visual_profiles.world_draw_size(building_profile)
+	var door_x: float = visual_profiles.doorway(building_profile).x * building_size.x / building_source.size.x
 	var building_origin := Vector2(
 		roundf(plot.get_center().x - door_x),
 		roundf(plot.end.y - building_size.y - 6)
 	)
-	tile(helios_structures, building_source, Rect2(building_origin, building_size))
-	var sign_source := Rect2(480, 96, 48, 56)
-	var sign_size := sign_source.size
+	profile_tile(building_profile, helios_structures, building_origin)
+	var sign_profile := &"afterlight_club_sign"
+	var sign_size: Vector2 = visual_profiles.world_draw_size(sign_profile)
 	var sign_origin := Vector2(
 		roundf(plot.get_center().x - sign_size.x * 0.5),
 		roundf(building_origin.y - 43)
 	)
-	tile(nightclub_signs, sign_source, Rect2(sign_origin, sign_size))
+	profile_tile(sign_profile, nightclub_signs, sign_origin)
 
 
 func set_build_state(is_active: bool, plot_index: int) -> void:

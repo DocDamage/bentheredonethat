@@ -4,6 +4,50 @@
       "cropApproval": "approved",
       "distributionEligibility": "review_required",
       "goldenCapture": "game/validation/town-facilities-overview-rebuilt.png",
+      "id": "afterlight_club_facade",
+      "kind": "building",
+      "licenseReference": "game/ben_rpg/visual_assets/generated/runtime_asset_provenance.json",
+      "placement": {
+        "collisionFootprint": "facade_doorway",
+        "doorway": [
+          47,
+          93
+        ],
+        "footAnchor": [
+          46,
+          93
+        ],
+        "scaleClass": "building"
+      },
+      "releaseVisualAcceptance": "prototype_only",
+      "source": {
+        "alphaBounds": [
+          386,
+          2,
+          93,
+          94
+        ],
+        "pack": "Bright Cyberpunk Pixel Art Tileset Pack",
+        "region": [
+          386,
+          2,
+          93,
+          94
+        ],
+        "runtimeTexture": "game/game_assets/Tilesets/Bright Cyberpunk Pixel Art Tileset Pack/3.png",
+        "sha256": "23e26dd9a3a6120c3b93e6fc348dd6268c6def291e6815373c4ab69bfd534afe",
+        "sourceChecksum": "23e26dd9a3a6120c3b93e6fc348dd6268c6def291e6815373c4ab69bfd534afe",
+        "sourceDensity": 48
+      },
+      "worldDrawSize": [
+        186,
+        188
+      ]
+    },
+    {
+      "cropApproval": "approved",
+      "distributionEligibility": "review_required",
+      "goldenCapture": "game/validation/town-facilities-overview-rebuilt.png",
       "id": "afterlight_club_sign",
       "kind": "prop",
       "licenseReference": "game/ben_rpg/visual_assets/generated/runtime_asset_provenance.json",
@@ -998,6 +1042,50 @@
       "worldDrawSize": [
         134,
         88
+      ]
+    },
+    {
+      "cropApproval": "approved",
+      "distributionEligibility": "review_required",
+      "goldenCapture": "game/validation/town-facilities-belfry.png",
+      "id": "belfry_building",
+      "kind": "building",
+      "licenseReference": "game/ben_rpg/visual_assets/generated/runtime_asset_provenance.json",
+      "placement": {
+        "collisionFootprint": "facade_doorway",
+        "doorway": [
+          112,
+          189
+        ],
+        "footAnchor": [
+          120,
+          189
+        ],
+        "scaleClass": "building"
+      },
+      "releaseVisualAcceptance": "prototype_only",
+      "source": {
+        "alphaBounds": [
+          0,
+          0,
+          240,
+          190
+        ],
+        "pack": "Ancient Greek Mythology",
+        "region": [
+          0,
+          0,
+          240,
+          190
+        ],
+        "runtimeTexture": "game/game_assets/Tilesets/Ancient Greek Mythology/Sliced/belfry_building.png",
+        "sha256": "e9364dcdee7d5ea9b7e62f64b71eb0313ecd111f0387262e134cfa91388909e3",
+        "sourceChecksum": "e9364dcdee7d5ea9b7e62f64b71eb0313ecd111f0387262e134cfa91388909e3",
+        "sourceDensity": 48
+      },
+      "worldDrawSize": [
+        240,
+        190
       ]
     },
     {
