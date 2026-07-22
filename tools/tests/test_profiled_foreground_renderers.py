@@ -32,11 +32,13 @@ class ProfiledForegroundRendererTests(unittest.TestCase):
             self.assertTrue(used_ids, renderer_path.name)
             self.assertTrue(set(used_ids) <= profile_ids, renderer_path.name)
 
-    def test_empyreal_map_shell_uses_profiles_not_slice_loads(self) -> None:
+    def test_profiled_map_shells_do_not_restore_raw_atlas_slices(self) -> None:
         source = MAP_VISUAL.read_text(encoding="utf-8")
         self.assertNotIn("empyreal_slices", source)
         self.assertNotIn('load("res://game_assets/Tilesets/Ancient Greek Mythology/Sliced/', source)
         self.assertNotIn("Rect2(54, 686, 306, 114)", source)
+        self.assertNotIn("plain_tiles", source)
+        self.assertNotIn("showcase_tile", source)
         profile_ids = {profile["id"] for profile in json.loads(PROFILE_PATH.read_text(encoding="utf-8"))["profiles"]}
         used_ids = re.findall(r'profile_tile\(&"(empyreal_[^"]+)"', source)
         self.assertTrue(used_ids)

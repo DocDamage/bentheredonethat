@@ -48,6 +48,16 @@ const ASTERION_FLOOR_TILE_PROFILES := [
 	[&"asterion_station_floor_0_0", &"asterion_station_floor_1_0"],
 	[&"asterion_station_floor_0_1", &"asterion_station_floor_1_1"],
 ]
+const FROSTHOLD_GROUND_TILE_PROFILES := [
+	&"frosthold_snow_ground_tile",
+	&"frosthold_snow_ground_variant_1",
+	&"frosthold_snow_ground_variant_2",
+	&"frosthold_snow_ground_variant_3",
+	&"frosthold_snow_ground_variant_4",
+	&"frosthold_snow_ground_variant_5",
+	&"frosthold_snow_ground_variant_6",
+	&"frosthold_snow_ground_variant_7",
+]
 const FACILITY_PLOTS := [
 	Rect2i(7, 5, 5, 4),
 	Rect2i(18, 5, 5, 4),
@@ -623,13 +633,13 @@ func _draw_frosthold_room(room_offset: Vector2, room_kind: StringName) -> void:
 	# feel like five catalog cards.
 	_draw_frosthold_room_backdrop(room_offset)
 	draw_rect(Rect2(room_offset, Vector2(384, 384)), Color(0.07, 0.18, 0.32), true)
-	var ground_source := Rect2(72, 198, 192, 192)
+	var room_seed := 2
 	match room_kind:
-		&"market": ground_source = Rect2(336, 198, 192, 192)
-		&"causeway": ground_source = Rect2(870, 451, 192, 192)
-		&"rune_hall": ground_source = Rect2(604, 451, 192, 192)
-		&"throne": ground_source = Rect2(1138, 702, 192, 192)
-	_draw_frosthold_ground(room_offset, ground_source)
+		&"market": room_seed = 5
+		&"causeway": room_seed = 13
+		&"rune_hall": room_seed = 10
+		&"throne": room_seed = 18
+	_draw_frosthold_ground(room_offset, room_seed)
 
 
 func _draw_frosthold_room_backdrop(room_offset: Vector2) -> void:
@@ -643,7 +653,7 @@ func _draw_frosthold_room_backdrop(room_offset: Vector2) -> void:
 		draw_line(Vector2(bounds.position.x + x + 12, drift_y), Vector2(bounds.position.x + x + 72, drift_y), Color(0.58, 0.80, 0.96, 0.20), 2.0)
 
 
-func _draw_frosthold_ground(room_offset: Vector2, showcase_tile: Rect2) -> void:
+func _draw_frosthold_ground(room_offset: Vector2, room_seed: int) -> void:
 	# Ground and props come from the same 2x-density pack. The previous code blew
 	# one 192px showcase tile up to 384px while shrinking every building to 50%, a
 	# fourfold pixel-density mismatch. Sample only the borderless interior at the
@@ -651,16 +661,10 @@ func _draw_frosthold_ground(room_offset: Vector2, showcase_tile: Rect2) -> void:
 	# Eight different showcase tiles supply subtly different borderless interiors.
 	# Varying the source tile—not sliding four crops around one tile—prevents the
 	# noisy 48px wallpaper pattern visible in the first density-corrected pass.
-	var plain_tiles := [
-		Vector2(72, 198), Vector2(336, 198), Vector2(600, 198), Vector2(864, 198),
-		Vector2(72, 451), Vector2(336, 451), Vector2(600, 451), Vector2(864, 451),
-	]
-	var room_seed := int(showcase_tile.position.x / 100.0 + showcase_tile.position.y / 100.0)
 	for y in range(8):
 		for x in range(8):
-			var tile_origin: Vector2 = plain_tiles[(x * 3 + y * 5 + room_seed) % plain_tiles.size()]
-			var source := Rect2(tile_origin + Vector2(48, 48), Vector2(96, 96))
-			tile(frozen_ground, source, Rect2(room_offset + Vector2(x, y) * TILE, Vector2(TILE, TILE)))
+			var profile_id: StringName = FROSTHOLD_GROUND_TILE_PROFILES[(x * 3 + y * 5 + room_seed) % FROSTHOLD_GROUND_TILE_PROFILES.size()]
+			profile_tile(profile_id, frozen_ground, room_offset + Vector2(x, y) * TILE)
 
 
 func draw_moonpetal_court() -> void:

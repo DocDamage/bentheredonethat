@@ -637,7 +637,14 @@
       "path": "res://game_assets/Tilesets/Frozen kingdom/Frozen Kingdom – Top-Down Pixel Art Asset Pack/1. Snow ground tiles.png",
       "profileIds": [
         "frosthold_snow_battle_backdrop",
-        "frosthold_snow_ground_tile"
+        "frosthold_snow_ground_tile",
+        "frosthold_snow_ground_variant_1",
+        "frosthold_snow_ground_variant_2",
+        "frosthold_snow_ground_variant_3",
+        "frosthold_snow_ground_variant_4",
+        "frosthold_snow_ground_variant_5",
+        "frosthold_snow_ground_variant_6",
+        "frosthold_snow_ground_variant_7"
       ],
       "sourceGroup": "Tilesets/Frozen kingdom"
     },

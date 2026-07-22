@@ -1254,6 +1254,41 @@
       "worldDrawSize": [48, 48], "licenseReference": "game/ben_rpg/visual_assets/generated/runtime_asset_provenance.json", "cropApproval": "approved", "goldenCapture": "game/validation/frosthold-snow-gate.png"
     },
     {
+      "id": "frosthold_snow_ground_variant_1", "kind": "tile",
+      "source": {"pack": "Frozen Kingdom Top-Down Pixel Art Asset Pack", "runtimeTexture": "game/game_assets/Tilesets/Frozen kingdom/Frozen Kingdom – Top-Down Pixel Art Asset Pack/1. Snow ground tiles.png", "sourceChecksum": "570b7e8b57d2be5f95e2bcceb381a4f1f00bde2b0182102036f243205f98d33e", "sourceDensity": 96, "region": [384, 246, 96, 96], "alphaBounds": [384, 246, 96, 96]},
+      "placement": {"footAnchor": [48, 95], "scaleClass": "tile", "collisionFootprint": "snow_ground_tile"}, "worldDrawSize": [48, 48], "licenseReference": "game/ben_rpg/visual_assets/generated/runtime_asset_provenance.json", "cropApproval": "approved", "goldenCapture": "game/validation/frosthold-snow-gate.png"
+    },
+    {
+      "id": "frosthold_snow_ground_variant_2", "kind": "tile",
+      "source": {"pack": "Frozen Kingdom Top-Down Pixel Art Asset Pack", "runtimeTexture": "game/game_assets/Tilesets/Frozen kingdom/Frozen Kingdom – Top-Down Pixel Art Asset Pack/1. Snow ground tiles.png", "sourceChecksum": "570b7e8b57d2be5f95e2bcceb381a4f1f00bde2b0182102036f243205f98d33e", "sourceDensity": 96, "region": [648, 246, 96, 96], "alphaBounds": [648, 246, 96, 96]},
+      "placement": {"footAnchor": [48, 95], "scaleClass": "tile", "collisionFootprint": "snow_ground_tile"}, "worldDrawSize": [48, 48], "licenseReference": "game/ben_rpg/visual_assets/generated/runtime_asset_provenance.json", "cropApproval": "approved", "goldenCapture": "game/validation/frosthold-frozen-market.png"
+    },
+    {
+      "id": "frosthold_snow_ground_variant_3", "kind": "tile",
+      "source": {"pack": "Frozen Kingdom Top-Down Pixel Art Asset Pack", "runtimeTexture": "game/game_assets/Tilesets/Frozen kingdom/Frozen Kingdom – Top-Down Pixel Art Asset Pack/1. Snow ground tiles.png", "sourceChecksum": "570b7e8b57d2be5f95e2bcceb381a4f1f00bde2b0182102036f243205f98d33e", "sourceDensity": 96, "region": [912, 246, 96, 96], "alphaBounds": [912, 246, 96, 96]},
+      "placement": {"footAnchor": [48, 95], "scaleClass": "tile", "collisionFootprint": "snow_ground_tile"}, "worldDrawSize": [48, 48], "licenseReference": "game/ben_rpg/visual_assets/generated/runtime_asset_provenance.json", "cropApproval": "approved", "goldenCapture": "game/validation/frosthold-frozen-market.png"
+    },
+    {
+      "id": "frosthold_snow_ground_variant_4", "kind": "tile",
+      "source": {"pack": "Frozen Kingdom Top-Down Pixel Art Asset Pack", "runtimeTexture": "game/game_assets/Tilesets/Frozen kingdom/Frozen Kingdom – Top-Down Pixel Art Asset Pack/1. Snow ground tiles.png", "sourceChecksum": "570b7e8b57d2be5f95e2bcceb381a4f1f00bde2b0182102036f243205f98d33e", "sourceDensity": 96, "region": [120, 499, 96, 96], "alphaBounds": [120, 499, 96, 96]},
+      "placement": {"footAnchor": [48, 95], "scaleClass": "tile", "collisionFootprint": "snow_ground_tile"}, "worldDrawSize": [48, 48], "licenseReference": "game/ben_rpg/visual_assets/generated/runtime_asset_provenance.json", "cropApproval": "approved", "goldenCapture": "game/validation/frosthold-crystal-causeway.png"
+    },
+    {
+      "id": "frosthold_snow_ground_variant_5", "kind": "tile",
+      "source": {"pack": "Frozen Kingdom Top-Down Pixel Art Asset Pack", "runtimeTexture": "game/game_assets/Tilesets/Frozen kingdom/Frozen Kingdom – Top-Down Pixel Art Asset Pack/1. Snow ground tiles.png", "sourceChecksum": "570b7e8b57d2be5f95e2bcceb381a4f1f00bde2b0182102036f243205f98d33e", "sourceDensity": 96, "region": [384, 499, 96, 96], "alphaBounds": [384, 499, 96, 96]},
+      "placement": {"footAnchor": [48, 95], "scaleClass": "tile", "collisionFootprint": "snow_ground_tile"}, "worldDrawSize": [48, 48], "licenseReference": "game/ben_rpg/visual_assets/generated/runtime_asset_provenance.json", "cropApproval": "approved", "goldenCapture": "game/validation/frosthold-crystal-causeway.png"
+    },
+    {
+      "id": "frosthold_snow_ground_variant_6", "kind": "tile",
+      "source": {"pack": "Frozen Kingdom Top-Down Pixel Art Asset Pack", "runtimeTexture": "game/game_assets/Tilesets/Frozen kingdom/Frozen Kingdom – Top-Down Pixel Art Asset Pack/1. Snow ground tiles.png", "sourceChecksum": "570b7e8b57d2be5f95e2bcceb381a4f1f00bde2b0182102036f243205f98d33e", "sourceDensity": 96, "region": [648, 499, 96, 96], "alphaBounds": [648, 499, 96, 96]},
+      "placement": {"footAnchor": [48, 95], "scaleClass": "tile", "collisionFootprint": "snow_ground_tile"}, "worldDrawSize": [48, 48], "licenseReference": "game/ben_rpg/visual_assets/generated/runtime_asset_provenance.json", "cropApproval": "approved", "goldenCapture": "game/validation/frosthold-rune-hall.png"
+    },
+    {
+      "id": "frosthold_snow_ground_variant_7", "kind": "tile",
+      "source": {"pack": "Frozen Kingdom Top-Down Pixel Art Asset Pack", "runtimeTexture": "game/game_assets/Tilesets/Frozen kingdom/Frozen Kingdom – Top-Down Pixel Art Asset Pack/1. Snow ground tiles.png", "sourceChecksum": "570b7e8b57d2be5f95e2bcceb381a4f1f00bde2b0182102036f243205f98d33e", "sourceDensity": 96, "region": [912, 499, 96, 96], "alphaBounds": [912, 499, 96, 96]},
+      "placement": {"footAnchor": [48, 95], "scaleClass": "tile", "collisionFootprint": "snow_ground_tile"}, "worldDrawSize": [48, 48], "licenseReference": "game/ben_rpg/visual_assets/generated/runtime_asset_provenance.json", "cropApproval": "approved", "goldenCapture": "game/validation/frosthold-ice-throne.png"
+    },
+    {
       "id": "moonpetal_processional_path",
       "kind": "tile",
       "source": {"pack": "Sakura Temple Asset Pack", "runtimeTexture": "game/game_assets/Tilesets/Sakura Temple Asset Pack/Stone patchs and walkways.png", "sourceChecksum": "8ce3b342b2298515048a96e31e398662b82e7c85d2bb1d70f9f1a285c2cab292", "sourceDensity": 96, "region": [54, 686, 306, 114], "alphaBounds": [54, 686, 306, 114]},
