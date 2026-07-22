@@ -1246,6 +1246,26 @@
       "worldDrawSize": [153, 57], "licenseReference": "game/ben_rpg/visual_assets/generated/runtime_asset_provenance.json", "cropApproval": "approved", "goldenCapture": "game/validation/moonpetal-vermilion-gate.png"
     },
     {
+      "id": "empyreal_marble_plain_tile", "kind": "tile",
+      "source": {"pack": "Ancient Greek Mythology", "runtimeTexture": "game/game_assets/Tilesets/Ancient Greek Mythology/Sliced/marble_plain.png", "sourceChecksum": "609b0b0848bc7ebd7f4f3b4d9e4a506220cc6292f275c319a6dc2ab3ba60a15c", "sourceDensity": 48, "region": [0, 0, 96, 96], "alphaBounds": [0, 0, 96, 96]},
+      "placement": {"footAnchor": [48, 95], "scaleClass": "tile", "collisionFootprint": "marble_terrace_tile"}, "worldDrawSize": [96, 96], "licenseReference": "game/ben_rpg/visual_assets/generated/runtime_asset_provenance.json", "cropApproval": "approved", "goldenCapture": "game/validation/empyreal-cloudstep-landing.png"
+    },
+    {
+      "id": "empyreal_marble_cracked_tile", "kind": "tile",
+      "source": {"pack": "Ancient Greek Mythology", "runtimeTexture": "game/game_assets/Tilesets/Ancient Greek Mythology/Sliced/marble_cracked.png", "sourceChecksum": "5d83ac6414175ecc2aa657230d29bc5b5691c670740da6cfbd66f26a7af2d4f8", "sourceDensity": 48, "region": [0, 0, 96, 96], "alphaBounds": [0, 0, 96, 96]},
+      "placement": {"footAnchor": [48, 95], "scaleClass": "tile", "collisionFootprint": "marble_terrace_tile"}, "worldDrawSize": [96, 96], "licenseReference": "game/ben_rpg/visual_assets/generated/runtime_asset_provenance.json", "cropApproval": "approved", "goldenCapture": "game/validation/empyreal-reliquary-aerie.png"
+    },
+    {
+      "id": "empyreal_marble_gold_quarter_tile", "kind": "tile",
+      "source": {"pack": "Ancient Greek Mythology", "runtimeTexture": "game/game_assets/Tilesets/Ancient Greek Mythology/Sliced/marble_gold_quarter.png", "sourceChecksum": "c855bca84bf484c36e409309c92f9fa0e323c283fe8b1513c7b32e6625048c84", "sourceDensity": 48, "region": [0, 0, 96, 96], "alphaBounds": [0, 0, 96, 96]},
+      "placement": {"footAnchor": [48, 95], "scaleClass": "tile", "collisionFootprint": "marble_terrace_tile"}, "worldDrawSize": [96, 96], "licenseReference": "game/ben_rpg/visual_assets/generated/runtime_asset_provenance.json", "cropApproval": "approved", "goldenCapture": "game/validation/empyreal-forum-of-measures.png"
+    },
+    {
+      "id": "empyreal_blue_balustrade", "kind": "architecture",
+      "source": {"pack": "Ancient Greek Mythology", "runtimeTexture": "game/game_assets/Tilesets/Ancient Greek Mythology/Sliced/blue_balustrade.png", "sourceChecksum": "7394ca17d9752243cec58afc081a36e95218a621b94c6e454c7a5efe190b5d0b", "sourceDensity": 48, "region": [0, 0, 96, 37], "alphaBounds": [0, 0, 96, 37]},
+      "placement": {"footAnchor": [48, 36], "scaleClass": "tile", "collisionFootprint": "terrace_rail"}, "worldDrawSize": [96, 37], "licenseReference": "game/ben_rpg/visual_assets/generated/runtime_asset_provenance.json", "cropApproval": "approved", "goldenCapture": "game/validation/empyreal-seraph-tribunal.png"
+    },
+    {
       "id": "empyreal_pediment_door", "kind": "landmark",
       "source": {"pack": "Ancient Greek Mythology", "runtimeTexture": "game/game_assets/Tilesets/Ancient Greek Mythology/Sliced/pediment_door.png", "sourceChecksum": "4e318915ba2d648bf5201e4321a68c93a19df844f4026629d8a4af869ba76120", "sourceDensity": 48, "region": [0, 0, 120, 159], "alphaBounds": [0, 0, 120, 159]},
       "placement": {"footAnchor": [60, 158], "scaleClass": "landmark", "collisionFootprint": "temple_door"}, "worldDrawSize": [120, 159], "licenseReference": "game/ben_rpg/visual_assets/generated/runtime_asset_provenance.json", "cropApproval": "approved", "goldenCapture": "game/validation/empyreal-cloudstep-landing.png"

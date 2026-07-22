@@ -88,16 +88,7 @@ var helios_structures: Texture2D
 var nightclub_signs: Texture2D
 var frozen_ground: Texture2D
 var sakura_paths: Texture2D
-var empyreal_floor: Texture2D
-var empyreal_columns: Texture2D
-var empyreal_doors: Texture2D
-var empyreal_trees: Texture2D
-var empyreal_statues: Texture2D
-var empyreal_altars: Texture2D
-var empyreal_magic: Texture2D
 var empyreal_clouds: Texture2D
-var empyreal_islands: Texture2D
-var empyreal_slices: Dictionary = {}
 var built_facilities: Dictionary = {}
 var build_mode := false
 var selected_plot := 0
@@ -130,8 +121,6 @@ func _ready() -> void:
 	frozen_ground = visual_profiles.texture(&"frosthold_snow_ground_tile")
 	sakura_paths = visual_profiles.texture(&"moonpetal_processional_path")
 	empyreal_clouds = visual_profiles.texture(&"empyreal_sky_cloud_bank")
-	for slice_name in ["marble_plain", "marble_cracked", "marble_silver", "marble_gold", "marble_gold_quarter", "pediment_door", "tribunal_gate", "blue_balustrade", "winged_statue", "horse_statue", "griffin_statue", "justice_statue", "music_statue", "silver_olive_tree", "golden_olive_tree", "appeal_fountain", "ordinance_book", "reliquary_portal", "gravity_crystal", "tribunal_orrery", "celestial_flame", "plain_column", "blue_column", "flower_offering", "fruit_offering", "crystal_altar", "lotus_altar", "belfry_facade"]:
-		empyreal_slices[slice_name] = load("res://game_assets/Tilesets/Ancient Greek Mythology/Sliced/%s.png" % slice_name)
 	if not CampaignState.town_terrain_changed.is_connected(_on_town_terrain_changed):
 		CampaignState.town_terrain_changed.connect(_on_town_terrain_changed)
 	if not CampaignState.state_changed.is_connected(_on_campaign_state_changed):
@@ -785,44 +774,23 @@ func _draw_empyreal_room(room_offset: Vector2, room_kind: StringName) -> void:
 	# canvas at the bottom of the screen.
 	draw_rect(Rect2(room_offset - Vector2(384, 96), Vector2(1152, 576)), Color(0.18, 0.44, 0.72), true)
 	for cloud_x in [-424, -40, 344]:
-		tile(empyreal_clouds, Rect2(0, 0, 464, 208), Rect2(room_offset + Vector2(cloud_x, 12), Vector2(464, 208)))
-	var floor_name: String = String({&"landing": "marble_plain", &"garden": "marble_plain", &"forum": "marble_gold_quarter", &"aerie": "marble_cracked", &"tribunal": "marble_gold_quarter"}.get(room_kind, "marble_plain"))
+		profile_tile(&"empyreal_sky_cloud_bank", empyreal_clouds, room_offset + Vector2(cloud_x, 12))
+	var floor_profile: StringName = {
+		&"landing": &"empyreal_marble_plain_tile",
+		&"garden": &"empyreal_marble_plain_tile",
+		&"forum": &"empyreal_marble_gold_quarter_tile",
+		&"aerie": &"empyreal_marble_cracked_tile",
+		&"tribunal": &"empyreal_marble_gold_quarter_tile",
+	}.get(room_kind, &"empyreal_marble_plain_tile")
 	for y in range(3):
 		for x in range(4):
-			_empyreal_tile_slice(floor_name, Rect2(room_offset + Vector2(x * 96, 144 + y * 96), Vector2(96, 96)))
+			profile_tile(floor_profile, visual_profiles.texture(floor_profile), room_offset + Vector2(x * 96, 144 + y * 96))
 	# One continuous rear balustrade establishes a shared perspective line. Props
 	# sit on that line or overlap the terrace; none float as a disconnected row.
 	for x in range(0, 384, 96):
-		_empyreal_tile_slice("blue_balustrade", Rect2(room_offset + Vector2(x, 124), Vector2(96, 37)))
+		profile_tile(&"empyreal_blue_balustrade", visual_profiles.texture(&"empyreal_blue_balustrade"), room_offset + Vector2(x, 124))
 	if room_kind == &"landing":
 		draw_rect(Rect2(room_offset + Vector2(145, 176), Vector2(94, 4)), Color(0.32, 0.19, 0.08, 0.65), true)
-
-
-func _empyreal_prop(texture: Texture2D, source: Rect2, destination_position: Vector2, scale: float, flip_h := false) -> void:
-	var size := source.size * scale
-	var destination := Rect2(Vector2(roundf(destination_position.x), roundf(destination_position.y)), size)
-	if flip_h:
-		destination.position.x += size.x
-		destination.size.x = -size.x
-	tile(texture, source, destination)
-
-
-func _empyreal_tile_slice(slice_name: String, destination: Rect2) -> void:
-	var texture := empyreal_slices.get(slice_name) as Texture2D
-	if texture:
-		tile(texture, Rect2(Vector2.ZERO, texture.get_size()), destination)
-
-
-func _empyreal_prop_slice(slice_name: String, destination_position: Vector2, flip_h := false) -> void:
-	var texture := empyreal_slices.get(slice_name) as Texture2D
-	if not texture:
-		return
-	var size := texture.get_size()
-	var destination := Rect2(Vector2(roundf(destination_position.x), roundf(destination_position.y)), size)
-	if flip_h:
-		destination.position.x += size.x
-		destination.size.x = -size.x
-	tile(texture, Rect2(Vector2.ZERO, size), destination)
 
 
 func draw_asterion_station() -> void:

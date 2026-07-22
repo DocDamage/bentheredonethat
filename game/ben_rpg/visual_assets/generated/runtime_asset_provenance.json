@@ -263,16 +263,6 @@
       "distributionEligibility": "review_required",
       "licenseReviewStatus": "review_required",
       "localLicenseEvidence": [
-        "game/LICENSE"
-      ],
-      "path": "res://game_assets/Tilesets/Ancient Greek Mythology/Sliced/%s.png",
-      "profileIds": [],
-      "sourceGroup": "Tilesets/Ancient Greek Mythology"
-    },
-    {
-      "distributionEligibility": "review_required",
-      "licenseReviewStatus": "review_required",
-      "localLicenseEvidence": [
         "game_assets/Tilesets/LICENSE"
       ],
       "path": "res://game_assets/Tilesets/Ancient Greek Mythology/Sliced/appeal_fountain.png",
@@ -290,6 +280,18 @@
       "path": "res://game_assets/Tilesets/Ancient Greek Mythology/Sliced/belfry_building.png",
       "profileIds": [
         "belfry_building"
+      ],
+      "sourceGroup": "Tilesets/Ancient Greek Mythology"
+    },
+    {
+      "distributionEligibility": "review_required",
+      "licenseReviewStatus": "review_required",
+      "localLicenseEvidence": [
+        "game_assets/Tilesets/LICENSE"
+      ],
+      "path": "res://game_assets/Tilesets/Ancient Greek Mythology/Sliced/blue_balustrade.png",
+      "profileIds": [
+        "empyreal_blue_balustrade"
       ],
       "sourceGroup": "Tilesets/Ancient Greek Mythology"
     },
@@ -410,6 +412,42 @@
       "path": "res://game_assets/Tilesets/Ancient Greek Mythology/Sliced/lotus_altar.png",
       "profileIds": [
         "empyreal_lotus_altar"
+      ],
+      "sourceGroup": "Tilesets/Ancient Greek Mythology"
+    },
+    {
+      "distributionEligibility": "review_required",
+      "licenseReviewStatus": "review_required",
+      "localLicenseEvidence": [
+        "game_assets/Tilesets/LICENSE"
+      ],
+      "path": "res://game_assets/Tilesets/Ancient Greek Mythology/Sliced/marble_cracked.png",
+      "profileIds": [
+        "empyreal_marble_cracked_tile"
+      ],
+      "sourceGroup": "Tilesets/Ancient Greek Mythology"
+    },
+    {
+      "distributionEligibility": "review_required",
+      "licenseReviewStatus": "review_required",
+      "localLicenseEvidence": [
+        "game_assets/Tilesets/LICENSE"
+      ],
+      "path": "res://game_assets/Tilesets/Ancient Greek Mythology/Sliced/marble_gold_quarter.png",
+      "profileIds": [
+        "empyreal_marble_gold_quarter_tile"
+      ],
+      "sourceGroup": "Tilesets/Ancient Greek Mythology"
+    },
+    {
+      "distributionEligibility": "review_required",
+      "licenseReviewStatus": "review_required",
+      "localLicenseEvidence": [
+        "game_assets/Tilesets/LICENSE"
+      ],
+      "path": "res://game_assets/Tilesets/Ancient Greek Mythology/Sliced/marble_plain.png",
+      "profileIds": [
+        "empyreal_marble_plain_tile"
       ],
       "sourceGroup": "Tilesets/Ancient Greek Mythology"
     },
@@ -2430,13 +2468,13 @@
   "schemaVersion": 2,
   "scope": "static Godot raster references; not a reachability or license-grant proof",
   "summary": {
-    "assets": 182,
+    "assets": 185,
     "distributionEligibility": {
       "distribution_confirmed": 0,
       "rejected": 0,
-      "review_required": 182
+      "review_required": 185
     },
     "needsManualLicenseConfirmation": 0,
-    "withLocalLicenseEvidence": 182
+    "withLocalLicenseEvidence": 185
   }
 }
