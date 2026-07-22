@@ -57,7 +57,7 @@ func _open_gallery_cache() -> Array[String]:
 	CampaignState.story_flags[&"mansion_gallery_cache_opened"] = true
 	CampaignState.add_item(&"ether", 2, false)
 	CampaignState.add_item(&"smelling_salts", 1, false)
-	CampaignState.duckets += 24
+	CampaignState.adjust_duckets(24, &"mansion_room_treasure", &"mansion_archive", false)
 	return ["Ben opens a false-bottom cabinet.", "Found 2 Leyden Ethers, Smelling Salts, and 24 Duckets."]
 
 

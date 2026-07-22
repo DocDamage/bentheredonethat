@@ -124,8 +124,8 @@ func _complete_clock_puzzle() -> Array[String]:
 		return ["The clock holds at 4:44. A narrow servants' passage now waits beyond the foyer."]
 	CampaignState.story_flags[&"mansion_clock_puzzle_solved"] = true
 	CampaignState.story_flags[&"mansion_first_room_complete"] = true
-	CampaignState.duckets += 30
-	CampaignState.add_item(&"anchor_shard", 1, false)
+	CampaignState.adjust_duckets(30, &"mansion_clock_puzzle", &"mansion_clock", false)
+	CampaignState.add_item(&"anchor_shard", 1, false, &"mansion_clock_puzzle", &"mansion_clock")
 	CampaignState.loot_inventory.append({
 		"instance_id": "mansion-key-fragment",
 		"id": &"house_key_fragment",

@@ -47,6 +47,13 @@ func _random_encounter(local: Vector2i) -> StringName:
 	return &"asterion_maintenance_detail"
 
 
+func _random_encounter_options(local: Vector2i) -> Array[StringName]:
+	if _in_hydro(local): return [&"asterion_greenhouse_patrol", &"asterion_maintenance_detail"]
+	if _in_medical(local): return [&"asterion_medical_patrol"]
+	if _in_control(local): return [&"asterion_command_patrol"]
+	return [&"asterion_maintenance_detail"]
+
+
 func _apply_victory(encounter_id: StringName) -> void:
 	match encounter_id:
 		&"asterion_dock_intro": CampaignState.story_flags[&"asterion_dock_cleared"] = true

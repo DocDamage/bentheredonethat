@@ -18,6 +18,7 @@ const SANDBOX_SAVE_PATH := "user://sandbox_slot.json"
 const SAVE_REPOSITORY := preload("res://ben_rpg/core/save_repository.gd")
 const SAVE_MIGRATOR := preload("res://ben_rpg/core/save_migrator.gd")
 const QUEST_DIRECTOR := preload("res://ben_rpg/core/quest_director.gd")
+const ECONOMY_LEDGER := preload("res://ben_rpg/core/economy_ledger.gd")
 const SANDBOX_AUTHORED_OBJECTS := [
 	{"instance_id": "sandbox_town_lab", "catalog_id": &"modern_warehouse", "cell": Vector2i(48, 5), "role": &"town_lab", "protected": true},
 	{"instance_id": "sandbox_tree_northwest", "catalog_id": &"ranch_sapling", "cell": Vector2i(37, 1), "role": &"town_tree"},
@@ -774,6 +775,8 @@ var facility_assignments: Dictionary = {}
 var active_facility_jobs: Dictionary = {}
 var completed_facility_jobs: Dictionary = {}
 var owned_inventions: Array[StringName] = []
+var economy_transactions: Array[Dictionary] = []
+var encounter_director_states: Dictionary = {}
 var quest_states: Dictionary = {}
 var quest_events: Dictionary = {}
 var tracked_quest: StringName = &""
@@ -984,6 +987,8 @@ func reset_new_game() -> void:
 	active_facility_jobs.clear()
 	completed_facility_jobs.clear()
 	owned_inventions.clear()
+	economy_transactions.clear()
+	encounter_director_states.clear()
 	quest_states.clear()
 	quest_events.clear()
 	tracked_quest = &""
@@ -1422,17 +1427,17 @@ func _raise_character_to_level(character_id: StringName, target_level: int) -> b
 
 func apply_battle_victory(experience: int, earned_duckets: int, loot: Array[Dictionary]) -> Dictionary:
 	var level_ups := grant_expedition_experience(experience)
-	duckets += maxi(earned_duckets, 0)
-	add_loot_drops(loot, false)
+	adjust_duckets(maxi(earned_duckets, 0), &"battle_victory", &"encounter", false)
+	add_loot_drops(loot, false, &"battle_victory", &"encounter")
 	story_flags[&"won_first_battle"] = true
 	state_changed.emit()
 	return level_ups
 
 
-func add_loot_drops(loot: Array[Dictionary], notify := true) -> void:
+func add_loot_drops(loot: Array[Dictionary], notify := true, reason_id: StringName = &"loot_drop", source_context: StringName = &"") -> void:
 	for drop in loot:
 		if drop.get("kind", "gear") == "consumable":
-			add_item(StringName(drop.get("id", "tonic")), int(drop.get("quantity", 1)), false)
+			add_item(StringName(drop.get("id", "tonic")), int(drop.get("quantity", 1)), false, reason_id, source_context)
 		else:
 			loot_inventory.append(drop.duplicate(true))
 	if notify:
@@ -1453,8 +1458,8 @@ func claim_universe_treasure(cache_id: StringName, rng: RandomNumberGenerator = 
 	var loot: Array[Dictionary] = CampaignCombatDatabase.roll_loot(definition["loot_encounter"], roller)
 	var earned_duckets := int(definition.get("duckets", 0))
 	story_flags[flag] = true
-	duckets += earned_duckets
-	add_loot_drops(loot, false)
+	adjust_duckets(earned_duckets, &"universe_treasure", cache_id, false)
+	add_loot_drops(loot, false, &"universe_treasure", cache_id)
 	state_changed.emit()
 	return {
 		"claimed": true, "name": definition["name"],
@@ -1555,17 +1560,94 @@ func bestiary_summary() -> Dictionary:
 	}
 
 
-func add_item(item_id: StringName, quantity := 1, notify := true) -> void:
-	inventory[item_id] = maxi(0, int(inventory.get(item_id, 0)) + quantity)
+func add_item(item_id: StringName, quantity := 1, notify := true, reason_id: StringName = &"item_grant", source_context: StringName = &"") -> void:
+	var previous := int(inventory.get(item_id, 0))
+	inventory[item_id] = maxi(0, previous + quantity)
+	var applied := int(inventory[item_id]) - previous
+	if applied != 0:
+		record_economy_transaction(reason_id, item_id, applied, source_context)
 	if notify:
 		state_changed.emit()
 
 
-func consume_item(item_id: StringName, quantity := 1) -> bool:
+func adjust_duckets(delta: int, reason_id: StringName, source_context: StringName = &"", notify := true) -> bool:
+	if delta == 0:
+		return true
+	if duckets + delta < 0:
+		return false
+	duckets += delta
+	record_economy_transaction(reason_id, &"duckets", delta, source_context)
+	if notify:
+		state_changed.emit()
+	return true
+
+
+func record_economy_transaction(reason_id: StringName, currency_or_item: StringName, delta: int, source_context: StringName = &"") -> Dictionary:
+	return ECONOMY_LEDGER.record(
+		economy_transactions,
+		reason_id,
+		current_economy_chapter(),
+		currency_or_item,
+		delta,
+		source_context,
+		_unix_time()
+	)
+
+
+func current_economy_chapter() -> StringName:
+	var chapter_states := [
+		[&"empyreal_scenario_complete", &"postgame"],
+		[&"empyreal_anchor_built", &"empyreal"],
+		[&"moonpetal_scenario_complete", &"empyreal"],
+		[&"moonpetal_anchor_built", &"moonpetal"],
+		[&"frosthold_scenario_complete", &"moonpetal"],
+		[&"frosthold_anchor_built", &"frosthold"],
+		[&"helios_scenario_complete", &"frosthold"],
+		[&"helios_anchor_built", &"helios"],
+		[&"primeval_scenario_complete", &"helios"],
+		[&"primeval_anchor_built", &"primeval"],
+		[&"asterion_station_complete", &"primeval"],
+		[&"asterion_anchor_built", &"asterion"],
+		[&"mansion_archive_boss_defeated", &"asterion"],
+		[&"haunted_mansion_anchor_built", &"mansion"],
+	]
+	for state in chapter_states:
+		if bool(story_flags.get(state[0], false)):
+			return state[1]
+	return &"founding"
+
+
+func economy_report() -> Dictionary:
+	return ECONOMY_LEDGER.report(economy_transactions, duckets)
+
+
+func encounter_director_state(universe_id: StringName) -> Dictionary:
+	return encounter_director_states.get(universe_id, {}).duplicate(true)
+
+
+func store_encounter_director_state(universe_id: StringName, runtime: Dictionary) -> void:
+	if universe_id == &"":
+		return
+	var recent: Array[StringName] = []
+	for encounter_id in runtime.get("recent_formations", []):
+		recent.append(StringName(encounter_id))
+	var last_cell: Vector2i = runtime.get("last_danger_cell", Vector2i(-1, -1))
+	encounter_director_states[universe_id] = {
+		"steps_in_danger": maxi(0, int(runtime.get("steps_in_danger", 0))),
+		"encounter_threshold": maxi(1, int(runtime.get("encounter_threshold", 1))),
+		"cooldown_steps": maxi(0, int(runtime.get("cooldown_steps", 0))),
+		"recent_formations": recent,
+		"last_danger_cell": [last_cell.x, last_cell.y],
+		"rng_state": int(runtime.get("rng_state", 0)),
+	}
+
+
+func consume_item(item_id: StringName, quantity := 1, reason_id: StringName = &"item_consumed", source_context: StringName = &"") -> bool:
 	var current := int(inventory.get(item_id, 0))
 	if quantity <= 0 or current < quantity:
 		return false
 	inventory[item_id] = current - quantity
+	record_economy_transaction(reason_id, item_id, -quantity, source_context)
 	state_changed.emit()
 	return true
 
@@ -1961,10 +2043,10 @@ func _quest_condition_met(condition: Dictionary) -> bool:
 
 
 func _grant_quest_rewards(rewards: Dictionary) -> void:
-	duckets += int(rewards.get("duckets", 0))
+	adjust_duckets(int(rewards.get("duckets", 0)), &"quest_reward", &"quest", false)
 	for item_id in rewards.get("items", {}).keys():
 		var normalized_id := StringName(item_id)
-		inventory[normalized_id] = int(inventory.get(normalized_id, 0)) + int(rewards["items"][item_id])
+		add_item(normalized_id, int(rewards["items"][item_id]), false, &"quest_reward", &"quest")
 	var party_experience := int(rewards.get("party_experience", 0))
 	if party_experience > 0:
 		grant_expedition_experience(party_experience)
@@ -2046,8 +2128,8 @@ func purchase_service_item(facility_name: String, item_id: StringName, quantity 
 	var total := unit_price * quantity
 	if unit_price <= 0 or duckets < total:
 		return false
-	duckets -= total
-	add_item(item_id, quantity, false)
+	adjust_duckets(-total, &"service_purchase", StringName(facility_name), false)
+	add_item(item_id, quantity, false, &"service_purchase", StringName(facility_name))
 	story_flags[&"town_service_purchase_made"] = true
 	story_flags[&"town_service_purchase_count"] = int(story_flags.get(&"town_service_purchase_count", 0)) + quantity
 	state_changed.emit()
@@ -2079,7 +2161,7 @@ func purchase_armory_item(stock_id: StringName) -> Dictionary:
 	var price := armory_item_price(stock_id)
 	if definition.is_empty() or price <= 0 or duckets < price or "Armory" not in built_facilities.values():
 		return {}
-	duckets -= price
+	adjust_duckets(-price, &"armory_purchase", stock_id, false)
 	var purchase_count := int(story_flags.get(&"armory_purchase_count", 0)) + 1
 	story_flags[&"armory_purchase_count"] = purchase_count
 	story_flags[&"armory_purchase_made"] = true
@@ -2147,7 +2229,7 @@ func sell_loot(instance_id: String) -> int:
 	for index in range(loot_inventory.size()):
 		if String(loot_inventory[index].get("instance_id", "")) == instance_id:
 			loot_inventory.remove_at(index)
-			duckets += value
+			adjust_duckets(value, &"armory_sale", StringName(instance_id), false)
 			story_flags[&"town_gear_sold_count"] = int(story_flags.get(&"town_gear_sold_count", 0)) + 1
 			state_changed.emit()
 			return value
@@ -2162,7 +2244,7 @@ func use_clinic_service() -> bool:
 	var cost := clinic_service_cost()
 	if duckets < cost:
 		return false
-	duckets -= cost
+	adjust_duckets(-cost, &"clinic_treatment", &"Clinic", false)
 	restore_party()
 	story_flags[&"clinic_treatment_used"] = true
 	story_flags[&"clinic_visit_count"] = int(story_flags.get(&"clinic_visit_count", 0)) + 1
@@ -2304,11 +2386,11 @@ func collect_facility_job(facility_name: String, now_at := -1) -> Dictionary:
 		return {}
 	var quality := int(active.get("quality", 1))
 	var earned_duckets := int(round(float(job.get("duckets", 0)) * (1.0 + maxf(0.0, float(quality - 1)) * 0.2)))
-	duckets += earned_duckets
+	adjust_duckets(earned_duckets, &"facility_job", job_id, false)
 	var earned_items := {}
 	for item_id in job.get("items", {}).keys():
 		var quantity := int(job["items"][item_id]) + maxi(0, (quality - 1) / 2)
-		add_item(StringName(item_id), quantity, false)
+		add_item(StringName(item_id), quantity, false, &"facility_job", job_id)
 		earned_items[StringName(item_id)] = quantity
 	var earned_experience := int(job.get("experience", 0)) + maxi(0, quality - 1) * 5
 	var worker_id := StringName(active.get("worker_id", ""))
@@ -2365,9 +2447,9 @@ func craft_invention(invention_id: StringName) -> bool:
 	if not bool(invention_availability(invention_id).get("allowed", false)):
 		return false
 	var definition: Dictionary = INVENTION_DEFINITIONS[invention_id]
-	duckets -= int(definition.get("duckets", 0))
+	adjust_duckets(-int(definition.get("duckets", 0)), &"invention_craft", invention_id, false)
 	for item_id in definition.get("items", {}).keys():
-		consume_item(StringName(item_id), int(definition["items"][item_id]))
+		consume_item(StringName(item_id), int(definition["items"][item_id]), &"invention_craft", invention_id)
 	owned_inventions.append(invention_id)
 	state_changed.emit()
 	return true
@@ -2574,10 +2656,10 @@ func claim_field_specialist_assist(task_id: StringName) -> Dictionary:
 		return result
 	var definition: Dictionary = FIELD_SPECIALIST_TASKS.get(task_id, {})
 	var earned_duckets := int(definition.get("duckets", 0))
-	duckets += earned_duckets
+	adjust_duckets(earned_duckets, &"field_specialist_assist", task_id, false)
 	var earned_items: Dictionary = definition.get("items", {}).duplicate(true)
 	for raw_item_id in earned_items.keys():
-		add_item(StringName(raw_item_id), int(earned_items[raw_item_id]), false)
+		add_item(StringName(raw_item_id), int(earned_items[raw_item_id]), false, &"field_specialist_assist", task_id)
 	story_flags[claimed_flag] = true
 	story_flags[&"field_specialist_assist_count"] = int(story_flags.get(&"field_specialist_assist_count", 0)) + 1
 	var recruit_id := StringName(result.get("recruit_id", &""))
@@ -2936,14 +3018,14 @@ func _location_name_for_cell(cell: Vector2i) -> String:
 
 func _serialize() -> Dictionary:
 	return {
-		"version": SAVE_VERSION, "sandbox_mode": sandbox_mode, "duckets": duckets,
+		"version": SAVE_VERSION, "sandbox_mode": sandbox_mode, "duckets": duckets, "economy_transactions": economy_transactions,
 		"play_time_seconds": play_time_seconds, "save_timestamp": save_timestamp,
 		"last_save_cell": [last_save_cell.x, last_save_cell.y], "last_location": last_location,
 		"town_time_minutes": town_time_minutes, "resident_states": resident_states,
 		"town_terrain": town_terrain,
 		"town_objects": town_objects, "next_town_object_id": next_town_object_id,
 		"built_facilities": built_facilities, "universe_anchors": universe_anchors, "story_flags": story_flags,
-		"bestiary_records": bestiary_records, "inventory": inventory, "encounter_ward_steps": encounter_ward_steps,
+		"bestiary_records": bestiary_records, "inventory": inventory, "encounter_ward_steps": encounter_ward_steps, "encounter_director_states": encounter_director_states,
 		"loot_inventory": loot_inventory, "character_progress": character_progress,
 		"party": Array(party), "party_formation": party_formation, "recruit_status": recruit_status, "facility_assignments": facility_assignments,
 		"active_facility_jobs": active_facility_jobs, "completed_facility_jobs": completed_facility_jobs,
@@ -2993,6 +3075,7 @@ func _deserialize(data: Dictionary, source_version_override := -1) -> void:
 	next_town_object_id = maxi(1, int(data.get("next_town_object_id", town_objects.size() + 1)))
 	_play_session_running = false
 	duckets = int(data.get("duckets", 0))
+	economy_transactions = ECONOMY_LEDGER.normalize_entries(data.get("economy_transactions", []))
 	built_facilities = _integer_key_dictionary(data.get("built_facilities", {}))
 	universe_anchors = _integer_key_dictionary(data.get("universe_anchors", {}))
 	for plot_index in universe_anchors.keys():
@@ -3018,6 +3101,21 @@ func _deserialize(data: Dictionary, source_version_override := -1) -> void:
 	inventory = data.get("inventory", {"tonic": 3, "ether": 1, "smelling_salts": 2, "phoenix_tonic": 1})
 	encounter_ward_steps = clampi(int(data.get("encounter_ward_steps", 0)), 0, 120)
 	encounter_pressure = {"active": false, "universe_id": &"", "steps": 0, "threshold": 1, "ward_steps": encounter_ward_steps, "suppressed": false, "cooldown": 0}
+	encounter_director_states.clear()
+	for raw_universe_id in data.get("encounter_director_states", {}).keys():
+		var raw_runtime: Dictionary = data.encounter_director_states[raw_universe_id]
+		var raw_cell: Array = raw_runtime.get("last_danger_cell", [-1, -1])
+		var last_cell := Vector2i(-1, -1)
+		if raw_cell.size() >= 2:
+			last_cell = Vector2i(int(raw_cell[0]), int(raw_cell[1]))
+		store_encounter_director_state(StringName(raw_universe_id), {
+			"steps_in_danger": int(raw_runtime.get("steps_in_danger", 0)),
+			"encounter_threshold": int(raw_runtime.get("encounter_threshold", 1)),
+			"cooldown_steps": int(raw_runtime.get("cooldown_steps", 0)),
+			"recent_formations": raw_runtime.get("recent_formations", []),
+			"last_danger_cell": last_cell,
+			"rng_state": int(raw_runtime.get("rng_state", 0)),
+		})
 	loot_inventory.clear()
 	for loot in data.get("loot_inventory", []):
 		if loot is Dictionary:

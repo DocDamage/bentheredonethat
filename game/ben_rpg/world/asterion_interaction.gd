@@ -77,7 +77,7 @@ func _open_cargo_cache() -> Array[String]:
 	CampaignState.story_flags[&"asterion_cargo_opened"] = true
 	CampaignState.add_item(&"tonic", 2, false)
 	CampaignState.add_item(&"ether", 1, false)
-	CampaignState.duckets += 36
+	CampaignState.adjust_duckets(36, &"asterion_cache", &"asterion_medical", false)
 	var events: Array[String] = [
 		"%s's orbital credentials open the customs locker." % String(assist.get("name", "The specialist")),
 		"Found 2 Tonics, a Leyden Ether, and 36 Duckets accepted by no known spaceport.",

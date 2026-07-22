@@ -26,6 +26,12 @@ func _random_encounter(local: Vector2i) -> StringName:
 	return &"primeval_raptor_pack" if _rng.randf() < 0.62 else &"primeval_heavy_herd"
 
 
+func _random_encounter_options(local: Vector2i) -> Array[StringName]:
+	if _in_caldera(local): return [&"primeval_caldera_patrol"]
+	if _in_nest(local): return [&"primeval_nest_patrol"]
+	return [&"primeval_raptor_pack", &"primeval_heavy_herd"]
+
+
 func _in_nest(local: Vector2i) -> bool: return Rect2i(11, 14, 6, 3).has_point(local)
 func _in_caldera(local: Vector2i) -> bool: return Rect2i(21, 14, 6, 3).has_point(local)
 

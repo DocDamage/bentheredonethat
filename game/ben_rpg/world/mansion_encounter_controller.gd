@@ -35,6 +35,13 @@ func _random_encounter(local: Vector2i) -> StringName:
 	return &"mansion_lost_hours" if _rng.randf() < 0.42 else &"mansion_restless_books"
 
 
+func _random_encounter_options(local: Vector2i) -> Array[StringName]:
+	if _in_gallery(local): return [&"mansion_restless_portraits", &"mansion_lost_hours"]
+	if _in_nursery(local): return [&"mansion_doll_procession", &"mansion_restless_portraits"]
+	if _in_ballroom(local): return [&"mansion_last_dance"]
+	return [&"mansion_lost_hours", &"mansion_restless_books"]
+
+
 func _in_gallery(local: Vector2i) -> bool: return Rect2i(1, 14, 6, 3).has_point(local)
 func _in_nursery(local: Vector2i) -> bool: return Rect2i(11, 14, 6, 3).has_point(local)
 func _in_ballroom(local: Vector2i) -> bool: return Rect2i(21, 9, 6, 4).has_point(local)
