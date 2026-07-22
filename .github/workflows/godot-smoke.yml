@@ -10,6 +10,34 @@ permissions:
   contents: read
 
 jobs:
+  browser-validation:
+    name: Browser checks and asset validation
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+
+    steps:
+      - name: Check out source
+        uses: actions/checkout@v4
+
+      - name: Set up Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Install manifest validator dependency
+        run: python -m pip install --disable-pip-version-check Pillow
+
+      - name: Run browser checks
+        run: npm run check
+
+      - name: Validate assets and visual manifest
+        run: npm run validate:assets
+
   isolated-smoke:
     name: Isolated Godot smoke
     runs-on: windows-latest

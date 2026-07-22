@@ -20,7 +20,7 @@ func _run() -> void:
 	for _frame in range(6):
 		await get_tree().process_frame
 	var player: Gamepiece = Player.gamepiece
-	var encounter_controller: MansionEncounterController = main.get_node("Field/Map/CampaignWorld/MansionEncounters")
+	var encounter_controller: MansionEncounterController = main.get_node("Field/Map/CampaignWorld/EncounterLayer/MansionEncounters")
 	var battle: CampaignBattle = main.get_node("CampaignBattle")
 	var autosave_results: Array[int] = []
 	battle.victory_autosave_committed.connect(func(_encounter_id: StringName, result: int) -> void:

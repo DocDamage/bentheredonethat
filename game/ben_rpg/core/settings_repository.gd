@@ -11,6 +11,8 @@ var settings: Dictionary = default_settings()
 
 func _ready() -> void:
 	load_from_disk()
+	apply_runtime_audio_mix()
+	apply_runtime_text_speed.call_deferred()
 
 
 static func default_settings() -> Dictionary:
@@ -42,11 +44,50 @@ func set_value(section: StringName, key: StringName, value: Variant) -> void:
 	section_values[key] = value
 	settings[section] = section_values
 	settings = normalize(settings)
+	if section == &"audio":
+		apply_runtime_audio_mix()
+	if section == &"accessibility" and key == &"text_speed":
+		apply_runtime_text_speed()
 	settings_changed.emit(settings.duplicate(true))
 
 
 func value(section: StringName, key: StringName, fallback: Variant = null) -> Variant:
 	return (settings.get(section, {}) as Dictionary).get(key, fallback)
+
+
+func apply_runtime_audio_mix() -> void:
+	var audio: Dictionary = settings.get("audio", {})
+	_apply_bus_volume(&"Master", float(audio.get("master_volume", 1.0)))
+	_apply_bus_volume(&"Music", float(audio.get("music_volume", 0.8)))
+	_apply_bus_volume(&"SFX", float(audio.get("sfx_volume", 0.8)))
+
+
+func _apply_bus_volume(bus_name: StringName, linear_volume: float) -> void:
+	var bus_index := AudioServer.get_bus_index(bus_name)
+	if bus_index >= 0:
+		AudioServer.set_bus_volume_db(bus_index, linear_to_db(maxf(clampf(linear_volume, 0.0, 1.0), 0.001)))
+
+
+func apply_runtime_text_speed() -> void:
+	if not is_instance_valid(Dialogic) or not Dialogic.get("Settings"):
+		return
+	var requested_speed := maxf(float(value(&"accessibility", &"text_speed", 1.0)), 0.25)
+	# Dialogic stores a reveal-delay multiplier. The campaign Options screen
+	# presents a speed multiplier, so invert it to keep 2.0× visibly faster.
+	Dialogic.Settings.set("text_speed", 1.0 / requested_speed)
+
+
+func apply_text_scale_to(container: Node) -> void:
+	if not container:
+		return
+	var multiplier := float(value(&"accessibility", &"text_scale", 1.0))
+	for control in container.find_children("*", "Control", true, false):
+		if not (control is Label or control is Button or control is LineEdit):
+			continue
+		var base_size := int(control.get_meta("campaign_base_font_size", control.get_theme_font_size("font_size")))
+		if not control.has_meta("campaign_base_font_size"):
+			control.set_meta("campaign_base_font_size", base_size)
+		control.add_theme_font_size_override("font_size", maxi(12, int(round(float(base_size) * multiplier))))
 
 
 static func read_settings(path := DEFAULT_SETTINGS_PATH) -> Dictionary:

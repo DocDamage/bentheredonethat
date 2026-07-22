@@ -13,6 +13,7 @@ from typing import Any
 from PIL import Image
 
 SCALE_CLASSES = {"actor", "building", "landmark", "prop", "tile"}
+CROP_APPROVAL_STATES = {"approved"}
 
 
 def fail(message: str) -> None:
@@ -49,8 +50,8 @@ def sha256(path: Path) -> str:
 
 
 def validate(root: Path, raw: dict[str, Any]) -> dict[str, Any]:
-    if raw.get("schemaVersion") != 1:
-        fail("visual profiles must use schemaVersion 1")
+    if raw.get("schemaVersion") != 2:
+        fail("visual profiles must use schemaVersion 2")
     profiles = raw.get("profiles")
     if not isinstance(profiles, list) or not profiles:
         fail("profiles must be a non-empty list")
@@ -79,6 +80,15 @@ def validate(root: Path, raw: dict[str, Any]) -> dict[str, Any]:
         alpha_bounds = rect(source.get("alphaBounds", source_region), f"{profile_id}.source.alphaBounds")
         with Image.open(texture_path) as image:
             texture_bounds = [0, 0, image.width, image.height]
+        source_checksum = source.get("sourceChecksum")
+        if not isinstance(source_checksum, str) or len(source_checksum) != 64:
+            fail(f"{profile_id}.source.sourceChecksum must be a SHA-256 checksum")
+        actual_checksum = sha256(texture_path)
+        if source_checksum != actual_checksum:
+            fail(f"{profile_id}.source.sourceChecksum does not match {texture}")
+        source_density = source.get("sourceDensity")
+        if isinstance(source_density, bool) or not isinstance(source_density, int) or source_density <= 0:
+            fail(f"{profile_id}.source.sourceDensity must be a positive integer")
         contained(source_region, texture_bounds, f"{profile_id}.source.region")
         contained(alpha_bounds, source_region, f"{profile_id}.source.alphaBounds")
         foot_anchor = pair(placement.get("footAnchor"), f"{profile_id}.placement.footAnchor")
@@ -87,19 +97,41 @@ def validate(root: Path, raw: dict[str, Any]) -> dict[str, Any]:
         scale_class = placement.get("scaleClass")
         if scale_class not in SCALE_CLASSES:
             fail(f"{profile_id}.placement.scaleClass is invalid")
+        collision_footprint = placement.get("collisionFootprint")
+        if not isinstance(collision_footprint, str) or not collision_footprint:
+            fail(f"{profile_id}.placement.collisionFootprint must be non-empty")
+        crop_approval = profile.get("cropApproval")
+        if crop_approval not in CROP_APPROVAL_STATES:
+            fail(f"{profile_id}.cropApproval must be approved")
+        golden_capture = profile.get("goldenCapture")
+        if not isinstance(golden_capture, str) or not golden_capture:
+            fail(f"{profile_id}.goldenCapture must be a workspace-relative path")
+        golden_capture_path = (root / golden_capture).resolve()
+        if not golden_capture_path.is_file() or root not in golden_capture_path.parents:
+            fail(f"{profile_id}.goldenCapture references missing file {golden_capture!r}")
+        license_reference = profile.get("licenseReference")
+        if not isinstance(license_reference, str) or not license_reference or license_reference.startswith(("/", "\\")) or ".." in Path(license_reference).parts:
+            fail(f"{profile_id}.licenseReference must be a workspace-relative evidence path")
+        license_reference_path = (root / license_reference).resolve()
+        if not license_reference_path.is_file() or root not in license_reference_path.parents:
+            fail(f"{profile_id}.licenseReference references missing evidence {license_reference!r}")
         normalized = {
             "id": profile_id,
             "kind": profile["kind"],
             "source": {
                 "pack": source.get("pack", ""),
                 "runtimeTexture": texture.replace("\\", "/"),
-                "sha256": sha256(texture_path),
+                "sha256": actual_checksum,
+                "sourceChecksum": source_checksum,
+                "sourceDensity": source_density,
                 "region": source_region,
                 "alphaBounds": alpha_bounds,
             },
-            "placement": {"footAnchor": foot_anchor, "scaleClass": scale_class},
+            "placement": {"footAnchor": foot_anchor, "scaleClass": scale_class, "collisionFootprint": collision_footprint},
             "worldDrawSize": pair(profile.get("worldDrawSize"), f"{profile_id}.worldDrawSize", positive=True),
-            "licenseReference": profile.get("licenseReference", ""),
+            "licenseReference": license_reference.replace("\\", "/"),
+            "cropApproval": crop_approval,
+            "goldenCapture": golden_capture.replace("\\", "/"),
         }
         if "doorway" in placement:
             doorway = pair(placement["doorway"], f"{profile_id}.placement.doorway")
@@ -107,7 +139,7 @@ def validate(root: Path, raw: dict[str, Any]) -> dict[str, Any]:
                 fail(f"{profile_id}.placement.doorway must be inside source.region")
             normalized["placement"]["doorway"] = doorway
         output.append(normalized)
-    return {"schemaVersion": 1, "profiles": sorted(output, key=lambda item: item["id"])}
+    return {"schemaVersion": 2, "profiles": sorted(output, key=lambda item: item["id"])}
 
 
 def main() -> int:

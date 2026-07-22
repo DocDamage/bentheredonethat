@@ -8,14 +8,28 @@ from the human, platform, licensing, and performance sign-offs that remain.
 - The project has a numeric `0.3.0` technical build version with matching Windows
   file metadata, and runs without the development-only MCP runtime bridge or
   editor plugin enabled in `project.godot`.
-- `tools/run_godot_isolated.ps1 -AllSmoke -TimeoutSeconds 180` passed all 68
-  smoke scenes on July 22, 2026. The runner used isolated user data and reported
-  `sentinel=True`, so it did not alter the production save sentinel.
-- `release_resource_load_smoke` loaded all 549 runtime resources represented by
-  the Windows preset (327 scripts, 117 scenes, 80 serialized resources, and 25
+- `tools/run_godot_isolated.ps1 -AllSmoke -TimeoutSeconds 360` passed all 84
+  smoke scenes on July 22, 2026 using Godot 4.7.1. The reproducible artifact
+  root is `test-artifacts/20260722-122356-0b17205d`; the runner used isolated
+  user data and reported `sentinel=True`, so it did not alter the production
+  save sentinel.
+- A later progress-audit run against the 1:31 PM worktree passed 83/84 scenes
+  and exposed a timing flake in `opening_presentation_smoke`: the test counted
+  fast headless frames while the velociraptor patrol sampled wall-clock time.
+  The animation now uses accumulated frame delta and the test advances a fixed
+  0.8 simulated seconds; three consecutive targeted isolated reruns passed with
+  `sentinel=True`. A new clean 84/84 aggregate run is still required before the
+  current worktree supersedes the earlier artifact. The failed-run evidence is
+  retained at `test-artifacts/20260722-133147-e2949947`.
+- `release_resource_load_smoke` loaded all 557 runtime resources represented by
+  the Windows preset (335 scripts, 117 scenes, 80 serialized resources, and 25
   Dialogic resources) with no missing imports or compile errors.
-- The deep curated-asset validator covers all 20,530 declared source rasters
-  with no schema, path, crop, or animation errors, and the generated runtime
+- The deep curated-asset validator covered all 20,530 declared source rasters
+  in the earlier baseline with no schema, path, crop, or animation errors. At
+  approximately 1:22 PM, 488 ignored source rasters materialized under
+  `assets/board games/`; the aggregate validator now reports 20,530/21,018
+  coverage until `curated-asset-catalog.js` is rebuilt and reviewed. The NPC
+  readiness check still passes 51/51, and the generated runtime
   visual manifest is current. This proves source-art catalog structure, not
   license terms or distribution permission.
 - A verbose isolated shutdown baseline on Godot 4.7.1 exits successfully but
@@ -23,7 +37,36 @@ from the human, platform, licensing, and performance sign-offs that remain.
   `Timer`, two each of `PackedScene` and `SceneState`, plus single audio/native
   class entries), 26 resources, and 470 `StringName`s at exit. The release
   launch shows the same 61/26 signature; this is a bounded baseline, not proof
-  of no growth during a multi-hour session.
+  of no growth during a multi-hour session. The empty-scene
+  `project_startup_baseline_smoke` reproduces the exact signature after only
+  the 12 configured autoloads initialize, before the test instantiates campaign
+  or visual-renderer content. The manifest-only
+  `visual_profile_registry_smoke` also reproduces the same counts and 26
+  shutdown-time `get_path`-outside-tree diagnostics without instantiating the
+  campaign field. The signature is therefore not attributable to field or
+  foreground construction; the specific engine, addon, or autoload ownership
+  still needs confirmation before it can be accepted for release.
+- `field_transition_soak_smoke` performs 12 repeated passes through all eight
+  current field areas with four isolated save/load checkpoints. It verifies
+  that area activation remains correct and that CampaignWorld and its
+  ForegroundLayer do not accumulate duplicate children. This is a bounded
+  regression test, not the required multi-hour memory/frame-pacing soak.
+- `validation/campaign_performance_baseline.tscn` provides a windowed,
+  machine-specific diagnostic for title-to-field, current-area activation,
+  battle entry/results/return, save/load, memory snapshots, and 120 frame
+  intervals. It has deliberately no thresholds and therefore is not evidence
+  that release performance targets have passed.
+- The Options screen persists battle timing/mode, fullscreen, controller,
+  Master/Music/SFX audio, and accessibility preferences. Master/Music/SFX now
+  apply to their real buses at startup and on change; reduced motion removes
+  battle lunges, shakes, and popup movement, while reduced flashes suppresses
+  battle action-VFX overlays without removing text/status/audio feedback. The
+  text-speed preference now applies to Dialogic's live reveal multiplier, and
+  the Company menu, title, battle, and dialogue text-scale preference resizes
+  their rendered controls. Field weather now consumes the persisted density
+  preference and freezes snow, petals, motes, and mansion dust when reduced
+  motion is enabled. Environmental-motion coverage still requires release
+  review.
 - The sandbox regression covers 100-command undo/redo, clipboard duplication,
   box/Ctrl-click multiselect, batch move undo/redo, pack search, validated slot
   round-trips, route preservation, and malformed-slot rejection.
@@ -46,6 +89,34 @@ from the human, platform, licensing, and performance sign-offs that remain.
   classes.
 - `CREDITS.md`, the base `LICENSE`, and several supplied asset-pack license files
   are tracked in the repository.
+- `runtime_asset_provenance.json` is generated from the static runtime visual
+  inventory and checked by `npm run validate:assets`. It currently records 159
+  static raster sources after excluding editor/example-only paths stripped from
+  release builds; two have asset-local license evidence and 157 are
+  explicitly queued for manual terms and shipped-credit confirmation. This is
+  a review ledger, not a claim that the other assets are unlicensed.
+- The runtime visual registry currently contains 193 approved profiles covering
+  135 of the 159 static source textures, including the active Town, Primeval,
+  Frosthold, Moonpetal, Empyreal, Mansion, and Asterion battle materials. The
+  battle profile smoke verifies all 53 catalog entries have approved backdrop
+  profiles and renders 24 representative texture/region pairs; `CampaignBattle`
+  rejects any encounter without an approved backdrop profile. All 38 catalog
+  enemy actors, including the challenger sprites, Primeval dinosaurs, and the
+  standard Mansion, Asterion, Helios, Frosthold, Moonpetal, and Empyreal
+  enemies, resolve through approved profiles. All 13 catalog party characters
+  and the Velociraptor companion also resolve through approved battle
+  profiles; dynamically added editor/test recruits retain a checked raw-path
+  fallback. The Armory's 20 purchasable equipment entries declare approved,
+  checksum-validated icon profiles which the company menu resolves through the
+  registry. The supplied battle command/HUD skins and the title/Company
+  portraits for Ben, Fighter, and Astronaut also resolve through approved
+  profiles. Interaction emotes, the universe treasure marker, all 20 sandbox
+  terrain brushes, and the live Ranch/Modern/Haunted/Laboratory sandbox props
+  resolve through approved profiles in the live map and editor previews as
+  well. The remaining 24
+  source textures are deliberately reported as unprofiled
+  and remain release-review work; this is progress evidence, not a claim of
+  full visual-profile coverage.
 
 ## Release blockers
 
@@ -57,9 +128,10 @@ from the human, platform, licensing, and performance sign-offs that remain.
   editor. Push the prepared smoke workflow and record its first clean remote
   pass. The local 4.7.1 x86_64 templates and baseline export are verified.
 - [ ] Set the approved shipping version and final Windows publisher/signing metadata.
-- [ ] Complete a license/provenance inventory for every distributed art, audio,
-  font, addon, and source-derived runtime asset; consolidate required notices
-  into the shipped credits.
+- [ ] Complete terms review for the 157 static raster sources currently marked
+  `needs_manual_license_confirmation` in `runtime_asset_provenance.json`, then
+  extend the ledger to audio, fonts, addons, and dynamically resolved assets;
+  consolidate required notices into shipped credits.
 - [ ] Archive two fresh-save end-to-end playthroughs and one migrated-save run,
   including recall, defeat/retry, partial-puzzle reload, and backup recovery.
 - [ ] Perform complete keyboard/mouse and modern-controller playthroughs at all

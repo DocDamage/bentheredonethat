@@ -1,5 +1,7 @@
 extends Node
 
+const CAPTURE_GUARD := preload("res://validation/visual_capture_guard.gd")
+
 const OUTPUT_NAMES := [
 	"asterion-dock-rebuilt.png",
 	"asterion-mess-rebuilt.png",
@@ -36,11 +38,15 @@ func _ready() -> void:
 	await _settle()
 	main._place_player(main.TOWN_ORIGIN + Vector2i(24, 18))
 	await _settle()
-	_capture("town-observatory-rebuilt.png")
+	if not _capture("town-observatory-rebuilt.png"):
+		get_tree().quit(1)
+		return
 	for index in range(ROOM_CELLS.size()):
 		main._place_player(ROOM_CELLS[index])
 		await _settle()
-		_capture(OUTPUT_NAMES[index])
+		if not _capture(OUTPUT_NAMES[index]):
+			get_tree().quit(1)
+			return
 	print("ASTERION_VISUAL_CAPTURE_OK images=6")
 	get_tree().quit()
 
@@ -50,8 +56,5 @@ func _settle() -> void:
 		await get_tree().process_frame
 
 
-func _capture(file_name: String) -> void:
-	var image := get_viewport().get_texture().get_image()
-	var error := image.save_png("res://validation/%s" % file_name)
-	if error != OK:
-		push_error("Could not save visual capture %s: %s" % [file_name, error_string(error)])
+func _capture(file_name: String) -> bool:
+	return CAPTURE_GUARD.save_viewport_png(get_viewport(), "res://validation/%s" % file_name, "Asterion visual capture")

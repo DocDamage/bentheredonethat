@@ -47,7 +47,7 @@ func _run() -> void:
 		_fail("Station Control was not oxygen-gated before Hydroponics restoration")
 		return
 
-	var controller: AsterionEncounterController = world.get_node("AsterionEncounters")
+	var controller: AsterionEncounterController = world.get_node("EncounterLayer/AsterionEncounters")
 	var battle: CampaignBattle = main.get_node("CampaignBattle")
 	controller.suppress_persistence = true
 	battle.suppress_persistence = true

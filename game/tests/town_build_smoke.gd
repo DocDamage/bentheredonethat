@@ -22,7 +22,7 @@ func _run() -> void:
 		await get_tree().process_frame
 
 	var controller := main.get_node("Field/Map/CampaignWorld/TownBuildController")
-	var visual := main.get_node("Field/Map/CampaignWorld/Visuals")
+	var visual := main.get_node("Field/Map/CampaignWorld/GroundLayer/Visuals")
 	await _send_joy_button(JOY_BUTTON_Y)
 	if not controller.is_active:
 		_fail("Controller Y did not open in-map construction mode")

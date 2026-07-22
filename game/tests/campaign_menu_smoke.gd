@@ -6,6 +6,7 @@ func _ready() -> void:
 
 
 func _run() -> void:
+	_restore_test_settings()
 	CampaignState.reset_new_game()
 	CampaignState.build_facility(0, "Cafe")
 	CampaignState.build_facility(1, "Library")
@@ -98,12 +99,16 @@ func _run() -> void:
 		return
 	menu._select_tab(&"settings")
 	await get_tree().process_frame
-	if menu._content.get_node_or_null("OptionBattleSpeed") == null or menu._content.get_node_or_null("OptionReduceMotion") == null:
+	var text_scale_option := menu._content.get_node_or_null("OptionTextScale") as Button
+	if menu._content.get_node_or_null("OptionBattleSpeed") == null or menu._content.get_node_or_null("OptionReduceMotion") == null or text_scale_option == null:
 		_fail("Company menu did not expose the options and accessibility controls")
 		return
+	var default_text_scale_size := text_scale_option.get_theme_font_size("font_size")
 	menu._cycle_setting(&"battle", &"atb_speed", [0.5, 1.0, 1.5, 2.0])
 	menu._toggle_setting(&"accessibility", &"reduce_motion")
-	if not is_equal_approx(float(SettingsRepository.value(&"battle", &"atb_speed", 0.0)), 1.5) or not bool(SettingsRepository.value(&"accessibility", &"reduce_motion", false)):
+	menu._cycle_setting(&"accessibility", &"text_scale", [0.75, 1.0, 1.25, 1.5])
+	var scaled_text_option := menu._content.get_node_or_null("OptionTextScale") as Button
+	if not is_equal_approx(float(SettingsRepository.value(&"battle", &"atb_speed", 0.0)), 1.5) or not bool(SettingsRepository.value(&"accessibility", &"reduce_motion", false)) or not is_equal_approx(float(SettingsRepository.value(&"accessibility", &"text_scale", 0.0)), 1.25) or scaled_text_option.get_theme_font_size("font_size") <= default_text_scale_size:
 		_fail("Options controls did not save battle-speed or reduce-motion preferences")
 		return
 	CampaignState.story_flags[&"empyreal_scenario_complete"] = true
@@ -117,6 +122,7 @@ func _run() -> void:
 		_fail("Postgame Tribunal Ledger did not expose the town rematch path")
 		return
 	menu.close_menu()
+	_restore_test_settings()
 	print("CAMPAIGN_MENU_SMOKE_OK slots=6 gear_stats=true equipment_ability=true skills=prerequisites+refund controller_menu=true telemetry_opt_in=true accessibility_options=true postgame_ledger=true")
 	main.queue_free()
 	await get_tree().process_frame
@@ -124,5 +130,12 @@ func _run() -> void:
 
 
 func _fail(message: String) -> void:
+	_restore_test_settings()
 	printerr("CAMPAIGN_MENU_SMOKE_FAILED: " + message)
 	get_tree().quit(1)
+
+
+func _restore_test_settings() -> void:
+	SettingsRepository.set_value(&"battle", &"atb_speed", 1.0)
+	SettingsRepository.set_value(&"accessibility", &"reduce_motion", false)
+	SettingsRepository.set_value(&"accessibility", &"text_scale", 1.0)

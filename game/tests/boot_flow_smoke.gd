@@ -50,7 +50,7 @@ func _run() -> void:
 	if GamepieceRegistry.get_cell(Player.gamepiece) != Vector2i(50, 8):
 		_fail("Continue did not restore the saved field cell")
 		return
-	var visual: CampaignMapVisual = main.get_node("Field/Map/CampaignWorld/Visuals")
+	var visual: CampaignMapVisual = main.get_node("Field/Map/CampaignWorld/GroundLayer/Visuals")
 	if visual.built_facilities.get(0) != "Cafe":
 		_fail("Continue did not rebuild saved town facilities")
 		return

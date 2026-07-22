@@ -71,7 +71,7 @@ func _run() -> void:
 		_fail("The ballroom's two-way transition was not created")
 		return
 
-	var controller: MansionEncounterController = main.get_node("Field/Map/CampaignWorld/MansionEncounters")
+	var controller: MansionEncounterController = main.get_node("Field/Map/CampaignWorld/EncounterLayer/MansionEncounters")
 	var battle: CampaignBattle = main.get_node("CampaignBattle")
 	controller.suppress_persistence = true
 	battle.suppress_persistence = true

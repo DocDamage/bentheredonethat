@@ -42,7 +42,7 @@ func _run() -> void:
 		_fail("The supplied Frost Lich Emperor did not appear in the Frozen Market")
 		return
 
-	var controller: FrostholdEncounterController = world.get_node("FrostholdEncounters")
+	var controller: FrostholdEncounterController = world.get_node("EncounterLayer/FrostholdEncounters")
 	var battle: CampaignBattle = main.get_node("CampaignBattle")
 	controller.suppress_persistence = true
 	battle.suppress_persistence = true

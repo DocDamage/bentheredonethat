@@ -4,6 +4,7 @@ extends Node2D
 const TILE := 48
 const CATALOG := preload("res://ben_rpg/world/sandbox_object_catalog.gd")
 const TERRAIN_CATALOG := preload("res://ben_rpg/world/sandbox_terrain_catalog.gd")
+const SANDBOX_VISUAL_RESOLVER := preload("res://ben_rpg/world/sandbox_visual_resolver.gd")
 
 var editor_active := false
 var editor_mode: StringName = &"objects"
@@ -13,6 +14,7 @@ var cursor_valid := false
 var selected_instance_id := ""
 var selected_instance_ids: Array[String] = []
 var box_selection_rect := Rect2i()
+var _sandbox_visuals = SANDBOX_VISUAL_RESOLVER.new()
 
 
 func _ready() -> void:
@@ -67,10 +69,10 @@ func _draw() -> void:
 		var footprint: Vector2i = definition.get("footprint", Vector2i.ONE)
 		var rect := Rect2(Vector2(cursor_cell * TILE), Vector2(footprint * TILE))
 		if editor_mode == &"terrain" and not definition.is_empty():
-			var texture_path := String(definition.get("texture", ""))
+			var texture_path := _sandbox_visuals.texture_path(definition)
 			if ResourceLoader.exists(texture_path):
-				var texture := load(texture_path) as Texture2D
-				var region: Rect2 = definition.get("region", Rect2(Vector2.ZERO, texture.get_size()))
+				var texture := _sandbox_visuals.texture(definition)
+				var region: Rect2 = _sandbox_visuals.region(definition, texture)
 				draw_texture_rect_region(texture, rect, region, Color(1, 1, 1, 0.72))
 		var color := Color(0.35, 1.0, 0.72, 0.95) if cursor_valid else Color(1.0, 0.28, 0.32, 0.95)
 		draw_rect(rect, Color(color, 0.15), true)
@@ -87,11 +89,11 @@ func _draw_placed_object(placed: Dictionary) -> void:
 	var definition := CATALOG.definition(catalog_id)
 	if definition.is_empty():
 		return
-	var texture_path := String(definition.get("texture", ""))
+	var texture_path := _sandbox_visuals.texture_path(definition)
 	if not ResourceLoader.exists(texture_path):
 		return
-	var texture := load(texture_path) as Texture2D
-	var region: Rect2 = definition.get("region", Rect2(Vector2.ZERO, texture.get_size()))
+	var texture := _sandbox_visuals.texture(definition)
+	var region: Rect2 = _sandbox_visuals.region(definition, texture)
 	var draw_size: Vector2 = definition.get("draw_size", region.size)
 	var cell_rect := placed_cell_rect(placed)
 	var footprint_rect := Rect2(Vector2(cell_rect.position * TILE), Vector2(cell_rect.size * TILE))

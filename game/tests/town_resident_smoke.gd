@@ -19,7 +19,7 @@ func _run() -> void:
 	get_tree().root.add_child(main)
 	for _frame in range(12):
 		await get_tree().process_frame
-	var manager := main.get_node("Field/Map/CampaignWorld/TownResidents")
+	var manager := main.get_node("Field/Map/CampaignWorld/YSortedActorsAndProps/TownResidents")
 	if manager.residents.size() != 4:
 		_fail("Expected four purposeful sandbox residents, got %d" % manager.residents.size())
 		return

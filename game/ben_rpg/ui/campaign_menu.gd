@@ -6,10 +6,11 @@ signal menu_closed
 const UI_ROOT := "res://game_assets/Tilesets/Dark RPG GUI Kit - Pixel Art Asset Pack"
 const UI_PARTY_HUD := UI_ROOT + "/dfgui_partyhud.png"
 const UI_BUTTON := UI_ROOT + "/dfgui_button-empty.png"
-const CHARACTER_PORTRAITS := {
-	&"ben": "res://game_assets/characters/Main Character/Ben_Franklin/rotations/south.png",
-	&"fighter": "res://game_assets/characters/Recruitable Characters/Fighter/Fighter/rotations/south.png",
-	&"astronaut": "res://game_assets/characters/Recruitable Characters/astronaut/Astronaut/rotations/south.png",
+const VISUAL_PROFILE_REGISTRY := preload("res://ben_rpg/world/campaign_visual_profile_registry.gd")
+const CHARACTER_PORTRAIT_PROFILES := {
+	&"ben": &"ben_company_portrait",
+	&"fighter": &"fighter_company_portrait",
+	&"astronaut": &"astronaut_company_portrait",
 }
 const CHARACTER_PORTRAIT_REGIONS := {
 	&"ben": Rect2(20, 15, 48, 58),
@@ -40,6 +41,7 @@ var _content: VBoxContainer
 var _header_currency: Label
 var _first_focus: Button
 var _active_job_timer: Label
+var _visual_profiles
 
 
 func _ready() -> void:
@@ -293,6 +295,11 @@ func _refresh() -> void:
 			_build_inventory_page()
 		_:
 			_build_equipment_page()
+	_apply_text_scale()
+
+
+func _apply_text_scale() -> void:
+	SettingsRepository.apply_text_scale_to(_root)
 
 
 func _refresh_character_buttons() -> void:
@@ -347,9 +354,18 @@ func _refresh_profile() -> void:
 	_profile_name.text = String(actor.get("display_name", selected_character))
 	var recruit: Dictionary = CampaignState.recruit_catalog.get(selected_character, {})
 	var asset_pack := String(recruit.get("asset_pack", "Main Character/Ben_Franklin"))
-	var portrait_path := String(CHARACTER_PORTRAITS.get(selected_character, recruit.get("portrait_path", "res://game_assets/characters/%s/rotations/south.png" % asset_pack)))
+	var portrait_profile := StringName(CHARACTER_PORTRAIT_PROFILES.get(selected_character, &""))
+	var portrait_path := ""
+	if portrait_profile != &"":
+		if not _visual_profiles:
+			_visual_profiles = VISUAL_PROFILE_REGISTRY.new()
+		portrait_path = _visual_profiles.texture_path(portrait_profile)
+	if portrait_path.is_empty():
+		portrait_path = String(recruit.get("portrait_path", "res://game_assets/characters/%s/rotations/south.png" % asset_pack))
 	if not ResourceLoader.exists(portrait_path):
-		portrait_path = CHARACTER_PORTRAITS[&"ben"]
+		if not _visual_profiles:
+			_visual_profiles = VISUAL_PROFILE_REGISTRY.new()
+		portrait_path = _visual_profiles.texture_path(&"ben_company_portrait")
 	var portrait_texture := load(portrait_path) as Texture2D
 	var portrait_atlas := AtlasTexture.new()
 	portrait_atlas.atlas = portrait_texture
@@ -359,6 +375,16 @@ func _refresh_profile() -> void:
 		int(progress.get("level", 1)), int(progress.get("exp", 0)), int(progress.get("hp", actor["max_hp"])), actor["max_hp"],
 		int(progress.get("mp", actor["max_mp"])), actor["max_mp"], actor["attack"], actor["defense"], actor["magic"], actor["spirit"], actor["speed"], int(progress.get("skill_points", 0)),
 	]
+
+
+func _item_icon_path(item: Dictionary, fallback: String) -> String:
+	var profile_id := StringName(item.get("icon_profile", &""))
+	if profile_id != &"":
+		if not _visual_profiles:
+			_visual_profiles = VISUAL_PROFILE_REGISTRY.new()
+		if _visual_profiles.has(profile_id):
+			return _visual_profiles.texture_path(profile_id)
+	return String(item.get("icon", fallback))
 
 
 func _build_equipment_page() -> void:
@@ -374,7 +400,7 @@ func _build_equipment_page() -> void:
 		button.text = "%s\n%s" % [String(slot).to_upper(), item.get("display_name", "— EMPTY —")]
 		button.custom_minimum_size = Vector2(185, 82)
 		button.tooltip_text = _item_details(item)
-		_apply_button_skin(button, String(item.get("icon", UI_ROOT + "/dfgui_button-empty.png")))
+		_apply_button_skin(button, _item_icon_path(item, UI_ROOT + "/dfgui_button-empty.png"))
 		button.pressed.connect(_select_slot.bind(slot))
 		slots.add_child(button)
 		if slot == selected_slot:
@@ -412,7 +438,7 @@ func _build_equipment_page() -> void:
 		button.text = "%s   •   %s" % [item.get("display_name", "Unknown item"), _modifier_summary(item)]
 		button.custom_minimum_size.y = 58
 		button.tooltip_text = _item_details(item)
-		_apply_button_skin(button, String(item.get("icon", UI_ROOT + "/dfgui_icon-pouch.png")))
+		_apply_button_skin(button, _item_icon_path(item, UI_ROOT + "/dfgui_icon-pouch.png"))
 		button.disabled = String(item.get("instance_id", "")) == equipped_id
 		button.pressed.connect(_equip_item.bind(String(item.get("instance_id", ""))))
 		_content.add_child(button)
@@ -506,7 +532,7 @@ func _build_inventory_page() -> void:
 		icon.custom_minimum_size = Vector2(54, 54)
 		icon.expand_mode = TextureRect.EXPAND_IGNORE_SIZE
 		icon.stretch_mode = TextureRect.STRETCH_KEEP_ASPECT_CENTERED
-		var icon_path := String(item.get("icon", ""))
+		var icon_path := _item_icon_path(item, "")
 		if ResourceLoader.exists(icon_path):
 			icon.texture = load(icon_path)
 		row.add_child(icon)
@@ -592,7 +618,7 @@ func _build_telemetry_page() -> void:
 
 func _build_settings_page() -> void:
 	_add_heading("OPTIONS & ACCESSIBILITY", UI_ROOT + "/dfgui_icon-settings.png")
-	_add_notice("Preferences save locally and apply to future battles immediately. Gameplay clues are always paired with readable text or icons; these options further reduce motion and visual intensity.", Color(0.78, 0.84, 0.96))
+	_add_notice("Preferences save locally. Battle, display, and audio changes apply immediately; readability and motion preferences persist for supported UI and visual surfaces. Gameplay clues are always paired with readable text or icons.", Color(0.78, 0.84, 0.96))
 	var battle_speed := float(SettingsRepository.value(&"battle", &"atb_speed", 1.0))
 	var wait_mode := bool(SettingsRepository.value(&"battle", &"wait_mode", false))
 	_add_subheading("BATTLE")
@@ -657,11 +683,8 @@ func _cycle_setting(section: StringName, key: StringName, values: Array) -> void
 func _apply_runtime_setting(section: StringName, key: StringName) -> void:
 	if section == &"display" and key == &"fullscreen":
 		DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_FULLSCREEN if bool(SettingsRepository.value(section, key, false)) else DisplayServer.WINDOW_MODE_WINDOWED)
-	if section == &"audio" and key == &"master_volume":
-		var master_bus := AudioServer.get_bus_index("Master")
-		if master_bus >= 0:
-			var volume := float(SettingsRepository.value(&"audio", &"master_volume", 1.0))
-			AudioServer.set_bus_volume_db(master_bus, linear_to_db(maxf(volume, 0.001)))
+	if section == &"audio":
+		SettingsRepository.apply_runtime_audio_mix()
 
 
 func _build_bestiary_detail(enemy_id: StringName) -> void:
@@ -1215,7 +1238,7 @@ func _build_armory_stock() -> void:
 		button.custom_minimum_size.y = 80
 		button.disabled = CampaignState.duckets < price
 		button.tooltip_text = "Not enough Duckets." if button.disabled else "%s\nCompared with %s's equipped %s." % [_item_details(item), character_name, String(item.get("slot", "gear"))]
-		_apply_button_skin(button, String(item.get("icon", UI_ROOT + "/dfgui_icon-sword.png")))
+		_apply_button_skin(button, _item_icon_path(item, UI_ROOT + "/dfgui_icon-sword.png"))
 		button.pressed.connect(_buy_armory_item.bind(stock_id))
 		_content.add_child(button)
 
@@ -1251,7 +1274,7 @@ func _build_gear_buyback() -> void:
 		button.custom_minimum_size.y = 60
 		button.disabled = owner_id != &""
 		button.tooltip_text = "Unequip this item before selling it." if button.disabled else _item_details(item)
-		_apply_button_skin(button, String(item.get("icon", UI_ROOT + "/dfgui_icon-pouch.png")))
+		_apply_button_skin(button, _item_icon_path(item, UI_ROOT + "/dfgui_icon-pouch.png"))
 		button.pressed.connect(_sell_service_loot.bind(instance_id))
 		_content.add_child(button)
 		var salvage := Button.new()

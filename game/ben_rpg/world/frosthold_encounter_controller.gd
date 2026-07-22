@@ -10,17 +10,17 @@ func _configure_region() -> void:
 
 
 func _scripted_encounter(local: Vector2i) -> StringName:
-	if Rect2i(1, 4, 6, 3).has_point(local) and not CampaignState.story_flags.get(&"frosthold_gate_cleared", false):
+	if Rect2i(0, 4, 8, 4).has_point(local) and not CampaignState.story_flags.get(&"frosthold_gate_cleared", false):
 		return &"frosthold_gate_intro"
-	if Rect2i(11, 14, 6, 3).has_point(local) and not CampaignState.story_flags.get(&"frosthold_rune_ambush_cleared", false):
+	if Rect2i(10, 14, 8, 4).has_point(local) and not CampaignState.story_flags.get(&"frosthold_rune_ambush_cleared", false):
 		return &"frosthold_rune_ambush"
-	if Rect2i(21, 14, 6, 3).has_point(local) and local.x >= 23 and CampaignState.story_flags.get(&"frosthold_throne_open", false) and not CampaignState.story_flags.get(&"frosthold_scenario_complete", false):
+	if Rect2i(20, 14, 8, 4).has_point(local) and local.x >= 23 and CampaignState.story_flags.get(&"frosthold_throne_open", false) and not CampaignState.story_flags.get(&"frosthold_scenario_complete", false):
 		return &"frosthold_whiteout_auditor"
 	return &""
 
 
 func _is_danger_region(local: Vector2i) -> bool:
-	return Rect2i(11, 4, 6, 3).has_point(local) or Rect2i(21, 4, 6, 3).has_point(local) or Rect2i(11, 14, 6, 3).has_point(local)
+	return Rect2i(10, 4, 8, 4).has_point(local) or Rect2i(20, 4, 8, 4).has_point(local) or Rect2i(10, 14, 8, 4).has_point(local)
 
 
 func _random_encounter(local: Vector2i) -> StringName:

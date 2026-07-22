@@ -1,0 +1,2065 @@
+{
+  "assets": [
+    {
+      "licenseReviewStatus": "workspace_license_coverage_declared",
+      "localLicenseEvidence": [
+        "game/LICENSE"
+      ],
+      "path": "res://addons/dialogic/Modules/Character/update_mirror.svg",
+      "profileIds": [],
+      "sourceGroup": "addons/dialogic"
+    },
+    {
+      "licenseReviewStatus": "workspace_license_coverage_declared",
+      "localLicenseEvidence": [
+        "game/LICENSE"
+      ],
+      "path": "res://addons/dialogic/Modules/Character/update_portrait.svg",
+      "profileIds": [],
+      "sourceGroup": "addons/dialogic"
+    },
+    {
+      "licenseReviewStatus": "workspace_license_coverage_declared",
+      "localLicenseEvidence": [
+        "game/LICENSE"
+      ],
+      "path": "res://addons/dialogic/Modules/Character/update_position.svg",
+      "profileIds": [],
+      "sourceGroup": "addons/dialogic"
+    },
+    {
+      "licenseReviewStatus": "workspace_license_coverage_declared",
+      "localLicenseEvidence": [
+        "game/LICENSE"
+      ],
+      "path": "res://addons/dialogic/Modules/Character/update_z_index.svg",
+      "profileIds": [],
+      "sourceGroup": "addons/dialogic"
+    },
+    {
+      "licenseReviewStatus": "workspace_license_coverage_declared",
+      "localLicenseEvidence": [
+        "game/LICENSE"
+      ],
+      "path": "res://addons/dialogic/Modules/Clear/clear_background.svg",
+      "profileIds": [],
+      "sourceGroup": "addons/dialogic"
+    },
+    {
+      "licenseReviewStatus": "workspace_license_coverage_declared",
+      "localLicenseEvidence": [
+        "game/LICENSE"
+      ],
+      "path": "res://addons/dialogic/Modules/Clear/clear_characters.svg",
+      "profileIds": [],
+      "sourceGroup": "addons/dialogic"
+    },
+    {
+      "licenseReviewStatus": "workspace_license_coverage_declared",
+      "localLicenseEvidence": [
+        "game/LICENSE"
+      ],
+      "path": "res://addons/dialogic/Modules/Clear/clear_music.svg",
+      "profileIds": [],
+      "sourceGroup": "addons/dialogic"
+    },
+    {
+      "licenseReviewStatus": "workspace_license_coverage_declared",
+      "localLicenseEvidence": [
+        "game/LICENSE"
+      ],
+      "path": "res://addons/dialogic/Modules/Clear/clear_positions.svg",
+      "profileIds": [],
+      "sourceGroup": "addons/dialogic"
+    },
+    {
+      "licenseReviewStatus": "workspace_license_coverage_declared",
+      "localLicenseEvidence": [
+        "game/LICENSE"
+      ],
+      "path": "res://addons/dialogic/Modules/Clear/clear_style.svg",
+      "profileIds": [],
+      "sourceGroup": "addons/dialogic"
+    },
+    {
+      "licenseReviewStatus": "workspace_license_coverage_declared",
+      "localLicenseEvidence": [
+        "game/LICENSE"
+      ],
+      "path": "res://addons/dialogic/Modules/Clear/clear_textbox.svg",
+      "profileIds": [],
+      "sourceGroup": "addons/dialogic"
+    },
+    {
+      "licenseReviewStatus": "workspace_license_coverage_declared",
+      "localLicenseEvidence": [
+        "game/LICENSE"
+      ],
+      "path": "res://addons/dialogic/Modules/DefaultLayoutParts/Layer_VN_Textbox/next.svg",
+      "profileIds": [],
+      "sourceGroup": "addons/dialogic"
+    },
+    {
+      "licenseReviewStatus": "workspace_license_coverage_declared",
+      "localLicenseEvidence": [
+        "game/LICENSE"
+      ],
+      "path": "res://assets/gui/emotes/emote__.png",
+      "profileIds": [
+        "interaction_emote_empty"
+      ],
+      "sourceGroup": "assets/gui"
+    },
+    {
+      "licenseReviewStatus": "workspace_license_coverage_declared",
+      "localLicenseEvidence": [
+        "game/LICENSE"
+      ],
+      "path": "res://assets/gui/emotes/emote_combat.png",
+      "profileIds": [
+        "interaction_emote_combat"
+      ],
+      "sourceGroup": "assets/gui"
+    },
+    {
+      "licenseReviewStatus": "workspace_license_coverage_declared",
+      "localLicenseEvidence": [
+        "game/LICENSE"
+      ],
+      "path": "res://assets/gui/emotes/emote_exclamations.png",
+      "profileIds": [
+        "interaction_emote_exclamation"
+      ],
+      "sourceGroup": "assets/gui"
+    },
+    {
+      "licenseReviewStatus": "workspace_license_coverage_declared",
+      "localLicenseEvidence": [
+        "game/LICENSE"
+      ],
+      "path": "res://assets/gui/emotes/emote_question.png",
+      "profileIds": [
+        "interaction_emote_question"
+      ],
+      "sourceGroup": "assets/gui"
+    },
+    {
+      "licenseReviewStatus": "workspace_license_coverage_declared",
+      "localLicenseEvidence": [
+        "game/LICENSE"
+      ],
+      "path": "res://ben_rpg/visual_assets/derived/frosthold_blue_torch.png",
+      "profileIds": [
+        "frosthold_blue_torch"
+      ],
+      "sourceGroup": "ben_rpg/visual_assets"
+    },
+    {
+      "licenseReviewStatus": "workspace_license_coverage_declared",
+      "localLicenseEvidence": [
+        "game/LICENSE"
+      ],
+      "path": "res://combat/arenas/steppes.png",
+      "profileIds": [],
+      "sourceGroup": "combat/arenas"
+    },
+    {
+      "licenseReviewStatus": "workspace_license_coverage_declared",
+      "localLicenseEvidence": [
+        "game/LICENSE"
+      ],
+      "path": "res://combat/battlers/bear/bear.png",
+      "profileIds": [],
+      "sourceGroup": "combat/battlers"
+    },
+    {
+      "licenseReviewStatus": "workspace_license_coverage_declared",
+      "localLicenseEvidence": [
+        "game/LICENSE"
+      ],
+      "path": "res://combat/battlers/bear/icon_punch.svg",
+      "profileIds": [],
+      "sourceGroup": "combat/battlers"
+    },
+    {
+      "licenseReviewStatus": "workspace_license_coverage_declared",
+      "localLicenseEvidence": [
+        "game/LICENSE"
+      ],
+      "path": "res://combat/battlers/bugcat/bugcat.png",
+      "profileIds": [],
+      "sourceGroup": "combat/battlers"
+    },
+    {
+      "licenseReviewStatus": "workspace_license_coverage_declared",
+      "localLicenseEvidence": [
+        "game/LICENSE"
+      ],
+      "path": "res://combat/battlers/squirrel/squirrel.png",
+      "profileIds": [],
+      "sourceGroup": "combat/battlers"
+    },
+    {
+      "licenseReviewStatus": "workspace_license_coverage_declared",
+      "localLicenseEvidence": [
+        "game/LICENSE"
+      ],
+      "path": "res://combat/battlers/wolf/wolf.png",
+      "profileIds": [],
+      "sourceGroup": "combat/battlers"
+    },
+    {
+      "licenseReviewStatus": "workspace_license_coverage_declared",
+      "localLicenseEvidence": [
+        "assets/Tilesets/license.txt",
+        "game_assets/Tilesets/LICENSE"
+      ],
+      "path": "res://game_assets/Tilesets/Ancient Greek Mythology/1. Marble floor tiles.png",
+      "profileIds": [
+        "empyreal_aerie_battle_backdrop",
+        "empyreal_forum_battle_backdrop",
+        "empyreal_garden_battle_backdrop",
+        "empyreal_landing_battle_backdrop",
+        "empyreal_tribunal_battle_backdrop",
+        "empyreal_upper_aerie_battle_backdrop"
+      ],
+      "sourceGroup": "Tilesets/Ancient Greek Mythology"
+    },
+    {
+      "licenseReviewStatus": "workspace_license_coverage_declared",
+      "localLicenseEvidence": [
+        "game/LICENSE"
+      ],
+      "path": "res://game_assets/Tilesets/Ancient Greek Mythology/Sliced/%s.png",
+      "profileIds": [],
+      "sourceGroup": "Tilesets/Ancient Greek Mythology"
+    },
+    {
+      "licenseReviewStatus": "workspace_license_coverage_declared",
+      "localLicenseEvidence": [
+        "assets/Tilesets/license.txt",
+        "game_assets/Tilesets/LICENSE"
+      ],
+      "path": "res://game_assets/Tilesets/Bright Cyberpunk Pixel Art Tileset Pack/1.png",
+      "profileIds": [
+        "helios_civic_sun_battle_backdrop",
+        "helios_skybridge_battle_backdrop",
+        "helios_skybridge_quadrant",
+        "helios_transit_battle_backdrop"
+      ],
+      "sourceGroup": "Tilesets/Bright Cyberpunk Pixel Art Tileset Pack"
+    },
+    {
+      "licenseReviewStatus": "workspace_license_coverage_declared",
+      "localLicenseEvidence": [
+        "assets/Tilesets/license.txt",
+        "game_assets/Tilesets/LICENSE"
+      ],
+      "path": "res://game_assets/Tilesets/Bright Cyberpunk Pixel Art Tileset Pack/3.png",
+      "profileIds": [
+        "helios_observatory_facade"
+      ],
+      "sourceGroup": "Tilesets/Bright Cyberpunk Pixel Art Tileset Pack"
+    },
+    {
+      "licenseReviewStatus": "workspace_license_coverage_declared",
+      "localLicenseEvidence": [
+        "assets/Tilesets/license.txt",
+        "game_assets/Tilesets/LICENSE"
+      ],
+      "path": "res://game_assets/Tilesets/Bright Cyberpunk Pixel Art Tileset Pack/5.png",
+      "profileIds": [
+        "helios_clinic_battle_backdrop",
+        "helios_market_battle_backdrop",
+        "helios_market_quadrant"
+      ],
+      "sourceGroup": "Tilesets/Bright Cyberpunk Pixel Art Tileset Pack"
+    },
+    {
+      "licenseReviewStatus": "workspace_license_coverage_declared",
+      "localLicenseEvidence": [
+        "assets/Tilesets/license.txt",
+        "game_assets/Tilesets/LICENSE"
+      ],
+      "path": "res://game_assets/Tilesets/Dark RPG GUI Kit - Pixel Art Asset Pack/dfgui_icon-chest.png",
+      "profileIds": [
+        "universe_treasure_chest"
+      ],
+      "sourceGroup": "Tilesets/Dark RPG GUI Kit - Pixel Art Asset Pack"
+    },
+    {
+      "licenseReviewStatus": "workspace_license_coverage_declared",
+      "localLicenseEvidence": [
+        "game_assets/Tilesets/LICENSE"
+      ],
+      "path": "res://game_assets/Tilesets/Flying Islands/PNG/Sliced/sky_clouds.png",
+      "profileIds": [
+        "empyreal_sky_cloud_bank"
+      ],
+      "sourceGroup": "Tilesets/Flying Islands"
+    },
+    {
+      "licenseReviewStatus": "workspace_license_coverage_declared",
+      "localLicenseEvidence": [
+        "assets/Tilesets/license.txt",
+        "game_assets/Tilesets/LICENSE"
+      ],
+      "path": "res://game_assets/Tilesets/Frozen kingdom/Frozen Kingdom – Top-Down Pixel Art Asset Pack/1. Snow ground tiles.png",
+      "profileIds": [
+        "frosthold_snow_battle_backdrop",
+        "frosthold_snow_ground_tile"
+      ],
+      "sourceGroup": "Tilesets/Frozen kingdom"
+    },
+    {
+      "licenseReviewStatus": "workspace_license_coverage_declared",
+      "localLicenseEvidence": [
+        "assets/Tilesets/license.txt",
+        "game_assets/Tilesets/LICENSE"
+      ],
+      "path": "res://game_assets/Tilesets/Frozen kingdom/Frozen Kingdom – Top-Down Pixel Art Asset Pack/10. Frozen Trees and pines.png",
+      "profileIds": [
+        "frosthold_gate_tree"
+      ],
+      "sourceGroup": "Tilesets/Frozen kingdom"
+    },
+    {
+      "licenseReviewStatus": "workspace_license_coverage_declared",
+      "localLicenseEvidence": [
+        "assets/Tilesets/license.txt",
+        "game_assets/Tilesets/LICENSE"
+      ],
+      "path": "res://game_assets/Tilesets/Frozen kingdom/Frozen Kingdom – Top-Down Pixel Art Asset Pack/13. Frozen ruins.png",
+      "profileIds": [
+        "frosthold_gate_ruin"
+      ],
+      "sourceGroup": "Tilesets/Frozen kingdom"
+    },
+    {
+      "licenseReviewStatus": "workspace_license_coverage_declared",
+      "localLicenseEvidence": [
+        "assets/Tilesets/license.txt",
+        "game_assets/Tilesets/LICENSE"
+      ],
+      "path": "res://game_assets/Tilesets/Frozen kingdom/Frozen Kingdom – Top-Down Pixel Art Asset Pack/14. Magical runes.png",
+      "profileIds": [
+        "frosthold_causeway_rune"
+      ],
+      "sourceGroup": "Tilesets/Frozen kingdom"
+    },
+    {
+      "licenseReviewStatus": "workspace_license_coverage_declared",
+      "localLicenseEvidence": [
+        "assets/Tilesets/license.txt",
+        "game_assets/Tilesets/LICENSE"
+      ],
+      "path": "res://game_assets/Tilesets/Frozen kingdom/Frozen Kingdom – Top-Down Pixel Art Asset Pack/16. Frozen market stalls.png",
+      "profileIds": [
+        "frosthold_market_stall"
+      ],
+      "sourceGroup": "Tilesets/Frozen kingdom"
+    },
+    {
+      "licenseReviewStatus": "workspace_license_coverage_declared",
+      "localLicenseEvidence": [
+        "assets/Tilesets/license.txt",
+        "game_assets/Tilesets/LICENSE"
+      ],
+      "path": "res://game_assets/Tilesets/Frozen kingdom/Frozen Kingdom – Top-Down Pixel Art Asset Pack/5. Ice castle walls.png",
+      "profileIds": [
+        "frosthold_gate_castle"
+      ],
+      "sourceGroup": "Tilesets/Frozen kingdom"
+    },
+    {
+      "licenseReviewStatus": "workspace_license_coverage_declared",
+      "localLicenseEvidence": [
+        "assets/Tilesets/license.txt",
+        "game_assets/Tilesets/LICENSE"
+      ],
+      "path": "res://game_assets/Tilesets/Frozen kingdom/Frozen Kingdom – Top-Down Pixel Art Asset Pack/7. Nordic wooden houses.png",
+      "profileIds": [
+        "frosthold_market_house",
+        "town_cold_storage_facade"
+      ],
+      "sourceGroup": "Tilesets/Frozen kingdom"
+    },
+    {
+      "licenseReviewStatus": "workspace_license_coverage_declared",
+      "localLicenseEvidence": [
+        "assets/Tilesets/license.txt",
+        "game_assets/Tilesets/LICENSE"
+      ],
+      "path": "res://game_assets/Tilesets/Frozen kingdom/Frozen Kingdom – Top-Down Pixel Art Asset Pack/8. Icy bridges.png",
+      "profileIds": [
+        "frosthold_causeway_bridge"
+      ],
+      "sourceGroup": "Tilesets/Frozen kingdom"
+    },
+    {
+      "licenseReviewStatus": "workspace_license_coverage_declared",
+      "localLicenseEvidence": [
+        "assets/Tilesets/license.txt",
+        "game_assets/Tilesets/LICENSE"
+      ],
+      "path": "res://game_assets/Tilesets/Frozen kingdom/Frozen Kingdom – Top-Down Pixel Art Asset Pack/9. Crystal formations.png",
+      "profileIds": [
+        "frosthold_causeway_crystal_bank"
+      ],
+      "sourceGroup": "Tilesets/Frozen kingdom"
+    },
+    {
+      "licenseReviewStatus": "workspace_license_coverage_declared",
+      "localLicenseEvidence": [
+        "assets/Tilesets/license.txt",
+        "game_assets/Tilesets/LICENSE"
+      ],
+      "path": "res://game_assets/Tilesets/Haunted Mansion Pixel Art Tileset Pack/1.png",
+      "profileIds": [
+        "haunted_mansion_exterior",
+        "sandbox_haunted_facade"
+      ],
+      "sourceGroup": "Tilesets/Haunted Mansion Pixel Art Tileset Pack"
+    },
+    {
+      "licenseReviewStatus": "workspace_license_coverage_declared",
+      "localLicenseEvidence": [
+        "assets/Tilesets/license.txt",
+        "game_assets/Tilesets/LICENSE"
+      ],
+      "path": "res://game_assets/Tilesets/Haunted Mansion Pixel Art Tileset Pack/2.png",
+      "profileIds": [
+        "mansion_archive_cabinet",
+        "mansion_foyer_battle_backdrop",
+        "mansion_gallery_battle_backdrop",
+        "sandbox_haunted_planks",
+        "sandbox_haunted_stone"
+      ],
+      "sourceGroup": "Tilesets/Haunted Mansion Pixel Art Tileset Pack"
+    },
+    {
+      "licenseReviewStatus": "workspace_license_coverage_declared",
+      "localLicenseEvidence": [
+        "assets/Tilesets/license.txt",
+        "game_assets/Tilesets/LICENSE"
+      ],
+      "path": "res://game_assets/Tilesets/Haunted Mansion Pixel Art Tileset Pack/3.png",
+      "profileIds": [
+        "mansion_nursery_bed"
+      ],
+      "sourceGroup": "Tilesets/Haunted Mansion Pixel Art Tileset Pack"
+    },
+    {
+      "licenseReviewStatus": "workspace_license_coverage_declared",
+      "localLicenseEvidence": [
+        "assets/Tilesets/license.txt",
+        "game_assets/Tilesets/LICENSE"
+      ],
+      "path": "res://game_assets/Tilesets/Haunted Mansion Pixel Art Tileset Pack/4.png",
+      "profileIds": [
+        "mansion_archive_shelving",
+        "sandbox_haunted_passage_door"
+      ],
+      "sourceGroup": "Tilesets/Haunted Mansion Pixel Art Tileset Pack"
+    },
+    {
+      "licenseReviewStatus": "workspace_license_coverage_declared",
+      "localLicenseEvidence": [
+        "assets/Tilesets/license.txt",
+        "game_assets/Tilesets/LICENSE"
+      ],
+      "path": "res://game_assets/Tilesets/Jurassic world/Jurassic World Pixel Art Megapack/11. Dinosaur nests and eggs.png",
+      "profileIds": [
+        "primeval_relay_nest"
+      ],
+      "sourceGroup": "Tilesets/Jurassic world"
+    },
+    {
+      "licenseReviewStatus": "workspace_license_coverage_declared",
+      "localLicenseEvidence": [
+        "assets/Tilesets/license.txt",
+        "game_assets/Tilesets/LICENSE"
+      ],
+      "path": "res://game_assets/Tilesets/Jurassic world/Jurassic World Pixel Art Megapack/19. Modular jungle ruins.png",
+      "profileIds": [
+        "primeval_ruin_forecourt"
+      ],
+      "sourceGroup": "Tilesets/Jurassic world"
+    },
+    {
+      "licenseReviewStatus": "workspace_license_coverage_declared",
+      "localLicenseEvidence": [
+        "assets/Tilesets/license.txt",
+        "game_assets/Tilesets/LICENSE"
+      ],
+      "path": "res://game_assets/Tilesets/Jurassic world/Jurassic World Pixel Art Megapack/21. Dinosaurs.png",
+      "profileIds": [
+        "commute_tyrant_battle_actor",
+        "municipal_spinosaur_battle_actor",
+        "primeval_raptor_battle_actor",
+        "stone_triceratops_battle_actor"
+      ],
+      "sourceGroup": "Tilesets/Jurassic world"
+    },
+    {
+      "licenseReviewStatus": "workspace_license_coverage_declared",
+      "localLicenseEvidence": [
+        "assets/Tilesets/license.txt",
+        "game_assets/Tilesets/LICENSE"
+      ],
+      "path": "res://game_assets/Tilesets/Jurassic world/Jurassic World Pixel Art Megapack/7. Tropical trees and ferns.png",
+      "profileIds": [
+        "primeval_grove_canopy"
+      ],
+      "sourceGroup": "Tilesets/Jurassic world"
+    },
+    {
+      "licenseReviewStatus": "workspace_license_coverage_declared",
+      "localLicenseEvidence": [
+        "assets/Tilesets/license.txt",
+        "game_assets/Tilesets/LICENSE"
+      ],
+      "path": "res://game_assets/Tilesets/Modern Bar & Nightclub Pixel Art Tileset Pack/4.png",
+      "profileIds": [
+        "afterlight_club_sign"
+      ],
+      "sourceGroup": "Tilesets/Modern Bar & Nightclub Pixel Art Tileset Pack"
+    },
+    {
+      "licenseReviewStatus": "workspace_license_coverage_declared",
+      "localLicenseEvidence": [
+        "assets/Tilesets/license.txt",
+        "game_assets/Tilesets/LICENSE"
+      ],
+      "path": "res://game_assets/Tilesets/Modern Laboratory Pixel Art Tileset Pack/1.png",
+      "profileIds": [
+        "laboratory_floor_tile",
+        "sandbox_lab_blue_panel",
+        "sandbox_lab_green_panel",
+        "sandbox_lab_steel_panel",
+        "sandbox_lab_white_panel"
+      ],
+      "sourceGroup": "Tilesets/Modern Laboratory Pixel Art Tileset Pack"
+    },
+    {
+      "licenseReviewStatus": "workspace_license_coverage_declared",
+      "localLicenseEvidence": [
+        "assets/Tilesets/license.txt",
+        "game_assets/Tilesets/LICENSE"
+      ],
+      "path": "res://game_assets/Tilesets/Modern Laboratory Pixel Art Tileset Pack/2.png",
+      "profileIds": [
+        "laboratory_utility_bank"
+      ],
+      "sourceGroup": "Tilesets/Modern Laboratory Pixel Art Tileset Pack"
+    },
+    {
+      "licenseReviewStatus": "workspace_license_coverage_declared",
+      "localLicenseEvidence": [
+        "assets/Tilesets/license.txt",
+        "game_assets/Tilesets/LICENSE"
+      ],
+      "path": "res://game_assets/Tilesets/Modern Laboratory Pixel Art Tileset Pack/3.png",
+      "profileIds": [
+        "laboratory_analysis_station",
+        "sandbox_lab_workbench"
+      ],
+      "sourceGroup": "Tilesets/Modern Laboratory Pixel Art Tileset Pack"
+    },
+    {
+      "licenseReviewStatus": "workspace_license_coverage_declared",
+      "localLicenseEvidence": [
+        "assets/Tilesets/license.txt",
+        "game_assets/Tilesets/LICENSE"
+      ],
+      "path": "res://game_assets/Tilesets/Modern Laboratory Pixel Art Tileset Pack/4.png",
+      "profileIds": [
+        "laboratory_exit_doors",
+        "sandbox_lab_computer",
+        "sandbox_lab_schedule"
+      ],
+      "sourceGroup": "Tilesets/Modern Laboratory Pixel Art Tileset Pack"
+    },
+    {
+      "licenseReviewStatus": "workspace_license_coverage_declared",
+      "localLicenseEvidence": [
+        "assets/Tilesets/license.txt",
+        "game_assets/Tilesets/LICENSE"
+      ],
+      "path": "res://game_assets/Tilesets/Modern World Overworld Pixel Tileset/1.png",
+      "profileIds": [
+        "sandbox_modern_cobble",
+        "sandbox_modern_dirt",
+        "sandbox_modern_grass",
+        "sandbox_modern_sand"
+      ],
+      "sourceGroup": "Tilesets/Modern World Overworld Pixel Tileset"
+    },
+    {
+      "licenseReviewStatus": "workspace_license_coverage_declared",
+      "localLicenseEvidence": [
+        "assets/Tilesets/license.txt",
+        "game_assets/Tilesets/LICENSE"
+      ],
+      "path": "res://game_assets/Tilesets/Modern World Overworld Pixel Tileset/2.png",
+      "profileIds": [
+        "town_grass_tile"
+      ],
+      "sourceGroup": "Tilesets/Modern World Overworld Pixel Tileset"
+    },
+    {
+      "licenseReviewStatus": "workspace_license_coverage_declared",
+      "localLicenseEvidence": [
+        "assets/Tilesets/license.txt",
+        "game_assets/Tilesets/LICENSE"
+      ],
+      "path": "res://game_assets/Tilesets/Modern World Overworld Pixel Tileset/3.png",
+      "profileIds": [
+        "laboratory_exterior",
+        "sandbox_modern_blue_cottage",
+        "sandbox_modern_clock_hall",
+        "sandbox_modern_red_cottage",
+        "town_armory_facade",
+        "town_cafe_facade",
+        "town_clinic_facade"
+      ],
+      "sourceGroup": "Tilesets/Modern World Overworld Pixel Tileset"
+    },
+    {
+      "licenseReviewStatus": "workspace_license_coverage_declared",
+      "localLicenseEvidence": [
+        "assets/Tilesets/license.txt",
+        "game_assets/Tilesets/LICENSE",
+        "game_assets/Tilesets/Ranch Stuff/Super_retro_world_water_animation/LICENCE.txt",
+        "game_assets/Tilesets/Ranch Stuff/assets/user_interfaces/fonts/roboto/LICENSE"
+      ],
+      "path": "res://game_assets/Tilesets/Ranch Stuff/assets/animals/cats/cat_01/idle/cat_01_idle_down_16x20.png",
+      "profileIds": [
+        "sandbox_ranch_cat"
+      ],
+      "sourceGroup": "Tilesets/Ranch Stuff"
+    },
+    {
+      "licenseReviewStatus": "workspace_license_coverage_declared",
+      "localLicenseEvidence": [
+        "assets/Tilesets/license.txt",
+        "game_assets/Tilesets/LICENSE",
+        "game_assets/Tilesets/Ranch Stuff/Super_retro_world_water_animation/LICENCE.txt",
+        "game_assets/Tilesets/Ranch Stuff/assets/user_interfaces/fonts/roboto/LICENSE"
+      ],
+      "path": "res://game_assets/Tilesets/Ranch Stuff/assets/animals/cows/cow_01/black/idle/cow_01_black_idle_down_32x32.png",
+      "profileIds": [
+        "sandbox_ranch_cow"
+      ],
+      "sourceGroup": "Tilesets/Ranch Stuff"
+    },
+    {
+      "licenseReviewStatus": "workspace_license_coverage_declared",
+      "localLicenseEvidence": [
+        "assets/Tilesets/license.txt",
+        "game_assets/Tilesets/LICENSE",
+        "game_assets/Tilesets/Ranch Stuff/Super_retro_world_water_animation/LICENCE.txt",
+        "game_assets/Tilesets/Ranch Stuff/assets/user_interfaces/fonts/roboto/LICENSE"
+      ],
+      "path": "res://game_assets/Tilesets/Ranch Stuff/assets/buildings/building_01_16x16.png",
+      "profileIds": [
+        "sandbox_ranch_house"
+      ],
+      "sourceGroup": "Tilesets/Ranch Stuff"
+    },
+    {
+      "licenseReviewStatus": "workspace_license_coverage_declared",
+      "localLicenseEvidence": [
+        "assets/Tilesets/license.txt",
+        "game_assets/Tilesets/LICENSE",
+        "game_assets/Tilesets/Ranch Stuff/Super_retro_world_water_animation/LICENCE.txt",
+        "game_assets/Tilesets/Ranch Stuff/assets/user_interfaces/fonts/roboto/LICENSE"
+      ],
+      "path": "res://game_assets/Tilesets/Ranch Stuff/assets/crops/corn/growth_basic/corn_16x32_8frames.png",
+      "profileIds": [
+        "sandbox_ranch_corn"
+      ],
+      "sourceGroup": "Tilesets/Ranch Stuff"
+    },
+    {
+      "licenseReviewStatus": "workspace_license_coverage_declared",
+      "localLicenseEvidence": [
+        "assets/Tilesets/license.txt",
+        "game_assets/Tilesets/LICENSE",
+        "game_assets/Tilesets/Ranch Stuff/Super_retro_world_water_animation/LICENCE.txt",
+        "game_assets/Tilesets/Ranch Stuff/assets/user_interfaces/fonts/roboto/LICENSE"
+      ],
+      "path": "res://game_assets/Tilesets/Ranch Stuff/assets/crops/pumpkin/growth_basic/pumpkin_16x16_7frames.png",
+      "profileIds": [
+        "sandbox_ranch_pumpkin"
+      ],
+      "sourceGroup": "Tilesets/Ranch Stuff"
+    },
+    {
+      "licenseReviewStatus": "workspace_license_coverage_declared",
+      "localLicenseEvidence": [
+        "assets/Tilesets/license.txt",
+        "game_assets/Tilesets/LICENSE",
+        "game_assets/Tilesets/Ranch Stuff/Super_retro_world_water_animation/LICENCE.txt",
+        "game_assets/Tilesets/Ranch Stuff/assets/user_interfaces/fonts/roboto/LICENSE"
+      ],
+      "path": "res://game_assets/Tilesets/Ranch Stuff/assets/tiles/ground_01_16x16.png",
+      "profileIds": [
+        "sandbox_ranch_dirt",
+        "sandbox_ranch_farmland",
+        "sandbox_ranch_light_grass",
+        "sandbox_ranch_meadow"
+      ],
+      "sourceGroup": "Tilesets/Ranch Stuff"
+    },
+    {
+      "licenseReviewStatus": "workspace_license_coverage_declared",
+      "localLicenseEvidence": [
+        "assets/Tilesets/license.txt",
+        "game_assets/Tilesets/LICENSE",
+        "game_assets/Tilesets/Ranch Stuff/Super_retro_world_water_animation/LICENCE.txt",
+        "game_assets/Tilesets/Ranch Stuff/assets/user_interfaces/fonts/roboto/LICENSE"
+      ],
+      "path": "res://game_assets/Tilesets/Ranch Stuff/assets/tiles/snow_01_16x16.png",
+      "profileIds": [
+        "sandbox_ranch_snow"
+      ],
+      "sourceGroup": "Tilesets/Ranch Stuff"
+    },
+    {
+      "licenseReviewStatus": "workspace_license_coverage_declared",
+      "localLicenseEvidence": [
+        "assets/Tilesets/license.txt",
+        "game_assets/Tilesets/LICENSE",
+        "game_assets/Tilesets/Ranch Stuff/Super_retro_world_water_animation/LICENCE.txt",
+        "game_assets/Tilesets/Ranch Stuff/assets/user_interfaces/fonts/roboto/LICENSE"
+      ],
+      "path": "res://game_assets/Tilesets/Ranch Stuff/assets/tiles/tree_01_16x16.png",
+      "profileIds": [
+        "sandbox_ranch_oak",
+        "sandbox_ranch_sapling",
+        "town_ranch_tree_small",
+        "town_ranch_tree_tall"
+      ],
+      "sourceGroup": "Tilesets/Ranch Stuff"
+    },
+    {
+      "licenseReviewStatus": "workspace_license_coverage_declared",
+      "localLicenseEvidence": [
+        "assets/Tilesets/license.txt",
+        "game_assets/Tilesets/LICENSE",
+        "game_assets/Tilesets/Ranch Stuff/Super_retro_world_water_animation/LICENCE.txt",
+        "game_assets/Tilesets/Ranch Stuff/assets/user_interfaces/fonts/roboto/LICENSE"
+      ],
+      "path": "res://game_assets/Tilesets/Ranch Stuff/assets/tiles/water_01_16x16_5frames.png",
+      "profileIds": [
+        "sandbox_ranch_water"
+      ],
+      "sourceGroup": "Tilesets/Ranch Stuff"
+    },
+    {
+      "licenseReviewStatus": "workspace_license_coverage_declared",
+      "localLicenseEvidence": [
+        "assets/Tilesets/license.txt",
+        "game_assets/Tilesets/LICENSE"
+      ],
+      "path": "res://game_assets/Tilesets/Sakura Temple Asset Pack/Decorative framed garden tiles.png",
+      "profileIds": [
+        "moonpetal_framed_garden_island"
+      ],
+      "sourceGroup": "Tilesets/Sakura Temple Asset Pack"
+    },
+    {
+      "licenseReviewStatus": "workspace_license_coverage_declared",
+      "localLicenseEvidence": [
+        "assets/Tilesets/license.txt",
+        "game_assets/Tilesets/LICENSE"
+      ],
+      "path": "res://game_assets/Tilesets/Sakura Temple Asset Pack/Floor tiles.png",
+      "profileIds": [
+        "moonpetal_bell_battle_backdrop",
+        "moonpetal_court_battle_backdrop",
+        "moonpetal_garden_battle_backdrop",
+        "moonpetal_gate_battle_backdrop",
+        "moonpetal_palace_battle_backdrop"
+      ],
+      "sourceGroup": "Tilesets/Sakura Temple Asset Pack"
+    },
+    {
+      "licenseReviewStatus": "workspace_license_coverage_declared",
+      "localLicenseEvidence": [
+        "assets/Tilesets/license.txt",
+        "game_assets/Tilesets/LICENSE"
+      ],
+      "path": "res://game_assets/Tilesets/Sakura Temple Asset Pack/Lanterns and lights.png",
+      "profileIds": [
+        "moonpetal_gate_lantern"
+      ],
+      "sourceGroup": "Tilesets/Sakura Temple Asset Pack"
+    },
+    {
+      "licenseReviewStatus": "workspace_license_coverage_declared",
+      "localLicenseEvidence": [
+        "assets/Tilesets/license.txt",
+        "game_assets/Tilesets/LICENSE"
+      ],
+      "path": "res://game_assets/Tilesets/Sakura Temple Asset Pack/Sakura trees.png",
+      "profileIds": [
+        "moonpetal_court_tree_canopy"
+      ],
+      "sourceGroup": "Tilesets/Sakura Temple Asset Pack"
+    },
+    {
+      "licenseReviewStatus": "workspace_license_coverage_declared",
+      "localLicenseEvidence": [
+        "assets/Tilesets/license.txt",
+        "game_assets/Tilesets/LICENSE"
+      ],
+      "path": "res://game_assets/Tilesets/Sakura Temple Asset Pack/Shrine Gates.png",
+      "profileIds": [
+        "moonpetal_vermilion_gate"
+      ],
+      "sourceGroup": "Tilesets/Sakura Temple Asset Pack"
+    },
+    {
+      "licenseReviewStatus": "workspace_license_coverage_declared",
+      "localLicenseEvidence": [
+        "assets/Tilesets/license.txt",
+        "game_assets/Tilesets/LICENSE"
+      ],
+      "path": "res://game_assets/Tilesets/Sakura Temple Asset Pack/Stone patchs and walkways.png",
+      "profileIds": [
+        "moonpetal_processional_path"
+      ],
+      "sourceGroup": "Tilesets/Sakura Temple Asset Pack"
+    },
+    {
+      "licenseReviewStatus": "workspace_license_coverage_declared",
+      "localLicenseEvidence": [
+        "assets/Tilesets/license.txt",
+        "game_assets/Tilesets/LICENSE"
+      ],
+      "path": "res://game_assets/Tilesets/Sakura Temple Asset Pack/Water and ponds.png",
+      "profileIds": [
+        "moonpetal_mirror_pond"
+      ],
+      "sourceGroup": "Tilesets/Sakura Temple Asset Pack"
+    },
+    {
+      "licenseReviewStatus": "workspace_license_coverage_declared",
+      "localLicenseEvidence": [
+        "assets/Tilesets/license.txt",
+        "game_assets/Tilesets/LICENSE"
+      ],
+      "path": "res://game_assets/Tilesets/Sakura Temple Asset Pack/temple building parts.png",
+      "profileIds": [
+        "moonpetal_court_temple",
+        "town_tea_house_facade"
+      ],
+      "sourceGroup": "Tilesets/Sakura Temple Asset Pack"
+    },
+    {
+      "licenseReviewStatus": "workspace_license_coverage_declared",
+      "localLicenseEvidence": [
+        "assets/Tilesets/license.txt",
+        "game_assets/Tilesets/LICENSE"
+      ],
+      "path": "res://game_assets/Tilesets/Sci-Fi Spaceship Interior Tileset Pack/1.png",
+      "profileIds": [
+        "asterion_dock_battle_backdrop",
+        "asterion_station_architecture",
+        "sandbox_scifi_blue_panel",
+        "sandbox_scifi_grate",
+        "sandbox_scifi_gray_panel",
+        "sandbox_scifi_steel_floor"
+      ],
+      "sourceGroup": "Tilesets/Sci-Fi Spaceship Interior Tileset Pack"
+    },
+    {
+      "licenseReviewStatus": "workspace_license_coverage_declared",
+      "localLicenseEvidence": [
+        "assets/Tilesets/license.txt",
+        "game_assets/Tilesets/LICENSE"
+      ],
+      "path": "res://game_assets/Tilesets/Sci-Fi Spaceship Interior Tileset Pack/10.png",
+      "profileIds": [
+        "asterion_medical_battle_backdrop",
+        "asterion_medical_station"
+      ],
+      "sourceGroup": "Tilesets/Sci-Fi Spaceship Interior Tileset Pack"
+    },
+    {
+      "licenseReviewStatus": "workspace_license_coverage_declared",
+      "localLicenseEvidence": [
+        "assets/Tilesets/license.txt",
+        "game_assets/Tilesets/LICENSE"
+      ],
+      "path": "res://game_assets/Tilesets/Sci-Fi Spaceship Interior Tileset Pack/2.png",
+      "profileIds": [
+        "asterion_mess_banner"
+      ],
+      "sourceGroup": "Tilesets/Sci-Fi Spaceship Interior Tileset Pack"
+    },
+    {
+      "licenseReviewStatus": "workspace_license_coverage_declared",
+      "localLicenseEvidence": [
+        "assets/Tilesets/license.txt",
+        "game_assets/Tilesets/LICENSE"
+      ],
+      "path": "res://game_assets/Tilesets/Sci-Fi Spaceship Interior Tileset Pack/3.png",
+      "profileIds": [
+        "asterion_hydro_battle_backdrop",
+        "asterion_hydroponics_bed"
+      ],
+      "sourceGroup": "Tilesets/Sci-Fi Spaceship Interior Tileset Pack"
+    },
+    {
+      "licenseReviewStatus": "workspace_license_coverage_declared",
+      "localLicenseEvidence": [
+        "assets/Tilesets/license.txt",
+        "game_assets/Tilesets/LICENSE"
+      ],
+      "path": "res://game_assets/Tilesets/Sci-Fi Spaceship Interior Tileset Pack/6.png",
+      "profileIds": [
+        "asterion_command_battle_backdrop",
+        "asterion_command_console"
+      ],
+      "sourceGroup": "Tilesets/Sci-Fi Spaceship Interior Tileset Pack"
+    },
+    {
+      "licenseReviewStatus": "workspace_license_coverage_declared",
+      "localLicenseEvidence": [
+        "assets/Tilesets/license.txt",
+        "game_assets/Tilesets/LICENSE"
+      ],
+      "path": "res://game_assets/Tilesets/Sci-Fi Spaceship Interior Tileset Pack/8.png",
+      "profileIds": [
+        "asterion_dock_hull"
+      ],
+      "sourceGroup": "Tilesets/Sci-Fi Spaceship Interior Tileset Pack"
+    },
+    {
+      "licenseReviewStatus": "workspace_license_coverage_declared",
+      "localLicenseEvidence": [
+        "assets/Tilesets/license.txt",
+        "game_assets/Tilesets/LICENSE"
+      ],
+      "path": "res://game_assets/Tilesets/Stone Age Modern Life Pixel Art Tileset Pack/1.png",
+      "profileIds": [
+        "primeval_village_dwelling",
+        "town_trailhead_lodge_facade"
+      ],
+      "sourceGroup": "Tilesets/Stone Age Modern Life Pixel Art Tileset Pack"
+    },
+    {
+      "licenseReviewStatus": "workspace_license_coverage_declared",
+      "localLicenseEvidence": [
+        "assets/Tilesets/license.txt",
+        "game_assets/Tilesets/LICENSE"
+      ],
+      "path": "res://game_assets/Tilesets/Stone Age Modern Life Pixel Art Tileset Pack/7.png",
+      "profileIds": [
+        "primeval_anchor_totem"
+      ],
+      "sourceGroup": "Tilesets/Stone Age Modern Life Pixel Art Tileset Pack"
+    },
+    {
+      "licenseReviewStatus": "workspace_license_coverage_declared",
+      "localLicenseEvidence": [
+        "assets/Tilesets/license.txt",
+        "game_assets/Tilesets/LICENSE"
+      ],
+      "path": "res://game_assets/Tilesets/Stone Age Modern Life Pixel Art Tileset Pack/9.png",
+      "profileIds": [
+        "primeval_ground_battle_backdrop",
+        "primeval_ground_quadrant"
+      ],
+      "sourceGroup": "Tilesets/Stone Age Modern Life Pixel Art Tileset Pack"
+    },
+    {
+      "licenseReviewStatus": "workspace_license_coverage_declared",
+      "localLicenseEvidence": [
+        "game/LICENSE"
+      ],
+      "path": "res://game_assets/characters/%s/rotations/south.png",
+      "profileIds": [],
+      "sourceGroup": "characters/%s"
+    },
+    {
+      "licenseReviewStatus": "workspace_license_coverage_declared",
+      "localLicenseEvidence": [
+        "game/LICENSE"
+      ],
+      "path": "res://game_assets/characters/%s/rotations/west.png",
+      "profileIds": [],
+      "sourceGroup": "characters/%s"
+    },
+    {
+      "licenseReviewStatus": "workspace_license_coverage_declared",
+      "localLicenseEvidence": [
+        "assets/characters/Main Character/license.txt",
+        "assets/characters/license.txt",
+        "game_assets/characters/LICENSE",
+        "game_assets/characters/Main Character/license.txt"
+      ],
+      "path": "res://game_assets/characters/Main Character/Ben_Franklin/rotations/south.png",
+      "profileIds": [
+        "ben_company_portrait"
+      ],
+      "sourceGroup": "characters/Main Character"
+    },
+    {
+      "licenseReviewStatus": "workspace_license_coverage_declared",
+      "localLicenseEvidence": [
+        "assets/characters/Main Character/license.txt",
+        "assets/characters/license.txt",
+        "game_assets/characters/LICENSE",
+        "game_assets/characters/Main Character/license.txt"
+      ],
+      "path": "res://game_assets/characters/Main Character/Ben_Franklin/rotations/west.png",
+      "profileIds": [
+        "ben_battle_actor"
+      ],
+      "sourceGroup": "characters/Main Character"
+    },
+    {
+      "licenseReviewStatus": "workspace_license_coverage_declared",
+      "localLicenseEvidence": [
+        "assets/characters/Recruitable Characters/Archangel Commander — Legendary Celestial Warrior Hero/license.txt",
+        "assets/characters/license.txt",
+        "game_assets/characters/LICENSE",
+        "game_assets/characters/Recruitable Characters/Archangel Commander — Legendary Celestial Warrior Hero/license.txt",
+        "game_assets/characters/Recruitable Characters/Fighter/license.txt",
+        "game_assets/characters/Recruitable Characters/astronaut/license.txt",
+        "game_assets/characters/Recruitable Characters/caveman/license.txt",
+        "game_assets/characters/Recruitable Characters/crimson oni samurai/license.txt",
+        "game_assets/characters/Recruitable Characters/kitsune empress/license.txt",
+        "game_assets/characters/Recruitable Characters/neon viper - cyberpunk female/license.txt",
+        "game_assets/characters/Recruitable Characters/💀 The Frost Lich King Emperor/license.txt"
+      ],
+      "path": "res://game_assets/characters/Recruitable Characters/Archangel Commander — Legendary Celestial Warrior Hero/rotations/west.png",
+      "profileIds": [
+        "archangel_commander_battle_actor"
+      ],
+      "sourceGroup": "characters/Recruitable Characters"
+    },
+    {
+      "licenseReviewStatus": "workspace_license_coverage_declared",
+      "localLicenseEvidence": [
+        "assets/characters/Recruitable Characters/Fighter/license.txt",
+        "assets/characters/license.txt",
+        "game_assets/characters/LICENSE",
+        "game_assets/characters/Recruitable Characters/Archangel Commander — Legendary Celestial Warrior Hero/license.txt",
+        "game_assets/characters/Recruitable Characters/Fighter/license.txt",
+        "game_assets/characters/Recruitable Characters/astronaut/license.txt",
+        "game_assets/characters/Recruitable Characters/caveman/license.txt",
+        "game_assets/characters/Recruitable Characters/crimson oni samurai/license.txt",
+        "game_assets/characters/Recruitable Characters/kitsune empress/license.txt",
+        "game_assets/characters/Recruitable Characters/neon viper - cyberpunk female/license.txt",
+        "game_assets/characters/Recruitable Characters/💀 The Frost Lich King Emperor/license.txt"
+      ],
+      "path": "res://game_assets/characters/Recruitable Characters/Fighter/Fighter/rotations/south.png",
+      "profileIds": [
+        "fighter_company_portrait"
+      ],
+      "sourceGroup": "characters/Recruitable Characters"
+    },
+    {
+      "licenseReviewStatus": "workspace_license_coverage_declared",
+      "localLicenseEvidence": [
+        "assets/characters/Recruitable Characters/Fighter/license.txt",
+        "assets/characters/license.txt",
+        "game_assets/characters/LICENSE",
+        "game_assets/characters/Recruitable Characters/Archangel Commander — Legendary Celestial Warrior Hero/license.txt",
+        "game_assets/characters/Recruitable Characters/Fighter/license.txt",
+        "game_assets/characters/Recruitable Characters/astronaut/license.txt",
+        "game_assets/characters/Recruitable Characters/caveman/license.txt",
+        "game_assets/characters/Recruitable Characters/crimson oni samurai/license.txt",
+        "game_assets/characters/Recruitable Characters/kitsune empress/license.txt",
+        "game_assets/characters/Recruitable Characters/neon viper - cyberpunk female/license.txt",
+        "game_assets/characters/Recruitable Characters/💀 The Frost Lich King Emperor/license.txt"
+      ],
+      "path": "res://game_assets/characters/Recruitable Characters/Fighter/Fighter/rotations/west.png",
+      "profileIds": [
+        "fighter_battle_actor"
+      ],
+      "sourceGroup": "characters/Recruitable Characters"
+    },
+    {
+      "licenseReviewStatus": "workspace_license_coverage_declared",
+      "localLicenseEvidence": [
+        "assets/characters/Recruitable Characters/astronaut/license.txt",
+        "assets/characters/license.txt",
+        "game_assets/characters/LICENSE",
+        "game_assets/characters/Recruitable Characters/Archangel Commander — Legendary Celestial Warrior Hero/license.txt",
+        "game_assets/characters/Recruitable Characters/Fighter/license.txt",
+        "game_assets/characters/Recruitable Characters/astronaut/license.txt",
+        "game_assets/characters/Recruitable Characters/caveman/license.txt",
+        "game_assets/characters/Recruitable Characters/crimson oni samurai/license.txt",
+        "game_assets/characters/Recruitable Characters/kitsune empress/license.txt",
+        "game_assets/characters/Recruitable Characters/neon viper - cyberpunk female/license.txt",
+        "game_assets/characters/Recruitable Characters/💀 The Frost Lich King Emperor/license.txt"
+      ],
+      "path": "res://game_assets/characters/Recruitable Characters/astronaut/Astronaut/rotations/south.png",
+      "profileIds": [
+        "astronaut_company_portrait"
+      ],
+      "sourceGroup": "characters/Recruitable Characters"
+    },
+    {
+      "licenseReviewStatus": "workspace_license_coverage_declared",
+      "localLicenseEvidence": [
+        "assets/characters/Recruitable Characters/astronaut/license.txt",
+        "assets/characters/license.txt",
+        "game_assets/characters/LICENSE",
+        "game_assets/characters/Recruitable Characters/Archangel Commander — Legendary Celestial Warrior Hero/license.txt",
+        "game_assets/characters/Recruitable Characters/Fighter/license.txt",
+        "game_assets/characters/Recruitable Characters/astronaut/license.txt",
+        "game_assets/characters/Recruitable Characters/caveman/license.txt",
+        "game_assets/characters/Recruitable Characters/crimson oni samurai/license.txt",
+        "game_assets/characters/Recruitable Characters/kitsune empress/license.txt",
+        "game_assets/characters/Recruitable Characters/neon viper - cyberpunk female/license.txt",
+        "game_assets/characters/Recruitable Characters/💀 The Frost Lich King Emperor/license.txt"
+      ],
+      "path": "res://game_assets/characters/Recruitable Characters/astronaut/Astronaut/rotations/west.png",
+      "profileIds": [
+        "astronaut_battle_actor"
+      ],
+      "sourceGroup": "characters/Recruitable Characters"
+    },
+    {
+      "licenseReviewStatus": "workspace_license_coverage_declared",
+      "localLicenseEvidence": [
+        "assets/characters/Recruitable Characters/caveman/license.txt",
+        "assets/characters/license.txt",
+        "game_assets/characters/LICENSE",
+        "game_assets/characters/Recruitable Characters/Archangel Commander — Legendary Celestial Warrior Hero/license.txt",
+        "game_assets/characters/Recruitable Characters/Fighter/license.txt",
+        "game_assets/characters/Recruitable Characters/astronaut/license.txt",
+        "game_assets/characters/Recruitable Characters/caveman/license.txt",
+        "game_assets/characters/Recruitable Characters/crimson oni samurai/license.txt",
+        "game_assets/characters/Recruitable Characters/kitsune empress/license.txt",
+        "game_assets/characters/Recruitable Characters/neon viper - cyberpunk female/license.txt",
+        "game_assets/characters/Recruitable Characters/💀 The Frost Lich King Emperor/license.txt"
+      ],
+      "path": "res://game_assets/characters/Recruitable Characters/caveman/Caveman/rotations/west.png",
+      "profileIds": [
+        "caveman_battle_actor"
+      ],
+      "sourceGroup": "characters/Recruitable Characters"
+    },
+    {
+      "licenseReviewStatus": "workspace_license_coverage_declared",
+      "localLicenseEvidence": [
+        "assets/characters/Recruitable Characters/crimson oni samurai/license.txt",
+        "assets/characters/license.txt",
+        "game_assets/characters/LICENSE",
+        "game_assets/characters/Recruitable Characters/Archangel Commander — Legendary Celestial Warrior Hero/license.txt",
+        "game_assets/characters/Recruitable Characters/Fighter/license.txt",
+        "game_assets/characters/Recruitable Characters/astronaut/license.txt",
+        "game_assets/characters/Recruitable Characters/caveman/license.txt",
+        "game_assets/characters/Recruitable Characters/crimson oni samurai/license.txt",
+        "game_assets/characters/Recruitable Characters/kitsune empress/license.txt",
+        "game_assets/characters/Recruitable Characters/neon viper - cyberpunk female/license.txt",
+        "game_assets/characters/Recruitable Characters/💀 The Frost Lich King Emperor/license.txt"
+      ],
+      "path": "res://game_assets/characters/Recruitable Characters/crimson oni samurai/rotations/west.png",
+      "profileIds": [
+        "crimson_oni_challenger_battle_actor"
+      ],
+      "sourceGroup": "characters/Recruitable Characters"
+    },
+    {
+      "licenseReviewStatus": "workspace_license_coverage_declared",
+      "localLicenseEvidence": [
+        "assets/characters/Recruitable Characters/kitsune empress/license.txt",
+        "assets/characters/license.txt",
+        "game_assets/characters/LICENSE",
+        "game_assets/characters/Recruitable Characters/Archangel Commander — Legendary Celestial Warrior Hero/license.txt",
+        "game_assets/characters/Recruitable Characters/Fighter/license.txt",
+        "game_assets/characters/Recruitable Characters/astronaut/license.txt",
+        "game_assets/characters/Recruitable Characters/caveman/license.txt",
+        "game_assets/characters/Recruitable Characters/crimson oni samurai/license.txt",
+        "game_assets/characters/Recruitable Characters/kitsune empress/license.txt",
+        "game_assets/characters/Recruitable Characters/neon viper - cyberpunk female/license.txt",
+        "game_assets/characters/Recruitable Characters/💀 The Frost Lich King Emperor/license.txt"
+      ],
+      "path": "res://game_assets/characters/Recruitable Characters/kitsune empress/rotations/west.png",
+      "profileIds": [
+        "kitsune_empress_battle_actor"
+      ],
+      "sourceGroup": "characters/Recruitable Characters"
+    },
+    {
+      "licenseReviewStatus": "workspace_license_coverage_declared",
+      "localLicenseEvidence": [
+        "assets/characters/Recruitable Characters/neon viper - cyberpunk female/license.txt",
+        "assets/characters/license.txt",
+        "game_assets/characters/LICENSE",
+        "game_assets/characters/Recruitable Characters/Archangel Commander — Legendary Celestial Warrior Hero/license.txt",
+        "game_assets/characters/Recruitable Characters/Fighter/license.txt",
+        "game_assets/characters/Recruitable Characters/astronaut/license.txt",
+        "game_assets/characters/Recruitable Characters/caveman/license.txt",
+        "game_assets/characters/Recruitable Characters/crimson oni samurai/license.txt",
+        "game_assets/characters/Recruitable Characters/kitsune empress/license.txt",
+        "game_assets/characters/Recruitable Characters/neon viper - cyberpunk female/license.txt",
+        "game_assets/characters/Recruitable Characters/💀 The Frost Lich King Emperor/license.txt"
+      ],
+      "path": "res://game_assets/characters/Recruitable Characters/neon viper - cyberpunk female/rotations/west.png",
+      "profileIds": [
+        "neon_viper_battle_actor"
+      ],
+      "sourceGroup": "characters/Recruitable Characters"
+    },
+    {
+      "licenseReviewStatus": "workspace_license_coverage_declared",
+      "localLicenseEvidence": [
+        "assets/characters/Recruitable Characters/💀 The Frost Lich King Emperor/license.txt",
+        "assets/characters/license.txt",
+        "game_assets/characters/LICENSE",
+        "game_assets/characters/Recruitable Characters/Archangel Commander — Legendary Celestial Warrior Hero/license.txt",
+        "game_assets/characters/Recruitable Characters/Fighter/license.txt",
+        "game_assets/characters/Recruitable Characters/astronaut/license.txt",
+        "game_assets/characters/Recruitable Characters/caveman/license.txt",
+        "game_assets/characters/Recruitable Characters/crimson oni samurai/license.txt",
+        "game_assets/characters/Recruitable Characters/kitsune empress/license.txt",
+        "game_assets/characters/Recruitable Characters/neon viper - cyberpunk female/license.txt",
+        "game_assets/characters/Recruitable Characters/💀 The Frost Lich King Emperor/license.txt"
+      ],
+      "path": "res://game_assets/characters/Recruitable Characters/💀 The Frost Lich King Emperor/rotations/west.png",
+      "profileIds": [
+        "frost_lich_emperor_battle_actor"
+      ],
+      "sourceGroup": "characters/Recruitable Characters"
+    },
+    {
+      "licenseReviewStatus": "workspace_license_coverage_declared",
+      "localLicenseEvidence": [
+        "game_assets/characters/LICENSE"
+      ],
+      "path": "res://game_assets/characters/Topdown Monsters Part 1/Sliced/Bulkhead Warden/00_idle/frame_000.png",
+      "profileIds": [
+        "bulkhead_warden_battle_actor"
+      ],
+      "sourceGroup": "characters/Topdown Monsters Part 1"
+    },
+    {
+      "licenseReviewStatus": "workspace_license_coverage_declared",
+      "localLicenseEvidence": [
+        "game_assets/characters/LICENSE"
+      ],
+      "path": "res://game_assets/characters/Topdown Monsters Part 1/Sliced/Cobalt Courier/00_idle/frame_000.png",
+      "profileIds": [
+        "cobalt_courier_battle_actor"
+      ],
+      "sourceGroup": "characters/Topdown Monsters Part 1"
+    },
+    {
+      "licenseReviewStatus": "workspace_license_coverage_declared",
+      "localLicenseEvidence": [
+        "game_assets/characters/LICENSE"
+      ],
+      "path": "res://game_assets/characters/Topdown Monsters Part 1/Sliced/Mossback Surveyor/00_idle/frame_000.png",
+      "profileIds": [
+        "mossback_surveyor_battle_actor"
+      ],
+      "sourceGroup": "characters/Topdown Monsters Part 1"
+    },
+    {
+      "licenseReviewStatus": "workspace_license_coverage_declared",
+      "localLicenseEvidence": [
+        "game_assets/characters/LICENSE"
+      ],
+      "path": "res://game_assets/characters/Topdown Monsters Part 1/Sliced/Rift Jackal/00_idle/frame_000.png",
+      "profileIds": [
+        "rift_jackal_battle_actor"
+      ],
+      "sourceGroup": "characters/Topdown Monsters Part 1"
+    },
+    {
+      "licenseReviewStatus": "workspace_license_coverage_declared",
+      "localLicenseEvidence": [
+        "assets/characters/Velociraptor/license.txt",
+        "assets/characters/license.txt",
+        "game_assets/characters/LICENSE",
+        "game_assets/characters/Velociraptor/license.txt"
+      ],
+      "path": "res://game_assets/characters/Velociraptor/Tiny_Velociraptor/rotations/west.png",
+      "profileIds": [
+        "velociraptor_battle_actor"
+      ],
+      "sourceGroup": "characters/Velociraptor"
+    },
+    {
+      "licenseReviewStatus": "workspace_license_coverage_declared",
+      "localLicenseEvidence": [
+        "assets/items/armory/Singles/Armor_Singles/license.txt",
+        "assets/items/armory/Singles/license.txt",
+        "assets/items/license.txt",
+        "game_assets/items/LICENSE"
+      ],
+      "path": "res://game_assets/items/armory/Singles/Armor_Singles/Copper/Copper_Chestplate1.png",
+      "profileIds": [
+        "item_copper_chestplate_1"
+      ],
+      "sourceGroup": "game_assets/items"
+    },
+    {
+      "licenseReviewStatus": "workspace_license_coverage_declared",
+      "localLicenseEvidence": [
+        "assets/items/armory/Singles/Armor_Singles/license.txt",
+        "assets/items/armory/Singles/license.txt",
+        "assets/items/license.txt",
+        "game_assets/items/LICENSE"
+      ],
+      "path": "res://game_assets/items/armory/Singles/Armor_Singles/Copper/Copper_Gloves1.png",
+      "profileIds": [
+        "item_copper_gloves_1"
+      ],
+      "sourceGroup": "game_assets/items"
+    },
+    {
+      "licenseReviewStatus": "workspace_license_coverage_declared",
+      "localLicenseEvidence": [
+        "assets/items/armory/Singles/Armor_Singles/license.txt",
+        "assets/items/armory/Singles/license.txt",
+        "assets/items/license.txt",
+        "game_assets/items/LICENSE"
+      ],
+      "path": "res://game_assets/items/armory/Singles/Armor_Singles/Copper/Copper_Helmet1.png",
+      "profileIds": [
+        "item_copper_helmet_1"
+      ],
+      "sourceGroup": "game_assets/items"
+    },
+    {
+      "licenseReviewStatus": "workspace_license_coverage_declared",
+      "localLicenseEvidence": [
+        "assets/items/armory/Singles/Armor_Singles/license.txt",
+        "assets/items/armory/Singles/license.txt",
+        "assets/items/license.txt",
+        "game_assets/items/LICENSE"
+      ],
+      "path": "res://game_assets/items/armory/Singles/Armor_Singles/Iron/Iron_Chestplate1.png",
+      "profileIds": [
+        "item_iron_chestplate_1"
+      ],
+      "sourceGroup": "game_assets/items"
+    },
+    {
+      "licenseReviewStatus": "workspace_license_coverage_declared",
+      "localLicenseEvidence": [
+        "assets/items/armory/Singles/Armor_Singles/license.txt",
+        "assets/items/armory/Singles/license.txt",
+        "assets/items/license.txt",
+        "game_assets/items/LICENSE"
+      ],
+      "path": "res://game_assets/items/armory/Singles/Armor_Singles/Iron/Iron_Chestplate5.png",
+      "profileIds": [
+        "item_iron_chestplate_5"
+      ],
+      "sourceGroup": "game_assets/items"
+    },
+    {
+      "licenseReviewStatus": "workspace_license_coverage_declared",
+      "localLicenseEvidence": [
+        "assets/items/armory/Singles/Armor_Singles/license.txt",
+        "assets/items/armory/Singles/license.txt",
+        "assets/items/license.txt",
+        "game_assets/items/LICENSE"
+      ],
+      "path": "res://game_assets/items/armory/Singles/Armor_Singles/Iron/Iron_Gloves5.png",
+      "profileIds": [
+        "item_iron_gloves_5"
+      ],
+      "sourceGroup": "game_assets/items"
+    },
+    {
+      "licenseReviewStatus": "workspace_license_coverage_declared",
+      "localLicenseEvidence": [
+        "assets/items/armory/Singles/Armor_Singles/license.txt",
+        "assets/items/armory/Singles/license.txt",
+        "assets/items/license.txt",
+        "game_assets/items/LICENSE"
+      ],
+      "path": "res://game_assets/items/armory/Singles/Armor_Singles/Iron/Iron_Gloves9.png",
+      "profileIds": [
+        "item_iron_gloves_9"
+      ],
+      "sourceGroup": "game_assets/items"
+    },
+    {
+      "licenseReviewStatus": "workspace_license_coverage_declared",
+      "localLicenseEvidence": [
+        "assets/items/armory/Singles/Armor_Singles/license.txt",
+        "assets/items/armory/Singles/license.txt",
+        "assets/items/license.txt",
+        "game_assets/items/LICENSE"
+      ],
+      "path": "res://game_assets/items/armory/Singles/Armor_Singles/Iron/Iron_Helmet5.png",
+      "profileIds": [
+        "item_iron_helmet_5"
+      ],
+      "sourceGroup": "game_assets/items"
+    },
+    {
+      "licenseReviewStatus": "workspace_license_coverage_declared",
+      "localLicenseEvidence": [
+        "assets/items/armory/Singles/Armor_Singles/license.txt",
+        "assets/items/armory/Singles/license.txt",
+        "assets/items/license.txt",
+        "game_assets/items/LICENSE"
+      ],
+      "path": "res://game_assets/items/armory/Singles/Armor_Singles/Iron/Iron_Helmet8.png",
+      "profileIds": [
+        "item_iron_helmet_8"
+      ],
+      "sourceGroup": "game_assets/items"
+    },
+    {
+      "licenseReviewStatus": "workspace_license_coverage_declared",
+      "localLicenseEvidence": [
+        "assets/items/armory/Singles/Weapon_Singles/license.txt",
+        "assets/items/armory/Singles/license.txt",
+        "assets/items/license.txt",
+        "game_assets/items/LICENSE"
+      ],
+      "path": "res://game_assets/items/armory/Singles/Weapon_Singles/Iron/Iron_Weapon1.png",
+      "profileIds": [
+        "item_iron_weapon_1"
+      ],
+      "sourceGroup": "game_assets/items"
+    },
+    {
+      "licenseReviewStatus": "workspace_license_coverage_declared",
+      "localLicenseEvidence": [
+        "assets/items/armory/Singles/Weapon_Singles/license.txt",
+        "assets/items/armory/Singles/license.txt",
+        "assets/items/license.txt",
+        "game_assets/items/LICENSE"
+      ],
+      "path": "res://game_assets/items/armory/Singles/Weapon_Singles/Iron/Iron_Weapon8.png",
+      "profileIds": [
+        "item_iron_weapon_8"
+      ],
+      "sourceGroup": "game_assets/items"
+    },
+    {
+      "licenseReviewStatus": "workspace_license_coverage_declared",
+      "localLicenseEvidence": [
+        "assets/items/license.txt",
+        "assets/items/resources_items_artifacts_loot/PNG/Transperent/license.txt",
+        "assets/items/resources_items_artifacts_loot/PNG/license.txt",
+        "game_assets/items/LICENSE"
+      ],
+      "path": "res://game_assets/items/resources_items_artifacts_loot/PNG/Transperent/Icon15.png",
+      "profileIds": [
+        "item_artifact_15"
+      ],
+      "sourceGroup": "game_assets/items"
+    },
+    {
+      "licenseReviewStatus": "workspace_license_coverage_declared",
+      "localLicenseEvidence": [
+        "assets/items/license.txt",
+        "assets/items/resources_items_artifacts_loot/PNG/Transperent/license.txt",
+        "assets/items/resources_items_artifacts_loot/PNG/license.txt",
+        "game_assets/items/LICENSE"
+      ],
+      "path": "res://game_assets/items/resources_items_artifacts_loot/PNG/Transperent/Icon18.png",
+      "profileIds": [
+        "item_artifact_18"
+      ],
+      "sourceGroup": "game_assets/items"
+    },
+    {
+      "licenseReviewStatus": "workspace_license_coverage_declared",
+      "localLicenseEvidence": [
+        "assets/items/license.txt",
+        "assets/items/resources_items_artifacts_loot/PNG/Transperent/license.txt",
+        "assets/items/resources_items_artifacts_loot/PNG/license.txt",
+        "game_assets/items/LICENSE"
+      ],
+      "path": "res://game_assets/items/resources_items_artifacts_loot/PNG/Transperent/Icon20.png",
+      "profileIds": [
+        "item_artifact_20"
+      ],
+      "sourceGroup": "game_assets/items"
+    },
+    {
+      "licenseReviewStatus": "workspace_license_coverage_declared",
+      "localLicenseEvidence": [
+        "assets/items/license.txt",
+        "assets/items/resources_items_artifacts_loot/PNG/Transperent/license.txt",
+        "assets/items/resources_items_artifacts_loot/PNG/license.txt",
+        "game_assets/items/LICENSE"
+      ],
+      "path": "res://game_assets/items/resources_items_artifacts_loot/PNG/Transperent/Icon31.png",
+      "profileIds": [
+        "item_artifact_31"
+      ],
+      "sourceGroup": "game_assets/items"
+    },
+    {
+      "licenseReviewStatus": "workspace_license_coverage_declared",
+      "localLicenseEvidence": [
+        "assets/items/license.txt",
+        "assets/items/resources_items_artifacts_loot/PNG/Transperent/license.txt",
+        "assets/items/resources_items_artifacts_loot/PNG/license.txt",
+        "game_assets/items/LICENSE"
+      ],
+      "path": "res://game_assets/items/resources_items_artifacts_loot/PNG/Transperent/Icon42.png",
+      "profileIds": [
+        "item_artifact_42"
+      ],
+      "sourceGroup": "game_assets/items"
+    },
+    {
+      "licenseReviewStatus": "workspace_license_coverage_declared",
+      "localLicenseEvidence": [
+        "assets/items/license.txt",
+        "assets/items/resources_items_artifacts_loot/PNG/Transperent/license.txt",
+        "assets/items/resources_items_artifacts_loot/PNG/license.txt",
+        "game_assets/items/LICENSE"
+      ],
+      "path": "res://game_assets/items/resources_items_artifacts_loot/PNG/Transperent/Icon9.png",
+      "profileIds": [
+        "item_artifact_9"
+      ],
+      "sourceGroup": "game_assets/items"
+    },
+    {
+      "licenseReviewStatus": "workspace_license_coverage_declared",
+      "localLicenseEvidence": [
+        "assets/monsters/cp41-a181_japanese_yokai_urban_legends/license.txt",
+        "assets/monsters/license.txt",
+        "game_assets/monsters/LICENSE"
+      ],
+      "path": "res://game_assets/monsters/cp41-a181_japanese_yokai_urban_legends/CP_A186_NingyoPassGiantSpider.png",
+      "profileIds": [
+        "vow_spider_battle_actor"
+      ],
+      "sourceGroup": "monsters/cp41-a181_japanese_yokai_urban_legends"
+    },
+    {
+      "licenseReviewStatus": "workspace_license_coverage_declared",
+      "localLicenseEvidence": [
+        "assets/monsters/cp41-a181_japanese_yokai_urban_legends/license.txt",
+        "assets/monsters/license.txt",
+        "game_assets/monsters/LICENSE"
+      ],
+      "path": "res://game_assets/monsters/cp41-a181_japanese_yokai_urban_legends/CP_A199_KasaJizo.png",
+      "profileIds": [
+        "memory_inspector_battle_actor"
+      ],
+      "sourceGroup": "monsters/cp41-a181_japanese_yokai_urban_legends"
+    },
+    {
+      "licenseReviewStatus": "workspace_license_coverage_declared",
+      "localLicenseEvidence": [
+        "assets/monsters/cp41-a181_japanese_yokai_urban_legends/license.txt",
+        "assets/monsters/license.txt",
+        "game_assets/monsters/LICENSE"
+      ],
+      "path": "res://game_assets/monsters/cp41-a181_japanese_yokai_urban_legends/CP_A204_FoxWeddingAttendant.png",
+      "profileIds": [
+        "fox_attendant_battle_actor"
+      ],
+      "sourceGroup": "monsters/cp41-a181_japanese_yokai_urban_legends"
+    },
+    {
+      "licenseReviewStatus": "workspace_license_coverage_declared",
+      "localLicenseEvidence": [
+        "assets/monsters/cp41-a181_japanese_yokai_urban_legends/license.txt",
+        "assets/monsters/license.txt",
+        "game_assets/monsters/LICENSE"
+      ],
+      "path": "res://game_assets/monsters/cp41-a181_japanese_yokai_urban_legends/CP_A210_Enma.png",
+      "profileIds": [
+        "magistrate_enma_battle_actor"
+      ],
+      "sourceGroup": "monsters/cp41-a181_japanese_yokai_urban_legends"
+    },
+    {
+      "licenseReviewStatus": "workspace_license_coverage_declared",
+      "localLicenseEvidence": [
+        "assets/monsters/cp42-g31_sci_fi_entities/license.txt",
+        "assets/monsters/license.txt",
+        "game_assets/monsters/LICENSE"
+      ],
+      "path": "res://game_assets/monsters/cp42-g31_sci_fi_entities/CP_G31_MechSoldier.png",
+      "profileIds": [
+        "helios_mech_battle_actor"
+      ],
+      "sourceGroup": "monsters/cp42-g31_sci_fi_entities"
+    },
+    {
+      "licenseReviewStatus": "workspace_license_coverage_declared",
+      "localLicenseEvidence": [
+        "assets/monsters/cp42-g31_sci_fi_entities/license.txt",
+        "assets/monsters/license.txt",
+        "game_assets/monsters/LICENSE"
+      ],
+      "path": "res://game_assets/monsters/cp42-g31_sci_fi_entities/CP_G33_AssassinRobot.png",
+      "profileIds": [
+        "helios_assassin_battle_actor"
+      ],
+      "sourceGroup": "monsters/cp42-g31_sci_fi_entities"
+    },
+    {
+      "licenseReviewStatus": "workspace_license_coverage_declared",
+      "localLicenseEvidence": [
+        "assets/monsters/cp42-g31_sci_fi_entities/license.txt",
+        "assets/monsters/license.txt",
+        "game_assets/monsters/LICENSE"
+      ],
+      "path": "res://game_assets/monsters/cp42-g31_sci_fi_entities/CP_G37_WorkRobot.png",
+      "profileIds": [
+        "work_robot_battle_actor"
+      ],
+      "sourceGroup": "monsters/cp42-g31_sci_fi_entities"
+    },
+    {
+      "licenseReviewStatus": "workspace_license_coverage_declared",
+      "localLicenseEvidence": [
+        "assets/monsters/cp42-g31_sci_fi_entities/license.txt",
+        "assets/monsters/license.txt",
+        "game_assets/monsters/LICENSE"
+      ],
+      "path": "res://game_assets/monsters/cp42-g31_sci_fi_entities/CP_G38_SentryDrone.png",
+      "profileIds": [
+        "sentry_drone_battle_actor"
+      ],
+      "sourceGroup": "monsters/cp42-g31_sci_fi_entities"
+    },
+    {
+      "licenseReviewStatus": "workspace_license_coverage_declared",
+      "localLicenseEvidence": [
+        "assets/monsters/cp42-g31_sci_fi_entities/license.txt",
+        "assets/monsters/license.txt",
+        "game_assets/monsters/LICENSE"
+      ],
+      "path": "res://game_assets/monsters/cp42-g31_sci_fi_entities/CP_G39_SecurityRobot.png",
+      "profileIds": [
+        "helios_security_battle_actor"
+      ],
+      "sourceGroup": "monsters/cp42-g31_sci_fi_entities"
+    },
+    {
+      "licenseReviewStatus": "workspace_license_coverage_declared",
+      "localLicenseEvidence": [
+        "assets/monsters/cp42-g31_sci_fi_entities/license.txt",
+        "assets/monsters/license.txt",
+        "game_assets/monsters/LICENSE"
+      ],
+      "path": "res://game_assets/monsters/cp42-g31_sci_fi_entities/CP_G40_GunnerRobot.png",
+      "profileIds": [
+        "helios_gunner_battle_actor"
+      ],
+      "sourceGroup": "monsters/cp42-g31_sci_fi_entities"
+    },
+    {
+      "licenseReviewStatus": "workspace_license_coverage_declared",
+      "localLicenseEvidence": [
+        "assets/monsters/cp42-g31_sci_fi_entities/license.txt",
+        "assets/monsters/license.txt",
+        "game_assets/monsters/LICENSE"
+      ],
+      "path": "res://game_assets/monsters/cp42-g31_sci_fi_entities/CP_G43_UtilityRobot.png",
+      "profileIds": [
+        "medical_robot_battle_actor"
+      ],
+      "sourceGroup": "monsters/cp42-g31_sci_fi_entities"
+    },
+    {
+      "licenseReviewStatus": "workspace_license_coverage_declared",
+      "localLicenseEvidence": [
+        "assets/monsters/cp42-g31_sci_fi_entities/license.txt",
+        "assets/monsters/license.txt",
+        "game_assets/monsters/LICENSE"
+      ],
+      "path": "res://game_assets/monsters/cp42-g31_sci_fi_entities/CP_G52_MachineCommander.png",
+      "profileIds": [
+        "machine_commander_battle_actor"
+      ],
+      "sourceGroup": "monsters/cp42-g31_sci_fi_entities"
+    },
+    {
+      "licenseReviewStatus": "workspace_license_coverage_declared",
+      "localLicenseEvidence": [
+        "assets/monsters/cp42-g31_sci_fi_entities/license.txt",
+        "assets/monsters/license.txt",
+        "game_assets/monsters/LICENSE"
+      ],
+      "path": "res://game_assets/monsters/cp42-g31_sci_fi_entities/CP_G56_Guardian.png",
+      "profileIds": [
+        "civic_sun_battle_actor"
+      ],
+      "sourceGroup": "monsters/cp42-g31_sci_fi_entities"
+    },
+    {
+      "licenseReviewStatus": "workspace_license_coverage_declared",
+      "localLicenseEvidence": [
+        "assets/monsters/cp42-g31_sci_fi_entities/license.txt",
+        "assets/monsters/license.txt",
+        "game_assets/monsters/LICENSE"
+      ],
+      "path": "res://game_assets/monsters/cp42-g31_sci_fi_entities/CP_G59_MotherComputer.png",
+      "profileIds": [
+        "mother_computer_battle_actor"
+      ],
+      "sourceGroup": "monsters/cp42-g31_sci_fi_entities"
+    },
+    {
+      "licenseReviewStatus": "workspace_license_coverage_declared",
+      "localLicenseEvidence": [
+        "assets/monsters/cp44-j31_villains/license.txt",
+        "assets/monsters/license.txt",
+        "game_assets/monsters/LICENSE"
+      ],
+      "path": "res://game_assets/monsters/cp44-j31_villains/CP_J31_WindFighter.png",
+      "profileIds": [
+        "wind_bailiff_battle_actor"
+      ],
+      "sourceGroup": "monsters/cp44-j31_villains"
+    },
+    {
+      "licenseReviewStatus": "workspace_license_coverage_declared",
+      "localLicenseEvidence": [
+        "assets/monsters/cp44-j31_villains/license.txt",
+        "assets/monsters/license.txt",
+        "game_assets/monsters/LICENSE"
+      ],
+      "path": "res://game_assets/monsters/cp44-j31_villains/CP_J32_StormWingFighter.png",
+      "profileIds": [
+        "storm_repossessor_battle_actor"
+      ],
+      "sourceGroup": "monsters/cp44-j31_villains"
+    },
+    {
+      "licenseReviewStatus": "workspace_license_coverage_declared",
+      "localLicenseEvidence": [
+        "assets/monsters/cp44-j31_villains/license.txt",
+        "assets/monsters/license.txt",
+        "game_assets/monsters/LICENSE"
+      ],
+      "path": "res://game_assets/monsters/cp44-j31_villains/CP_J33_DarkNecromancer.png",
+      "profileIds": [
+        "frost_necromancer_battle_actor"
+      ],
+      "sourceGroup": "monsters/cp44-j31_villains"
+    },
+    {
+      "licenseReviewStatus": "workspace_license_coverage_declared",
+      "localLicenseEvidence": [
+        "assets/monsters/cp44-j31_villains/license.txt",
+        "assets/monsters/license.txt",
+        "game_assets/monsters/LICENSE"
+      ],
+      "path": "res://game_assets/monsters/cp44-j31_villains/CP_J35_WaterColossus.png",
+      "profileIds": [
+        "ice_colossus_battle_actor"
+      ],
+      "sourceGroup": "monsters/cp44-j31_villains"
+    },
+    {
+      "licenseReviewStatus": "workspace_license_coverage_declared",
+      "localLicenseEvidence": [
+        "assets/monsters/cp44-j31_villains/license.txt",
+        "assets/monsters/license.txt",
+        "game_assets/monsters/LICENSE"
+      ],
+      "path": "res://game_assets/monsters/cp44-j31_villains/CP_J37_ElementalFusionKnight.png",
+      "profileIds": [
+        "gravity_knight_battle_actor"
+      ],
+      "sourceGroup": "monsters/cp44-j31_villains"
+    },
+    {
+      "licenseReviewStatus": "workspace_license_coverage_declared",
+      "localLicenseEvidence": [
+        "assets/monsters/cp44-j31_villains/license.txt",
+        "assets/monsters/license.txt",
+        "game_assets/monsters/LICENSE"
+      ],
+      "path": "res://game_assets/monsters/cp44-j31_villains/CP_J49_FallenNobleMage.png",
+      "profileIds": [
+        "fallen_notary_battle_actor"
+      ],
+      "sourceGroup": "monsters/cp44-j31_villains"
+    },
+    {
+      "licenseReviewStatus": "workspace_license_coverage_declared",
+      "localLicenseEvidence": [
+        "assets/monsters/cp44-j31_villains/license.txt",
+        "assets/monsters/license.txt",
+        "game_assets/monsters/LICENSE"
+      ],
+      "path": "res://game_assets/monsters/cp44-j31_villains/CP_J56_WaterClubWarrior.png",
+      "profileIds": [
+        "frost_collector_battle_actor"
+      ],
+      "sourceGroup": "monsters/cp44-j31_villains"
+    },
+    {
+      "licenseReviewStatus": "workspace_license_coverage_declared",
+      "localLicenseEvidence": [
+        "assets/monsters/cp44-j31_villains/license.txt",
+        "assets/monsters/license.txt",
+        "game_assets/monsters/LICENSE"
+      ],
+      "path": "res://game_assets/monsters/cp44-j31_villains/CP_J59_StormCommander.png",
+      "profileIds": [
+        "high_comptroller_battle_actor"
+      ],
+      "sourceGroup": "monsters/cp44-j31_villains"
+    },
+    {
+      "licenseReviewStatus": "workspace_license_coverage_declared",
+      "localLicenseEvidence": [
+        "assets/monsters/cp44-j31_villains/license.txt",
+        "assets/monsters/license.txt",
+        "game_assets/monsters/LICENSE"
+      ],
+      "path": "res://game_assets/monsters/cp44-j31_villains/CP_J60_ElementalFusionDragon.png",
+      "profileIds": [
+        "whiteout_auditor_battle_actor"
+      ],
+      "sourceGroup": "monsters/cp44-j31_villains"
+    },
+    {
+      "licenseReviewStatus": "workspace_license_coverage_declared",
+      "localLicenseEvidence": [
+        "assets/monsters/cp45-f91_horror_and_nightmares/license.txt",
+        "assets/monsters/license.txt",
+        "game_assets/monsters/LICENSE",
+        "game_assets/monsters/cp45-f91_horror_and_nightmares/license.txt"
+      ],
+      "path": "res://game_assets/monsters/cp45-f91_horror_and_nightmares/CP_F091_SchoolgirlGhost_01.png",
+      "profileIds": [
+        "schoolgirl_ghost_battle_actor"
+      ],
+      "sourceGroup": "monsters/cp45-f91_horror_and_nightmares"
+    },
+    {
+      "licenseReviewStatus": "workspace_license_coverage_declared",
+      "localLicenseEvidence": [
+        "assets/monsters/cp45-f91_horror_and_nightmares/license.txt",
+        "assets/monsters/license.txt",
+        "game_assets/monsters/LICENSE",
+        "game_assets/monsters/cp45-f91_horror_and_nightmares/license.txt"
+      ],
+      "path": "res://game_assets/monsters/cp45-f91_horror_and_nightmares/CP_F095_HauntedComposerPortrait.png",
+      "profileIds": [
+        "composer_portrait_battle_actor"
+      ],
+      "sourceGroup": "monsters/cp45-f91_horror_and_nightmares"
+    },
+    {
+      "licenseReviewStatus": "workspace_license_coverage_declared",
+      "localLicenseEvidence": [
+        "assets/monsters/cp45-f91_horror_and_nightmares/license.txt",
+        "assets/monsters/license.txt",
+        "game_assets/monsters/LICENSE",
+        "game_assets/monsters/cp45-f91_horror_and_nightmares/license.txt"
+      ],
+      "path": "res://game_assets/monsters/cp45-f91_horror_and_nightmares/CP_F098_WarBookGhost.png",
+      "profileIds": [
+        "war_book_battle_actor"
+      ],
+      "sourceGroup": "monsters/cp45-f91_horror_and_nightmares"
+    },
+    {
+      "licenseReviewStatus": "workspace_license_coverage_declared",
+      "localLicenseEvidence": [
+        "assets/monsters/cp45-f91_horror_and_nightmares/license.txt",
+        "assets/monsters/license.txt",
+        "game_assets/monsters/LICENSE",
+        "game_assets/monsters/cp45-f91_horror_and_nightmares/license.txt"
+      ],
+      "path": "res://game_assets/monsters/cp45-f91_horror_and_nightmares/CP_F117_HauntedJapaneseDoll.png",
+      "profileIds": [
+        "haunted_doll_battle_actor"
+      ],
+      "sourceGroup": "monsters/cp45-f91_horror_and_nightmares"
+    },
+    {
+      "licenseReviewStatus": "workspace_license_coverage_declared",
+      "localLicenseEvidence": [
+        "assets/monsters/cp45-f91_horror_and_nightmares/license.txt",
+        "assets/monsters/license.txt",
+        "game_assets/monsters/LICENSE",
+        "game_assets/monsters/cp45-f91_horror_and_nightmares/license.txt"
+      ],
+      "path": "res://game_assets/monsters/cp45-f91_horror_and_nightmares/CP_F119_HauntedClockMirror.png",
+      "profileIds": [
+        "clock_mirror_battle_actor"
+      ],
+      "sourceGroup": "monsters/cp45-f91_horror_and_nightmares"
+    },
+    {
+      "licenseReviewStatus": "workspace_license_coverage_declared",
+      "localLicenseEvidence": [
+        "game/LICENSE"
+      ],
+      "path": "res://overworld/characters/character_generic.png",
+      "profileIds": [],
+      "sourceGroup": "overworld/characters"
+    },
+    {
+      "licenseReviewStatus": "workspace_license_coverage_declared",
+      "localLicenseEvidence": [
+        "game/LICENSE"
+      ],
+      "path": "res://overworld/characters/gobot_field.png",
+      "profileIds": [],
+      "sourceGroup": "overworld/characters"
+    },
+    {
+      "licenseReviewStatus": "workspace_license_coverage_declared",
+      "localLicenseEvidence": [
+        "game/LICENSE"
+      ],
+      "path": "res://overworld/maps/tilesets/dungeon_tilemap.png",
+      "profileIds": [],
+      "sourceGroup": "overworld/maps"
+    },
+    {
+      "licenseReviewStatus": "workspace_license_coverage_declared",
+      "localLicenseEvidence": [
+        "game/LICENSE"
+      ],
+      "path": "res://overworld/maps/tilesets/town_tilemap.png",
+      "profileIds": [],
+      "sourceGroup": "overworld/maps"
+    },
+    {
+      "licenseReviewStatus": "workspace_license_coverage_declared",
+      "localLicenseEvidence": [
+        "game/LICENSE"
+      ],
+      "path": "res://src/combat/ui/action_menu/action_description_background.png",
+      "profileIds": [
+        "battle_ui_action_description"
+      ],
+      "sourceGroup": "src/combat"
+    },
+    {
+      "licenseReviewStatus": "workspace_license_coverage_declared",
+      "localLicenseEvidence": [
+        "game/LICENSE"
+      ],
+      "path": "res://src/combat/ui/action_menu/menu_action_bg.png",
+      "profileIds": [
+        "battle_ui_action_button"
+      ],
+      "sourceGroup": "src/combat"
+    },
+    {
+      "licenseReviewStatus": "workspace_license_coverage_declared",
+      "localLicenseEvidence": [
+        "game/LICENSE"
+      ],
+      "path": "res://src/combat/ui/action_menu/menu_action_bg_disabled.png",
+      "profileIds": [
+        "battle_ui_action_button_disabled"
+      ],
+      "sourceGroup": "src/combat"
+    },
+    {
+      "licenseReviewStatus": "workspace_license_coverage_declared",
+      "localLicenseEvidence": [
+        "game/LICENSE"
+      ],
+      "path": "res://src/combat/ui/action_menu/menu_action_bg_focused.png",
+      "profileIds": [
+        "battle_ui_action_button_focused"
+      ],
+      "sourceGroup": "src/combat"
+    },
+    {
+      "licenseReviewStatus": "workspace_license_coverage_declared",
+      "localLicenseEvidence": [
+        "game/LICENSE"
+      ],
+      "path": "res://src/combat/ui/action_menu/menu_action_bg_pressed.png",
+      "profileIds": [
+        "battle_ui_action_button_pressed"
+      ],
+      "sourceGroup": "src/combat"
+    },
+    {
+      "licenseReviewStatus": "workspace_license_coverage_declared",
+      "localLicenseEvidence": [
+        "game/LICENSE"
+      ],
+      "path": "res://src/combat/ui/action_menu/menu_selection_arrow.png",
+      "profileIds": [
+        "battle_ui_selection_arrow"
+      ],
+      "sourceGroup": "src/combat"
+    },
+    {
+      "licenseReviewStatus": "workspace_license_coverage_declared",
+      "localLicenseEvidence": [
+        "game/LICENSE"
+      ],
+      "path": "res://src/combat/ui/battler_entry/battler_hud_background.png",
+      "profileIds": [
+        "battle_ui_battler_hud"
+      ],
+      "sourceGroup": "src/combat"
+    },
+    {
+      "licenseReviewStatus": "workspace_license_coverage_declared",
+      "localLicenseEvidence": [
+        "game/LICENSE"
+      ],
+      "path": "res://src/combat/ui/battler_entry/energy_point_bg.png",
+      "profileIds": [
+        "battle_ui_energy_point"
+      ],
+      "sourceGroup": "src/combat"
+    },
+    {
+      "licenseReviewStatus": "workspace_license_coverage_declared",
+      "localLicenseEvidence": [
+        "game/LICENSE"
+      ],
+      "path": "res://src/combat/ui/battler_entry/energy_point_fill.png",
+      "profileIds": [
+        "battle_ui_energy_fill"
+      ],
+      "sourceGroup": "src/combat"
+    },
+    {
+      "licenseReviewStatus": "workspace_license_coverage_declared",
+      "localLicenseEvidence": [
+        "game/LICENSE"
+      ],
+      "path": "res://src/combat/ui/battler_entry/life_bar_bg.png",
+      "profileIds": [
+        "battle_ui_life_bar"
+      ],
+      "sourceGroup": "src/combat"
+    },
+    {
+      "licenseReviewStatus": "workspace_license_coverage_declared",
+      "localLicenseEvidence": [
+        "game/LICENSE"
+      ],
+      "path": "res://src/combat/ui/battler_entry/life_bar_fill.png",
+      "profileIds": [
+        "battle_ui_life_fill"
+      ],
+      "sourceGroup": "src/combat"
+    }
+  ],
+  "schemaVersion": 1,
+  "scope": "static Godot raster references; not a reachability or license-grant proof",
+  "summary": {
+    "assets": 159,
+    "needsManualLicenseConfirmation": 0,
+    "withLocalLicenseEvidence": 159
+  }
+}

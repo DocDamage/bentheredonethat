@@ -46,8 +46,12 @@ func _run() -> void:
 		return
 	var start_position := raptor.position
 	var start_frame: int = animation._raptor_frame
-	for _frame in range(30):
-		await get_tree().process_frame
+	# Advance a fixed amount of simulated time. Counting rendered frames made
+	# this assertion depend on host speed: a fast headless run could render all
+	# 30 frames before either the patrol motion or five-fps sprite cycle advanced.
+	# Use 0.8 seconds so the six-frame cycle cannot wrap to its starting frame.
+	for _frame in range(24):
+		animation._process(1.0 / 30.0)
 	if raptor.position.distance_to(start_position) < 0.2 or animation._raptor_frame == start_frame:
 		_fail("The idle velociraptor did not prowl or animate independently")
 		return

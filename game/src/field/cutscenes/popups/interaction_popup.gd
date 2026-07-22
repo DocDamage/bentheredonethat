@@ -8,13 +8,16 @@ class_name InteractionPopup extends UIPopup
 ## The different emote types that may be selected.
 enum EmoteTypes { COMBAT, EMPTY, EXCLAMATION, QUESTION}
 
-## The emote textures that may appear over a point of interest.
-const EMOTES: = {
-	EmoteTypes.COMBAT: preload("res://assets/gui/emotes/emote_combat.png"),
-	EmoteTypes.EMPTY: preload("res://assets/gui/emotes/emote__.png"),
-	EmoteTypes.EXCLAMATION: preload("res://assets/gui/emotes/emote_exclamations.png"),
-	EmoteTypes.QUESTION: preload("res://assets/gui/emotes/emote_question.png"),
+## The approved profiles for emotes that may appear over a point of interest.
+const VISUAL_PROFILE_REGISTRY := preload("res://ben_rpg/world/campaign_visual_profile_registry.gd")
+const EMOTE_PROFILES := {
+	EmoteTypes.COMBAT: &"interaction_emote_combat",
+	EmoteTypes.EMPTY: &"interaction_emote_empty",
+	EmoteTypes.EXCLAMATION: &"interaction_emote_exclamation",
+	EmoteTypes.QUESTION: &"interaction_emote_question",
 }
+
+var _visual_profiles
 
 ## The emote bubble that will be displayed when the character is nearby.
 @export var emote: = EmoteTypes.EMPTY:
@@ -24,7 +27,7 @@ const EMOTES: = {
 		if not is_inside_tree():
 			await ready
 		
-		_sprite.texture = EMOTES.get(emote, EMOTES[EmoteTypes.EMPTY])
+		_sprite.texture = _emote_texture(emote)
 
 ## How close the player must be to the emote before it will display.
 @export var radius: = 32:
@@ -55,6 +58,7 @@ const EMOTES: = {
 
 func _ready() -> void:
 	super._ready()
+	_sprite.texture = _emote_texture(emote)
 	
 	if not Engine.is_editor_hint():
 		FieldEvents.input_paused.connect(_on_input_paused)
@@ -71,3 +75,10 @@ func _on_area_exited(_exited_area: Area2D) -> void:
 # Be sure to hide input when the player is not able to do anything (e.g. cutscenes).
 func _on_input_paused(paused: bool) -> void:
 	_area.monitoring = !paused
+
+
+func _emote_texture(emote_type: int) -> Texture2D:
+	if not _visual_profiles:
+		_visual_profiles = VISUAL_PROFILE_REGISTRY.new()
+	var profile_id := StringName(EMOTE_PROFILES.get(emote_type, &"interaction_emote_empty"))
+	return _visual_profiles.texture(profile_id)

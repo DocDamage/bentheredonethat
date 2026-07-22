@@ -5,6 +5,7 @@ const UI_ROOT := "res://game_assets/Tilesets/Dark RPG GUI Kit - Pixel Art Asset 
 const UI_PARTY_HUD := UI_ROOT + "/dfgui_partyhud.png"
 const CATALOG := preload("res://ben_rpg/world/sandbox_object_catalog.gd")
 const TERRAIN_CATALOG := preload("res://ben_rpg/world/sandbox_terrain_catalog.gd")
+const SANDBOX_VISUAL_RESOLVER := preload("res://ben_rpg/world/sandbox_visual_resolver.gd")
 const HISTORY_LIMIT := 100
 
 var campaign: Node
@@ -32,6 +33,7 @@ var _box_selection_start := Gameboard.INVALID_CELL
 var _multi_move_origin := Gameboard.INVALID_CELL
 var _search_query := ""
 var _search_input: LineEdit
+var _sandbox_visuals = SANDBOX_VISUAL_RESOLVER.new()
 
 
 func _ready() -> void:
@@ -833,11 +835,11 @@ func _refresh_hud() -> void:
 		_item_label.text = String(terrain_definition.get("name", "No terrain brush")).to_upper()
 		_mode_label.text = "INDIVIDUAL TILE  %d / %d   •   %s" % [item_index + 1, _pack_items().size(), "BLOCKING" if bool(terrain_definition.get("blocks", false)) else "WALKABLE"]
 		_help_label.text = "D-pad/arrows: move brush  •  A/Enter/click or left-drag: paint  •  X/Delete/right-click or right-drag: restore base  •  Ctrl+Z/Y: undo/redo  •  Ctrl+F: search  •  LB/RB or Z/C: tile  •  L3 or Q/E: pack  •  Select/T: objects  •  Ctrl+1–3: save layouts  •  Shift+1–3: load layouts"
-		var terrain_texture_path := String(terrain_definition.get("texture", ""))
+		var terrain_texture_path := _sandbox_visuals.texture_path(terrain_definition)
 		if ResourceLoader.exists(terrain_texture_path):
 			var terrain_atlas := AtlasTexture.new()
-			terrain_atlas.atlas = load(terrain_texture_path)
-			terrain_atlas.region = terrain_definition.get("region", Rect2())
+			terrain_atlas.atlas = _sandbox_visuals.texture(terrain_definition)
+			terrain_atlas.region = _sandbox_visuals.region(terrain_definition, terrain_atlas.atlas)
 			_preview.texture = terrain_atlas
 		else:
 			_preview.texture = null

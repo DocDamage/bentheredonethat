@@ -28,6 +28,14 @@ func _ready() -> void:
 	_on_viewport_resized()
 
 
+func _process(_delta: float) -> void:
+	# The field uses nearest-neighbor pixel art. Camera follow can land between
+	# world pixels while a gamepiece is moving, which creates visible shimmer even
+	# when every sprite itself is placed correctly. Snap only the final camera
+	# position so movement retains its normal cadence without subpixel sampling.
+	position = position.round()
+
+
 func reset_position() -> void:
 	if gamepiece:
 		position = gamepiece.position * scale

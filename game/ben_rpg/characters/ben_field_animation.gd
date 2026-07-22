@@ -58,6 +58,7 @@ func set_direction(value: Directions.Points) -> void:
 
 
 func _process(delta: float) -> void:
+	_raptor_elapsed += delta
 	var follow_offsets := {
 		Directions.Points.NORTH: Vector2(30, 34),
 		Directions.Points.EAST: Vector2(-44, 8),
@@ -68,7 +69,7 @@ func _process(delta: float) -> void:
 	if _sequence != "run":
 		# Interceptor-like field presence: the raptor quietly prowls around its
 		# trailing cell rather than freezing as part of Ben's own sprite.
-		var idle_time := Time.get_ticks_msec() * 0.001
+		var idle_time := _raptor_elapsed
 		target += Vector2(sin(idle_time * 0.85) * 4.0, cos(idle_time * 0.62) * 2.0)
 	_raptor_sprite.position = _raptor_sprite.position.lerp(target, minf(1.0, delta * 6.5))
 	# Direction changes move the trailing target from one side of Ben to another.
@@ -79,7 +80,6 @@ func _process(delta: float) -> void:
 		var safe_direction := separation.normalized() if not separation.is_zero_approx() else (target - _sprite.position).normalized()
 		_raptor_sprite.position = _sprite.position + safe_direction * 42.0
 	_raptor_sprite.z_index = 1 if _raptor_sprite.position.y >= 0.0 else -1
-	_raptor_elapsed += delta
 	var raptor_rate := 10.0 if _sequence == "run" else 5.0
 	var next_raptor_frame := int(_raptor_elapsed * raptor_rate) % RUN_FRAME_COUNT
 	if next_raptor_frame != _raptor_frame:
@@ -113,7 +113,7 @@ func _update_raptor_texture() -> void:
 	if _sequence != "run":
 		# Face into the idle patrol so it reads as an active companion, not a
 		# second copy of Ben's facing direction.
-		raptor_facing = "east" if sin(Time.get_ticks_msec() * 0.00085) >= 0.0 else "west"
+		raptor_facing = "east" if sin(_raptor_elapsed * 0.85) >= 0.0 else "west"
 	var raptor_path := "%s/animations/Running/%s/frame_%03d.png" % [RAPTOR_ROOT, raptor_facing, _raptor_frame]
 	if not _texture_cache.has(raptor_path):
 		_texture_cache[raptor_path] = load(raptor_path)

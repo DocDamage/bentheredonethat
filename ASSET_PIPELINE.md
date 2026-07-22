@@ -20,8 +20,9 @@ python tools\build_curated_asset_catalog.py
 
 The visual profile registry at `game/ben_rpg/visual_assets/visual_profiles.json`
 is the shared runtime contract for reviewed crops. Each profile records its source
-pack, runtime texture, crop and alpha bounds, foot/doorway anchors, scale class,
-world draw size, and license reference. Build the deterministic runtime manifest
+pack, runtime texture, verified source checksum and density, crop and alpha bounds,
+foot/doorway anchors, collision footprint, scale class, world draw size, license
+reference, crop approval, and an existing native-scale golden capture. Build the deterministic runtime manifest
 and verify it is current with:
 
 ```powershell
@@ -29,10 +30,38 @@ python tools\build_godot_visual_manifest.py
 python tools\build_godot_visual_manifest.py --check
 ```
 
+`tools/build_godot_visual_inventory.py` records static raster candidates from
+Godot `.gd`/`.tscn` files plus every approved profile runtime texture, their
+callsites, and the profile IDs currently covering their source textures. Tests,
+validation scenes, and editor-only paths are excluded. Profile-owned paths stay
+in the inventory even after renderers replace raw `res://` loads with registry
+lookups. It deliberately reports unprofiled sources rather than treating the
+vertical-slice profiles as complete runtime coverage:
+
+```powershell
+python tools\build_godot_visual_inventory.py
+python tools\build_godot_visual_inventory.py --check
+```
+
 The generated manifest is committed under
 `game/ben_rpg/visual_assets/generated/`. The initial profiles are reference
 examples for the Town/Lab/Mansion vertical slice; add a profile before reusing
 a visual in new authored areas.
+
+`tools/build_runtime_asset_provenance.py` generates the matching release-review
+ledger. It records each static runtime raster, source group, and nearby tracked
+license evidence. This is deliberately conservative: local evidence does not
+prove distribution rights, so every asset remains subject to terms review and
+shipped-credit confirmation.
+
+`tools/build_visual_profile_contact_sheet.py` emits a labeled contact sheet of
+the approved profile crops at their native source dimensions. It is a review
+artifact, not a substitute for gameplay-scale captures:
+
+```powershell
+python tools\build_visual_profile_contact_sheet.py
+python tools\build_visual_profile_contact_sheet.py --check
+```
 
 Useful options:
 

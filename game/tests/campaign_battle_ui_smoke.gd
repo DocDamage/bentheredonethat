@@ -4,6 +4,8 @@ const BATTLE_SCENE := preload("res://ben_rpg/combat/campaign_battle.tscn")
 
 
 func _ready() -> void:
+	SettingsRepository.set_value(&"accessibility", &"reduce_motion", false)
+	SettingsRepository.set_value(&"accessibility", &"reduce_flashes", false)
 	CampaignState.reset_new_game()
 	CampaignState.recruit_status[&"fighter"] = &"reserve"
 	CampaignState.add_to_party(&"fighter")
@@ -32,11 +34,24 @@ func _ready() -> void:
 	var ben := battle.model.get_actor(&"ben")
 	ben["atb"] = 100.0
 	battle._show_commands(&"ben")
+	assert(battle._actor_nodes[&"ben"].get_node("ReadyFrame").visible and battle._status_nodes[&"ben"].get_node("Ready").text == "READY", "The ready actor needs an explicit stage and HUD cue")
 	assert(battle._command_buttons.columns == 2, "Expanded JRPG commands should use a compact two-column command grid")
+	assert(battle._command_scroll and battle._command_scroll.vertical_scroll_mode == ScrollContainer.SCROLL_MODE_AUTO, "A fully unlocked command list must scroll instead of clipping below the 960x540 battle UI")
 	var phoenix_button := _button_containing(battle._command_buttons, "Phoenix Tonic")
 	var escape_button := _button_containing(battle._command_buttons, "Escape")
 	assert(phoenix_button and phoenix_button.disabled, "Revival should be unavailable while nobody is knocked out")
 	assert(escape_button and escape_button.disabled, "The scripted foyer encounter should visibly seal escape")
+	battle._on_action_selected(&"cane_tap")
+	await get_tree().process_frame
+	(battle._target_buttons.get_child(1) as Button).grab_focus()
+	await get_tree().process_frame
+	var target_marked := false
+	for actor in battle.model.living("enemy"):
+		target_marked = target_marked or battle._actor_nodes[actor["id"]].get_node("TargetFrame").visible
+	assert(target_marked, "Choosing a target needs an explicit stage cue")
+	battle._target_panel.hide()
+	battle._chosen_action = &""
+	battle._set_target_highlight(&"")
 	var fighter := battle.model.get_actor(&"fighter")
 	fighter["alive"] = false
 	fighter["hp"] = 0
@@ -53,7 +68,7 @@ func _ready() -> void:
 	await get_tree().process_frame
 	assert(battle._results_panel.visible, "Victory rewards should replace the command UI")
 	assert(duckets_after_first_victory > duckets_before_victory and CampaignState.duckets == duckets_after_first_victory, "Repeated victory signals must not duplicate battle rewards")
-	print("CAMPAIGN_BATTLE_UI_SMOKE_OK actors=%d party=5+pet formation=3+2 slots=unique status=8 commands=grid items=contextual vfx=30frames sfx=true results=true" % battle.model.actors.size())
+	print("CAMPAIGN_BATTLE_UI_SMOKE_OK actors=%d party=5+pet formation=3+2 slots=unique status=8 ready=stage+hud target=stage+list commands=grid items=contextual vfx=30frames sfx=true results=true" % battle.model.actors.size())
 	get_tree().quit()
 
 

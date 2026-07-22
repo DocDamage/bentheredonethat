@@ -1,5 +1,7 @@
 extends Node
 
+const CAPTURE_GUARD := preload("res://validation/visual_capture_guard.gd")
+
 const OUTPUT_NAMES := [
 	"helios-skybridge.png",
 	"helios-market.png",
@@ -41,16 +43,22 @@ func _ready() -> void:
 	main.get_node("Field/Map/CampaignWorld/TownBuildController").hide()
 	main._place_player(main.TOWN_ORIGIN + Vector2i(3, 18))
 	await _settle()
-	_capture("town-afterlight-club.png")
+	if not _capture("town-afterlight-club.png"):
+		get_tree().quit(1)
+		return
 	for index in range(ROOM_CENTERS.size()):
 		main._place_player(ROOM_CENTERS[index])
 		await _settle()
-		_capture(OUTPUT_NAMES[index])
+		if not _capture(OUTPUT_NAMES[index]):
+			get_tree().quit(1)
+			return
 	var battle: CampaignBattle = main.get_node("CampaignBattle")
 	battle.suppress_persistence = true
 	battle.begin(&"helios_civic_sun", 1776)
 	await _settle()
-	_capture("helios-civic-sun-battle.png")
+	if not _capture("helios-civic-sun-battle.png"):
+		get_tree().quit(1)
+		return
 	print("HELIOS_VISUAL_CAPTURE_OK images=7")
 	get_tree().quit(0)
 
@@ -60,8 +68,5 @@ func _settle() -> void:
 		await get_tree().process_frame
 
 
-func _capture(file_name: String) -> void:
-	var image := get_viewport().get_texture().get_image()
-	var error := image.save_png("res://validation/%s" % file_name)
-	if error != OK:
-		push_error("Could not save Helios visual capture %s: %s" % [file_name, error_string(error)])
+func _capture(file_name: String) -> bool:
+	return CAPTURE_GUARD.save_viewport_png(get_viewport(), "res://validation/%s" % file_name, "Helios visual capture")

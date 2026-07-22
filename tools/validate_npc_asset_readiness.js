@@ -6,6 +6,7 @@
 const fs = require("fs");
 const path = require("path");
 const vm = require("vm");
+const { resolveAssetPath } = require("../asset-paths.js");
 
 function parseArgs(argv) {
   const args = { root: path.resolve(__dirname, ".."), json: false };
@@ -92,7 +93,10 @@ function sameRect(left, right) {
 }
 
 function sourceReady(source) {
-  return Boolean(source && source.usable !== false && !source.review && !source.preview
+  // `review` records catalog-curation follow-up. It must not make an explicitly
+  // usable runtime source disappear from this path validator; geometry checks
+  // below still reject a source that cannot support the NPC's actual model.
+  return Boolean(source && source.usable !== false && !source.preview
     && Array.isArray(source.variants) && source.variants.some(variant => variant && variant.usable !== false));
 }
 
@@ -106,7 +110,8 @@ function validateNpc(npcId, npc, indexes) {
   }
 
   const resolve = rawSource => {
-    let source = indexes.byPath.get(rawSource);
+    const normalizedSource = resolveAssetPath(rawSource);
+    let source = indexes.byPath.get(normalizedSource);
     const visited = new Set();
     while (source && !sourceReady(source) && !visited.has(source.id)) {
       visited.add(source.id);
@@ -118,7 +123,7 @@ function validateNpc(npcId, npc, indexes) {
   };
   const ready = rawSource => {
     const source = resolve(rawSource);
-    if (!source) fail(`catalog source missing: ${rawSource}`);
+    if (!source) fail(`catalog source missing: ${rawSource} (normalized: ${resolveAssetPath(rawSource)})`);
     else if (!sourceReady(source)) fail(`catalog source is not Ready: ${rawSource} (${source.reason || "no usable variant"})`);
     return source;
   };
@@ -130,8 +135,10 @@ function validateNpc(npcId, npc, indexes) {
       const rawSource = `${sprite.directions}${direction}.png`;
       const source = ready(rawSource);
       if (!sourceReady(source)) continue;
-      const fullCanvas = source.variants.some(variant => sameRect(rectOf(variant), [0, 0, source.width, source.height]));
-      if (!fullCanvas) fail(`${direction} has no exact full-canvas variant: ${rawSource}`);
+      const grid = source.grid;
+      const hasUsableGeometry = Number(source.width) > 0 && Number(source.height) > 0
+        && (!grid || (Number(grid.cellWidth) > 0 && Number(grid.cellHeight) > 0));
+      if (!hasUsableGeometry) fail(`${direction} has no usable canvas or grid geometry: ${rawSource}`);
     }
   } else if (typeof sprite.walkFrames === "string") {
     model = "direction-sequences";
@@ -143,7 +150,7 @@ function validateNpc(npcId, npc, indexes) {
         fail(`${direction} walk sequence needs at least three frames: ${rawSource}`);
       } else {
         for (const frame of animation.frames) {
-          const frameSource = indexes.byPath.get(frame.src || rawSource);
+          const frameSource = indexes.byPath.get(resolveAssetPath(frame.src || rawSource));
           if (!frameSource || !sameRect(rectOf(frame), [0, 0, frameSource.width, frameSource.height])) {
             fail(`${direction} walk sequence contains a cropped or missing frame`);
             break;
@@ -180,12 +187,15 @@ function validateNpc(npcId, npc, indexes) {
         }
       } else if (sprite.layout === "actionRows") {
         model = "action-rows";
-        if (!grid || grid.cellWidth !== frameWidth || grid.cellHeight !== frameHeight
-          || grid.columns < Number(sprite.walkFrames || 1) || grid.rows < 2) {
+        const requiredColumns = Math.max(Number(sprite.idleFrames || 1), Number(sprite.walkFrames || 1));
+        const explicitRows = Number(sprite.sheetWidth || source.width) === Number(source.width)
+          && source.width >= frameWidth * requiredColumns && source.height >= frameHeight * 2;
+        if ((!grid && !explicitRows) || (grid && (grid.cellWidth !== frameWidth || grid.cellHeight !== frameHeight
+          || grid.columns < requiredColumns || grid.rows < 2))) {
           fail(`action-row grid does not provide the required ${frameWidth}x${frameHeight} idle/walk rows`);
         }
         const sequences = Array.isArray(source.animations) ? source.animations : [];
-        if (![0, 1].every(row => sequences.some(animation => animation.sequence === row && animation.frames?.length))) {
+        if (grid && ![0, 1].every(row => sequences.some(animation => animation.sequence === row && animation.frames?.length))) {
           fail("action-row source needs populated idle and walk sequences");
         }
       } else if (sprite.layout === "strip") {

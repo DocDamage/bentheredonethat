@@ -1,5 +1,7 @@
 extends Node
 
+const PROFILE_REGISTRY := preload("res://ben_rpg/world/campaign_visual_profile_registry.gd")
+
 
 func _ready() -> void:
 	_run.call_deferred()
@@ -41,14 +43,21 @@ func _run() -> void:
 		_fail("The supplied Caveman did not appear in Primeval Borough")
 		return
 
-	var dinosaur_atlas := load(CampaignCombatDatabase.DINOSAUR_ATLAS) as Texture2D
-	for enemy_id in [&"primeval_raptor", &"stone_triceratops", &"municipal_spinosaur", &"commute_tyrant"]:
+	var registry = PROFILE_REGISTRY.new()
+	for case_data in [
+		[&"primeval_raptor", &"primeval_raptor_battle_actor"],
+		[&"stone_triceratops", &"stone_triceratops_battle_actor"],
+		[&"municipal_spinosaur", &"municipal_spinosaur_battle_actor"],
+		[&"commute_tyrant", &"commute_tyrant_battle_actor"],
+	]:
+		var enemy_id: StringName = case_data[0]
+		var profile_id: StringName = case_data[1]
 		var actor := CampaignCombatDatabase.enemy_actor(enemy_id, 0)
-		if not actor.has("sprite_region") or not Rect2(Vector2.ZERO, dinosaur_atlas.get_size()).encloses(actor["sprite_region"]):
-			_fail("Dinosaur atlas crop was missing or out of bounds for %s" % enemy_id)
+		if StringName(actor.get("sprite_profile", &"")) != profile_id or String(actor.get("sprite_path", "")) != registry.texture_path(profile_id) or actor.get("sprite_region", Rect2()) != registry.region(profile_id):
+			_fail("Dinosaur battle actor did not resolve profile %s" % enemy_id)
 			return
 
-	var controller: PrimevalEncounterController = world.get_node("PrimevalEncounters")
+	var controller: PrimevalEncounterController = world.get_node("EncounterLayer/PrimevalEncounters")
 	var battle: CampaignBattle = main.get_node("CampaignBattle")
 	controller.suppress_persistence = true
 	battle.suppress_persistence = true

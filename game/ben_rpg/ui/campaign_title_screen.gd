@@ -5,12 +5,13 @@ signal mode_selected(mode: StringName)
 
 const UI_ROOT := "res://game_assets/Tilesets/Dark RPG GUI Kit - Pixel Art Asset Pack"
 const UI_PARTY_HUD := UI_ROOT + "/dfgui_partyhud.png"
-const BEN_PORTRAIT := "res://game_assets/characters/Main Character/Ben_Franklin/rotations/south.png"
+const VISUAL_PROFILE_REGISTRY := preload("res://ben_rpg/world/campaign_visual_profile_registry.gd")
 
 @export var save_path := CampaignState.DEFAULT_SAVE_PATH
 
 var campaign: Node
 var suppress_quit := false
+var _root: Control
 var _continue_button: Button
 var _save_detail: Label
 var _status_label: Label
@@ -21,6 +22,7 @@ func _ready() -> void:
 	layer = 120
 	process_mode = Node.PROCESS_MODE_ALWAYS
 	_build_interface()
+	_apply_text_scale()
 	CampaignState.pause_play_session()
 	FieldEvents.input_paused.emit(true)
 	_refresh_continue()
@@ -53,12 +55,13 @@ func choose_mode(mode: StringName) -> bool:
 
 
 func _build_interface() -> void:
-	var root := Control.new()
-	root.name = "TitleInterface"
-	root.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
-	root.texture_filter = CanvasItem.TEXTURE_FILTER_NEAREST
-	root.mouse_filter = Control.MOUSE_FILTER_STOP
-	add_child(root)
+	_root = Control.new()
+	_root.name = "TitleInterface"
+	_root.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
+	_root.texture_filter = CanvasItem.TEXTURE_FILTER_NEAREST
+	_root.mouse_filter = Control.MOUSE_FILTER_STOP
+	add_child(_root)
+	var root := _root
 
 	var shade := ColorRect.new()
 	shade.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
@@ -118,7 +121,7 @@ func _build_interface() -> void:
 	frame.stretch_mode = TextureRect.STRETCH_KEEP_ASPECT_CENTERED
 	portrait_well.add_child(frame)
 	var ben_atlas := AtlasTexture.new()
-	ben_atlas.atlas = load(BEN_PORTRAIT)
+	ben_atlas.atlas = VISUAL_PROFILE_REGISTRY.new().texture(&"ben_company_portrait")
 	ben_atlas.region = Rect2(20, 15, 48, 58)
 	var ben := TextureRect.new()
 	ben.position = Vector2(92, 72)
@@ -224,6 +227,10 @@ func _title_button(text: String, icon_path: String, mode: StringName) -> Button:
 	button.add_theme_constant_override("icon_max_width", 50)
 	button.pressed.connect(choose_mode.bind(mode))
 	return button
+
+
+func _apply_text_scale() -> void:
+	SettingsRepository.apply_text_scale_to(_root)
 
 
 func _panel_style() -> StyleBoxTexture:

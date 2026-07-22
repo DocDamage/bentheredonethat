@@ -1,6 +1,9 @@
 class_name UniverseTreasureInteraction
 extends Interaction
 
+const VISUAL_PROFILE_REGISTRY := preload("res://ben_rpg/world/campaign_visual_profile_registry.gd")
+const TREASURE_VISUAL_PROFILE: StringName = &"universe_treasure_chest"
+
 @export var cache_id: StringName = &"primeval_ruins_plinth"
 @export var area_id: StringName = &"primeval_ruins"
 
@@ -10,6 +13,7 @@ var _elapsed := 0.0
 
 
 func _ready() -> void:
+	_marker.texture = VISUAL_PROFILE_REGISTRY.new().texture(TREASURE_VISUAL_PROFILE)
 	_marker_origin_y = _marker.position.y
 	if not CampaignState.state_changed.is_connected(_refresh_marker):
 		CampaignState.state_changed.connect(_refresh_marker)

@@ -7,8 +7,12 @@ const UI_PARTY_HUD := UI_ROOT + "/dfgui_partyhud.png"
 func _ready():
 	super._ready()
 	_apply_campaign_skin()
+	_apply_text_scale()
 	
-	Dialogic.timeline_started.connect(func(): show())
+	Dialogic.timeline_started.connect(func():
+		_apply_text_scale()
+		show()
+	)
 	Dialogic.timeline_ended.connect(func(): hide())
 	hide()
 
@@ -55,3 +59,15 @@ func _skin_choice(button: Button) -> void:
 		style.modulate_color = Color(1.0, 0.9, 0.6) if state in ["hover", "focus"] else Color.WHITE
 		button.add_theme_stylebox_override(state, style)
 	button.add_theme_color_override("font_color", Color(1.0, 0.88, 0.55))
+
+
+func _apply_text_scale() -> void:
+	SettingsRepository.apply_text_scale_to(self)
+	var dialogue_text := get_node_or_null("BoxMargins/TextMargins/DialogueText") as RichTextLabel
+	if not dialogue_text:
+		return
+	var base_size := int(dialogue_text.get_meta("campaign_base_normal_font_size", dialogue_text.get_theme_font_size("normal_font_size")))
+	if not dialogue_text.has_meta("campaign_base_normal_font_size"):
+		dialogue_text.set_meta("campaign_base_normal_font_size", base_size)
+	var multiplier := float(SettingsRepository.value(&"accessibility", &"text_scale", 1.0))
+	dialogue_text.add_theme_font_size_override("normal_font_size", maxi(12, int(round(float(base_size) * multiplier))))

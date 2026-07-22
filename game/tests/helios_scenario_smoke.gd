@@ -42,7 +42,7 @@ func _run() -> void:
 		_fail("Neon Viper did not appear in the Public Market")
 		return
 
-	var controller: HeliosEncounterController = world.get_node("HeliosEncounters")
+	var controller: HeliosEncounterController = world.get_node("EncounterLayer/HeliosEncounters")
 	var battle: CampaignBattle = main.get_node("CampaignBattle")
 	controller.suppress_persistence = true
 	battle.suppress_persistence = true
@@ -115,4 +115,3 @@ func _trigger_and_win(controller: HeliosEncounterController, battle: CampaignBat
 func _fail(message: String) -> void:
 	printerr("HELIOS_SCENARIO_SMOKE_FAILED: " + message)
 	get_tree().quit(1)
-

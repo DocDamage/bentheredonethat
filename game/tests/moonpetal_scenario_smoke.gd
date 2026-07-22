@@ -44,7 +44,7 @@ func _run() -> void:
 		_fail("The supplied Kitsune Empress did not appear in Blossom Court")
 		return
 
-	var controller: MoonpetalEncounterController = world.get_node("MoonpetalEncounters")
+	var controller: MoonpetalEncounterController = world.get_node("EncounterLayer/MoonpetalEncounters")
 	var battle: CampaignBattle = main.get_node("CampaignBattle")
 	controller.suppress_persistence = true
 	battle.suppress_persistence = true

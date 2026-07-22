@@ -1136,7 +1136,7 @@
     const select=$("#save-slot-select"),status=$("#save-manager-status"),continueButton=$("#continue-button"),hasSave=hasSlotSave();
     if(select)select.value=String(activeSaveSlot);
     if(continueButton){continueButton.classList.toggle("hidden",!hasSave);continueButton.textContent=hasSave?`Continue Slot ${activeSaveSlot} · Day ${state.day}`:`Continue Slot ${activeSaveSlot}`;}
-    if(status)status.textContent=message||`Slot ${activeSaveSlot} · ${hasSave?`Day ${state.day}, Timeline ${state.cycle}`:"empty"}`;
+    if(status)status.textContent=message||`Town slot ${activeSaveSlot} · ${hasSave?`Day ${state.day}, Timeline ${state.cycle}`:"empty"}`;
   }
 
   function switchSaveSlot(slot) {
@@ -1146,7 +1146,7 @@
 
   function exportSaveBundle() {
     const payload={format:"ben-there-save",version:1,exportedAt:new Date().toISOString(),slot:activeSaveSlot,state:sanitizeSave(state),town:captureTownEditorLayout(),interiors:interiorEditorLayout};
-    const blob=new Blob([JSON.stringify(payload,null,2)],{type:"application/json"}),url=URL.createObjectURL(blob),link=document.createElement("a");link.href=url;link.download=`ben-there-save-slot-${activeSaveSlot}.json`;document.body.append(link);link.click();link.remove();window.setTimeout(()=>URL.revokeObjectURL(url),1000);updateSaveManagerUI(`Slot ${activeSaveSlot} exported`);
+    const blob=new Blob([JSON.stringify(payload,null,2)],{type:"application/json"}),url=URL.createObjectURL(blob),link=document.createElement("a");link.href=url;link.download=`ben-there-town-slot-${activeSaveSlot}.json`;document.body.append(link);link.click();link.remove();window.setTimeout(()=>URL.revokeObjectURL(url),1000);updateSaveManagerUI(`Town slot ${activeSaveSlot} exported`);
   }
 
   async function importSaveBundle(file) {
@@ -1156,15 +1156,15 @@
       if(payload?.format!=="ben-there-save"||payload.version!==1||!payload.state)throw new Error("This is not a Ben There save backup.");
       const importedState=sanitizeSave(payload.state),importedTown=payload.town?normalizeImportedTownLayout(payload.town):loadTownEditorLayout(),importedInteriors=payload.interiors&&typeof payload.interiors==="object"?payload.interiors:{};
       localStorage.setItem(saveKey(),JSON.stringify(importedState));localStorage.setItem(`${TOWN_LAYOUT_PREFIX}${activeSaveSlot}`,JSON.stringify({layoutVersion:4,worldWidth:TOWN_SIZE.width,worldHeight:TOWN_SIZE.height,...importedTown}));localStorage.setItem(`${INTERIOR_LAYOUT_PREFIX}${activeSaveSlot}`,JSON.stringify(importedInteriors));
-      switchSaveSlot(activeSaveSlot);updateSaveManagerUI(`Imported into slot ${activeSaveSlot}`);
+      switchSaveSlot(activeSaveSlot);updateSaveManagerUI(`Imported into town slot ${activeSaveSlot}`);
     } catch(error) { updateSaveManagerUI(error?.message||"Save import failed"); }
   }
 
   function clearActiveSaveSlot() {
-    if(!window.confirm(`Clear all progress, town edits, and room edits in slot ${activeSaveSlot}? Export first if you want a backup.`))return;
+    if(!window.confirm(`Clear the browser town-world progress, town edits, and room edits in town slot ${activeSaveSlot}? JRPG Campaign and Sandbox autosaves are unaffected. Export first if you want a backup.`))return;
     localStorage.removeItem(saveKey());localStorage.removeItem(`${TOWN_LAYOUT_PREFIX}${activeSaveSlot}`);localStorage.removeItem(`${INTERIOR_LAYOUT_PREFIX}${activeSaveSlot}`);
     if(activeSaveSlot===1){localStorage.removeItem(LEGACY_SAVE_KEY);localStorage.removeItem(TOWN_PREVIOUS_LAYOUT_KEY);localStorage.removeItem(TOWN_LEGACY_LAYOUT_KEY);localStorage.removeItem("ben-there-interior-layout-v1");}
-    switchSaveSlot(activeSaveSlot);updateSaveManagerUI(`Slot ${activeSaveSlot} cleared`);
+    switchSaveSlot(activeSaveSlot);updateSaveManagerUI(`Town slot ${activeSaveSlot} cleared`);
   }
 
   function clamp(value, min, max) { return Math.min(max, Math.max(min, value)); }
@@ -5130,7 +5130,11 @@
     if(event.key!=="Tab")return false;
     const modal=["dialogue-overlay","help-overlay","minigame-overlay","result-overlay","day-end-overlay","cycle-end-overlay","location-sheet","start-screen"].map(id=>$("#"+id)).find(element=>element&&!element.classList.contains("hidden"));if(!modal)return false;
     const focusable=$$("button:not([disabled]),input:not([disabled]),select:not([disabled]),textarea:not([disabled]),a[href],[tabindex]:not([tabindex='-1'])",modal).filter(element=>element.offsetParent!==null);if(!focusable.length)return false;
-    const first=focusable[0],last=focusable.at(-1);if(event.shiftKey&&document.activeElement===first){event.preventDefault();last.focus();return true;}if(!event.shiftKey&&document.activeElement===last){event.preventDefault();first.focus();return true;}return false;
+    const first=focusable[0],last=focusable.at(-1);
+    // A modal can become visible while focus remains on the page beneath it.
+    // The next Tab must enter the dialog, not expose background town controls.
+    if(!modal.contains(document.activeElement)){event.preventDefault();(event.shiftKey?last:first).focus();return true;}
+    if(event.shiftKey&&document.activeElement===first){event.preventDefault();last.focus();return true;}if(!event.shiftKey&&document.activeElement===last){event.preventDefault();first.focus();return true;}return false;
   }
 
   function handleKeydown(event) {
@@ -5385,6 +5389,12 @@
     $$('[data-close]').forEach(button => button.addEventListener("click", () => button.dataset.close==="location-sheet"?closeLocationSheet():hide(button.dataset.close)));
     document.addEventListener("keydown", handleKeydown);
     document.addEventListener("keyup", handleKeyup);
+    $("#start-screen .start-copy").addEventListener("focusin",event=>{
+      // The title menu owns its vertical overflow on constrained desktop
+      // viewports. Keyboard focus must reveal its own control instead of
+      // leaving save management below the clipped card boundary.
+      event.target.scrollIntoView({block:"nearest",inline:"nearest"});
+    });
     window.addEventListener("blur", () => {heldKeys.clear();gamepadMove={x:0,y:0,magnitude:0};});
     window.addEventListener("resize",()=>{updateTownCamera();updateInteriorViewport();});
     document.addEventListener("pointerdown", startAudio, { once: true });

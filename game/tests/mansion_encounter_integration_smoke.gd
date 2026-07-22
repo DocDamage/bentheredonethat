@@ -20,7 +20,7 @@ func _run() -> void:
 	for _frame in range(6):
 		await get_tree().process_frame
 	var player: Gamepiece = Player.gamepiece
-	var encounter_controller: MansionEncounterController = main.get_node("Field/Map/CampaignWorld/MansionEncounters")
+	var encounter_controller: MansionEncounterController = main.get_node("Field/Map/CampaignWorld/EncounterLayer/MansionEncounters")
 	var battle: CampaignBattle = main.get_node("CampaignBattle")
 	encounter_controller.suppress_persistence = true
 	battle.suppress_persistence = true

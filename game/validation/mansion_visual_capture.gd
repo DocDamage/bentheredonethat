@@ -1,5 +1,7 @@
 extends Node
 
+const CAPTURE_GUARD := preload("res://validation/visual_capture_guard.gd")
+
 const OUTPUT_NAMES := [
 	"mansion-foyer-layout-pass.png",
 	"mansion-archive-layout-pass.png",
@@ -33,7 +35,9 @@ func _ready() -> void:
 	for index in range(ROOM_CELLS.size()):
 		main._place_player(ROOM_CELLS[index])
 		await _settle()
-		_capture(OUTPUT_NAMES[index])
+		if not _capture(OUTPUT_NAMES[index]):
+			get_tree().quit(1)
+			return
 	print("MANSION_VISUAL_CAPTURE_OK images=5")
 	get_tree().quit()
 
@@ -43,8 +47,5 @@ func _settle() -> void:
 		await get_tree().process_frame
 
 
-func _capture(file_name: String) -> void:
-	var image := get_viewport().get_texture().get_image()
-	var error := image.save_png("res://validation/%s" % file_name)
-	if error != OK:
-		push_error("Could not save visual capture %s: %s" % [file_name, error_string(error)])
+func _capture(file_name: String) -> bool:
+	return CAPTURE_GUARD.save_viewport_png(get_viewport(), "res://validation/%s" % file_name, "Mansion visual capture")

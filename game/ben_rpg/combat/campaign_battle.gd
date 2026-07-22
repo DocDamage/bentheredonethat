@@ -5,12 +5,12 @@ signal battle_finished(victory: bool, encounter_id: StringName)
 signal return_to_town_requested
 signal victory_autosave_committed(encounter_id: StringName, result: int)
 
-const MANSION_ATLAS := "res://game_assets/Tilesets/Haunted Mansion Pixel Art Tileset Pack/2.png"
 const UI_ROOT := "res://game_assets/Tilesets/Dark RPG GUI Kit - Pixel Art Asset Pack"
 const UI_PARTY_HUD := UI_ROOT + "/dfgui_partyhud.png"
 const UI_BUTTON := UI_ROOT + "/dfgui_button-empty.png"
 const PRESENTATION := preload("res://ben_rpg/combat/battle_presentation_catalog.gd")
 const ACTOR_ANIMATION := preload("res://ben_rpg/combat/campaign_battle_actor_animation.gd")
+const VISUAL_PROFILE_REGISTRY := preload("res://ben_rpg/world/campaign_visual_profile_registry.gd")
 
 var active := false
 var suppress_persistence := false
@@ -23,6 +23,7 @@ var _encounter_label: Label
 var _command_panel: PanelContainer
 var _command_header: Label
 var _battle_mode_button: Button
+var _command_scroll: ScrollContainer
 var _command_buttons: GridContainer
 var _description_label: Label
 var _target_panel: PanelContainer
@@ -45,12 +46,14 @@ var _battle_instance_id := 0
 var _result_applied_instance_id := -1
 var _leave_applied_instance_id := -1
 var _autosave_pending_instance_id := -1
+var _visual_profiles := VISUAL_PROFILE_REGISTRY.new()
 
 
 func _ready() -> void:
 	layer = 80
 	process_mode = Node.PROCESS_MODE_ALWAYS
 	_build_interface()
+	_apply_text_scale()
 	hide()
 
 
@@ -60,6 +63,7 @@ func _unhandled_input(event: InputEvent) -> void:
 	if event.is_action_pressed("ui_cancel"):
 		_target_panel.hide()
 		_chosen_action = &""
+		_set_target_highlight(&"")
 		var first := _first_enabled_button(_command_buttons)
 		if first:
 			first.grab_focus()
@@ -77,10 +81,11 @@ func begin(encounter_id: StringName, seed: int = 0) -> bool:
 	CampaignState.clear_encounter_pressure()
 	model.setup(encounter_id, CampaignState.party, CampaignState.character_progress, seed)
 	CampaignState.record_bestiary_sighting(encounter_id, _enemy_types_in_battle())
-	var backdrop_path := String(model.encounter_data.get("backdrop_path", MANSION_ATLAS))
-	if ResourceLoader.exists(backdrop_path):
-		_backdrop_crop.atlas = load(backdrop_path)
-	_backdrop_crop.region = model.encounter_data.get("backdrop_region", Rect2(0, 0, 384, 360))
+	var backdrop_profile := StringName(model.encounter_data.get("backdrop_profile", &""))
+	if not _apply_backdrop_profile(backdrop_profile):
+		push_error("Encounter %s has no approved battle backdrop profile" % encounter_id)
+		active = false
+		return false
 	_ready_players.clear()
 	_pending_ai.clear()
 	_command_actor = &""
@@ -117,6 +122,19 @@ func begin(encounter_id: StringName, seed: int = 0) -> bool:
 		_field_ui_node.hide()
 	FieldEvents.input_paused.emit(true)
 	show()
+	_apply_text_scale()
+	return true
+
+
+func _apply_backdrop_profile(profile_id: StringName) -> bool:
+	if profile_id == &"" or not _visual_profiles.has(profile_id):
+		return false
+	var texture := _visual_profiles.texture(profile_id)
+	if not texture:
+		push_error("Battle backdrop profile %s did not resolve to a texture" % profile_id)
+		return false
+	_backdrop_crop.atlas = texture
+	_backdrop_crop.region = _visual_profiles.region(profile_id)
 	return true
 
 
@@ -156,6 +174,7 @@ func _build_interface() -> void:
 	add_child(_root)
 	_sfx_player = AudioStreamPlayer.new()
 	_sfx_player.name = "BattleSfx"
+	_sfx_player.bus = &"SFX"
 	_root.add_child(_sfx_player)
 
 	var backdrop := TextureRect.new()
@@ -164,8 +183,7 @@ func _build_interface() -> void:
 	backdrop.stretch_mode = TextureRect.STRETCH_KEEP_ASPECT_COVERED
 	backdrop.texture_filter = CanvasItem.TEXTURE_FILTER_NEAREST
 	_backdrop_crop = AtlasTexture.new()
-	_backdrop_crop.atlas = load(MANSION_ATLAS)
-	_backdrop_crop.region = Rect2(0, 0, 384, 360)
+	_apply_backdrop_profile(&"mansion_foyer_battle_backdrop")
 	backdrop.texture = _backdrop_crop
 	_root.add_child(backdrop)
 	var tint := ColorRect.new()
@@ -175,15 +193,17 @@ func _build_interface() -> void:
 	_root.add_child(tint)
 
 	_stage = Control.new()
+	# A taller bottom information band keeps labels readable at the default
+	# 960x540 output (the project renders at 1920x1080 logical pixels).
 	_stage.position = Vector2(0, 112)
-	_stage.size = Vector2(1920, 650)
+	_stage.size = Vector2(1920, 530)
 	_stage.mouse_filter = Control.MOUSE_FILTER_IGNORE
 	_root.add_child(_stage)
 
 	var title_panel := _panel(Rect2(42, 26, 1100, 76), Color(0.025, 0.035, 0.075, 0.94), Color(0.72, 0.61, 0.31))
 	_root.add_child(title_panel)
 	_encounter_label = Label.new()
-	_encounter_label.add_theme_font_size_override("font_size", 40)
+	_encounter_label.add_theme_font_size_override("font_size", 44)
 	_encounter_label.add_theme_color_override("font_color", Color(1.0, 0.91, 0.63))
 	_encounter_label.vertical_alignment = VERTICAL_ALIGNMENT_CENTER
 	title_panel.add_child(_encounter_label)
@@ -193,55 +213,63 @@ func _build_interface() -> void:
 	active_label.size = Vector2(390, 48)
 	active_label.text = "ACTIVE TIME  •  SPEED-BASED"
 	active_label.horizontal_alignment = HORIZONTAL_ALIGNMENT_RIGHT
-	active_label.add_theme_font_size_override("font_size", 29)
+	active_label.add_theme_font_size_override("font_size", 32)
 	active_label.add_theme_color_override("font_color", Color(0.55, 0.9, 1.0))
 	_root.add_child(active_label)
 
-	var message_panel := _panel(Rect2(220, 690, 1480, 62), Color(0.02, 0.025, 0.055, 0.95), Color(0.34, 0.5, 0.68))
+	var message_panel := _panel(Rect2(180, 650, 1560, 58), Color(0.02, 0.025, 0.055, 0.95), Color(0.34, 0.5, 0.68))
 	_root.add_child(message_panel)
 	_message_label = Label.new()
-	_message_label.add_theme_font_size_override("font_size", 30)
+	_message_label.add_theme_font_size_override("font_size", 34)
 	_message_label.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
 	_message_label.vertical_alignment = VERTICAL_ALIGNMENT_CENTER
 	_message_label.add_theme_color_override("font_color", Color(0.92, 0.94, 1.0))
 	message_panel.add_child(_message_label)
 
-	_command_panel = _panel(Rect2(42, 772, 760, 270), Color(0.025, 0.035, 0.08, 0.97), Color(0.76, 0.63, 0.31))
+	_command_panel = _panel(Rect2(42, 720, 760, 320), Color(0.025, 0.035, 0.08, 0.97), Color(0.76, 0.63, 0.31))
 	_root.add_child(_command_panel)
 	var command_layout := HBoxContainer.new()
 	command_layout.add_theme_constant_override("separation", 18)
 	_command_panel.add_child(command_layout)
 	var left := VBoxContainer.new()
-	left.custom_minimum_size = Vector2(360, 0)
+	left.custom_minimum_size = Vector2(400, 0)
 	command_layout.add_child(left)
 	_command_header = Label.new()
-	_command_header.add_theme_font_size_override("font_size", 34)
+	_command_header.add_theme_font_size_override("font_size", 40)
 	_command_header.add_theme_color_override("font_color", Color(1.0, 0.88, 0.52))
 	left.add_child(_command_header)
 	_battle_mode_button = Button.new()
-	_battle_mode_button.custom_minimum_size = Vector2(0, 36)
-	_battle_mode_button.add_theme_font_size_override("font_size", 18)
+	_battle_mode_button.custom_minimum_size = Vector2(0, 42)
+	_battle_mode_button.add_theme_font_size_override("font_size", 22)
 	_battle_mode_button.tooltip_text = "Toggle whether enemy gauges pause while choosing a command."
 	_battle_mode_button.pressed.connect(_toggle_battle_mode)
 	left.add_child(_battle_mode_button)
+	_command_scroll = ScrollContainer.new()
+	_command_scroll.name = "CommandScroll"
+	_command_scroll.horizontal_scroll_mode = ScrollContainer.SCROLL_MODE_DISABLED
+	_command_scroll.vertical_scroll_mode = ScrollContainer.SCROLL_MODE_AUTO
+	_command_scroll.size_flags_vertical = Control.SIZE_EXPAND_FILL
+	left.add_child(_command_scroll)
 	_command_buttons = GridContainer.new()
+	_command_buttons.name = "CommandGrid"
+	_command_buttons.custom_minimum_size = Vector2(376, 0)
 	_command_buttons.columns = 2
 	_command_buttons.add_theme_constant_override("h_separation", 7)
 	_command_buttons.add_theme_constant_override("v_separation", 4)
-	left.add_child(_command_buttons)
+	_command_scroll.add_child(_command_buttons)
 	_description_label = Label.new()
-	_description_label.custom_minimum_size = Vector2(330, 0)
+	_description_label.custom_minimum_size = Vector2(290, 0)
 	_description_label.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
-	_description_label.add_theme_font_size_override("font_size", 27)
+	_description_label.add_theme_font_size_override("font_size", 30)
 	_description_label.add_theme_color_override("font_color", Color(0.76, 0.82, 0.9))
 	command_layout.add_child(_description_label)
 
-	_target_panel = _panel(Rect2(820, 772, 420, 270), Color(0.035, 0.04, 0.075, 0.98), Color(0.63, 0.48, 0.77))
+	_target_panel = _panel(Rect2(820, 720, 390, 320), Color(0.035, 0.04, 0.075, 0.98), Color(0.63, 0.48, 0.77))
 	_root.add_child(_target_panel)
 	_target_buttons = VBoxContainer.new()
 	_target_panel.add_child(_target_buttons)
 
-	var status_panel := _panel(Rect2(1260, 772, 610, 270), Color(0.025, 0.035, 0.075, 0.97), Color(0.34, 0.62, 0.75))
+	var status_panel := _panel(Rect2(1230, 720, 648, 320), Color(0.025, 0.035, 0.075, 0.97), Color(0.34, 0.62, 0.75))
 	_root.add_child(status_panel)
 	_status_list = VBoxContainer.new()
 	_status_list.add_theme_constant_override("separation", 1)
@@ -304,12 +332,12 @@ func _create_actor_visual(actor: Dictionary, index: int, row_count: int) -> Cont
 		holder.size = Vector2(260, 370)
 		var enemy_spacing := 340.0 if row_count <= 2 else 290.0
 		var enemy_left := 300.0 if row_count == 1 else (110.0 if row_count == 2 else 35.0)
-		holder.position = Vector2(enemy_left + index * enemy_spacing, 90.0 + float(index % 2) * 34.0)
+		holder.position = Vector2(enemy_left + index * enemy_spacing, 70.0 + float(index % 2) * 34.0)
 		holder.set_meta("effect_anchor", Vector2(130, 145))
 		holder.set_meta("vfx_size", 224.0)
 	elif actor["id"] == &"velociraptor":
 		holder.size = Vector2(180, 150)
-		holder.position = Vector2(1660, 465)
+		holder.position = Vector2(1660, 370)
 		holder.set_meta("effect_anchor", Vector2(90, 58))
 		holder.set_meta("vfx_size", 144.0)
 	else:
@@ -343,9 +371,51 @@ func _create_actor_visual(actor: Dictionary, index: int, row_count: int) -> Cont
 	else:
 		# Directional character files include transparent rotation padding. A
 		# square 250px well gives their opaque sprite a consistent JRPG scale.
-		sprite.position = Vector2(0, -55)
-		sprite.size = Vector2(250, 250)
+		sprite.position = Vector2(-15, -62)
+		sprite.size = Vector2(280, 280)
 	holder.add_child(sprite)
+	var ready_frame := Panel.new()
+	ready_frame.name = "ReadyFrame"
+	ready_frame.position = Vector2(-12, -12)
+	ready_frame.size = holder.size + Vector2(24, 24)
+	ready_frame.mouse_filter = Control.MOUSE_FILTER_IGNORE
+	var ready_style := StyleBoxFlat.new()
+	ready_style.bg_color = Color(0.18, 0.66, 0.86, 0.13)
+	ready_style.border_color = Color(0.35, 0.9, 1.0, 0.95)
+	ready_style.set_border_width_all(4)
+	ready_style.corner_radius_top_left = 8
+	ready_style.corner_radius_top_right = 8
+	ready_style.corner_radius_bottom_left = 8
+	ready_style.corner_radius_bottom_right = 8
+	ready_frame.add_theme_stylebox_override("panel", ready_style)
+	ready_frame.visible = false
+	holder.add_child(ready_frame)
+	var target_frame := Panel.new()
+	target_frame.name = "TargetFrame"
+	target_frame.position = Vector2(-18, -18)
+	target_frame.size = holder.size + Vector2(36, 36)
+	target_frame.mouse_filter = Control.MOUSE_FILTER_IGNORE
+	var target_style := StyleBoxFlat.new()
+	target_style.bg_color = Color(0.92, 0.26, 0.38, 0.12)
+	target_style.border_color = Color(1.0, 0.58, 0.66, 0.98)
+	target_style.set_border_width_all(4)
+	target_style.corner_radius_top_left = 10
+	target_style.corner_radius_top_right = 10
+	target_style.corner_radius_bottom_left = 10
+	target_style.corner_radius_bottom_right = 10
+	target_frame.add_theme_stylebox_override("panel", target_style)
+	target_frame.visible = false
+	holder.add_child(target_frame)
+	var ready_label := Label.new()
+	ready_label.name = "ReadyLabel"
+	ready_label.position = Vector2(12, -36)
+	ready_label.size = Vector2(holder.size.x - 24, 32)
+	ready_label.text = "READY"
+	ready_label.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
+	ready_label.add_theme_font_size_override("font_size", 24)
+	ready_label.add_theme_color_override("font_color", Color(0.55, 0.95, 1.0))
+	ready_label.visible = false
+	holder.add_child(ready_label)
 	var name_label := Label.new()
 	name_label.position = Vector2(-35, 330 if actor["team"] == "enemy" else (122 if actor["id"] == &"velociraptor" else 145))
 	name_label.size = Vector2(330 if actor["team"] == "enemy" else 320, 36)
@@ -353,7 +423,7 @@ func _create_actor_visual(actor: Dictionary, index: int, row_count: int) -> Cont
 	if actor["team"] == "party" and actor["id"] != &"velociraptor":
 		name_label.text += "  •  %s" % String(actor.get("formation", "front")).to_upper()
 	name_label.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
-	name_label.add_theme_font_size_override("font_size", 23)
+	name_label.add_theme_font_size_override("font_size", 27)
 	name_label.add_theme_color_override("font_color", Color(1.0, 0.91, 0.72) if actor["team"] == "party" else Color(1.0, 0.72, 0.78))
 	holder.add_child(name_label)
 	return holder
@@ -362,18 +432,18 @@ func _create_actor_visual(actor: Dictionary, index: int, row_count: int) -> Cont
 func _formation_slot_y(index: int, row_count: int) -> float:
 	match row_count:
 		1:
-			return 220.0
+			return 180.0
 		2:
-			return 95.0 + index * 270.0
+			return 60.0 + index * 250.0
 		_:
-			return 20.0 + index * 210.0
+			return 5.0 + index * 165.0
 
 
 func _create_status_row(actor: Dictionary) -> HBoxContainer:
 	var row := HBoxContainer.new()
 	row.name = String(actor["id"])
-	row.custom_minimum_size = Vector2(0, 29)
-	row.add_theme_constant_override("separation", 5)
+	row.custom_minimum_size = Vector2(0, 34)
+	row.add_theme_constant_override("separation", 4)
 	var role_icon := TextureRect.new()
 	role_icon.custom_minimum_size = Vector2(26, 26)
 	role_icon.texture = load(UI_ROOT + ("/dfgui_icon-crown.png" if actor["team"] == "party" else "/dfgui_icon-monsterbook.png"))
@@ -383,30 +453,36 @@ func _create_status_row(actor: Dictionary) -> HBoxContainer:
 	row.add_child(role_icon)
 	var name_label := Label.new()
 	name_label.name = "Name"
-	name_label.custom_minimum_size = Vector2(128, 0)
+	name_label.custom_minimum_size = Vector2(108, 0)
 	name_label.text = String(actor["display_name"])
-	name_label.add_theme_font_size_override("font_size", 18)
+	name_label.add_theme_font_size_override("font_size", 22)
 	row.add_child(name_label)
+	var ready := Label.new()
+	ready.name = "Ready"
+	ready.custom_minimum_size = Vector2(62, 0)
+	ready.add_theme_font_size_override("font_size", 16)
+	ready.add_theme_color_override("font_color", Color(0.48, 0.92, 1.0))
+	row.add_child(ready)
 	var hp := Label.new()
 	hp.name = "HP"
-	hp.custom_minimum_size = Vector2(105, 0)
-	hp.add_theme_font_size_override("font_size", 17)
+	hp.custom_minimum_size = Vector2(118, 0)
+	hp.add_theme_font_size_override("font_size", 20)
 	row.add_child(hp)
 	var mp := Label.new()
 	mp.name = "MP"
-	mp.custom_minimum_size = Vector2(60, 0)
-	mp.add_theme_font_size_override("font_size", 17)
+	mp.custom_minimum_size = Vector2(64, 0)
+	mp.add_theme_font_size_override("font_size", 18)
 	row.add_child(mp)
 	var status := Label.new()
 	status.name = "Status"
-	status.custom_minimum_size = Vector2(70, 0)
-	status.add_theme_font_size_override("font_size", 14)
+	status.custom_minimum_size = Vector2(88, 0)
+	status.add_theme_font_size_override("font_size", 16)
 	status.add_theme_color_override("font_color", Color(0.96, 0.66, 0.35))
 	status.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
 	row.add_child(status)
 	var atb := ProgressBar.new()
 	atb.name = "ATB"
-	atb.custom_minimum_size = Vector2(100, 17)
+	atb.custom_minimum_size = Vector2(110, 20)
 	atb.max_value = 100.0
 	atb.show_percentage = false
 	atb.add_theme_stylebox_override("background", _atlas_style(UI_PARTY_HUD, Rect2(57, 25, 147, 20), 7, 5))
@@ -426,11 +502,15 @@ func _update_status_display() -> void:
 		row.get_node("HP").text = "HP %d/%d" % [actor["hp"], actor["max_hp"]]
 		row.get_node("MP").text = "MP %d" % actor["mp"]
 		row.get_node("Status").text = model.status_summary(StringName(actor["id"]))
+		row.get_node("Ready").text = "READY" if actor["id"] == _command_actor else ""
 		row.get_node("ATB").value = actor["atb"]
 		row.modulate = Color(0.48, 0.48, 0.52) if not actor["alive"] else Color.WHITE
 		var visual: Control = _actor_nodes.get(actor["id"])
 		if visual:
 			visual.modulate = Color(0.32, 0.32, 0.38, 0.65) if not actor["alive"] else Color.WHITE
+			var is_ready: bool = actor["id"] == _command_actor
+			visual.get_node("ReadyFrame").visible = is_ready
+			visual.get_node("ReadyLabel").visible = is_ready
 
 
 func _show_commands(actor_id: StringName) -> void:
@@ -439,6 +519,7 @@ func _show_commands(actor_id: StringName) -> void:
 		_ready_players.erase(actor_id)
 		return
 	_command_actor = actor_id
+	_update_status_display()
 	_command_header.text = "%s is ready" % actor["display_name"]
 	model.command_input_open = true
 	_description_label.text = _timing_description()
@@ -458,11 +539,11 @@ func _show_commands(actor_id: StringName) -> void:
 			or model.valid_targets(actor_id, StringName(action_id)).is_empty()
 			or (action_id == &"escape" and not model.can_escape())
 		)
-		button.custom_minimum_size = Vector2(165, 37)
-		button.add_theme_font_size_override("font_size", 23)
+		button.custom_minimum_size = Vector2(184, 42)
+		button.add_theme_font_size_override("font_size", 26)
 		_apply_button_skin(button, _action_icon(StringName(action_id)))
-		button.focus_entered.connect(_on_action_focused.bind(StringName(action_id)))
-		button.mouse_entered.connect(_on_action_focused.bind(StringName(action_id)))
+		button.focus_entered.connect(_on_action_button_focused.bind(StringName(action_id), button))
+		button.mouse_entered.connect(_on_action_button_focused.bind(StringName(action_id), button))
 		button.pressed.connect(_on_action_selected.bind(StringName(action_id)))
 		_command_buttons.add_child(button)
 	_command_panel.show()
@@ -498,6 +579,40 @@ func _on_action_focused(action_id: StringName) -> void:
 	_description_label.text = String(CampaignCombatDatabase.action(action_id).get("description", ""))
 
 
+func _on_action_button_focused(action_id: StringName, button: Button) -> void:
+	_on_action_focused(action_id)
+	if _command_scroll:
+		_reveal_command_button.call_deferred(button)
+
+
+func _reveal_command_button(button: Button) -> void:
+	if not _command_scroll or not is_instance_valid(button):
+		return
+	if _command_scroll.size.y <= button.size.y:
+		# The first focus event can fire before the container has received its
+		# final layout. Let that frame settle rather than treating a zero-height
+		# viewport as a request to scroll the first command off screen.
+		return
+	# ScrollContainer's built-in helper only accepts a direct child, while the
+	# focusable buttons live in our two-column GridContainer. Their local Y is
+	# the content coordinate we need to keep the focused row on screen.
+	var row_top := button.position.y
+	var row_bottom := row_top + button.size.y
+	var viewport_top := float(_command_scroll.scroll_vertical)
+	var viewport_bottom := viewport_top + _command_scroll.size.y
+	if row_top < viewport_top:
+		_command_scroll.scroll_vertical = maxi(0, roundi(row_top))
+	elif row_bottom > viewport_bottom:
+		_command_scroll.scroll_vertical = maxi(0, roundi(row_bottom - _command_scroll.size.y))
+
+
+func _set_target_highlight(actor_id: StringName) -> void:
+	for candidate_id in _actor_nodes:
+		var visual := _actor_nodes[candidate_id] as Control
+		if visual:
+			visual.get_node("TargetFrame").visible = candidate_id == actor_id
+
+
 func _on_action_selected(action_id: StringName) -> void:
 	_chosen_action = action_id
 	var action := CampaignCombatDatabase.action(action_id)
@@ -510,15 +625,17 @@ func _on_action_selected(action_id: StringName) -> void:
 	_clear_children(_target_buttons)
 	var title := Label.new()
 	title.text = "Choose target"
-	title.add_theme_font_size_override("font_size", 31)
+	title.add_theme_font_size_override("font_size", 34)
 	title.add_theme_color_override("font_color", Color(0.88, 0.72, 1.0))
 	_target_buttons.add_child(title)
 	for actor in model.valid_targets(_command_actor, action_id):
 		var button := Button.new()
 		button.text = "%s  •  %d/%d HP" % [actor["display_name"], actor["hp"], actor["max_hp"]]
-		button.custom_minimum_size.y = 42
-		button.add_theme_font_size_override("font_size", 26)
+		button.custom_minimum_size.y = 48
+		button.add_theme_font_size_override("font_size", 29)
 		_apply_button_skin(button, UI_ROOT + "/dfgui_icon-sword.png")
+		button.focus_entered.connect(_set_target_highlight.bind(StringName(actor["id"])))
+		button.mouse_entered.connect(_set_target_highlight.bind(StringName(actor["id"])))
 		button.pressed.connect(_commit_player_action.bind([StringName(actor["id"])]))
 		_target_buttons.add_child(button)
 	_target_panel.show()
@@ -531,6 +648,8 @@ func _commit_player_action(target_ids: Array[StringName]) -> void:
 	var action_id := _chosen_action
 	_ready_players.erase(actor_id)
 	_command_actor = &""
+	_update_status_display()
+	_set_target_highlight(&"")
 	_chosen_action = &""
 	model.command_input_open = false
 	_command_panel.hide()
@@ -550,8 +669,9 @@ func _perform_action(actor_id: StringName, action_id: StringName, targets: Array
 		return
 	_set_message(String(events[0].get("text", "")))
 	var source_node: Control = _actor_nodes.get(actor_id)
-	var action_animation_duration := _play_actor_action(actor_id, action_id)
-	if source_node:
+	var reduce_motion := _reduce_motion()
+	var action_animation_duration := 0.0 if reduce_motion else _play_actor_action(actor_id, action_id)
+	if source_node and not reduce_motion:
 		var start := source_node.position
 		var direction := 44.0 if model.get_actor(actor_id)["team"] == "party" else -44.0
 		var tween := create_tween()
@@ -572,7 +692,7 @@ func _perform_action(actor_id: StringName, action_id: StringName, targets: Array
 			if event["type"] == "ko":
 				_play_actor_hold(StringName(event.get("target", &"")), &"death")
 			_set_message(String(event["text"]))
-			await get_tree().create_timer(0.28).timeout
+			await get_tree().create_timer(0.16 if reduce_motion else 0.28).timeout
 	_update_status_display()
 	var result := model.outcome()
 	if result == &"victory":
@@ -592,9 +712,10 @@ func _perform_boss_telegraph(actor_id: StringName, telegraph: String) -> void:
 		return
 	_action_lock = true
 	_set_message(telegraph)
-	_play_actor_once(actor_id, &"power")
+	if not _reduce_motion():
+		_play_actor_once(actor_id, &"power")
 	_play_stream(PRESENTATION.action_sound(&"steal_time"))
-	await get_tree().create_timer(0.9).timeout
+	await get_tree().create_timer(0.55 if _reduce_motion() else 0.9).timeout
 	_update_status_display()
 	_action_lock = false
 
@@ -640,6 +761,10 @@ func _animate_effect(event: Dictionary) -> void:
 	label.add_theme_color_override("font_color", effect_color)
 	_stage.add_child(label)
 	var original := target_node.position
+	if _reduce_motion() or _reduce_flashes():
+		await get_tree().create_timer(0.24).timeout
+		label.queue_free()
+		return
 	var tween := create_tween().set_parallel(true)
 	tween.tween_property(label, "position:y", label.position.y - 65, 0.42)
 	tween.tween_property(label, "modulate:a", 0.0, 0.42)
@@ -687,6 +812,7 @@ func _show_victory() -> void:
 	continue_button.pressed.connect(_leave_battle.bind(true))
 	_results_content.add_child(continue_button)
 	_results_panel.show()
+	_apply_text_scale()
 	continue_button.grab_focus()
 
 
@@ -717,6 +843,7 @@ func _show_defeat() -> void:
 	town_button.pressed.connect(_return_to_town)
 	_results_content.add_child(town_button)
 	_results_panel.show()
+	_apply_text_scale()
 	load_button.grab_focus()
 
 
@@ -930,7 +1057,7 @@ func _first_enabled_button(container: Node) -> Button:
 func _animate_action_vfx(action_id: StringName, events: Array[Dictionary]) -> void:
 	var frame_paths := PRESENTATION.effect_frames(action_id)
 	_play_stream(PRESENTATION.action_sound(action_id))
-	if frame_paths.is_empty():
+	if frame_paths.is_empty() or _reduce_flashes():
 		return
 	var target_ids: Array[StringName] = []
 	for event in events:
@@ -954,16 +1081,19 @@ func _animate_action_vfx(action_id: StringName, events: Array[Dictionary]) -> vo
 		overlay.mouse_filter = Control.MOUSE_FILTER_IGNORE
 		_stage.add_child(overlay)
 		overlays.append(overlay)
-	for frame_path in frame_paths:
+	var presented_frames := frame_paths
+	if _reduce_motion() and not frame_paths.is_empty():
+		presented_frames = [frame_paths[0]]
+	for frame_path in presented_frames:
 		var texture: Texture2D = _frame_cache.get(frame_path)
 		if not texture:
 			texture = load(frame_path) as Texture2D
 			_frame_cache[frame_path] = texture
 		for overlay in overlays:
 			overlay.texture = texture
-		# The source pack is authored at 30 fps. Keeping that cadence preserves
-		# readable impact frames instead of flashing through them in a few ticks.
-		await get_tree().create_timer(1.0 / 30.0).timeout
+		# The source pack is authored at 30 fps. Reduced motion shows one stable
+		# frame long enough to read, while reduced flashes suppresses the VFX.
+		await get_tree().create_timer(0.18 if _reduce_motion() else 1.0 / 30.0).timeout
 	for overlay in overlays:
 		overlay.queue_free()
 
@@ -973,3 +1103,15 @@ func _play_stream(path: String) -> void:
 		return
 	_sfx_player.stream = load(path)
 	_sfx_player.play()
+
+
+func _reduce_motion() -> bool:
+	return bool(SettingsRepository.value(&"accessibility", &"reduce_motion", false))
+
+
+func _reduce_flashes() -> bool:
+	return bool(SettingsRepository.value(&"accessibility", &"reduce_flashes", false))
+
+
+func _apply_text_scale() -> void:
+	SettingsRepository.apply_text_scale_to(_root)

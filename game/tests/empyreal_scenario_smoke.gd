@@ -46,7 +46,7 @@ func _run() -> void:
 		_fail("The supplied Archangel Commander did not appear in the Garden")
 		return
 
-	var controller: EmpyrealEncounterController = world.get_node("EmpyrealEncounters")
+	var controller: EmpyrealEncounterController = world.get_node("EncounterLayer/EmpyrealEncounters")
 	var battle: CampaignBattle = main.get_node("CampaignBattle")
 	controller.suppress_persistence = true
 	battle.suppress_persistence = true

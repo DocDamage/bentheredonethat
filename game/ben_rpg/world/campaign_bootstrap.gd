@@ -39,6 +39,10 @@ const MANSION_NURSERY_TO_BALLROOM := MANSION_ORIGIN + Vector2i(16, 14)
 const MANSION_BALLROOM_FROM_NURSERY := MANSION_ORIGIN + Vector2i(22, 10)
 const MANSION_BALLROOM_RETURN := MANSION_ORIGIN + Vector2i(21, 10)
 const MANSION_NURSERY_FROM_BALLROOM := MANSION_ORIGIN + Vector2i(15, 15)
+# The servants' route becomes a genuine loop after the opening clue sequence,
+# allowing a return to the foyer without replaying the archive corridor.
+const MANSION_FOYER_SHORTCUT := MANSION_ORIGIN + Vector2i(1, 6)
+const MANSION_GALLERY_SHORTCUT := MANSION_ORIGIN + Vector2i(1, 16)
 const STATION_DOCK_TO_MESS := STATION_ORIGIN + Vector2i(6, 4)
 const STATION_MESS_FROM_DOCK := STATION_ORIGIN + Vector2i(11, 5)
 const STATION_MESS_RETURN := STATION_ORIGIN + Vector2i(11, 4)
@@ -55,6 +59,10 @@ const STATION_HYDRO_TO_CONTROL := STATION_ORIGIN + Vector2i(24, 6)
 const STATION_CONTROL_FROM_HYDRO := STATION_ORIGIN + Vector2i(24, 15)
 const STATION_CONTROL_RETURN := STATION_ORIGIN + Vector2i(24, 14)
 const STATION_HYDRO_FROM_CONTROL := STATION_ORIGIN + Vector2i(24, 5)
+# Once life support is restored, a maintenance lift links the return dock to
+# Medical. This turns the initially linear oxygen route into a usable loop.
+const STATION_DOCK_SERVICE_SHORTCUT := STATION_ORIGIN + Vector2i(1, 6)
+const STATION_MEDICAL_SERVICE_SHORTCUT := STATION_ORIGIN + Vector2i(11, 16)
 const PRIMEVAL_SPAWN := PRIMEVAL_ORIGIN + Vector2i(4, 6)
 const PRIMEVAL_EXIT := PRIMEVAL_ORIGIN + Vector2i(4, 7)
 const PRIMEVAL_GROVE_TO_VILLAGE := PRIMEVAL_ORIGIN + Vector2i(6, 4)
@@ -73,6 +81,10 @@ const PRIMEVAL_RUINS_TO_CALDERA := PRIMEVAL_ORIGIN + Vector2i(24, 6)
 const PRIMEVAL_CALDERA_FROM_RUINS := PRIMEVAL_ORIGIN + Vector2i(24, 15)
 const PRIMEVAL_CALDERA_RETURN := PRIMEVAL_ORIGIN + Vector2i(24, 14)
 const PRIMEVAL_RUINS_FROM_CALDERA := PRIMEVAL_ORIGIN + Vector2i(24, 5)
+# Decoding the relay reveals a canopy trail that turns the Nest detour into a
+# return loop instead of a dead-end trip back through the Village gate.
+const PRIMEVAL_GROVE_CANOPY_SHORTCUT := PRIMEVAL_ORIGIN + Vector2i(1, 6)
+const PRIMEVAL_NEST_CANOPY_SHORTCUT := PRIMEVAL_ORIGIN + Vector2i(11, 16)
 const HELIOS_SPAWN := HELIOS_ORIGIN + Vector2i(4, 6)
 const HELIOS_EXIT := HELIOS_ORIGIN + Vector2i(4, 7)
 const HELIOS_SKYBRIDGE_TO_MARKET := HELIOS_ORIGIN + Vector2i(6, 4)
@@ -151,6 +163,14 @@ const TOWN_LAB_DOOR := TOWN_ORIGIN + Vector2i(14, 7)
 const TOWN_ARRIVAL := TOWN_ORIGIN + Vector2i(14, 8)
 
 const VISUAL_SCRIPT := preload("res://ben_rpg/world/campaign_map_visual.gd")
+const MANSION_FOREGROUND_SCRIPT := preload("res://ben_rpg/world/campaign_mansion_foreground.gd")
+const TOWN_FOREGROUND_SCRIPT := preload("res://ben_rpg/world/campaign_town_foreground.gd")
+const ASTERION_FOREGROUND_SCRIPT := preload("res://ben_rpg/world/campaign_asterion_foreground.gd")
+const MOONPETAL_FOREGROUND_SCRIPT := preload("res://ben_rpg/world/campaign_moonpetal_foreground.gd")
+const EMPYREAL_FOREGROUND_SCRIPT := preload("res://ben_rpg/world/campaign_empyreal_foreground.gd")
+const FROSTHOLD_FOREGROUND_SCRIPT := preload("res://ben_rpg/world/campaign_frosthold_foreground.gd")
+const PRIMEVAL_FOREGROUND_SCRIPT := preload("res://ben_rpg/world/campaign_primeval_foreground.gd")
+const WEATHER_OVERLAY_SCRIPT := preload("res://ben_rpg/world/campaign_weather_overlay.gd")
 const AREA_TRANSITION := preload("res://src/field/cutscenes/templates/area_transitions/area_transition.tscn")
 const RESTRICTED_AREA_TRANSITION := preload("res://ben_rpg/world/restricted_area_transition.tscn")
 const TOWN_BUILD_CONTROLLER := preload("res://ben_rpg/world/town_build_controller.gd")
@@ -211,6 +231,14 @@ const FACILITY_PLOTS := [
 var _camera_area := ""
 var _navigation: GameboardLayer
 var _visual: CampaignMapVisual
+var _mansion_foreground
+var _town_foreground
+var _asterion_foreground
+var _moonpetal_foreground
+var _empyreal_foreground
+var _frosthold_foreground
+var _primeval_foreground
+var _weather_overlay
 var _battle: CampaignBattle
 var _mansion_boss_marker: Sprite2D
 var _station_boss_marker: Sprite2D
@@ -263,19 +291,73 @@ func _enter_tree() -> void:
 
 	var world := Node2D.new()
 	world.name = "CampaignWorld"
+	world.y_sort_enabled = true
 	map.add_child(world)
+	# Keep the campaign's established public nodes reachable while beginning the
+	# renderer migration with real canvas layers.  Future map migrations can move
+	# interactions into these groups without changing the world root again.
+	var ground_layer := Node2D.new()
+	ground_layer.name = "GroundLayer"
+	ground_layer.z_index = -2
+	world.add_child(ground_layer)
+	var low_decoration_layer := Node2D.new()
+	low_decoration_layer.name = "LowDecorationLayer"
+	low_decoration_layer.z_index = -1
+	world.add_child(low_decoration_layer)
+	var navigation_layer := Node2D.new()
+	navigation_layer.name = "NavigationAndCollision"
+	world.add_child(navigation_layer)
+	var actors_layer := Node2D.new()
+	actors_layer.name = "YSortedActorsAndProps"
+	actors_layer.y_sort_enabled = true
+	world.add_child(actors_layer)
+	var foreground_layer := Node2D.new()
+	foreground_layer.name = "ForegroundLayer"
+	foreground_layer.z_index = 1
+	world.add_child(foreground_layer)
+	var interaction_layer := Node2D.new()
+	interaction_layer.name = "InteractionLayer"
+	world.add_child(interaction_layer)
+	var encounter_layer := Node2D.new()
+	encounter_layer.name = "EncounterLayer"
+	world.add_child(encounter_layer)
 	_visual = VISUAL_SCRIPT.new()
 	_visual.name = "Visuals"
-	world.add_child(_visual)
+	ground_layer.add_child(_visual)
 	_sandbox_objects = SANDBOX_OBJECTS_SCRIPT.new()
 	_sandbox_objects.name = "SandboxTownObjects"
-	world.add_child(_sandbox_objects)
+	low_decoration_layer.add_child(_sandbox_objects)
 	_navigation = _create_navigation_layer()
-	world.add_child(_navigation)
+	navigation_layer.add_child(_navigation)
 	_resident_manager = TOWN_RESIDENT_MANAGER_SCRIPT.new()
 	_resident_manager.name = "TownResidents"
 	_resident_manager.campaign = self
-	world.add_child(_resident_manager)
+	actors_layer.add_child(_resident_manager)
+	_mansion_foreground = MANSION_FOREGROUND_SCRIPT.new()
+	_mansion_foreground.name = "MansionForeground"
+	foreground_layer.add_child(_mansion_foreground)
+	_town_foreground = TOWN_FOREGROUND_SCRIPT.new()
+	_town_foreground.name = "TownForeground"
+	foreground_layer.add_child(_town_foreground)
+	_asterion_foreground = ASTERION_FOREGROUND_SCRIPT.new()
+	_asterion_foreground.name = "AsterionForeground"
+	foreground_layer.add_child(_asterion_foreground)
+	_moonpetal_foreground = MOONPETAL_FOREGROUND_SCRIPT.new()
+	_moonpetal_foreground.name = "MoonpetalForeground"
+	foreground_layer.add_child(_moonpetal_foreground)
+	_empyreal_foreground = EMPYREAL_FOREGROUND_SCRIPT.new()
+	_empyreal_foreground.name = "EmpyrealForeground"
+	foreground_layer.add_child(_empyreal_foreground)
+	_frosthold_foreground = FROSTHOLD_FOREGROUND_SCRIPT.new()
+	_frosthold_foreground.name = "FrostholdForeground"
+	foreground_layer.add_child(_frosthold_foreground)
+	_primeval_foreground = PRIMEVAL_FOREGROUND_SCRIPT.new()
+	_primeval_foreground.name = "PrimevalForeground"
+	foreground_layer.add_child(_primeval_foreground)
+	_weather_overlay = WEATHER_OVERLAY_SCRIPT.new()
+	_weather_overlay.name = "WeatherOverlay"
+	_weather_overlay.z_index = 2
+	foreground_layer.add_child(_weather_overlay)
 	world.add_child(_create_transition("LaboratoryExit", LAB_EXIT, TOWN_ARRIVAL))
 	world.add_child(_create_transition("TownLaboratoryDoor", TOWN_LAB_DOOR, LAB_SPAWN))
 	var build_controller := TOWN_BUILD_CONTROLLER.new()
@@ -299,31 +381,31 @@ func _enter_tree() -> void:
 	var encounter_controller := MANSION_ENCOUNTER_CONTROLLER.new() as MansionEncounterController
 	encounter_controller.name = "MansionEncounters"
 	encounter_controller.battle = _battle
-	world.add_child(encounter_controller)
+	encounter_layer.add_child(encounter_controller)
 	var station_encounters := ASTERION_ENCOUNTER_CONTROLLER.new() as AsterionEncounterController
 	station_encounters.name = "AsterionEncounters"
 	station_encounters.battle = _battle
-	world.add_child(station_encounters)
+	encounter_layer.add_child(station_encounters)
 	var primeval_encounters := PRIMEVAL_ENCOUNTER_CONTROLLER.new() as PrimevalEncounterController
 	primeval_encounters.name = "PrimevalEncounters"
 	primeval_encounters.battle = _battle
-	world.add_child(primeval_encounters)
+	encounter_layer.add_child(primeval_encounters)
 	var helios_encounters := HELIOS_ENCOUNTER_CONTROLLER.new() as HeliosEncounterController
 	helios_encounters.name = "HeliosEncounters"
 	helios_encounters.battle = _battle
-	world.add_child(helios_encounters)
+	encounter_layer.add_child(helios_encounters)
 	var frosthold_encounters := FROSTHOLD_ENCOUNTER_CONTROLLER.new() as FrostholdEncounterController
 	frosthold_encounters.name = "FrostholdEncounters"
 	frosthold_encounters.battle = _battle
-	world.add_child(frosthold_encounters)
+	encounter_layer.add_child(frosthold_encounters)
 	var moonpetal_encounters := MOONPETAL_ENCOUNTER_CONTROLLER.new() as MoonpetalEncounterController
 	moonpetal_encounters.name = "MoonpetalEncounters"
 	moonpetal_encounters.battle = _battle
-	world.add_child(moonpetal_encounters)
+	encounter_layer.add_child(moonpetal_encounters)
 	var empyreal_encounters := EMPYREAL_ENCOUNTER_CONTROLLER.new() as EmpyrealEncounterController
 	empyreal_encounters.name = "EmpyrealEncounters"
 	empyreal_encounters.battle = _battle
-	world.add_child(empyreal_encounters)
+	encounter_layer.add_child(empyreal_encounters)
 	_spawn_mansion_clues(world)
 	_spawn_mansion_chapter_interactions(world)
 	_spawn_mansion_save_point(world)
@@ -657,6 +739,22 @@ func _update_camera_limits(force := false) -> void:
 	_sync_boss_marker_visibility(area)
 	if _visual:
 		_visual.set_active_area(StringName(area))
+	if _mansion_foreground:
+		_mansion_foreground.set_active_area(StringName(area))
+	if _town_foreground:
+		_town_foreground.set_active_area(StringName(area))
+	if _asterion_foreground:
+		_asterion_foreground.set_active_area(StringName(area))
+	if _moonpetal_foreground:
+		_moonpetal_foreground.set_active_area(StringName(area))
+	if _empyreal_foreground:
+		_empyreal_foreground.set_active_area(StringName(area))
+	if _frosthold_foreground:
+		_frosthold_foreground.set_active_area(StringName(area))
+	if _primeval_foreground:
+		_primeval_foreground.set_active_area(StringName(area))
+	if _weather_overlay:
+		_weather_overlay.set_active_area(StringName(area))
 	if area == "town":
 		CampaignState.mark_story_flag(&"town_entered")
 	elif area.begins_with("mansion"):
@@ -875,6 +973,7 @@ func _restore_campaign_state() -> void:
 	_update_asterion_control_gate()
 	_update_primeval_nest_gate()
 	_update_primeval_caldera_gate()
+	_update_primeval_canopy_shortcut()
 	_update_helios_clinic_gate()
 	_update_helios_core_gate()
 	_update_frosthold_rune_hall_gate()
@@ -1507,14 +1606,17 @@ func _blocked_cells() -> Dictionary:
 	# Mansion rooms are isolated camera-sized stages. Begin with the entire
 	# 28x18 scenario void blocked and explicitly open only authored floor cells;
 	# point-and-click pathfinding can therefore never route through visual gaps.
+	# The room shells render a four-cell-deep floor across their full width. The
+	# former 6×3 lanes left visible planks unnavigable and made every room feel
+	# like a narrow encounter stage instead of a place to investigate.
 	for y in range(MANSION_SIZE.y):
 		for x in range(MANSION_SIZE.x):
 			blocked[MANSION_ORIGIN + Vector2i(x, y)] = true
-	_open_rect(blocked, MANSION_ORIGIN + Vector2i(1, 4), Vector2i(6, 3))
-	_open_rect(blocked, MANSION_ORIGIN + Vector2i(11, 4), Vector2i(6, 3))
-	_open_rect(blocked, MANSION_ORIGIN + Vector2i(1, 14), Vector2i(6, 3))
-	_open_rect(blocked, MANSION_ORIGIN + Vector2i(11, 14), Vector2i(6, 3))
-	_open_rect(blocked, MANSION_ORIGIN + Vector2i(21, 9), Vector2i(6, 4))
+	_open_rect(blocked, MANSION_ORIGIN + Vector2i(0, 4), Vector2i(8, 4))
+	_open_rect(blocked, MANSION_ORIGIN + Vector2i(10, 4), Vector2i(8, 4))
+	_open_rect(blocked, MANSION_ORIGIN + Vector2i(0, 14), Vector2i(8, 4))
+	_open_rect(blocked, MANSION_ORIGIN + Vector2i(10, 14), Vector2i(8, 4))
+	_open_rect(blocked, MANSION_ORIGIN + Vector2i(20, 9), Vector2i(8, 4))
 	# Furniture footprints remain solid while their neighboring interaction cells
 	# stay reachable.
 	blocked[MANSION_ORIGIN + Vector2i(10, 5)] = true
@@ -1526,31 +1628,32 @@ func _blocked_cells() -> Dictionary:
 		blocked[MANSION_NURSERY_TO_BALLROOM] = true
 	blocked.erase(MANSION_EXIT)
 
-	# Asterion uses the same five-stage layout discipline as the Mansion. Only
-	# authored floor cells are navigable, so mouse movement cannot cross the void.
+	# Asterion's painted rooms visibly expose an eight-wide, four-cell-deep floor.
+	# The former 6x3 encounter lanes made the arrival bay, mess, hydroponics,
+	# medical bay, and control room feel like the same narrow corridor.
 	for y in range(STATION_SIZE.y):
 		for x in range(STATION_SIZE.x):
 			blocked[STATION_ORIGIN + Vector2i(x, y)] = true
-	_open_rect(blocked, STATION_ORIGIN + Vector2i(1, 4), Vector2i(6, 3))
-	_open_rect(blocked, STATION_ORIGIN + Vector2i(11, 4), Vector2i(6, 3))
-	_open_rect(blocked, STATION_ORIGIN + Vector2i(21, 4), Vector2i(6, 3))
-	_open_rect(blocked, STATION_ORIGIN + Vector2i(11, 14), Vector2i(6, 3))
-	_open_rect(blocked, STATION_ORIGIN + Vector2i(21, 14), Vector2i(6, 3))
+	_open_rect(blocked, STATION_ORIGIN + Vector2i(0, 4), Vector2i(8, 4))
+	_open_rect(blocked, STATION_ORIGIN + Vector2i(10, 4), Vector2i(8, 4))
+	_open_rect(blocked, STATION_ORIGIN + Vector2i(20, 4), Vector2i(8, 4))
+	_open_rect(blocked, STATION_ORIGIN + Vector2i(10, 14), Vector2i(8, 4))
+	_open_rect(blocked, STATION_ORIGIN + Vector2i(20, 14), Vector2i(8, 4))
 	if not CampaignState.story_flags.get(&"asterion_station_restored", false):
 		blocked[STATION_HYDRO_TO_CONTROL] = true
 	blocked.erase(STATION_EXIT)
 
-	# Primeval Expanse is five deliberately framed field stages. Only the visible
-	# central trails are walkable; decorative jungle, huts, ruins, and nests are
-	# never treated as point-and-click shortcuts.
+	# Primeval's complete terrain quadrants expose an eight-wide, four-cell-deep
+	# lower trail. The former 6x3 strips turned every biome into the same corridor
+	# despite their distinct settlement, ruins, nest, and caldera compositions.
 	for y in range(PRIMEVAL_SIZE.y):
 		for x in range(PRIMEVAL_SIZE.x):
 			blocked[PRIMEVAL_ORIGIN + Vector2i(x, y)] = true
-	_open_rect(blocked, PRIMEVAL_ORIGIN + Vector2i(1, 4), Vector2i(6, 3))
-	_open_rect(blocked, PRIMEVAL_ORIGIN + Vector2i(11, 4), Vector2i(6, 3))
-	_open_rect(blocked, PRIMEVAL_ORIGIN + Vector2i(21, 4), Vector2i(6, 3))
-	_open_rect(blocked, PRIMEVAL_ORIGIN + Vector2i(11, 14), Vector2i(6, 3))
-	_open_rect(blocked, PRIMEVAL_ORIGIN + Vector2i(21, 14), Vector2i(6, 3))
+	_open_rect(blocked, PRIMEVAL_ORIGIN + Vector2i(0, 4), Vector2i(8, 4))
+	_open_rect(blocked, PRIMEVAL_ORIGIN + Vector2i(10, 4), Vector2i(8, 4))
+	_open_rect(blocked, PRIMEVAL_ORIGIN + Vector2i(20, 4), Vector2i(8, 4))
+	_open_rect(blocked, PRIMEVAL_ORIGIN + Vector2i(10, 14), Vector2i(8, 4))
+	_open_rect(blocked, PRIMEVAL_ORIGIN + Vector2i(20, 14), Vector2i(8, 4))
 	# The desert ruins have a visible central temple approach. Let the party walk
 	# up that aisle instead of colliding with an invisible horizontal strip.
 	_open_rect(blocked, PRIMEVAL_ORIGIN + Vector2i(23, 1), Vector2i(2, 4))
@@ -1560,34 +1663,36 @@ func _blocked_cells() -> Dictionary:
 		blocked[PRIMEVAL_RUINS_TO_CALDERA] = true
 	blocked.erase(PRIMEVAL_EXIT)
 
-	# Helios uses complete authored city quadrants as five discrete JRPG stages.
-	# The navigation strip stays on the foreground walkable plane rather than
-	# pretending the source map's roofs, counters, or landscaping are floor.
+	# Helios uses complete authored city quadrants as five distinct districts.
+	# Eight-by-four floor footprints give every district room for its landmarks,
+	# side terminals, and a route around the central approach without making the
+	# painted roofs, counters, or landscaping traversable.
 	for y in range(HELIOS_SIZE.y):
 		for x in range(HELIOS_SIZE.x):
 			blocked[HELIOS_ORIGIN + Vector2i(x, y)] = true
-	_open_rect(blocked, HELIOS_ORIGIN + Vector2i(1, 4), Vector2i(6, 3))
-	_open_rect(blocked, HELIOS_ORIGIN + Vector2i(11, 4), Vector2i(6, 3))
-	_open_rect(blocked, HELIOS_ORIGIN + Vector2i(21, 4), Vector2i(6, 3))
-	_open_rect(blocked, HELIOS_ORIGIN + Vector2i(11, 14), Vector2i(6, 3))
-	_open_rect(blocked, HELIOS_ORIGIN + Vector2i(21, 14), Vector2i(6, 3))
+	_open_rect(blocked, HELIOS_ORIGIN + Vector2i(0, 4), Vector2i(8, 4))
+	_open_rect(blocked, HELIOS_ORIGIN + Vector2i(10, 4), Vector2i(8, 4))
+	_open_rect(blocked, HELIOS_ORIGIN + Vector2i(20, 4), Vector2i(8, 4))
+	_open_rect(blocked, HELIOS_ORIGIN + Vector2i(10, 14), Vector2i(8, 4))
+	_open_rect(blocked, HELIOS_ORIGIN + Vector2i(20, 14), Vector2i(8, 4))
 	if &"night_phase_inverter" not in CampaignState.owned_inventions:
 		blocked[HELIOS_MARKET_TO_CLINIC] = true
 	if not CampaignState.story_flags.get(&"helios_core_open", false):
 		blocked[HELIOS_TRANSIT_TO_CORE] = true
 	blocked.erase(HELIOS_EXIT)
 
-	# Frosthold keeps the same discrete five-stage grammar, with only the central
-	# snow lanes open. Complete houses, walls, crystals, and ruins remain solid
-	# scenery instead of becoming point-and-click shortcuts through the art.
+	# Frosthold's gate, market, causeway, rune hall, and throne approach each get
+	# a full eight-by-four snow or stone floor footprint. The painted approaches
+	# below extend those footprints where a gate aisle or bridge visibly calls for
+	# it; houses, walls, crystals, and ruins remain solid scenery.
 	for y in range(FROSTHOLD_SIZE.y):
 		for x in range(FROSTHOLD_SIZE.x):
 			blocked[FROSTHOLD_ORIGIN + Vector2i(x, y)] = true
-	_open_rect(blocked, FROSTHOLD_ORIGIN + Vector2i(1, 4), Vector2i(6, 3))
-	_open_rect(blocked, FROSTHOLD_ORIGIN + Vector2i(11, 4), Vector2i(6, 3))
-	_open_rect(blocked, FROSTHOLD_ORIGIN + Vector2i(21, 4), Vector2i(6, 3))
-	_open_rect(blocked, FROSTHOLD_ORIGIN + Vector2i(11, 14), Vector2i(6, 3))
-	_open_rect(blocked, FROSTHOLD_ORIGIN + Vector2i(21, 14), Vector2i(6, 3))
+	_open_rect(blocked, FROSTHOLD_ORIGIN + Vector2i(0, 4), Vector2i(8, 4))
+	_open_rect(blocked, FROSTHOLD_ORIGIN + Vector2i(10, 4), Vector2i(8, 4))
+	_open_rect(blocked, FROSTHOLD_ORIGIN + Vector2i(20, 4), Vector2i(8, 4))
+	_open_rect(blocked, FROSTHOLD_ORIGIN + Vector2i(10, 14), Vector2i(8, 4))
+	_open_rect(blocked, FROSTHOLD_ORIGIN + Vector2i(20, 14), Vector2i(8, 4))
 	# Open the actual painted approaches: gate aisle, two-section crystal bridge,
 	# rune-hall nave, and one side of the occupied throne approach. These branches
 	# make the rooms play differently while keeping every existing transition cell.
@@ -1608,17 +1713,17 @@ func _blocked_cells() -> Dictionary:
 		blocked[FROSTHOLD_CAUSEWAY_TO_THRONE] = true
 	blocked.erase(FROSTHOLD_EXIT)
 
-	# Moonpetal follows the same readable five-room JRPG layout. Only the central
-	# processional lanes are traversable; the complete temple, tree, pond, gate,
-	# and garden islands remain scenery with collision matching their composition.
+	# Moonpetal's gate, court, garden, bell walk, and palace each have an eight by
+	# four courtyard floor. Temples, trees, ponds, gates, and garden islands remain
+	# scenery with collision matching their visible composition.
 	for y in range(MOONPETAL_SIZE.y):
 		for x in range(MOONPETAL_SIZE.x):
 			blocked[MOONPETAL_ORIGIN + Vector2i(x, y)] = true
-	_open_rect(blocked, MOONPETAL_ORIGIN + Vector2i(1, 4), Vector2i(6, 3))
-	_open_rect(blocked, MOONPETAL_ORIGIN + Vector2i(11, 4), Vector2i(6, 3))
-	_open_rect(blocked, MOONPETAL_ORIGIN + Vector2i(21, 4), Vector2i(6, 3))
-	_open_rect(blocked, MOONPETAL_ORIGIN + Vector2i(11, 14), Vector2i(6, 3))
-	_open_rect(blocked, MOONPETAL_ORIGIN + Vector2i(21, 14), Vector2i(6, 3))
+	_open_rect(blocked, MOONPETAL_ORIGIN + Vector2i(0, 4), Vector2i(8, 4))
+	_open_rect(blocked, MOONPETAL_ORIGIN + Vector2i(10, 4), Vector2i(8, 4))
+	_open_rect(blocked, MOONPETAL_ORIGIN + Vector2i(20, 4), Vector2i(8, 4))
+	_open_rect(blocked, MOONPETAL_ORIGIN + Vector2i(10, 14), Vector2i(8, 4))
+	_open_rect(blocked, MOONPETAL_ORIGIN + Vector2i(20, 14), Vector2i(8, 4))
 	# The palace's framed gardens flank the narrow stone avenue. Their old cells
 	# were open, allowing Ben to stand on the blossom bed and raked-stone frame.
 	_block_rect(blocked, MOONPETAL_ORIGIN + Vector2i(21, 14), Vector2i(2, 2))
@@ -1632,17 +1737,18 @@ func _blocked_cells() -> Dictionary:
 		blocked[MOONPETAL_GARDEN_TO_PALACE] = true
 	blocked.erase(MOONPETAL_EXIT)
 
-	# Empyreal Court's floating terraces use the same five-stage topology, with
-	# marble movement lanes matching the visible floor and vertical branches
-	# aligned to the two gravity lifts.
+	# Empyreal's floating terraces use full eight-by-four marble floors, with the
+	# two visible gravity routes retained as connections between the lower and
+	# upper terraces. Offerings, crystals, and the orrery keep their base-cell
+	# collision instead of becoming invisible pass-through scenery.
 	for y in range(EMPYREAL_SIZE.y):
 		for x in range(EMPYREAL_SIZE.x):
 			blocked[EMPYREAL_ORIGIN + Vector2i(x, y)] = true
-	_open_rect(blocked, EMPYREAL_ORIGIN + Vector2i(1, 4), Vector2i(6, 3))
-	_open_rect(blocked, EMPYREAL_ORIGIN + Vector2i(11, 4), Vector2i(6, 3))
-	_open_rect(blocked, EMPYREAL_ORIGIN + Vector2i(21, 4), Vector2i(6, 3))
-	_open_rect(blocked, EMPYREAL_ORIGIN + Vector2i(11, 14), Vector2i(6, 3))
-	_open_rect(blocked, EMPYREAL_ORIGIN + Vector2i(21, 14), Vector2i(6, 3))
+	_open_rect(blocked, EMPYREAL_ORIGIN + Vector2i(0, 4), Vector2i(8, 4))
+	_open_rect(blocked, EMPYREAL_ORIGIN + Vector2i(10, 4), Vector2i(8, 4))
+	_open_rect(blocked, EMPYREAL_ORIGIN + Vector2i(20, 4), Vector2i(8, 4))
+	_open_rect(blocked, EMPYREAL_ORIGIN + Vector2i(10, 14), Vector2i(8, 4))
+	_open_rect(blocked, EMPYREAL_ORIGIN + Vector2i(20, 14), Vector2i(8, 4))
 	_open_rect(blocked, EMPYREAL_ORIGIN + Vector2i(13, 11), Vector2i(2, 4))
 	_open_rect(blocked, EMPYREAL_ORIGIN + Vector2i(23, 11), Vector2i(2, 4))
 	# Low offerings, the Aerie anchor crystal, and the Tribunal orrery occupy the
@@ -2158,6 +2264,7 @@ func _on_campaign_state_changed() -> void:
 	_update_asterion_control_gate()
 	_update_primeval_nest_gate()
 	_update_primeval_caldera_gate()
+	_update_primeval_canopy_shortcut()
 	_update_helios_clinic_gate()
 	_update_helios_core_gate()
 	_update_frosthold_rune_hall_gate()
@@ -2226,6 +2333,16 @@ func _update_primeval_caldera_gate() -> void:
 		PRIMEVAL_CALDERA_RETURN,
 		PRIMEVAL_RUINS_FROM_CALDERA
 	)
+
+
+func _update_primeval_canopy_shortcut() -> void:
+	if not CampaignState.story_flags.get(&"primeval_terminal_decoded", false):
+		return
+	var world := get_node_or_null("Field/Map/CampaignWorld")
+	if not world or world.has_node("PrimevalGroveCanopyShortcut") or not CampaignState.story_flags.get(&"primeval_anchor_built", false):
+		return
+	world.add_child(_create_transition("PrimevalGroveCanopyShortcut", PRIMEVAL_GROVE_CANOPY_SHORTCUT, PRIMEVAL_NEST_CANOPY_SHORTCUT))
+	world.add_child(_create_transition("PrimevalNestCanopyShortcut", PRIMEVAL_NEST_CANOPY_SHORTCUT, PRIMEVAL_GROVE_CANOPY_SHORTCUT))
 
 
 func _update_primeval_gate(cell: Vector2i, flag: StringName, forward_name: String, forward_arrival: Vector2i, return_name: String, return_cell: Vector2i, return_arrival: Vector2i) -> void:
@@ -2406,6 +2523,10 @@ func _update_asterion_control_gate() -> void:
 		return
 	world.add_child(_create_transition("StationHydroToControl", STATION_HYDRO_TO_CONTROL, STATION_CONTROL_FROM_HYDRO))
 	world.add_child(_create_transition("StationControlToHydro", STATION_CONTROL_RETURN, STATION_HYDRO_FROM_CONTROL))
+	# The restored maintenance lift is a regular service route rather than an
+	# invisible return trigger: both endpoints sit on painted, expanded floors.
+	world.add_child(_create_transition("StationDockServiceShortcut", STATION_DOCK_SERVICE_SHORTCUT, STATION_MEDICAL_SERVICE_SHORTCUT))
+	world.add_child(_create_transition("StationMedicalServiceShortcut", STATION_MEDICAL_SERVICE_SHORTCUT, STATION_DOCK_SERVICE_SHORTCUT))
 
 
 func _update_mansion_passage() -> void:
@@ -2429,6 +2550,8 @@ func _update_mansion_passage() -> void:
 	world.add_child(_create_transition("MansionGalleryToArchive", MANSION_GALLERY_RETURN, MANSION_ARCHIVE_FROM_GALLERY))
 	world.add_child(_create_transition("MansionGalleryToNursery", MANSION_GALLERY_TO_NURSERY, MANSION_NURSERY_FROM_GALLERY))
 	world.add_child(_create_transition("MansionNurseryToGallery", MANSION_NURSERY_RETURN, MANSION_GALLERY_FROM_NURSERY))
+	world.add_child(_create_transition("MansionFoyerServiceShortcut", MANSION_FOYER_SHORTCUT, MANSION_GALLERY_SHORTCUT))
+	world.add_child(_create_transition("MansionGalleryServiceShortcut", MANSION_GALLERY_SHORTCUT, MANSION_FOYER_SHORTCUT))
 
 
 func _update_mansion_ballroom_gate() -> void:

@@ -22,7 +22,7 @@ func _run() -> void:
 	player.position = Gameboard.cell_to_pixel(main.TOWN_ARRIVAL)
 	player.rest_position = player.position
 	var editor := main.get_node("SandboxTownEditor")
-	var renderer := main.get_node("Field/Map/CampaignWorld/SandboxTownObjects")
+	var renderer := main.get_node("Field/Map/CampaignWorld/LowDecorationLayer/SandboxTownObjects")
 	editor.suppress_persistence = true
 	if CATALOG.PACK_ORDER.size() != 5 or CATALOG.ITEMS.size() < 34:
 		_fail("Catalog did not preserve the five source packs and individual entries")

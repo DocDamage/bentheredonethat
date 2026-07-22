@@ -10,7 +10,7 @@ func _ready() -> void:
 	for _frame in range(10):
 		await get_tree().process_frame
 	main.get_node("Field/Map/CampaignWorld/TownBuildController").hide()
-	var manager = main.get_node("Field/Map/CampaignWorld/TownResidents")
+	var manager = main.get_node("Field/Map/CampaignWorld/YSortedActorsAndProps/TownResidents")
 	for resident_id in manager.residents.keys():
 		var gamepiece: Gamepiece = manager.residents[resident_id]["gamepiece"]
 		var current := GamepieceRegistry.get_cell(gamepiece)

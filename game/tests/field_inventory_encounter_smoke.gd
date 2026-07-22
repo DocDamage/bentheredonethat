@@ -70,7 +70,7 @@ func _run() -> void:
 	menu.close_menu()
 
 	var world: Node = main.get_node("Field/Map/CampaignWorld")
-	var controller := world.get_node("MansionEncounters") as MansionEncounterController
+	var controller := world.get_node("EncounterLayer/MansionEncounters") as MansionEncounterController
 	var battle := main.get_node("CampaignBattle") as CampaignBattle
 	controller.suppress_persistence = true
 	battle.suppress_persistence = true

@@ -10,14 +10,14 @@ func _configure_region() -> void:
 
 
 func _scripted_encounter(local: Vector2i) -> StringName:
-	if Rect2i(1, 4, 6, 3).has_point(local) and not CampaignState.story_flags.get(&"helios_skybridge_cleared", false): return &"helios_skybridge_intro"
-	if Rect2i(11, 14, 6, 3).has_point(local) and not CampaignState.story_flags.get(&"helios_clinic_ambush_cleared", false): return &"helios_clinic_ambush"
-	if Rect2i(21, 14, 6, 3).has_point(local) and local.x >= 23 and CampaignState.story_flags.get(&"helios_core_open", false) and not CampaignState.story_flags.get(&"helios_scenario_complete", false): return &"helios_civic_sun"
+	if Rect2i(0, 4, 8, 4).has_point(local) and not CampaignState.story_flags.get(&"helios_skybridge_cleared", false): return &"helios_skybridge_intro"
+	if Rect2i(10, 14, 8, 4).has_point(local) and not CampaignState.story_flags.get(&"helios_clinic_ambush_cleared", false): return &"helios_clinic_ambush"
+	if Rect2i(20, 14, 8, 4).has_point(local) and local.x >= 23 and CampaignState.story_flags.get(&"helios_core_open", false) and not CampaignState.story_flags.get(&"helios_scenario_complete", false): return &"helios_civic_sun"
 	return &""
 
 
 func _is_danger_region(local: Vector2i) -> bool:
-	return Rect2i(11, 4, 6, 3).has_point(local) or Rect2i(21, 4, 6, 3).has_point(local) or Rect2i(11, 14, 6, 3).has_point(local)
+	return Rect2i(10, 4, 8, 4).has_point(local) or Rect2i(20, 4, 8, 4).has_point(local) or Rect2i(10, 14, 8, 4).has_point(local)
 
 
 func _random_encounter(local: Vector2i) -> StringName:

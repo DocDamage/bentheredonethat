@@ -3,6 +3,8 @@ extends Node2D
 
 const TILE := 48
 const TERRAIN_CATALOG := preload("res://ben_rpg/world/sandbox_terrain_catalog.gd")
+const SANDBOX_VISUAL_RESOLVER := preload("res://ben_rpg/world/sandbox_visual_resolver.gd")
+const VISUAL_PROFILE_REGISTRY := preload("res://ben_rpg/world/campaign_visual_profile_registry.gd")
 const TOWN_ORIGIN := Vector2i(36, 0)
 const LAB_SIZE := Vector2i(20, 12)
 const TOWN_SIZE := Vector2i(32, 28)
@@ -52,6 +54,14 @@ const FACILITY_CROPS := {
 	"Cold Storage": Rect2(29, 198, 182, 240),
 	"Tea House": Rect2(572, 802, 220, 165),
 }
+const FACILITY_PROFILE_IDS := {
+	"Cafe": &"town_cafe_facade",
+	"Clinic": &"town_clinic_facade",
+	"Armory": &"town_armory_facade",
+	"Trailhead Lodge": &"town_trailhead_lodge_facade",
+	"Cold Storage": &"town_cold_storage_facade",
+	"Tea House": &"town_tea_house_facade",
+}
 const FACILITY_SCALES := {
 	"Cafe": 2.0,
 	"Library": 2.0,
@@ -81,17 +91,13 @@ const FACILITY_DOOR_X := {
 	"Tea House": 110.0,
 	"Belfry": 112.0,
 }
-const LAB_EXTERIOR_CROP := Rect2(672, 5, 96, 91)
-const LAB_EXTERIOR_DRAW_SIZE := Vector2(192, 182)
 const HAUNTED_EXTERIOR_CROP := Rect2(384, 0, 240, 160)
 
 var lab_wall: Texture2D
 var lab_utility: Texture2D
 var lab_props: Texture2D
 var lab_doors: Texture2D
-var ground: Texture2D
 var town_ground: Texture2D
-var trees: Texture2D
 var town_structures: Texture2D
 var library_facade: Texture2D
 var haunted_exterior: Texture2D
@@ -99,39 +105,15 @@ var haunted_interior: Texture2D
 var haunted_storage: Texture2D
 var haunted_bedroom: Texture2D
 var station_architecture: Texture2D
-var station_mess: Texture2D
-var station_hydro: Texture2D
-var station_command: Texture2D
-var station_general: Texture2D
-var station_exterior: Texture2D
-var station_medical: Texture2D
 var primeval_ground: Texture2D
 var primeval_structures: Texture2D
-var primeval_props: Texture2D
-var primeval_trees: Texture2D
-var primeval_ruins: Texture2D
-var primeval_nests: Texture2D
 var helios_city: Texture2D
 var helios_services: Texture2D
 var helios_structures: Texture2D
 var nightclub_signs: Texture2D
 var frozen_ground: Texture2D
 var frozen_houses: Texture2D
-var frozen_castle: Texture2D
-var frozen_crystals: Texture2D
-var frozen_ruins: Texture2D
-var frozen_runes: Texture2D
-var frozen_trees: Texture2D
-var frozen_bridges: Texture2D
-var frozen_market: Texture2D
-var frozen_torches: Texture2D
-var sakura_floor: Texture2D
 var sakura_temple: Texture2D
-var sakura_trees: Texture2D
-var sakura_gates: Texture2D
-var sakura_gardens: Texture2D
-var sakura_water: Texture2D
-var sakura_lanterns: Texture2D
 var sakura_paths: Texture2D
 var empyreal_floor: Texture2D
 var empyreal_columns: Texture2D
@@ -148,59 +130,39 @@ var build_mode := false
 var selected_plot := 0
 var active_area: StringName = &"lab"
 var _terrain_texture_cache: Dictionary = {}
+var _sandbox_visuals = SANDBOX_VISUAL_RESOLVER.new()
+var visual_profiles
 
 
 func _ready() -> void:
 	texture_filter = CanvasItem.TEXTURE_FILTER_NEAREST
-	lab_wall = load("res://game_assets/Tilesets/Modern Laboratory Pixel Art Tileset Pack/1.png")
-	lab_utility = load("res://game_assets/Tilesets/Modern Laboratory Pixel Art Tileset Pack/2.png")
-	lab_props = load("res://game_assets/Tilesets/Modern Laboratory Pixel Art Tileset Pack/3.png")
-	lab_doors = load("res://game_assets/Tilesets/Modern Laboratory Pixel Art Tileset Pack/4.png")
-	ground = load("res://game_assets/Tilesets/Ranch Stuff/assets/tiles/ground_01_16x16.png")
-	town_ground = load("res://game_assets/Tilesets/Modern World Overworld Pixel Tileset/2.png")
-	trees = load("res://game_assets/Tilesets/Ranch Stuff/assets/tiles/tree_01_16x16.png")
-	town_structures = load("res://game_assets/Tilesets/Modern World Overworld Pixel Tileset/3.png")
+	visual_profiles = VISUAL_PROFILE_REGISTRY.new()
+	# Laboratory profiles are the source-of-truth for both approved crop metadata
+	# and runtime asset paths. The individual room draw calls can now migrate
+	# one crop at a time without reintroducing path literals here.
+	lab_wall = visual_profiles.texture(&"laboratory_floor_tile")
+	lab_utility = visual_profiles.texture(&"laboratory_utility_bank")
+	lab_props = visual_profiles.texture(&"laboratory_analysis_station")
+	lab_doors = visual_profiles.texture(&"laboratory_exit_doors")
+	town_ground = visual_profiles.texture(&"town_grass_tile")
+	town_structures = visual_profiles.texture(&"town_cafe_facade")
 	library_facade = _slice_sample_facade(town_structures, FACILITY_CROPS["Library"])
-	haunted_exterior = load("res://game_assets/Tilesets/Haunted Mansion Pixel Art Tileset Pack/1.png")
-	haunted_interior = load("res://game_assets/Tilesets/Haunted Mansion Pixel Art Tileset Pack/2.png")
-	haunted_bedroom = load("res://game_assets/Tilesets/Haunted Mansion Pixel Art Tileset Pack/3.png")
-	haunted_storage = load("res://game_assets/Tilesets/Haunted Mansion Pixel Art Tileset Pack/4.png")
+	haunted_exterior = visual_profiles.texture(&"haunted_mansion_exterior")
+	haunted_interior = visual_profiles.texture(&"mansion_archive_cabinet")
+	haunted_bedroom = visual_profiles.texture(&"mansion_nursery_bed")
+	haunted_storage = visual_profiles.texture(&"mansion_archive_shelving")
 	station_architecture = load("res://game_assets/Tilesets/Sci-Fi Spaceship Interior Tileset Pack/1.png")
-	station_mess = load("res://game_assets/Tilesets/Sci-Fi Spaceship Interior Tileset Pack/2.png")
-	station_hydro = load("res://game_assets/Tilesets/Sci-Fi Spaceship Interior Tileset Pack/3.png")
-	station_command = load("res://game_assets/Tilesets/Sci-Fi Spaceship Interior Tileset Pack/6.png")
-	station_general = load("res://game_assets/Tilesets/Sci-Fi Spaceship Interior Tileset Pack/7.png")
-	station_exterior = load("res://game_assets/Tilesets/Sci-Fi Spaceship Interior Tileset Pack/8.png")
-	station_medical = load("res://game_assets/Tilesets/Sci-Fi Spaceship Interior Tileset Pack/10.png")
-	primeval_ground = load("res://game_assets/Tilesets/Stone Age Modern Life Pixel Art Tileset Pack/9.png")
-	primeval_structures = load("res://game_assets/Tilesets/Stone Age Modern Life Pixel Art Tileset Pack/1.png")
-	primeval_props = load("res://game_assets/Tilesets/Stone Age Modern Life Pixel Art Tileset Pack/7.png")
-	primeval_trees = load("res://game_assets/Tilesets/Jurassic world/Jurassic World Pixel Art Megapack/7. Tropical trees and ferns.png")
-	primeval_ruins = load("res://game_assets/Tilesets/Jurassic world/Jurassic World Pixel Art Megapack/19. Modular jungle ruins.png")
-	primeval_nests = load("res://game_assets/Tilesets/Jurassic world/Jurassic World Pixel Art Megapack/11. Dinosaur nests and eggs.png")
-	helios_city = load("res://game_assets/Tilesets/Bright Cyberpunk Pixel Art Tileset Pack/1.png")
-	helios_services = load("res://game_assets/Tilesets/Bright Cyberpunk Pixel Art Tileset Pack/5.png")
-	helios_structures = load("res://game_assets/Tilesets/Bright Cyberpunk Pixel Art Tileset Pack/3.png")
-	nightclub_signs = load("res://game_assets/Tilesets/Modern Bar & Nightclub Pixel Art Tileset Pack/4.png")
-	frozen_ground = load("res://game_assets/Tilesets/Frozen kingdom/Frozen Kingdom – Top-Down Pixel Art Asset Pack/1. Snow ground tiles.png")
-	frozen_houses = load("res://game_assets/Tilesets/Frozen kingdom/Frozen Kingdom – Top-Down Pixel Art Asset Pack/7. Nordic wooden houses.png")
-	frozen_castle = load("res://game_assets/Tilesets/Frozen kingdom/Frozen Kingdom – Top-Down Pixel Art Asset Pack/5. Ice castle walls.png")
-	frozen_crystals = load("res://game_assets/Tilesets/Frozen kingdom/Frozen Kingdom – Top-Down Pixel Art Asset Pack/9. Crystal formations.png")
-	frozen_ruins = load("res://game_assets/Tilesets/Frozen kingdom/Frozen Kingdom – Top-Down Pixel Art Asset Pack/13. Frozen ruins.png")
-	frozen_runes = load("res://game_assets/Tilesets/Frozen kingdom/Frozen Kingdom – Top-Down Pixel Art Asset Pack/14. Magical runes.png")
-	frozen_trees = load("res://game_assets/Tilesets/Frozen kingdom/Frozen Kingdom – Top-Down Pixel Art Asset Pack/10. Frozen Trees and pines.png")
-	frozen_bridges = load("res://game_assets/Tilesets/Frozen kingdom/Frozen Kingdom – Top-Down Pixel Art Asset Pack/8. Icy bridges.png")
-	frozen_market = load("res://game_assets/Tilesets/Frozen kingdom/Frozen Kingdom – Top-Down Pixel Art Asset Pack/16. Frozen market stalls.png")
-	frozen_torches = load("res://game_assets/Tilesets/Frozen kingdom/Frozen Kingdom – Top-Down Pixel Art Asset Pack/12. Torches and blue flames.png")
-	sakura_floor = load("res://game_assets/Tilesets/Sakura Temple Asset Pack/Floor tiles.png")
-	sakura_temple = load("res://game_assets/Tilesets/Sakura Temple Asset Pack/temple building parts.png")
-	sakura_trees = load("res://game_assets/Tilesets/Sakura Temple Asset Pack/Sakura trees.png")
-	sakura_gates = load("res://game_assets/Tilesets/Sakura Temple Asset Pack/Shrine Gates.png")
-	sakura_gardens = load("res://game_assets/Tilesets/Sakura Temple Asset Pack/Decorative framed garden tiles.png")
-	sakura_water = load("res://game_assets/Tilesets/Sakura Temple Asset Pack/Water and ponds.png")
-	sakura_lanterns = load("res://game_assets/Tilesets/Sakura Temple Asset Pack/Lanterns and lights.png")
-	sakura_paths = load("res://game_assets/Tilesets/Sakura Temple Asset Pack/Stone patchs and walkways.png")
-	empyreal_clouds = load("res://game_assets/Tilesets/Flying Islands/PNG/Sliced/sky_clouds.png")
+	primeval_ground = visual_profiles.texture(&"primeval_ground_quadrant")
+	primeval_structures = visual_profiles.texture(&"primeval_village_dwelling")
+	helios_city = visual_profiles.texture(&"helios_skybridge_quadrant")
+	helios_services = visual_profiles.texture(&"helios_market_quadrant")
+	helios_structures = visual_profiles.texture(&"helios_observatory_facade")
+	nightclub_signs = visual_profiles.texture(&"afterlight_club_sign")
+	frozen_ground = visual_profiles.texture(&"frosthold_snow_ground_tile")
+	frozen_houses = visual_profiles.texture(&"frosthold_market_house")
+	sakura_temple = visual_profiles.texture(&"moonpetal_court_temple")
+	sakura_paths = visual_profiles.texture(&"moonpetal_processional_path")
+	empyreal_clouds = visual_profiles.texture(&"empyreal_sky_cloud_bank")
 	for slice_name in ["marble_plain", "marble_cracked", "marble_silver", "marble_gold", "marble_gold_quarter", "pediment_door", "tribunal_gate", "blue_balustrade", "winged_statue", "horse_statue", "griffin_statue", "justice_statue", "music_statue", "silver_olive_tree", "golden_olive_tree", "appeal_fountain", "ordinance_book", "reliquary_portal", "gravity_crystal", "tribunal_orrery", "celestial_flame", "plain_column", "blue_column", "flower_offering", "fruit_offering", "crystal_altar", "lotus_altar", "belfry_facade", "belfry_building"]:
 		empyreal_slices[slice_name] = load("res://game_assets/Tilesets/Ancient Greek Mythology/Sliced/%s.png" % slice_name)
 	if not CampaignState.town_terrain_changed.is_connected(_on_town_terrain_changed):
@@ -238,6 +200,9 @@ func _slice_sample_facade(texture: Texture2D, source: Rect2) -> Texture2D:
 
 
 func _draw() -> void:
+	# An area transition owns the visible field. Rendering every universe into a
+	# single canvas was needlessly expensive and also made an accidental camera
+	# limit leak reveal neighbouring rooms. Each area function now opts in below.
 	draw_laboratory()
 	draw_town()
 	draw_haunted_mansion()
@@ -250,6 +215,8 @@ func _draw() -> void:
 
 
 func draw_laboratory() -> void:
+	if active_area != &"lab":
+		return
 	for y in range(LAB_SIZE.y):
 		for x in range(LAB_SIZE.x):
 			var source := Rect2(192, 0, 48, 48) if y <= 2 else Rect2(0, 0, 48, 48)
@@ -280,6 +247,8 @@ func draw_laboratory() -> void:
 
 
 func draw_town() -> void:
+	if active_area != &"town":
+		return
 	var offset := Vector2(TOWN_ORIGIN * TILE)
 	for y in range(TOWN_SIZE.y):
 		for x in range(TOWN_SIZE.x):
@@ -291,20 +260,9 @@ func draw_town() -> void:
 	_draw_terrain_overrides()
 	if not CampaignState.sandbox_mode:
 		_draw_facility_approaches(offset)
-	# Campaign mode keeps its authored laboratory and construction plots. Sandbox
-	# mode represents the laboratory and trees as persistent editor objects, so
-	# they can be selected and relocated instead of being baked into this layer.
-	if not CampaignState.sandbox_mode:
-		# The source atlas places three industrial buildings side by side. Crop only
-		# the blue warehouse's authored 96px cell, then enlarge at an exact 2x scale.
-		var lab_size := LAB_EXTERIOR_DRAW_SIZE
-		var lab_center_x := offset.x + 14 * TILE
-		var lab_destination := Rect2(
-			Vector2(lab_center_x - lab_size.x * 0.5, offset.y + 7 * TILE - lab_size.y),
-			lab_size
-		)
-		draw_rect(Rect2(lab_destination.position + Vector2(7, lab_destination.size.y - 14), Vector2(lab_destination.size.x - 14, 18)), Color(0.04, 0.07, 0.04, 0.28), true)
-		tile(town_structures, LAB_EXTERIOR_CROP, lab_destination)
+	# Campaign mode keeps its authored construction plots here. The laboratory
+	# façade and landmark trees are now independently rendered in ForegroundLayer
+	# so actors can pass behind them; sandbox owns its editable town objects.
 	# These are deliberately empty construction sites, integrated into the map
 	# instead of editor windows that cover it.
 	if not CampaignState.sandbox_mode:
@@ -323,11 +281,6 @@ func draw_town() -> void:
 				draw_dashed_line(plot.position + Vector2(0, plot.size.y), plot.end, border, 3.0 if build_mode and selected_plot == plot_index else 2.0, 10.0)
 				draw_dashed_line(plot.position, plot.position + Vector2(0, plot.size.y), border, 3.0 if build_mode and selected_plot == plot_index else 2.0, 10.0)
 				draw_dashed_line(plot.position + Vector2(plot.size.x, 0), plot.end, border, 3.0 if build_mode and selected_plot == plot_index else 2.0, 10.0)
-		for entry in [[2, 2, false], [29, 3, true], [3, 20, true], [30, 20, false]]:
-			var source := Rect2(32, 0, 48, 64) if entry[2] else Rect2(0, 0, 32, 48)
-			var size := Vector2(96, 128) if entry[2] else Vector2(64, 96)
-			var center := offset + Vector2(entry[0], entry[1]) * TILE
-			tile(trees, source, Rect2(center - Vector2(size.x * 0.5, size.y * 0.75), size))
 		_draw_town_state_overlay(offset)
 
 
@@ -337,13 +290,13 @@ func _draw_terrain_overrides() -> void:
 		var definition: Dictionary = TERRAIN_CATALOG.definition(brush_id)
 		if definition.is_empty():
 			continue
-		var texture_path := String(definition.get("texture", ""))
+		var texture_path := _sandbox_visuals.texture_path(definition)
 		if not ResourceLoader.exists(texture_path):
 			continue
 		if not _terrain_texture_cache.has(texture_path):
 			_terrain_texture_cache[texture_path] = load(texture_path)
 		var texture := _terrain_texture_cache[texture_path] as Texture2D
-		var source: Rect2 = definition.get("region", Rect2(Vector2.ZERO, texture.get_size()))
+		var source: Rect2 = _sandbox_visuals.region(definition, texture)
 		tile(texture, source, Rect2(Vector2(cell * TILE), Vector2(TILE, TILE)))
 
 
@@ -432,6 +385,16 @@ func _draw_facility(plot: Rect2, facility_name: String) -> void:
 	var authored_scale: float = FACILITY_SCALES.get(facility_name, 1.0)
 	var destination_size: Vector2 = source.size * authored_scale
 	var door_x: float = float(FACILITY_DOOR_X.get(facility_name, source.size.x * 0.5)) * authored_scale
+	var profile_id: StringName = FACILITY_PROFILE_IDS.get(facility_name, &"")
+	if profile_id != &"":
+		texture = visual_profiles.texture(profile_id)
+		source = visual_profiles.region(profile_id)
+		destination_size = visual_profiles.world_draw_size(profile_id)
+		door_x = visual_profiles.doorway(profile_id).x
+	elif facility_name == "Haunted Mansion":
+		source = visual_profiles.region(&"haunted_mansion_exterior")
+		destination_size = visual_profiles.world_draw_size(&"haunted_mansion_exterior")
+		door_x = visual_profiles.doorway(&"haunted_mansion_exterior").x
 	var destination := Rect2(
 		Vector2(roundf(plot.get_center().x - door_x), roundf(plot.end.y - destination_size.y - 8)),
 		destination_size
@@ -538,92 +501,63 @@ func get_plot_at_canvas_position(canvas_position: Vector2) -> int:
 
 
 func draw_haunted_mansion() -> void:
+	if not active_area.begins_with("mansion"):
+		return
 	var offset := Vector2(MANSION_ORIGIN * TILE)
-	var mansion_rect := Rect2(offset, Vector2(MANSION_SIZE * TILE))
-	draw_rect(mansion_rect, Color(0.025, 0.021, 0.028), true)
-	# The old foyer was a full showcase panel with a ghost, mixed wood/stone floor,
-	# wardrobe, shelf, and door baked together. Build one clean room shell, then
-	# place only complete transparent furniture islands at native scale.
-	_draw_mansion_room_shell(offset, false)
-	tile(haunted_interior, Rect2(392, 2, 80, 95), Rect2(offset + Vector2(20, 18), Vector2(80, 95)))
-	tile(haunted_interior, Rect2(388, 110, 184, 83), Rect2(offset + Vector2(100, 26), Vector2(184, 83)))
-	# The stopped clock's authored island sits within the staircase grouping but
-	# this measured crop contains only the clock. (584,105) is a chandelier.
-	# Seat the clock's base on the wall/floor threshold. Its old y=116 placement
-	# extended almost a full movement cell into the walkable floor.
-	tile(haunted_interior, Rect2(592, 268, 64, 118), Rect2(offset + Vector2(216, 74), Vector2(64, 118)))
-	draw_rect(Rect2(offset + Vector2(3 * TILE, 7 * TILE), Vector2(2 * TILE, TILE)), Color(0.36, 0.24, 0.16, 0.32), true)
+	var room_offsets := {
+		&"mansion_foyer": Vector2i.ZERO,
+		&"mansion_archive": MANSION_ARCHIVE_OFFSET,
+		&"mansion_gallery": MANSION_GALLERY_OFFSET,
+		&"mansion_nursery": MANSION_NURSERY_OFFSET,
+		&"mansion_ballroom": MANSION_BALLROOM_OFFSET,
+	}
+	var active_room_offset := offset + Vector2(room_offsets.get(active_area, Vector2i.ZERO) * TILE)
+	draw_rect(Rect2(active_room_offset, Vector2(8 * TILE, 8 * TILE)), Color(0.025, 0.021, 0.028), true)
+	match active_area:
+		&"mansion_foyer": _draw_mansion_foyer(offset)
+		&"mansion_archive": _draw_mansion_archive(offset)
+		&"mansion_gallery": _draw_mansion_gallery(offset)
+		&"mansion_nursery": _draw_mansion_nursery(offset)
+		&"mansion_ballroom": _draw_mansion_ballroom(offset)
 
-	# The servants' archive is authored from repeatable clean wall/floor patches,
-	# then furnished with isolated alpha crops from pack 4. It is not another
-	# precomposed atlas panel, so props can become independent game objects later.
-	var archive_offset := offset + Vector2(MANSION_ARCHIVE_OFFSET * TILE)
+
+func _draw_mansion_foyer(room_offset: Vector2) -> void:
+	_draw_mansion_room_shell(room_offset, false)
+	tile(haunted_interior, Rect2(392, 2, 80, 95), Rect2(room_offset + Vector2(20, 18), Vector2(80, 95)))
+	tile(haunted_interior, Rect2(388, 110, 184, 83), Rect2(room_offset + Vector2(100, 26), Vector2(184, 83)))
+	tile(haunted_interior, Rect2(592, 268, 64, 118), Rect2(room_offset + Vector2(216, 74), Vector2(64, 118)))
+	draw_rect(Rect2(room_offset + Vector2(3 * TILE, 7 * TILE), Vector2(2 * TILE, TILE)), Color(0.36, 0.24, 0.16, 0.32), true)
+
+
+func _draw_mansion_archive(offset: Vector2) -> void:
+	var room_offset := offset + Vector2(MANSION_ARCHIVE_OFFSET * TILE)
 	for y in range(4):
 		for x in range(8):
-			var source := Rect2(0, 0, 48, 48)
-			if (x + y) % 3 == 0:
-				source = Rect2(48, 0, 48, 48)
-			tile(haunted_interior, source, Rect2(archive_offset + Vector2(x, y) * TILE, Vector2(TILE, TILE)))
-	_draw_mansion_plank_floor(archive_offset)
-	# Storage fixtures are individual atlas islands, placed at their native size.
-	tile(haunted_storage, Rect2(0, 0, 190, 180), Rect2(archive_offset + Vector2(0, 0), Vector2(190, 180)))
-	tile(haunted_storage, Rect2(190, 0, 190, 176), Rect2(archive_offset + Vector2(4 * TILE, 0), Vector2(190, 176)))
-	# Do not stamp smaller crops taken from those same crate islands over the floor.
-	# That duplicated the upper-left crates and produced visibly intersecting boxes.
-	# Matching passage doors sit on the room edges at a character-relative size.
-	# Their former 88x96 placement covered the clock puzzle and read as a giant
-	# foreground prop instead of architecture.
-	var passage_size := Vector2(66, 72)
-	tile(haunted_storage, Rect2(296, 672, 88, 96), Rect2(offset + Vector2(6.6, 2.65) * TILE, passage_size))
-	tile(haunted_storage, Rect2(296, 672, 88, 96), Rect2(archive_offset + Vector2(0.05, 2.65) * TILE, passage_size))
-	# A second clock is the scenario's save/restore anchor.
-	tile(haunted_interior, Rect2(592, 268, 64, 118), Rect2(archive_offset + Vector2(2.35, 1.55) * TILE, Vector2(64, 118)))
+			var source := Rect2(48, 0, 48, 48) if (x + y) % 3 == 0 else Rect2(0, 0, 48, 48)
+			tile(haunted_interior, source, Rect2(room_offset + Vector2(x, y) * TILE, Vector2(TILE, TILE)))
+	_draw_mansion_plank_floor(room_offset)
 
-	# The atlas's lower-left 384px panel is a material sampler, not one authored
-	# room: it contains wood, cracked stone, blood, and broken-wall examples in
-	# adjoining quadrants. Build a consistent shell and furnish it with isolated
-	# sprites instead of presenting those sampler boundaries as overlapping tiles.
-	var gallery_offset := offset + Vector2(MANSION_GALLERY_OFFSET * TILE)
-	_draw_mansion_room_shell(gallery_offset, false)
-	# Two intact bookcases frame four separately cut family portraits. None of
-	# these regions crosses into its neighbour on the storage atlas.
-	tile(haunted_storage, Rect2(194, 5, 91, 137), Rect2(gallery_offset + Vector2(18, 14), Vector2(91, 137)))
-	tile(haunted_storage, Rect2(291, 5, 91, 137), Rect2(gallery_offset + Vector2(275, 14), Vector2(91, 137)))
-	tile(haunted_storage, Rect2(681, 386, 37, 43), Rect2(gallery_offset + Vector2(126, 44), Vector2(37, 43)))
-	tile(haunted_storage, Rect2(721, 386, 46, 43), Rect2(gallery_offset + Vector2(210, 44), Vector2(46, 43)))
-	tile(haunted_storage, Rect2(678, 440, 36, 41), Rect2(gallery_offset + Vector2(128, 99), Vector2(36, 41)))
-	tile(haunted_storage, Rect2(726, 431, 37, 50), Rect2(gallery_offset + Vector2(214, 93), Vector2(37, 50)))
-	# One complete horizontal rug anchors the investigation area without covering
-	# either doorway or being cut by the room material seams.
-	tile(haunted_interior, Rect2(423, 679, 210, 82), Rect2(gallery_offset + Vector2(87, 221), Vector2(210, 82)))
 
-	# Bedroom sheet 3 contains props on transparency, so the nursery gets a
-	# clean native-grid shell first and only isolated furniture is layered over it.
-	var nursery_offset := offset + Vector2(MANSION_NURSERY_OFFSET * TILE)
-	_draw_mansion_room_shell(nursery_offset, true)
-	# These two 190px authored bedroom bays were previously placed only 180px
-	# apart, creating a real 10px overlap through the bedposts and wall dressing.
-	# Preserve their source-sheet two-pixel gutter in the room as well.
-	tile(haunted_bedroom, Rect2(0, 0, 190, 190), Rect2(nursery_offset + Vector2(1, 2), Vector2(190, 190)))
-	tile(haunted_bedroom, Rect2(192, 0, 190, 190), Rect2(nursery_offset + Vector2(193, 2), Vector2(190, 190)))
-	tile(haunted_storage, Rect2(583, 69, 46, 66), Rect2(nursery_offset + Vector2(5.85, 2.35) * TILE, Vector2(46, 66)))
-	tile(haunted_bedroom, Rect2(579, 302, 56, 78), Rect2(nursery_offset + Vector2(1.1, 2.15) * TILE, Vector2(56, 78)))
+func _draw_mansion_gallery(offset: Vector2) -> void:
+	var room_offset := offset + Vector2(MANSION_GALLERY_OFFSET * TILE)
+	_draw_mansion_room_shell(room_offset, false)
 
-	# The final room uses the same architectural material language, but furniture
-	# from the foyer sheet makes it read as a ballroom rather than another bedroom.
-	var ballroom_offset := offset + Vector2(MANSION_BALLROOM_OFFSET * TILE)
-	_draw_mansion_room_shell(ballroom_offset, false)
-	# The old 250px crop crossed from a chandelier into the neighbouring couch,
-	# moving two unrelated sprites as one slab. These are their exact alpha-island
-	# bounds, arranged symmetrically around the intact settee.
-	tile(haunted_interior, Rect2(575, 9, 191, 88), Rect2(ballroom_offset + Vector2(97, 22), Vector2(191, 88)))
-	tile(haunted_interior, Rect2(490, 12, 76, 77), Rect2(ballroom_offset + Vector2(17, 40), Vector2(76, 77)))
-	tile(haunted_interior, Rect2(490, 12, 76, 77), Rect2(ballroom_offset + Vector2(291, 40), Vector2(76, 77)))
-	# Keep the center floor open for the scenario boss. A rug under its marker made
-	# the two silhouettes read as another pair of intersecting atlas crops.
+
+func _draw_mansion_nursery(offset: Vector2) -> void:
+	var room_offset := offset + Vector2(MANSION_NURSERY_OFFSET * TILE)
+	_draw_mansion_room_shell(room_offset, true)
+	tile(haunted_bedroom, Rect2(0, 0, 190, 190), Rect2(room_offset + Vector2(1, 2), Vector2(190, 190)))
+	tile(haunted_bedroom, Rect2(192, 0, 190, 190), Rect2(room_offset + Vector2(193, 2), Vector2(190, 190)))
+
+
+func _draw_mansion_ballroom(offset: Vector2) -> void:
+	var room_offset := offset + Vector2(MANSION_BALLROOM_OFFSET * TILE)
+	_draw_mansion_room_shell(room_offset, false)
 
 
 func draw_primeval_expanse() -> void:
+	if not active_area.begins_with("primeval"):
+		return
 	var offset := Vector2(PRIMEVAL_ORIGIN * TILE)
 	draw_rect(Rect2(offset, Vector2(PRIMEVAL_SIZE * TILE)), Color(0.025, 0.055, 0.018), true)
 	var room_definitions := {
@@ -646,6 +580,7 @@ func _draw_primeval_room(room_offset: Vector2, room_kind: StringName) -> void:
 	# perimeter and destination rather than three objects in a showroom row. The
 	# ruins and caldera use the pack's desert half; the living stages retain the
 	# grass-and-trail half. All five still preserve the lower traversable band.
+	_draw_primeval_room_backdrop(room_offset)
 	var ground_source := Rect2(0, 0, 384, 384)
 	if room_kind == &"ruins" or room_kind == &"caldera":
 		ground_source = Rect2(384, 0, 384, 384)
@@ -654,67 +589,22 @@ func _draw_primeval_room(room_offset: Vector2, room_kind: StringName) -> void:
 		draw_rect(Rect2(room_offset, Vector2(384, 384)), Color(0.02, 0.12, 0.03, 0.16), true)
 	elif room_kind == &"caldera":
 		draw_rect(Rect2(room_offset, Vector2(384, 384)), Color(0.28, 0.045, 0.018, 0.30), true)
-	# Jurassic art is authored at twice the field pixel density. Every Jurassic
-	# island below is reduced by exactly 1/2 with nearest filtering.
-	match room_kind:
-		&"grove":
-			# A dense canopy frames a municipal trailhead and leaves a deliberate
-			# opening through the center instead of scattering three palms in grass.
-			_primeval_prop(primeval_trees, Rect2(40, 447, 134, 178), room_offset + Vector2(-8, 20), 0.5)
-			_primeval_prop(primeval_trees, Rect2(196, 453, 121, 172), room_offset + Vector2(58, 14), 0.5)
-			_primeval_prop(primeval_trees, Rect2(509, 451, 132, 176), room_offset + Vector2(258, 16), 0.5)
-			_primeval_prop(primeval_trees, Rect2(665, 450, 132, 176), room_offset + Vector2(325, 20), 0.5)
-			_primeval_prop(primeval_trees, Rect2(49, 665, 105, 80), room_offset + Vector2(14, 152), 0.5)
-			_primeval_prop(primeval_trees, Rect2(1125, 664, 108, 82), room_offset + Vector2(320, 152), 0.5)
-			_primeval_prop(primeval_props, Rect2(689, 4, 65, 190), room_offset + Vector2(176, 74), 0.5)
-		&"village":
-			# Two dwellings and a shared awning create a small settlement around a
-			# central hearth; the edges remain inhabited without blocking the route.
-			_primeval_prop(primeval_structures, Rect2(387, 2, 90, 92), room_offset + Vector2(24, 36))
-			_primeval_prop(primeval_structures, Rect2(483, 1, 90, 95), room_offset + Vector2(270, 32))
-			_primeval_prop(primeval_structures, Rect2(203, 197, 170, 88), room_offset + Vector2(107, 62), 1.0)
-			_primeval_prop(primeval_structures, Rect2(491, 190, 50, 50), room_offset + Vector2(167, 142), 1.0)
-			_primeval_prop(primeval_structures, Rect2(7, 394, 178, 90), room_offset + Vector2(-8, 132), 0.65)
-			_primeval_prop(primeval_structures, Rect2(195, 394, 180, 90), room_offset + Vector2(280, 132), 0.65)
-		&"ruins":
-			# A single temple forecourt: idol at the rear, broken walls forming its
-			# shoulders, and two approach stones defining the playable aisle.
-			_primeval_prop(primeval_ruins, Rect2(1315, 504, 155, 167), room_offset + Vector2(153, 20), 0.5)
-			_primeval_prop(primeval_ruins, Rect2(48, 197, 124, 132), room_offset + Vector2(34, 42), 0.5)
-			_primeval_prop(primeval_ruins, Rect2(608, 197, 125, 132), room_offset + Vector2(288, 42), 0.5)
-			_primeval_prop(primeval_ruins, Rect2(53, 380, 121, 104), room_offset + Vector2(36, 139), 0.5)
-			_primeval_prop(primeval_ruins, Rect2(803, 380, 143, 103), room_offset + Vector2(276, 139), 0.5)
-		&"nest":
-			# The clutch sits inside a vegetation bowl, with empty nests pushed to
-			# the edges so the composition reads as habitat rather than inventory.
-			_primeval_prop(primeval_trees, Rect2(40, 447, 134, 178), room_offset + Vector2(8, 26), 0.5)
-			_primeval_prop(primeval_trees, Rect2(665, 450, 132, 176), room_offset + Vector2(310, 28), 0.5)
-			_primeval_prop(primeval_nests, Rect2(15, 265, 176, 153), room_offset + Vector2(148, 54), 0.5)
-			_primeval_prop(primeval_nests, Rect2(19, 454, 170, 134), room_offset + Vector2(14, 124), 0.5)
-			_primeval_prop(primeval_nests, Rect2(391, 448, 172, 142), room_offset + Vector2(286, 120), 0.5)
-			_primeval_prop(primeval_trees, Rect2(49, 665, 105, 80), room_offset + Vector2(74, 146), 0.5)
-			_primeval_prop(primeval_trees, Rect2(1125, 664, 108, 82), room_offset + Vector2(270, 146), 0.5)
-			# Complete stone traffic totem, half-scale like the rest of Primeval.
-			# Its base is centered on the actual Anchor Totem interaction cell.
-			_primeval_prop(primeval_props, Rect2(689, 4, 65, 190), room_offset + Vector2(104, 73), 0.5)
-		&"caldera":
-			# The caldera is a ruined fire shrine built from actual pack islands. A
-			# previous vector trapezoid looked like a temporary editor placeholder.
-			_primeval_prop(primeval_ruins, Rect2(548, 520, 180, 145), room_offset + Vector2(147, 18), 0.5)
-			_primeval_prop(primeval_ruins, Rect2(48, 197, 124, 132), room_offset + Vector2(30, 38), 0.5)
-			_primeval_prop(primeval_ruins, Rect2(608, 197, 125, 132), room_offset + Vector2(292, 38), 0.5)
-			_primeval_prop(primeval_ruins, Rect2(367, 712, 99, 123), room_offset + Vector2(168, 86), 0.5)
-			_primeval_prop(primeval_ruins, Rect2(48, 879, 100, 104), room_offset + Vector2(48, 132), 0.5)
-			_primeval_prop(primeval_ruins, Rect2(997, 888, 128, 96), room_offset + Vector2(274, 136), 0.5)
 
 
-func _primeval_prop(texture: Texture2D, source: Rect2, destination_position: Vector2, scale_factor := 1.0) -> void:
-	var size := source.size * scale_factor
-	var position := Vector2(roundf(destination_position.x), roundf(destination_position.y))
-	tile(texture, source, Rect2(position, size))
+func _draw_primeval_room_backdrop(room_offset: Vector2) -> void:
+	# The first Primeval room begins at the universe edge. Extend its unwalkable
+	# jungle understory around the authored ground instead of exposing black
+	# engine canvas beyond the camera frame.
+	var bounds := Rect2(room_offset - Vector2(288, 96), Vector2(960, 576))
+	draw_rect(bounds, Color(0.015, 0.075, 0.025), true)
+	for x in range(0, int(bounds.size.x), TILE * 2):
+		var canopy_y := bounds.position.y + 42.0 + float((x / TILE) % 3) * 18.0
+		draw_circle(Vector2(bounds.position.x + x + 36, canopy_y), 38.0, Color(0.045, 0.19, 0.055, 0.62))
 
 
 func draw_helios_arcology() -> void:
+	if not active_area.begins_with("helios"):
+		return
 	var offset := Vector2(HELIOS_ORIGIN * TILE)
 	draw_rect(Rect2(offset, Vector2(HELIOS_SIZE * TILE)), Color(0.28, 0.40, 0.52), true)
 	var room_definitions := {
@@ -737,6 +627,7 @@ func _draw_helios_room(room_offset: Vector2, room_kind: StringName) -> void:
 	# counters, walls, and landscaping therefore retain the perspective and
 	# proportions designed by the artist; nothing here is assembled from loose
 	# decorative atlas fragments.
+	_draw_helios_room_backdrop(room_offset)
 	draw_rect(Rect2(room_offset, Vector2(384, 384)), Color(0.48, 0.60, 0.69), true)
 	var texture := helios_city
 	var source := Rect2(384, 0, 384, 384)
@@ -760,7 +651,29 @@ func _draw_helios_room(room_offset: Vector2, room_kind: StringName) -> void:
 		draw_rect(Rect2(room_offset, Vector2(384, 384)), Color(0.04, 0.08, 0.20, 0.22), true)
 
 
+func _draw_helios_room_backdrop(room_offset: Vector2) -> void:
+	# Helios's authored city quadrants are intentionally compact. The 960x540
+	# camera can see beyond their 384px edges, which previously exposed the
+	# engine's neutral gray canvas and made the city feel like a cut-out. This is
+	# an environmental sky/structural continuation, not a replacement for the
+	# approved opaque district panel or an unsafe attempt to split it by color.
+	var bounds := Rect2(room_offset - Vector2(288, 96), Vector2(960, 576))
+	var sky := Color(0.19, 0.32, 0.45)
+	draw_rect(bounds, sky, true)
+	# Broad atmospheric strata keep the continuation calm behind the detailed
+	# authored panel while making the elevated-arcology setting readable.
+	draw_rect(Rect2(bounds.position + Vector2(0, 88), Vector2(bounds.size.x, 8)), Color(0.42, 0.70, 0.82, 0.22), true)
+	draw_rect(Rect2(bounds.position + Vector2(0, 452), Vector2(bounds.size.x, 12)), Color(0.08, 0.16, 0.25, 0.42), true)
+	for x in range(0, int(bounds.size.x), TILE * 3):
+		var tower_height := 112.0 + float((x / TILE) % 3) * 56.0
+		var tower := Rect2(bounds.position + Vector2(x + 20, bounds.size.y - tower_height), Vector2(104, tower_height))
+		draw_rect(tower, Color(0.13, 0.24, 0.36, 0.56), true)
+		draw_line(Vector2(tower.position.x + 10, tower.position.y + 18), Vector2(tower.position.x + 10, tower.end.y - 12), Color(0.48, 0.82, 0.94, 0.30), 2.0)
+
+
 func draw_frosthold_kingdom() -> void:
+	if not active_area.begins_with("frosthold"):
+		return
 	var offset := Vector2(FROSTHOLD_ORIGIN * TILE)
 	draw_rect(Rect2(offset, Vector2(FROSTHOLD_SIZE * TILE)), Color(0.025, 0.09, 0.18), true)
 	var room_definitions := {
@@ -783,6 +696,7 @@ func _draw_frosthold_room(room_offset: Vector2, room_kind: StringName) -> void:
 	# into an entrance, plaza, bridge, hall, or throne approach. The earlier pass
 	# reused one white square and exchanged three objects, which made five rooms
 	# feel like five catalog cards.
+	_draw_frosthold_room_backdrop(room_offset)
 	draw_rect(Rect2(room_offset, Vector2(384, 384)), Color(0.07, 0.18, 0.32), true)
 	var ground_source := Rect2(72, 198, 192, 192)
 	match room_kind:
@@ -791,58 +705,17 @@ func _draw_frosthold_room(room_offset: Vector2, room_kind: StringName) -> void:
 		&"rune_hall": ground_source = Rect2(604, 451, 192, 192)
 		&"throne": ground_source = Rect2(1138, 702, 192, 192)
 	_draw_frosthold_ground(room_offset, ground_source)
-	match room_kind:
-		&"gate":
-			_frosthold_prop(frozen_trees, Rect2(795, 184, 187, 260), room_offset + Vector2(-8, 32))
-			_frosthold_prop(frozen_trees, Rect2(1180, 184, 184, 260), room_offset + Vector2(300, 34))
-			_frosthold_prop(frozen_castle, Rect2(933, 734, 347, 224), room_offset + Vector2(105, 24))
-			_frosthold_prop(frozen_ruins, Rect2(39, 172, 165, 178), room_offset + Vector2(22, 103))
-			_frosthold_prop(frozen_ruins, Rect2(228, 172, 164, 178), room_offset + Vector2(280, 103))
-			_frosthold_prop(frozen_torches, Rect2(77, 170, 94, 205), room_offset + Vector2(120, 89))
-			_frosthold_prop(frozen_torches, Rect2(246, 170, 94, 205), room_offset + Vector2(220, 89))
-		&"market":
-			# A street, not three identical houses: two trading stalls face a warm
-			# communal brazier while homes close the rear of the plaza.
-			_frosthold_prop(frozen_houses, Rect2(29, 198, 182, 240), room_offset + Vector2(-8, 12))
-			_frosthold_prop(frozen_houses, Rect2(478, 183, 202, 255), room_offset + Vector2(290, 8))
-			_frosthold_prop(frozen_market, Rect2(65, 202, 205, 233), room_offset + Vector2(44, 72))
-			_frosthold_prop(frozen_market, Rect2(326, 202, 201, 233), room_offset + Vector2(238, 72))
-			_frosthold_prop(frozen_market, Rect2(1082, 460, 126, 194), room_offset + Vector2(160, 92))
-		&"causeway":
-			# A complete bridge provides the focal route; crystals form banks rather
-			# than decorative bookends floating on an empty snow tile.
-			_frosthold_prop(frozen_crystals, Rect2(59, 170, 168, 242), room_offset + Vector2(10, 36))
-			_frosthold_prop(frozen_crystals, Rect2(286, 176, 184, 230), room_offset + Vector2(286, 40))
-			_frosthold_prop(frozen_bridges, Rect2(45, 174, 170, 215), room_offset + Vector2(149, 20))
-			_frosthold_prop(frozen_bridges, Rect2(280, 174, 170, 215), room_offset + Vector2(149, 122))
-			# Tuck the rune under the final bridge lip so the route has a visible
-			# landing instead of ending in a strip of bare snow.
-			_frosthold_prop(frozen_runes, Rect2(61, 736, 127, 128), room_offset + Vector2(160, 226))
-		&"rune_hall":
-			_frosthold_prop(frozen_castle, Rect2(728, 741, 172, 217), room_offset + Vector2(26, 28))
-			_frosthold_prop(frozen_castle, Rect2(933, 734, 347, 224), room_offset + Vector2(105, 22))
-			_frosthold_prop(frozen_castle, Rect2(728, 741, 172, 217), room_offset + Vector2(270, 28))
-			_frosthold_prop(frozen_torches, Rect2(77, 170, 94, 205), room_offset + Vector2(76, 90))
-			_frosthold_prop(frozen_torches, Rect2(246, 170, 94, 205), room_offset + Vector2(262, 90))
-			_frosthold_prop(frozen_runes, Rect2(237, 736, 129, 128), room_offset + Vector2(104, 232))
-			_frosthold_prop(frozen_runes, Rect2(414, 736, 127, 128), room_offset + Vector2(216, 232))
-		&"throne":
-			_frosthold_prop(frozen_castle, Rect2(41, 718, 105, 242), room_offset + Vector2(34, 28))
-			_frosthold_prop(frozen_castle, Rect2(175, 718, 106, 242), room_offset + Vector2(298, 28))
-			_frosthold_prop(frozen_castle, Rect2(933, 734, 347, 224), room_offset + Vector2(105, 34))
-			# Leave a proper boss-sized silhouette between the braziers.
-			_frosthold_prop(frozen_torches, Rect2(77, 170, 94, 205), room_offset + Vector2(78, 90))
-			_frosthold_prop(frozen_torches, Rect2(246, 170, 94, 205), room_offset + Vector2(270, 90))
-			_frosthold_prop(frozen_runes, Rect2(1320, 736, 128, 128), room_offset + Vector2(160, 238))
 
 
-func _frosthold_prop(texture: Texture2D, source: Rect2, destination_position: Vector2, flip_h := false) -> void:
-	var size := source.size * 0.5
-	var destination := Rect2(Vector2(roundf(destination_position.x), roundf(destination_position.y)), size)
-	if flip_h:
-		destination.position.x += size.x
-		destination.size.x = -size.x
-	tile(texture, source, destination)
+func _draw_frosthold_room_backdrop(room_offset: Vector2) -> void:
+	# Frosthold's outer rooms sit on the edge of the larger universe container.
+	# Continue the cold, non-navigable snowfield behind their approved architecture
+	# so the gate and throne paths never frame against Godot's gray canvas.
+	var bounds := Rect2(room_offset - Vector2(288, 96), Vector2(960, 576))
+	draw_rect(bounds, Color(0.035, 0.12, 0.23), true)
+	for x in range(0, int(bounds.size.x), TILE * 2):
+		var drift_y := bounds.position.y + 40.0 + float((x / TILE) % 4) * 26.0
+		draw_line(Vector2(bounds.position.x + x + 12, drift_y), Vector2(bounds.position.x + x + 72, drift_y), Color(0.58, 0.80, 0.96, 0.20), 2.0)
 
 
 func _draw_frosthold_ground(room_offset: Vector2, showcase_tile: Rect2) -> void:
@@ -866,6 +739,8 @@ func _draw_frosthold_ground(room_offset: Vector2, showcase_tile: Rect2) -> void:
 
 
 func draw_moonpetal_court() -> void:
+	if not active_area.begins_with("moonpetal"):
+		return
 	var offset := Vector2(MOONPETAL_ORIGIN * TILE)
 	draw_rect(Rect2(offset, Vector2(MOONPETAL_SIZE * TILE)), Color(0.055, 0.025, 0.095), true)
 	var room_definitions := {
@@ -889,6 +764,7 @@ func _draw_moonpetal_room(room_offset: Vector2, room_kind: StringName) -> void:
 	# islands define its architecture and edge scenery; nothing is assembled from
 	# roof fragments or repeated presentation cards, and every crop begins below
 	# the source sheet's headings and category labels.
+	_draw_moonpetal_room_backdrop(room_offset)
 	var ground_color := Color(0.16, 0.20, 0.12)
 	match room_kind:
 		&"gate": ground_color = Color(0.20, 0.16, 0.11)
@@ -901,33 +777,18 @@ func _draw_moonpetal_room(room_offset: Vector2, room_kind: StringName) -> void:
 	# At the pack's 0.5 world scale it connects the rear entrance to the lower
 	# walkable field without becoming a giant horizontal display plinth.
 	_draw_moonpetal_processional_path(room_offset)
-	match room_kind:
-		&"gate":
-			_moonpetal_prop(sakura_gates, Rect2(16, 145, 145, 170), room_offset + Vector2(120, 20), 1.0)
-			_moonpetal_prop(sakura_lanterns, Rect2(37, 331, 115, 145), room_offset + Vector2(2, 115), 0.5)
-			_moonpetal_prop(sakura_lanterns, Rect2(164, 331, 114, 145), room_offset + Vector2(325, 115), 0.5)
-		&"court":
-			_moonpetal_prop(sakura_temple, Rect2(40, 158, 372, 258), room_offset + Vector2(99, 18), 0.5)
-			_moonpetal_prop(sakura_trees, Rect2(55, 548, 255, 250), room_offset + Vector2(8, 66), 0.5)
-			_moonpetal_prop(sakura_trees, Rect2(326, 548, 245, 250), room_offset + Vector2(238, 66), 0.5)
-		&"garden":
-			_moonpetal_prop(sakura_water, Rect2(246, 148, 264, 150), room_offset + Vector2(60, 24), 1.0)
-			_moonpetal_prop(sakura_gardens, Rect2(68, 133, 184, 174), room_offset + Vector2(14, 99), 0.5)
-			_moonpetal_prop(sakura_gardens, Rect2(681, 133, 184, 174), room_offset + Vector2(277, 99), 0.5)
-		&"bell_walk":
-			_moonpetal_prop(sakura_gates, Rect2(170, 398, 140, 142), room_offset + Vector2(40, 42), 1.0)
-			_moonpetal_prop(sakura_gates, Rect2(321, 398, 140, 142), room_offset + Vector2(204, 42), 1.0)
-			_moonpetal_prop(sakura_lanterns, Rect2(37, 331, 115, 145), room_offset + Vector2(2, 115), 0.5)
-			_moonpetal_prop(sakura_lanterns, Rect2(164, 331, 114, 145), room_offset + Vector2(325, 115), 0.5)
-		&"palace":
-			_moonpetal_prop(sakura_temple, Rect2(42, 580, 318, 177), room_offset + Vector2(33, 18), 1.0)
-			_moonpetal_prop(sakura_gardens, Rect2(368, 496, 187, 181), room_offset + Vector2(18, 196), 0.5)
-			_moonpetal_prop(sakura_gardens, Rect2(575, 496, 187, 181), room_offset + Vector2(273, 196), 0.5)
+	# Tall gates, trees, temples, lanterns, and garden islands render from
+	# CampaignMoonpetalForeground so actors can pass behind their upper portions.
 
 
-func _moonpetal_prop(texture: Texture2D, source: Rect2, destination_position: Vector2, scale: float) -> void:
-	var size := source.size * scale
-	tile(texture, source, Rect2(Vector2(roundf(destination_position.x), roundf(destination_position.y)), size))
+func _draw_moonpetal_room_backdrop(room_offset: Vector2) -> void:
+	# The court's entry room borders the universe edge. Continue the night-garden
+	# palette behind the square playfield while keeping the extension explicitly
+	# non-navigable, rather than allowing a gray canvas to frame the gate.
+	var bounds := Rect2(room_offset - Vector2(288, 96), Vector2(960, 576))
+	draw_rect(bounds, Color(0.055, 0.022, 0.085), true)
+	for x in range(0, int(bounds.size.x), TILE * 3):
+		draw_circle(Vector2(bounds.position.x + x + 48, bounds.position.y + 74), 28.0, Color(0.23, 0.14, 0.30, 0.42))
 
 
 func _draw_moonpetal_processional_path(room_offset: Vector2) -> void:
@@ -967,7 +828,10 @@ func _draw_empyreal_room(room_offset: Vector2, room_kind: StringName) -> void:
 	# eight-cell proportions instead of two giant catalog samples beneath Ben.
 	# The sky extends well beyond the walkable terrace, filling the widescreen
 	# camera instead of exposing gray canvas on either side of an 8x8 room.
-	draw_rect(Rect2(room_offset - Vector2(384, 0), Vector2(1152, 384)), Color(0.18, 0.44, 0.72), true)
+	# A 384px terrace is shorter than the gameplay camera. Extend the sky above
+	# and below the authored platform instead of exposing the renderer's neutral
+	# canvas at the bottom of the screen.
+	draw_rect(Rect2(room_offset - Vector2(384, 96), Vector2(1152, 576)), Color(0.18, 0.44, 0.72), true)
 	for cloud_x in [-424, -40, 344]:
 		tile(empyreal_clouds, Rect2(0, 0, 464, 208), Rect2(room_offset + Vector2(cloud_x, 12), Vector2(464, 208)))
 	var floor_name: String = String({&"landing": "marble_plain", &"garden": "marble_plain", &"forum": "marble_gold_quarter", &"aerie": "marble_cracked", &"tribunal": "marble_gold_quarter"}.get(room_kind, "marble_plain"))
@@ -978,35 +842,8 @@ func _draw_empyreal_room(room_offset: Vector2, room_kind: StringName) -> void:
 	# sit on that line or overlap the terrace; none float as a disconnected row.
 	for x in range(0, 384, 96):
 		_empyreal_tile_slice("blue_balustrade", Rect2(room_offset + Vector2(x, 124), Vector2(96, 37)))
-	match room_kind:
-		&"landing":
-			_empyreal_prop_slice("pediment_door", room_offset + Vector2(132, 4))
-			_empyreal_prop_slice("winged_statue", room_offset + Vector2(22, 38))
-			_empyreal_prop_slice("winged_statue", room_offset + Vector2(268, 38), true)
-			draw_rect(Rect2(room_offset + Vector2(145, 176), Vector2(94, 4)), Color(0.32, 0.19, 0.08, 0.65), true)
-		&"garden":
-			_empyreal_prop_slice("silver_olive_tree", room_offset + Vector2(5, 31))
-			_empyreal_prop_slice("golden_olive_tree", room_offset + Vector2(278, 31))
-			_empyreal_prop_slice("appeal_fountain", room_offset + Vector2(141, 34))
-			# Four low offerings make the fountain a plaza rather than a lone prop.
-			_empyreal_prop_slice("flower_offering", room_offset + Vector2(76, 190))
-			_empyreal_prop_slice("fruit_offering", room_offset + Vector2(247, 190))
-		&"forum":
-			_empyreal_prop_slice("plain_column", room_offset + Vector2(34, 11))
-			_empyreal_prop_slice("blue_column", room_offset + Vector2(302, 11))
-			_empyreal_prop_slice("ordinance_book", room_offset + Vector2(138, 65))
-			_empyreal_prop_slice("horse_statue", room_offset + Vector2(58, 84))
-			_empyreal_prop_slice("griffin_statue", room_offset + Vector2(267, 82))
-		&"aerie":
-			_empyreal_prop_slice("reliquary_portal", room_offset + Vector2(137, 11))
-			_empyreal_prop_slice("crystal_altar", room_offset + Vector2(41, 101))
-			_empyreal_prop_slice("lotus_altar", room_offset + Vector2(267, 101))
-			_empyreal_prop_slice("gravity_crystal", room_offset + Vector2(167, 178))
-		&"tribunal":
-			_empyreal_prop_slice("tribunal_gate", room_offset + Vector2(111, 4))
-			_empyreal_prop_slice("justice_statue", room_offset + Vector2(40, 38))
-			_empyreal_prop_slice("music_statue", room_offset + Vector2(304, 38))
-			_empyreal_prop_slice("tribunal_orrery", room_offset + Vector2(32, 187))
+	if room_kind == &"landing":
+		draw_rect(Rect2(room_offset + Vector2(145, 176), Vector2(94, 4)), Color(0.32, 0.19, 0.08, 0.65), true)
 
 
 func _empyreal_prop(texture: Texture2D, source: Rect2, destination_position: Vector2, scale: float, flip_h := false) -> void:
@@ -1037,6 +874,8 @@ func _empyreal_prop_slice(slice_name: String, destination_position: Vector2, fli
 
 
 func draw_asterion_station() -> void:
+	if not active_area.begins_with("station"):
+		return
 	var offset := Vector2(STATION_ORIGIN * TILE)
 	draw_rect(Rect2(offset, Vector2(STATION_SIZE * TILE)), Color(0.015, 0.025, 0.055), true)
 	# At the room-framing camera scale, neighboring rooms would otherwise show as
@@ -1051,10 +890,29 @@ func draw_asterion_station() -> void:
 	}
 	if room_definitions.has(active_area):
 		var definition: Array = room_definitions[active_area]
-		_draw_station_room(offset + Vector2(definition[0] * TILE), definition[1])
+		var room_offset := offset + Vector2(definition[0] * TILE)
+		_draw_station_room_backdrop(room_offset)
+		_draw_station_room(room_offset, definition[1])
 		return
 	for definition in room_definitions.values():
 		_draw_station_room(offset + Vector2(definition[0] * TILE), definition[1])
+
+
+func _draw_station_room_backdrop(room_offset: Vector2) -> void:
+	# An 8x8 interior is smaller than the 960x540 gameplay camera. Without a
+	# local hull pass, the camera exposed Godot's default gray canvas at the room
+	# edges, which reads as an unfinished void rather than exterior station space.
+	# This is intentionally non-navigable—the navigation layer opens only the
+	# painted 8x4 floor—but it gives every room an authored outer boundary.
+	var bounds := Rect2(room_offset - Vector2(288, 96), Vector2(960, 576))
+	draw_rect(bounds, Color(0.008, 0.018, 0.043), true)
+	var seam_color := Color(0.10, 0.21, 0.34, 0.38)
+	for x in range(0, 21):
+		var line_x := bounds.position.x + x * TILE
+		draw_line(Vector2(line_x, bounds.position.y), Vector2(line_x, bounds.end.y), seam_color, 2.0)
+	for y in range(0, 13):
+		var line_y := bounds.position.y + y * TILE
+		draw_line(Vector2(bounds.position.x, line_y), Vector2(bounds.end.x, line_y), seam_color, 2.0)
 
 
 func _draw_station_room(room_offset: Vector2, room_kind: StringName) -> void:
@@ -1069,53 +927,6 @@ func _draw_station_room(room_offset: Vector2, room_kind: StringName) -> void:
 			tile(station_architecture, source, Rect2(room_offset + Vector2(x, y) * TILE, Vector2(TILE, TILE)))
 	# A hard baseboard makes the blocked wall area and open floor legible.
 	draw_rect(Rect2(room_offset + Vector2(0, 190), Vector2(384, 4)), Color(0.08, 0.16, 0.24, 0.9), true)
-	match room_kind:
-		&"dock":
-			# One complete shuttle and an actual side hatch make this a docking bay,
-			# not a ship sprite flanked by unrelated storage thumbnails.
-			_station_prop(station_exterior, Rect2(135, 3, 248, 89), room_offset + Vector2(68, 12))
-			_station_prop(station_exterior, Rect2(2, 98, 94, 94), room_offset + Vector2(2, 92))
-			_station_prop(station_architecture, Rect2(7, 200, 80, 78), room_offset + Vector2(297, 108))
-		&"mess":
-			# Opposing pressure hatches frame a real connecting mess hall. The cargo
-			# cache and serving table sit inside the room instead of covering exits.
-			_station_prop(station_architecture, Rect2(7, 200, 80, 78), room_offset + Vector2(7, 108))
-			_station_prop(station_architecture, Rect2(7, 200, 80, 78), room_offset + Vector2(297, 108))
-			_station_prop(station_mess, Rect2(241, 0, 45, 96), room_offset + Vector2(117, 10))
-			_station_prop(station_mess, Rect2(289, 0, 46, 96), room_offset + Vector2(164, 10))
-			_station_prop(station_mess, Rect2(337, 0, 46, 96), room_offset + Vector2(212, 10))
-			_station_prop(station_exterior, Rect2(675, 105, 91, 81), room_offset + Vector2(76, 104))
-			_station_prop(station_mess, Rect2(98, 4, 93, 45), room_offset + Vector2(214, 136))
-		&"hydro":
-			# The return hatch opens onto a continuous bank of grow equipment; this
-			# reads as a working room rather than four isolated plant sprites.
-			_station_prop(station_architecture, Rect2(7, 200, 80, 78), room_offset + Vector2(7, 108))
-			_station_prop(station_hydro, Rect2(144, 59, 240, 85), room_offset + Vector2(72, 16))
-			_station_prop(station_hydro, Rect2(0, 147, 96, 45), room_offset + Vector2(100, 132))
-			# This complete status terminal occupies the authored console interaction.
-			_station_prop(station_hydro, Rect2(686, 195, 69, 92), room_offset + Vector2(304, 86))
-		&"medical":
-			# Two individual beds, a complete scanner, and a complete drug cabinet.
-			_station_prop(station_medical, Rect2(1, 10, 45, 86), room_offset + Vector2(14, 12))
-			_station_prop(station_medical, Rect2(145, 10, 45, 86), room_offset + Vector2(70, 12))
-			_station_prop(station_medical, Rect2(194, 124, 92, 62), room_offset + Vector2(108, 116))
-			_station_prop(station_medical, Rect2(531, 115, 42, 77), room_offset + Vector2(224, 101))
-			# A whole holographic beacon sits exactly at the room's save interaction.
-			_station_prop(station_command, Rect2(290, 21, 93, 116), room_offset + Vector2(286, 62))
-		&"control":
-			# One complete three-seat command bank anchors the rear wall. The former
-			# side portholes occupied x=3..90 and x=294..381 while this bank occupies
-			# x=48..337, visibly drawing both sprites through one another. The bank
-			# already contains a complete coherent command-room silhouette, so keep it
-			# alone and leave the playable lower half clean.
-			_station_prop(station_command, Rect2(0, 0, 289, 143), room_offset + Vector2(48, 18))
-
-
-func _station_prop(texture: Texture2D, source: Rect2, destination_position: Vector2) -> void:
-	# Props remain pixel-for-pixel with the source pack. Rounded placement prevents
-	# sub-pixel shimmer while the 2x room camera keeps the native art readable.
-	var position := Vector2(roundf(destination_position.x), roundf(destination_position.y))
-	tile(texture, source, Rect2(position, source.size))
 
 
 func _draw_mansion_room_shell(room_offset: Vector2, bedroom_wall: bool) -> void:

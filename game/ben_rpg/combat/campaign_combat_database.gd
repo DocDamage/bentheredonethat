@@ -5,11 +5,17 @@ const HORROR_PACK := "res://game_assets/monsters/cp45-f91_horror_and_nightmares/
 const SCI_FI_PACK := "res://game_assets/monsters/cp42-g31_sci_fi_entities/"
 const VILLAIN_PACK := "res://game_assets/monsters/cp44-j31_villains/"
 const YOKAI_PACK := "res://game_assets/monsters/cp41-a181_japanese_yokai_urban_legends/"
-const BEN_SPRITE := "res://game_assets/characters/Main Character/Ben_Franklin/rotations/west.png"
-const FIGHTER_SPRITE := "res://game_assets/characters/Recruitable Characters/Fighter/Fighter/rotations/west.png"
-const RAPTOR_SPRITE := "res://game_assets/characters/Velociraptor/Tiny_Velociraptor/rotations/west.png"
-const ASTRONAUT_SPRITE := "res://game_assets/characters/Recruitable Characters/astronaut/Astronaut/rotations/west.png"
-const DINOSAUR_ATLAS := "res://game_assets/Tilesets/Jurassic world/Jurassic World Pixel Art Megapack/21. Dinosaurs.png"
+const VISUAL_PROFILE_REGISTRY := preload("res://ben_rpg/world/campaign_visual_profile_registry.gd")
+const FALLBACK_PARTY_SPRITE := "res://game_assets/characters/Main Character/Ben_Franklin/rotations/west.png"
+const PARTY_BATTLE_PROFILES := {
+	&"ben": &"ben_battle_actor", &"fighter": &"fighter_battle_actor", &"astronaut": &"astronaut_battle_actor",
+	&"caveman": &"caveman_battle_actor", &"crimson_oni": &"crimson_oni_challenger_battle_actor",
+	&"rift_jackal": &"rift_jackal_battle_actor", &"mossback_surveyor": &"mossback_surveyor_battle_actor",
+	&"cobalt_courier": &"cobalt_courier_battle_actor", &"bulkhead_warden": &"bulkhead_warden_battle_actor",
+	&"kitsune_empress": &"kitsune_empress_battle_actor", &"neon_viper": &"neon_viper_battle_actor",
+	&"archangel_commander": &"archangel_commander_battle_actor", &"frost_lich_emperor": &"frost_lich_emperor_battle_actor",
+	&"velociraptor": &"velociraptor_battle_actor",
+}
 const AUTHORED_BATTLE_ANIMATION_SOURCES := {
 	&"ben": {
 		"battle_animation_root": "res://game_assets/characters/Main Character/Ben_Franklin/animations", "battle_animation_fps": 12.0,
@@ -231,6 +237,10 @@ static func action_ids() -> Array[StringName]:
 
 
 static func party_actor(character_id: StringName, progress: Dictionary) -> Dictionary:
+	var visual_profile := StringName(PARTY_BATTLE_PROFILES.get(character_id, &""))
+	var visual_sprite := _visual_sprite(visual_profile) if visual_profile != &"" else {}
+	if visual_profile != &"" and visual_sprite.is_empty():
+		return {}
 	var level := int(progress.get("level", 1))
 	var build := CampaignState.actor_build(character_id)
 	var bonuses: Dictionary = build["bonuses"]
@@ -240,7 +250,8 @@ static func party_actor(character_id: StringName, progress: Dictionary) -> Dicti
 		fighter_actions.append_array(learned_actions)
 		var fighter := _actor(character_id, "Fighter", "party", 190 + (level - 1) * 22 + int(bonuses[&"max_hp"]), 18 + (level - 1) * 2 + int(bonuses[&"max_mp"]),
 			32 + level * 4 + int(bonuses[&"attack"]), 24 + level * 3 + int(bonuses[&"defense"]), 8 + level + int(bonuses[&"magic"]), 13 + level * 2 + int(bonuses[&"spirit"]), 34 + level + int(bonuses[&"speed"]),
-			FIGHTER_SPRITE, fighter_actions, progress)
+			String(visual_sprite["sprite_path"]), fighter_actions, progress)
+		_apply_visual_sprite(fighter, visual_profile, visual_sprite)
 		_apply_build_element_rates(fighter, build)
 		fighter["formation"] = CampaignState.formation_for(character_id)
 		_attach_authored_battle_animation(fighter, character_id)
@@ -250,7 +261,8 @@ static func party_actor(character_id: StringName, progress: Dictionary) -> Dicti
 		astronaut_actions.append_array(learned_actions)
 		var astronaut := _actor(character_id, "Astronaut", "party", 165 + (level - 1) * 18 + int(bonuses[&"max_hp"]), 24 + (level - 1) * 3 + int(bonuses[&"max_mp"]),
 			29 + level * 3 + int(bonuses[&"attack"]), 21 + level * 2 + int(bonuses[&"defense"]), 17 + level * 2 + int(bonuses[&"magic"]), 18 + level * 2 + int(bonuses[&"spirit"]), 38 + level * 2 + int(bonuses[&"speed"]),
-			ASTRONAUT_SPRITE, astronaut_actions, progress)
+			String(visual_sprite["sprite_path"]), astronaut_actions, progress)
+		_apply_visual_sprite(astronaut, visual_profile, visual_sprite)
 		_apply_build_element_rates(astronaut, build)
 		astronaut["formation"] = CampaignState.formation_for(character_id)
 		_attach_authored_battle_animation(astronaut, character_id)
@@ -263,24 +275,27 @@ static func party_actor(character_id: StringName, progress: Dictionary) -> Dicti
 		ben_actions.append_array(learned_actions)
 		var ben := _actor(&"ben", "Benjamin Franklin", "party", 140 + (level - 1) * 14 + int(bonuses[&"max_hp"]), 36 + (level - 1) * 5 + int(bonuses[&"max_mp"]),
 			14 + level * 2 + int(bonuses[&"attack"]), 17 + level * 2 + int(bonuses[&"defense"]), 29 + level * 3 + int(bonuses[&"magic"]), 24 + level * 2 + int(bonuses[&"spirit"]), 27 + level + int(bonuses[&"speed"]),
-			BEN_SPRITE, ben_actions, progress)
+			String(visual_sprite["sprite_path"]), ben_actions, progress)
+		_apply_visual_sprite(ben, visual_profile, visual_sprite)
 		_apply_build_element_rates(ben, build)
 		ben["formation"] = CampaignState.formation_for(&"ben")
 		_attach_authored_battle_animation(ben, &"ben")
 		return ben
 	# Recruit folders can be added without changing this combat database. Catalog
-	# metadata supplies identity and optional tuning; the asset_pack convention
-	# resolves the same directional sprite used in the field.
+	# metadata supplies identity and optional tuning; the battle image itself is
+	# resolved from the reviewed party profile map above.
 	var recruit: Dictionary = CampaignState.recruit_catalog.get(character_id, {})
 	var stats: Dictionary = recruit.get("combat_stats", {})
 	var generic_actions: Array = recruit.get("combat_actions", [&"attack", &"defend", &"tonic", &"ether", &"smelling_salts", &"phoenix_tonic", &"escape"]).duplicate()
 	for learned_action in learned_actions:
 		if learned_action not in generic_actions:
 			generic_actions.append(learned_action)
-	var asset_pack := String(recruit.get("asset_pack", "Main Character/Ben_Franklin"))
-	var sprite_path := String(recruit.get("battle_sprite", "res://game_assets/characters/%s/rotations/west.png" % asset_pack))
-	if not ResourceLoader.exists(sprite_path):
-		sprite_path = BEN_SPRITE
+	var sprite_path := String(visual_sprite.get("sprite_path", ""))
+	if sprite_path.is_empty():
+		var asset_pack := String(recruit.get("asset_pack", "Main Character/Ben_Franklin"))
+		sprite_path = String(recruit.get("battle_sprite", "res://game_assets/characters/%s/rotations/west.png" % asset_pack))
+		if not ResourceLoader.exists(sprite_path):
+			sprite_path = FALLBACK_PARTY_SPRITE
 	var generic := _actor(character_id, String(recruit.get("name", String(character_id).capitalize())), "party",
 		int(stats.get("max_hp", 155)) + (level - 1) * int(stats.get("hp_growth", 18)) + int(bonuses[&"max_hp"]),
 		int(stats.get("max_mp", 24)) + (level - 1) * int(stats.get("mp_growth", 3)) + int(bonuses[&"max_mp"]),
@@ -290,6 +305,8 @@ static func party_actor(character_id: StringName, progress: Dictionary) -> Dicti
 		int(stats.get("spirit", 18)) + level * int(stats.get("spirit_growth", 2)) + int(bonuses[&"spirit"]),
 		int(stats.get("speed", 30)) + level * int(stats.get("speed_growth", 1)) + int(bonuses[&"speed"]),
 		sprite_path, generic_actions, progress)
+	if visual_profile != &"":
+		_apply_visual_sprite(generic, visual_profile, visual_sprite)
 	_apply_build_element_rates(generic, build)
 	generic["formation"] = CampaignState.formation_for(character_id)
 	_attach_authored_battle_animation(generic, character_id, recruit)
@@ -301,8 +318,13 @@ static func _apply_build_element_rates(actor: Dictionary, build: Dictionary) -> 
 
 
 static func raptor_actor() -> Dictionary:
+	var visual_profile := StringName(PARTY_BATTLE_PROFILES[&"velociraptor"])
+	var visual_sprite := _visual_sprite(visual_profile)
+	if visual_sprite.is_empty():
+		return {}
 	var actor := _actor(&"velociraptor", "Velociraptor", "party", 115, 0, 31, 16, 4, 12, 41,
-		RAPTOR_SPRITE, [&"raptor_pounce", &"raptor_distract"], {})
+		String(visual_sprite["sprite_path"]), [&"raptor_pounce", &"raptor_distract"], {})
+	_apply_visual_sprite(actor, visual_profile, visual_sprite)
 	actor["autonomous"] = true
 	actor["counts_for_defeat"] = false
 	actor["formation"] = &"pet"
@@ -345,52 +367,64 @@ static func bestiary_entry(enemy_id: StringName) -> Dictionary:
 
 static func enemy_actor(enemy_id: StringName, index: int) -> Dictionary:
 	var catalog := {
-		&"schoolgirl_ghost": {"name": "Restless Apparition", "hp": 92, "attack": 18, "defense": 10, "magic": 23, "spirit": 13, "speed": 25, "sprite": "CP_F091_SchoolgirlGhost_01.png", "actions": [&"spectral_touch"], "elements": {&"lightning": 1.5, &"spectral": 0.5}, "exp": 22, "duckets": 8},
-		&"war_book": {"name": "Unabridged Menace", "hp": 118, "attack": 24, "defense": 17, "magic": 12, "spirit": 15, "speed": 19, "sprite": "CP_F098_WarBookGhost.png", "actions": [&"hurl_volume", &"ink_blight"], "elements": {&"lightning": 0.75, &"spectral": 0.75}, "exp": 28, "duckets": 11},
-		&"clock_mirror": {"name": "The Late Reflection", "hp": 175, "attack": 19, "defense": 20, "magic": 29, "spirit": 21, "speed": 31, "sprite": "CP_F119_HauntedClockMirror.png", "actions": [&"steal_time", &"spectral_touch"], "elements": {&"lightning": 1.5, &"time": 0.5}, "exp": 52, "duckets": 19},
-		&"composer_portrait": {"name": "Unfinished Composer", "hp": 168, "attack": 17, "defense": 16, "magic": 31, "spirit": 22, "speed": 24, "sprite": "CP_F095_HauntedComposerPortrait.png", "actions": [&"unfinished_refrain", &"spectral_touch"], "elements": {&"lightning": 1.4, &"spectral": 0.45}, "exp": 44, "duckets": 16},
-		&"haunted_doll": {"name": "Household Darling", "hp": 145, "attack": 27, "defense": 19, "magic": 22, "spirit": 17, "speed": 32, "sprite": "CP_F117_HauntedJapaneseDoll.png", "actions": [&"splinter_needle", &"nursery_wail"], "elements": {&"lightning": 1.25, &"spectral": 0.7}, "exp": 39, "duckets": 14},
-		&"clock_mirror_boss": {"name": "The 4:44 Appointment", "hp": 720, "attack": 31, "defense": 24, "magic": 38, "spirit": 27, "speed": 27, "sprite": "CP_F119_HauntedClockMirror.png", "actions": [&"steal_time", &"late_fee", &"spectral_touch"], "elements": {&"lightning": 1.35, &"time": 0.35, &"spectral": 0.5}, "status_resist": {&"poisoned": 1.0, &"slow": 0.65, &"shocked": 0.5}, "exp": 180, "duckets": 75},
-		&"rift_jackal_challenger": {"name": "Rift Jackal, Fault-Line Stray", "hp": 1180, "attack": 40, "defense": 31, "magic": 28, "spirit": 26, "speed": 48, "sprite_path": "res://game_assets/characters/Topdown Monsters Part 1/Sliced/Rift Jackal/00_idle/frame_000.png", "actions": [&"rift_bite", &"phase_scratch", &"faultline_pounce"], "elements": {&"spectral": 0.45, &"lightning": 1.3}, "status_resist": {&"poisoned": 0.65, &"slow": 0.5, &"shocked": 0.45}, "exp": 260, "duckets": 95, "battle_animation_root": "res://game_assets/characters/Topdown Monsters Part 1/Sliced/Rift Jackal", "battle_animation_fps": 8.0, "battle_animation_sequences": {&"idle": {"folder": "00_idle", "frames": 6}, &"attack": {"folder": "05_attack", "frames": 6}, &"hit": {"folder": "06_hit", "frames": 6}, &"power": {"folder": "07_blast_attack_1", "frames": 6}, &"victory": {"folder": "02_victory", "frames": 8}, &"death": {"folder": "12_death_1", "frames": 8}}, "battle_action_sequences": {&"rift_bite": &"attack", &"phase_scratch": &"power", &"faultline_pounce": &"attack"}},
-		&"work_robot": {"name": "Overtime Work Robot", "hp": 132, "attack": 25, "defense": 22, "magic": 10, "spirit": 16, "speed": 22, "sprite": "CP_G37_WorkRobot.png", "actions": [&"servo_strike"], "elements": {&"lightning": 1.45}, "exp": 34, "duckets": 14, "pack": SCI_FI_PACK},
-		&"sentry_drone": {"name": "Union-Busting Sentry", "hp": 108, "attack": 23, "defense": 17, "magic": 19, "spirit": 14, "speed": 36, "sprite": "CP_G38_SentryDrone.png", "actions": [&"suppressive_burst", &"system_shock"], "elements": {&"lightning": 1.3}, "exp": 39, "duckets": 16, "pack": SCI_FI_PACK},
-		&"medical_robot": {"name": "Aggressive Care Unit", "hp": 176, "attack": 21, "defense": 25, "magic": 26, "spirit": 24, "speed": 24, "sprite": "CP_G43_UtilityRobot.png", "actions": [&"system_shock", &"servo_strike"], "elements": {&"lightning": 1.4}, "exp": 48, "duckets": 19, "pack": SCI_FI_PACK},
-		&"machine_commander": {"name": "Shift Supervisor", "hp": 245, "attack": 31, "defense": 29, "magic": 21, "spirit": 22, "speed": 27, "sprite": "CP_G52_MachineCommander.png", "actions": [&"suppressive_burst", &"servo_strike"], "elements": {&"lightning": 1.25}, "exp": 66, "duckets": 26, "pack": SCI_FI_PACK},
-		&"mother_computer": {"name": "Mother Computer, Acting Manager", "hp": 1050, "attack": 33, "defense": 33, "magic": 43, "spirit": 30, "speed": 29, "sprite": "CP_G59_MotherComputer.png", "actions": [&"mandatory_overtime", &"system_shock", &"suppressive_burst"], "elements": {&"lightning": 0.75}, "status_resist": {&"poisoned": 1.0, &"slow": 0.6, &"shocked": 0.45}, "exp": 260, "duckets": 110, "pack": SCI_FI_PACK},
-		&"bulkhead_warden_challenger": {"name": "Bulkhead Warden, Acting Shop Steward", "hp": 1420, "attack": 43, "defense": 48, "magic": 25, "spirit": 37, "speed": 20, "sprite_path": "res://game_assets/characters/Topdown Monsters Part 1/Sliced/Bulkhead Warden/00_idle/frame_000.png", "actions": [&"warden_pummel", &"piston_surge", &"pressure_lock", &"bulkhead_drop"], "elements": {&"lightning": 1.35, &"nature": 0.65}, "status_resist": {&"poisoned": 1.0, &"slow": 0.62, &"shocked": 0.55}, "exp": 310, "duckets": 125, "battle_animation_root": "res://game_assets/characters/Topdown Monsters Part 1/Sliced/Bulkhead Warden", "battle_animation_fps": 8.0, "battle_animation_sequences": {&"idle": {"folder": "00_idle", "frames": 6}, &"attack": {"folder": "05_attack", "frames": 6}, &"hit": {"folder": "06_hit", "frames": 6}, &"power": {"folder": "08_blast_attack_2", "frames": 6}, &"victory": {"folder": "02_victory", "frames": 8}, &"death": {"folder": "12_death_1", "frames": 8}}, "battle_action_sequences": {&"warden_pummel": &"attack", &"piston_surge": &"power", &"pressure_lock": &"attack", &"bulkhead_drop": &"power"}},
-		&"primeval_raptor": {"name": "Unlicensed Raptor", "hp": 178, "attack": 31, "defense": 18, "magic": 7, "spirit": 14, "speed": 42, "sprite_path": DINOSAUR_ATLAS, "sprite_region": Rect2(316, 247, 220, 140), "actions": [&"prehistoric_bite"], "elements": {&"lightning": 1.25}, "exp": 52, "duckets": 18},
-		&"stone_triceratops": {"name": "Right-of-Way Triceratops", "hp": 310, "attack": 34, "defense": 34, "magic": 5, "spirit": 23, "speed": 19, "sprite_path": DINOSAUR_ATLAS, "sprite_region": Rect2(35, 457, 246, 141), "actions": [&"stampede", &"tail_sweep"], "elements": {&"lightning": 1.15}, "exp": 78, "duckets": 28},
-		&"municipal_spinosaur": {"name": "Municipal Spinosaur", "hp": 275, "attack": 37, "defense": 25, "magic": 10, "spirit": 19, "speed": 29, "sprite_path": DINOSAUR_ATLAS, "sprite_region": Rect2(1014, 234, 249, 153), "actions": [&"prehistoric_bite", &"tail_sweep"], "elements": {&"lightning": 1.2}, "exp": 84, "duckets": 31},
-		&"commute_tyrant": {"name": "Tyrant of the Morning Commute", "hp": 1480, "attack": 43, "defense": 35, "magic": 18, "spirit": 29, "speed": 32, "sprite_path": DINOSAUR_ATLAS, "sprite_region": Rect2(52, 226, 239, 161), "actions": [&"commuter_roar", &"prehistoric_bite", &"tail_sweep"], "elements": {&"lightning": 1.25}, "status_resist": {&"poisoned": 0.75, &"slow": 0.65, &"shocked": 0.55}, "exp": 340, "duckets": 145},
-		&"mossback_surveyor_challenger": {"name": "Mossback Surveyor, Unauthorized Planner", "hp": 1640, "attack": 45, "defense": 42, "magic": 35, "spirit": 39, "speed": 25, "sprite_path": "res://game_assets/characters/Topdown Monsters Part 1/Sliced/Mossback Surveyor/00_idle/frame_000.png", "actions": [&"mossback_pummel", &"spore_receipt", &"rooted_red_tape"], "elements": {&"nature": 0.35, &"lightning": 1.3}, "status_resist": {&"poisoned": 0.2, &"slow": 0.6, &"shocked": 0.75}, "exp": 330, "duckets": 120, "battle_animation_root": "res://game_assets/characters/Topdown Monsters Part 1/Sliced/Mossback Surveyor", "battle_animation_fps": 8.0, "battle_animation_sequences": {&"idle": {"folder": "00_idle", "frames": 6}, &"attack": {"folder": "05_attack", "frames": 6}, &"hit": {"folder": "06_hit", "frames": 6}, &"power": {"folder": "08_blast_attack_2", "frames": 6}, &"victory": {"folder": "02_victory", "frames": 8}, &"death": {"folder": "12_death_1", "frames": 8}}, "battle_action_sequences": {&"mossback_pummel": &"attack", &"spore_receipt": &"power", &"rooted_red_tape": &"power"}},
-		&"helios_mech": {"name": "Day-Shift Mech Soldier", "hp": 245, "attack": 38, "defense": 29, "magic": 17, "spirit": 21, "speed": 31, "sprite": "CP_G31_MechSoldier.png", "actions": [&"compliance_burst", &"servo_strike"], "elements": {&"lightning": 1.35}, "exp": 76, "duckets": 30, "pack": SCI_FI_PACK},
-		&"helios_assassin": {"name": "Curfew Compliance Specialist", "hp": 205, "attack": 36, "defense": 23, "magic": 24, "spirit": 20, "speed": 46, "sprite": "CP_G33_AssassinRobot.png", "actions": [&"compliance_burst", &"system_shock"], "elements": {&"lightning": 1.25}, "exp": 83, "duckets": 33, "pack": SCI_FI_PACK},
-		&"helios_security": {"name": "Public-Safety Optimizer", "hp": 330, "attack": 40, "defense": 38, "magic": 20, "spirit": 28, "speed": 24, "sprite": "CP_G39_SecurityRobot.png", "actions": [&"suppressive_burst", &"daylight_lance"], "elements": {&"lightning": 1.2}, "exp": 102, "duckets": 41, "pack": SCI_FI_PACK},
-		&"helios_gunner": {"name": "Transit Fare Inspector", "hp": 260, "attack": 42, "defense": 27, "magic": 18, "spirit": 22, "speed": 35, "sprite": "CP_G40_GunnerRobot.png", "actions": [&"suppressive_burst", &"compliance_burst"], "elements": {&"lightning": 1.3}, "exp": 96, "duckets": 39, "pack": SCI_FI_PACK},
-		&"civic_sun": {"name": "Civic Sun, Acting Mayor", "hp": 1950, "attack": 47, "defense": 41, "magic": 48, "spirit": 37, "speed": 34, "sprite": "CP_G56_Guardian.png", "actions": [&"permanent_noon", &"daylight_lance", &"suppressive_burst"], "elements": {&"lightning": 1.25}, "status_resist": {&"poisoned": 1.0, &"slow": 0.6, &"shocked": 0.45}, "exp": 460, "duckets": 190, "pack": SCI_FI_PACK},
-		&"cobalt_courier_challenger": {"name": "Cobalt Courier, Undeliverable Agent", "hp": 2180, "attack": 50, "defense": 38, "magic": 52, "spirit": 40, "speed": 57, "sprite_path": "res://game_assets/characters/Topdown Monsters Part 1/Sliced/Cobalt Courier/00_idle/frame_000.png", "actions": [&"cobalt_claw", &"express_jolt", &"priority_delivery"], "elements": {&"lightning": 1.25}, "status_resist": {&"poisoned": 0.7, &"slow": 0.5, &"shocked": 0.25}, "exp": 420, "duckets": 165, "battle_animation_root": "res://game_assets/characters/Topdown Monsters Part 1/Sliced/Cobalt Courier", "battle_animation_fps": 8.0, "battle_animation_sequences": {&"idle": {"folder": "00_idle", "frames": 6}, &"attack": {"folder": "05_attack", "frames": 6}, &"hit": {"folder": "06_hit", "frames": 6}, &"power": {"folder": "08_blast_attack_2", "frames": 6}, &"victory": {"folder": "02_victory", "frames": 8}, &"death": {"folder": "12_death_1", "frames": 8}}, "battle_action_sequences": {&"cobalt_claw": &"attack", &"express_jolt": &"power", &"priority_delivery": &"attack"}},
-		&"frost_collector": {"name": "Royal Heat Collector", "hp": 315, "attack": 43, "defense": 34, "magic": 31, "spirit": 29, "speed": 31, "sprite": "CP_J56_WaterClubWarrior.png", "actions": [&"cold_assessment", &"servo_strike"], "elements": {&"frost": 0.45, &"lightning": 1.15}, "exp": 116, "duckets": 47, "pack": VILLAIN_PACK},
-		&"frost_necromancer": {"name": "Permafrost Assessor", "hp": 265, "attack": 27, "defense": 25, "magic": 46, "spirit": 38, "speed": 36, "sprite": "CP_J33_DarkNecromancer.png", "actions": [&"lien_of_silence", &"cold_assessment"], "elements": {&"frost": 0.35, &"lightning": 1.35}, "exp": 124, "duckets": 51, "pack": VILLAIN_PACK},
-		&"ice_colossus": {"name": "Frozen Asset Seizure", "hp": 480, "attack": 49, "defense": 47, "magic": 24, "spirit": 35, "speed": 20, "sprite": "CP_J35_WaterColossus.png", "actions": [&"cold_assessment", &"tail_sweep"], "elements": {&"frost": 0.25, &"lightning": 1.35}, "exp": 158, "duckets": 64, "pack": VILLAIN_PACK},
-		&"whiteout_auditor": {"name": "Whiteout Auditor, Crown Receiver", "hp": 2450, "attack": 54, "defense": 46, "magic": 57, "spirit": 43, "speed": 37, "sprite": "CP_J60_ElementalFusionDragon.png", "actions": [&"absolute_audit", &"lien_of_silence", &"cold_assessment"], "elements": {&"frost": 0.2, &"lightning": 1.2}, "status_resist": {&"poisoned": 1.0, &"slow": 0.65, &"shocked": 0.5}, "exp": 590, "duckets": 245, "pack": VILLAIN_PACK},
-		&"memory_inspector": {"name": "Official Memory Inspector", "hp": 345, "attack": 40, "defense": 36, "magic": 48, "spirit": 39, "speed": 34, "sprite": "CP_A199_KasaJizo.png", "actions": [&"memory_stamp", &"spectral_touch"], "elements": {&"spectral": 0.45, &"lightning": 1.35}, "exp": 142, "duckets": 58, "pack": YOKAI_PACK},
-		&"fox_attendant": {"name": "Counterfeit Wedding Attendant", "hp": 310, "attack": 46, "defense": 30, "magic": 37, "spirit": 31, "speed": 45, "sprite": "CP_A204_FoxWeddingAttendant.png", "actions": [&"procession_waltz", &"memory_stamp"], "elements": {&"spectral": 0.5, &"lightning": 1.15}, "exp": 150, "duckets": 61, "pack": YOKAI_PACK},
-		&"vow_spider": {"name": "Notarial Vow Spider", "hp": 540, "attack": 53, "defense": 42, "magic": 34, "spirit": 36, "speed": 27, "sprite": "CP_A186_NingyoPassGiantSpider.png", "actions": [&"memory_stamp", &"splinter_needle"], "elements": {&"spectral": 0.65, &"lightning": 1.3}, "exp": 190, "duckets": 77, "pack": YOKAI_PACK},
-		&"magistrate_enma": {"name": "Magistrate Enma, Keeper of the False Moon", "hp": 2920, "attack": 58, "defense": 49, "magic": 63, "spirit": 48, "speed": 40, "sprite": "CP_A210_Enma.png", "actions": [&"final_testimony", &"procession_waltz", &"memory_stamp"], "elements": {&"spectral": 0.25, &"lightning": 1.3}, "status_resist": {&"poisoned": 1.0, &"slow": 0.7, &"shocked": 0.55}, "exp": 720, "duckets": 310, "pack": YOKAI_PACK},
-		&"crimson_oni_challenger": {"name": "Crimson Oni, Blood-Moon Challenger", "hp": 2650, "attack": 62, "defense": 45, "magic": 24, "spirit": 39, "speed": 51, "sprite_path": "res://game_assets/characters/Recruitable Characters/crimson oni samurai/rotations/west.png", "actions": [&"oni_crescent", &"blood_moon_cleave"], "elements": {&"spectral": 0.55, &"lightning": 1.15}, "status_resist": {&"poisoned": 0.8, &"slow": 0.55, &"shocked": 0.45}, "exp": 680, "duckets": 280},
-		&"wind_bailiff": {"name": "Wind Bailiff", "hp": 390, "attack": 51, "defense": 38, "magic": 45, "spirit": 40, "speed": 49, "sprite": "CP_J31_WindFighter.png", "actions": [&"gravity_writ", &"compliance_burst"], "elements": {&"radiant": 0.65, &"lightning": 1.15}, "exp": 172, "duckets": 70, "pack": VILLAIN_PACK},
-		&"storm_repossessor": {"name": "Storm-Wing Repossessor", "hp": 420, "attack": 48, "defense": 36, "magic": 55, "spirit": 42, "speed": 43, "sprite": "CP_J32_StormWingFighter.png", "actions": [&"storm_decree", &"gravity_writ"], "elements": {&"lightning": 1.2}, "exp": 184, "duckets": 75, "pack": VILLAIN_PACK},
-		&"fallen_notary": {"name": "Fallen Miracle Notary", "hp": 455, "attack": 34, "defense": 35, "magic": 61, "spirit": 48, "speed": 36, "sprite": "CP_J49_FallenNobleMage.png", "actions": [&"gravity_writ", &"daylight_lance"], "elements": {&"radiant": 0.45, &"lightning": 1.25}, "exp": 196, "duckets": 81, "pack": VILLAIN_PACK},
-		&"gravity_knight": {"name": "Elemental Lien Knight", "hp": 690, "attack": 60, "defense": 54, "magic": 45, "spirit": 44, "speed": 28, "sprite": "CP_J37_ElementalFusionKnight.png", "actions": [&"storm_decree", &"gravity_writ"], "elements": {&"lightning": 1.2}, "exp": 238, "duckets": 96, "pack": VILLAIN_PACK},
-		&"high_comptroller": {"name": "High Comptroller of Gravity", "hp": 3560, "attack": 64, "defense": 55, "magic": 70, "spirit": 54, "speed": 43, "sprite": "CP_J59_StormCommander.png", "actions": [&"foreclosure_of_flight", &"storm_decree", &"gravity_writ"], "elements": {&"lightning": 1.2}, "status_resist": {&"poisoned": 1.0, &"slow": 0.72, &"shocked": 0.58}, "exp": 860, "duckets": 370, "pack": VILLAIN_PACK},
+		&"schoolgirl_ghost": {"name": "Restless Apparition", "hp": 92, "attack": 18, "defense": 10, "magic": 23, "spirit": 13, "speed": 25, "sprite_profile": &"schoolgirl_ghost_battle_actor", "actions": [&"spectral_touch"], "elements": {&"lightning": 1.5, &"spectral": 0.5}, "exp": 22, "duckets": 8},
+		&"war_book": {"name": "Unabridged Menace", "hp": 118, "attack": 24, "defense": 17, "magic": 12, "spirit": 15, "speed": 19, "sprite_profile": &"war_book_battle_actor", "actions": [&"hurl_volume", &"ink_blight"], "elements": {&"lightning": 0.75, &"spectral": 0.75}, "exp": 28, "duckets": 11},
+		&"clock_mirror": {"name": "The Late Reflection", "hp": 175, "attack": 19, "defense": 20, "magic": 29, "spirit": 21, "speed": 31, "sprite_profile": &"clock_mirror_battle_actor", "actions": [&"steal_time", &"spectral_touch"], "elements": {&"lightning": 1.5, &"time": 0.5}, "exp": 52, "duckets": 19},
+		&"composer_portrait": {"name": "Unfinished Composer", "hp": 168, "attack": 17, "defense": 16, "magic": 31, "spirit": 22, "speed": 24, "sprite_profile": &"composer_portrait_battle_actor", "actions": [&"unfinished_refrain", &"spectral_touch"], "elements": {&"lightning": 1.4, &"spectral": 0.45}, "exp": 44, "duckets": 16},
+		&"haunted_doll": {"name": "Household Darling", "hp": 145, "attack": 27, "defense": 19, "magic": 22, "spirit": 17, "speed": 32, "sprite_profile": &"haunted_doll_battle_actor", "actions": [&"splinter_needle", &"nursery_wail"], "elements": {&"lightning": 1.25, &"spectral": 0.7}, "exp": 39, "duckets": 14},
+		&"clock_mirror_boss": {"name": "The 4:44 Appointment", "hp": 720, "attack": 31, "defense": 24, "magic": 38, "spirit": 27, "speed": 27, "sprite_profile": &"clock_mirror_battle_actor", "actions": [&"steal_time", &"late_fee", &"spectral_touch"], "elements": {&"lightning": 1.35, &"time": 0.35, &"spectral": 0.5}, "status_resist": {&"poisoned": 1.0, &"slow": 0.65, &"shocked": 0.5}, "exp": 180, "duckets": 75},
+		&"rift_jackal_challenger": {"name": "Rift Jackal, Fault-Line Stray", "hp": 1180, "attack": 40, "defense": 31, "magic": 28, "spirit": 26, "speed": 48, "sprite_profile": &"rift_jackal_battle_actor", "actions": [&"rift_bite", &"phase_scratch", &"faultline_pounce"], "elements": {&"spectral": 0.45, &"lightning": 1.3}, "status_resist": {&"poisoned": 0.65, &"slow": 0.5, &"shocked": 0.45}, "exp": 260, "duckets": 95, "battle_animation_root": "res://game_assets/characters/Topdown Monsters Part 1/Sliced/Rift Jackal", "battle_animation_fps": 8.0, "battle_animation_sequences": {&"idle": {"folder": "00_idle", "frames": 6}, &"attack": {"folder": "05_attack", "frames": 6}, &"hit": {"folder": "06_hit", "frames": 6}, &"power": {"folder": "07_blast_attack_1", "frames": 6}, &"victory": {"folder": "02_victory", "frames": 8}, &"death": {"folder": "12_death_1", "frames": 8}}, "battle_action_sequences": {&"rift_bite": &"attack", &"phase_scratch": &"power", &"faultline_pounce": &"attack"}},
+		&"work_robot": {"name": "Overtime Work Robot", "hp": 132, "attack": 25, "defense": 22, "magic": 10, "spirit": 16, "speed": 22, "sprite_profile": &"work_robot_battle_actor", "actions": [&"servo_strike"], "elements": {&"lightning": 1.45}, "exp": 34, "duckets": 14},
+		&"sentry_drone": {"name": "Union-Busting Sentry", "hp": 108, "attack": 23, "defense": 17, "magic": 19, "spirit": 14, "speed": 36, "sprite_profile": &"sentry_drone_battle_actor", "actions": [&"suppressive_burst", &"system_shock"], "elements": {&"lightning": 1.3}, "exp": 39, "duckets": 16},
+		&"medical_robot": {"name": "Aggressive Care Unit", "hp": 176, "attack": 21, "defense": 25, "magic": 26, "spirit": 24, "speed": 24, "sprite_profile": &"medical_robot_battle_actor", "actions": [&"system_shock", &"servo_strike"], "elements": {&"lightning": 1.4}, "exp": 48, "duckets": 19},
+		&"machine_commander": {"name": "Shift Supervisor", "hp": 245, "attack": 31, "defense": 29, "magic": 21, "spirit": 22, "speed": 27, "sprite_profile": &"machine_commander_battle_actor", "actions": [&"suppressive_burst", &"servo_strike"], "elements": {&"lightning": 1.25}, "exp": 66, "duckets": 26},
+		&"mother_computer": {"name": "Mother Computer, Acting Manager", "hp": 1050, "attack": 33, "defense": 33, "magic": 43, "spirit": 30, "speed": 29, "sprite_profile": &"mother_computer_battle_actor", "actions": [&"mandatory_overtime", &"system_shock", &"suppressive_burst"], "elements": {&"lightning": 0.75}, "status_resist": {&"poisoned": 1.0, &"slow": 0.6, &"shocked": 0.45}, "exp": 260, "duckets": 110},
+		&"bulkhead_warden_challenger": {"name": "Bulkhead Warden, Acting Shop Steward", "hp": 1420, "attack": 43, "defense": 48, "magic": 25, "spirit": 37, "speed": 20, "sprite_profile": &"bulkhead_warden_battle_actor", "actions": [&"warden_pummel", &"piston_surge", &"pressure_lock", &"bulkhead_drop"], "elements": {&"lightning": 1.35, &"nature": 0.65}, "status_resist": {&"poisoned": 1.0, &"slow": 0.62, &"shocked": 0.55}, "exp": 310, "duckets": 125, "battle_animation_root": "res://game_assets/characters/Topdown Monsters Part 1/Sliced/Bulkhead Warden", "battle_animation_fps": 8.0, "battle_animation_sequences": {&"idle": {"folder": "00_idle", "frames": 6}, &"attack": {"folder": "05_attack", "frames": 6}, &"hit": {"folder": "06_hit", "frames": 6}, &"power": {"folder": "08_blast_attack_2", "frames": 6}, &"victory": {"folder": "02_victory", "frames": 8}, &"death": {"folder": "12_death_1", "frames": 8}}, "battle_action_sequences": {&"warden_pummel": &"attack", &"piston_surge": &"power", &"pressure_lock": &"attack", &"bulkhead_drop": &"power"}},
+		&"primeval_raptor": {"name": "Unlicensed Raptor", "hp": 178, "attack": 31, "defense": 18, "magic": 7, "spirit": 14, "speed": 42, "sprite_profile": &"primeval_raptor_battle_actor", "actions": [&"prehistoric_bite"], "elements": {&"lightning": 1.25}, "exp": 52, "duckets": 18},
+		&"stone_triceratops": {"name": "Right-of-Way Triceratops", "hp": 310, "attack": 34, "defense": 34, "magic": 5, "spirit": 23, "speed": 19, "sprite_profile": &"stone_triceratops_battle_actor", "actions": [&"stampede", &"tail_sweep"], "elements": {&"lightning": 1.15}, "exp": 78, "duckets": 28},
+		&"municipal_spinosaur": {"name": "Municipal Spinosaur", "hp": 275, "attack": 37, "defense": 25, "magic": 10, "spirit": 19, "speed": 29, "sprite_profile": &"municipal_spinosaur_battle_actor", "actions": [&"prehistoric_bite", &"tail_sweep"], "elements": {&"lightning": 1.2}, "exp": 84, "duckets": 31},
+		&"commute_tyrant": {"name": "Tyrant of the Morning Commute", "hp": 1480, "attack": 43, "defense": 35, "magic": 18, "spirit": 29, "speed": 32, "sprite_profile": &"commute_tyrant_battle_actor", "actions": [&"commuter_roar", &"prehistoric_bite", &"tail_sweep"], "elements": {&"lightning": 1.25}, "status_resist": {&"poisoned": 0.75, &"slow": 0.65, &"shocked": 0.55}, "exp": 340, "duckets": 145},
+		&"mossback_surveyor_challenger": {"name": "Mossback Surveyor, Unauthorized Planner", "hp": 1640, "attack": 45, "defense": 42, "magic": 35, "spirit": 39, "speed": 25, "sprite_profile": &"mossback_surveyor_battle_actor", "actions": [&"mossback_pummel", &"spore_receipt", &"rooted_red_tape"], "elements": {&"nature": 0.35, &"lightning": 1.3}, "status_resist": {&"poisoned": 0.2, &"slow": 0.6, &"shocked": 0.75}, "exp": 330, "duckets": 120, "battle_animation_root": "res://game_assets/characters/Topdown Monsters Part 1/Sliced/Mossback Surveyor", "battle_animation_fps": 8.0, "battle_animation_sequences": {&"idle": {"folder": "00_idle", "frames": 6}, &"attack": {"folder": "05_attack", "frames": 6}, &"hit": {"folder": "06_hit", "frames": 6}, &"power": {"folder": "08_blast_attack_2", "frames": 6}, &"victory": {"folder": "02_victory", "frames": 8}, &"death": {"folder": "12_death_1", "frames": 8}}, "battle_action_sequences": {&"mossback_pummel": &"attack", &"spore_receipt": &"power", &"rooted_red_tape": &"power"}},
+		&"helios_mech": {"name": "Day-Shift Mech Soldier", "hp": 245, "attack": 38, "defense": 29, "magic": 17, "spirit": 21, "speed": 31, "sprite_profile": &"helios_mech_battle_actor", "actions": [&"compliance_burst", &"servo_strike"], "elements": {&"lightning": 1.35}, "exp": 76, "duckets": 30},
+		&"helios_assassin": {"name": "Curfew Compliance Specialist", "hp": 205, "attack": 36, "defense": 23, "magic": 24, "spirit": 20, "speed": 46, "sprite_profile": &"helios_assassin_battle_actor", "actions": [&"compliance_burst", &"system_shock"], "elements": {&"lightning": 1.25}, "exp": 83, "duckets": 33},
+		&"helios_security": {"name": "Public-Safety Optimizer", "hp": 330, "attack": 40, "defense": 38, "magic": 20, "spirit": 28, "speed": 24, "sprite_profile": &"helios_security_battle_actor", "actions": [&"suppressive_burst", &"daylight_lance"], "elements": {&"lightning": 1.2}, "exp": 102, "duckets": 41},
+		&"helios_gunner": {"name": "Transit Fare Inspector", "hp": 260, "attack": 42, "defense": 27, "magic": 18, "spirit": 22, "speed": 35, "sprite_profile": &"helios_gunner_battle_actor", "actions": [&"suppressive_burst", &"compliance_burst"], "elements": {&"lightning": 1.3}, "exp": 96, "duckets": 39},
+		&"civic_sun": {"name": "Civic Sun, Acting Mayor", "hp": 1950, "attack": 47, "defense": 41, "magic": 48, "spirit": 37, "speed": 34, "sprite_profile": &"civic_sun_battle_actor", "actions": [&"permanent_noon", &"daylight_lance", &"suppressive_burst"], "elements": {&"lightning": 1.25}, "status_resist": {&"poisoned": 1.0, &"slow": 0.6, &"shocked": 0.45}, "exp": 460, "duckets": 190},
+		&"cobalt_courier_challenger": {"name": "Cobalt Courier, Undeliverable Agent", "hp": 2180, "attack": 50, "defense": 38, "magic": 52, "spirit": 40, "speed": 57, "sprite_profile": &"cobalt_courier_battle_actor", "actions": [&"cobalt_claw", &"express_jolt", &"priority_delivery"], "elements": {&"lightning": 1.25}, "status_resist": {&"poisoned": 0.7, &"slow": 0.5, &"shocked": 0.25}, "exp": 420, "duckets": 165, "battle_animation_root": "res://game_assets/characters/Topdown Monsters Part 1/Sliced/Cobalt Courier", "battle_animation_fps": 8.0, "battle_animation_sequences": {&"idle": {"folder": "00_idle", "frames": 6}, &"attack": {"folder": "05_attack", "frames": 6}, &"hit": {"folder": "06_hit", "frames": 6}, &"power": {"folder": "08_blast_attack_2", "frames": 6}, &"victory": {"folder": "02_victory", "frames": 8}, &"death": {"folder": "12_death_1", "frames": 8}}, "battle_action_sequences": {&"cobalt_claw": &"attack", &"express_jolt": &"power", &"priority_delivery": &"attack"}},
+		&"frost_collector": {"name": "Royal Heat Collector", "hp": 315, "attack": 43, "defense": 34, "magic": 31, "spirit": 29, "speed": 31, "sprite_profile": &"frost_collector_battle_actor", "actions": [&"cold_assessment", &"servo_strike"], "elements": {&"frost": 0.45, &"lightning": 1.15}, "exp": 116, "duckets": 47},
+		&"frost_necromancer": {"name": "Permafrost Assessor", "hp": 265, "attack": 27, "defense": 25, "magic": 46, "spirit": 38, "speed": 36, "sprite_profile": &"frost_necromancer_battle_actor", "actions": [&"lien_of_silence", &"cold_assessment"], "elements": {&"frost": 0.35, &"lightning": 1.35}, "exp": 124, "duckets": 51},
+		&"ice_colossus": {"name": "Frozen Asset Seizure", "hp": 480, "attack": 49, "defense": 47, "magic": 24, "spirit": 35, "speed": 20, "sprite_profile": &"ice_colossus_battle_actor", "actions": [&"cold_assessment", &"tail_sweep"], "elements": {&"frost": 0.25, &"lightning": 1.35}, "exp": 158, "duckets": 64},
+		&"whiteout_auditor": {"name": "Whiteout Auditor, Crown Receiver", "hp": 2450, "attack": 54, "defense": 46, "magic": 57, "spirit": 43, "speed": 37, "sprite_profile": &"whiteout_auditor_battle_actor", "actions": [&"absolute_audit", &"lien_of_silence", &"cold_assessment"], "elements": {&"frost": 0.2, &"lightning": 1.2}, "status_resist": {&"poisoned": 1.0, &"slow": 0.65, &"shocked": 0.5}, "exp": 590, "duckets": 245},
+		&"memory_inspector": {"name": "Official Memory Inspector", "hp": 345, "attack": 40, "defense": 36, "magic": 48, "spirit": 39, "speed": 34, "sprite_profile": &"memory_inspector_battle_actor", "actions": [&"memory_stamp", &"spectral_touch"], "elements": {&"spectral": 0.45, &"lightning": 1.35}, "exp": 142, "duckets": 58},
+		&"fox_attendant": {"name": "Counterfeit Wedding Attendant", "hp": 310, "attack": 46, "defense": 30, "magic": 37, "spirit": 31, "speed": 45, "sprite_profile": &"fox_attendant_battle_actor", "actions": [&"procession_waltz", &"memory_stamp"], "elements": {&"spectral": 0.5, &"lightning": 1.15}, "exp": 150, "duckets": 61},
+		&"vow_spider": {"name": "Notarial Vow Spider", "hp": 540, "attack": 53, "defense": 42, "magic": 34, "spirit": 36, "speed": 27, "sprite_profile": &"vow_spider_battle_actor", "actions": [&"memory_stamp", &"splinter_needle"], "elements": {&"spectral": 0.65, &"lightning": 1.3}, "exp": 190, "duckets": 77},
+		&"magistrate_enma": {"name": "Magistrate Enma, Keeper of the False Moon", "hp": 2920, "attack": 58, "defense": 49, "magic": 63, "spirit": 48, "speed": 40, "sprite_profile": &"magistrate_enma_battle_actor", "actions": [&"final_testimony", &"procession_waltz", &"memory_stamp"], "elements": {&"spectral": 0.25, &"lightning": 1.3}, "status_resist": {&"poisoned": 1.0, &"slow": 0.7, &"shocked": 0.55}, "exp": 720, "duckets": 310},
+		&"crimson_oni_challenger": {"name": "Crimson Oni, Blood-Moon Challenger", "hp": 2650, "attack": 62, "defense": 45, "magic": 24, "spirit": 39, "speed": 51, "sprite_profile": &"crimson_oni_challenger_battle_actor", "actions": [&"oni_crescent", &"blood_moon_cleave"], "elements": {&"spectral": 0.55, &"lightning": 1.15}, "status_resist": {&"poisoned": 0.8, &"slow": 0.55, &"shocked": 0.45}, "exp": 680, "duckets": 280},
+		&"wind_bailiff": {"name": "Wind Bailiff", "hp": 390, "attack": 51, "defense": 38, "magic": 45, "spirit": 40, "speed": 49, "sprite_profile": &"wind_bailiff_battle_actor", "actions": [&"gravity_writ", &"compliance_burst"], "elements": {&"radiant": 0.65, &"lightning": 1.15}, "exp": 172, "duckets": 70},
+		&"storm_repossessor": {"name": "Storm-Wing Repossessor", "hp": 420, "attack": 48, "defense": 36, "magic": 55, "spirit": 42, "speed": 43, "sprite_profile": &"storm_repossessor_battle_actor", "actions": [&"storm_decree", &"gravity_writ"], "elements": {&"lightning": 1.2}, "exp": 184, "duckets": 75},
+		&"fallen_notary": {"name": "Fallen Miracle Notary", "hp": 455, "attack": 34, "defense": 35, "magic": 61, "spirit": 48, "speed": 36, "sprite_profile": &"fallen_notary_battle_actor", "actions": [&"gravity_writ", &"daylight_lance"], "elements": {&"radiant": 0.45, &"lightning": 1.25}, "exp": 196, "duckets": 81},
+		&"gravity_knight": {"name": "Elemental Lien Knight", "hp": 690, "attack": 60, "defense": 54, "magic": 45, "spirit": 44, "speed": 28, "sprite_profile": &"gravity_knight_battle_actor", "actions": [&"storm_decree", &"gravity_writ"], "elements": {&"lightning": 1.2}, "exp": 238, "duckets": 96},
+		&"high_comptroller": {"name": "High Comptroller of Gravity", "hp": 3560, "attack": 64, "defense": 55, "magic": 70, "spirit": 54, "speed": 43, "sprite_profile": &"high_comptroller_battle_actor", "actions": [&"foreclosure_of_flight", &"storm_decree", &"gravity_writ"], "elements": {&"lightning": 1.2}, "status_resist": {&"poisoned": 1.0, &"slow": 0.72, &"shocked": 0.58}, "exp": 860, "duckets": 370},
 	}
 	var data: Dictionary = catalog.get(enemy_id, {})
+	var sprite_path := String(data.get("sprite_path", String(data.get("pack", HORROR_PACK)) + String(data.get("sprite", "CP_F091_SchoolgirlGhost_01.png"))))
+	var sprite_region := data.get("sprite_region", Rect2()) as Rect2
+	var sprite_profile := StringName(data.get("sprite_profile", &""))
+	if sprite_profile != &"":
+		var visual_sprite := _visual_sprite(sprite_profile)
+		if visual_sprite.is_empty():
+			push_error("Enemy %s requires missing visual profile %s" % [enemy_id, sprite_profile])
+			return {}
+		sprite_path = String(visual_sprite["sprite_path"])
+		sprite_region = visual_sprite["sprite_region"] as Rect2
 	var actor := _actor(StringName("%s_%d" % [enemy_id, index]), data.get("name", "Unknown Horror"), "enemy",
 		int(data.get("hp", 80)), 0, int(data.get("attack", 15)), int(data.get("defense", 10)),
 		int(data.get("magic", 15)), int(data.get("spirit", 10)), int(data.get("speed", 20)),
-		String(data.get("sprite_path", String(data.get("pack", HORROR_PACK)) + String(data.get("sprite", "CP_F091_SchoolgirlGhost_01.png")))), data.get("actions", [&"spectral_touch"]), {})
-	if data.has("sprite_region"):
-		actor["sprite_region"] = data["sprite_region"]
+		sprite_path, data.get("actions", [&"spectral_touch"]), {})
+	if sprite_region.size != Vector2.ZERO:
+		actor["sprite_region"] = sprite_region
+	if sprite_profile != &"":
+		actor["sprite_profile"] = sprite_profile
 	actor["enemy_type"] = enemy_id
 	actor["element_rates"] = data.get("elements", {}).duplicate(true)
 	actor["status_resist"] = data.get("status_resist", {}).duplicate(true)
@@ -400,6 +434,27 @@ static func enemy_actor(enemy_id: StringName, index: int) -> Dictionary:
 	if data.has("battle_animation_root"):
 		actor["battle_animations"] = _battle_animation_data(data)
 	return actor
+
+
+static func _visual_sprite(profile_id: StringName) -> Dictionary:
+	if profile_id == &"":
+		push_error("A battle actor requires an approved visual profile")
+		return {}
+	var registry = VISUAL_PROFILE_REGISTRY.new()
+	if not registry.has(profile_id):
+		push_error("Battle actor requires missing visual profile %s" % profile_id)
+		return {}
+	var sprite_path := registry.texture_path(profile_id)
+	var sprite_region := registry.region(profile_id)
+	if sprite_path.is_empty() or sprite_region.size == Vector2.ZERO:
+		push_error("Battle actor profile %s did not resolve a usable texture region" % profile_id)
+		return {}
+	return {"sprite_path": sprite_path, "sprite_region": sprite_region}
+
+
+static func _apply_visual_sprite(actor: Dictionary, profile_id: StringName, visual_sprite: Dictionary) -> void:
+	actor["sprite_profile"] = profile_id
+	actor["sprite_region"] = visual_sprite["sprite_region"]
 
 
 static func _battle_animation_data(source: Dictionary) -> Dictionary:
@@ -423,16 +478,16 @@ static func _attach_authored_battle_animation(actor: Dictionary, character_id: S
 
 static func _encounter_catalog() -> Dictionary:
 	var encounters := {
-		&"mansion_foyer_intro": {"name": "A Bad First Impression", "enemies": [&"schoolgirl_ghost", &"war_book"], "backdrop_region": Rect2(0, 0, 384, 360), "scripted": true},
-		&"mansion_restless_books": {"name": "Restless Stacks", "enemies": [&"war_book", &"war_book"], "backdrop_region": Rect2(0, 0, 384, 360)},
-		&"mansion_lost_hours": {"name": "The House Keeps Strange Hours", "enemies": [&"schoolgirl_ghost", &"clock_mirror"], "backdrop_region": Rect2(0, 0, 384, 360)},
-		&"mansion_gallery_ambush": {"name": "The Portraits Object", "enemies": [&"composer_portrait", &"schoolgirl_ghost"], "backdrop_region": Rect2(0, 384, 384, 360), "scripted": true},
-		&"mansion_restless_portraits": {"name": "Restless Exhibition", "enemies": [&"composer_portrait", &"war_book"], "backdrop_region": Rect2(0, 384, 384, 360)},
-		&"mansion_nursery_ambush": {"name": "Children Should Be Seen and Feared", "enemies": [&"haunted_doll", &"haunted_doll"], "backdrop_region": Rect2(0, 0, 384, 360), "scripted": true},
-		&"mansion_doll_procession": {"name": "The Doll Procession", "enemies": [&"haunted_doll", &"schoolgirl_ghost"], "backdrop_region": Rect2(0, 0, 384, 360)},
-		&"mansion_last_dance": {"name": "The Last Dance", "enemies": [&"composer_portrait", &"clock_mirror"], "backdrop_region": Rect2(0, 384, 384, 360)},
+		&"mansion_foyer_intro": {"name": "A Bad First Impression", "enemies": [&"schoolgirl_ghost", &"war_book"], "backdrop_profile": &"mansion_foyer_battle_backdrop", "scripted": true},
+		&"mansion_restless_books": {"name": "Restless Stacks", "enemies": [&"war_book", &"war_book"], "backdrop_profile": &"mansion_foyer_battle_backdrop"},
+		&"mansion_lost_hours": {"name": "The House Keeps Strange Hours", "enemies": [&"schoolgirl_ghost", &"clock_mirror"], "backdrop_profile": &"mansion_foyer_battle_backdrop"},
+		&"mansion_gallery_ambush": {"name": "The Portraits Object", "enemies": [&"composer_portrait", &"schoolgirl_ghost"], "backdrop_profile": &"mansion_gallery_battle_backdrop", "scripted": true},
+		&"mansion_restless_portraits": {"name": "Restless Exhibition", "enemies": [&"composer_portrait", &"war_book"], "backdrop_profile": &"mansion_gallery_battle_backdrop"},
+		&"mansion_nursery_ambush": {"name": "Children Should Be Seen and Feared", "enemies": [&"haunted_doll", &"haunted_doll"], "backdrop_profile": &"mansion_foyer_battle_backdrop", "scripted": true},
+		&"mansion_doll_procession": {"name": "The Doll Procession", "enemies": [&"haunted_doll", &"schoolgirl_ghost"], "backdrop_profile": &"mansion_foyer_battle_backdrop"},
+		&"mansion_last_dance": {"name": "The Last Dance", "enemies": [&"composer_portrait", &"clock_mirror"], "backdrop_profile": &"mansion_gallery_battle_backdrop"},
 		&"mansion_archive_boss": {
-			"name": "Your Appointment Was 250 Years Ago", "enemies": [&"clock_mirror_boss"], "backdrop_region": Rect2(0, 384, 384, 360), "scripted": true, "boss": true,
+			"name": "Your Appointment Was 250 Years Ago", "enemies": [&"clock_mirror_boss"], "backdrop_profile": &"mansion_gallery_battle_backdrop", "scripted": true, "boss": true,
 			"boss_policy": {
 				"id": &"mansion_clock_mirror",
 				"phases": [
@@ -442,50 +497,50 @@ static func _encounter_catalog() -> Dictionary:
 				],
 			},
 		},
-		&"mansion_rift_jackal_trial": {"name": "The Fault-Line Stray", "enemies": [&"rift_jackal_challenger"], "backdrop_region": Rect2(0, 384, 384, 360), "scripted": true, "boss": true},
-		&"asterion_dock_intro": {"name": "Please Present Crew Identification", "enemies": [&"sentry_drone", &"work_robot"], "backdrop_path": "res://game_assets/Tilesets/Sci-Fi Spaceship Interior Tileset Pack/1.png", "backdrop_region": Rect2(0, 0, 384, 360), "scripted": true},
-		&"asterion_maintenance_detail": {"name": "Unscheduled Maintenance", "enemies": [&"work_robot", &"work_robot"], "backdrop_path": "res://game_assets/Tilesets/Sci-Fi Spaceship Interior Tileset Pack/1.png", "backdrop_region": Rect2(0, 0, 384, 360)},
-		&"asterion_greenhouse_patrol": {"name": "Hostile Horticulture Department", "enemies": [&"sentry_drone", &"work_robot"], "backdrop_path": "res://game_assets/Tilesets/Sci-Fi Spaceship Interior Tileset Pack/3.png", "backdrop_region": Rect2(0, 0, 384, 360)},
-		&"asterion_medical_ambush": {"name": "Mandatory Preventive Care", "enemies": [&"medical_robot", &"sentry_drone"], "backdrop_path": "res://game_assets/Tilesets/Sci-Fi Spaceship Interior Tileset Pack/10.png", "backdrop_region": Rect2(0, 0, 384, 360), "scripted": true},
-		&"asterion_medical_patrol": {"name": "Second Opinion", "enemies": [&"medical_robot", &"work_robot"], "backdrop_path": "res://game_assets/Tilesets/Sci-Fi Spaceship Interior Tileset Pack/10.png", "backdrop_region": Rect2(0, 0, 384, 360)},
-		&"asterion_hydro_ambush": {"name": "Productivity Pruning", "enemies": [&"sentry_drone", &"sentry_drone"], "backdrop_path": "res://game_assets/Tilesets/Sci-Fi Spaceship Interior Tileset Pack/3.png", "backdrop_region": Rect2(0, 0, 384, 360), "scripted": true},
-		&"asterion_command_patrol": {"name": "Management Escort", "enemies": [&"machine_commander", &"sentry_drone"], "backdrop_path": "res://game_assets/Tilesets/Sci-Fi Spaceship Interior Tileset Pack/6.png", "backdrop_region": Rect2(0, 0, 384, 360)},
-		&"asterion_mother_computer": {"name": "The Final Shift Review", "enemies": [&"mother_computer"], "backdrop_path": "res://game_assets/Tilesets/Sci-Fi Spaceship Interior Tileset Pack/6.png", "backdrop_region": Rect2(0, 0, 384, 360), "scripted": true, "boss": true},
-		&"asterion_bulkhead_warden_trial": {"name": "The Load-Bearing Interview", "enemies": [&"bulkhead_warden_challenger"], "backdrop_path": "res://game_assets/Tilesets/Sci-Fi Spaceship Interior Tileset Pack/6.png", "backdrop_region": Rect2(0, 0, 384, 360), "scripted": true, "boss": true},
-		&"primeval_grove_intro": {"name": "Local Right-of-Way Dispute", "enemies": [&"primeval_raptor", &"primeval_raptor"], "backdrop_path": "res://game_assets/Tilesets/Stone Age Modern Life Pixel Art Tileset Pack/9.png", "backdrop_region": Rect2(0, 0, 384, 360), "scripted": true},
-		&"primeval_raptor_pack": {"name": "Unlicensed Traffic", "enemies": [&"primeval_raptor", &"primeval_raptor"], "backdrop_path": "res://game_assets/Tilesets/Stone Age Modern Life Pixel Art Tileset Pack/9.png", "backdrop_region": Rect2(0, 0, 384, 360)},
-		&"primeval_heavy_herd": {"name": "Right-of-Way Hearing", "enemies": [&"stone_triceratops"], "backdrop_path": "res://game_assets/Tilesets/Stone Age Modern Life Pixel Art Tileset Pack/9.png", "backdrop_region": Rect2(0, 0, 384, 360)},
-		&"primeval_nest_ambush": {"name": "Relay Nest Attendants", "enemies": [&"municipal_spinosaur", &"primeval_raptor"], "backdrop_path": "res://game_assets/Tilesets/Stone Age Modern Life Pixel Art Tileset Pack/9.png", "backdrop_region": Rect2(0, 0, 384, 360), "scripted": true},
-		&"primeval_nest_patrol": {"name": "Protective Parents Association", "enemies": [&"primeval_raptor", &"stone_triceratops"], "backdrop_path": "res://game_assets/Tilesets/Stone Age Modern Life Pixel Art Tileset Pack/9.png", "backdrop_region": Rect2(0, 0, 384, 360)},
-		&"primeval_caldera_patrol": {"name": "Caldera Express Lane", "enemies": [&"municipal_spinosaur", &"primeval_raptor"], "backdrop_path": "res://game_assets/Tilesets/Stone Age Modern Life Pixel Art Tileset Pack/9.png", "backdrop_region": Rect2(0, 0, 384, 360)},
-		&"primeval_commute_tyrant": {"name": "The Morning Commute", "enemies": [&"commute_tyrant"], "backdrop_path": "res://game_assets/Tilesets/Stone Age Modern Life Pixel Art Tileset Pack/9.png", "backdrop_region": Rect2(0, 0, 384, 360), "scripted": true, "boss": true},
-		&"primeval_mossback_trial": {"name": "The Green Audit", "enemies": [&"mossback_surveyor_challenger"], "backdrop_path": "res://game_assets/Tilesets/Stone Age Modern Life Pixel Art Tileset Pack/9.png", "backdrop_region": Rect2(0, 0, 384, 360), "scripted": true, "boss": true},
-		&"helios_skybridge_intro": {"name": "Skybridge Compliance Inspection", "enemies": [&"helios_mech", &"helios_assassin"], "backdrop_path": "res://game_assets/Tilesets/Bright Cyberpunk Pixel Art Tileset Pack/1.png", "backdrop_region": Rect2(384, 0, 384, 360), "scripted": true},
-		&"helios_market_patrol": {"name": "Authorized Shopping Hours", "enemies": [&"helios_assassin", &"helios_mech"], "backdrop_path": "res://game_assets/Tilesets/Bright Cyberpunk Pixel Art Tileset Pack/5.png", "backdrop_region": Rect2(384, 0, 384, 360)},
-		&"helios_transit_patrol": {"name": "Proof of Fare and Wakefulness", "enemies": [&"helios_gunner", &"helios_mech"], "backdrop_path": "res://game_assets/Tilesets/Bright Cyberpunk Pixel Art Tileset Pack/1.png", "backdrop_region": Rect2(0, 0, 384, 360)},
-		&"helios_clinic_ambush": {"name": "Mandatory Rest Prevention", "enemies": [&"helios_security", &"helios_assassin"], "backdrop_path": "res://game_assets/Tilesets/Bright Cyberpunk Pixel Art Tileset Pack/5.png", "backdrop_region": Rect2(384, 384, 384, 360), "scripted": true},
-		&"helios_clinic_patrol": {"name": "Second Opinion Denied", "enemies": [&"helios_security", &"helios_mech"], "backdrop_path": "res://game_assets/Tilesets/Bright Cyberpunk Pixel Art Tileset Pack/5.png", "backdrop_region": Rect2(384, 384, 384, 360)},
-		&"helios_civic_sun": {"name": "The Last Mandatory Day", "enemies": [&"civic_sun"], "backdrop_path": "res://game_assets/Tilesets/Bright Cyberpunk Pixel Art Tileset Pack/1.png", "backdrop_region": Rect2(384, 384, 384, 360), "scripted": true, "boss": true},
-		&"helios_cobalt_courier_trial": {"name": "The Undeliverable Parcel", "enemies": [&"cobalt_courier_challenger"], "backdrop_path": "res://game_assets/Tilesets/Bright Cyberpunk Pixel Art Tileset Pack/1.png", "backdrop_region": Rect2(0, 0, 384, 360), "scripted": true, "boss": true},
-		&"frosthold_gate_intro": {"name": "Declaration of Body Heat", "enemies": [&"frost_collector", &"frost_necromancer"], "backdrop_path": "res://game_assets/Tilesets/Frozen kingdom/Frozen Kingdom – Top-Down Pixel Art Asset Pack/1. Snow ground tiles.png", "backdrop_region": Rect2(72, 198, 192, 192), "scripted": true},
-		&"frosthold_market_patrol": {"name": "Unscheduled Thermal Inspection", "enemies": [&"frost_collector", &"frost_collector"], "backdrop_path": "res://game_assets/Tilesets/Frozen kingdom/Frozen Kingdom – Top-Down Pixel Art Asset Pack/1. Snow ground tiles.png", "backdrop_region": Rect2(72, 198, 192, 192)},
-		&"frosthold_causeway_patrol": {"name": "Crystal Asset Seizure", "enemies": [&"ice_colossus", &"frost_necromancer"], "backdrop_path": "res://game_assets/Tilesets/Frozen kingdom/Frozen Kingdom – Top-Down Pixel Art Asset Pack/1. Snow ground tiles.png", "backdrop_region": Rect2(72, 198, 192, 192)},
-		&"frosthold_rune_ambush": {"name": "The Collection Detail", "enemies": [&"frost_collector", &"ice_colossus"], "backdrop_path": "res://game_assets/Tilesets/Frozen kingdom/Frozen Kingdom – Top-Down Pixel Art Asset Pack/1. Snow ground tiles.png", "backdrop_region": Rect2(72, 198, 192, 192), "scripted": true},
-		&"frosthold_rune_patrol": {"name": "Penalty and Interest", "enemies": [&"frost_necromancer", &"frost_collector"], "backdrop_path": "res://game_assets/Tilesets/Frozen kingdom/Frozen Kingdom – Top-Down Pixel Art Asset Pack/1. Snow ground tiles.png", "backdrop_region": Rect2(72, 198, 192, 192)},
-		&"frosthold_whiteout_auditor": {"name": "The Final Thermal Audit", "enemies": [&"whiteout_auditor"], "backdrop_path": "res://game_assets/Tilesets/Frozen kingdom/Frozen Kingdom – Top-Down Pixel Art Asset Pack/1. Snow ground tiles.png", "backdrop_region": Rect2(72, 198, 192, 192), "scripted": true, "boss": true},
-		&"moonpetal_gate_intro": {"name": "Please State Your Original Memory", "enemies": [&"memory_inspector", &"fox_attendant"], "backdrop_path": "res://game_assets/Tilesets/Sakura Temple Asset Pack/Floor tiles.png", "backdrop_region": Rect2(54, 232, 176, 176), "scripted": true},
-		&"moonpetal_court_patrol": {"name": "Official Festival Recollection", "enemies": [&"memory_inspector", &"memory_inspector"], "backdrop_path": "res://game_assets/Tilesets/Sakura Temple Asset Pack/Floor tiles.png", "backdrop_region": Rect2(269, 232, 176, 176)},
-		&"moonpetal_garden_patrol": {"name": "Reflections With Credentials", "enemies": [&"vow_spider", &"memory_inspector"], "backdrop_path": "res://game_assets/Tilesets/Sakura Temple Asset Pack/Floor tiles.png", "backdrop_region": Rect2(889, 441, 176, 176)},
-		&"moonpetal_bell_ambush": {"name": "A Wedding Nobody Remembers", "enemies": [&"fox_attendant", &"vow_spider"], "backdrop_path": "res://game_assets/Tilesets/Sakura Temple Asset Pack/Floor tiles.png", "backdrop_region": Rect2(465, 441, 176, 176), "scripted": true},
-		&"moonpetal_bell_patrol": {"name": "The Procession Repeats", "enemies": [&"fox_attendant", &"memory_inspector"], "backdrop_path": "res://game_assets/Tilesets/Sakura Temple Asset Pack/Floor tiles.png", "backdrop_region": Rect2(465, 441, 176, 176)},
-		&"moonpetal_magistrate_enma": {"name": "The Counterfeit Moon Hearing", "enemies": [&"magistrate_enma"], "backdrop_path": "res://game_assets/Tilesets/Sakura Temple Asset Pack/Floor tiles.png", "backdrop_region": Rect2(1095, 232, 176, 176), "scripted": true, "boss": true},
-		&"moonpetal_crimson_oni_trial": {"name": "The Blood Moon Employment Interview", "enemies": [&"crimson_oni_challenger"], "backdrop_path": "res://game_assets/Tilesets/Sakura Temple Asset Pack/Floor tiles.png", "backdrop_region": Rect2(465, 441, 176, 176), "scripted": true, "boss": true},
-		&"empyreal_landing_intro": {"name": "Declaration of Personal Gravity", "enemies": [&"wind_bailiff", &"storm_repossessor"], "backdrop_path": "res://game_assets/Tilesets/Ancient Greek Mythology/1. Marble floor tiles.png", "backdrop_region": Rect2(54, 166, 438, 210), "scripted": true},
-		&"empyreal_garden_patrol": {"name": "Appeal Denied in Advance", "enemies": [&"wind_bailiff", &"wind_bailiff"], "backdrop_path": "res://game_assets/Tilesets/Ancient Greek Mythology/1. Marble floor tiles.png", "backdrop_region": Rect2(532, 166, 462, 210)},
-		&"empyreal_forum_patrol": {"name": "Ordinance Enforcement", "enemies": [&"fallen_notary", &"storm_repossessor"], "backdrop_path": "res://game_assets/Tilesets/Ancient Greek Mythology/1. Marble floor tiles.png", "backdrop_region": Rect2(777, 422, 466, 210)},
-		&"empyreal_aerie_ambush": {"name": "Wing Repossession Detail", "enemies": [&"gravity_knight", &"wind_bailiff"], "backdrop_path": "res://game_assets/Tilesets/Ancient Greek Mythology/1. Marble floor tiles.png", "backdrop_region": Rect2(1034, 422, 462, 210), "scripted": true},
-		&"empyreal_aerie_patrol": {"name": "Reliquary Asset Seizure", "enemies": [&"fallen_notary", &"gravity_knight"], "backdrop_path": "res://game_assets/Tilesets/Ancient Greek Mythology/1. Marble floor tiles.png", "backdrop_region": Rect2(532, 681, 462, 210)},
-		&"empyreal_high_comptroller": {"name": "The Final Gravity Hearing", "enemies": [&"high_comptroller"], "backdrop_path": "res://game_assets/Tilesets/Ancient Greek Mythology/1. Marble floor tiles.png", "backdrop_region": Rect2(1034, 681, 462, 210), "scripted": true, "boss": true},
+		&"mansion_rift_jackal_trial": {"name": "The Fault-Line Stray", "enemies": [&"rift_jackal_challenger"], "backdrop_profile": &"mansion_gallery_battle_backdrop", "scripted": true, "boss": true},
+		&"asterion_dock_intro": {"name": "Please Present Crew Identification", "enemies": [&"sentry_drone", &"work_robot"], "backdrop_profile": &"asterion_dock_battle_backdrop", "scripted": true},
+		&"asterion_maintenance_detail": {"name": "Unscheduled Maintenance", "enemies": [&"work_robot", &"work_robot"], "backdrop_profile": &"asterion_dock_battle_backdrop"},
+		&"asterion_greenhouse_patrol": {"name": "Hostile Horticulture Department", "enemies": [&"sentry_drone", &"work_robot"], "backdrop_profile": &"asterion_hydro_battle_backdrop"},
+		&"asterion_medical_ambush": {"name": "Mandatory Preventive Care", "enemies": [&"medical_robot", &"sentry_drone"], "backdrop_profile": &"asterion_medical_battle_backdrop", "scripted": true},
+		&"asterion_medical_patrol": {"name": "Second Opinion", "enemies": [&"medical_robot", &"work_robot"], "backdrop_profile": &"asterion_medical_battle_backdrop"},
+		&"asterion_hydro_ambush": {"name": "Productivity Pruning", "enemies": [&"sentry_drone", &"sentry_drone"], "backdrop_profile": &"asterion_hydro_battle_backdrop", "scripted": true},
+		&"asterion_command_patrol": {"name": "Management Escort", "enemies": [&"machine_commander", &"sentry_drone"], "backdrop_profile": &"asterion_command_battle_backdrop"},
+		&"asterion_mother_computer": {"name": "The Final Shift Review", "enemies": [&"mother_computer"], "backdrop_profile": &"asterion_command_battle_backdrop", "scripted": true, "boss": true},
+		&"asterion_bulkhead_warden_trial": {"name": "The Load-Bearing Interview", "enemies": [&"bulkhead_warden_challenger"], "backdrop_profile": &"asterion_command_battle_backdrop", "scripted": true, "boss": true},
+		&"primeval_grove_intro": {"name": "Local Right-of-Way Dispute", "enemies": [&"primeval_raptor", &"primeval_raptor"], "backdrop_profile": &"primeval_ground_battle_backdrop", "scripted": true},
+		&"primeval_raptor_pack": {"name": "Unlicensed Traffic", "enemies": [&"primeval_raptor", &"primeval_raptor"], "backdrop_profile": &"primeval_ground_battle_backdrop"},
+		&"primeval_heavy_herd": {"name": "Right-of-Way Hearing", "enemies": [&"stone_triceratops"], "backdrop_profile": &"primeval_ground_battle_backdrop"},
+		&"primeval_nest_ambush": {"name": "Relay Nest Attendants", "enemies": [&"municipal_spinosaur", &"primeval_raptor"], "backdrop_profile": &"primeval_ground_battle_backdrop", "scripted": true},
+		&"primeval_nest_patrol": {"name": "Protective Parents Association", "enemies": [&"primeval_raptor", &"stone_triceratops"], "backdrop_profile": &"primeval_ground_battle_backdrop"},
+		&"primeval_caldera_patrol": {"name": "Caldera Express Lane", "enemies": [&"municipal_spinosaur", &"primeval_raptor"], "backdrop_profile": &"primeval_ground_battle_backdrop"},
+		&"primeval_commute_tyrant": {"name": "The Morning Commute", "enemies": [&"commute_tyrant"], "backdrop_profile": &"primeval_ground_battle_backdrop", "scripted": true, "boss": true},
+		&"primeval_mossback_trial": {"name": "The Green Audit", "enemies": [&"mossback_surveyor_challenger"], "backdrop_profile": &"primeval_ground_battle_backdrop", "scripted": true, "boss": true},
+		&"helios_skybridge_intro": {"name": "Skybridge Compliance Inspection", "enemies": [&"helios_mech", &"helios_assassin"], "backdrop_profile": &"helios_skybridge_battle_backdrop", "scripted": true},
+		&"helios_market_patrol": {"name": "Authorized Shopping Hours", "enemies": [&"helios_assassin", &"helios_mech"], "backdrop_profile": &"helios_market_battle_backdrop"},
+		&"helios_transit_patrol": {"name": "Proof of Fare and Wakefulness", "enemies": [&"helios_gunner", &"helios_mech"], "backdrop_profile": &"helios_transit_battle_backdrop"},
+		&"helios_clinic_ambush": {"name": "Mandatory Rest Prevention", "enemies": [&"helios_security", &"helios_assassin"], "backdrop_profile": &"helios_clinic_battle_backdrop", "scripted": true},
+		&"helios_clinic_patrol": {"name": "Second Opinion Denied", "enemies": [&"helios_security", &"helios_mech"], "backdrop_profile": &"helios_clinic_battle_backdrop"},
+		&"helios_civic_sun": {"name": "The Last Mandatory Day", "enemies": [&"civic_sun"], "backdrop_profile": &"helios_civic_sun_battle_backdrop", "scripted": true, "boss": true},
+		&"helios_cobalt_courier_trial": {"name": "The Undeliverable Parcel", "enemies": [&"cobalt_courier_challenger"], "backdrop_profile": &"helios_transit_battle_backdrop", "scripted": true, "boss": true},
+		&"frosthold_gate_intro": {"name": "Declaration of Body Heat", "enemies": [&"frost_collector", &"frost_necromancer"], "backdrop_profile": &"frosthold_snow_battle_backdrop", "scripted": true},
+		&"frosthold_market_patrol": {"name": "Unscheduled Thermal Inspection", "enemies": [&"frost_collector", &"frost_collector"], "backdrop_profile": &"frosthold_snow_battle_backdrop"},
+		&"frosthold_causeway_patrol": {"name": "Crystal Asset Seizure", "enemies": [&"ice_colossus", &"frost_necromancer"], "backdrop_profile": &"frosthold_snow_battle_backdrop"},
+		&"frosthold_rune_ambush": {"name": "The Collection Detail", "enemies": [&"frost_collector", &"ice_colossus"], "backdrop_profile": &"frosthold_snow_battle_backdrop", "scripted": true},
+		&"frosthold_rune_patrol": {"name": "Penalty and Interest", "enemies": [&"frost_necromancer", &"frost_collector"], "backdrop_profile": &"frosthold_snow_battle_backdrop"},
+		&"frosthold_whiteout_auditor": {"name": "The Final Thermal Audit", "enemies": [&"whiteout_auditor"], "backdrop_profile": &"frosthold_snow_battle_backdrop", "scripted": true, "boss": true},
+		&"moonpetal_gate_intro": {"name": "Please State Your Original Memory", "enemies": [&"memory_inspector", &"fox_attendant"], "backdrop_profile": &"moonpetal_gate_battle_backdrop", "scripted": true},
+		&"moonpetal_court_patrol": {"name": "Official Festival Recollection", "enemies": [&"memory_inspector", &"memory_inspector"], "backdrop_profile": &"moonpetal_court_battle_backdrop"},
+		&"moonpetal_garden_patrol": {"name": "Reflections With Credentials", "enemies": [&"vow_spider", &"memory_inspector"], "backdrop_profile": &"moonpetal_garden_battle_backdrop"},
+		&"moonpetal_bell_ambush": {"name": "A Wedding Nobody Remembers", "enemies": [&"fox_attendant", &"vow_spider"], "backdrop_profile": &"moonpetal_bell_battle_backdrop", "scripted": true},
+		&"moonpetal_bell_patrol": {"name": "The Procession Repeats", "enemies": [&"fox_attendant", &"memory_inspector"], "backdrop_profile": &"moonpetal_bell_battle_backdrop"},
+		&"moonpetal_magistrate_enma": {"name": "The Counterfeit Moon Hearing", "enemies": [&"magistrate_enma"], "backdrop_profile": &"moonpetal_palace_battle_backdrop", "scripted": true, "boss": true},
+		&"moonpetal_crimson_oni_trial": {"name": "The Blood Moon Employment Interview", "enemies": [&"crimson_oni_challenger"], "backdrop_profile": &"moonpetal_bell_battle_backdrop", "scripted": true, "boss": true},
+		&"empyreal_landing_intro": {"name": "Declaration of Personal Gravity", "enemies": [&"wind_bailiff", &"storm_repossessor"], "backdrop_profile": &"empyreal_landing_battle_backdrop", "scripted": true},
+		&"empyreal_garden_patrol": {"name": "Appeal Denied in Advance", "enemies": [&"wind_bailiff", &"wind_bailiff"], "backdrop_profile": &"empyreal_garden_battle_backdrop"},
+		&"empyreal_forum_patrol": {"name": "Ordinance Enforcement", "enemies": [&"fallen_notary", &"storm_repossessor"], "backdrop_profile": &"empyreal_forum_battle_backdrop"},
+		&"empyreal_aerie_ambush": {"name": "Wing Repossession Detail", "enemies": [&"gravity_knight", &"wind_bailiff"], "backdrop_profile": &"empyreal_aerie_battle_backdrop", "scripted": true},
+		&"empyreal_aerie_patrol": {"name": "Reliquary Asset Seizure", "enemies": [&"fallen_notary", &"gravity_knight"], "backdrop_profile": &"empyreal_upper_aerie_battle_backdrop"},
+		&"empyreal_high_comptroller": {"name": "The Final Gravity Hearing", "enemies": [&"high_comptroller"], "backdrop_profile": &"empyreal_tribunal_battle_backdrop", "scripted": true, "boss": true},
 	}
 	return encounters
 

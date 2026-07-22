@@ -10,7 +10,7 @@ func _configure_region() -> void:
 
 
 func _scripted_encounter(local: Vector2i) -> StringName:
-	if not CampaignState.story_flags.get(&"asterion_dock_cleared", false) and Rect2i(1, 4, 6, 3).has_point(local):
+	if not CampaignState.story_flags.get(&"asterion_dock_cleared", false) and Rect2i(0, 4, 8, 4).has_point(local):
 		return &"asterion_dock_intro"
 	if _in_medical(local) and not CampaignState.story_flags.get(&"asterion_medical_ambush_cleared", false):
 		return &"asterion_medical_ambush"
@@ -22,19 +22,19 @@ func _scripted_encounter(local: Vector2i) -> StringName:
 
 
 func _is_danger_region(local: Vector2i) -> bool:
-	return Rect2i(11, 4, 6, 3).has_point(local) or _in_hydro(local) or _in_medical(local) or _in_control(local)
+	return Rect2i(10, 4, 8, 4).has_point(local) or _in_hydro(local) or _in_medical(local) or _in_control(local)
 
 
 func _in_hydro(local: Vector2i) -> bool:
-	return Rect2i(21, 4, 6, 3).has_point(local)
+	return Rect2i(20, 4, 8, 4).has_point(local)
 
 
 func _in_medical(local: Vector2i) -> bool:
-	return Rect2i(11, 14, 6, 3).has_point(local)
+	return Rect2i(10, 14, 8, 4).has_point(local)
 
 
 func _in_control(local: Vector2i) -> bool:
-	return Rect2i(21, 14, 6, 3).has_point(local)
+	return Rect2i(20, 14, 8, 4).has_point(local)
 
 
 func _random_encounter(local: Vector2i) -> StringName:
