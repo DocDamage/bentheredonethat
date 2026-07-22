@@ -850,6 +850,14 @@
       "worldDrawSize": [48, 48], "licenseReference": "game/ben_rpg/visual_assets/generated/runtime_asset_provenance.json", "cropApproval": "approved", "goldenCapture": "game/validation/town-facilities-overview-rebuilt.png"
     },
     {
+      "id": "town_road_tile", "kind": "tile",
+      "source": {"pack": "Modern World Overworld Pixel Tileset", "runtimeTexture": "game/game_assets/Tilesets/Modern World Overworld Pixel Tileset/2.png", "sourceChecksum": "97686cd26987e55ab202949329b3da68550e2c9298e665edb65d8d7a3b262a00", "sourceDensity": 48, "region": [600, 48, 48, 48], "alphaBounds": [600, 48, 48, 48]}, "placement": {"footAnchor": [24, 47], "scaleClass": "tile", "collisionFootprint": "town_road_tile"}, "worldDrawSize": [48, 48], "licenseReference": "game/ben_rpg/visual_assets/generated/runtime_asset_provenance.json", "cropApproval": "approved", "goldenCapture": "game/validation/town-facilities-overview-rebuilt.png"
+    },
+    {
+      "id": "town_foundation_stone_tile", "kind": "tile",
+      "source": {"pack": "Modern World Overworld Pixel Tileset", "runtimeTexture": "game/game_assets/Tilesets/Modern World Overworld Pixel Tileset/2.png", "sourceChecksum": "97686cd26987e55ab202949329b3da68550e2c9298e665edb65d8d7a3b262a00", "sourceDensity": 48, "region": [600, 96, 48, 48], "alphaBounds": [600, 96, 48, 48]}, "placement": {"footAnchor": [24, 47], "scaleClass": "tile", "collisionFootprint": "foundation_tile"}, "worldDrawSize": [48, 48], "licenseReference": "game/ben_rpg/visual_assets/generated/runtime_asset_provenance.json", "cropApproval": "approved", "goldenCapture": "game/validation/town-facilities-overview-rebuilt.png"
+    },
+    {
       "id": "primeval_ground_quadrant",
       "kind": "tile",
       "source": {"pack": "Stone Age Modern Life Pixel Art Tileset Pack", "runtimeTexture": "game/game_assets/Tilesets/Stone Age Modern Life Pixel Art Tileset Pack/9.png", "sourceChecksum": "0971f69f4d8b1da7786335ba8cd833933bac45105069d923f560cee64a22fc55", "sourceDensity": 48, "region": [0, 0, 384, 384], "alphaBounds": [0, 0, 384, 384]},

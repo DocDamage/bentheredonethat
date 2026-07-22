@@ -9716,6 +9716,46 @@
       "cropApproval": "approved",
       "distributionEligibility": "review_required",
       "goldenCapture": "game/validation/town-facilities-overview-rebuilt.png",
+      "id": "town_foundation_stone_tile",
+      "kind": "tile",
+      "licenseReference": "game/ben_rpg/visual_assets/generated/runtime_asset_provenance.json",
+      "placement": {
+        "collisionFootprint": "foundation_tile",
+        "footAnchor": [
+          24,
+          47
+        ],
+        "scaleClass": "tile"
+      },
+      "releaseVisualAcceptance": "prototype_only",
+      "source": {
+        "alphaBounds": [
+          600,
+          96,
+          48,
+          48
+        ],
+        "pack": "Modern World Overworld Pixel Tileset",
+        "region": [
+          600,
+          96,
+          48,
+          48
+        ],
+        "runtimeTexture": "game/game_assets/Tilesets/Modern World Overworld Pixel Tileset/2.png",
+        "sha256": "97686cd26987e55ab202949329b3da68550e2c9298e665edb65d8d7a3b262a00",
+        "sourceChecksum": "97686cd26987e55ab202949329b3da68550e2c9298e665edb65d8d7a3b262a00",
+        "sourceDensity": 48
+      },
+      "worldDrawSize": [
+        48,
+        48
+      ]
+    },
+    {
+      "cropApproval": "approved",
+      "distributionEligibility": "review_required",
+      "goldenCapture": "game/validation/town-facilities-overview-rebuilt.png",
       "id": "town_grass_tile",
       "kind": "tile",
       "licenseReference": "game/ben_rpg/visual_assets/generated/runtime_asset_provenance.json",
@@ -9830,6 +9870,46 @@
       "worldDrawSize": [
         96,
         128
+      ]
+    },
+    {
+      "cropApproval": "approved",
+      "distributionEligibility": "review_required",
+      "goldenCapture": "game/validation/town-facilities-overview-rebuilt.png",
+      "id": "town_road_tile",
+      "kind": "tile",
+      "licenseReference": "game/ben_rpg/visual_assets/generated/runtime_asset_provenance.json",
+      "placement": {
+        "collisionFootprint": "town_road_tile",
+        "footAnchor": [
+          24,
+          47
+        ],
+        "scaleClass": "tile"
+      },
+      "releaseVisualAcceptance": "prototype_only",
+      "source": {
+        "alphaBounds": [
+          600,
+          48,
+          48,
+          48
+        ],
+        "pack": "Modern World Overworld Pixel Tileset",
+        "region": [
+          600,
+          48,
+          48,
+          48
+        ],
+        "runtimeTexture": "game/game_assets/Tilesets/Modern World Overworld Pixel Tileset/2.png",
+        "sha256": "97686cd26987e55ab202949329b3da68550e2c9298e665edb65d8d7a3b262a00",
+        "sourceChecksum": "97686cd26987e55ab202949329b3da68550e2c9298e665edb65d8d7a3b262a00",
+        "sourceDensity": 48
+      },
+      "worldDrawSize": [
+        48,
+        48
       ]
     },
     {

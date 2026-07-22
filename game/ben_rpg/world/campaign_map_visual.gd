@@ -279,8 +279,8 @@ func draw_town() -> void:
 			var road := x == 14 or y == 10
 			# Both samples are native 48px world tiles from the same pack as the town
 			# facades. This avoids the former 3x Ranch pixels and flat orange roads.
-			var source := Rect2(600, 48, 48, 48) if road else Rect2(336, 96, 48, 48)
-			tile(town_ground, source, Rect2(offset + Vector2(x, y) * TILE, Vector2(TILE, TILE)))
+			var terrain_profile: StringName = &"town_road_tile" if road else &"town_grass_tile"
+			profile_tile(terrain_profile, town_ground, offset + Vector2(x, y) * TILE)
 	_draw_terrain_overrides()
 	if not CampaignState.sandbox_mode:
 		_draw_facility_approaches(offset)
@@ -353,7 +353,6 @@ func _draw_town_state_overlay(offset: Vector2) -> void:
 func _draw_facility_approaches(offset: Vector2) -> void:
 	if built_facilities.is_empty():
 		return
-	var road_source := Rect2(600, 48, 48, 48)
 	var has_southern_facility := false
 	var deep_south_min_x := TOWN_SIZE.x
 	var deep_south_max_x := -1
@@ -363,28 +362,28 @@ func _draw_facility_approaches(offset: Vector2) -> void:
 		if plot.position.y < 10:
 			# Northern plots face the original east-west road.
 			for y in range(plot.end.y - 1, 11):
-				tile(town_ground, road_source, Rect2(offset + Vector2(door_x, y) * TILE, Vector2(TILE, TILE)))
+				profile_tile(&"town_road_tile", town_ground, offset + Vector2(door_x, y) * TILE)
 		else:
 			has_southern_facility = true
 			if plot.position.y >= 20:
 				# Later town expansion uses a short second lane below the original
 				# neighborhood, keeping the Tea House's south-facing doorway clear.
 				for y in range(plot.end.y - 1, 27):
-					tile(town_ground, road_source, Rect2(offset + Vector2(door_x, y) * TILE, Vector2(TILE, TILE)))
+					profile_tile(&"town_road_tile", town_ground, offset + Vector2(door_x, y) * TILE)
 				deep_south_min_x = mini(deep_south_min_x, door_x)
 				deep_south_max_x = maxi(deep_south_max_x, door_x)
 				continue
 			# Southern buildings meet a shared lane below their front doors.
 			for y in range(plot.end.y - 1, 19):
-				tile(town_ground, road_source, Rect2(offset + Vector2(door_x, y) * TILE, Vector2(TILE, TILE)))
+				profile_tile(&"town_road_tile", town_ground, offset + Vector2(door_x, y) * TILE)
 	if has_southern_facility:
 		for x in range(1, 31):
-			tile(town_ground, road_source, Rect2(offset + Vector2(x, 18) * TILE, Vector2(TILE, TILE)))
+			profile_tile(&"town_road_tile", town_ground, offset + Vector2(x, 18) * TILE)
 	if deep_south_max_x >= 0:
 		# Connect whichever deep-south plots were chosen instead of assuming two
 		# fixed plot indexes. This also serves the new southwest construction site.
 		for x in range(maxi(1, deep_south_min_x - 2), mini(TOWN_SIZE.x - 1, deep_south_max_x + 3)):
-			tile(town_ground, road_source, Rect2(offset + Vector2(x, 26) * TILE, Vector2(TILE, TILE)))
+			profile_tile(&"town_road_tile", town_ground, offset + Vector2(x, 26) * TILE)
 
 
 func _draw_facility(plot: Rect2, facility_name: String) -> void:
@@ -448,10 +447,9 @@ func _draw_facility_foundation(plot: Rect2) -> void:
 	# A compact stone apron seats every facade into the world and gives its door
 	# a readable landing. It is built from complete native tiles and remains
 	# inside the construction plot, so no clipped scenery bleeds into its neighbor.
-	var stone_source := Rect2(600, 96, 48, 48)
 	var apron_y := plot.end.y - TILE
 	for x in range(1, maxi(2, int(plot.size.x / TILE) - 1)):
-		tile(town_ground, stone_source, Rect2(plot.position + Vector2(x * TILE, apron_y - plot.position.y), Vector2(TILE, TILE)))
+		profile_tile(&"town_foundation_stone_tile", town_ground, plot.position + Vector2(x * TILE, apron_y - plot.position.y))
 
 
 func _draw_observatory_facility(plot: Rect2) -> void:

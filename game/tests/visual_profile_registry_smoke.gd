@@ -17,6 +17,7 @@ func _ready() -> void:
 		&"town_cold_storage_facade",
 		&"town_tea_house_facade",
 		&"town_grass_tile",
+		&"town_road_tile", &"town_foundation_stone_tile",
 		&"haunted_mansion_exterior",
 		&"moonpetal_vermilion_gate",
 		&"moonpetal_court_temple",
