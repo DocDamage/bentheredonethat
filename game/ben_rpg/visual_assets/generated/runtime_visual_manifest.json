@@ -5095,6 +5095,86 @@
     {
       "cropApproval": "approved",
       "distributionEligibility": "review_required",
+      "goldenCapture": "game/validation/helios-clinic.png",
+      "id": "helios_clinic_quadrant",
+      "kind": "tile",
+      "licenseReference": "game/ben_rpg/visual_assets/generated/runtime_asset_provenance.json",
+      "placement": {
+        "collisionFootprint": "authored_quadrant",
+        "footAnchor": [
+          192,
+          383
+        ],
+        "scaleClass": "tile"
+      },
+      "releaseVisualAcceptance": "prototype_only",
+      "source": {
+        "alphaBounds": [
+          384,
+          384,
+          384,
+          384
+        ],
+        "pack": "Bright Cyberpunk Pixel Art Tileset Pack",
+        "region": [
+          384,
+          384,
+          384,
+          384
+        ],
+        "runtimeTexture": "game/game_assets/Tilesets/Bright Cyberpunk Pixel Art Tileset Pack/5.png",
+        "sha256": "9191c00d043afece6d219072fb7326724e5f34d0d0395dafd4cc9c8c578bad01",
+        "sourceChecksum": "9191c00d043afece6d219072fb7326724e5f34d0d0395dafd4cc9c8c578bad01",
+        "sourceDensity": 48
+      },
+      "worldDrawSize": [
+        384,
+        384
+      ]
+    },
+    {
+      "cropApproval": "approved",
+      "distributionEligibility": "review_required",
+      "goldenCapture": "game/validation/helios-core.png",
+      "id": "helios_core_quadrant",
+      "kind": "tile",
+      "licenseReference": "game/ben_rpg/visual_assets/generated/runtime_asset_provenance.json",
+      "placement": {
+        "collisionFootprint": "authored_quadrant",
+        "footAnchor": [
+          192,
+          383
+        ],
+        "scaleClass": "tile"
+      },
+      "releaseVisualAcceptance": "prototype_only",
+      "source": {
+        "alphaBounds": [
+          384,
+          384,
+          384,
+          384
+        ],
+        "pack": "Bright Cyberpunk Pixel Art Tileset Pack",
+        "region": [
+          384,
+          384,
+          384,
+          384
+        ],
+        "runtimeTexture": "game/game_assets/Tilesets/Bright Cyberpunk Pixel Art Tileset Pack/1.png",
+        "sha256": "b1d940e8f99fd06af695e576999b6d016a23202e59173f93eab9c8b58b9f7910",
+        "sourceChecksum": "b1d940e8f99fd06af695e576999b6d016a23202e59173f93eab9c8b58b9f7910",
+        "sourceDensity": 48
+      },
+      "worldDrawSize": [
+        384,
+        384
+      ]
+    },
+    {
+      "cropApproval": "approved",
+      "distributionEligibility": "review_required",
       "goldenCapture": "game/validation/helios-transit.png",
       "id": "helios_gunner_battle_actor",
       "kind": "battle_actor",
@@ -5454,6 +5534,46 @@
       "worldDrawSize": [
         384,
         360
+      ]
+    },
+    {
+      "cropApproval": "approved",
+      "distributionEligibility": "review_required",
+      "goldenCapture": "game/validation/helios-transit.png",
+      "id": "helios_transit_quadrant",
+      "kind": "tile",
+      "licenseReference": "game/ben_rpg/visual_assets/generated/runtime_asset_provenance.json",
+      "placement": {
+        "collisionFootprint": "authored_quadrant",
+        "footAnchor": [
+          192,
+          383
+        ],
+        "scaleClass": "tile"
+      },
+      "releaseVisualAcceptance": "prototype_only",
+      "source": {
+        "alphaBounds": [
+          0,
+          0,
+          384,
+          384
+        ],
+        "pack": "Bright Cyberpunk Pixel Art Tileset Pack",
+        "region": [
+          0,
+          0,
+          384,
+          384
+        ],
+        "runtimeTexture": "game/game_assets/Tilesets/Bright Cyberpunk Pixel Art Tileset Pack/1.png",
+        "sha256": "b1d940e8f99fd06af695e576999b6d016a23202e59173f93eab9c8b58b9f7910",
+        "sourceChecksum": "b1d940e8f99fd06af695e576999b6d016a23202e59173f93eab9c8b58b9f7910",
+        "sourceDensity": 48
+      },
+      "worldDrawSize": [
+        384,
+        384
       ]
     },
     {
@@ -10582,6 +10702,46 @@
       "worldDrawSize": [
         64,
         48
+      ]
+    },
+    {
+      "cropApproval": "approved",
+      "distributionEligibility": "review_required",
+      "goldenCapture": "game/validation/primeval-ruins-rebuilt.png",
+      "id": "primeval_desert_ground_quadrant",
+      "kind": "tile",
+      "licenseReference": "game/ben_rpg/visual_assets/generated/runtime_asset_provenance.json",
+      "placement": {
+        "collisionFootprint": "authored_ground_quadrant",
+        "footAnchor": [
+          192,
+          383
+        ],
+        "scaleClass": "tile"
+      },
+      "releaseVisualAcceptance": "prototype_only",
+      "source": {
+        "alphaBounds": [
+          384,
+          0,
+          384,
+          384
+        ],
+        "pack": "Stone Age Modern Life Pixel Art Tileset Pack",
+        "region": [
+          384,
+          0,
+          384,
+          384
+        ],
+        "runtimeTexture": "game/game_assets/Tilesets/Stone Age Modern Life Pixel Art Tileset Pack/9.png",
+        "sha256": "0971f69f4d8b1da7786335ba8cd833933bac45105069d923f560cee64a22fc55",
+        "sourceChecksum": "0971f69f4d8b1da7786335ba8cd833933bac45105069d923f560cee64a22fc55",
+        "sourceDensity": 48
+      },
+      "worldDrawSize": [
+        384,
+        384
       ]
     },
     {

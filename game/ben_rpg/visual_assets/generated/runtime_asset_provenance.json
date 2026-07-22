@@ -568,9 +568,11 @@
       "path": "res://game_assets/Tilesets/Bright Cyberpunk Pixel Art Tileset Pack/1.png",
       "profileIds": [
         "helios_civic_sun_battle_backdrop",
+        "helios_core_quadrant",
         "helios_skybridge_battle_backdrop",
         "helios_skybridge_quadrant",
-        "helios_transit_battle_backdrop"
+        "helios_transit_battle_backdrop",
+        "helios_transit_quadrant"
       ],
       "sourceGroup": "Tilesets/Bright Cyberpunk Pixel Art Tileset Pack"
     },
@@ -596,6 +598,7 @@
       "path": "res://game_assets/Tilesets/Bright Cyberpunk Pixel Art Tileset Pack/5.png",
       "profileIds": [
         "helios_clinic_battle_backdrop",
+        "helios_clinic_quadrant",
         "helios_market_battle_backdrop",
         "helios_market_quadrant"
       ],
@@ -1435,6 +1438,7 @@
       ],
       "path": "res://game_assets/Tilesets/Stone Age Modern Life Pixel Art Tileset Pack/9.png",
       "profileIds": [
+        "primeval_desert_ground_quadrant",
         "primeval_ground_battle_backdrop",
         "primeval_ground_quadrant"
       ],

@@ -848,6 +848,21 @@
       "worldDrawSize": [384, 384], "licenseReference": "game/ben_rpg/visual_assets/generated/runtime_asset_provenance.json", "cropApproval": "approved", "goldenCapture": "game/validation/helios-market.png"
     },
     {
+      "id": "helios_transit_quadrant", "kind": "tile",
+      "source": {"pack": "Bright Cyberpunk Pixel Art Tileset Pack", "runtimeTexture": "game/game_assets/Tilesets/Bright Cyberpunk Pixel Art Tileset Pack/1.png", "sourceChecksum": "b1d940e8f99fd06af695e576999b6d016a23202e59173f93eab9c8b58b9f7910", "sourceDensity": 48, "region": [0, 0, 384, 384], "alphaBounds": [0, 0, 384, 384]},
+      "placement": {"footAnchor": [192, 383], "scaleClass": "tile", "collisionFootprint": "authored_quadrant"}, "worldDrawSize": [384, 384], "licenseReference": "game/ben_rpg/visual_assets/generated/runtime_asset_provenance.json", "cropApproval": "approved", "goldenCapture": "game/validation/helios-transit.png"
+    },
+    {
+      "id": "helios_clinic_quadrant", "kind": "tile",
+      "source": {"pack": "Bright Cyberpunk Pixel Art Tileset Pack", "runtimeTexture": "game/game_assets/Tilesets/Bright Cyberpunk Pixel Art Tileset Pack/5.png", "sourceChecksum": "9191c00d043afece6d219072fb7326724e5f34d0d0395dafd4cc9c8c578bad01", "sourceDensity": 48, "region": [384, 384, 384, 384], "alphaBounds": [384, 384, 384, 384]},
+      "placement": {"footAnchor": [192, 383], "scaleClass": "tile", "collisionFootprint": "authored_quadrant"}, "worldDrawSize": [384, 384], "licenseReference": "game/ben_rpg/visual_assets/generated/runtime_asset_provenance.json", "cropApproval": "approved", "goldenCapture": "game/validation/helios-clinic.png"
+    },
+    {
+      "id": "helios_core_quadrant", "kind": "tile",
+      "source": {"pack": "Bright Cyberpunk Pixel Art Tileset Pack", "runtimeTexture": "game/game_assets/Tilesets/Bright Cyberpunk Pixel Art Tileset Pack/1.png", "sourceChecksum": "b1d940e8f99fd06af695e576999b6d016a23202e59173f93eab9c8b58b9f7910", "sourceDensity": 48, "region": [384, 384, 384, 384], "alphaBounds": [384, 384, 384, 384]},
+      "placement": {"footAnchor": [192, 383], "scaleClass": "tile", "collisionFootprint": "authored_quadrant"}, "worldDrawSize": [384, 384], "licenseReference": "game/ben_rpg/visual_assets/generated/runtime_asset_provenance.json", "cropApproval": "approved", "goldenCapture": "game/validation/helios-core.png"
+    },
+    {
       "id": "helios_observatory_facade",
       "kind": "building",
       "source": {"pack": "Bright Cyberpunk Pixel Art Tileset Pack", "runtimeTexture": "game/game_assets/Tilesets/Bright Cyberpunk Pixel Art Tileset Pack/3.png", "sourceChecksum": "23e26dd9a3a6120c3b93e6fc348dd6268c6def291e6815373c4ab69bfd534afe", "sourceDensity": 48, "region": [483, 2, 91, 94], "alphaBounds": [483, 2, 91, 94]},
@@ -1413,6 +1428,11 @@
       "source": {"pack": "Sci-Fi Spaceship Interior Tileset Pack", "runtimeTexture": "game/game_assets/Tilesets/Sci-Fi Spaceship Interior Tileset Pack/6.png", "sourceChecksum": "87fe33a05b31cb2a6c1945e1dd45c0222ea0ad2adc27f92b6fb5a81ea4fd46f3", "sourceDensity": 48, "region": [0, 0, 384, 360], "alphaBounds": [0, 0, 384, 360]},
       "placement": {"footAnchor": [192, 359], "scaleClass": "tile", "collisionFootprint": "battle_backdrop"},
       "worldDrawSize": [384, 360], "licenseReference": "game/ben_rpg/visual_assets/generated/runtime_asset_provenance.json", "cropApproval": "approved", "goldenCapture": "game/validation/asterion-boss-battle-live.png"
+    },
+    {
+      "id": "primeval_desert_ground_quadrant", "kind": "tile",
+      "source": {"pack": "Stone Age Modern Life Pixel Art Tileset Pack", "runtimeTexture": "game/game_assets/Tilesets/Stone Age Modern Life Pixel Art Tileset Pack/9.png", "sourceChecksum": "0971f69f4d8b1da7786335ba8cd833933bac45105069d923f560cee64a22fc55", "sourceDensity": 48, "region": [384, 0, 384, 384], "alphaBounds": [384, 0, 384, 384]},
+      "placement": {"footAnchor": [192, 383], "scaleClass": "tile", "collisionFootprint": "authored_ground_quadrant"}, "worldDrawSize": [384, 384], "licenseReference": "game/ben_rpg/visual_assets/generated/runtime_asset_provenance.json", "cropApproval": "approved", "goldenCapture": "game/validation/primeval-ruins-rebuilt.png"
     },
     {
       "id": "primeval_ground_battle_backdrop",

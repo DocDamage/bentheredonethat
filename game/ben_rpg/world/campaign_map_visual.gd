@@ -81,9 +81,6 @@ var haunted_interior: Texture2D
 var haunted_storage: Texture2D
 var haunted_bedroom: Texture2D
 var station_architecture: Texture2D
-var primeval_ground: Texture2D
-var helios_city: Texture2D
-var helios_services: Texture2D
 var helios_structures: Texture2D
 var nightclub_signs: Texture2D
 var frozen_ground: Texture2D
@@ -113,9 +110,6 @@ func _ready() -> void:
 	haunted_bedroom = visual_profiles.texture(&"mansion_nursery_bed")
 	haunted_storage = visual_profiles.texture(&"mansion_archive_shelving")
 	station_architecture = visual_profiles.texture(&"asterion_station_wall_0_0")
-	primeval_ground = visual_profiles.texture(&"primeval_ground_quadrant")
-	helios_city = visual_profiles.texture(&"helios_skybridge_quadrant")
-	helios_services = visual_profiles.texture(&"helios_market_quadrant")
 	helios_structures = visual_profiles.texture(&"helios_observatory_facade")
 	nightclub_signs = visual_profiles.texture(&"afterlight_club_sign")
 	frozen_ground = visual_profiles.texture(&"frosthold_snow_ground_tile")
@@ -522,10 +516,8 @@ func _draw_primeval_room(room_offset: Vector2, room_kind: StringName) -> void:
 	# ruins and caldera use the pack's desert half; the living stages retain the
 	# grass-and-trail half. All five still preserve the lower traversable band.
 	_draw_primeval_room_backdrop(room_offset)
-	var ground_source := Rect2(0, 0, 384, 384)
-	if room_kind == &"ruins" or room_kind == &"caldera":
-		ground_source = Rect2(384, 0, 384, 384)
-	tile(primeval_ground, ground_source, Rect2(room_offset, Vector2(384, 384)))
+	var ground_profile: StringName = &"primeval_desert_ground_quadrant" if room_kind == &"ruins" or room_kind == &"caldera" else &"primeval_ground_quadrant"
+	profile_tile(ground_profile, visual_profiles.texture(ground_profile), room_offset)
 	if room_kind == &"nest":
 		draw_rect(Rect2(room_offset, Vector2(384, 384)), Color(0.02, 0.12, 0.03, 0.16), true)
 	elif room_kind == &"caldera":
@@ -570,22 +562,14 @@ func _draw_helios_room(room_offset: Vector2, room_kind: StringName) -> void:
 	# decorative atlas fragments.
 	_draw_helios_room_backdrop(room_offset)
 	draw_rect(Rect2(room_offset, Vector2(384, 384)), Color(0.48, 0.60, 0.69), true)
-	var texture := helios_city
-	var source := Rect2(384, 0, 384, 384)
-	match room_kind:
-		&"skybridge":
-			source = Rect2(384, 0, 384, 384)
-		&"market":
-			texture = helios_services
-			source = Rect2(384, 0, 384, 384)
-		&"transit":
-			source = Rect2(0, 0, 384, 384)
-		&"clinic":
-			texture = helios_services
-			source = Rect2(384, 384, 384, 384)
-		&"core":
-			source = Rect2(384, 384, 384, 384)
-	tile(texture, source, Rect2(room_offset, Vector2(384, 384)))
+	var quadrant_profile: StringName = {
+		&"skybridge": &"helios_skybridge_quadrant",
+		&"market": &"helios_market_quadrant",
+		&"transit": &"helios_transit_quadrant",
+		&"clinic": &"helios_clinic_quadrant",
+		&"core": &"helios_core_quadrant",
+	}.get(room_kind, &"helios_skybridge_quadrant")
+	profile_tile(quadrant_profile, visual_profiles.texture(quadrant_profile), room_offset)
 	if room_kind == &"core":
 		# The core's late-story artificial midnight is a restrained lighting pass,
 		# not a replacement texture or a pile of unrelated props.
