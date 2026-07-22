@@ -28,7 +28,8 @@ func _run() -> void:
 		_fail("Telemetry summary omitted recorded event classes")
 		return
 	var first_event: Dictionary = LocalTelemetry.events[0]
-	if String(first_event.get("build", "")) != "0.3.0-dev" or int(first_event.get("save_schema", 0)) != CampaignState.SAVE_VERSION:
+	var project_version := String(ProjectSettings.get_setting("application/config/version", ""))
+	if String(first_event.get("build", "")) != project_version or int(first_event.get("save_schema", 0)) != CampaignState.SAVE_VERSION:
 		_fail("Telemetry event omitted build or save-schema context")
 		return
 	var world_state: Dictionary = first_event.get("world_state", {})

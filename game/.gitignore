@@ -2,7 +2,7 @@
 # Godot-specific ignores
 .import/
 export.cfg
-export_presets.cfg
+# Release presets are source-controlled to make builds reproducible.
 
 # Imported translations (automatically generated from CSV files)
 *.translation

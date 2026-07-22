@@ -18,6 +18,18 @@ function Resolve-NormalizedPath([string]$Path) {
     return [System.IO.Path]::GetFullPath($Path)
 }
 
+function Get-Sha256([string]$Path) {
+    $hashAlgorithm = [System.Security.Cryptography.SHA256]::Create()
+    $fileStream = [System.IO.File]::OpenRead($Path)
+    try {
+        return ([System.BitConverter]::ToString($hashAlgorithm.ComputeHash($fileStream))).Replace('-', '')
+    }
+    finally {
+        $fileStream.Dispose()
+        $hashAlgorithm.Dispose()
+    }
+}
+
 function Assert-ChildPath([string]$Child, [string]$Parent, [string]$Label) {
     $normalizedChild = Resolve-NormalizedPath $Child
     $normalizedParent = (Resolve-NormalizedPath $Parent).TrimEnd([System.IO.Path]::DirectorySeparatorChar, [System.IO.Path]::AltDirectorySeparatorChar)
@@ -92,7 +104,7 @@ if ($scenesToRun.Count -eq 0) {
 }
 
 $productionSentinel = Join-Path $productionUserData 'save_slot_1.json'
-$sentinelBefore = if (Test-Path -LiteralPath $productionSentinel -PathType Leaf) { (Get-FileHash -LiteralPath $productionSentinel -Algorithm SHA256).Hash } else { $null }
+$sentinelBefore = if (Test-Path -LiteralPath $productionSentinel -PathType Leaf) { Get-Sha256 $productionSentinel } else { $null }
 $priorUserHome = $env:GODOT_USER_HOME
 $priorAppData = $env:APPDATA
 # Godot 4.7 on Windows resolves user:// through APPDATA. GODOT_USER_HOME is
@@ -109,14 +121,26 @@ try {
         if (-not $Windowed) { $arguments = @('--headless') + $arguments }
         Write-Output "ISOLATED_RUN scene=$scenePath user_home=$testUserHome"
         $argumentLine = ($arguments | ForEach-Object { '"' + $_ + '"' }) -join ' '
-        $process = Start-Process -FilePath $GodotExecutable -ArgumentList $argumentLine -NoNewWindow -PassThru
+        $processInfo = New-Object System.Diagnostics.ProcessStartInfo
+        $processInfo.FileName = $GodotExecutable
+        $processInfo.Arguments = $argumentLine
+        $processInfo.WorkingDirectory = $projectRoot
+        $processInfo.UseShellExecute = $false
+        $process = New-Object System.Diagnostics.Process
+        $process.StartInfo = $processInfo
+        if (-not $process.Start()) {
+            throw "Could not start Godot for $scenePath"
+        }
         if (-not $process.WaitForExit($TimeoutSeconds * 1000)) {
             & taskkill.exe /PID $process.Id /T /F | Out-Null
+            $process.Dispose()
             $failed += "$scenePath (timed out after $TimeoutSeconds seconds)"
             continue
         }
-        if ($process.ExitCode -ne 0) {
-            $failed += "$scenePath (exit $($process.ExitCode))"
+        $exitCode = $process.ExitCode
+        $process.Dispose()
+        if ($exitCode -ne 0) {
+            $failed += "$scenePath (exit $exitCode)"
         }
     }
 }
@@ -125,7 +149,7 @@ finally {
     if ($null -eq $priorAppData) { Remove-Item Env:APPDATA -ErrorAction SilentlyContinue } else { $env:APPDATA = $priorAppData }
 }
 
-$sentinelAfter = if (Test-Path -LiteralPath $productionSentinel -PathType Leaf) { (Get-FileHash -LiteralPath $productionSentinel -Algorithm SHA256).Hash } else { $null }
+$sentinelAfter = if (Test-Path -LiteralPath $productionSentinel -PathType Leaf) { Get-Sha256 $productionSentinel } else { $null }
 if ($sentinelBefore -ne $sentinelAfter) {
     throw "Production save sentinel changed during an isolated run: $productionSentinel"
 }
