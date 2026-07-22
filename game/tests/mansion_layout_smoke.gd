@@ -15,6 +15,9 @@ const FOREGROUND_PROFILES := [
 	&"mansion_gallery_lower_left_frame", &"mansion_gallery_lower_right_frame",
 	&"mansion_gallery_stage_curtain", &"mansion_nursery_music_box",
 	&"mansion_ballroom_chandelier", &"mansion_ballroom_door_frame",
+	&"mansion_foyer_clock", &"mansion_foyer_wall_tableau",
+	&"mansion_archive_wall_plain_tile", &"mansion_archive_wall_lit_tile",
+	&"mansion_nursery_left_wall_panel", &"mansion_nursery_right_wall_panel",
 ]
 
 

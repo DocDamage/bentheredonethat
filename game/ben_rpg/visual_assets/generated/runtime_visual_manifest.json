@@ -4379,6 +4379,86 @@
     {
       "cropApproval": "approved",
       "distributionEligibility": "review_required",
+      "goldenCapture": "game/validation/mansion-archive-live.png",
+      "id": "mansion_archive_wall_lit_tile",
+      "kind": "tile",
+      "licenseReference": "game/ben_rpg/visual_assets/generated/runtime_asset_provenance.json",
+      "placement": {
+        "collisionFootprint": "archive_wall_tile",
+        "footAnchor": [
+          24,
+          47
+        ],
+        "scaleClass": "tile"
+      },
+      "releaseVisualAcceptance": "prototype_only",
+      "source": {
+        "alphaBounds": [
+          48,
+          0,
+          48,
+          48
+        ],
+        "pack": "Haunted Mansion Pixel Art Tileset Pack",
+        "region": [
+          48,
+          0,
+          48,
+          48
+        ],
+        "runtimeTexture": "game/game_assets/Tilesets/Haunted Mansion Pixel Art Tileset Pack/2.png",
+        "sha256": "7b703a7e5eabd9017bfd4ae47bc8c5c328c9e237448a025d7e9de0d49a0b1bca",
+        "sourceChecksum": "7b703a7e5eabd9017bfd4ae47bc8c5c328c9e237448a025d7e9de0d49a0b1bca",
+        "sourceDensity": 48
+      },
+      "worldDrawSize": [
+        48,
+        48
+      ]
+    },
+    {
+      "cropApproval": "approved",
+      "distributionEligibility": "review_required",
+      "goldenCapture": "game/validation/mansion-archive-live.png",
+      "id": "mansion_archive_wall_plain_tile",
+      "kind": "tile",
+      "licenseReference": "game/ben_rpg/visual_assets/generated/runtime_asset_provenance.json",
+      "placement": {
+        "collisionFootprint": "archive_wall_tile",
+        "footAnchor": [
+          24,
+          47
+        ],
+        "scaleClass": "tile"
+      },
+      "releaseVisualAcceptance": "prototype_only",
+      "source": {
+        "alphaBounds": [
+          0,
+          0,
+          48,
+          48
+        ],
+        "pack": "Haunted Mansion Pixel Art Tileset Pack",
+        "region": [
+          0,
+          0,
+          48,
+          48
+        ],
+        "runtimeTexture": "game/game_assets/Tilesets/Haunted Mansion Pixel Art Tileset Pack/2.png",
+        "sha256": "7b703a7e5eabd9017bfd4ae47bc8c5c328c9e237448a025d7e9de0d49a0b1bca",
+        "sourceChecksum": "7b703a7e5eabd9017bfd4ae47bc8c5c328c9e237448a025d7e9de0d49a0b1bca",
+        "sourceDensity": 48
+      },
+      "worldDrawSize": [
+        48,
+        48
+      ]
+    },
+    {
+      "cropApproval": "approved",
+      "distributionEligibility": "review_required",
       "goldenCapture": "game/validation/mansion-foyer-layout-pass.png",
       "id": "mansion_ballroom_chandelier",
       "kind": "building",
@@ -4500,6 +4580,46 @@
       "cropApproval": "approved",
       "distributionEligibility": "review_required",
       "goldenCapture": "game/validation/mansion-foyer-layout-pass.png",
+      "id": "mansion_foyer_clock",
+      "kind": "prop",
+      "licenseReference": "game/ben_rpg/visual_assets/generated/runtime_asset_provenance.json",
+      "placement": {
+        "collisionFootprint": "foyer_clock",
+        "footAnchor": [
+          40,
+          94
+        ],
+        "scaleClass": "prop"
+      },
+      "releaseVisualAcceptance": "prototype_only",
+      "source": {
+        "alphaBounds": [
+          392,
+          2,
+          80,
+          95
+        ],
+        "pack": "Haunted Mansion Pixel Art Tileset Pack",
+        "region": [
+          392,
+          2,
+          80,
+          95
+        ],
+        "runtimeTexture": "game/game_assets/Tilesets/Haunted Mansion Pixel Art Tileset Pack/2.png",
+        "sha256": "7b703a7e5eabd9017bfd4ae47bc8c5c328c9e237448a025d7e9de0d49a0b1bca",
+        "sourceChecksum": "7b703a7e5eabd9017bfd4ae47bc8c5c328c9e237448a025d7e9de0d49a0b1bca",
+        "sourceDensity": 48
+      },
+      "worldDrawSize": [
+        80,
+        95
+      ]
+    },
+    {
+      "cropApproval": "approved",
+      "distributionEligibility": "review_required",
+      "goldenCapture": "game/validation/mansion-foyer-layout-pass.png",
       "id": "mansion_foyer_passage_door",
       "kind": "prop",
       "licenseReference": "game/ben_rpg/visual_assets/generated/runtime_asset_provenance.json",
@@ -4534,6 +4654,46 @@
       "worldDrawSize": [
         66,
         72
+      ]
+    },
+    {
+      "cropApproval": "approved",
+      "distributionEligibility": "review_required",
+      "goldenCapture": "game/validation/mansion-foyer-layout-pass.png",
+      "id": "mansion_foyer_wall_tableau",
+      "kind": "building",
+      "licenseReference": "game/ben_rpg/visual_assets/generated/runtime_asset_provenance.json",
+      "placement": {
+        "collisionFootprint": "foyer_wall",
+        "footAnchor": [
+          92,
+          82
+        ],
+        "scaleClass": "building"
+      },
+      "releaseVisualAcceptance": "prototype_only",
+      "source": {
+        "alphaBounds": [
+          388,
+          110,
+          184,
+          83
+        ],
+        "pack": "Haunted Mansion Pixel Art Tileset Pack",
+        "region": [
+          388,
+          110,
+          184,
+          83
+        ],
+        "runtimeTexture": "game/game_assets/Tilesets/Haunted Mansion Pixel Art Tileset Pack/2.png",
+        "sha256": "7b703a7e5eabd9017bfd4ae47bc8c5c328c9e237448a025d7e9de0d49a0b1bca",
+        "sourceChecksum": "7b703a7e5eabd9017bfd4ae47bc8c5c328c9e237448a025d7e9de0d49a0b1bca",
+        "sourceDensity": 48
+      },
+      "worldDrawSize": [
+        184,
+        83
       ]
     },
     {
@@ -4900,6 +5060,46 @@
       "cropApproval": "approved",
       "distributionEligibility": "review_required",
       "goldenCapture": "game/validation/mansion-nursery-layout-pass.png",
+      "id": "mansion_nursery_left_wall_panel",
+      "kind": "building",
+      "licenseReference": "game/ben_rpg/visual_assets/generated/runtime_asset_provenance.json",
+      "placement": {
+        "collisionFootprint": "nursery_wall",
+        "footAnchor": [
+          95,
+          189
+        ],
+        "scaleClass": "building"
+      },
+      "releaseVisualAcceptance": "prototype_only",
+      "source": {
+        "alphaBounds": [
+          0,
+          0,
+          190,
+          190
+        ],
+        "pack": "Haunted Mansion Pixel Art Tileset Pack",
+        "region": [
+          0,
+          0,
+          190,
+          190
+        ],
+        "runtimeTexture": "game/game_assets/Tilesets/Haunted Mansion Pixel Art Tileset Pack/3.png",
+        "sha256": "a8b3defc3bee6f3c919b0ea9fcabebc9427b22e0ef60ef1b5a7a445f4e619ca4",
+        "sourceChecksum": "a8b3defc3bee6f3c919b0ea9fcabebc9427b22e0ef60ef1b5a7a445f4e619ca4",
+        "sourceDensity": 48
+      },
+      "worldDrawSize": [
+        190,
+        190
+      ]
+    },
+    {
+      "cropApproval": "approved",
+      "distributionEligibility": "review_required",
+      "goldenCapture": "game/validation/mansion-nursery-layout-pass.png",
       "id": "mansion_nursery_music_box",
       "kind": "prop",
       "licenseReference": "game/ben_rpg/visual_assets/generated/runtime_asset_provenance.json",
@@ -4934,6 +5134,46 @@
       "worldDrawSize": [
         46,
         66
+      ]
+    },
+    {
+      "cropApproval": "approved",
+      "distributionEligibility": "review_required",
+      "goldenCapture": "game/validation/mansion-nursery-layout-pass.png",
+      "id": "mansion_nursery_right_wall_panel",
+      "kind": "building",
+      "licenseReference": "game/ben_rpg/visual_assets/generated/runtime_asset_provenance.json",
+      "placement": {
+        "collisionFootprint": "nursery_wall",
+        "footAnchor": [
+          95,
+          189
+        ],
+        "scaleClass": "building"
+      },
+      "releaseVisualAcceptance": "prototype_only",
+      "source": {
+        "alphaBounds": [
+          192,
+          0,
+          190,
+          190
+        ],
+        "pack": "Haunted Mansion Pixel Art Tileset Pack",
+        "region": [
+          192,
+          0,
+          190,
+          190
+        ],
+        "runtimeTexture": "game/game_assets/Tilesets/Haunted Mansion Pixel Art Tileset Pack/3.png",
+        "sha256": "a8b3defc3bee6f3c919b0ea9fcabebc9427b22e0ef60ef1b5a7a445f4e619ca4",
+        "sourceChecksum": "a8b3defc3bee6f3c919b0ea9fcabebc9427b22e0ef60ef1b5a7a445f4e619ca4",
+        "sourceDensity": 48
+      },
+      "worldDrawSize": [
+        190,
+        190
       ]
     },
     {

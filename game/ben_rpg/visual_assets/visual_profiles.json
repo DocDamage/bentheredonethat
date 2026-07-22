@@ -607,6 +607,42 @@
       "worldDrawSize": [76, 77], "licenseReference": "game/ben_rpg/visual_assets/generated/runtime_asset_provenance.json", "cropApproval": "approved", "goldenCapture": "game/validation/mansion-foyer-layout-pass.png"
     },
     {
+      "id": "mansion_foyer_clock", "kind": "prop",
+      "source": {"pack": "Haunted Mansion Pixel Art Tileset Pack", "runtimeTexture": "game/game_assets/Tilesets/Haunted Mansion Pixel Art Tileset Pack/2.png", "sourceChecksum": "7b703a7e5eabd9017bfd4ae47bc8c5c328c9e237448a025d7e9de0d49a0b1bca", "sourceDensity": 48, "region": [392, 2, 80, 95], "alphaBounds": [392, 2, 80, 95]},
+      "placement": {"footAnchor": [40, 94], "scaleClass": "prop", "collisionFootprint": "foyer_clock"},
+      "worldDrawSize": [80, 95], "licenseReference": "game/ben_rpg/visual_assets/generated/runtime_asset_provenance.json", "cropApproval": "approved", "goldenCapture": "game/validation/mansion-foyer-layout-pass.png"
+    },
+    {
+      "id": "mansion_foyer_wall_tableau", "kind": "building",
+      "source": {"pack": "Haunted Mansion Pixel Art Tileset Pack", "runtimeTexture": "game/game_assets/Tilesets/Haunted Mansion Pixel Art Tileset Pack/2.png", "sourceChecksum": "7b703a7e5eabd9017bfd4ae47bc8c5c328c9e237448a025d7e9de0d49a0b1bca", "sourceDensity": 48, "region": [388, 110, 184, 83], "alphaBounds": [388, 110, 184, 83]},
+      "placement": {"footAnchor": [92, 82], "scaleClass": "building", "collisionFootprint": "foyer_wall"},
+      "worldDrawSize": [184, 83], "licenseReference": "game/ben_rpg/visual_assets/generated/runtime_asset_provenance.json", "cropApproval": "approved", "goldenCapture": "game/validation/mansion-foyer-layout-pass.png"
+    },
+    {
+      "id": "mansion_archive_wall_plain_tile", "kind": "tile",
+      "source": {"pack": "Haunted Mansion Pixel Art Tileset Pack", "runtimeTexture": "game/game_assets/Tilesets/Haunted Mansion Pixel Art Tileset Pack/2.png", "sourceChecksum": "7b703a7e5eabd9017bfd4ae47bc8c5c328c9e237448a025d7e9de0d49a0b1bca", "sourceDensity": 48, "region": [0, 0, 48, 48], "alphaBounds": [0, 0, 48, 48]},
+      "placement": {"footAnchor": [24, 47], "scaleClass": "tile", "collisionFootprint": "archive_wall_tile"},
+      "worldDrawSize": [48, 48], "licenseReference": "game/ben_rpg/visual_assets/generated/runtime_asset_provenance.json", "cropApproval": "approved", "goldenCapture": "game/validation/mansion-archive-live.png"
+    },
+    {
+      "id": "mansion_archive_wall_lit_tile", "kind": "tile",
+      "source": {"pack": "Haunted Mansion Pixel Art Tileset Pack", "runtimeTexture": "game/game_assets/Tilesets/Haunted Mansion Pixel Art Tileset Pack/2.png", "sourceChecksum": "7b703a7e5eabd9017bfd4ae47bc8c5c328c9e237448a025d7e9de0d49a0b1bca", "sourceDensity": 48, "region": [48, 0, 48, 48], "alphaBounds": [48, 0, 48, 48]},
+      "placement": {"footAnchor": [24, 47], "scaleClass": "tile", "collisionFootprint": "archive_wall_tile"},
+      "worldDrawSize": [48, 48], "licenseReference": "game/ben_rpg/visual_assets/generated/runtime_asset_provenance.json", "cropApproval": "approved", "goldenCapture": "game/validation/mansion-archive-live.png"
+    },
+    {
+      "id": "mansion_nursery_left_wall_panel", "kind": "building",
+      "source": {"pack": "Haunted Mansion Pixel Art Tileset Pack", "runtimeTexture": "game/game_assets/Tilesets/Haunted Mansion Pixel Art Tileset Pack/3.png", "sourceChecksum": "a8b3defc3bee6f3c919b0ea9fcabebc9427b22e0ef60ef1b5a7a445f4e619ca4", "sourceDensity": 48, "region": [0, 0, 190, 190], "alphaBounds": [0, 0, 190, 190]},
+      "placement": {"footAnchor": [95, 189], "scaleClass": "building", "collisionFootprint": "nursery_wall"},
+      "worldDrawSize": [190, 190], "licenseReference": "game/ben_rpg/visual_assets/generated/runtime_asset_provenance.json", "cropApproval": "approved", "goldenCapture": "game/validation/mansion-nursery-layout-pass.png"
+    },
+    {
+      "id": "mansion_nursery_right_wall_panel", "kind": "building",
+      "source": {"pack": "Haunted Mansion Pixel Art Tileset Pack", "runtimeTexture": "game/game_assets/Tilesets/Haunted Mansion Pixel Art Tileset Pack/3.png", "sourceChecksum": "a8b3defc3bee6f3c919b0ea9fcabebc9427b22e0ef60ef1b5a7a445f4e619ca4", "sourceDensity": 48, "region": [192, 0, 190, 190], "alphaBounds": [192, 0, 190, 190]},
+      "placement": {"footAnchor": [95, 189], "scaleClass": "building", "collisionFootprint": "nursery_wall"},
+      "worldDrawSize": [190, 190], "licenseReference": "game/ben_rpg/visual_assets/generated/runtime_asset_provenance.json", "cropApproval": "approved", "goldenCapture": "game/validation/mansion-nursery-layout-pass.png"
+    },
+    {
       "id": "laboratory_floor_tile",
       "kind": "tile",
       "source": {"pack": "Modern Laboratory Pixel Art Tileset Pack", "runtimeTexture": "game/game_assets/Tilesets/Modern Laboratory Pixel Art Tileset Pack/1.png", "sourceChecksum": "e97da1407e7c224b69d2acba7080bc2d22f9c66d61933b96972fdb75210959e5", "sourceDensity": 48, "region": [0, 0, 48, 48], "alphaBounds": [0, 0, 48, 48]},

@@ -177,6 +177,16 @@ func tile(texture: Texture2D, source: Rect2, destination: Rect2) -> void:
 		draw_texture_rect_region(texture, destination, source)
 
 
+func profile_tile(profile_id: StringName, texture: Texture2D, destination_position: Vector2) -> void:
+	if not texture or not visual_profiles or not visual_profiles.has(profile_id):
+		push_error("Missing approved visual profile: %s" % profile_id)
+		return
+	var source: Rect2 = visual_profiles.region(profile_id)
+	var size: Vector2 = visual_profiles.world_draw_size(profile_id)
+	var position := Vector2(roundf(destination_position.x), roundf(destination_position.y))
+	tile(texture, source, Rect2(position, size))
+
+
 func _slice_sample_facade(texture: Texture2D, source: Rect2) -> Texture2D:
 	# Some authored showcase maps paint their buildings directly onto a lawn.
 	# Extract the measured facade and remove only that pack's narrow lawn-color
@@ -523,9 +533,9 @@ func draw_haunted_mansion() -> void:
 
 func _draw_mansion_foyer(room_offset: Vector2) -> void:
 	_draw_mansion_room_shell(room_offset, false)
-	tile(haunted_interior, Rect2(392, 2, 80, 95), Rect2(room_offset + Vector2(20, 18), Vector2(80, 95)))
-	tile(haunted_interior, Rect2(388, 110, 184, 83), Rect2(room_offset + Vector2(100, 26), Vector2(184, 83)))
-	tile(haunted_interior, Rect2(592, 268, 64, 118), Rect2(room_offset + Vector2(216, 74), Vector2(64, 118)))
+	profile_tile(&"mansion_foyer_clock", haunted_interior, room_offset + Vector2(20, 18))
+	profile_tile(&"mansion_foyer_wall_tableau", haunted_interior, room_offset + Vector2(100, 26))
+	profile_tile(&"mansion_archive_cabinet", haunted_interior, room_offset + Vector2(216, 74))
 	draw_rect(Rect2(room_offset + Vector2(3 * TILE, 7 * TILE), Vector2(2 * TILE, TILE)), Color(0.36, 0.24, 0.16, 0.32), true)
 
 
@@ -533,8 +543,8 @@ func _draw_mansion_archive(offset: Vector2) -> void:
 	var room_offset := offset + Vector2(MANSION_ARCHIVE_OFFSET * TILE)
 	for y in range(4):
 		for x in range(8):
-			var source := Rect2(48, 0, 48, 48) if (x + y) % 3 == 0 else Rect2(0, 0, 48, 48)
-			tile(haunted_interior, source, Rect2(room_offset + Vector2(x, y) * TILE, Vector2(TILE, TILE)))
+			var profile_id: StringName = &"mansion_archive_wall_lit_tile" if (x + y) % 3 == 0 else &"mansion_archive_wall_plain_tile"
+			profile_tile(profile_id, haunted_interior, room_offset + Vector2(x, y) * TILE)
 	_draw_mansion_plank_floor(room_offset)
 
 
@@ -546,8 +556,8 @@ func _draw_mansion_gallery(offset: Vector2) -> void:
 func _draw_mansion_nursery(offset: Vector2) -> void:
 	var room_offset := offset + Vector2(MANSION_NURSERY_OFFSET * TILE)
 	_draw_mansion_room_shell(room_offset, true)
-	tile(haunted_bedroom, Rect2(0, 0, 190, 190), Rect2(room_offset + Vector2(1, 2), Vector2(190, 190)))
-	tile(haunted_bedroom, Rect2(192, 0, 190, 190), Rect2(room_offset + Vector2(193, 2), Vector2(190, 190)))
+	profile_tile(&"mansion_nursery_left_wall_panel", haunted_bedroom, room_offset + Vector2(1, 2))
+	profile_tile(&"mansion_nursery_right_wall_panel", haunted_bedroom, room_offset + Vector2(193, 2))
 
 
 func _draw_mansion_ballroom(offset: Vector2) -> void:
