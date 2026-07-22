@@ -12,7 +12,7 @@ signal town_terrain_changed
 signal universe_anchored(plot_index: int, universe_id: StringName)
 signal encounter_pressure_changed(data: Dictionary)
 
-const SAVE_VERSION := 18
+const SAVE_VERSION := 19
 const DEFAULT_SAVE_PATH := "user://save_slot_1.json"
 const SANDBOX_SAVE_PATH := "user://sandbox_slot.json"
 const SAVE_REPOSITORY := preload("res://ben_rpg/core/save_repository.gd")
@@ -1134,6 +1134,57 @@ func reset_new_game() -> void:
 	town_terrain_changed.emit()
 	encounter_pressure_changed.emit(encounter_pressure.duplicate(true))
 	state_changed.emit()
+
+
+func campaign_ending_state() -> Dictionary:
+	var scenario_complete := bool(story_flags.get(&"empyreal_scenario_complete", false))
+	var result_committed := bool(story_flags.get(&"ending_result_committed", false))
+	var credits_seen := bool(story_flags.get(&"ending_credits_seen", false))
+	var postgame_unlocked := bool(story_flags.get(&"postgame_unlocked", false))
+	return {
+		"eligible": scenario_complete,
+		"result_committed": result_committed,
+		"credits_seen": credits_seen,
+		"postgame_unlocked": postgame_unlocked,
+		"needs_presentation": scenario_complete and result_committed and not credits_seen,
+		"final_save_marked": bool(story_flags.get(&"ending_final_save_marker", false)),
+	}
+
+
+func commit_campaign_ending_result() -> bool:
+	# The High Comptroller can only pay out its authored conclusion once. This
+	# marker is deliberately separate from the credits acknowledgement so a save
+	# made after the battle but before the player reads the epilogue resumes it.
+	if not bool(story_flags.get(&"empyreal_scenario_complete", false)):
+		return false
+	if bool(story_flags.get(&"ending_result_committed", false)):
+		return false
+	story_flags[&"ending_result_committed"] = true
+	story_flags[&"seventh_universe_stabilized"] = true
+	LocalTelemetry.record(&"campaign_ending_committed", {"chapter": &"postgame"})
+	state_changed.emit()
+	return true
+
+
+func complete_campaign_ending(town_cell: Vector2i) -> bool:
+	# This is the final save transaction. It cannot be replayed by reopening the
+	# credits or by loading a save created after the final battle.
+	if not bool(story_flags.get(&"ending_result_committed", false)):
+		return false
+	if bool(story_flags.get(&"ending_credits_seen", false)):
+		return false
+	story_flags[&"ending_credits_seen"] = true
+	story_flags[&"postgame_unlocked"] = true
+	story_flags[&"ending_final_save_marker"] = true
+	last_save_cell = town_cell
+	last_location = _location_name_for_cell(town_cell)
+	LocalTelemetry.record(&"campaign_postgame_unlocked", {"location": last_location})
+	state_changed.emit()
+	return true
+
+
+func postgame_rematch_available() -> bool:
+	return bool(campaign_ending_state().get("postgame_unlocked", false))
 
 
 func begin_play_session() -> void:

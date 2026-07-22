@@ -78,6 +78,9 @@ func _run() -> void:
 	if not CampaignState.story_flags.get(&"empyreal_scenario_complete", false):
 		_fail("The High Comptroller's defeat did not stabilize Empyreal Court")
 		return
+	if not bool(CampaignState.campaign_ending_state().get("result_committed", false)):
+		_fail("The High Comptroller did not commit the one-time ending transaction")
+		return
 	archangel.apply_interaction(false)
 	if CampaignState.recruit_status.get(&"archangel_commander") not in [&"party", &"reserve"]:
 		_fail("The Archangel Commander did not become a permanent recruit")

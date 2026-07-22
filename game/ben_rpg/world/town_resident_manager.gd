@@ -313,6 +313,16 @@ func resident_dialogue(resident_id: StringName) -> Array[String]:
 			lines.append("ADA: Facility work keeps progressing while you adventure. A specialist finishes faster; adjacent training improves the harvest.")
 		&"clinic_aide":
 			lines.append("NELL: Save points restore the whole company. If everyone falls, we can still bring them home with one HP—dignity costs extra.")
+	if CampaignState.postgame_rematch_available():
+		match resident_id:
+			&"cafe_owner":
+				lines.append("MARA: Since the Court stopped taxing altitude, the pie rises exactly as much as it wants to.")
+			&"librarian":
+				lines.append("ELIAS: The Tribunal Ledger offers a strictly recreational gravity hearing. I have marked it: NO DUPLICATE REWARDS.")
+			&"farmer":
+				lines.append("ADA: The new fault-line lamps keep the east row warm. Apparently public gravity is good for tomatoes.")
+			&"clinic_aide":
+				lines.append("NELL: The Archangel volunteered at the Clinic. Their bedside manner is celestial, but their handwriting is terrible.")
 	return lines
 
 

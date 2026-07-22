@@ -186,6 +186,7 @@ const EMPYREAL_ENCOUNTER_CONTROLLER := preload("res://ben_rpg/world/empyreal_enc
 const UNIVERSE_TREASURE_INTERACTION := preload("res://ben_rpg/world/universe_treasure_interaction.tscn")
 const CAMPAIGN_MENU := preload("res://ben_rpg/ui/campaign_menu.tscn")
 const CAMPAIGN_TITLE_SCREEN := preload("res://ben_rpg/ui/campaign_title_screen.tscn")
+const CAMPAIGN_ENDING_OVERLAY := preload("res://ben_rpg/ui/campaign_ending_overlay.gd")
 const SANDBOX_OBJECTS_SCRIPT := preload("res://ben_rpg/world/sandbox_town_objects.gd")
 const SANDBOX_EDITOR_SCRIPT := preload("res://ben_rpg/world/sandbox_town_editor.gd")
 const SANDBOX_OBJECT_CATALOG := preload("res://ben_rpg/world/sandbox_object_catalog.gd")
@@ -220,6 +221,8 @@ var _moonpetal_boss_marker: Sprite2D
 var _empyreal_boss_marker: Sprite2D
 var _campaign_menu: CanvasLayer
 var _title_screen
+var _ending_overlay
+var _ending_presentation_queued := false
 var _opening_cutscene: Cutscene
 var campaign_save_path := CampaignState.DEFAULT_SAVE_PATH
 var _sandbox_objects
@@ -282,6 +285,7 @@ func _enter_tree() -> void:
 	world.add_child(build_controller)
 	_battle = CAMPAIGN_BATTLE.instantiate() as CampaignBattle
 	_battle.name = "CampaignBattle"
+	_battle.battle_finished.connect(_on_campaign_battle_finished)
 	add_child(_battle)
 	_campaign_menu = CAMPAIGN_MENU.instantiate() as CanvasLayer
 	_campaign_menu.name = "CampaignMenu"
@@ -357,6 +361,7 @@ func _ready() -> void:
 	_restore_campaign_state()
 	_spawn_available_recruits()
 	_update_camera_limits(true)
+	_queue_campaign_ending_if_needed()
 	if _opening_cutscene and not _is_smoke_launch():
 		_show_title_screen.call_deferred()
 	else:
@@ -384,6 +389,7 @@ func continue_campaign(path := CampaignState.DEFAULT_SAVE_PATH) -> bool:
 	_on_campaign_state_changed()
 	_place_player(CampaignState.last_save_cell)
 	_dismiss_title_screen()
+	_queue_campaign_ending_if_needed()
 	return true
 
 
@@ -486,6 +492,64 @@ func anchor_recall_to_town() -> bool:
 	CampaignState.state_changed.emit()
 	CampaignState.save_game(campaign_save_path)
 	return true
+
+
+func postgame_rematch_availability() -> Dictionary:
+	if not CampaignState.postgame_rematch_available():
+		return {"allowed": false, "reason": "Finish the Empyreal epilogue to unlock Tribunal rematches."}
+	if _battle and _battle.active:
+		return {"allowed": false, "reason": "The Tribunal cannot file a second hearing during an active battle."}
+	if Cutscene.is_cutscene_in_progress():
+		return {"allowed": false, "reason": "Finish the current event before opening the Tribunal Ledger."}
+	var player := Player.gamepiece
+	if not player or not Rect2i(TOWN_ORIGIN, TOWN_SIZE).has_point(Gameboard.pixel_to_cell(player.position)):
+		return {"allowed": false, "reason": "Visit New Philadelphia to open the Library's Tribunal Ledger."}
+	return {"allowed": true, "reason": "No campaign rewards are repeated."}
+
+
+func begin_postgame_rematch() -> bool:
+	if not bool(postgame_rematch_availability().get("allowed", false)):
+		return false
+	CampaignState.story_flags[&"postgame_rematch_started"] = int(CampaignState.story_flags.get(&"postgame_rematch_started", 0)) + 1
+	CampaignState.state_changed.emit()
+	return _battle.begin(&"empyreal_high_comptroller")
+
+
+func _on_campaign_battle_finished(victory: bool, encounter_id: StringName) -> void:
+	if victory and encounter_id == &"empyreal_high_comptroller":
+		_queue_campaign_ending_if_needed()
+
+
+func _queue_campaign_ending_if_needed() -> void:
+	if _is_smoke_launch() or _ending_presentation_queued or is_instance_valid(_ending_overlay):
+		return
+	if not bool(CampaignState.campaign_ending_state().get("needs_presentation", false)):
+		return
+	_ending_presentation_queued = true
+	_present_campaign_ending.call_deferred()
+
+
+func _present_campaign_ending() -> void:
+	_ending_presentation_queued = false
+	if _is_smoke_launch() or is_instance_valid(_ending_overlay) or (_battle and _battle.active):
+		return
+	if not bool(CampaignState.campaign_ending_state().get("needs_presentation", false)):
+		return
+	_ending_overlay = CAMPAIGN_ENDING_OVERLAY.new()
+	_ending_overlay.name = "CampaignEndingOverlay"
+	_ending_overlay.finished.connect(_finish_campaign_ending)
+	add_child(_ending_overlay)
+	FieldEvents.input_paused.emit(true)
+	_ending_overlay.present()
+
+
+func _finish_campaign_ending() -> void:
+	var finalized := CampaignState.complete_campaign_ending(TOWN_ARRIVAL)
+	if finalized:
+		_place_player(TOWN_ARRIVAL)
+		CampaignState.save_game(campaign_save_path)
+	_ending_overlay = null
+	FieldEvents.input_paused.emit(false)
 
 
 func _is_smoke_launch() -> bool:
@@ -2078,6 +2142,7 @@ func _on_campaign_state_changed() -> void:
 	_spawn_cobalt_courier()
 	_spawn_bulkhead_warden()
 	_sync_boss_marker_visibility(_camera_area)
+	_queue_campaign_ending_if_needed()
 
 
 func _sync_boss_marker_visibility(area: String) -> void:

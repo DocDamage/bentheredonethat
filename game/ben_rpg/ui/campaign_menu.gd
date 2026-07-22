@@ -104,7 +104,7 @@ func _unhandled_input(event: InputEvent) -> void:
 func open_menu(initial_tab: StringName = &"") -> void:
 	if CampaignState.party.is_empty():
 		return
-	if initial_tab in [&"equipment", &"skills", &"inventory", &"facilities", &"quests", &"bestiary", &"roster", &"recall", &"telemetry", &"services"]:
+	if initial_tab in [&"equipment", &"skills", &"inventory", &"facilities", &"quests", &"bestiary", &"roster", &"recall", &"telemetry", &"postgame", &"services"]:
 		selected_tab = initial_tab
 	if not _is_menu_character_available(selected_character):
 		selected_character = CampaignState.party[0]
@@ -281,6 +281,8 @@ func _refresh() -> void:
 			_build_bestiary_page()
 		&"telemetry":
 			_build_telemetry_page()
+		&"postgame":
+			_build_postgame_page()
 		&"facilities":
 			_build_facilities_page()
 		&"skills":
@@ -317,6 +319,8 @@ func _refresh_tabs() -> void:
 		[&"recall", "RECALL", "/dfgui_icon-wand.png"],
 		[&"telemetry", "TELEMETRY", "/dfgui_icon-info.png"],
 	]
+	if CampaignState.postgame_rematch_available():
+		tabs.append([&"postgame", "POSTGAME", "/dfgui_icon-crown.png"])
 	if selected_tab == &"services" and not selected_service.is_empty():
 		var service_icon := String(CampaignState.facility_definition(selected_service).get("icon", "dfgui_icon-info.png"))
 		tabs.append([&"services", selected_service.to_upper(), "/" + service_icon])
@@ -1231,6 +1235,32 @@ func _build_library_service() -> void:
 	_apply_button_skin(archive, UI_ROOT + "/dfgui_icon-redbook.png")
 	archive.pressed.connect(_archive_library_records)
 	_content.add_child(archive)
+	if CampaignState.postgame_rematch_available():
+		var postgame := Button.new()
+		postgame.name = "LibraryTribunalLedger"
+		postgame.text = "OPEN THE TRIBUNAL LEDGER\nReview the finale, inspect the final save marker, and challenge the High Comptroller again without duplicate campaign rewards."
+		postgame.custom_minimum_size.y = 86
+		_apply_button_skin(postgame, UI_ROOT + "/dfgui_icon-crown.png")
+		postgame.pressed.connect(_select_tab.bind(&"postgame"))
+		_content.add_child(postgame)
+
+
+func _build_postgame_page() -> void:
+	_add_heading("THE WORK CONTINUES", UI_ROOT + "/dfgui_icon-crown.png")
+	var ending := CampaignState.campaign_ending_state()
+	_add_notice("New Philadelphia is in free roam. Every stabilized universe, facility, optional quest, recruit, and equipment project remains available.\n\nFINAL SAVE MARKER  %s" % ["ARCHIVED IN TOWN" if bool(ending.get("final_save_marked", false)) else "PENDING"], Color(0.78, 0.9, 1.0))
+	_add_subheading("TRIBUNAL LEDGER")
+	var availability: Dictionary = campaign.postgame_rematch_availability() if campaign and campaign.has_method("postgame_rematch_availability") else {"allowed": false, "reason": "The field controller is unavailable."}
+	var rematch := Button.new()
+	rematch.name = "HighComptrollerRematch"
+	rematch.text = "REMATCH THE HIGH COMPTROLLER\n%s" % String(availability.get("reason", ""))
+	rematch.custom_minimum_size.y = 96
+	rematch.disabled = not bool(availability.get("allowed", false))
+	rematch.tooltip_text = String(availability.get("reason", ""))
+	_apply_button_skin(rematch, UI_ROOT + "/dfgui_icon-crown.png")
+	rematch.pressed.connect(_begin_postgame_rematch)
+	_content.add_child(rematch)
+	_add_notice("Rematches are challenge hearings only: the Charter Aegis, Empyreal Gravity Anchor, finale flags, and ending rewards cannot be earned again.", Color(1.0, 0.78, 0.45))
 
 
 func _build_recall_page() -> void:
@@ -1708,6 +1738,12 @@ func _use_anchor_recall() -> void:
 	close_menu()
 	if not campaign or not campaign.has_method("anchor_recall_to_town") or not campaign.anchor_recall_to_town():
 		open_menu(&"recall")
+
+
+func _begin_postgame_rematch() -> void:
+	close_menu()
+	if not campaign or not campaign.has_method("begin_postgame_rematch") or not campaign.begin_postgame_rematch():
+		open_menu(&"postgame")
 
 
 func _toggle_local_telemetry() -> void:

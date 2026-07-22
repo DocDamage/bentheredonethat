@@ -41,3 +41,4 @@ func _apply_victory(encounter_id: StringName) -> void:
 			CampaignState.story_flags[&"empyreal_scenario_complete"] = true
 			CampaignState.story_flags[&"seventh_universe_stabilized"] = true
 			CampaignState.discover_recruit(&"archangel_commander")
+			CampaignState.commit_campaign_ending_result()

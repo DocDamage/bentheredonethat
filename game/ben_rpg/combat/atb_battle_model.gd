@@ -260,6 +260,10 @@ func outcome() -> StringName:
 
 
 func rewards() -> Dictionary:
+	# The Tribunal remains available as a postgame challenge, but it must not
+	# replay the finale's Charter Aegis / Anchor reward transaction.
+	if encounter_id == &"empyreal_high_comptroller" and CampaignState.postgame_rematch_available():
+		return {"experience": 0, "duckets": 0, "loot": []}
 	var experience := 0
 	var duckets := 0
 	for actor in actors:

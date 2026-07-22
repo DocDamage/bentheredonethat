@@ -5,7 +5,7 @@ extends RefCounted
 ## contract. Keeping the chain explicit makes future schema bumps auditable and
 ## prevents a load path from silently accepting a version with no migration.
 
-const CURRENT_VERSION := 18
+const CURRENT_VERSION := 19
 const FIRST_SUPPORTED_VERSION := 1
 
 
@@ -46,6 +46,6 @@ static func _apply_step(version: int, payload: Dictionary) -> Dictionary:
 			# v11 introduced explicit universe anchors; CampaignState rebuilds them
 			# from legacy facility placements after this migration completes.
 			return payload
-		12, 13, 14, 15, 16, 17:
+		12, 13, 14, 15, 16, 17, 18:
 			return payload
 	return payload

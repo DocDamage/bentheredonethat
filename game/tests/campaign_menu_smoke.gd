@@ -96,8 +96,18 @@ func _run() -> void:
 	if LocalTelemetry.is_enabled():
 		_fail("Local telemetry opt-out did not persist")
 		return
+	CampaignState.story_flags[&"empyreal_scenario_complete"] = true
+	if not CampaignState.commit_campaign_ending_result() or not CampaignState.complete_campaign_ending(town_cell):
+		_fail("Postgame menu setup could not commit the ending state")
+		return
+	menu._select_tab(&"postgame")
+	await get_tree().process_frame
+	var rematch := menu._content.get_node_or_null("HighComptrollerRematch") as Button
+	if rematch == null or rematch.disabled or not main.postgame_rematch_availability().get("allowed", false):
+		_fail("Postgame Tribunal Ledger did not expose the town rematch path")
+		return
 	menu.close_menu()
-	print("CAMPAIGN_MENU_SMOKE_OK slots=6 gear_stats=true equipment_ability=true skills=prerequisites+refund controller_menu=true telemetry_opt_in=true")
+	print("CAMPAIGN_MENU_SMOKE_OK slots=6 gear_stats=true equipment_ability=true skills=prerequisites+refund controller_menu=true telemetry_opt_in=true postgame_ledger=true")
 	main.queue_free()
 	await get_tree().process_frame
 	get_tree().quit(0)
