@@ -471,6 +471,46 @@
       "worldDrawSize": [64, 64], "licenseReference": "game/ben_rpg/visual_assets/generated/runtime_asset_provenance.json", "cropApproval": "approved", "goldenCapture": "game/validation/frosthold-crystal-causeway.png"
     },
     {
+      "id": "frosthold_hall_side_arch", "kind": "building",
+      "source": {"pack": "Frozen Kingdom Top-Down Pixel Art Asset Pack", "runtimeTexture": "game/game_assets/Tilesets/Frozen kingdom/Frozen Kingdom – Top-Down Pixel Art Asset Pack/5. Ice castle walls.png", "sourceChecksum": "93aed7a73ce78a493c1340d6f5e4e450f279466f2d749a8add53a03cb90b8cf3", "sourceDensity": 96, "region": [728, 741, 172, 217], "alphaBounds": [728, 741, 172, 217]},
+      "placement": {"footAnchor": [86, 216], "scaleClass": "building", "collisionFootprint": "castle_facade"}, "worldDrawSize": [86, 109], "licenseReference": "game/ben_rpg/visual_assets/generated/runtime_asset_provenance.json", "cropApproval": "approved", "goldenCapture": "game/validation/frosthold-rune-hall.png"
+    },
+    {
+      "id": "frosthold_hall_central_arch", "kind": "building",
+      "source": {"pack": "Frozen Kingdom Top-Down Pixel Art Asset Pack", "runtimeTexture": "game/game_assets/Tilesets/Frozen kingdom/Frozen Kingdom – Top-Down Pixel Art Asset Pack/5. Ice castle walls.png", "sourceChecksum": "93aed7a73ce78a493c1340d6f5e4e450f279466f2d749a8add53a03cb90b8cf3", "sourceDensity": 96, "region": [933, 734, 347, 224], "alphaBounds": [933, 734, 347, 224]},
+      "placement": {"footAnchor": [173, 223], "scaleClass": "building", "collisionFootprint": "castle_facade"}, "worldDrawSize": [174, 112], "licenseReference": "game/ben_rpg/visual_assets/generated/runtime_asset_provenance.json", "cropApproval": "approved", "goldenCapture": "game/validation/frosthold-rune-hall.png"
+    },
+    {
+      "id": "frosthold_throne_left_column", "kind": "building",
+      "source": {"pack": "Frozen Kingdom Top-Down Pixel Art Asset Pack", "runtimeTexture": "game/game_assets/Tilesets/Frozen kingdom/Frozen Kingdom – Top-Down Pixel Art Asset Pack/5. Ice castle walls.png", "sourceChecksum": "93aed7a73ce78a493c1340d6f5e4e450f279466f2d749a8add53a03cb90b8cf3", "sourceDensity": 96, "region": [41, 718, 105, 242], "alphaBounds": [41, 718, 105, 242]},
+      "placement": {"footAnchor": [52, 241], "scaleClass": "building", "collisionFootprint": "castle_column"}, "worldDrawSize": [53, 121], "licenseReference": "game/ben_rpg/visual_assets/generated/runtime_asset_provenance.json", "cropApproval": "approved", "goldenCapture": "game/validation/frosthold-ice-throne.png"
+    },
+    {
+      "id": "frosthold_throne_right_column", "kind": "building",
+      "source": {"pack": "Frozen Kingdom Top-Down Pixel Art Asset Pack", "runtimeTexture": "game/game_assets/Tilesets/Frozen kingdom/Frozen Kingdom – Top-Down Pixel Art Asset Pack/5. Ice castle walls.png", "sourceChecksum": "93aed7a73ce78a493c1340d6f5e4e450f279466f2d749a8add53a03cb90b8cf3", "sourceDensity": 96, "region": [175, 718, 106, 242], "alphaBounds": [175, 718, 106, 242]},
+      "placement": {"footAnchor": [53, 241], "scaleClass": "building", "collisionFootprint": "castle_column"}, "worldDrawSize": [53, 121], "licenseReference": "game/ben_rpg/visual_assets/generated/runtime_asset_provenance.json", "cropApproval": "approved", "goldenCapture": "game/validation/frosthold-ice-throne.png"
+    },
+    {
+      "id": "frosthold_hall_torch_left", "kind": "prop",
+      "source": {"pack": "Frozen Kingdom Top-Down Pixel Art Asset Pack", "runtimeTexture": "game/game_assets/Tilesets/Frozen kingdom/Frozen Kingdom – Top-Down Pixel Art Asset Pack/12. Torches and blue flames.png", "sourceChecksum": "63463a841603413863c19f5727dece8a11ccb9cb4cafcb96712180161952892f", "sourceDensity": 96, "region": [77, 170, 94, 205], "alphaBounds": [77, 170, 94, 205]},
+      "placement": {"footAnchor": [47, 204], "scaleClass": "prop", "collisionFootprint": "torch_base"}, "worldDrawSize": [47, 103], "licenseReference": "game/ben_rpg/visual_assets/generated/runtime_asset_provenance.json", "cropApproval": "approved", "goldenCapture": "game/validation/frosthold-rune-hall.png"
+    },
+    {
+      "id": "frosthold_hall_rune_left", "kind": "prop",
+      "source": {"pack": "Frozen Kingdom Top-Down Pixel Art Asset Pack", "runtimeTexture": "game/game_assets/Tilesets/Frozen kingdom/Frozen Kingdom – Top-Down Pixel Art Asset Pack/14. Magical runes.png", "sourceChecksum": "dfbf6d94877b512af25a1f80c6e8b13fbd64dbe745422bc284964215a3ca52c7", "sourceDensity": 96, "region": [237, 736, 129, 128], "alphaBounds": [237, 736, 129, 128]},
+      "placement": {"footAnchor": [64, 127], "scaleClass": "prop", "collisionFootprint": "rune_surface"}, "worldDrawSize": [65, 64], "licenseReference": "game/ben_rpg/visual_assets/generated/runtime_asset_provenance.json", "cropApproval": "approved", "goldenCapture": "game/validation/frosthold-rune-hall.png"
+    },
+    {
+      "id": "frosthold_hall_rune_right", "kind": "prop",
+      "source": {"pack": "Frozen Kingdom Top-Down Pixel Art Asset Pack", "runtimeTexture": "game/game_assets/Tilesets/Frozen kingdom/Frozen Kingdom – Top-Down Pixel Art Asset Pack/14. Magical runes.png", "sourceChecksum": "dfbf6d94877b512af25a1f80c6e8b13fbd64dbe745422bc284964215a3ca52c7", "sourceDensity": 96, "region": [414, 736, 127, 128], "alphaBounds": [414, 736, 127, 128]},
+      "placement": {"footAnchor": [63, 127], "scaleClass": "prop", "collisionFootprint": "rune_surface"}, "worldDrawSize": [64, 64], "licenseReference": "game/ben_rpg/visual_assets/generated/runtime_asset_provenance.json", "cropApproval": "approved", "goldenCapture": "game/validation/frosthold-rune-hall.png"
+    },
+    {
+      "id": "frosthold_throne_rune", "kind": "prop",
+      "source": {"pack": "Frozen Kingdom Top-Down Pixel Art Asset Pack", "runtimeTexture": "game/game_assets/Tilesets/Frozen kingdom/Frozen Kingdom – Top-Down Pixel Art Asset Pack/14. Magical runes.png", "sourceChecksum": "dfbf6d94877b512af25a1f80c6e8b13fbd64dbe745422bc284964215a3ca52c7", "sourceDensity": 96, "region": [1320, 736, 128, 128], "alphaBounds": [1320, 736, 128, 128]},
+      "placement": {"footAnchor": [64, 127], "scaleClass": "prop", "collisionFootprint": "rune_surface"}, "worldDrawSize": [64, 64], "licenseReference": "game/ben_rpg/visual_assets/generated/runtime_asset_provenance.json", "cropApproval": "approved", "goldenCapture": "game/validation/frosthold-ice-throne.png"
+    },
+    {
       "id": "asterion_station_architecture",
       "kind": "building",
       "source": {"pack": "Sci-Fi Spaceship Interior Tileset Pack", "runtimeTexture": "game/game_assets/Tilesets/Sci-Fi Spaceship Interior Tileset Pack/1.png", "sourceChecksum": "f951e809b442dcf10106c0c890f0f07e14b48bd5ad5512af9baf16433c1800a9", "sourceDensity": 48, "region": [7, 200, 80, 78], "alphaBounds": [7, 200, 80, 78]},

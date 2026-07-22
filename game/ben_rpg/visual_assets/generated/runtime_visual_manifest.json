@@ -3291,6 +3291,206 @@
     {
       "cropApproval": "approved",
       "distributionEligibility": "review_required",
+      "goldenCapture": "game/validation/frosthold-rune-hall.png",
+      "id": "frosthold_hall_central_arch",
+      "kind": "building",
+      "licenseReference": "game/ben_rpg/visual_assets/generated/runtime_asset_provenance.json",
+      "placement": {
+        "collisionFootprint": "castle_facade",
+        "footAnchor": [
+          173,
+          223
+        ],
+        "scaleClass": "building"
+      },
+      "releaseVisualAcceptance": "prototype_only",
+      "source": {
+        "alphaBounds": [
+          933,
+          734,
+          347,
+          224
+        ],
+        "pack": "Frozen Kingdom Top-Down Pixel Art Asset Pack",
+        "region": [
+          933,
+          734,
+          347,
+          224
+        ],
+        "runtimeTexture": "game/game_assets/Tilesets/Frozen kingdom/Frozen Kingdom – Top-Down Pixel Art Asset Pack/5. Ice castle walls.png",
+        "sha256": "93aed7a73ce78a493c1340d6f5e4e450f279466f2d749a8add53a03cb90b8cf3",
+        "sourceChecksum": "93aed7a73ce78a493c1340d6f5e4e450f279466f2d749a8add53a03cb90b8cf3",
+        "sourceDensity": 96
+      },
+      "worldDrawSize": [
+        174,
+        112
+      ]
+    },
+    {
+      "cropApproval": "approved",
+      "distributionEligibility": "review_required",
+      "goldenCapture": "game/validation/frosthold-rune-hall.png",
+      "id": "frosthold_hall_rune_left",
+      "kind": "prop",
+      "licenseReference": "game/ben_rpg/visual_assets/generated/runtime_asset_provenance.json",
+      "placement": {
+        "collisionFootprint": "rune_surface",
+        "footAnchor": [
+          64,
+          127
+        ],
+        "scaleClass": "prop"
+      },
+      "releaseVisualAcceptance": "prototype_only",
+      "source": {
+        "alphaBounds": [
+          237,
+          736,
+          129,
+          128
+        ],
+        "pack": "Frozen Kingdom Top-Down Pixel Art Asset Pack",
+        "region": [
+          237,
+          736,
+          129,
+          128
+        ],
+        "runtimeTexture": "game/game_assets/Tilesets/Frozen kingdom/Frozen Kingdom – Top-Down Pixel Art Asset Pack/14. Magical runes.png",
+        "sha256": "dfbf6d94877b512af25a1f80c6e8b13fbd64dbe745422bc284964215a3ca52c7",
+        "sourceChecksum": "dfbf6d94877b512af25a1f80c6e8b13fbd64dbe745422bc284964215a3ca52c7",
+        "sourceDensity": 96
+      },
+      "worldDrawSize": [
+        65,
+        64
+      ]
+    },
+    {
+      "cropApproval": "approved",
+      "distributionEligibility": "review_required",
+      "goldenCapture": "game/validation/frosthold-rune-hall.png",
+      "id": "frosthold_hall_rune_right",
+      "kind": "prop",
+      "licenseReference": "game/ben_rpg/visual_assets/generated/runtime_asset_provenance.json",
+      "placement": {
+        "collisionFootprint": "rune_surface",
+        "footAnchor": [
+          63,
+          127
+        ],
+        "scaleClass": "prop"
+      },
+      "releaseVisualAcceptance": "prototype_only",
+      "source": {
+        "alphaBounds": [
+          414,
+          736,
+          127,
+          128
+        ],
+        "pack": "Frozen Kingdom Top-Down Pixel Art Asset Pack",
+        "region": [
+          414,
+          736,
+          127,
+          128
+        ],
+        "runtimeTexture": "game/game_assets/Tilesets/Frozen kingdom/Frozen Kingdom – Top-Down Pixel Art Asset Pack/14. Magical runes.png",
+        "sha256": "dfbf6d94877b512af25a1f80c6e8b13fbd64dbe745422bc284964215a3ca52c7",
+        "sourceChecksum": "dfbf6d94877b512af25a1f80c6e8b13fbd64dbe745422bc284964215a3ca52c7",
+        "sourceDensity": 96
+      },
+      "worldDrawSize": [
+        64,
+        64
+      ]
+    },
+    {
+      "cropApproval": "approved",
+      "distributionEligibility": "review_required",
+      "goldenCapture": "game/validation/frosthold-rune-hall.png",
+      "id": "frosthold_hall_side_arch",
+      "kind": "building",
+      "licenseReference": "game/ben_rpg/visual_assets/generated/runtime_asset_provenance.json",
+      "placement": {
+        "collisionFootprint": "castle_facade",
+        "footAnchor": [
+          86,
+          216
+        ],
+        "scaleClass": "building"
+      },
+      "releaseVisualAcceptance": "prototype_only",
+      "source": {
+        "alphaBounds": [
+          728,
+          741,
+          172,
+          217
+        ],
+        "pack": "Frozen Kingdom Top-Down Pixel Art Asset Pack",
+        "region": [
+          728,
+          741,
+          172,
+          217
+        ],
+        "runtimeTexture": "game/game_assets/Tilesets/Frozen kingdom/Frozen Kingdom – Top-Down Pixel Art Asset Pack/5. Ice castle walls.png",
+        "sha256": "93aed7a73ce78a493c1340d6f5e4e450f279466f2d749a8add53a03cb90b8cf3",
+        "sourceChecksum": "93aed7a73ce78a493c1340d6f5e4e450f279466f2d749a8add53a03cb90b8cf3",
+        "sourceDensity": 96
+      },
+      "worldDrawSize": [
+        86,
+        109
+      ]
+    },
+    {
+      "cropApproval": "approved",
+      "distributionEligibility": "review_required",
+      "goldenCapture": "game/validation/frosthold-rune-hall.png",
+      "id": "frosthold_hall_torch_left",
+      "kind": "prop",
+      "licenseReference": "game/ben_rpg/visual_assets/generated/runtime_asset_provenance.json",
+      "placement": {
+        "collisionFootprint": "torch_base",
+        "footAnchor": [
+          47,
+          204
+        ],
+        "scaleClass": "prop"
+      },
+      "releaseVisualAcceptance": "prototype_only",
+      "source": {
+        "alphaBounds": [
+          77,
+          170,
+          94,
+          205
+        ],
+        "pack": "Frozen Kingdom Top-Down Pixel Art Asset Pack",
+        "region": [
+          77,
+          170,
+          94,
+          205
+        ],
+        "runtimeTexture": "game/game_assets/Tilesets/Frozen kingdom/Frozen Kingdom – Top-Down Pixel Art Asset Pack/12. Torches and blue flames.png",
+        "sha256": "63463a841603413863c19f5727dece8a11ccb9cb4cafcb96712180161952892f",
+        "sourceChecksum": "63463a841603413863c19f5727dece8a11ccb9cb4cafcb96712180161952892f",
+        "sourceDensity": 96
+      },
+      "worldDrawSize": [
+        47,
+        103
+      ]
+    },
+    {
+      "cropApproval": "approved",
+      "distributionEligibility": "review_required",
       "goldenCapture": "game/validation/frosthold-frozen-market.png",
       "id": "frosthold_market_house",
       "kind": "building",
@@ -3566,6 +3766,126 @@
       "worldDrawSize": [
         48,
         48
+      ]
+    },
+    {
+      "cropApproval": "approved",
+      "distributionEligibility": "review_required",
+      "goldenCapture": "game/validation/frosthold-ice-throne.png",
+      "id": "frosthold_throne_left_column",
+      "kind": "building",
+      "licenseReference": "game/ben_rpg/visual_assets/generated/runtime_asset_provenance.json",
+      "placement": {
+        "collisionFootprint": "castle_column",
+        "footAnchor": [
+          52,
+          241
+        ],
+        "scaleClass": "building"
+      },
+      "releaseVisualAcceptance": "prototype_only",
+      "source": {
+        "alphaBounds": [
+          41,
+          718,
+          105,
+          242
+        ],
+        "pack": "Frozen Kingdom Top-Down Pixel Art Asset Pack",
+        "region": [
+          41,
+          718,
+          105,
+          242
+        ],
+        "runtimeTexture": "game/game_assets/Tilesets/Frozen kingdom/Frozen Kingdom – Top-Down Pixel Art Asset Pack/5. Ice castle walls.png",
+        "sha256": "93aed7a73ce78a493c1340d6f5e4e450f279466f2d749a8add53a03cb90b8cf3",
+        "sourceChecksum": "93aed7a73ce78a493c1340d6f5e4e450f279466f2d749a8add53a03cb90b8cf3",
+        "sourceDensity": 96
+      },
+      "worldDrawSize": [
+        53,
+        121
+      ]
+    },
+    {
+      "cropApproval": "approved",
+      "distributionEligibility": "review_required",
+      "goldenCapture": "game/validation/frosthold-ice-throne.png",
+      "id": "frosthold_throne_right_column",
+      "kind": "building",
+      "licenseReference": "game/ben_rpg/visual_assets/generated/runtime_asset_provenance.json",
+      "placement": {
+        "collisionFootprint": "castle_column",
+        "footAnchor": [
+          53,
+          241
+        ],
+        "scaleClass": "building"
+      },
+      "releaseVisualAcceptance": "prototype_only",
+      "source": {
+        "alphaBounds": [
+          175,
+          718,
+          106,
+          242
+        ],
+        "pack": "Frozen Kingdom Top-Down Pixel Art Asset Pack",
+        "region": [
+          175,
+          718,
+          106,
+          242
+        ],
+        "runtimeTexture": "game/game_assets/Tilesets/Frozen kingdom/Frozen Kingdom – Top-Down Pixel Art Asset Pack/5. Ice castle walls.png",
+        "sha256": "93aed7a73ce78a493c1340d6f5e4e450f279466f2d749a8add53a03cb90b8cf3",
+        "sourceChecksum": "93aed7a73ce78a493c1340d6f5e4e450f279466f2d749a8add53a03cb90b8cf3",
+        "sourceDensity": 96
+      },
+      "worldDrawSize": [
+        53,
+        121
+      ]
+    },
+    {
+      "cropApproval": "approved",
+      "distributionEligibility": "review_required",
+      "goldenCapture": "game/validation/frosthold-ice-throne.png",
+      "id": "frosthold_throne_rune",
+      "kind": "prop",
+      "licenseReference": "game/ben_rpg/visual_assets/generated/runtime_asset_provenance.json",
+      "placement": {
+        "collisionFootprint": "rune_surface",
+        "footAnchor": [
+          64,
+          127
+        ],
+        "scaleClass": "prop"
+      },
+      "releaseVisualAcceptance": "prototype_only",
+      "source": {
+        "alphaBounds": [
+          1320,
+          736,
+          128,
+          128
+        ],
+        "pack": "Frozen Kingdom Top-Down Pixel Art Asset Pack",
+        "region": [
+          1320,
+          736,
+          128,
+          128
+        ],
+        "runtimeTexture": "game/game_assets/Tilesets/Frozen kingdom/Frozen Kingdom – Top-Down Pixel Art Asset Pack/14. Magical runes.png",
+        "sha256": "dfbf6d94877b512af25a1f80c6e8b13fbd64dbe745422bc284964215a3ca52c7",
+        "sourceChecksum": "dfbf6d94877b512af25a1f80c6e8b13fbd64dbe745422bc284964215a3ca52c7",
+        "sourceDensity": 96
+      },
+      "worldDrawSize": [
+        64,
+        64
       ]
     },
     {

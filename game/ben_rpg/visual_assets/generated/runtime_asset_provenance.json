@@ -381,7 +381,8 @@
       ],
       "path": "res://game_assets/Tilesets/Frozen kingdom/Frozen Kingdom – Top-Down Pixel Art Asset Pack/12. Torches and blue flames.png",
       "profileIds": [
-        "frosthold_gate_torch_right"
+        "frosthold_gate_torch_right",
+        "frosthold_hall_torch_left"
       ],
       "sourceGroup": "Tilesets/Frozen kingdom"
     },
@@ -406,7 +407,10 @@
       ],
       "path": "res://game_assets/Tilesets/Frozen kingdom/Frozen Kingdom – Top-Down Pixel Art Asset Pack/14. Magical runes.png",
       "profileIds": [
-        "frosthold_causeway_rune"
+        "frosthold_causeway_rune",
+        "frosthold_hall_rune_left",
+        "frosthold_hall_rune_right",
+        "frosthold_throne_rune"
       ],
       "sourceGroup": "Tilesets/Frozen kingdom"
     },
@@ -432,7 +436,11 @@
       ],
       "path": "res://game_assets/Tilesets/Frozen kingdom/Frozen Kingdom – Top-Down Pixel Art Asset Pack/5. Ice castle walls.png",
       "profileIds": [
-        "frosthold_gate_castle"
+        "frosthold_gate_castle",
+        "frosthold_hall_central_arch",
+        "frosthold_hall_side_arch",
+        "frosthold_throne_left_column",
+        "frosthold_throne_right_column"
       ],
       "sourceGroup": "Tilesets/Frozen kingdom"
     },

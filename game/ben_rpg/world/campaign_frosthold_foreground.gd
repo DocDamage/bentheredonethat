@@ -19,6 +19,7 @@ var bridges: Texture2D
 var market: Texture2D
 var torches: Texture2D
 var gate_torches: Texture2D
+var hall_torches: Texture2D
 var profiles
 
 
@@ -35,6 +36,7 @@ func _ready() -> void:
 	market = profiles.texture(&"frosthold_market_stall")
 	torches = profiles.texture(&"frosthold_blue_torch")
 	gate_torches = profiles.texture(&"frosthold_gate_torch_right")
+	hall_torches = profiles.texture(&"frosthold_hall_torch_left")
 	queue_redraw()
 
 
@@ -43,17 +45,6 @@ func set_active_area(area: StringName) -> void:
 		return
 	active_area = area
 	queue_redraw()
-
-
-func _prop(texture: Texture2D, source: Rect2, destination_position: Vector2, flip_h := false) -> void:
-	if not texture:
-		return
-	var size := Vector2(roundi(source.size.x * 0.5), roundi(source.size.y * 0.5))
-	var destination := Rect2(Vector2(roundf(destination_position.x), roundf(destination_position.y)), size)
-	if flip_h:
-		destination.position.x += size.x
-		destination.size.x = -size.x
-	draw_texture_rect_region(texture, destination, source)
 
 
 func _profile_prop(profile_id: StringName, texture: Texture2D, destination_position: Vector2) -> void:
@@ -94,18 +85,18 @@ func _draw() -> void:
 			_profile_prop(&"frosthold_causeway_rune", runes, room_offset + Vector2(160, 226))
 		&"frosthold_rune_hall":
 			var room_offset := offset + Vector2(10 * TILE, 10 * TILE)
-			_prop(castle, Rect2(728, 741, 172, 217), room_offset + Vector2(26, 28))
-			_prop(castle, Rect2(933, 734, 347, 224), room_offset + Vector2(105, 22))
-			_prop(castle, Rect2(728, 741, 172, 217), room_offset + Vector2(270, 28))
-			_prop(torches, Rect2(77, 170, 94, 205), room_offset + Vector2(76, 90))
-			_prop(torches, Rect2(246, 170, 94, 205), room_offset + Vector2(262, 90))
-			_prop(runes, Rect2(237, 736, 129, 128), room_offset + Vector2(104, 232))
-			_prop(runes, Rect2(414, 736, 127, 128), room_offset + Vector2(216, 232))
+			_profile_prop(&"frosthold_hall_side_arch", castle, room_offset + Vector2(26, 28))
+			_profile_prop(&"frosthold_hall_central_arch", castle, room_offset + Vector2(105, 22))
+			_profile_prop(&"frosthold_hall_side_arch", castle, room_offset + Vector2(270, 28))
+			_profile_prop(&"frosthold_hall_torch_left", hall_torches, room_offset + Vector2(76, 90))
+			_profile_prop(&"frosthold_gate_torch_right", gate_torches, room_offset + Vector2(262, 90))
+			_profile_prop(&"frosthold_hall_rune_left", runes, room_offset + Vector2(104, 232))
+			_profile_prop(&"frosthold_hall_rune_right", runes, room_offset + Vector2(216, 232))
 		&"frosthold_throne":
 			var room_offset := offset + Vector2(20 * TILE, 10 * TILE)
-			_prop(castle, Rect2(41, 718, 105, 242), room_offset + Vector2(34, 28))
-			_prop(castle, Rect2(175, 718, 106, 242), room_offset + Vector2(298, 28))
-			_prop(castle, Rect2(933, 734, 347, 224), room_offset + Vector2(105, 34))
-			_prop(torches, Rect2(77, 170, 94, 205), room_offset + Vector2(78, 90))
-			_prop(torches, Rect2(246, 170, 94, 205), room_offset + Vector2(270, 90))
-			_prop(runes, Rect2(1320, 736, 128, 128), room_offset + Vector2(160, 238))
+			_profile_prop(&"frosthold_throne_left_column", castle, room_offset + Vector2(34, 28))
+			_profile_prop(&"frosthold_throne_right_column", castle, room_offset + Vector2(298, 28))
+			_profile_prop(&"frosthold_hall_central_arch", castle, room_offset + Vector2(105, 34))
+			_profile_prop(&"frosthold_hall_torch_left", hall_torches, room_offset + Vector2(78, 90))
+			_profile_prop(&"frosthold_gate_torch_right", gate_torches, room_offset + Vector2(270, 90))
+			_profile_prop(&"frosthold_throne_rune", runes, room_offset + Vector2(160, 238))
