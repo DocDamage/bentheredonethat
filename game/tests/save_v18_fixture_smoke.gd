@@ -16,6 +16,6 @@ func _ready() -> void:
 	assert(CampaignState.duckets == 73 and CampaignState.built_facilities.size() == 3, "The fixture's mutable state must survive migration")
 	assert(CampaignState.save_game(TEST_SAVE) == OK, "The loaded fixture must save through the atomic repository")
 	var summary := CampaignState.read_save_summary(TEST_SAVE)
-	assert(bool(summary.get("valid", false)) and int(summary.get("version", 0)) == 18, "The fixture must remain schema version 18")
-	print("SAVE_V18_FIXTURE_SMOKE_OK migration=v18 save_repository=true facilities=3")
+	assert(bool(summary.get("valid", false)) and int(summary.get("version", 0)) == CampaignState.SAVE_VERSION, "Saving a loaded fixture must upgrade it to the current schema")
+	print("SAVE_V18_FIXTURE_SMOKE_OK migration=v18_to_v%d save_repository=true facilities=3" % CampaignState.SAVE_VERSION)
 	get_tree().quit(0)
