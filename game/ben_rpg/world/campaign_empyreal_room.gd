@@ -4,7 +4,7 @@ extends Node2D
 const FEATURE_INSTALLER := preload("res://ben_rpg/world/campaign_room_feature_installer.gd")
 const VISUAL_PROFILE_REGISTRY := preload("res://ben_rpg/world/campaign_visual_profile_registry.gd")
 const TILE := 48
-const GROUND_BY_ROOM := {&"EM-01": &"empyreal_marble_plain_tile", &"EM-02": &"empyreal_marble_plain_tile", &"EM-03": &"empyreal_marble_gold_quarter_tile", &"EM-04": &"empyreal_marble_gold_quarter_tile", &"EM-05": &"empyreal_marble_plain_tile", &"EM-06": &"empyreal_marble_cracked_tile", &"EM-07": &"empyreal_marble_gold_quarter_tile", &"EM-08": &"empyreal_marble_cracked_tile", &"EM-09": &"empyreal_marble_gold_quarter_tile"}
+const GROUND_BY_ROOM := {&"EM-01": &"empyreal_marble_plain_tile", &"EM-02": &"empyreal_marble_plain_tile", &"EM-03": &"empyreal_marble_gold_quarter_tile", &"EM-04": &"empyreal_marble_gold_quarter_tile", &"EM-05": &"empyreal_marble_plain_tile", &"EM-06": &"empyreal_marble_cracked_tile", &"EM-07": &"empyreal_marble_gold_quarter_tile", &"EM-08": &"empyreal_marble_cracked_tile", &"EM-09": &"empyreal_marble_gold_quarter_tile", &"EM-10": &"empyreal_marble_plain_tile", &"EM-11": &"empyreal_marble_plain_tile", &"EM-12": &"empyreal_marble_cracked_tile", &"EM-13": &"empyreal_marble_gold_quarter_tile", &"EM-14": &"empyreal_marble_gold_quarter_tile", &"EM-15": &"empyreal_marble_cracked_tile", &"EM-16": &"empyreal_marble_plain_tile"}
 const ROOM_PROPS := {
 	&"EM-01": [[&"empyreal_sky_cloud_bank", Vector2(-36, -42)], [&"empyreal_pediment_door", Vector2(132, 40)], [&"empyreal_blue_column", Vector2(54, 104)], [&"empyreal_blue_column", Vector2(282, 104)], [&"empyreal_winged_statue", Vector2(148, 206)]],
 	&"EM-02": [[&"empyreal_sky_cloud_bank", Vector2(-34, -50)], [&"empyreal_plain_column", Vector2(54, 40)], [&"empyreal_plain_column", Vector2(282, 40)], [&"empyreal_ordinance_book", Vector2(138, 168)], [&"empyreal_blue_balustrade", Vector2(144, 282)]],
@@ -15,6 +15,13 @@ const ROOM_PROPS := {
 	&"EM-07": [[&"empyreal_sky_cloud_bank", Vector2(-34, -44)], [&"empyreal_reliquary_portal", Vector2(134, 28)], [&"empyreal_crystal_altar", Vector2(58, 176)], [&"empyreal_lotus_altar", Vector2(242, 176)], [&"empyreal_winged_statue", Vector2(148, 236)]],
 	&"EM-08": [[&"empyreal_sky_cloud_bank", Vector2(-34, -46)], [&"empyreal_tribunal_gate", Vector2(111, 22)], [&"empyreal_blue_column", Vector2(42, 166)], [&"empyreal_blue_column", Vector2(294, 166)], [&"empyreal_gravity_crystal", Vector2(168, 242)]],
 	&"EM-09": [[&"empyreal_sky_cloud_bank", Vector2(-34, -48)], [&"empyreal_tribunal_gate", Vector2(111, 18)], [&"empyreal_tribunal_orrery", Vector2(145, 184)], [&"empyreal_justice_statue", Vector2(70, 182)], [&"empyreal_winged_statue", Vector2(250, 184)]],
+	&"EM-10": [[&"empyreal_sky_cloud_bank", Vector2(-34, -48)], [&"empyreal_gravity_crystal", Vector2(72, 120)], [&"empyreal_gravity_crystal", Vector2(264, 120)], [&"empyreal_appeal_fountain", Vector2(141, 196)]],
+	&"EM-11": [[&"empyreal_sky_cloud_bank", Vector2(-34, -46)], [&"empyreal_plain_column", Vector2(42, 36)], [&"empyreal_plain_column", Vector2(294, 36)], [&"empyreal_ordinance_book", Vector2(138, 152)], [&"empyreal_crystal_altar", Vector2(150, 250)]],
+	&"EM-12": [[&"empyreal_sky_cloud_bank", Vector2(-34, -46)], [&"empyreal_blue_balustrade", Vector2(40, 104)], [&"empyreal_blue_balustrade", Vector2(248, 104)], [&"empyreal_winged_statue", Vector2(145, 180)], [&"empyreal_gravity_crystal", Vector2(168, 256)]],
+	&"EM-13": [[&"empyreal_sky_cloud_bank", Vector2(-34, -46)], [&"empyreal_golden_olive_tree", Vector2(26, 100)], [&"empyreal_silver_olive_tree", Vector2(256, 100)], [&"empyreal_griffin_statue", Vector2(76, 230)], [&"empyreal_horse_statue", Vector2(250, 230)]],
+	&"EM-14": [[&"empyreal_sky_cloud_bank", Vector2(-34, -44)], [&"empyreal_reliquary_portal", Vector2(134, 22)], [&"empyreal_crystal_altar", Vector2(56, 198)], [&"empyreal_lotus_altar", Vector2(242, 198)], [&"empyreal_ordinance_book", Vector2(138, 268)]],
+	&"EM-15": [[&"empyreal_sky_cloud_bank", Vector2(-34, -48)], [&"empyreal_blue_column", Vector2(30, 36)], [&"empyreal_blue_column", Vector2(306, 36)], [&"empyreal_blue_balustrade", Vector2(42, 166)], [&"empyreal_blue_balustrade", Vector2(246, 166)], [&"empyreal_gravity_crystal", Vector2(168, 252)]],
+	&"EM-16": [[&"empyreal_sky_cloud_bank", Vector2(-34, -48)], [&"empyreal_pediment_door", Vector2(132, 40)], [&"empyreal_blue_balustrade", Vector2(42, 210)], [&"empyreal_blue_balustrade", Vector2(246, 210)], [&"empyreal_winged_statue", Vector2(145, 234)]],
 }
 
 var _dimensions := Vector2i.ZERO
