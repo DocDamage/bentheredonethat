@@ -53,9 +53,7 @@ static func install(root: Node2D, room_id: StringName, definition: Dictionary) -
 			asterion_interaction.set("interaction_kind", StringName(asterion_definition.get("kind", &"")))
 			asterion_interaction.position = Vector2(anchor_cell * 48)
 			interaction_layer.add_child(asterion_interaction)
-			if save_point_id != &"":
-				var world_origin: Vector2i = definition.get("worldOrigin", Vector2i.ZERO)
-				CampaignState.register_runtime_save_point(save_point_id, world_origin + anchor_cell)
+			_register_save_point(definition, save_point_id, anchor_cell)
 		for primeval_definition in definition.get("primevalInteractions", []):
 			var primeval_interaction := PRIMEVAL_INTERACTION.instantiate()
 			var save_point_id := StringName(primeval_definition.get("savePointId", &""))
@@ -64,9 +62,7 @@ static func install(root: Node2D, room_id: StringName, definition: Dictionary) -
 			primeval_interaction.set("interaction_kind", StringName(primeval_definition.get("kind", &"")))
 			primeval_interaction.position = Vector2(anchor_cell * 48)
 			interaction_layer.add_child(primeval_interaction)
-			if save_point_id != &"":
-				var world_origin: Vector2i = definition.get("worldOrigin", Vector2i.ZERO)
-				CampaignState.register_runtime_save_point(save_point_id, world_origin + anchor_cell)
+			_register_save_point(definition, save_point_id, anchor_cell)
 		for property_name in UNIVERSE_INTERACTION_SCENES:
 			_install_universe_interactions(interaction_layer, definition, property_name, UNIVERSE_INTERACTION_SCENES[property_name] as PackedScene)
 		for treasure_definition in definition.get("universeTreasures", []):
@@ -96,8 +92,7 @@ static func install(root: Node2D, room_id: StringName, definition: Dictionary) -
 			save_point.set("anchor_name", String(save_point_definition.get("anchorName", "anchor")))
 			save_point.position = Vector2(anchor_cell * 48)
 			interaction_layer.add_child(save_point)
-			var world_origin: Vector2i = definition.get("worldOrigin", Vector2i.ZERO)
-			CampaignState.register_runtime_save_point(save_point_id, world_origin + anchor_cell)
+			_register_save_point(definition, save_point_id, anchor_cell)
 		for port in ROOM_REGISTRY.ports(room_id):
 			var route := TRANSITION_ROUTER.resolve(room_id, StringName(port.get("id", &"")))
 			if route.is_empty():
@@ -125,3 +120,9 @@ static func _install_universe_interactions(interaction_layer: Node2D, definition
 		interaction.set("interaction_kind", StringName(interaction_definition.get("kind", &"")))
 		interaction.position = Vector2(anchor_cell * 48)
 		interaction_layer.add_child(interaction)
+
+
+static func _register_save_point(definition: Dictionary, save_point_id: StringName, anchor_cell: Vector2i) -> void:
+	if save_point_id != &"":
+		var world_origin: Vector2i = definition.get("worldOrigin", Vector2i.ZERO)
+		CampaignState.register_runtime_save_point(save_point_id, world_origin + anchor_cell)
