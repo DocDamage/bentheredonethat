@@ -4,7 +4,17 @@ on:
   push:
     branches: [main]
   pull_request:
+    paths-ignore:
+      - '**.md'
+      - 'test-artifacts/**'
   workflow_dispatch:
+
+# A full isolated suite is intentionally a milestone gate. Keep only the newest
+# relevant PR run active so documentation/evidence updates cannot accumulate
+# parallel hour-long Windows jobs.
+concurrency:
+  group: godot-smoke-${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
 
 permissions:
   contents: read
