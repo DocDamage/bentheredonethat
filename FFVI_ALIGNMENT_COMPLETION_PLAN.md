@@ -2696,7 +2696,7 @@ black-box fixtures before changing ownership:
   every bidirectional arrival/return pair for each existing room.
 - [x] A transition fixture proves that every current forward link returns to its
   declared source-safe cell under locked and unlocked story states.
-- [ ] A navigation fixture compares visible floor, blocked scenery, dynamic
+- [x] A navigation fixture compares visible floor, blocked scenery, dynamic
   gate overlays, facility footprints, and follower-safe arrival cells.
 - [x] An eleven-lot facility fixture records construction, collision, service or
   portal installation, stable interior entry, exact-lot return, relocation, and
