@@ -1,11 +1,11 @@
 #!/usr/bin/env python3
 """Generate and validate the canonical SakPix population registry.
 
-The plan owns the editorial assignment of every supplied identity.  This tool
+The plan owns the editorial assignment of every eligible supplied identity.  This tool
 turns that locked table into a compact runtime-safe registry: it retains stable
 collection/folder keys, but never emits a path into the ignored source library.
 When a curator workstation has the library present, it also verifies the eight
-direction sheets and quarantines incomplete identities.
+direction sheets. Incomplete source folders are excluded from planned content.
 """
 
 from __future__ import annotations
@@ -23,6 +23,7 @@ REQUIRED_ROTATIONS = (
     "north", "north-east", "east", "south-east",
     "south", "south-west", "west", "north-west",
 )
+PLANNED_IDENTITY_COUNT = 258
 PHASE_PATTERN = re.compile(r"`?([FSP])(!?)(?:-([A-Z]))?@P([1-6])`?")
 TABLE_START = "### 23.12 Complete SakPix canonical-home and story-phase registry"
 TABLE_END = "#### Secondary visitor and relocation schedules"
@@ -48,8 +49,11 @@ def parse_assignments(plan: Path) -> list[dict[str, str]]:
             continue
         collection, folder, home, schedule = (cell.strip("`") for cell in cells)
         assignments.append({"collection": collection, "folder": folder, "home": home, "schedule": schedule})
-    if len(assignments) != 267:
-        raise ValueError(f"population plan must assign exactly 267 identities, found {len(assignments)}")
+    if len(assignments) != PLANNED_IDENTITY_COUNT:
+        raise ValueError(
+            f"population plan must assign exactly {PLANNED_IDENTITY_COUNT} eligible identities, "
+            f"found {len(assignments)}"
+        )
     if len({stable_id(item['collection'], item['folder']) for item in assignments}) != len(assignments):
         raise ValueError("population plan assigns at least one source identity more than once")
     return assignments
@@ -69,7 +73,7 @@ def identity_record(assignment: dict[str, str], rotations: list[str] | None) -> 
         available: list[str] = []
     else:
         available = rotations
-        rotation_state = "complete" if set(rotations) == set(REQUIRED_ROTATIONS) else "quarantined"
+        rotation_state = "complete" if set(rotations) == set(REQUIRED_ROTATIONS) else "incomplete"
     record: dict[str, Any] = {
         "id": stable_id(assignment["collection"], assignment["folder"]),
         "sourceIdentity": {"collection": assignment["collection"], "folder": assignment["folder"]},
@@ -80,9 +84,7 @@ def identity_record(assignment: dict[str, str], rotations: list[str] | None) -> 
         "provenanceStatus": "review_required",
     }
     if match is None:
-        record["schedule"] = {"phase": "quarantined", "anchor": None, "cohort": None, "route": "none"}
-        record["planSchedule"] = assignment["schedule"]
-        return record
+        raise ValueError(f"eligible identity {record['id']} has no active schedule in the population plan")
     phase, hostile, cohort, anchor = match.groups()
     record["schedule"] = {
         "phase": phase,
@@ -105,12 +107,16 @@ def build(root: Path, source_root: Path | None = None) -> dict[str, Any]:
             stable_id(collection.name, folder.name)
             for collection in source_root.iterdir() if collection.is_dir()
             for folder in collection.iterdir() if folder.is_dir()
+            if set(source_rotations(source_root, collection.name, folder.name)) == set(REQUIRED_ROTATIONS)
         }
         assigned = {record["id"] for record in records}
         if discovered != assigned:
             missing = sorted(assigned - discovered)
             extra = sorted(discovered - assigned)
-            raise ValueError(f"population source assignment mismatch: missing={len(missing)}, extra={len(extra)}")
+            raise ValueError(
+                "eligible population source assignment mismatch: "
+                f"missing={len(missing)}, extra={len(extra)}"
+            )
     result = {
         "schemaVersion": 1,
         "sourceLibraryRequiredForVerification": bool(source_root),
@@ -124,10 +130,12 @@ def validate(raw: dict[str, Any], source_verified: bool | None = None) -> None:
     if raw.get("schemaVersion") != 1:
         raise ValueError("population registry must use schemaVersion 1")
     identities = raw.get("identities")
-    if not isinstance(identities, list) or len(identities) != 267:
-        raise ValueError("population registry must contain exactly 267 identities")
+    if not isinstance(identities, list) or len(identities) != PLANNED_IDENTITY_COUNT:
+        raise ValueError(
+            f"population registry must contain exactly {PLANNED_IDENTITY_COUNT} eligible identities"
+        )
     ids: set[str] = set()
-    complete = quarantined = unverified = 0
+    complete = unverified = 0
     occupancy: Counter[tuple[str, str, str | None]] = Counter()
     for item in identities:
         if not isinstance(item, dict):
@@ -144,24 +152,17 @@ def validate(raw: dict[str, Any], source_verified: bool | None = None) -> None:
         if identity_id != stable_id(source["collection"], source["folder"]):
             raise ValueError(f"{identity_id} does not match its source identity keys")
         home = item.get("canonicalHome")
-        is_quarantine_home = home == "**QUARANTINE**"
-        if not isinstance(home, str) or (not is_quarantine_home and not re.fullmatch(r"(?:NP|FI|HM|AS|PV|HE|FR|MP|EM|AF|PL|SF|FT|WF|LM)-\d{2}", home)):
+        if not isinstance(home, str) or not re.fullmatch(r"(?:NP|FI|HM|AS|PV|HE|FR|MP|EM|AF|PL|SF|FT|WF|LM)-\d{2}", home):
             raise ValueError(f"{identity_id} has an invalid canonical home")
-        if state not in {"complete", "quarantined", "unverified"}:
+        if state not in {"complete", "unverified"}:
             raise ValueError(f"{identity_id} has an invalid rotation state")
         if not isinstance(schedule, dict):
             raise ValueError(f"{identity_id} needs a schedule")
         phase = schedule.get("phase")
-        if state == "quarantined":
-            quarantined += 1
-            if phase != "quarantined" or not is_quarantine_home:
-                raise ValueError(f"{identity_id} is quarantined but has an active schedule")
-        elif state == "unverified":
+        if state == "unverified":
             unverified += 1
         else:
             complete += 1
-            if is_quarantine_home:
-                raise ValueError(f"{identity_id} has a quarantine home but complete rotations")
             if phase not in {"F", "S", "P"} or schedule.get("anchor") not in {f"P{index}" for index in range(1, 7)}:
                 raise ValueError(f"{identity_id} has an invalid active schedule")
             occupancy[(item["canonicalHome"], phase, schedule.get("cohort"))] += 1
@@ -170,11 +171,17 @@ def validate(raw: dict[str, Any], source_verified: bool | None = None) -> None:
         if item.get("provenanceStatus") != "review_required":
             raise ValueError(f"{identity_id} must remain review_required before provenance admission")
     if source_verified:
-        if (complete, quarantined, unverified) != (258, 9, 0):
-            raise ValueError(f"verified registry must be 258 complete and 9 quarantined, got {complete}/{quarantined}/{unverified}")
-    elif source_verified is False and (complete or quarantined):
+        if (complete, unverified) != (PLANNED_IDENTITY_COUNT, 0):
+            raise ValueError(
+                f"verified registry must contain {PLANNED_IDENTITY_COUNT} complete identities, "
+                f"got {complete} complete/{unverified} unverified"
+            )
+    elif source_verified is False and complete:
         raise ValueError("clean-checkout registry cannot claim source rotation verification")
-    elif source_verified is None and (complete, quarantined, unverified) not in {(258, 9, 0), (0, 0, 267)}:
+    elif source_verified is None and (complete, unverified) not in {
+        (PLANNED_IDENTITY_COUNT, 0),
+        (0, PLANNED_IDENTITY_COUNT),
+    }:
         raise ValueError("registry contains a partial source-verification result")
     overcrowded = [key for key, count in occupancy.items() if count > 6]
     if overcrowded:
@@ -226,7 +233,7 @@ def main() -> int:
         output.parent.mkdir(parents=True, exist_ok=True)
         output.write_text(payload, encoding="utf-8", newline="\n")
         state = "verified" if source_root else "clean-checkout"
-        print(f"Wrote {output} with 267 {state} population identities.")
+        print(f"Wrote {output} with {PLANNED_IDENTITY_COUNT} eligible {state} population identities.")
     return 0
 
 

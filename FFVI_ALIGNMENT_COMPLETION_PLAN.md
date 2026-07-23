@@ -370,7 +370,9 @@ Three local source roots are now explicit inputs to the larger-world program:
   images (about 2.14 GB). This is the primary authored environment library for
   the 102-room expansion, not a legacy folder to be sampled incidentally.
 - `assets/characters/SakPix - 8-Direction Characters - ALL AS OF 7-3-26/`:
-  25 themed collections, 267 character folders, and 2,213 images.
+  25 themed collections, 267 character folders, and 2,213 images. Exactly 258
+  folders contain the complete eight-direction art required for game use; only
+  those 258 identities are eligible and included in the population plan.
 
 These are source libraries, not runtime folders. No map, scene, profile, or
 save record may depend directly on either long staging path. The admission
@@ -392,7 +394,7 @@ an unrelated pack.
 - [x] Generate a deterministic expansion inventory grouped by pack, file type,
   dimensions, checksum, duplicate family, and likely world assignment.
 - [x] Give all 149 `assets/Tilesets` packs an explicit disposition: primary
-  world kit, secondary compatible kit, optional-address kit, duplicate, reserve,
+  world kit, secondary compatible kit, mandatory-address kit, duplicate, reserve,
   or rejected. No top-level pack may be silently omitted from the inventory.
 - [ ] Assign every shortlisted pack `distribution_confirmed`,
   `review_required`, or `rejected`; retain the exact license/terms file in the
@@ -470,6 +472,31 @@ Each contact sheet must be reviewed at nearest-neighbor native scale. Downscaled
 
 ## 9. Phase 4 — Expand levels to proper JRPG scale
 
+### 9.0 Lock the core protagonist trio and named-character arcs — P0/P1
+
+Benjamin Franklin, Abraham Lincoln, and Mahatma Gandhi are the three core
+protagonists of the main Godot campaign. Their stable character IDs are `ben`,
+`lincoln`, and `gandhi`. Lincoln and Gandhi are not optional recruits, cameos,
+postgame unlocks, or facility-only residents: all three join during the opening
+chapter and remain available through the required ending.
+
+- [ ] Give all three complete field, follower, battle, portrait, menu, equipment,
+  progression, dialogue, save/load, defeat, victory, and ending support.
+- [ ] Preserve distinct gameplay identities: Ben leads invention and field
+  problem-solving; Lincoln specializes in protection, resolve, and civic
+  leadership; Gandhi specializes in recovery, de-escalation, and nonlethal
+  control. No protagonist may be a cosmetic reskin of another.
+- [ ] Alternate chapter focus and authored party dialogue so Lincoln and Gandhi
+  make consequential decisions in the main plot rather than merely following
+  Ben through his story.
+- [ ] Make every required stage completable with the trio and include explicit
+  trio formation, knockout, save migration, and cutscene-participation tests.
+- [ ] Place supplied named characters in required theme-matched arcs: Dracula
+  and Frankenstein in the Haunted Mansion/Ashfall horror sequence, Cthulhu in
+  the Pelagic depths sequence, and Dark Mage in the Ashfall-to-Empyreal magic
+  conflict. These arcs are main-campaign content, not trials hidden behind an
+  optional menu or postgame flag.
+
 ### 9.1 Replace the repeated five-lane topology — P1
 
 **Current condition:** Most universes block the full 28x18 container and open five 6x3 rectangles, sometimes with a narrow branch. This produces approximately 90 base walkable cells for an entire universe.
@@ -546,13 +573,10 @@ associated SakPix character is available.
 Most SakPix packs contain 10-11 characters with eight directional PNGs named
 `north`, `north-east`, `east`, `south-east`, `south`, `south-west`, `west`, and
 `north-west`. Source frames range from 84x84 to 124x124, so importing them at
-one common scale without normalization is prohibited. The Premium Enchanted
-Forest collection currently has complete rotation folders for only 6 of its 14
-character folders; the other eight contain no rotation PNGs. Frontier
-`7._DYNAMITE_BILL` has seven directions but lacks `east.png`. The verified
-usable total is therefore 258 fully eight-direction identities out of 267
-character folders. These nine incomplete identities are quarantined and cannot
-be claimed as eight-direction-ready or assigned to a moving population slot.
+one common scale without normalization is prohibited. The verified eligible
+roster is the 258 identities that contain all eight required rotation PNGs.
+Directories with missing rotation art are source-inventory gaps, not planned
+characters, runtime identities, future repair commitments, or population slots.
 
 #### Character integration contract
 
@@ -573,8 +597,9 @@ be claimed as eight-direction-ready or assigned to a moving population slot.
 - [ ] Persist story-phase relocation and one-time dialogue where required; do
   not serialize transient frame state or pathfinding internals.
 - [ ] Give every one of the 25 collections a recorded disposition: assigned to
-  a core world, assigned to an optional annex, reserved with a reason, or
-  rejected. No collection may silently disappear from planning.
+  a core world, assigned to a mandatory address, temporarily held for an
+  explicit eligibility decision, or rejected with evidence. No eligible
+  collection may silently disappear from the main-game plan.
 - [ ] Represent every assigned core collection with at least two approved
   identities and use at least 70% of the rotation-complete identities in its
   primary world across first-visit, stabilized, and postgame population states.
@@ -589,13 +614,17 @@ be claimed as eight-direction-ready or assigned to a moving population slot.
 | New Philadelphia and facilities | Cozy Village NPC Collection Vol.1; Kingdom Citizens | Steampunk Empire at the Observatory, Armory, workshops, and Belfry machinery |
 | Haunted Mansion | Crimson Vampire Hunters; Dark Gothic Fantasy; Psychological Horror Dungeon | Dark Fantasy Dungeon Heroes and Nightmare Slashers as trapped explorers, apparitions, or hostile field actors; Legendary Infernal characters only in the sealed undercroft |
 | Asterion Station | SCI-FI LEGENDS | Warfront Elite as station security/boarding personnel; selected Steampunk engineers only through the Observatory connection |
-| Primeval Expanse | Beastfolk Legends; Premium Enchanted Forest | Dragonborn Champions at the caldera/roost; Frontier Legends only in a distinct borough or trailhead annex |
-| Helios Arcology | Cyberpunk Neon Fantasy | Heroic Legends as solar civic icons; Ring Legends and World Championship Heroes inside the optional recreation stack rather than scattered through civic areas |
+| Primeval Expanse | Beastfolk Legends; Premium Enchanted Forest | Dragonborn Champions at the caldera/roost; Frontier Legends only in a distinct borough or trailhead district |
+| Helios Arcology | Cyberpunk Neon Fantasy | Heroic Legends as solar civic icons; Ring Legends and World Championship Heroes inside the required recreation district rather than scattered through civic areas |
 | Frosthold Kingdom | Frozen Kingdom Fantasy | Frost, holy, and celestial identities from Arcane Magic & Witchcraft; do not import fire/necromancer identities without a specific opposing faction |
 | Moonpetal Court | Eternal Samurai & Yokai Warriors | Nature/blossom identities from Premium Enchanted Forest and appropriate fox/cat/owl/rabbit Beastfolk as court visitors |
 | Empyreal Court | Heroic Legends | Holy/celestial Arcane identities and Dragonborn envoys on upper terraces |
-| Ashfall optional annex | Wasteland Legends; Legendary Infernal Kingdom Champions | Uses the Ashlands, cursed-land, lava, and post-apocalypse environment families after the main worlds meet their size targets |
-| Pelagic optional annex | Summer Beach Girls; Atlantis Royal Guard | Uses Beach Tileset and Seabed; it remains an annex rather than diluting an unrelated core universe |
+| Ashfall mandatory address | Wasteland Legends; Legendary Infernal Kingdom Champions | Uses the Ashlands, cursed-land, lava, and post-apocalypse environment families in its own required main-story chapter |
+| Pelagic mandatory address | Summer Beach Girls; Atlantis Royal Guard | Uses Beach Tileset and Seabed in a required surface-to-depth main-story chapter |
+| Steamforge mandatory address | Steampunk Empire | Uses the Steamforged, Ferrum, factory, and dieselpunk environment families with its clockwork roster |
+| Frontier mandatory address | Frontier Legends | Uses the Wild West, ranch, rail, canyon, desert, and mine environment families with its complete eligible frontier roster |
+| Warfront mandatory address | Warfront Elite Squad | Uses the trench, bunker, battlefield, submarine, and war-ruin environment families with its military-operator roster |
+| Liminal mandatory address | Core protagonist trio; no ambient SakPix roster | Ben, Lincoln, and Gandhi investigate the deliberately lonely anomaly together; unrelated residents are not imported merely to fill screens |
 
 Collections listed in more than one row are split by named identity, not cloned
 as unrelated copies. The population registry must give each identity one
@@ -618,19 +647,20 @@ approval and not permission to combine every listed pack in one room.
 | Frosthold Kingdom | **Frozen kingdom**; Frostbound viking village; Snowy Village | Crystalice Forest, ICE CAVERN, Antarctic Research Station, Time Fantasy winter, selected Final Tower | Full castle/village/market/bridge/rune/cave vocabulary plus lived-in settlement and strong magical-ice set pieces |
 | Moonpetal Court | **Sakura Temple Asset Pack**; Dreamy World | Tokyo Nights sakura/street details, Magic Forest, Royal Props, fairy forest | Temple facades, gates, framed gardens, ponds, bridges, tea service, lanterns, memory reflections, and dream-state variants |
 | Empyreal Court | **Ancient Greek Mythology**; Roman Empire; Flying Islands | Cloud City, GOLDEN PALACE, Final Tower, Dreamy World cloud terrain | Marble roads, columns, stairs, statues, forum, market, reliquary, cloud bridges, floating vegetation, and tribunal interiors |
-| Ashfall optional address | Green-Apocalyptic Ruins; Wasteland survivor kit; Desert Wasteland | Ashlands, cursed land, Dark Dimension, Lava Cavern, Nuclear War Ruins, Post-Apocalyptic sets, scorched desert | Coherent home for Wasteland and Infernal rosters rather than contaminating Primeval or Mansion |
-| Pelagic optional address | Underwater Ocean Depths; Underwater World & Sunken Ruins; Seabed | Beach, Survival Island, Pirate harbor, Luxury Cruise Ship | Coherent surface-to-depth route for Summer Beach and Atlantis rosters |
-| Steamforge optional address | Steamforged industrial; Steampunk Pixel Art; Ferrum Junkyard/Slums | Factory Ruins, Dark Steel City, Dieselpunk Houses, Modern Industrial Factory | Bridges, boilers, tanks, slums, foundries, and airship-industry spaces for the Steampunk roster |
-| Frontier optional address | Wild West Pixel Art; Ranch Stuff | Farm, scorched desert, Survival Shelter, Desert Arabian Nights | Settlement, rail, ranch, canyon, and mine vocabulary for Frontier characters |
-| Warfront optional address | World War I Trench Warfare; WW1 Trench & Bunker; WW1/WWII Ruins | Normandy Landing, Medieval Battlefield, Forest Warzone, Modern Military Submarine | A contained war-history rift for Warfront characters; it must not turn Asterion into a generic military base |
+| Ashfall mandatory address | Green-Apocalyptic Ruins; Wasteland survivor kit; Desert Wasteland | Ashlands, cursed land, Dark Dimension, Lava Cavern, Nuclear War Ruins, Post-Apocalyptic sets, scorched desert | Coherent home for Wasteland and Infernal rosters rather than contaminating Primeval or Mansion |
+| Pelagic mandatory address | Underwater Ocean Depths; Underwater World & Sunken Ruins; Seabed | Beach, Survival Island, Pirate harbor, Luxury Cruise Ship | Coherent surface-to-depth route for Summer Beach and Atlantis rosters |
+| Steamforge mandatory address | Steamforged industrial; Steampunk Pixel Art; Ferrum Junkyard/Slums | Factory Ruins, Dark Steel City, Dieselpunk Houses, Modern Industrial Factory | Bridges, boilers, tanks, slums, foundries, and airship-industry spaces for the Steampunk roster |
+| Frontier mandatory address | Wild West Pixel Art; Ranch Stuff | Farm, scorched desert, Survival Shelter, Desert Arabian Nights | Settlement, rail, ranch, canyon, and mine vocabulary for Frontier characters |
+| Warfront mandatory address | World War I Trench Warfare; WW1 Trench & Bunker; WW1/WWII Ruins | Normandy Landing, Medieval Battlefield, Forest Warzone, Modern Military Submarine | A contained war-history rift for Warfront characters; it must not turn Asterion into a generic military base |
 
 #### Complete `assets/Tilesets` disposition register
 
 This register prevents attractive packs from disappearing behind broad category
 names. `Core-P` means a required primary core-world kit; `Core-S` means a
-required supporting core-world kit with a bounded role; `Annex` means a named
-optional address that does not count toward the 102 core rooms; `Reserve` means
-hold for a separately approved transition, anomaly, or district; `Support` is a
+required supporting core-world kit with a bounded role; `Annex` means a required
+main-campaign address kit outside the 102 core-room subtotal; `Reserve` is only
+a temporary eligibility/placement hold that must be resolved before content
+completion, never a synonym for optional; `Support` is a
 non-environment population/UI/enemy source; and `Duplicate` means quarantine
 until checksum and content comparison select one canonical source. Disposition
 is not license acceptance: every admitted file still passes Section 8.
@@ -1167,19 +1197,21 @@ first_visit_variant, stabilized_variant, postgame_variant
 - [ ] Populate bailiffs, petitioners, clerks, envoys, and civic icons from the
   Heroic roster plus approved celestial/dragon envoys.
 
-#### I. Optional annexes
+#### I. Mandatory campaign addresses
 
-- [ ] Do not begin Ashfall or Pelagic production until the Mansion and all six
-  M4 universes meet their walkable-footprint and population targets at
-  implementation state.
-- [ ] If an annex is promoted into a full named universe, give it at least 14
-  authored rooms under the same useful-space rules; a smaller side area remains
-  an annex and is not counted among the 102 campaign-universe rooms.
-- [ ] Reuse the campaign's anchor/return model while keeping annex progression
-  optional and postgame-safe.
-- [ ] Give each annex its own palette, population registry entries, bestiary
-  slice, reward identity, and reason to revisit; a tileset showcase alone is
-  not a level.
+- [ ] Deliver Ashfall, Pelagic, Steamforge, Frontier, Warfront, and Liminal as
+  required main-story chapters before the Empyreal ending can resolve.
+- [ ] Use the exact 64-room address budget in Section 23.1 under the same
+  useful-space rules as the 102 core-universe rooms. Address rooms are outside
+  that 102-room subtotal but inside the mandatory 192-location campaign.
+- [ ] Reuse the campaign's anchor/return model and give every address an authored
+  main-quest prerequisite, completion flag, restoration state, and required
+  contribution to the final multiverse resolution.
+- [ ] Give each address its own palette, theme-matched population assignments,
+  bestiary slice, reward identity, and reason to revisit; a tileset showcase
+  alone is not a level.
+- [ ] Treat class-`O` rooms as detours within a required address. Their presence
+  does not make the address, its primary stage assets, or its story optional.
 
 ### 9.6 Level and population acceptance criteria
 
@@ -1540,13 +1572,12 @@ auditable.
   associated-population targets.
 - Moonpetal and Empyreal meet the Section 9 size, topology, content-density, and
   associated-population targets.
-- Every core SakPix collection meets its representation target; every remaining
-  collection has an approved annex/reserve/rejection disposition.
+- Every eligible SakPix collection meets its representation target in a core
+  world or mandatory address; every rejected collection has recorded evidence.
 - Ending, recall, stabilized revisits, and postgame routes are verified after
   migration.
-- Ashfall and Pelagic annexes enter implementation only through separately
-  approved work packages after the Mansion and six M4 universes meet implementation
-  state; they do not delay core-world fixes.
+- All six mandatory addresses enter implementation through bounded work
+  packages and must be accepted before the main ending is release-ready.
 
 ### M5 — Polish and production
 
@@ -1827,7 +1858,7 @@ assumptions.
   require deterministic crops and may never appear at runtime.
 - Known duplicate families are named in Section 9.3 and must collapse before
   catalog admission and export.
-- The 25 SakPix collections retain explicit core-world or optional-address
+- The 25 SakPix collections retain explicit core-world or mandatory-address
   assignments; the enlarged rooms use the population registry rather than
   hand-duplicated NPC nodes.
 - The existing five-room Mansion proof and six 8x4 universe prototypes are
@@ -1844,7 +1875,7 @@ without those two identifiers is not an auditable completion claim.
 
 This amendment closes the remaining unevenness identified after Section 22.
 It is authoritative where it adds New Philadelphia, facility interiors,
-optional addresses, exact spatial blueprints, and complete SakPix identity
+mandatory addresses, exact spatial blueprints, and complete eligible SakPix identity
 bindings. It does not mark any of this content implemented.
 
 ### 23.1 Locked total location budget
@@ -1862,12 +1893,13 @@ bindings. It does not mark any of this content implemented.
 | Liminal Address | 5 | 2 | 1 | 0 | **8** |
 | **Complete planned location total** | **96** | **44** | **26** | **26** | **192** |
 
-The five 10-12-room addresses and the eight-room Liminal Address are optional
-campaigns, not padding required to finish the main ending. Each unlocks from a
-post-stabilization town lead, uses separate flags and rewards, and may not
-silently become a prerequisite for an existing core-world quest. Their maps and
-populations can enter production only after the relevant source packs pass
-Section 8 admission.
+The five 10-12-room addresses and the eight-room Liminal Address are required
+main-campaign chapters. Each unlocks from its authored town or stabilized-world
+lead, uses separate flags and rewards, and contributes an address-resolution
+flag required before the Empyreal ending. Their maps and populations can enter
+production only after the relevant source packs pass Section 8 admission.
+Class-`O` rows remain optional detours inside these mandatory chapters; they do
+not make an address or its primary supplied assets skippable from the main game.
 
 ### 23.2 Exact coordinate, camera, collision, and placement system
 
@@ -1948,7 +1980,7 @@ but ordinary routes, facility doors, and resident schedules remain safe.
 | --- | --- | --- | --- |
 | `NP-01` Franklin Laboratory Main Floor | `H1`; `Ne→NP-02; Se→NP-04` | `none; Icenter` opening/workbench; `P1-P3` assistants; `P4-P6` visitor demonstrations | Preserve opening, party access, save/load arrival, and town exit. Use `Modern Laboratory Assets` floor/wall/door sheets and profiled machinery; player spawn remains in `Zsafe` with a clear two-route path to the exit. |
 | `NP-02` Invention Annex | `I3`; `Nw→NP-01; Ne→NP-03` | `Tne` first research cache; `Icenter` invention bench; `P1-P4` researchers | Stable home for every existing and future invention recipe, preview model, materials ledger, and construction result. Use laboratory sheets 1-7 and approved Steampunk instruments; no portal or NPC route crosses the bench footprint. |
-| `NP-03` Power and Records Basement | `M4`; `Nw→NP-02; E1→NP-05 [town_foundations_complete]; E2→LM-01 [postgame anomaly]` | `Tsw` emergency supplies; `Icenter` fault-line regulator; `P1-P2` technicians | Houses generator, save migration console, provenance-readable archive, and the post-founding service lift to Old-Town Market. Modern Laboratory auto-walls, Industrial Factory power, and bounded Steamforged pipe derivatives. |
+| `NP-03` Power and Records Basement | `M4`; `Nw→NP-02; E1→NP-05 [town_foundations_complete]; E2→LM-01 [liminal_main_quest_unlocked]` | `Tsw` emergency supplies; `Icenter` fault-line regulator; `P1-P2` technicians | Houses generator, save migration console, provenance-readable archive, and the post-founding service lift to Old-Town Market. Modern Laboratory auto-walls, Industrial Factory power, and bounded Steamforged pipe derivatives. |
 | `NP-04` Founders Square | `H2`; `Nw→NP-01; E1→NP-06; E2→NP-07; W2→NP-05` | `none; Icenter` town notice/anchor monument; `P1-P6` rotating residents | Main orientation and quest handoff hub. Use `Modern World Overworld` roads, Medieval town square decorations, Cozy Spring seating/lights, and visible district signs. State changes: survey stakes → founding monument → seven anchor lights → postgame public Charter. |
 | `NP-05` Old-Town Market | `L2`; `E1→NP-04; E2→NP-13; Se→NP-08; W1→NP-03 [foundations]` | `LOT-01, LOT-02`; `Tsw` rotating merchant cache; `P1-P6` vendors/residents | Cobblestone market with two build lots, stalls, blacksmith/tavern props, and a basement shortcut. Primary `Medieval village town` sheets 1, 8, 12-14, 17-19; Cozy Cafe/Kingdom Citizens support. |
 | `NP-06` Civic Workshop Row | `L3`; `W1→NP-04; E1→NP-10; Se→NP-09` | `LOT-03, LOT-04`; `Tse` salvage bin; `Icenter` public repair board; `P1-P5` workers | Two construction lots beside shared workshops. Use Modern Construction, Modern Industrial Factory, Fantasy Structures, Environment Decor, and blacksmith props. Armory deliveries and invention-job workers route here without blocking district ports. |
@@ -2072,7 +2104,7 @@ city whose public infrastructure is literally running out of pressure.
 
 Unlock lead: Trailhead expeditions and New Philadelphia's farm board receive a
 rail deed from a town caught between an exploitative mine and its own elected
-marshal. `7._DYNAMITE_BILL` is excluded until `east.png` is supplied.
+marshal.
 
 | ID / room | Class, blueprint, and exact ports | Encounter, interaction, treasure, and state | Supplied art and population |
 | --- | --- | --- | --- |
@@ -2108,9 +2140,11 @@ story objective is evacuation and ceasefire, not conquest.
 
 ### 23.10 Liminal Address — 8 rooms
 
-Unlock lead: a postgame anomaly appears in the laboratory provenance console
-after every core universe stabilizes. This address is intentionally lonely; it
-does not borrow an unrelated SakPix population merely to fill screens.
+Unlock lead: the laboratory provenance console exposes the final anomaly after
+the five other mandatory addresses and the pre-Empyreal core chapters resolve.
+Liminal is a required pre-ending investigation led on the field by Ben, Lincoln,
+and Gandhi. It is intentionally lonely and does not borrow an unrelated SakPix
+population merely to fill screens.
 
 | ID / room | Class, blueprint, and exact ports | Encounter, interaction, treasure, and state | Supplied art and population |
 | --- | --- | --- | --- |
@@ -2239,9 +2273,10 @@ anchors are exact cells after evaluation through Section 23.2.
 
 ### 23.12 Complete SakPix canonical-home and story-phase registry
 
-This registry binds every one of the 267 supplied character folders. Exactly
-258 identities have all eight required rotations and receive one canonical
-home. Nine incomplete identities are explicitly quarantined. `F` means present
+This registry binds all 258 eligible supplied characters. Every listed identity
+has all eight required rotations and receives one canonical home. Incomplete
+source directories are outside the game plan and do not receive registry IDs,
+homes, schedules, routes, profiles, or implementation work. `F` means present
 on first visit, `F!` means a bounded hostile or antagonist field role, `S`
 means present after the location stabilizes or its local introduction clears,
 and `P` means postgame. Suffixes `-A`, `-B`, and so on are mutually exclusive
@@ -2388,7 +2423,6 @@ and underscores, but source identity keys may not.
 | `FRONTIER LEGENDS-Wild West Heroes Collection` | `4._PRAIRIE_RANGER` | `FT-03` | `S@P1`; P1↔Icenter schedule; Frontier resident, outlaw, or law officer |
 | `FRONTIER LEGENDS-Wild West Heroes Collection` | `5._GOLD_PROSPECTOR` | `FT-08` | `S@P1`; P1↔Icenter schedule; Frontier resident, outlaw, or law officer |
 | `FRONTIER LEGENDS-Wild West Heroes Collection` | `6._ROSE_McGRAW` | `FT-07` | `S@P1`; P1↔Icenter schedule; Frontier resident, outlaw, or law officer |
-| `FRONTIER LEGENDS-Wild West Heroes Collection` | `7._DYNAMITE_BILL` | **QUARANTINE** | missing east.png; no room, phase, route, or runtime population ID until repaired |
 | `FRONTIER LEGENDS-Wild West Heroes Collection` | `8._BISON_HUNTER` | `FT-03` | `S@P2`; P2↔Icenter schedule; Frontier resident, outlaw, or law officer |
 | `FRONTIER LEGENDS-Wild West Heroes Collection` | `9._OUTLAW_QUEEN` | `FT-04` | `F!@P2`; bounded hostile route; Frontier resident, outlaw, or law officer |
 | `FRONTIER LEGENDS-Wild West Heroes Collection` | `10._IRON_MARSHAL` | `FT-02` | `S@P2`; P2↔Icenter schedule; Frontier resident, outlaw, or law officer |
@@ -2445,20 +2479,12 @@ and underscores, but source identity keys may not.
 | `NIGHTMARE SLASHERS Horror Killers Collection` | `9._GRAVE_KEEPER` | `HM-01` | `F!@P1`; bounded hostile route; Mansion nightmare apparition |
 | `NIGHTMARE SLASHERS Horror Killers Collection` | `10._NOCTURNA` | `HM-13` | `F!@P1`; bounded hostile route; Mansion nightmare apparition |
 | `NIGHTMARE SLASHERS Horror Killers Collection` | `11._THE_SILENT_JUDGE` | `HM-09` | `F!@P2`; bounded hostile route; Mansion nightmare apparition |
-| `Premium Enchanted Forest Pixel Art Characters for Fantasy RPGs, Roguelikes & Magical Adventures` | `1._Emerald_Forest_Ranger` | **QUARANTINE** | all eight rotation PNGs absent; no room, phase, route, or runtime population ID until repaired |
-| `Premium Enchanted Forest Pixel Art Characters for Fantasy RPGs, Roguelikes & Magical Adventures` | `2._Ancient_Antler_Druid` | **QUARANTINE** | all eight rotation PNGs absent; no room, phase, route, or runtime population ID until repaired |
 | `Premium Enchanted Forest Pixel Art Characters for Fantasy RPGs, Roguelikes & Magical Adventures` | `3._Moonleaf_Assassin` | `MP-10` | `S@P2`; P2↔Icenter schedule; Primeval or Moonpetal nature resident |
-| `Premium Enchanted Forest Pixel Art Characters for Fantasy RPGs, Roguelikes & Magical Adventures` | `4._Wildfire_Beast_Hunter` | **QUARANTINE** | all eight rotation PNGs absent; no room, phase, route, or runtime population ID until repaired |
-| `Premium Enchanted Forest Pixel Art Characters for Fantasy RPGs, Roguelikes & Magical Adventures` | `5._Mushroom_Alchemist` | **QUARANTINE** | all eight rotation PNGs absent; no room, phase, route, or runtime population ID until repaired |
 | `Premium Enchanted Forest Pixel Art Characters for Fantasy RPGs, Roguelikes & Magical Adventures` | `6._Thornblade_Knight` | `PV-04` | `S@P1`; P1↔Icenter schedule; Primeval or Moonpetal nature resident |
-| `Premium Enchanted Forest Pixel Art Characters for Fantasy RPGs, Roguelikes & Magical Adventures` | `7._Spirit_Wolf_Shaman` | **QUARANTINE** | all eight rotation PNGs absent; no room, phase, route, or runtime population ID until repaired |
 | `Premium Enchanted Forest Pixel Art Characters for Fantasy RPGs, Roguelikes & Magical Adventures` | `8._Blossom_Priestess` | `MP-02` | `S@P1`; P1↔Icenter schedule; Primeval or Moonpetal nature resident |
 | `Premium Enchanted Forest Pixel Art Characters for Fantasy RPGs, Roguelikes & Magical Adventures` | `9._Butterfly_Witch` | `PV-09` | `S@P1`; P1↔Icenter schedule; Primeval or Moonpetal nature resident |
-| `Premium Enchanted Forest Pixel Art Characters for Fantasy RPGs, Roguelikes & Magical Adventures` | `10._Lunar_Forest_Archer` | **QUARANTINE** | all eight rotation PNGs absent; no room, phase, route, or runtime population ID until repaired |
 | `Premium Enchanted Forest Pixel Art Characters for Fantasy RPGs, Roguelikes & Magical Adventures` | `11._Vineblade_Dancer` | `PV-04` | `S@P2`; P2↔Icenter schedule; Primeval or Moonpetal nature resident |
-| `Premium Enchanted Forest Pixel Art Characters for Fantasy RPGs, Roguelikes & Magical Adventures` | `12._Fairy_Queen_Guardian` | **QUARANTINE** | all eight rotation PNGs absent; no room, phase, route, or runtime population ID until repaired |
 | `Premium Enchanted Forest Pixel Art Characters for Fantasy RPGs, Roguelikes & Magical Adventures` | `13._Nature_Oracle` | `MP-11` | `S@P1`; P1↔Icenter schedule; Primeval or Moonpetal nature resident |
-| `Premium Enchanted Forest Pixel Art Characters for Fantasy RPGs, Roguelikes & Magical Adventures` | `14._Serpent_Forest_Enchantress` | **QUARANTINE** | all eight rotation PNGs absent; no room, phase, route, or runtime population ID until repaired |
 | `Psychological Horror Dungeon Characters Pack` | `1._THE_CHAINED_EXECUTIONER_MALE` | `HM-04` | `F!@P2`; bounded hostile route; Mansion psychological apparition or captive |
 | `Psychological Horror Dungeon Characters Pack` | `2._THE_CANDLE_PRIESTESS_FEMALE` | `HM-11` | `F!@P1`; bounded hostile route; Mansion psychological apparition or captive |
 | `Psychological Horror Dungeon Characters Pack` | `3._THE_BONE_SURGEON_MALE` | `HM-12` | `F!-B@P2`; bounded hostile route; Mansion psychological apparition or captive |
@@ -2558,7 +2584,7 @@ Population caps remain deliberate even when more identities exist:
 ### 23.13 Sheet-level admission and room-binding rules
 
 The disposition register in Section 9.3 is source coverage, not blanket runtime
-admission. Every image beneath a `Core-P`, `Core-S`, or implemented `Annex`
+admission. Every image beneath a `Core-P`, `Core-S`, or required `Annex`
 pack receives exactly one generated sheet state:
 
 - `USED(room_ids, profile_ids)`: directly cropped or tiled by named rooms.
@@ -2618,17 +2644,19 @@ tile-by-tile record and collision/navigation audits exist.
 ### 23.15 Acceptance criteria for complete location coverage
 
 - [ ] Exactly 192 unique location IDs exist: 102 core-universe, 15 New
-  Philadelphia, 11 facility interior, and 64 optional-address IDs.
+  Philadelphia, 11 facility interior, and 64 mandatory-address IDs.
 - [ ] Core-universe class totals remain 58 critical, 29 optional, and 15
-  connective; annex totals remain 38 critical, 15 optional, and 11 connective.
+  connective; mandatory-address totals remain 38 critical, 15 optional-detour,
+  and 11 connective.
 - [ ] Every room selects one valid blueprint, resolves to the exact cell/pixel
   dimensions in Section 23.2, binds no port twice, and leaves every unused port
   visibly/collision-solid.
 - [ ] Every non-virtual graph edge is reciprocal under each relevant story
   fixture. `LOT` edges resolve to the saved construction lot, and all external
   portal pairs return to their named safe anchors.
-- [ ] Every critical path is reachable in its intended state; optional-address
-  flags are absent from all core-quest prerequisites and ending conditions.
+- [ ] Every critical path is reachable in its intended state; all six
+  address-resolution flags are required by the final Empyreal ending, and no
+  class-`O` detour flag is required to advance its mandatory address chapter.
 - [ ] Every arrival, save, boss-return, and migrated-save cell belongs to
   `Zsafe`, has at least three legal follower cells, and cannot overlap collision,
   an NPC reservation, treasure, or encounter trigger.
@@ -2638,10 +2666,10 @@ tile-by-tile record and collision/navigation audits exist.
 - [ ] All eleven facilities pass an 11x11 placement matrix: 121 build
   combinations enter the correct stable interior, return to the correct lot,
   retain jobs/portal state, and survive save/reload and sandbox relocation.
-- [ ] The population registry contains exactly 267 source identities: 258
-  unique complete identities with one canonical home and 9 quarantined
-  identities with no runtime path. Every configured directional path exists and
-  matches the source checksum.
+- [ ] The population registry contains exactly 258 eligible source identities,
+  all with complete eight-direction art and one canonical home. Incomplete
+  source directories do not appear in the plan or registry. Every configured
+  directional path exists and matches the source checksum.
 - [ ] No room/cohort schedules more than six SakPix residents on its `P1-P6`
   anchors; no moving route enters a bound port, `Zsafe`, puzzle, treasure, or
   facility-door cell.
@@ -2661,7 +2689,7 @@ tile-by-tile record and collision/navigation audits exist.
 ### 23.16 Mandatory pre-expansion architecture refactor gate
 
 Do not begin bulk production of the 192 locations against the current campaign
-world implementation. The room count, eleven movable facilities, and 267-source
+world implementation. The room count, eleven movable facilities, and 258-source
 population cannot be added safely by extending the existing hardcoded geometry
 and procedural-rendering branches. Complete the refactor in this section first,
 while preserving current campaign behavior and save compatibility.
@@ -2675,11 +2703,11 @@ based on responsibility and dependency direction.
 | `game/ben_rpg/core/campaign_state.gd` | 4,041 lines; 200 functions; 40 constants | Immutable content definitions, mutable runtime state, save/load, party, inventory, equipment, quests, facilities, residents, progression, and economy still share one autoload surface | Hard blocker: extract validated content catalogs and bounded runtime services while retaining a compatibility facade |
 | `game/ben_rpg/world/campaign_bootstrap.gd` | 2,627 lines; 111 functions; 210 constants; 159 direct `CampaignState` references | Owns startup, legacy universe coordinates, camera classification, collision/navigation, facilities, transitions, recruits, interactions, bosses, gates, sandbox hooks, and ending flow | Hard blocker: reduce to lifecycle orchestration and delegate all room-owned behavior |
 | `game/ben_rpg/world/campaign_map_visual.gd` | 840 lines; 46 functions; 33 constants | One procedural renderer still owns laboratory, town, Mansion, Asterion, Primeval, Helios, Frosthold, Moonpetal, and legacy room composition | Hard blocker: freeze as a legacy migration adapter and replace it with authored room scenes |
-| `game/ben_rpg/world/town_resident_manager.gd` | 364 lines; 18 functions; hardcoded `PROFILES` table | Four embedded identities cannot scale to the locked 267-source canonical-home/story-phase registry | Blocker before population production: make identity, schedule, phase, route, and occupancy data-driven |
+| `game/ben_rpg/world/town_resident_manager.gd` | 364 lines; 18 functions; hardcoded `PROFILES` table | Four embedded identities cannot scale to the locked 258-source canonical-home/story-phase registry | Blocker before population production: make identity, schedule, phase, route, and occupancy data-driven |
 | `game/ben_rpg/world/town_build_controller.gd` | 634 lines; 18 functions; 87 direct `CampaignState` references | Facility placement, input, encounter pressure, story objectives, and HUD presentation are coupled; `_update_hud()` is a large chapter-specific decision chain | Blocker before New Philadelphia and the 11-lot matrix: separate placement/domain logic from presentation and story guidance |
 | `game/ben_rpg/ui/campaign_menu.gd` | 1,873 lines; 112 functions; 176 direct `CampaignState` references | Equipment, skills, inventory, bestiary, telemetry, settings, roster, quests, facilities, jobs, inventions, services, recall, and postgame presentation share one controller | Refactor before significant expansion-menu work; it does not block the first room-platform slice |
 | `game/ben_rpg/world/sandbox_town_editor.gd` | 889 lines; 45 functions | Selection, placement, persistence, catalog UI, resident relocation, and rendering are concentrated in one editor controller | Refactor before district/sandbox expansion; it does not block the first room-platform slice |
-| `game/ben_rpg/combat/campaign_battle.gd` and `campaign_combat_database.gd` | 1,117/929 lines | Battle presentation/orchestration and a large code-authored encounter catalog will become costly when optional addresses add encounters | Defer until encounter/bestiary production begins; current room streaming must preserve their existing contract |
+| `game/ben_rpg/combat/campaign_battle.gd` and `campaign_combat_database.gd` | 1,117/929 lines | Battle presentation/orchestration and a large code-authored encounter catalog will become costly when mandatory addresses add encounters | Defer until encounter/bestiary production begins; current room streaming must preserve their existing contract |
 | `game/ben_rpg/core/content_validator.gd` | 344 lines; 17 validator functions | Adding every new room, population, asset, facility, and graph rule directly would create another monolith | Keep as the validation facade; add focused validator modules behind it |
 
 #### 23.16.1 Characterization and safety net before extraction
@@ -2814,8 +2842,8 @@ passes. Delete the legacy renderer only after its last room has migrated.
 Before activating the associated SakPix populations:
 
 - Replace the hardcoded `town_resident_manager.gd` `PROFILES` table with the
-  generated 267-source registry: 258 complete identities and nine quarantined
-  identities with no runtime binding.
+  generated 258-source registry. Every planned identity has complete
+  eight-direction art; incomplete source directories have no runtime binding.
 - Separate canonical identity/profile lookup, room/story-phase scheduling,
   route/anchor occupancy, runtime actor spawning, persistence, and dialogue.
   One source identity has one canonical runtime ID and home; phase changes move
@@ -2846,7 +2874,7 @@ limit:
   selection/placement, persistence, catalog presentation, resident relocation,
   and rendering before district editing or the complete 11-lot sandbox matrix.
 - `campaign_battle.gd` and `campaign_combat_database.gd` retain their existing
-  encounter contract during room-platform work. Before optional-address
+  encounter contract during room-platform work. Before mandatory-address
   encounter production, separate battle flow/presentation and move encounter
   definitions into validated content records referenced by stable IDs.
 - `content_validator.gd` remains the single validation entry point but delegates
@@ -2892,9 +2920,9 @@ limit:
    proof. Retire that room's procedural rendering and bootstrap branches only
    after visual, collision, transition, interaction, input, save/reload, and
    capture parity passes.
-6. Generate the complete Tilesets sheet-state inventory and 267-identity SakPix
-   registry; fail on the nine quarantined identities if any runtime reference
-   appears. Implement the population scheduler/occupancy/spawner boundaries.
+6. Generate the complete Tilesets sheet-state inventory and 258-identity SakPix
+   registry; fail if an incomplete source directory receives any plan or runtime
+   reference. Implement the population scheduler/occupancy/spawner boundaries.
 7. Split `town_build_controller.gd` and replace the resident profile table, then
    implement `NP-01`-`NP-15`, the 11-lot data model, and `FI-01`-`FI-04` before
    changing any existing founding quest.
@@ -2905,8 +2933,9 @@ limit:
    one accepted universe at a time. Populate a world only after its
    collision/navigation and safe-anchor audits pass; then activate the exact
    roster rows and test every cohort transition.
-10. Implement optional addresses independently in this order: Ashfall, Pelagic,
-    Steamforge, Frontier, Warfront, Liminal. Before this step, complete the
+10. Implement the mandatory addresses in this order: Ashfall, Pelagic,
+    Steamforge, Frontier, Warfront, Liminal, and require all six resolution
+    flags before the Empyreal ending. Before this step, complete the
     deferred battle/database refactor required by Section 23.16.6. Each address
     requires its own asset admission, graph fixtures, balance pass, and reviewer
     acceptance.
@@ -2914,7 +2943,7 @@ limit:
     adding their expansion-specific surfaces or claiming the full district and
     11-lot sandbox workflows.
 12. Run the full 192-location graph, 121-placement facility matrix,
-    267-identity population audit, capture matrix, save migration, performance,
+    258-identity population audit, capture matrix, save migration, performance,
     input, and clean-export gates before any release-candidate claim.
 
 ### 23.18 Implementation status (2026-07-23)
@@ -3070,6 +3099,16 @@ limit:
   core, optional, duplicate, reserve, and support classes. Release-code source
   quarantine validation confirms that no release file points directly at the
   ignored Tilesets, EXPANSION, or SakPix staging roots.
+- The current source-inventory check records 156 local source packs / 69,116
+  files / 5,568 exact duplicate families. The additional Gandhi source folder
+  is explicitly quarantined pending terms evidence, so it does not expand the
+  approved curated-art denominator or receive a runtime profile.
+- `npm run validate:assets` now passes after rebuilding the runtime visual
+  inventory, provenance ledger, manifest, profile contact sheet, population
+  registry, and source inventory. The 134 isolated smoke scenes passed in two
+  retained save-safe batches (87 plus 47) because the host command ceiling
+  interrupted the initial aggregate invocation; the second batch reports
+  `ISOLATED_RUN_OK` with the production-save sentinel unchanged.
 - The static visual inventory's campaign-owned denominator is now fully
   profile-backed: 171 of 171 sources resolve through profiles. The legacy
   battle sprites/backdrop, field sprites, doors, and chest atlas consumers use

@@ -23,19 +23,19 @@ class PopulationContactSheetTests(unittest.TestCase):
             if direction not in missing:
                 Image.new("RGBA", (3 + index, 5 + index), (index * 20, 80, 160, 255)).save(rotations / f"{direction}.png")
 
-    def test_collection_preserves_native_frames_and_quarantines_incomplete_identities(self) -> None:
+    def test_collection_preserves_native_frames_and_excludes_incomplete_identities(self) -> None:
         with tempfile.TemporaryDirectory() as temporary:
             root = Path(temporary)
             self._identity(root, "Test Collection", "complete")
             self._identity(root, "Test Collection", "incomplete", {"east"})
             payload, record = sheets.render_collection("Test Collection", sorted((root / "Test Collection").iterdir()))
             self.assertEqual(record["completeIdentityCount"], 1)
-            self.assertEqual(record["quarantined"], [{"folder": "incomplete", "missingRotations": ["east"]}])
+            self.assertEqual(record["excludedIncomplete"], [{"folder": "incomplete", "missingRotations": ["east"]}])
             with Image.open(__import__("io").BytesIO(payload)) as sheet:
                 self.assertEqual(sheet.size, (248 + 8 * (10 + 16) + 8, 42 + (12 + 16) + 8))
 
     def test_manifest_is_deterministic_and_contains_review_only_contract(self) -> None:
-        rendered = {"Example": (b"png", {"collection": "Example", "completeIdentityCount": 1, "quarantinedIdentityCount": 0, "quarantined": [], "nativeFrameMaximum": [12, 12]})}
+        rendered = {"Example": (b"png", {"collection": "Example", "completeIdentityCount": 1, "excludedIncompleteCount": 0, "excludedIncomplete": [], "nativeFrameMaximum": [12, 12]})}
         first = sheets.manifest_for(rendered)
         second = sheets.manifest_for(rendered)
         self.assertEqual(first, second)

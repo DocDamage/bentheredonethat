@@ -1,7 +1,7 @@
 class_name CampaignPopulationScheduler
 extends RefCounted
 
-## Resolves room/phase cohorts from the generated 267-identity registry. It is
+## Resolves room/phase cohorts from the generated 258-identity registry. It is
 ## deliberately unable to spawn an identity until a reviewed runtime profile is
 ## admitted, and reserves only the room's P anchors—not ports, encounter zones,
 ## treasure cells, or interaction cells.
@@ -71,7 +71,7 @@ static func schedule_profiles(room_id: StringName, identities: Array[Dictionary]
 		var identity_id := StringName(profile.get("id", &""))
 		var anchor_id := StringName(profile.get("anchor", &""))
 		var anchor_cell: Vector2i = anchors.get(anchor_id, Vector2i.ZERO)
-		if identity_id == &"" or _runtime_profile_id(profile) == &"" or bool(profile.get("quarantined", false)) or anchor_cell == Vector2i.ZERO or occupied.has(anchor_cell):
+		if identity_id == &"" or _runtime_profile_id(profile) == &"" or bool(profile.get("blocked", false)) or anchor_cell == Vector2i.ZERO or occupied.has(anchor_cell):
 			unavailable.append(identity_id)
 			continue
 		occupied[anchor_cell] = identity_id
@@ -82,18 +82,13 @@ static func schedule_profiles(room_id: StringName, identities: Array[Dictionary]
 static func validate() -> PackedStringArray:
 	var errors: Array[String] = []
 	_ensure_loaded()
-	if _identities.size() != 267:
-		errors.append("Population registry must expose exactly 267 canonical identities.")
-	var quarantined := 0
+	if _identities.size() != 258:
+		errors.append("Population registry must expose exactly 258 eligible canonical identities.")
 	for identity_id in _identities:
 		var profile: Dictionary = _identities[identity_id]
 		var is_complete := _string_field(profile, "sourceRotationState") == "complete"
 		if not is_complete:
-			quarantined += 1
-			if _runtime_profile_id(profile) != &"":
-				errors.append("Quarantined identity %s has a runtime profile binding." % identity_id)
-	if quarantined != 9:
-		errors.append("Population registry must quarantine exactly nine incomplete identities.")
+			errors.append("Planned identity %s does not have all eight source rotations." % identity_id)
 	return PackedStringArray(errors)
 
 

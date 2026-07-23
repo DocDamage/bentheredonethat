@@ -17,7 +17,7 @@ ROOT = Path(__file__).resolve().parents[2]
 class PopulationRegistryTests(unittest.TestCase):
     def test_clean_checkout_registry_has_every_planned_identity(self) -> None:
         payload = registry.build(ROOT)
-        self.assertEqual(len(payload["identities"]), 267)
+        self.assertEqual(len(payload["identities"]), 258)
         self.assertTrue(all(item["sourceRotationState"] == "unverified" for item in payload["identities"]))
 
     def test_checked_in_registry_is_clean_checkout_reproducible(self) -> None:

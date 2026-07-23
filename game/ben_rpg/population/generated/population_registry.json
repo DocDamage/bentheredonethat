@@ -3138,33 +3138,6 @@
     },
     {
       "availableRotations": [
-        "north",
-        "north-east",
-        "north-west",
-        "south",
-        "south-east",
-        "south-west",
-        "west"
-      ],
-      "canonicalHome": "**QUARANTINE**",
-      "id": "sakpix:FRONTIER LEGENDS-Wild West Heroes Collection/7._DYNAMITE_BILL",
-      "planSchedule": "missing east.png; no room, phase, route, or runtime population ID until repaired",
-      "provenanceStatus": "review_required",
-      "runtimeProfileId": null,
-      "schedule": {
-        "anchor": null,
-        "cohort": null,
-        "phase": "quarantined",
-        "route": "none"
-      },
-      "sourceIdentity": {
-        "collection": "FRONTIER LEGENDS-Wild West Heroes Collection",
-        "folder": "7._DYNAMITE_BILL"
-      },
-      "sourceRotationState": "quarantined"
-    },
-    {
-      "availableRotations": [
         "east",
         "north",
         "north-east",
@@ -4676,44 +4649,6 @@
       "sourceRotationState": "complete"
     },
     {
-      "availableRotations": [],
-      "canonicalHome": "**QUARANTINE**",
-      "id": "sakpix:Premium Enchanted Forest Pixel Art Characters for Fantasy RPGs, Roguelikes & Magical Adventures/1._Emerald_Forest_Ranger",
-      "planSchedule": "all eight rotation PNGs absent; no room, phase, route, or runtime population ID until repaired",
-      "provenanceStatus": "review_required",
-      "runtimeProfileId": null,
-      "schedule": {
-        "anchor": null,
-        "cohort": null,
-        "phase": "quarantined",
-        "route": "none"
-      },
-      "sourceIdentity": {
-        "collection": "Premium Enchanted Forest Pixel Art Characters for Fantasy RPGs, Roguelikes & Magical Adventures",
-        "folder": "1._Emerald_Forest_Ranger"
-      },
-      "sourceRotationState": "quarantined"
-    },
-    {
-      "availableRotations": [],
-      "canonicalHome": "**QUARANTINE**",
-      "id": "sakpix:Premium Enchanted Forest Pixel Art Characters for Fantasy RPGs, Roguelikes & Magical Adventures/10._Lunar_Forest_Archer",
-      "planSchedule": "all eight rotation PNGs absent; no room, phase, route, or runtime population ID until repaired",
-      "provenanceStatus": "review_required",
-      "runtimeProfileId": null,
-      "schedule": {
-        "anchor": null,
-        "cohort": null,
-        "phase": "quarantined",
-        "route": "none"
-      },
-      "sourceIdentity": {
-        "collection": "Premium Enchanted Forest Pixel Art Characters for Fantasy RPGs, Roguelikes & Magical Adventures",
-        "folder": "10._Lunar_Forest_Archer"
-      },
-      "sourceRotationState": "quarantined"
-    },
-    {
       "availableRotations": [
         "east",
         "north",
@@ -4740,25 +4675,6 @@
         "folder": "11._Vineblade_Dancer"
       },
       "sourceRotationState": "complete"
-    },
-    {
-      "availableRotations": [],
-      "canonicalHome": "**QUARANTINE**",
-      "id": "sakpix:Premium Enchanted Forest Pixel Art Characters for Fantasy RPGs, Roguelikes & Magical Adventures/12._Fairy_Queen_Guardian",
-      "planSchedule": "all eight rotation PNGs absent; no room, phase, route, or runtime population ID until repaired",
-      "provenanceStatus": "review_required",
-      "runtimeProfileId": null,
-      "schedule": {
-        "anchor": null,
-        "cohort": null,
-        "phase": "quarantined",
-        "route": "none"
-      },
-      "sourceIdentity": {
-        "collection": "Premium Enchanted Forest Pixel Art Characters for Fantasy RPGs, Roguelikes & Magical Adventures",
-        "folder": "12._Fairy_Queen_Guardian"
-      },
-      "sourceRotationState": "quarantined"
     },
     {
       "availableRotations": [
@@ -4789,44 +4705,6 @@
       "sourceRotationState": "complete"
     },
     {
-      "availableRotations": [],
-      "canonicalHome": "**QUARANTINE**",
-      "id": "sakpix:Premium Enchanted Forest Pixel Art Characters for Fantasy RPGs, Roguelikes & Magical Adventures/14._Serpent_Forest_Enchantress",
-      "planSchedule": "all eight rotation PNGs absent; no room, phase, route, or runtime population ID until repaired",
-      "provenanceStatus": "review_required",
-      "runtimeProfileId": null,
-      "schedule": {
-        "anchor": null,
-        "cohort": null,
-        "phase": "quarantined",
-        "route": "none"
-      },
-      "sourceIdentity": {
-        "collection": "Premium Enchanted Forest Pixel Art Characters for Fantasy RPGs, Roguelikes & Magical Adventures",
-        "folder": "14._Serpent_Forest_Enchantress"
-      },
-      "sourceRotationState": "quarantined"
-    },
-    {
-      "availableRotations": [],
-      "canonicalHome": "**QUARANTINE**",
-      "id": "sakpix:Premium Enchanted Forest Pixel Art Characters for Fantasy RPGs, Roguelikes & Magical Adventures/2._Ancient_Antler_Druid",
-      "planSchedule": "all eight rotation PNGs absent; no room, phase, route, or runtime population ID until repaired",
-      "provenanceStatus": "review_required",
-      "runtimeProfileId": null,
-      "schedule": {
-        "anchor": null,
-        "cohort": null,
-        "phase": "quarantined",
-        "route": "none"
-      },
-      "sourceIdentity": {
-        "collection": "Premium Enchanted Forest Pixel Art Characters for Fantasy RPGs, Roguelikes & Magical Adventures",
-        "folder": "2._Ancient_Antler_Druid"
-      },
-      "sourceRotationState": "quarantined"
-    },
-    {
       "availableRotations": [
         "east",
         "north",
@@ -4855,44 +4733,6 @@
       "sourceRotationState": "complete"
     },
     {
-      "availableRotations": [],
-      "canonicalHome": "**QUARANTINE**",
-      "id": "sakpix:Premium Enchanted Forest Pixel Art Characters for Fantasy RPGs, Roguelikes & Magical Adventures/4._Wildfire_Beast_Hunter",
-      "planSchedule": "all eight rotation PNGs absent; no room, phase, route, or runtime population ID until repaired",
-      "provenanceStatus": "review_required",
-      "runtimeProfileId": null,
-      "schedule": {
-        "anchor": null,
-        "cohort": null,
-        "phase": "quarantined",
-        "route": "none"
-      },
-      "sourceIdentity": {
-        "collection": "Premium Enchanted Forest Pixel Art Characters for Fantasy RPGs, Roguelikes & Magical Adventures",
-        "folder": "4._Wildfire_Beast_Hunter"
-      },
-      "sourceRotationState": "quarantined"
-    },
-    {
-      "availableRotations": [],
-      "canonicalHome": "**QUARANTINE**",
-      "id": "sakpix:Premium Enchanted Forest Pixel Art Characters for Fantasy RPGs, Roguelikes & Magical Adventures/5._Mushroom_Alchemist",
-      "planSchedule": "all eight rotation PNGs absent; no room, phase, route, or runtime population ID until repaired",
-      "provenanceStatus": "review_required",
-      "runtimeProfileId": null,
-      "schedule": {
-        "anchor": null,
-        "cohort": null,
-        "phase": "quarantined",
-        "route": "none"
-      },
-      "sourceIdentity": {
-        "collection": "Premium Enchanted Forest Pixel Art Characters for Fantasy RPGs, Roguelikes & Magical Adventures",
-        "folder": "5._Mushroom_Alchemist"
-      },
-      "sourceRotationState": "quarantined"
-    },
-    {
       "availableRotations": [
         "east",
         "north",
@@ -4919,25 +4759,6 @@
         "folder": "6._Thornblade_Knight"
       },
       "sourceRotationState": "complete"
-    },
-    {
-      "availableRotations": [],
-      "canonicalHome": "**QUARANTINE**",
-      "id": "sakpix:Premium Enchanted Forest Pixel Art Characters for Fantasy RPGs, Roguelikes & Magical Adventures/7._Spirit_Wolf_Shaman",
-      "planSchedule": "all eight rotation PNGs absent; no room, phase, route, or runtime population ID until repaired",
-      "provenanceStatus": "review_required",
-      "runtimeProfileId": null,
-      "schedule": {
-        "anchor": null,
-        "cohort": null,
-        "phase": "quarantined",
-        "route": "none"
-      },
-      "sourceIdentity": {
-        "collection": "Premium Enchanted Forest Pixel Art Characters for Fantasy RPGs, Roguelikes & Magical Adventures",
-        "folder": "7._Spirit_Wolf_Shaman"
-      },
-      "sourceRotationState": "quarantined"
     },
     {
       "availableRotations": [

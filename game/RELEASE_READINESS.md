@@ -3,6 +3,20 @@
 Status: **not ready to ship**. This file separates verified automated evidence
 from the human, platform, licensing, and performance sign-offs that remain.
 
+## Locked completion scope
+
+- The release target is a 192-location mandatory main campaign, including the
+  six Ashfall, Pelagic, Steamforge, Frontier, Warfront, and Liminal address
+  campaigns. A release candidate cannot omit or relabel those stage families as
+  optional content.
+- Benjamin Franklin, Abraham Lincoln, and Mahatma Gandhi are required core
+  protagonists from the opening through the ending. Field, battle, menu,
+  progression, dialogue, save, and ending coverage for all three is a release
+  gate.
+- The SakPix population target is exactly 258 source identities with complete
+  eight-direction art and theme-matched homes. Incomplete source directories
+  are not planned characters and do not receive runtime or future-work entries.
+
 ## Verified locally
 
 - The project has a numeric `0.3.0` technical build version with matching Windows
@@ -21,25 +35,34 @@ from the human, platform, licensing, and performance sign-offs that remain.
   `sentinel=True`. A new clean 84/84 aggregate run is still required before the
   current worktree supersedes the earlier artifact. The failed-run evidence is
   retained at `test-artifacts/20260722-133147-e2949947`.
+- The July 23 population-scope update passes the full 134-scene isolated smoke
+  matrix with the production-save sentinel intact. The host command limit split
+  the evidence into 87 scenes at `test-artifacts/20260723-180041-0cc1f390` and
+  the remaining 47 at `test-artifacts/20260723-182138-547178c9`; both batches
+  contain no functional test failure and the second reports
+  `ISOLATED_RUN_OK scenes=47 sentinel=True`.
 - `release_resource_load_smoke` loaded all 557 runtime resources represented by
   the Windows preset (335 scripts, 117 scenes, 80 serialized resources, and 25
   Dialogic resources) with no missing imports or compile errors.
-- The curated source-art catalog was regenerated after 488 ignored rasters
-  materialized under `assets/board games/`. `npm run validate:source-library`
-  now validates 21,018/21,018 rasters with no schema, path, crop, or animation
-  errors, and reports all 51 NPC visuals editor-ready. The generator now limits
-  itself to the canonical `assets/` library so mirrored runtime copies cannot
-  produce duplicate catalog IDs. This proves source-art catalog structure, not
-  license terms or distribution permission.
+- The curated source-art catalog validates 21,018/21,018 approved rasters with
+  no schema, path, crop, or animation errors and reports all 51 NPC visuals
+  editor-ready. Newly staged Gandhi source art is explicitly quarantined pending
+  license evidence, so it cannot silently expand the curated denominator or
+  enter a release profile. The generator still limits itself to the canonical
+  `assets/` library so mirrored runtime copies cannot produce duplicate catalog
+  IDs. A green catalog proves structure, not license terms or distribution
+  permission.
 - `npm run validate:runtime-assets` now contains the tracked runtime manifest,
   inventory, contact-sheet, and provenance checks and is the clean-checkout CI
   gate. `npm run validate:source-library` makes the ignored local `assets/`
   requirement explicit; `npm run validate:assets` aggregates both workstation
-  contracts. Remote evidence for the revised command remains pending.
+  contracts. The current aggregate gate passes after rebuilding the derived
+  inventory and ledgers; remote evidence remains pending.
 - `npm run validate:source-inventory` rehashed the ignored source libraries on
   July 23, 2026. Its checked inventory matches the complete 149-pack Tilesets
-  disposition register and records 155 packs / 69,017 files, including 5,548
-  exact duplicate families. This is curation evidence only: all 155 packs still
+  disposition register and records 156 source packs / 69,116 files, including
+  5,568 exact duplicate families. This is curation evidence only: the 155
+  Tilesets/EXPANSION plan packs and the staged Gandhi source folder still
   require distribution review and none is admitted by the inventory itself.
 - A verbose isolated shutdown baseline on Godot 4.7.1 exits successfully but
   reports 61 ObjectDB instances (24 `GDScript`, 21 `Node`, five `RegEx`, four

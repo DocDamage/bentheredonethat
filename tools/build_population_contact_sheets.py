@@ -5,7 +5,7 @@ The supplied SakPix library is intentionally ignored and remains outside the
 runtime tree.  These sheets are therefore local review evidence, not derived
 runtime art and not an admission decision.  Every rotation-complete identity
 is rendered at its original pixel dimensions on a shared 48-pixel field grid;
-incomplete identities remain visibly quarantined in the output manifest.
+incomplete source folders are skipped and recorded as excluded inventory.
 """
 
 from __future__ import annotations
@@ -63,13 +63,13 @@ def draw_grid(draw: ImageDraw.ImageDraw, left: int, top: int, width: int, height
 def render_collection(collection: str, identities: list[Path]) -> tuple[bytes, dict[str, Any]]:
     """Render one collection and return PNG bytes plus its review record."""
     complete: list[tuple[Path, list[Image.Image]]] = []
-    quarantined: list[dict[str, Any]] = []
+    excluded_incomplete: list[dict[str, Any]] = []
     max_width = max_height = 1
     for identity in identities:
         rotations = rotations_for(identity)
         missing = [direction for direction in DIRECTIONS if direction not in rotations]
         if missing:
-            quarantined.append({"folder": identity.name, "missingRotations": missing})
+            excluded_incomplete.append({"folder": identity.name, "missingRotations": missing})
             continue
         frames: list[Image.Image] = []
         try:
@@ -110,8 +110,8 @@ def render_collection(collection: str, identities: list[Path]) -> tuple[bytes, d
     return buffer.getvalue(), {
         "collection": collection,
         "completeIdentityCount": len(complete),
-        "quarantinedIdentityCount": len(quarantined),
-        "quarantined": quarantined,
+        "excludedIncompleteCount": len(excluded_incomplete),
+        "excludedIncomplete": excluded_incomplete,
         "nativeFrameMaximum": [max_width, max_height],
     }
 

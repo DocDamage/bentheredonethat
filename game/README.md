@@ -2,6 +2,16 @@
 
 A Godot 4.7 JRPG built from the GDQuest Open RPG starting template. Benjamin Franklin founds a town on an unstable multiversal fault line: ordinary town facilities support the settlement, while chosen buildings anchor complete universes containing exploration, puzzles, recruits, jobs, loot, and FFVI-inspired active-time battles.
 
+The locked completion scope expands this into a 192-location mandatory campaign.
+Benjamin Franklin, Abraham Lincoln, and Mahatma Gandhi are the core playable
+protagonist trio from the opening through the ending. The six additional address
+campaigns—Ashfall, Pelagic, Steamforge, Frontier, Warfront, and Liminal—are
+required main-story chapters, not optional annexes. All 258 SakPix identities
+with complete eight-direction source art receive theme-matched campaign homes;
+the nine incomplete source directories are excluded rather than promised as
+future characters. This paragraph describes the completion target, not the
+current playable implementation listed below.
+
 ## Current playable flow
 
 - A real opening establishes Ben, his persistent velociraptor companion, his laboratory, and the empty town.

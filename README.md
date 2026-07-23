@@ -2,6 +2,13 @@
 
 A browser-based, comedy slice-of-life proof of concept built around the supplied Ben Franklin, NPC, location, farm, music, and sound assets. Its expanded town now has fourteen destinations and a large rotating resident cast, and all 17 supplied Ben action sets are connected to travel, work, errands, rest, inventions, or special routines.
 
+The main Godot JRPG is maintained under `game/` and has a separate locked
+completion plan. Its target campaign has Benjamin Franklin, Abraham Lincoln,
+and Mahatma Gandhi as the required core protagonist trio; 192 planned locations
+including six mandatory address campaigns; and all 258 complete eight-direction
+SakPix identities assigned to theme-matched stages. The browser prototype
+described below remains a separate, currently Ben-led implementation.
+
 Ben's jobs grow out of things the historical Franklin actually did: printing and publishing, postal planning, civic organizing, diplomacy, electrical experiments, practical invention, almanac writing, stove design, and glass-armonica performance. The alternate-reality comedy stretches those skills into modern neighborhood problems without turning his days into unrelated odd jobs.
 
 Every destination also has a replayable skill challenge using its own art: register the café printing press, wire a laboratory circuit, route a diplomatic supper, harvest by the almanac, organize carrier pigs, ground charged ghosts, or tune the glass armonica. Challenges work with keyboard, mouse/touch, and controller, and only consume a time slot when completed.

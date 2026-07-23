@@ -50,6 +50,7 @@ QUARANTINED_SOURCE_PREFIXES = frozenset({
     ("assets", "characters", "recruitable characters", "dark_mage_64x64_pack"),
     ("assets", "characters", "recruitable characters", "draculafinal"),
     ("assets", "characters", "recruitable characters", "frankenstein_s_monster"),
+    ("assets", "characters", "recruitable characters", "gandhi_sprite"),
     ("assets", "characters", "recruitable characters", "fighter", "animations"),
     ("assets", "characters", "recruitable characters", "fighter", "rotations"),
 })

@@ -13,11 +13,11 @@ func _ready() -> void:
 	assert(anchors.get(&"P6") == Vector2i(19, 12))
 	var result := SCHEDULER.schedule_profiles(&"TEST-POP", [
 		{&"id": &"approved", &"runtimeProfileId": &"runtime:approved", &"anchor": &"P1"},
-		{&"id": &"quarantined", &"runtimeProfileId": &"runtime:blocked", &"anchor": &"P2", &"quarantined": true},
+		{&"id": &"blocked", &"runtimeProfileId": &"runtime:blocked", &"anchor": &"P2", &"blocked": true},
 	], anchors, {anchors[&"P3"]: &"reserved"})
 	var assignments: Array = result.get("assignments", [])
 	assert(assignments.size() == 1 and assignments[0].get("cell") == anchors[&"P1"])
-	assert(result.get("unavailable", []) == [&"quarantined"])
+	assert(result.get("unavailable", []) == [&"blocked"])
 	var hm05 := ROOM_REGISTRY.room(&"HM-05")
 	var hm05_reserved := SCHEDULER.reserved_cells_for_room(&"HM-05", hm05)
 	assert(hm05_reserved.has(Vector2i(9, 7)), "Manifest save anchors must reserve their population cell.")
@@ -27,5 +27,5 @@ func _ready() -> void:
 	], {&"P1": Vector2i(9, 7)}, hm05_reserved)
 	assert((conflicting.get("assignments", []) as Array).is_empty())
 	assert(conflicting.get("unavailable", []) == [&"save_anchor_conflict"])
-	print("CAMPAIGN_POPULATION_SCHEDULER_SMOKE_OK identities=267 quarantined=9 anchors=reserved ports+saves+features cohort=filtered")
+	print("CAMPAIGN_POPULATION_SCHEDULER_SMOKE_OK identities=258 complete=258 anchors=reserved ports+saves+features cohort=filtered")
 	get_tree().quit()
