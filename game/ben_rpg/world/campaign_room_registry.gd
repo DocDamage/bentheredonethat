@@ -202,9 +202,25 @@ static func room(room_id: StringName) -> Dictionary:
 		definition.merge({
 			"scenePath": "res://ben_rpg/world/rooms/haunted_mansion_portrait_gallery.tscn",
 			"worldOrigin": Vector2i(300, 0),
-			"enabledPortIds": [&"Nw"],
+			"enabledPortIds": [&"Nw", &"Ne"],
 			"visualProfileIds": [&"mansion_gallery_left_portrait", &"mansion_gallery_right_portrait", &"mansion_gallery_upper_left_frame", &"mansion_gallery_upper_right_frame", &"mansion_gallery_stage_curtain"],
 			"featureIds": [&"portrait_ambush", &"silver_hour_hand", &"false_bottom_cache", &"central_portrait", &"rotating_frame_sightline"],
+		}, true)
+	elif room_id == &"HM-15":
+		definition.merge({
+			"scenePath": "res://ben_rpg/world/rooms/haunted_mansion_mirror_corridor.tscn",
+			"worldOrigin": Vector2i(300, 0),
+			"enabledPortIds": [&"Nw", &"Ne"],
+			"visualProfileIds": [&"mansion_gallery_lower_left_frame", &"mansion_gallery_lower_right_frame", &"mansion_foyer_wall_tableau"],
+			"featureIds": [&"next_room_mirrors", &"false_reflection_encounter", &"reliable_reflection_loop"],
+		}, true)
+	elif room_id == &"HM-07":
+		definition.merge({
+			"scenePath": "res://ben_rpg/world/rooms/haunted_mansion_nursery.tscn",
+			"worldOrigin": Vector2i(300, 0),
+			"enabledPortIds": [&"Nw"],
+			"visualProfileIds": [&"mansion_nursery_bed", &"mansion_nursery_music_box", &"mansion_nursery_left_wall_panel", &"mansion_nursery_right_wall_panel"],
+			"featureIds": [&"doll_ambush", &"silver_hour_hand_socket", &"brass_minute_hand", &"toy_chest_cache", &"wooden_raptor"],
 		}, true)
 	return definition
 

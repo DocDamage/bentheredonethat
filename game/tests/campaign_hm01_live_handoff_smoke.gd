@@ -10,6 +10,8 @@ const ARCHIVE_SAFE_CELL := STAGING_ORIGIN + Vector2i(6, 3)
 const ARCHIVE_SAVE_CELL := STAGING_ORIGIN + Vector2i(9, 7)
 const BALCONY_SAFE_CELL := STAGING_ORIGIN + Vector2i(6, 3)
 const GALLERY_SAFE_CELL := STAGING_ORIGIN + Vector2i(8, 3)
+const MIRROR_SAFE_CELL := STAGING_ORIGIN + Vector2i(6, 3)
+const NURSERY_SAFE_CELL := STAGING_ORIGIN + Vector2i(7, 3)
 
 
 func _ready() -> void:
@@ -117,11 +119,28 @@ func _run() -> void:
 	var gallery_root: Node2D = streamer.call(&"active_root") as Node2D
 	assert(gallery_root.has_node("InteractionLayer/ManifestInteraction/Feature_portrait_ambush"))
 	assert(gallery_root.has_node("InteractionLayer/ManifestInteraction/Feature_silver_hour_hand"))
-	assert(not runtime.has_node("ManifestPort_HM-06_Ne"), "HM-06's Mirror Corridor exit remains sealed until HM-15 is authored.")
+	var mirror_port: Node = runtime.get_node_or_null("ManifestPort_HM-06_Ne")
+	assert(mirror_port and Gameboard.pixel_to_cell(mirror_port.arrival_coordinates) == MIRROR_SAFE_CELL)
+	mirror_port.call(&"_on_blackout")
+	main._place_player(MIRROR_SAFE_CELL)
+	await get_tree().process_frame
+	assert(runtime.call(&"active_room_id") == &"HM-15")
+	var mirror_root: Node2D = streamer.call(&"active_root") as Node2D
+	assert(mirror_root.has_node("InteractionLayer/ManifestInteraction/Feature_false_reflection_encounter"))
+	var nursery_port: Node = runtime.get_node_or_null("ManifestPort_HM-15_Ne")
+	assert(nursery_port and Gameboard.pixel_to_cell(nursery_port.arrival_coordinates) == NURSERY_SAFE_CELL)
+	nursery_port.call(&"_on_blackout")
+	main._place_player(NURSERY_SAFE_CELL)
+	await get_tree().process_frame
+	assert(runtime.call(&"active_room_id") == &"HM-07")
+	var nursery_root: Node2D = streamer.call(&"active_root") as Node2D
+	assert(nursery_root.has_node("InteractionLayer/ManifestInteraction/Feature_doll_ambush"))
+	assert(nursery_root.has_node("InteractionLayer/ManifestInteraction/Feature_brass_minute_hand"))
+	assert(not runtime.has_node("ManifestPort_HM-07_Ne"), "HM-07's Antechamber exit remains sealed until HM-08 is authored.")
 	var visual := main.get_node("Field/Map/CampaignWorld/GroundLayer/Visuals")
 	var foreground := main.get_node("Field/Map/CampaignWorld/ForegroundLayer/MansionForeground")
-	assert(visual.active_area == &"manifest:HM-06" and foreground.active_area == &"manifest:HM-06")
-	print("CAMPAIGN_HM01_LIVE_HANDOFF_SMOKE_OK entry=FI-05 HM-01_to_HM-02_to_HM-03=true clock_444_to_HM-04_to_HM-05_to_HM-14_to_HM-06=true navigation=true archive_save=true gallery_contract=true features=room_owned legacy_renderer=hidden camera=manifest")
+	assert(visual.active_area == &"manifest:HM-07" and foreground.active_area == &"manifest:HM-07")
+	print("CAMPAIGN_HM01_LIVE_HANDOFF_SMOKE_OK entry=FI-05 HM-01_to_HM-02_to_HM-03=true clock_444_to_HM-04_to_HM-05_to_HM-14_to_HM-06_to_HM-15_to_HM-07=true navigation=true archive_save=true gallery+nursery_contract=true features=room_owned legacy_renderer=hidden camera=manifest")
 	main.queue_free()
 	await get_tree().process_frame
 	get_tree().quit()
