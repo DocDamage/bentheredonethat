@@ -1719,11 +1719,6 @@
           "line": 1650,
           "profileId": "commute_tyrant_battle_actor",
           "resolution": "profile_runtime_texture"
-        },
-        {
-          "file": "game/ben_rpg/world/campaign_bootstrap.gd",
-          "line": 2143,
-          "resolution": "literal"
         }
       ]
     },
@@ -2298,11 +2293,6 @@
           "line": 1887,
           "profileId": "sandbox_ranch_farmland",
           "resolution": "profile_runtime_texture"
-        },
-        {
-          "file": "game/ben_rpg/world/campaign_bootstrap.gd",
-          "line": 1501,
-          "resolution": "literal"
         },
         {
           "file": "game/ben_rpg/world/sandbox_terrain_catalog.gd",
@@ -3363,7 +3353,7 @@
       "references": [
         {
           "file": "game/ben_rpg/core/campaign_state.gd",
-          "line": 1026,
+          "line": 1031,
           "resolution": "literal"
         },
         {
@@ -3382,7 +3372,7 @@
       "references": [
         {
           "file": "game/ben_rpg/core/campaign_state.gd",
-          "line": 1009,
+          "line": 1014,
           "resolution": "literal"
         },
         {
@@ -3401,7 +3391,7 @@
       "references": [
         {
           "file": "game/ben_rpg/core/campaign_state.gd",
-          "line": 992,
+          "line": 997,
           "resolution": "literal"
         },
         {
@@ -3420,7 +3410,7 @@
       "references": [
         {
           "file": "game/ben_rpg/core/campaign_state.gd",
-          "line": 975,
+          "line": 980,
           "resolution": "literal"
         },
         {
@@ -3453,7 +3443,7 @@
       "references": [
         {
           "file": "game/ben_rpg/core/campaign_state.gd",
-          "line": 243,
+          "line": 248,
           "resolution": "literal"
         },
         {
@@ -3472,7 +3462,7 @@
       "references": [
         {
           "file": "game/ben_rpg/core/campaign_state.gd",
-          "line": 248,
+          "line": 253,
           "resolution": "literal"
         },
         {
@@ -3491,7 +3481,7 @@
       "references": [
         {
           "file": "game/ben_rpg/core/campaign_state.gd",
-          "line": 238,
+          "line": 243,
           "resolution": "literal"
         },
         {
@@ -3510,7 +3500,7 @@
       "references": [
         {
           "file": "game/ben_rpg/core/campaign_state.gd",
-          "line": 275,
+          "line": 280,
           "resolution": "literal"
         },
         {
@@ -3529,7 +3519,7 @@
       "references": [
         {
           "file": "game/ben_rpg/core/campaign_state.gd",
-          "line": 311,
+          "line": 316,
           "resolution": "literal"
         },
         {
@@ -3548,7 +3538,7 @@
       "references": [
         {
           "file": "game/ben_rpg/core/campaign_state.gd",
-          "line": 287,
+          "line": 292,
           "resolution": "literal"
         },
         {
@@ -3567,7 +3557,7 @@
       "references": [
         {
           "file": "game/ben_rpg/core/campaign_state.gd",
-          "line": 329,
+          "line": 334,
           "resolution": "literal"
         },
         {
@@ -3586,7 +3576,7 @@
       "references": [
         {
           "file": "game/ben_rpg/core/campaign_state.gd",
-          "line": 299,
+          "line": 304,
           "resolution": "literal"
         },
         {
@@ -3605,7 +3595,7 @@
       "references": [
         {
           "file": "game/ben_rpg/core/campaign_state.gd",
-          "line": 341,
+          "line": 346,
           "resolution": "literal"
         },
         {
@@ -3674,7 +3664,7 @@
         },
         {
           "file": "game/ben_rpg/core/campaign_state.gd",
-          "line": 233,
+          "line": 238,
           "resolution": "literal"
         },
         {
@@ -3693,7 +3683,7 @@
       "references": [
         {
           "file": "game/ben_rpg/core/campaign_state.gd",
-          "line": 263,
+          "line": 268,
           "resolution": "literal"
         },
         {
@@ -3747,22 +3737,22 @@
         },
         {
           "file": "game/ben_rpg/core/campaign_state.gd",
-          "line": 253,
+          "line": 258,
           "resolution": "literal"
         },
         {
           "file": "game/ben_rpg/core/campaign_state.gd",
-          "line": 281,
+          "line": 286,
           "resolution": "literal"
         },
         {
           "file": "game/ben_rpg/core/campaign_state.gd",
-          "line": 317,
+          "line": 322,
           "resolution": "literal"
         },
         {
           "file": "game/ben_rpg/core/campaign_state.gd",
-          "line": 323,
+          "line": 328,
           "resolution": "literal"
         },
         {
@@ -3773,7 +3763,7 @@
         },
         {
           "file": "game/ben_rpg/world/mansion_chapter_interaction.gd",
-          "line": 96,
+          "line": 100,
           "resolution": "literal"
         }
       ]
@@ -3918,22 +3908,22 @@
         },
         {
           "file": "game/ben_rpg/core/campaign_state.gd",
-          "line": 258,
+          "line": 263,
           "resolution": "literal"
         },
         {
           "file": "game/ben_rpg/core/campaign_state.gd",
-          "line": 269,
+          "line": 274,
           "resolution": "literal"
         },
         {
           "file": "game/ben_rpg/core/campaign_state.gd",
-          "line": 305,
+          "line": 310,
           "resolution": "literal"
         },
         {
           "file": "game/ben_rpg/core/campaign_state.gd",
-          "line": 335,
+          "line": 340,
           "resolution": "literal"
         },
         {
@@ -3972,7 +3962,7 @@
         },
         {
           "file": "game/ben_rpg/core/campaign_state.gd",
-          "line": 293,
+          "line": 298,
           "resolution": "literal"
         },
         {
@@ -4036,11 +4026,6 @@
           "line": 1801,
           "profileId": "magistrate_enma_battle_actor",
           "resolution": "profile_runtime_texture"
-        },
-        {
-          "file": "game/ben_rpg/world/campaign_bootstrap.gd",
-          "line": 2228,
-          "resolution": "literal"
         }
       ]
     },
@@ -4167,11 +4152,6 @@
           "line": 1736,
           "profileId": "civic_sun_battle_actor",
           "resolution": "profile_runtime_texture"
-        },
-        {
-          "file": "game/ben_rpg/world/campaign_bootstrap.gd",
-          "line": 2172,
-          "resolution": "literal"
         }
       ]
     },
@@ -4186,11 +4166,6 @@
           "line": 1711,
           "profileId": "mother_computer_battle_actor",
           "resolution": "profile_runtime_texture"
-        },
-        {
-          "file": "game/ben_rpg/world/campaign_bootstrap.gd",
-          "line": 2116,
-          "resolution": "literal"
         }
       ]
     },
@@ -4303,11 +4278,6 @@
           "line": 1781,
           "profileId": "high_comptroller_battle_actor",
           "resolution": "profile_runtime_texture"
-        },
-        {
-          "file": "game/ben_rpg/world/campaign_bootstrap.gd",
-          "line": 2278,
-          "resolution": "literal"
         }
       ]
     },
@@ -4322,11 +4292,6 @@
           "line": 1756,
           "profileId": "whiteout_auditor_battle_actor",
           "resolution": "profile_runtime_texture"
-        },
-        {
-          "file": "game/ben_rpg/world/campaign_bootstrap.gd",
-          "line": 2199,
-          "resolution": "literal"
         }
       ]
     },
@@ -4397,11 +4362,6 @@
           "line": 1671,
           "profileId": "clock_mirror_battle_actor",
           "resolution": "profile_runtime_texture"
-        },
-        {
-          "file": "game/ben_rpg/world/campaign_bootstrap.gd",
-          "line": 1847,
-          "resolution": "literal"
         }
       ]
     },
