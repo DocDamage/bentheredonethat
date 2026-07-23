@@ -770,7 +770,7 @@ func _update_camera_limits(force := false) -> void:
 		CampaignState.mark_story_flag(&"town_entered")
 	elif area.begins_with("mansion") or manifest_room_id.begins_with("HM-"):
 		CampaignState.mark_story_flag(&"mansion_entered")
-	elif area.begins_with("station"):
+	elif area.begins_with("station") or manifest_room_id.begins_with("AS-"):
 		CampaignState.mark_story_flag(&"asterion_entered")
 	elif area.begins_with("primeval"):
 		CampaignState.mark_story_flag(&"primeval_entered")
@@ -1261,14 +1261,12 @@ func _create_asterion_transitions(plot_index: int) -> void:
 	var local_door := Vector2i(plot.position.x + plot.size.x / 2, plot.end.y - 1)
 	var town_door := TOWN_ORIGIN + local_door
 	var town_return := TOWN_ORIGIN + Vector2i(local_door.x, plot.end.y)
-	world.add_child(_create_transition("AsterionStationEntrance", town_door, STATION_SPAWN))
-	world.add_child(_create_transition("AsterionStationExit", STATION_EXIT, town_return))
-	world.add_child(_create_transition("StationDockToMess", STATION_DOCK_TO_MESS, STATION_MESS_FROM_DOCK))
-	world.add_child(_create_transition("StationMessToDock", STATION_MESS_RETURN, STATION_DOCK_FROM_MESS))
-	world.add_child(_create_transition("StationMessToHydro", STATION_MESS_TO_HYDRO, STATION_HYDRO_FROM_MESS))
-	world.add_child(_create_transition("StationHydroToMess", STATION_HYDRO_RETURN, STATION_MESS_FROM_HYDRO))
-	world.add_child(_create_transition("StationMessToMedical", STATION_MESS_TO_MEDICAL, STATION_MEDICAL_FROM_MESS))
-	world.add_child(_create_transition("StationMedicalToMess", STATION_MEDICAL_RETURN, STATION_MESS_FROM_MEDICAL))
+	var entry_room := ROOM_REGISTRY.room(&"AS-01")
+	var entry_origin: Vector2i = entry_room.get("worldOrigin", STATION_ORIGIN)
+	var entry_port: Vector2i = (entry_room.get("portCells", {}) as Dictionary).get(&"Nw", Vector2i.ZERO)
+	var entry_arrival := entry_origin + TRANSITION_ROUTER.safe_arrival_cell(&"AS-01", &"Nw")
+	world.add_child(_create_transition("AsterionStationEntrance", town_door, entry_arrival))
+	world.add_child(_create_transition("AsterionStationExit", entry_origin + entry_port, town_return))
 	_spawn_astronaut()
 
 

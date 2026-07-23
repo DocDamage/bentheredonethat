@@ -10,6 +10,11 @@ const MANSION_ROOM_IDS := [
 	&"HM-09", &"HM-10", &"HM-11", &"HM-12", &"HM-13", &"HM-14", &"HM-15", &"HM-16",
 ]
 
+const ASTERION_ROOM_IDS := [
+	&"AS-01", &"AS-02", &"AS-03", &"AS-04", &"AS-05", &"AS-06", &"AS-07", &"AS-08",
+	&"AS-09", &"AS-10", &"AS-11", &"AS-12", &"AS-13", &"AS-14",
+]
+
 # Section 23.2 blueprint records. Coordinates are room-local movement cells;
 # the camera contract is derived from these dimensions at 48 world pixels per
 # cell. Keeping this matrix here prevents future rooms from inventing offsets in
@@ -45,6 +50,26 @@ static var MANSION_ROOMS := {
 	&"HM-14": _room(&"M2", &"none", &"none", 4, [[&"Nw", &"HM-05"], [&"Ne", &"HM-06"], [&"E1", &"HM-13"]]),
 	&"HM-15": _room(&"S3", &"none", &"none", 2, [[&"Nw", &"HM-06"], [&"Ne", &"HM-07"], [&"E1", &"HM-10"]]),
 	&"HM-16": _room(&"M4", &"none", &"Tsw", 4, [[&"Nw", &"HM-05"], [&"Ne", &"HM-08"]]),
+}
+
+# The complete Asterion graph is registered before all of its scenes are
+# authored.  Runtime navigation exposes only authored destinations, which lets
+# early rooms carry their final reciprocal contracts without opening dead ends.
+static var ASTERION_ROOMS := {
+	&"AS-01": _room(&"L1", &"zone", &"none", 6, [[&"Nw", &"FI-06"], [&"Ne", &"AS-02"], [&"E1", &"AS-14"]]),
+	&"AS-02": _room(&"M2", &"zone", &"none", 4, [[&"Nw", &"AS-01"], [&"Ne", &"AS-03"], [&"E1", &"AS-09"]]),
+	&"AS-03": _room(&"M3", &"zone", &"none", 4, [[&"Nw", &"AS-02"], [&"Ne", &"AS-12"], [&"E1", &"AS-13"]]),
+	&"AS-04": _room(&"M4", &"scripted_only", &"none", 4, [[&"Nw", &"AS-13"], [&"Ne", &"AS-12"]]),
+	&"AS-05": _room(&"M1", &"scripted_only", &"none", 4, [[&"Nw", &"AS-13"], [&"Ne", &"AS-06"], [&"E1", &"AS-10"]]),
+	&"AS-06": _room(&"L2", &"none", &"none", 6, [[&"Nw", &"AS-05"], [&"Ne", &"AS-07"]]),
+	&"AS-07": _room(&"M3", &"boss", &"none", 4, [[&"Nw", &"AS-06"], [&"Ne", &"AS-08"], [&"E1", &"AS-10"], [&"E2", &"AS-13"], [&"Se", &"AS-14"]]),
+	&"AS-08": _room(&"L4", &"boss", &"Tsw", 6, [[&"Nw", &"AS-07"], [&"Ne", &"AS-11"]]),
+	&"AS-09": _room(&"M1", &"zone", &"Tnw", 4, [[&"Nw", &"AS-02"]]),
+	&"AS-10": _room(&"L2", &"zone", &"none", 6, [[&"Nw", &"AS-05"], [&"Ne", &"AS-07"]]),
+	&"AS-11": _room(&"M3", &"boss", &"Tse", 4, [[&"Nw", &"AS-13"], [&"Ne", &"AS-08"]]),
+	&"AS-12": _room(&"M4", &"zone", &"Tsw", 4, [[&"Nw", &"AS-03"], [&"Ne", &"AS-04"]]),
+	&"AS-13": _room(&"M1", &"none", &"none", 4, [[&"Nw", &"AS-03"], [&"Ne", &"AS-04"], [&"E1", &"AS-05"], [&"E2", &"AS-07"], [&"Se", &"AS-11"]]),
+	&"AS-14": _room(&"S2", &"none", &"none", 2, [[&"Nw", &"AS-01"], [&"Ne", &"AS-07"]]),
 }
 
 # This scene is deliberately a small, self-contained proof of the platform. It
@@ -139,13 +164,38 @@ static func _population_anchor_cells(dimensions: Vector2i, anchors: Array[String
 
 
 static func has_room(room_id: StringName) -> bool:
-	return MANSION_ROOMS.has(room_id) or MANIFEST_TEST_ROOMS.has(room_id)
+	return MANSION_ROOMS.has(room_id) or ASTERION_ROOMS.has(room_id) or MANIFEST_TEST_ROOMS.has(room_id)
 
 
 static func room(room_id: StringName) -> Dictionary:
-	var source: Dictionary = MANSION_ROOMS if MANSION_ROOMS.has(room_id) else MANIFEST_TEST_ROOMS
+	var source: Dictionary = MANSION_ROOMS if MANSION_ROOMS.has(room_id) else (ASTERION_ROOMS if ASTERION_ROOMS.has(room_id) else MANIFEST_TEST_ROOMS)
 	var definition := (source.get(room_id, {}) as Dictionary).duplicate(true)
-	if room_id == &"HM-01":
+	if room_id == &"AS-01":
+		definition.merge({
+			"scenePath": "res://ben_rpg/world/rooms/asterion_docking_collar.tscn",
+			"worldOrigin": Vector2i(350, 0),
+			"enabledPortIds": [&"Nw", &"Ne", &"E1"],
+			"portGates": {&"E1": &"asterion_station_restored"},
+			"visualProfileIds": [&"asterion_dock_hull", &"asterion_dock_bulkhead", &"asterion_station_architecture"],
+			"featureIds": [&"dock_intro_battle", &"astronaut_meeting", &"pressure_door_staging", &"cargo_loader_cover", &"safe_return_pad"],
+		}, true)
+	elif room_id == &"AS-02":
+		definition.merge({
+			"scenePath": "res://ben_rpg/world/rooms/asterion_customs_cargo_intake.tscn",
+			"worldOrigin": Vector2i(350, 0),
+			"enabledPortIds": [&"Nw", &"Ne", &"E1"],
+			"visualProfileIds": [&"asterion_station_architecture", &"asterion_dock_bulkhead"],
+			"featureIds": [&"freight_lanes", &"inspection_booths", &"shift_records", &"locked_customs_vault", &"cargo_belt_loop"],
+		}, true)
+	elif room_id == &"AS-03":
+		definition.merge({
+			"scenePath": "res://ben_rpg/world/rooms/asterion_mess_deck.tscn",
+			"worldOrigin": Vector2i(350, 0),
+			"enabledPortIds": [&"Nw", &"Ne", &"E1"],
+			"visualProfileIds": [&"asterion_mess_banner", &"asterion_station_architecture"],
+			"featureIds": [&"emergency_lighting", &"medical_hydro_logs", &"post_oxygen_residents"],
+		}, true)
+	elif room_id == &"HM-01":
 		definition.merge({
 			"scenePath": "res://ben_rpg/world/rooms/haunted_mansion_rain_gate.tscn",
 			"worldOrigin": Vector2i(300, 0),
@@ -305,7 +355,12 @@ static func room(room_id: StringName) -> Dictionary:
 
 
 static func room_ids() -> Array[StringName]:
-	return MANSION_ROOM_IDS.duplicate()
+	var result: Array[StringName] = []
+	for room_id in MANSION_ROOM_IDS:
+		result.append(room_id)
+	for room_id in ASTERION_ROOM_IDS:
+		result.append(room_id)
+	return result
 
 
 static func ports(room_id: StringName) -> Array[Dictionary]:
@@ -325,7 +380,7 @@ static func is_authored_room(room_id: StringName) -> bool:
 
 static func streamed_room_ids() -> Array[StringName]:
 	var result: Array[StringName] = []
-	for room_id in MANSION_ROOM_IDS:
+	for room_id in room_ids():
 		var definition := room(room_id)
 		if is_authored_room(room_id) and definition.has("worldOrigin"):
 			result.append(room_id)
@@ -359,9 +414,9 @@ static func validate() -> PackedStringArray:
 	if MANSION_ROOMS.size() != MANSION_ROOM_IDS.size():
 		errors.append("Mansion room registry must define exactly %d rooms." % MANSION_ROOM_IDS.size())
 	var seen: Dictionary = {}
-	for room_id in MANSION_ROOM_IDS:
-		if seen.has(room_id) or not MANSION_ROOMS.has(room_id):
-			errors.append("Mansion registry is missing or duplicates %s." % room_id)
+	for room_id in room_ids():
+		if seen.has(room_id) or not has_room(room_id):
+			errors.append("Campaign registry is missing or duplicates %s." % room_id)
 			continue
 		seen[room_id] = true
 		var definition := room(room_id)
@@ -395,14 +450,16 @@ static func validate() -> PackedStringArray:
 			port_ids[port_id] = true
 			if not (definition.get("portCells", {}) as Dictionary).has(port_id):
 				errors.append("%s.%s has no blueprint port cell." % [room_id, port_id])
-			if destination.begins_with("HM-") and not MANSION_ROOMS.has(destination):
+			if (destination.begins_with("HM-") or destination.begins_with("AS-")) and not has_room(destination):
 				errors.append("%s.%s targets unknown room %s." % [room_id, port_id, destination])
-			elif not destination.begins_with("HM-") and destination != &"FI-05":
+			elif not destination.begins_with("HM-") and not destination.begins_with("AS-") and destination not in [&"FI-05", &"FI-06"]:
 				errors.append("%s.%s targets undeclared external room %s." % [room_id, port_id, destination])
 	if not _reachable(&"HM-01", &"HM-09"):
 		errors.append("Mansion critical path cannot reach HM-09 from HM-01.")
 	if _reachable_room_count(&"HM-01") != MANSION_ROOM_IDS.size():
 		errors.append("Mansion room graph is not connected from HM-01.")
+	if _reachable_room_count(&"AS-01") != ASTERION_ROOM_IDS.size():
+		errors.append("Asterion room graph is not connected from AS-01.")
 	_validate_manifest_test_rooms(errors)
 	return PackedStringArray(errors)
 
@@ -439,11 +496,11 @@ static func _reachable_ids(start: StringName) -> Dictionary:
 	var pending: Array[StringName] = [start]
 	while not pending.is_empty():
 		var current: StringName = pending.pop_back()
-		if visited.has(current) or not MANSION_ROOMS.has(current):
+		if visited.has(current) or not has_room(current):
 			continue
 		visited[current] = true
 		for port in ports(current):
 			var destination := StringName(port.get("destination", &""))
-			if destination.begins_with("HM-") and not visited.has(destination):
+			if has_room(destination) and not visited.has(destination):
 				pending.append(destination)
 	return visited
