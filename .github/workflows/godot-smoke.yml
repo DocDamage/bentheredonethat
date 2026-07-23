@@ -85,25 +85,17 @@ jobs:
           Set-Content -LiteralPath $project -Value $content -NoNewline -Encoding utf8
           # Godot's first clean-checkout `--headless --import` can wait
           # indefinitely while constructing global_script_class_cache.cfg. Start
-          # the editor once and wait for its import output to settle before
-          # stopping it. A fixed short delay is insufficient: smoke scenes need
-          # the imported LFS-backed runtime textures as well as the class cache.
-          # The isolated runner subsequently launches every smoke scene normally
-          # and remains the test authority.
+          # the editor only long enough to create that cache. Requiring the
+          # complete import tree to become idle delays CI on the large tracked
+          # asset library; the isolated runner below remains the authority for
+          # normal scene imports and smoke execution.
           $bootstrap = Start-Process -FilePath $env:GODOT_EXECUTABLE -ArgumentList @('--headless', '--path', './game', '--editor') -PassThru -NoNewWindow
-          # LFS checkout and first import are occasionally slower on fresh
-          # Windows runners than the normal path. Keep the bootstrap bounded,
-          # but leave enough time for a clean project to produce the class
-          # cache before the all-smoke authority runs.
-          $deadline = (Get-Date).AddMinutes(20)
-          $settled = $false
+          $deadline = (Get-Date).AddMinutes(5)
+          $cacheReady = $false
           do {
-            Start-Sleep -Seconds 3
+            Start-Sleep -Seconds 2
             $cacheReady = Test-Path -LiteralPath 'game/.godot/global_script_class_cache.cfg' -PathType Leaf
-            $imported = Get-ChildItem -LiteralPath 'game/.godot/imported' -File -Recurse -ErrorAction SilentlyContinue
-            $latestImport = $imported | Sort-Object LastWriteTime -Descending | Select-Object -First 1
-            if ($cacheReady -and $imported.Count -ge 1000 -and $latestImport -and $latestImport.LastWriteTime -lt (Get-Date).AddSeconds(-10)) {
-              $settled = $true
+            if ($cacheReady) {
               break
             }
           } while ((Get-Date) -lt $deadline -and -not $bootstrap.HasExited)
@@ -111,8 +103,8 @@ jobs:
             Stop-Process -Id $bootstrap.Id -Force
             $bootstrap.WaitForExit()
           }
-          if (-not $settled) {
-            throw 'Godot did not finish initial class-cache and runtime-texture imports within 20 minutes.'
+          if (-not $cacheReady) {
+            throw 'Godot did not create global_script_class_cache.cfg within 5 minutes.'
           }
 
       - name: Run isolated smoke suite
