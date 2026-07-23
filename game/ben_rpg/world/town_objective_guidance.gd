@@ -35,3 +35,52 @@ static func primeval(story_flags: Dictionary, owned_inventions: Array) -> String
 	if story_flags.get(&"primeval_grove_cleared", false):
 		return "PRIMEVAL BOROUGH  •  Meet its maintainer, then inspect the stone traffic signal."
 	return "PRIMEVAL EXPANSE  •  Survive the Grove's unlicensed welcoming committee."
+
+
+static func helios(story_flags: Dictionary, owned_inventions: Array) -> String:
+	if story_flags.get(&"helios_scenario_complete", false): return "MIDNIGHT RESTORED  •  Return to the Market and offer Neon Viper a permanent company position."
+	if story_flags.get(&"helios_core_open", false): return "SOLAR CORE  •  Enter the daylight plant and shut down the Civic Sun."
+	if story_flags.get(&"helios_clinic_node_disabled", false): return "TWO DARK NODES  •  The Solar Core route is open from Transit."
+	if story_flags.get(&"helios_clinic_ambush_cleared", false): return "RECOVERY CLINIC  •  Disable the second daylight node."
+	if story_flags.get(&"helios_transit_node_disabled", false): return "RECOVERY CLINIC  •  Cross from the Market and find the second daylight node."
+	if &"night_phase_inverter" in owned_inventions: return "TRANSIT EXCHANGE  •  Use Ben's Phase Inverter on the first daylight node."
+	if story_flags.get(&"helios_curfew_clue_found", false): return "LEGALIZE MIDNIGHT  •  Recall to the laboratory and build the Nocturnal Phase Inverter."
+	if story_flags.get(&"helios_viper_met", false): return "MANDATORY DAYLIGHT  •  Read the ordinance terminal in the Public Market."
+	if story_flags.get(&"helios_skybridge_cleared", false): return "PUBLIC MARKET  •  Find the saboteur called Neon Viper."
+	return "HELIOS ARCOLOGY  •  Survive the Skybridge compliance inspection."
+
+
+static func frosthold(story_flags: Dictionary, owned_inventions: Array) -> String:
+	if story_flags.get(&"frosthold_scenario_complete", false): return "ROYAL AUDIT VOIDED  •  Return to the Market and offer the Frost Lich Emperor a permanent company position."
+	if story_flags.get(&"frosthold_throne_open", false): return "ICE THRONE  •  Enter the treasury court and stop the Whiteout Auditor."
+	if story_flags.get(&"frosthold_rune_ambush_cleared", false): return "SECOND SEAL  •  Use the Coil on the Rune Hall seal and open the Ice Throne."
+	if story_flags.get(&"frosthold_causeway_seal_open", false): return "RUNE HALL  •  Cross the opened seal and face the royal collection detail."
+	if &"thermal_arbitration_coil" in owned_inventions: return "CRYSTAL CAUSEWAY  •  Use Ben's Coil to warm the first royal seal."
+	if story_flags.get(&"frosthold_rune_clue_found", false): return "THERMAL ARBITRATION  •  Recall to the laboratory and build Ben's Coil."
+	if story_flags.get(&"frost_lich_met", false): return "HEAT TAX  •  Read the royal rune at the Crystal Causeway."
+	if story_flags.get(&"frosthold_gate_cleared", false): return "FROZEN MARKET  •  Find Frosthold's deposed Lich Emperor."
+	return "FROSTHOLD KINGDOM  •  Break the Snow Gate's collection patrol."
+
+
+static func moonpetal(story_flags: Dictionary, owned_inventions: Array) -> String:
+	if story_flags.get(&"moonpetal_scenario_complete", false): return "FALSE MOON DISMISSED  •  Return to Blossom Court and offer the Kitsune Empress a permanent company position."
+	if story_flags.get(&"moonpetal_palace_open", false): return "MOON PALACE  •  Confront Magistrate Enma and end the official counterfeit night."
+	if story_flags.get(&"moonpetal_bell_ambush_cleared", false): return "FINAL FALSE VOW  •  Use the Lantern at Bell Walk and open the Moon Palace."
+	if story_flags.get(&"moonpetal_bell_walk_open", false): return "BELL WALK  •  Face the wedding procession guarding the final vow."
+	if &"veracity_lantern" in owned_inventions: return "MIRROR GARDEN  •  Use Ben's Lantern to expose the first counterfeit vow."
+	if story_flags.get(&"moonpetal_vow_clue_found", false): return "VERACITY BY ELECTRICITY  •  Recall to the laboratory and build Ben's Lantern."
+	if story_flags.get(&"kitsune_empress_met", false): return "MIRROR GARDEN  •  Read the duplicated vow beneath the reflected moon."
+	if story_flags.get(&"moonpetal_gate_cleared", false): return "BLOSSOM COURT  •  Find the Kitsune Empress behind the endless festival."
+	return "MOONPETAL COURT  •  Break the Vermilion Gate's memory inspection."
+
+
+static func empyreal(story_flags: Dictionary, owned_inventions: Array) -> String:
+	if story_flags.get(&"empyreal_scenario_complete", false): return "HEAVEN GROUNDED  •  Return to the Garden and offer the Archangel Commander a permanent company position."
+	if story_flags.get(&"empyreal_tribunal_open", false): return "SERAPH TRIBUNAL  •  Confront the High Comptroller of Gravity."
+	if story_flags.get(&"empyreal_aerie_ambush_cleared", false): return "FINAL GRAVITY SEAL  •  Use the Counterweight in the Reliquary Aerie."
+	if story_flags.get(&"empyreal_aerie_open", false): return "RELIQUARY AERIE  •  Stop the wing-repossession detail."
+	if &"galvanic_counterweight" in owned_inventions: return "FIRST GRAVITY SEAL  •  Use Ben's Counterweight in the Forum."
+	if story_flags.get(&"empyreal_gravity_clue_found", false): return "A TERRESTRIAL STANDARD  •  Recall to the laboratory and build the Galvanic Counterweight."
+	if story_flags.get(&"archangel_commander_met", false): return "FORUM OF MEASURES  •  Read Ordinance 9-G."
+	if story_flags.get(&"empyreal_landing_cleared", false): return "GARDEN OF APPEALS  •  Find the Archangel Commander."
+	return "EMPYREAL COURT  •  Defeat the Cloudstep weigh-station patrol."

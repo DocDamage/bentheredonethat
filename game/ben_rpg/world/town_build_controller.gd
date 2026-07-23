@@ -348,89 +348,19 @@ func _update_hud() -> void:
 		_build_panel.hide()
 		return
 	if _was_in_helios:
-		if CampaignState.story_flags.get(&"helios_scenario_complete", false):
-			_set_objective("MIDNIGHT RESTORED  •  Return to the Market and offer Neon Viper a permanent company position.", true)
-		elif CampaignState.story_flags.get(&"helios_core_open", false):
-			_set_objective("SOLAR CORE  •  Enter the daylight plant and shut down the Civic Sun.", true)
-		elif CampaignState.story_flags.get(&"helios_clinic_node_disabled", false):
-			_set_objective("TWO DARK NODES  •  The Solar Core route is open from Transit.", true)
-		elif CampaignState.story_flags.get(&"helios_clinic_ambush_cleared", false):
-			_set_objective("RECOVERY CLINIC  •  Disable the second daylight node.", true)
-		elif CampaignState.story_flags.get(&"helios_transit_node_disabled", false):
-			_set_objective("RECOVERY CLINIC  •  Cross from the Market and find the second daylight node.", true)
-		elif &"night_phase_inverter" in CampaignState.owned_inventions:
-			_set_objective("TRANSIT EXCHANGE  •  Use Ben's Phase Inverter on the first daylight node.", true)
-		elif CampaignState.story_flags.get(&"helios_curfew_clue_found", false):
-			_set_objective("LEGALIZE MIDNIGHT  •  Recall to the laboratory and build the Nocturnal Phase Inverter.", true)
-		elif CampaignState.story_flags.get(&"helios_viper_met", false):
-			_set_objective("MANDATORY DAYLIGHT  •  Read the ordinance terminal in the Public Market.", true)
-		elif CampaignState.story_flags.get(&"helios_skybridge_cleared", false):
-			_set_objective("PUBLIC MARKET  •  Find the saboteur called Neon Viper.", true)
-		else:
-			_set_objective("HELIOS ARCOLOGY  •  Survive the Skybridge compliance inspection.", true)
+		_set_objective(OBJECTIVE_GUIDANCE.helios(CampaignState.story_flags, CampaignState.owned_inventions), true)
 		_build_panel.hide()
 		return
 	if _was_in_frosthold:
-		if CampaignState.story_flags.get(&"frosthold_scenario_complete", false):
-			_set_objective("ROYAL AUDIT VOIDED  •  Return to the Market and offer the Frost Lich Emperor a permanent company position.", true)
-		elif CampaignState.story_flags.get(&"frosthold_throne_open", false):
-			_set_objective("ICE THRONE  •  Enter the treasury court and stop the Whiteout Auditor.", true)
-		elif CampaignState.story_flags.get(&"frosthold_rune_ambush_cleared", false):
-			_set_objective("SECOND SEAL  •  Use the Coil on the Rune Hall seal and open the Ice Throne.", true)
-		elif CampaignState.story_flags.get(&"frosthold_causeway_seal_open", false):
-			_set_objective("RUNE HALL  •  Cross the opened seal and face the royal collection detail.", true)
-		elif &"thermal_arbitration_coil" in CampaignState.owned_inventions:
-			_set_objective("CRYSTAL CAUSEWAY  •  Use Ben's Coil to warm the first royal seal.", true)
-		elif CampaignState.story_flags.get(&"frosthold_rune_clue_found", false):
-			_set_objective("THERMAL ARBITRATION  •  Recall to the laboratory and build Ben's Coil.", true)
-		elif CampaignState.story_flags.get(&"frost_lich_met", false):
-			_set_objective("HEAT TAX  •  Read the royal rune at the Crystal Causeway.", true)
-		elif CampaignState.story_flags.get(&"frosthold_gate_cleared", false):
-			_set_objective("FROZEN MARKET  •  Find Frosthold's deposed Lich Emperor.", true)
-		else:
-			_set_objective("FROSTHOLD KINGDOM  •  Break the Snow Gate's collection patrol.", true)
+		_set_objective(OBJECTIVE_GUIDANCE.frosthold(CampaignState.story_flags, CampaignState.owned_inventions), true)
 		_build_panel.hide()
 		return
 	if _was_in_moonpetal:
-		if CampaignState.story_flags.get(&"moonpetal_scenario_complete", false):
-			_set_objective("FALSE MOON DISMISSED  •  Return to Blossom Court and offer the Kitsune Empress a permanent company position.", true)
-		elif CampaignState.story_flags.get(&"moonpetal_palace_open", false):
-			_set_objective("MOON PALACE  •  Confront Magistrate Enma and end the official counterfeit night.", true)
-		elif CampaignState.story_flags.get(&"moonpetal_bell_ambush_cleared", false):
-			_set_objective("FINAL FALSE VOW  •  Use the Lantern at Bell Walk and open the Moon Palace.", true)
-		elif CampaignState.story_flags.get(&"moonpetal_bell_walk_open", false):
-			_set_objective("BELL WALK  •  Face the wedding procession guarding the final vow.", true)
-		elif &"veracity_lantern" in CampaignState.owned_inventions:
-			_set_objective("MIRROR GARDEN  •  Use Ben's Lantern to expose the first counterfeit vow.", true)
-		elif CampaignState.story_flags.get(&"moonpetal_vow_clue_found", false):
-			_set_objective("VERACITY BY ELECTRICITY  •  Recall to the laboratory and build Ben's Lantern.", true)
-		elif CampaignState.story_flags.get(&"kitsune_empress_met", false):
-			_set_objective("MIRROR GARDEN  •  Read the duplicated vow beneath the reflected moon.", true)
-		elif CampaignState.story_flags.get(&"moonpetal_gate_cleared", false):
-			_set_objective("BLOSSOM COURT  •  Find the Kitsune Empress behind the endless festival.", true)
-		else:
-			_set_objective("MOONPETAL COURT  •  Break the Vermilion Gate's memory inspection.", true)
+		_set_objective(OBJECTIVE_GUIDANCE.moonpetal(CampaignState.story_flags, CampaignState.owned_inventions), true)
 		_build_panel.hide()
 		return
 	if _was_in_empyreal:
-		if CampaignState.story_flags.get(&"empyreal_scenario_complete", false):
-			_set_objective("HEAVEN GROUNDED  •  Return to the Garden and offer the Archangel Commander a permanent company position.", true)
-		elif CampaignState.story_flags.get(&"empyreal_tribunal_open", false):
-			_set_objective("SERAPH TRIBUNAL  •  Confront the High Comptroller of Gravity.", true)
-		elif CampaignState.story_flags.get(&"empyreal_aerie_ambush_cleared", false):
-			_set_objective("FINAL GRAVITY SEAL  •  Use the Counterweight in the Reliquary Aerie.", true)
-		elif CampaignState.story_flags.get(&"empyreal_aerie_open", false):
-			_set_objective("RELIQUARY AERIE  •  Stop the wing-repossession detail.", true)
-		elif &"galvanic_counterweight" in CampaignState.owned_inventions:
-			_set_objective("FIRST GRAVITY SEAL  •  Use Ben's Counterweight in the Forum.", true)
-		elif CampaignState.story_flags.get(&"empyreal_gravity_clue_found", false):
-			_set_objective("A TERRESTRIAL STANDARD  •  Recall to the laboratory and build the Galvanic Counterweight.", true)
-		elif CampaignState.story_flags.get(&"archangel_commander_met", false):
-			_set_objective("FORUM OF MEASURES  •  Read Ordinance 9-G.", true)
-		elif CampaignState.story_flags.get(&"empyreal_landing_cleared", false):
-			_set_objective("GARDEN OF APPEALS  •  Find the Archangel Commander.", true)
-		else:
-			_set_objective("EMPYREAL COURT  •  Defeat the Cloudstep weigh-station patrol.", true)
+		_set_objective(OBJECTIVE_GUIDANCE.empyreal(CampaignState.story_flags, CampaignState.owned_inventions), true)
 		_build_panel.hide()
 		return
 	if _next_foundation_blueprint().is_empty():
