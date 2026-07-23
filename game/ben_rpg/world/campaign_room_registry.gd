@@ -273,6 +273,11 @@ static func room(room_id: StringName) -> Dictionary:
 	elif room_id == &"HE-11": definition.merge({"scenePath":"res://ben_rpg/world/rooms/helios_recreation_stack.tscn","worldOrigin":Vector2i(450,0),"enabledPortIds":[&"Nw"]},true)
 	elif room_id == &"HE-12": definition.merge({"scenePath":"res://ben_rpg/world/rooms/helios_hologram_archive.tscn","worldOrigin":Vector2i(450,0),"enabledPortIds":[&"Nw",&"Ne"]},true)
 	elif room_id == &"HE-14": definition.merge({"scenePath":"res://ben_rpg/world/rooms/helios_midnight_maintenance_lift.tscn","worldOrigin":Vector2i(450,0),"enabledPortIds":[&"Nw",&"Ne"]},true)
+	elif room_id == &"FR-01": definition.merge({"scenePath":"res://ben_rpg/world/rooms/frosthold_whitewind_snow_gate.tscn","worldOrigin":Vector2i(500,0),"enabledPortIds":[&"Nw",&"Ne",&"E1"]},true)
+	elif room_id == &"FR-02": definition.merge({"scenePath":"res://ben_rpg/world/rooms/frosthold_refugee_thawyard.tscn","worldOrigin":Vector2i(500,0),"enabledPortIds":[&"Nw",&"Ne",&"E1",&"E2"]},true)
+	elif room_id == &"FR-03": definition.merge({"scenePath":"res://ben_rpg/world/rooms/frosthold_frozen_market.tscn","worldOrigin":Vector2i(500,0),"enabledPortIds":[&"Nw",&"Ne",&"E1",&"E2"]},true)
+	elif room_id == &"FR-04": definition.merge({"scenePath":"res://ben_rpg/world/rooms/frosthold_crystal_causeway_west.tscn","worldOrigin":Vector2i(500,0),"enabledPortIds":[&"Nw",&"Ne",&"E1"]},true)
+	elif room_id == &"FR-05": definition.merge({"scenePath":"res://ben_rpg/world/rooms/frosthold_first_thermal_lien.tscn","worldOrigin":Vector2i(500,0),"enabledPortIds":[&"Nw",&"Ne"]},true)
 	elif room_id == &"PV-01":
 		definition.merge({"scenePath": "res://ben_rpg/world/rooms/primeval_thunderfern_grove.tscn", "worldOrigin": Vector2i(400, 0), "enabledPortIds": [&"Nw", &"Ne", &"E1"], "portGates": {&"E1": &"primeval_terminal_decoded"}, "featureIds": [&"grove_intro_battle", &"looping_clearings", &"canopy_occlusion", &"tyrant_tracks"]}, true)
 	elif room_id == &"PV-02":
