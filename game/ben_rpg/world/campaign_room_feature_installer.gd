@@ -9,6 +9,7 @@ const TRANSITION_ROUTER := preload("res://ben_rpg/world/campaign_transition_rout
 const POPULATION_SCHEDULER := preload("res://ben_rpg/world/campaign_population_scheduler.gd")
 const MANSION_SAVE_POINT := preload("res://ben_rpg/world/mansion_save_point.tscn")
 const MANSION_CHAPTER_INTERACTION := preload("res://ben_rpg/world/mansion_chapter_interaction.tscn")
+const MANSION_BOSS_INTERACTION := preload("res://ben_rpg/world/campaign_mansion_boss_interaction.tscn")
 
 
 static func install(root: Node2D, room_id: StringName, definition: Dictionary) -> void:
@@ -30,6 +31,14 @@ static func install(root: Node2D, room_id: StringName, definition: Dictionary) -
 			chapter_interaction.set("interaction_kind", StringName(chapter_definition.get("kind", &"")))
 			chapter_interaction.position = Vector2((chapter_definition.get("cell", Vector2i.ZERO) as Vector2i) * 48)
 			interaction_layer.add_child(chapter_interaction)
+		var boss_definition: Dictionary = definition.get("bossEncounter", {})
+		if not boss_definition.is_empty():
+			var boss_interaction := MANSION_BOSS_INTERACTION.instantiate()
+			boss_interaction.name = String(boss_definition.get("nodeName", "ManifestBoss"))
+			boss_interaction.set("encounter_id", StringName(boss_definition.get("encounterId", &"")))
+			boss_interaction.set("defeated_flag", StringName(boss_definition.get("defeatedFlag", &"")))
+			boss_interaction.position = Vector2((boss_definition.get("cell", Vector2i.ZERO) as Vector2i) * 48)
+			interaction_layer.add_child(boss_interaction)
 		var save_point_definition: Dictionary = definition.get("savePoint", {})
 		if not save_point_definition.is_empty():
 			var save_point := MANSION_SAVE_POINT.instantiate()

@@ -248,6 +248,15 @@ static func room(room_id: StringName) -> Dictionary:
 				{"nodeName": "BallroomGate", "kind": &"ballroom_gate", "cell": Vector2i(12, 3)},
 			],
 		}, true)
+	elif room_id == &"HM-09":
+		definition.merge({
+			"scenePath": "res://ben_rpg/world/rooms/haunted_mansion_ballroom.tscn",
+			"worldOrigin": Vector2i(300, 0),
+			"enabledPortIds": [&"Nw"],
+			"visualProfileIds": [&"mansion_ballroom_chandelier", &"mansion_ballroom_door_frame", &"clock_mirror_battle_actor"],
+			"featureIds": [&"clock_mirror_arena", &"results_return_anchor", &"stabilized_ballroom_lighting"],
+			"bossEncounter": {"nodeName": "The444Appointment", "encounterId": &"mansion_archive_boss", "defeatedFlag": &"mansion_archive_boss_defeated", "cell": Vector2i(12, 9)},
+		}, true)
 	return definition
 
 

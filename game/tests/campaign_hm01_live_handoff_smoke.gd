@@ -14,6 +14,7 @@ const MIRROR_SAFE_CELL := STAGING_ORIGIN + Vector2i(6, 3)
 const NURSERY_SAFE_CELL := STAGING_ORIGIN + Vector2i(7, 3)
 const ANTECHAMBER_SAFE_CELL := STAGING_ORIGIN + Vector2i(6, 3)
 const ANTECHAMBER_SAVE_CELL := STAGING_ORIGIN + Vector2i(9, 8)
+const BALLROOM_SAFE_CELL := STAGING_ORIGIN + Vector2i(8, 3)
 
 
 func _ready() -> void:
@@ -166,12 +167,27 @@ func _run() -> void:
 	assert(ballroom_gate)
 	ballroom_gate.call("apply_interaction", false)
 	assert(bool(CampaignState.story_flags.get(&"mansion_ballroom_open", false)))
-	assert(not runtime.has_node("ManifestPort_HM-08_Ne"), "An unstreamed HM-09 destination must remain physically closed.")
-	assert(not Gameboard.pathfinder.has_cell(STAGING_ORIGIN + Vector2i(12, 1)))
+	var ballroom_port: Node = runtime.get_node_or_null("ManifestPort_HM-08_Ne")
+	assert(ballroom_port and Gameboard.pixel_to_cell(ballroom_port.arrival_coordinates) == BALLROOM_SAFE_CELL)
+	ballroom_port.call(&"_on_blackout")
+	main._place_player(BALLROOM_SAFE_CELL)
+	await get_tree().process_frame
+	assert(runtime.call(&"active_room_id") == &"HM-09")
+	var ballroom_root: Node2D = streamer.call(&"active_root") as Node2D
+	var appointment: Node = ballroom_root.get_node_or_null("InteractionLayer/The444Appointment")
+	assert(appointment and appointment.call("begin_encounter"))
+	var battle: CampaignBattle = main.get_node("CampaignBattle")
+	assert(battle.active and battle.model.encounter_id == &"mansion_archive_boss")
+	battle.debug_force_victory()
+	await get_tree().process_frame
+	battle._leave_battle(true)
+	await get_tree().process_frame
+	assert(bool(CampaignState.story_flags.get(&"mansion_archive_boss_defeated", false)))
+	assert(int(CampaignState.inventory.get(&"anchor_core", 0)) == 1)
 	var visual := main.get_node("Field/Map/CampaignWorld/GroundLayer/Visuals")
 	var foreground := main.get_node("Field/Map/CampaignWorld/ForegroundLayer/MansionForeground")
-	assert(visual.active_area == &"manifest:HM-08" and foreground.active_area == &"manifest:HM-08")
-	print("CAMPAIGN_HM01_LIVE_HANDOFF_SMOKE_OK entry=FI-05 HM-01_to_HM-02_to_HM-03=true clock_444_to_HM-04_to_HM-05_to_HM-14_to_HM-06_to_HM-15_to_HM-07_to_HM-08=true navigation=true archive+respite_save=true gallery+nursery_contract=true unavailable_destinations_closed=true features=room_owned legacy_renderer=hidden camera=manifest")
+	assert(visual.active_area == &"manifest:HM-09" and foreground.active_area == &"manifest:HM-09")
+	print("CAMPAIGN_HM01_LIVE_HANDOFF_SMOKE_OK entry=FI-05 HM-01_to_HM-02_to_HM-03=true clock_444_to_HM-04_to_HM-05_to_HM-14_to_HM-06_to_HM-15_to_HM-07_to_HM-08_to_HM-09=true navigation=true archive+respite_save=true gallery+nursery_contract=true clock_mirror_boss=true features=room_owned legacy_renderer=hidden camera=manifest")
 	main.queue_free()
 	await get_tree().process_frame
 	get_tree().quit()

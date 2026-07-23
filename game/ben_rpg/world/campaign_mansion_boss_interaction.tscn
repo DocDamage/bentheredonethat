@@ -1,0 +1,10 @@
+[gd_scene load_steps=3 format=3]
+
+[ext_resource type="PackedScene" path="res://src/field/cutscenes/Interaction.tscn" id="1"]
+[ext_resource type="Script" path="res://ben_rpg/world/campaign_mansion_boss_interaction.gd" id="2"]
+
+[node name="MansionBossInteraction" instance=ExtResource("1")]
+script = ExtResource("2")
+
+[node name="CollisionShape2D" parent="InteractionArea2D" index="0"]
+shape = null
