@@ -6,7 +6,7 @@ const ROUTER := preload("res://ben_rpg/world/campaign_transition_router.gd")
 
 func _ready() -> void:
 	assert(REGISTRY.validate().is_empty())
-	for room_id in [&"MP-01", &"MP-02", &"MP-03", &"MP-04", &"MP-05", &"MP-06", &"MP-07", &"MP-08"]:
+	for room_id in REGISTRY.MOONPETAL_ROOM_IDS:
 		var scene := load(String(REGISTRY.room(room_id).get("scenePath", ""))) as PackedScene
 		var root := scene.instantiate() as Node2D
 		root.configure(room_id, REGISTRY.room(room_id))
@@ -20,5 +20,8 @@ func _ready() -> void:
 	assert(StringName(ROUTER.resolve(&"MP-05", &"Ne").get("destinationRoom", &"")) == &"MP-06")
 	assert(StringName(ROUTER.resolve(&"MP-06", &"Ne").get("destinationRoom", &"")) == &"MP-07")
 	assert(StringName(ROUTER.resolve(&"MP-07", &"Ne").get("destinationRoom", &"")) == &"MP-08")
-	print("CAMPAIGN_MOONPETAL_ENTRY_SMOKE_OK rooms=MP-01..MP-08 art=approved_profiles")
+	assert(StringName(ROUTER.resolve(&"MP-09", &"Ne").get("destinationRoom", &"")) == &"MP-13")
+	assert(StringName(ROUTER.resolve(&"MP-11", &"Ne").get("destinationRoom", &"")) == &"MP-12")
+	assert(StringName(ROUTER.resolve(&"MP-14", &"Ne").get("destinationRoom", &"")) == &"MP-07")
+	print("CAMPAIGN_MOONPETAL_ENTRY_SMOKE_OK rooms=14 art=approved_profiles")
 	get_tree().quit()

@@ -295,6 +295,12 @@ static func room(room_id: StringName) -> Dictionary:
 	elif room_id == &"MP-06": definition.merge({"scenePath":"res://ben_rpg/world/rooms/moonpetal_bell_walk.tscn","worldOrigin":Vector2i(550,0),"enabledPortIds":[&"Nw",&"Ne",&"E1"],"featureIds":[&"fox_procession_ambush"]},true)
 	elif room_id == &"MP-07": definition.merge({"scenePath":"res://ben_rpg/world/rooms/moonpetal_moon_palace_approach.tscn","worldOrigin":Vector2i(550,0),"enabledPortIds":[&"Nw",&"Ne",&"E2"],"featureIds":[&"palace_seal"]},true)
 	elif room_id == &"MP-08": definition.merge({"scenePath":"res://ben_rpg/world/rooms/moonpetal_hall_true_moon.tscn","worldOrigin":Vector2i(550,0),"enabledPortIds":[&"Nw"],"featureIds":[&"magistrate_enma_boss"]},true)
+	elif room_id == &"MP-09": definition.merge({"scenePath":"res://ben_rpg/world/rooms/moonpetal_tea_garden_unsaid_things.tscn","worldOrigin":Vector2i(550,0),"enabledPortIds":[&"Nw",&"Ne"],"featureIds":[&"tea_testimony"]},true)
+	elif room_id == &"MP-10": definition.merge({"scenePath":"res://ben_rpg/world/rooms/moonpetal_koi_reflection_maze.tscn","worldOrigin":Vector2i(550,0),"enabledPortIds":[&"Nw",&"Ne"],"featureIds":[&"koi_observation_path"]},true)
+	elif room_id == &"MP-11": definition.merge({"scenePath":"res://ben_rpg/world/rooms/moonpetal_shrine_archive_first_drafts.tscn","worldOrigin":Vector2i(550,0),"enabledPortIds":[&"Nw",&"Ne"],"featureIds":[&"archive_screen"]},true)
+	elif room_id == &"MP-12": definition.merge({"scenePath":"res://ben_rpg/world/rooms/moonpetal_yokai_artisan_lane.tscn","worldOrigin":Vector2i(550,0),"enabledPortIds":[&"Nw",&"Ne"],"featureIds":[&"artisan_exchange"]},true)
+	elif room_id == &"MP-13": definition.merge({"scenePath":"res://ben_rpg/world/rooms/moonpetal_covered_bell_passage.tscn","worldOrigin":Vector2i(550,0),"enabledPortIds":[&"Nw",&"Ne",&"E1",&"E2"],"featureIds":[&"roof_occlusion"]},true)
+	elif room_id == &"MP-14": definition.merge({"scenePath":"res://ben_rpg/world/rooms/moonpetal_servants_moonbridge.tscn","worldOrigin":Vector2i(550,0),"enabledPortIds":[&"Nw",&"Ne"],"featureIds":[&"singular_reflection_bridge"]},true)
 	elif room_id == &"PV-01":
 		definition.merge({"scenePath": "res://ben_rpg/world/rooms/primeval_thunderfern_grove.tscn", "worldOrigin": Vector2i(400, 0), "enabledPortIds": [&"Nw", &"Ne", &"E1"], "portGates": {&"E1": &"primeval_terminal_decoded"}, "featureIds": [&"grove_intro_battle", &"looping_clearings", &"canopy_occlusion", &"tyrant_tracks"]}, true)
 	elif room_id == &"PV-02":

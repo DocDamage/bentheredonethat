@@ -14,6 +14,12 @@ const ROOM_PROPS := {
 	&"MP-06": [[&"moonpetal_bell_walk_gate_left", Vector2(18, 24)], [&"moonpetal_bell_walk_gate_right", Vector2(226, 24)], [&"moonpetal_court_tree_canopy", Vector2(-8, 176)], [&"moonpetal_court_tree_canopy_right", Vector2(264, 176)], [&"moonpetal_gate_lantern", Vector2(82, 250)], [&"moonpetal_gate_lantern_right", Vector2(244, 250)]],
 	&"MP-07": [[&"moonpetal_palace_facade", Vector2(33, 6)], [&"moonpetal_palace_garden_left", Vector2(38, 202)], [&"moonpetal_palace_garden_right", Vector2(252, 202)], [&"moonpetal_mirror_pond", Vector2(60, 270)]],
 	&"MP-08": [[&"moonpetal_palace_facade", Vector2(33, 0)], [&"moonpetal_palace_garden_left", Vector2(34, 216)], [&"moonpetal_palace_garden_right", Vector2(256, 216)], [&"moonpetal_gate_lantern", Vector2(78, 278)], [&"moonpetal_gate_lantern_right", Vector2(244, 278)]],
+	&"MP-09": [[&"moonpetal_court_temple", Vector2(99, 12)], [&"moonpetal_framed_garden_island", Vector2(42, 176)], [&"moonpetal_framed_garden_island_right", Vector2(250, 176)], [&"moonpetal_gate_lantern", Vector2(78, 278)], [&"moonpetal_gate_lantern_right", Vector2(244, 278)]],
+	&"MP-10": [[&"moonpetal_court_tree_canopy", Vector2(-8, 16)], [&"moonpetal_court_tree_canopy_right", Vector2(264, 16)], [&"moonpetal_mirror_pond", Vector2(60, 102)], [&"moonpetal_framed_garden_island", Vector2(32, 254)], [&"moonpetal_framed_garden_island_right", Vector2(260, 254)]],
+	&"MP-11": [[&"moonpetal_court_temple", Vector2(99, 8)], [&"moonpetal_bell_walk_gate_left", Vector2(18, 152)], [&"moonpetal_bell_walk_gate_right", Vector2(226, 152)], [&"moonpetal_gate_lantern", Vector2(72, 272)], [&"moonpetal_gate_lantern_right", Vector2(250, 272)]],
+	&"MP-12": [[&"moonpetal_court_temple", Vector2(99, 10)], [&"moonpetal_gate_lantern", Vector2(42, 112)], [&"moonpetal_gate_lantern_right", Vector2(282, 112)], [&"moonpetal_framed_garden_island", Vector2(48, 238)], [&"moonpetal_framed_garden_island_right", Vector2(244, 238)]],
+	&"MP-13": [[&"moonpetal_bell_walk_gate_left", Vector2(14, 10)], [&"moonpetal_bell_walk_gate_right", Vector2(230, 10)], [&"moonpetal_court_temple", Vector2(99, 136)], [&"moonpetal_gate_lantern", Vector2(52, 272)], [&"moonpetal_gate_lantern_right", Vector2(274, 272)]],
+	&"MP-14": [[&"moonpetal_court_tree_canopy", Vector2(-6, 30)], [&"moonpetal_court_tree_canopy_right", Vector2(262, 30)], [&"moonpetal_mirror_pond", Vector2(60, 116)], [&"moonpetal_framed_garden_island", Vector2(38, 262)], [&"moonpetal_framed_garden_island_right", Vector2(258, 262)]],
 }
 
 var _dimensions := Vector2i.ZERO
