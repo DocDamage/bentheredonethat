@@ -168,6 +168,7 @@ const ROOM_MARKER_NAVIGATION := preload("res://ben_rpg/world/campaign_room_marke
 const NAVIGATION_BUILDER := preload("res://ben_rpg/world/campaign_navigation_builder.gd")
 const TRANSITION_ROUTER := preload("res://ben_rpg/world/campaign_transition_router.gd")
 const ROOM_RUNTIME_SCRIPT := preload("res://ben_rpg/world/campaign_room_runtime.gd")
+const AREA_LAYER_CONTROLLER_SCRIPT := preload("res://ben_rpg/world/campaign_area_layer_controller.gd")
 const WEATHER_OVERLAY_SCRIPT := preload("res://ben_rpg/world/campaign_weather_overlay.gd")
 const AREA_TRANSITION := preload("res://src/field/cutscenes/templates/area_transitions/area_transition.tscn")
 const RESTRICTED_AREA_TRANSITION := preload("res://ben_rpg/world/restricted_area_transition.tscn")
@@ -228,6 +229,7 @@ var _visual: CampaignMapVisual
 var _visual_profiles := VISUAL_PROFILE_REGISTRY.new()
 var _room_streamer: Node
 var _room_runtime: Node
+var _area_layer_controller
 var _empyreal_ground
 var _frosthold_ground
 var _moonpetal_ground
@@ -398,6 +400,9 @@ func _enter_tree() -> void:
 	_weather_overlay.name = "WeatherOverlay"
 	_weather_overlay.z_index = 2
 	foreground_layer.add_child(_weather_overlay)
+	_area_layer_controller = AREA_LAYER_CONTROLLER_SCRIPT.new()
+	for area_layer in [_visual, _empyreal_ground, _frosthold_ground, _moonpetal_ground, _helios_ground, _primeval_ground, _asterion_ground, _mansion_ground, _laboratory_ground, _mansion_foreground, _town_foreground, _asterion_foreground, _moonpetal_foreground, _empyreal_foreground, _frosthold_foreground, _primeval_foreground, _helios_foreground, _weather_overlay]:
+		_area_layer_controller.register(area_layer)
 	world.add_child(_create_transition("LaboratoryExit", LAB_EXIT, TOWN_ARRIVAL))
 	world.add_child(_create_transition("TownLaboratoryDoor", TOWN_LAB_DOOR, LAB_SPAWN))
 	var build_controller := TOWN_BUILD_CONTROLLER.new()
@@ -774,42 +779,8 @@ func _update_camera_limits(force := false) -> void:
 		else:
 			_room_streamer.call(&"activate_legacy_mansion_area", StringName(area))
 	_sync_boss_marker_visibility(area)
-	if _visual:
-		_visual.set_active_area(StringName(area))
-	if _empyreal_ground:
-		_empyreal_ground.set_active_area(StringName(area))
-	if _frosthold_ground:
-		_frosthold_ground.set_active_area(StringName(area))
-	if _moonpetal_ground:
-		_moonpetal_ground.set_active_area(StringName(area))
-	if _helios_ground:
-		_helios_ground.set_active_area(StringName(area))
-	if _primeval_ground:
-		_primeval_ground.set_active_area(StringName(area))
-	if _asterion_ground:
-		_asterion_ground.set_active_area(StringName(area))
-	if _mansion_ground:
-		_mansion_ground.set_active_area(StringName(area))
-	if _laboratory_ground:
-		_laboratory_ground.set_active_area(StringName(area))
-	if _mansion_foreground:
-		_mansion_foreground.set_active_area(StringName(area))
-	if _town_foreground:
-		_town_foreground.set_active_area(StringName(area))
-	if _asterion_foreground:
-		_asterion_foreground.set_active_area(StringName(area))
-	if _moonpetal_foreground:
-		_moonpetal_foreground.set_active_area(StringName(area))
-	if _empyreal_foreground:
-		_empyreal_foreground.set_active_area(StringName(area))
-	if _frosthold_foreground:
-		_frosthold_foreground.set_active_area(StringName(area))
-	if _primeval_foreground:
-		_primeval_foreground.set_active_area(StringName(area))
-	if _helios_foreground:
-		_helios_foreground.set_active_area(StringName(area))
-	if _weather_overlay:
-		_weather_overlay.set_active_area(StringName(area))
+	if _area_layer_controller:
+		_area_layer_controller.set_active_area(StringName(area))
 	if area == "town":
 		CampaignState.mark_story_flag(&"town_entered")
 	elif area.begins_with("mansion") or manifest_room_id.begins_with("HM-"):
