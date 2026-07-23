@@ -16,6 +16,7 @@ const HELIOS_INTERACTION := preload("res://ben_rpg/world/helios_interaction.tscn
 const FROSTHOLD_INTERACTION := preload("res://ben_rpg/world/frosthold_interaction.tscn")
 const MOONPETAL_INTERACTION := preload("res://ben_rpg/world/moonpetal_interaction.tscn")
 const EMPYREAL_INTERACTION := preload("res://ben_rpg/world/empyreal_interaction.tscn")
+const UNIVERSE_TREASURE_INTERACTION := preload("res://ben_rpg/world/universe_treasure_interaction.tscn")
 
 const UNIVERSE_INTERACTION_SCENES := {
 	"heliosInteractions": HELIOS_INTERACTION,
@@ -68,6 +69,15 @@ static func install(root: Node2D, room_id: StringName, definition: Dictionary) -
 				CampaignState.register_runtime_save_point(save_point_id, world_origin + anchor_cell)
 		for property_name in UNIVERSE_INTERACTION_SCENES:
 			_install_universe_interactions(interaction_layer, definition, property_name, UNIVERSE_INTERACTION_SCENES[property_name] as PackedScene)
+		for treasure_definition in definition.get("universeTreasures", []):
+			var treasure := UNIVERSE_TREASURE_INTERACTION.instantiate()
+			var treasure_cell: Vector2i = treasure_definition.get("cell", Vector2i.ZERO)
+			treasure.name = String(treasure_definition.get("nodeName", "ManifestUniverseTreasure"))
+			treasure.cache_id = StringName(treasure_definition.get("cacheId", &""))
+			treasure.area_id = "manifest:%s" % room_id
+			treasure.position = Vector2(treasure_cell * 48)
+			treasure.add_to_group(&"universe_treasure_cache")
+			interaction_layer.add_child(treasure)
 		var boss_definition: Dictionary = definition.get("bossEncounter", {})
 		if not boss_definition.is_empty():
 			var boss_interaction := MANSION_BOSS_INTERACTION.instantiate()

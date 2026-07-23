@@ -197,7 +197,6 @@ const BULKHEAD_WARDEN_GAMEPIECE := preload("res://ben_rpg/characters/bulkhead_wa
 const MOONPETAL_ENCOUNTER_CONTROLLER := preload("res://ben_rpg/world/moonpetal_encounter_controller.gd")
 const ARCHANGEL_GAMEPIECE := preload("res://ben_rpg/characters/archangel_gamepiece.tscn")
 const EMPYREAL_ENCOUNTER_CONTROLLER := preload("res://ben_rpg/world/empyreal_encounter_controller.gd")
-const UNIVERSE_TREASURE_INTERACTION := preload("res://ben_rpg/world/universe_treasure_interaction.tscn")
 const CAMPAIGN_MENU := preload("res://ben_rpg/ui/campaign_menu.tscn")
 const CAMPAIGN_TITLE_SCREEN := preload("res://ben_rpg/ui/campaign_title_screen.tscn")
 const CAMPAIGN_ENDING_OVERLAY := preload("res://ben_rpg/ui/campaign_ending_overlay.gd")
@@ -458,7 +457,6 @@ func _enter_tree() -> void:
 	_spawn_helios_boss_marker(world)
 	_spawn_frosthold_boss_marker(world)
 	_spawn_moonpetal_boss_marker(world)
-	_spawn_universe_treasure_caches(world)
 	_spawn_empyreal_boss_marker(world)
 	if not CampaignState.state_changed.is_connected(_on_campaign_state_changed):
 		CampaignState.state_changed.connect(_on_campaign_state_changed)
@@ -2248,26 +2246,6 @@ func _spawn_moonpetal_boss_marker(world: Node2D) -> void:
 	_moonpetal_boss_marker.scale = Vector2(0.32, 0.32)
 	_moonpetal_boss_marker.visible = CampaignState.story_flags.get(&"moonpetal_palace_open", false) and not CampaignState.story_flags.get(&"moonpetal_scenario_complete", false)
 	world.add_child(_moonpetal_boss_marker)
-
-
-func _spawn_universe_treasure_caches(world: Node2D) -> void:
-	# Each hotspot is grounded on a complete prop already authored into that
-	# universe: rune plinth, market terminal, brazier, offering, and fountain.
-	_add_universe_treasure(world, "PrimevalRuinsTreasure", &"primeval_ruins_plinth", &"primeval_ruins", PRIMEVAL_ORIGIN + Vector2i(26, 3))
-	_add_universe_treasure(world, "HeliosMarketTreasure", &"helios_market_terminal", &"helios_market", HELIOS_ORIGIN + Vector2i(17, 6))
-	_add_universe_treasure(world, "FrostholdMarketTreasure", &"frosthold_heat_cache", &"frosthold_market", FROSTHOLD_ORIGIN + Vector2i(14, 4))
-	_add_universe_treasure(world, "MoonpetalGardenTreasure", &"moonpetal_offering", &"moonpetal_garden", MOONPETAL_ORIGIN + Vector2i(21, 3))
-	_add_universe_treasure(world, "EmpyrealGardenTreasure", &"empyreal_tithe_basin", &"empyreal_garden", EMPYREAL_ORIGIN + Vector2i(14, 3))
-
-
-func _add_universe_treasure(world: Node2D, node_name: String, cache_id: StringName, area_id: StringName, cell: Vector2i) -> void:
-	var interaction := UNIVERSE_TREASURE_INTERACTION.instantiate() as UniverseTreasureInteraction
-	interaction.name = node_name
-	interaction.cache_id = cache_id
-	interaction.area_id = area_id
-	interaction.position = Gameboard.cell_to_pixel(cell)
-	world.add_child(interaction)
-	interaction.add_to_group(&"universe_treasure_cache")
 
 
 func _spawn_empyreal_boss_marker(world: Node2D) -> void:
