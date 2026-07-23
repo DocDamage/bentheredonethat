@@ -236,8 +236,8 @@ static func room(room_id: StringName) -> Dictionary:
 		definition.merge({
 			"scenePath": "res://ben_rpg/world/rooms/haunted_mansion_ballroom_antechamber.tscn",
 			"worldOrigin": Vector2i(300, 0),
-			"enabledPortIds": [&"Nw", &"Ne", &"E2"],
-			"portGates": {&"Ne": &"mansion_ballroom_open", &"E2": &"mansion_ballroom_open"},
+			"enabledPortIds": [&"Nw", &"Ne", &"E1", &"E2"],
+			"portGates": {&"Ne": &"mansion_ballroom_open", &"E1": &"mansion_attic_latch_open", &"E2": &"mansion_ballroom_open"},
 			"visualProfileIds": [&"mansion_ballroom_chandelier", &"mansion_ballroom_door_frame", &"mansion_foyer_clock"],
 			"featureIds": [&"two_hand_ballroom_lock", &"ballroom_preparation_area", &"hand_socket_display"],
 			"savePoint": {

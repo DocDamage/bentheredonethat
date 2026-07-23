@@ -23,6 +23,7 @@ const CHAPEL_SAFE_CELL := STAGING_ORIGIN + Vector2i(7, 3)
 const NURSERY_CHAPEL_SAFE_CELL := STAGING_ORIGIN + Vector2i(18, 4)
 const UNDERCROFT_SAFE_CELL := STAGING_ORIGIN + Vector2i(16, 3)
 const ATTIC_SAFE_CELL := STAGING_ORIGIN + Vector2i(6, 3)
+const ANTECHAMBER_ATTIC_SAFE_CELL := STAGING_ORIGIN + Vector2i(14, 5)
 
 
 func _ready() -> void:
@@ -265,6 +266,13 @@ func _run() -> void:
 	assert(attic_stair)
 	attic_stair.call("apply_interaction", false)
 	assert(bool(CampaignState.story_flags.get(&"mansion_attic_latch_open", false)))
+	var antechamber_attic_port: Node = runtime.get_node_or_null("ManifestPort_HM-13_Ne")
+	assert(antechamber_attic_port and Gameboard.pixel_to_cell(antechamber_attic_port.arrival_coordinates) == ANTECHAMBER_ATTIC_SAFE_CELL)
+	antechamber_attic_port.call(&"_on_blackout")
+	main._place_player(ANTECHAMBER_ATTIC_SAFE_CELL)
+	await get_tree().process_frame
+	assert(runtime.call(&"active_room_id") == &"HM-08")
+	assert(runtime.has_node("ManifestPort_HM-08_E1"))
 	print("CAMPAIGN_HM01_LIVE_HANDOFF_SMOKE_OK entry=FI-05 HM-critical-spine=true clock_mirror_boss=true optional_loops=HM10+HM16+HM11+HM12+HM13 navigation=true archive+respite_save=true features=room_owned legacy_renderer=hidden camera=manifest")
 	main.queue_free()
 	await get_tree().process_frame
