@@ -156,7 +156,7 @@ static func room(room_id: StringName) -> Dictionary:
 		definition.merge({
 			"scenePath": "res://ben_rpg/world/rooms/haunted_mansion_foyer.tscn",
 			"worldOrigin": Vector2i(300, 0),
-			"enabledPortIds": [&"Nw", &"Ne", &"E1"],
+			"enabledPortIds": [&"Nw", &"Ne", &"E1", &"E2"],
 			"portGates": {&"E1": &"mansion_first_room_complete"},
 			"visualProfileIds": [&"mansion_foyer_clock", &"mansion_foyer_wall_tableau"],
 		}, true)
@@ -256,6 +256,14 @@ static func room(room_id: StringName) -> Dictionary:
 			"visualProfileIds": [&"mansion_ballroom_chandelier", &"mansion_ballroom_door_frame", &"clock_mirror_battle_actor"],
 			"featureIds": [&"clock_mirror_arena", &"results_return_anchor", &"stabilized_ballroom_lighting"],
 			"bossEncounter": {"nodeName": "The444Appointment", "encounterId": &"mansion_archive_boss", "defeatedFlag": &"mansion_archive_boss_defeated", "cell": Vector2i(12, 9)},
+		}, true)
+	elif room_id == &"HM-10":
+		definition.merge({
+			"scenePath": "res://ben_rpg/world/rooms/haunted_mansion_conservatory.tscn",
+			"worldOrigin": Vector2i(300, 0),
+			"enabledPortIds": [&"Nw", &"Ne"],
+			"visualProfileIds": [&"mansion_archive_wall_lit_tile", &"mansion_archive_wall_plain_tile", &"mansion_foyer_wall_tableau"],
+			"featureIds": [&"cursed_tree_elite", &"herb_cache", &"inside_shutter_shortcut", &"impossible_black_rose"],
 		}, true)
 	return definition
 

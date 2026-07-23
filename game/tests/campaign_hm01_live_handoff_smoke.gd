@@ -11,10 +11,12 @@ const ARCHIVE_SAVE_CELL := STAGING_ORIGIN + Vector2i(9, 7)
 const BALCONY_SAFE_CELL := STAGING_ORIGIN + Vector2i(6, 3)
 const GALLERY_SAFE_CELL := STAGING_ORIGIN + Vector2i(8, 3)
 const MIRROR_SAFE_CELL := STAGING_ORIGIN + Vector2i(6, 3)
+const MIRROR_CONSERVATORY_SAFE_CELL := STAGING_ORIGIN + Vector2i(14, 3)
 const NURSERY_SAFE_CELL := STAGING_ORIGIN + Vector2i(7, 3)
 const ANTECHAMBER_SAFE_CELL := STAGING_ORIGIN + Vector2i(6, 3)
 const ANTECHAMBER_SAVE_CELL := STAGING_ORIGIN + Vector2i(9, 8)
 const BALLROOM_SAFE_CELL := STAGING_ORIGIN + Vector2i(8, 3)
+const CONSERVATORY_SAFE_CELL := STAGING_ORIGIN + Vector2i(6, 3)
 
 
 func _ready() -> void:
@@ -184,10 +186,28 @@ func _run() -> void:
 	await get_tree().process_frame
 	assert(bool(CampaignState.story_flags.get(&"mansion_archive_boss_defeated", false)))
 	assert(int(CampaignState.inventory.get(&"anchor_core", 0)) == 1)
+	runtime.call(&"activate", &"HM-02")
+	main._place_player(FOYER_SAFE_CELL)
+	await get_tree().process_frame
+	var conservatory_port: Node = runtime.get_node_or_null("ManifestPort_HM-02_E2")
+	assert(conservatory_port and Gameboard.pixel_to_cell(conservatory_port.arrival_coordinates) == CONSERVATORY_SAFE_CELL)
+	conservatory_port.call(&"_on_blackout")
+	main._place_player(CONSERVATORY_SAFE_CELL)
+	await get_tree().process_frame
+	assert(runtime.call(&"active_room_id") == &"HM-10")
+	var conservatory_root: Node2D = streamer.call(&"active_root") as Node2D
+	assert(conservatory_root.has_node("InteractionLayer/ManifestInteraction/Feature_cursed_tree_elite"))
+	var mirror_return_port: Node = runtime.get_node_or_null("ManifestPort_HM-10_Ne")
+	if not mirror_return_port:
+		_fail("HM-10 did not install its Mirror Corridor port")
+		return
+	if Gameboard.pixel_to_cell(mirror_return_port.arrival_coordinates) != MIRROR_CONSERVATORY_SAFE_CELL:
+		_fail("HM-10 Mirror Corridor arrival was %s, expected %s" % [Gameboard.pixel_to_cell(mirror_return_port.arrival_coordinates), MIRROR_CONSERVATORY_SAFE_CELL])
+		return
 	var visual := main.get_node("Field/Map/CampaignWorld/GroundLayer/Visuals")
 	var foreground := main.get_node("Field/Map/CampaignWorld/ForegroundLayer/MansionForeground")
-	assert(visual.active_area == &"manifest:HM-09" and foreground.active_area == &"manifest:HM-09")
-	print("CAMPAIGN_HM01_LIVE_HANDOFF_SMOKE_OK entry=FI-05 HM-01_to_HM-02_to_HM-03=true clock_444_to_HM-04_to_HM-05_to_HM-14_to_HM-06_to_HM-15_to_HM-07_to_HM-08_to_HM-09=true navigation=true archive+respite_save=true gallery+nursery_contract=true clock_mirror_boss=true features=room_owned legacy_renderer=hidden camera=manifest")
+	assert(visual.active_area == &"manifest:HM-10" and foreground.active_area == &"manifest:HM-10")
+	print("CAMPAIGN_HM01_LIVE_HANDOFF_SMOKE_OK entry=FI-05 HM-critical-spine=true clock_mirror_boss=true HM-02_to_HM-10_to_HM-15=true navigation=true archive+respite_save=true features=room_owned legacy_renderer=hidden camera=manifest")
 	main.queue_free()
 	await get_tree().process_frame
 	get_tree().quit()
