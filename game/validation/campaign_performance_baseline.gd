@@ -142,9 +142,12 @@ func _place_player(main: Node, cell: Vector2i) -> void:
 
 func _frame_interval_metrics() -> Dictionary:
 	var intervals: Array[float] = []
+	var focused_samples := 0
 	var previous_tick := Time.get_ticks_usec()
 	for _frame in range(FRAME_SAMPLE_COUNT):
 		await get_tree().process_frame
+		if DisplayServer.window_is_focused():
+			focused_samples += 1
 		var current_tick := Time.get_ticks_usec()
 		intervals.append(float(current_tick - previous_tick) / 1000.0)
 		previous_tick = current_tick
@@ -154,8 +157,10 @@ func _frame_interval_metrics() -> Dictionary:
 		total += interval
 	return {
 		"samples": intervals.size(),
+		"focused_samples": focused_samples,
 		"mean": snappedf(total / intervals.size(), 0.001),
 		"p95": snappedf(intervals[ceili(float(intervals.size()) * 0.95) - 1], 0.001),
+		"p99": snappedf(intervals[ceili(float(intervals.size()) * 0.99) - 1], 0.001),
 		"max": snappedf(intervals.back(), 0.001),
 	}
 
@@ -166,6 +171,7 @@ func _environment_metrics() -> Dictionary:
 		"engine": String(Engine.get_version_info().get("string", "unknown")),
 		"platform": OS.get_name(),
 		"window_size": [window_size.x, window_size.y],
+		"window_focused_at_start": DisplayServer.window_is_focused(),
 		"benchmark_note": "Windowed diagnostic only; values are not portable performance targets.",
 	}
 
