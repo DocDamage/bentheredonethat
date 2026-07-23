@@ -13,6 +13,11 @@ const ROOM_SCENES := {
 	&"AS-06": preload("res://ben_rpg/world/rooms/asterion_oxygen_biocircuit_core.tscn"),
 	&"AS-07": preload("res://ben_rpg/world/rooms/asterion_command_spine.tscn"),
 	&"AS-08": preload("res://ben_rpg/world/rooms/asterion_station_control.tscn"),
+	&"AS-09": preload("res://ben_rpg/world/rooms/asterion_bonded_customs_vault.tscn"),
+	&"AS-10": preload("res://ben_rpg/world/rooms/asterion_observation_ring.tscn"),
+	&"AS-11": preload("res://ben_rpg/world/rooms/asterion_structural_maintenance_bay.tscn"),
+	&"AS-12": preload("res://ben_rpg/world/rooms/asterion_cryosleep_berths.tscn"),
+	&"AS-14": preload("res://ben_rpg/world/rooms/asterion_service_tram.tscn"),
 }
 
 
@@ -42,5 +47,11 @@ func _ready() -> void:
 	assert(StringName(TRANSITION_ROUTER.resolve(&"AS-06", &"Ne").get("destinationRoom", &"")) == &"AS-07", "Oxygen restoration must route into Command Spine.")
 	assert(StringName(TRANSITION_ROUTER.resolve(&"AS-07", &"Ne").get("destinationRoom", &"")) == &"AS-08", "Command Spine must route into Station Control.")
 	assert(not (ROOM_REGISTRY.room(&"AS-08").get("bossEncounter", {}) as Dictionary).is_empty(), "Station Control must own the Mother Computer encounter.")
-	print("CAMPAIGN_ASTERION_FIRST_ROOMS_SMOKE_OK rooms=AS-01+AS-02+AS-03+AS-13+AS-04+AS-05+AS-06+AS-07+AS-08 handoff=FI-06 oxygen_spine=reciprocal")
+	assert(StringName(TRANSITION_ROUTER.resolve(&"AS-02", &"E1").get("destinationRoom", &"")) == &"AS-09", "Customs must route to the bonded vault.")
+	assert(StringName(TRANSITION_ROUTER.resolve(&"AS-03", &"Ne").get("destinationRoom", &"")) == &"AS-12", "Mess must route to cryosleep berths.")
+	assert(StringName(TRANSITION_ROUTER.resolve(&"AS-05", &"E1").get("destinationRoom", &"")) == &"AS-10", "Hydroponics must route to observation.")
+	assert(StringName(TRANSITION_ROUTER.resolve(&"AS-01", &"E1").get("destinationRoom", &"")) == &"AS-14", "Dock must route to the service tram.")
+	assert(StringName(TRANSITION_ROUTER.resolve(&"AS-13", &"Se").get("destinationRoom", &"")) == &"AS-11", "Junction must route to maintenance after stabilization.")
+	assert(ROOM_REGISTRY.streamed_room_ids().filter(func(room_id): return String(room_id).begins_with("AS-")).size() == 14, "All Asterion rooms must be stream-authored.")
+	print("CAMPAIGN_ASTERION_FIRST_ROOMS_SMOKE_OK rooms=AS-01..AS-14 handoff=FI-06 critical+optional=reciprocal")
 	get_tree().quit()

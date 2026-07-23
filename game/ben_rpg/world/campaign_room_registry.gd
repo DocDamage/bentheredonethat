@@ -256,6 +256,52 @@ static func room(room_id: StringName) -> Dictionary:
 			"featureIds": [&"mother_computer_arena", &"ion_pistol_reward", &"astronaut_recruit_completion", &"stabilized_consoles"],
 			"bossEncounter": {"nodeName": "AsterionMotherComputer", "encounterId": &"asterion_mother_computer", "defeatedFlag": &"asterion_station_complete", "cell": Vector2i(12, 9)},
 		}, true)
+	elif room_id == &"AS-09":
+		definition.merge({
+			"scenePath": "res://ben_rpg/world/rooms/asterion_bonded_customs_vault.tscn",
+			"worldOrigin": Vector2i(350, 0),
+			"enabledPortIds": [&"Nw"],
+			"visualProfileIds": [&"asterion_dock_bulkhead", &"asterion_station_architecture"],
+			"featureIds": [&"cargo_override", &"shelf_puzzle", &"contraband_gear_cache"],
+			"asterionInteractions": [{"nodeName": "AsterionCargoCache", "kind": &"cargo_cache", "cell": Vector2i(9, 7)}],
+		}, true)
+	elif room_id == &"AS-10":
+		definition.merge({
+			"scenePath": "res://ben_rpg/world/rooms/asterion_observation_ring.tscn",
+			"worldOrigin": Vector2i(350, 0),
+			"enabledPortIds": [&"Nw", &"Ne"],
+			"portGates": {&"Ne": &"asterion_station_restored"},
+			"visualProfileIds": [&"asterion_dock_hull", &"asterion_command_console"],
+			"featureIds": [&"curved_vista", &"shutter_controls", &"zero_pressure_optional_combat", &"empyreal_star_chart"],
+		}, true)
+	elif room_id == &"AS-11":
+		definition.merge({
+			"scenePath": "res://ben_rpg/world/rooms/asterion_structural_maintenance_bay.tscn",
+			"worldOrigin": Vector2i(350, 0),
+			"enabledPortIds": [&"Nw", &"Ne"],
+			"portGates": {&"Nw": &"asterion_station_complete", &"Ne": &"asterion_station_complete"},
+			"visualProfileIds": [&"asterion_station_architecture", &"asterion_dock_bulkhead"],
+			"featureIds": [&"load_bearing_switches", &"engineering_loot", &"two_sided_shortcut", &"bulkhead_warden_trial"],
+			"bossEncounter": {"nodeName": "BulkheadWardenTrial", "encounterId": &"asterion_bulkhead_warden_trial", "defeatedFlag": &"bulkhead_warden_trial_complete", "cell": Vector2i(11, 7)},
+		}, true)
+	elif room_id == &"AS-12":
+		definition.merge({
+			"scenePath": "res://ben_rpg/world/rooms/asterion_cryosleep_berths.tscn",
+			"worldOrigin": Vector2i(350, 0),
+			"enabledPortIds": [&"Nw", &"Ne"],
+			"portGates": {&"Ne": &"asterion_medical_ambush_cleared"},
+			"visualProfileIds": [&"asterion_medical_station", &"asterion_station_architecture"],
+			"featureIds": [&"identity_logs", &"pod_releases", &"medical_supply_cache", &"relocating_residents"],
+		}, true)
+	elif room_id == &"AS-14":
+		definition.merge({
+			"scenePath": "res://ben_rpg/world/rooms/asterion_service_tram.tscn",
+			"worldOrigin": Vector2i(350, 0),
+			"enabledPortIds": [&"Nw", &"Ne"],
+			"portGates": {&"Ne": &"asterion_station_restored"},
+			"visualProfileIds": [&"asterion_dock_bulkhead", &"asterion_station_architecture"],
+			"featureIds": [&"tram_platform", &"stabilized_shortcut", &"saved_arrival_anchor"],
+		}, true)
 	elif room_id == &"HM-01":
 		definition.merge({
 			"scenePath": "res://ben_rpg/world/rooms/haunted_mansion_rain_gate.tscn",
