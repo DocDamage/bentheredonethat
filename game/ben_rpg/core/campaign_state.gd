@@ -12,7 +12,7 @@ signal town_terrain_changed
 signal universe_anchored(plot_index: int, universe_id: StringName)
 signal encounter_pressure_changed(data: Dictionary)
 
-const SAVE_VERSION := 19
+const SAVE_VERSION := 20
 const DEFAULT_SAVE_PATH := "user://save_slot_1.json"
 const SANDBOX_SAVE_PATH := "user://sandbox_slot.json"
 const SAVE_REPOSITORY := preload("res://ben_rpg/core/save_repository.gd")
@@ -890,6 +890,7 @@ var play_time_seconds := 0.0
 var save_timestamp := 0
 var last_save_cell := Vector2i(10, 9)
 var last_location := "Laboratory"
+var last_manifest_room_id: StringName = &""
 var town_time_minutes := 7.0 * 60.0
 var resident_states: Dictionary = {}
 var town_terrain: Dictionary = {}
@@ -1105,6 +1106,7 @@ func reset_new_game() -> void:
 	save_timestamp = 0
 	last_save_cell = Vector2i(10, 9)
 	last_location = "Laboratory"
+	last_manifest_room_id = &""
 	town_time_minutes = 7.0 * 60.0
 	resident_states.clear()
 	town_terrain.clear()
@@ -1187,6 +1189,7 @@ func complete_campaign_ending(town_cell: Vector2i) -> bool:
 	story_flags[&"ending_final_save_marker"] = true
 	last_save_cell = town_cell
 	last_location = _location_name_for_cell(town_cell)
+	last_manifest_room_id = &""
 	LocalTelemetry.record(&"campaign_postgame_unlocked", {"location": last_location})
 	state_changed.emit()
 	return true
@@ -1243,6 +1246,7 @@ func setup_sandbox(start_cell := Vector2i(50, 8)) -> void:
 		progress["skill_points"] = 99
 	last_save_cell = start_cell
 	last_location = _location_name_for_cell(start_cell)
+	last_manifest_room_id = &""
 	_initialize_quest_states()
 	party_changed.emit()
 	state_changed.emit()
@@ -3781,6 +3785,10 @@ func _capture_field_position() -> void:
 	last_location = _location_name_for_cell(cell)
 
 
+func set_last_manifest_room(room_id: StringName) -> void:
+	last_manifest_room_id = room_id
+
+
 func _location_name_for_cell(cell: Vector2i) -> String:
 	if Rect2i(Vector2i(216, 32), Vector2i(28, 18)).has_point(cell):
 		var empyreal_local := cell - Vector2i(216, 32)
@@ -3854,7 +3862,7 @@ func _serialize() -> Dictionary:
 	return {
 		"version": SAVE_VERSION, "sandbox_mode": sandbox_mode, "duckets": duckets, "economy_transactions": economy_transactions,
 		"play_time_seconds": play_time_seconds, "save_timestamp": save_timestamp,
-		"last_save_cell": [last_save_cell.x, last_save_cell.y], "last_location": last_location,
+		"last_save_cell": [last_save_cell.x, last_save_cell.y], "last_location": last_location, "last_manifest_room_id": String(last_manifest_room_id),
 		"town_time_minutes": town_time_minutes, "resident_states": resident_states,
 		"town_terrain": town_terrain,
 		"town_objects": town_objects, "next_town_object_id": next_town_object_id,
@@ -3878,6 +3886,7 @@ func _deserialize(data: Dictionary, source_version_override := -1) -> void:
 	if saved_cell.size() >= 2:
 		last_save_cell = Vector2i(int(saved_cell[0]), int(saved_cell[1]))
 	last_location = String(data.get("last_location", _location_name_for_cell(last_save_cell)))
+	last_manifest_room_id = StringName(data.get("last_manifest_room_id", ""))
 	town_time_minutes = fmod(float(data.get("town_time_minutes", 7.0 * 60.0)), 1440.0)
 	resident_states.clear()
 	for resident_id in data.get("resident_states", {}).keys():

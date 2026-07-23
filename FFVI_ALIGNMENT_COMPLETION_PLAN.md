@@ -1048,7 +1048,7 @@ first_visit_variant, stabilized_variant, postgame_variant
 - [ ] Keep story flags stable. Gate adapters translate existing flags into room
   connections; do not fork equivalent flags such as a second oxygen-restored or
   bell-walk-open state.
-- [ ] Add save migration from each legacy universe cell/stage to the nearest
+- [x] Add save migration from each legacy universe cell/stage to the nearest
   safe entry anchor in its bound room. Never spawn a migrated save inside a
   wall, encounter trigger, moving NPC route, or unopened gate.
 - [ ] Give each room its own collision/navigation ownership and generated route
@@ -2976,3 +2976,8 @@ limit:
   focused manifest, registry, field-scale, Frosthold, Moonpetal, and Empyreal
   milestone suite passed; legacy camera composition remains a compatibility
   adapter pending individual room acceptance.
+- Save schema v20 persists the active manifest room ID alongside the saved
+  cell. Version-19 legacy quadrant saves migrate their five known stages in
+  each of the seven core universes to validated `Nw` safe arrivals, and reload
+  activates that room before placing the player. The focused save/manifest
+  milestone passed with its isolated production-save sentinel unchanged.

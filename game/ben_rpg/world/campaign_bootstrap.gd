@@ -484,6 +484,7 @@ func continue_campaign(path := CampaignState.DEFAULT_SAVE_PATH) -> bool:
 	if CampaignState.load_game(path) != OK:
 		return false
 	_restore_campaign_state()
+	_restore_saved_manifest_room()
 	_spawn_available_recruits()
 	_on_campaign_state_changed()
 	_place_player(CampaignState.last_save_cell)
@@ -747,6 +748,7 @@ func _update_camera_limits(force := false) -> void:
 		area = String(MANSION_LEGACY_ADAPTER.area_for_cell(current_cell))
 	elif current_cell.x >= TOWN_ORIGIN.x:
 		area = "town"
+	CampaignState.set_last_manifest_room(manifest_room_id)
 	if not force and area == _camera_area:
 		if manifest_room_id != &"" and _camera_controller:
 			_camera_controller.set_canvas_scale(global_scale)
@@ -955,6 +957,13 @@ func _restore_campaign_state() -> void:
 		_sandbox_objects.queue_redraw()
 	if _resident_manager:
 		_resident_manager.sync_residents()
+
+
+func _restore_saved_manifest_room() -> void:
+	var room_id := CampaignState.last_manifest_room_id
+	if room_id == &"" or not ROOM_REGISTRY.is_authored_room(room_id) or not _room_runtime:
+		return
+	_room_runtime.call(&"activate", room_id)
 
 
 func refresh_sandbox_object_collision() -> void:

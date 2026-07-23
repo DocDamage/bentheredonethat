@@ -15,6 +15,7 @@ const CAMPAIGN_ROOM_STREAMER := preload("res://ben_rpg/world/campaign_room_strea
 const CAMPAIGN_TRANSITION_ROUTER := preload("res://ben_rpg/world/campaign_transition_router.gd")
 const CAMPAIGN_NAVIGATION_BUILDER := preload("res://ben_rpg/world/campaign_navigation_builder.gd")
 const CAMPAIGN_CAMERA_CONTROLLER := preload("res://ben_rpg/world/campaign_camera_controller.gd")
+const MANIFEST_SAVE_LOCATION_MIGRATOR := preload("res://ben_rpg/world/campaign_manifest_save_location_migrator.gd")
 const CAMPAIGN_POPULATION_SCHEDULER := preload("res://ben_rpg/world/campaign_population_scheduler.gd")
 const CAMPAIGN_ENCOUNTER_RUNTIME := preload("res://ben_rpg/world/campaign_encounter_runtime.gd")
 const CAMPAIGN_FIELD_SCALE := preload("res://ben_rpg/world/campaign_field_scale.gd")
@@ -51,6 +52,8 @@ static func _validate_room_registry(errors: Array[String]) -> void:
 	for error in CAMPAIGN_NAVIGATION_BUILDER.validate():
 		errors.append(error)
 	for error in CAMPAIGN_CAMERA_CONTROLLER.validate():
+		errors.append(error)
+	for error in MANIFEST_SAVE_LOCATION_MIGRATOR.validate():
 		errors.append(error)
 	for error in CAMPAIGN_POPULATION_SCHEDULER.validate():
 		errors.append(error)
