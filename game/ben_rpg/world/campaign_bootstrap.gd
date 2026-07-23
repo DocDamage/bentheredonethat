@@ -1280,10 +1280,10 @@ func _spawn_fighter() -> void:
 			cafe_plot = int(plot_index)
 			break
 	var plot: Rect2i = FACILITY_PLOTS[cafe_plot]
-	var local_spawn := Vector2i(plot.position.x + plot.size.x / 2, plot.end.y + 1)
+	var local_spawn := FACILITY_NAVIGATION.return_cell(TOWN_ORIGIN, plot) + Vector2i.DOWN
 	var fighter := FIGHTER_GAMEPIECE.instantiate() as Gamepiece
 	fighter.name = "RecruitableFighter"
-	fighter.position = Gameboard.cell_to_pixel(TOWN_ORIGIN + local_spawn)
+	fighter.position = Gameboard.cell_to_pixel(local_spawn)
 	world.add_child(fighter)
 
 
@@ -2024,7 +2024,7 @@ func _spawn_crimson_oni() -> void:
 			if String(CampaignState.built_facilities[plot_index]) != "Tea House":
 				continue
 			var plot: Rect2i = FACILITY_PLOTS[int(plot_index)]
-			spawn_cell = TOWN_ORIGIN + Vector2i(plot.position.x + plot.size.x / 2 - 1, plot.end.y)
+			spawn_cell = FACILITY_NAVIGATION.return_cell(TOWN_ORIGIN, plot) + Vector2i.LEFT
 			break
 	var existing := world.get_node_or_null("RecruitableCrimsonOni") as Gamepiece
 	if existing:
@@ -2057,7 +2057,7 @@ func _spawn_rift_jackal() -> void:
 			if String(CampaignState.built_facilities[plot_index]) != "Library":
 				continue
 			var plot: Rect2i = FACILITY_PLOTS[int(plot_index)]
-			spawn_cell = TOWN_ORIGIN + Vector2i(plot.position.x + plot.size.x / 2 - 1, plot.end.y)
+			spawn_cell = FACILITY_NAVIGATION.return_cell(TOWN_ORIGIN, plot) + Vector2i.LEFT
 			break
 	var existing := world.get_node_or_null("RecruitableRiftJackal") as Gamepiece
 	if existing:
@@ -2089,7 +2089,7 @@ func _spawn_mossback_surveyor() -> void:
 			if String(CampaignState.built_facilities[plot_index]) != "Trailhead Lodge":
 				continue
 			var plot: Rect2i = FACILITY_PLOTS[int(plot_index)]
-			spawn_cell = TOWN_ORIGIN + Vector2i(plot.position.x + plot.size.x / 2 + 1, plot.end.y)
+			spawn_cell = FACILITY_NAVIGATION.return_cell(TOWN_ORIGIN, plot) + Vector2i.RIGHT
 			break
 	var existing := world.get_node_or_null("RecruitableMossbackSurveyor") as Gamepiece
 	if existing:
@@ -2121,7 +2121,7 @@ func _spawn_cobalt_courier() -> void:
 			if String(CampaignState.built_facilities[plot_index]) != "Afterlight Club":
 				continue
 			var plot: Rect2i = FACILITY_PLOTS[int(plot_index)]
-			spawn_cell = TOWN_ORIGIN + Vector2i(plot.position.x + plot.size.x / 2 + 1, plot.end.y)
+			spawn_cell = FACILITY_NAVIGATION.return_cell(TOWN_ORIGIN, plot) + Vector2i.RIGHT
 			break
 	var existing := world.get_node_or_null("RecruitableCobaltCourier") as Gamepiece
 	if existing:
@@ -2153,7 +2153,7 @@ func _spawn_bulkhead_warden() -> void:
 			if String(CampaignState.built_facilities[plot_index]) != "Armory":
 				continue
 			var plot: Rect2i = FACILITY_PLOTS[int(plot_index)]
-			spawn_cell = TOWN_ORIGIN + Vector2i(plot.position.x + plot.size.x / 2 + 1, plot.end.y)
+			spawn_cell = FACILITY_NAVIGATION.return_cell(TOWN_ORIGIN, plot) + Vector2i.RIGHT
 			break
 	var existing := world.get_node_or_null("RecruitableBulkheadWarden") as Gamepiece
 	if existing:
