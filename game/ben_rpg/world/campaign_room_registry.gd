@@ -774,6 +774,8 @@ static func room(room_id: StringName) -> Dictionary:
 			"scenePath": "res://ben_rpg/world/rooms/haunted_mansion_kitchen_lift.tscn",
 			"worldOrigin": Vector2i(300, 0),
 			"enabledPortIds": [&"Nw", &"Ne"],
+			"navigationId": &"authored:hm16-kitchen-lift-navigation", "collisionMaskId": &"authored:hm16-kitchen-lift-collision",
+			"navigationLayout": {"id": &"hm16-kitchen-lift-v1", "kind": &"authored", "usefulCellRange": Vector2i(112, 112), "walkableRects": [{"origin": Vector2i(4, 1), "size": Vector2i(10, 5)}, {"origin": Vector2i(3, 5), "size": Vector2i(12, 6)}]},
 			"visualProfileIds": [&"mansion_archive_cabinet", &"mansion_archive_shelving", &"mansion_foyer_passage_door"],
 			"featureIds": [&"pantry_supplies", &"service_lift", &"stabilized_return_route"],
 		}, true)
@@ -783,6 +785,8 @@ static func room(room_id: StringName) -> Dictionary:
 			"worldOrigin": Vector2i(300, 0),
 			"enabledPortIds": [&"Nw", &"Ne", &"E1"],
 			"portGates": {&"E1": &"mansion_crypt_key_found"},
+			"navigationId": &"authored:hm11-mourning-chapel-navigation", "collisionMaskId": &"authored:hm11-mourning-chapel-collision",
+			"navigationLayout": {"id": &"hm11-mourning-chapel-v1", "kind": &"authored", "usefulCellRange": Vector2i(136, 136), "walkableRects": [{"origin": Vector2i(5, 1), "size": Vector2i(12, 4)}, {"origin": Vector2i(3, 4), "size": Vector2i(16, 6)}, {"origin": Vector2i(18, 3), "size": Vector2i(2, 3)}]},
 			"visualProfileIds": [&"mansion_gallery_stage_curtain", &"mansion_gallery_upper_left_frame", &"mansion_gallery_upper_right_frame"],
 			"featureIds": [&"stained_glass_alignment", &"anti_curse_accessory", &"nursery_latch"],
 			"chapterInteractions": [{"nodeName": "ChapelGlass", "kind": &"chapel_alignment", "cell": Vector2i(11, 7)}],
@@ -792,6 +796,8 @@ static func room(room_id: StringName) -> Dictionary:
 			"scenePath": "res://ben_rpg/world/rooms/haunted_mansion_undercroft.tscn",
 			"worldOrigin": Vector2i(300, 0),
 			"enabledPortIds": [&"Nw", &"Ne"],
+			"navigationId": &"authored:hm12-sealed-undercroft-navigation", "collisionMaskId": &"authored:hm12-sealed-undercroft-collision",
+			"navigationLayout": {"id": &"hm12-sealed-undercroft-v1", "kind": &"authored", "usefulCellRange": Vector2i(216, 216), "walkableRects": [{"origin": Vector2i(6, 1), "size": Vector2i(12, 4)}, {"origin": Vector2i(3, 4), "size": Vector2i(18, 10)}]},
 			"visualProfileIds": [&"mansion_archive_wall_plain_tile", &"mansion_archive_wall_lit_tile", &"mansion_gallery_stage_curtain"],
 			"featureIds": [&"temporal_field_note", &"anchor_dust_payoff", &"infernal_elite", &"two_sided_exit"],
 		}, true)
@@ -799,6 +805,8 @@ static func room(room_id: StringName) -> Dictionary:
 		definition.merge({
 			"scenePath": "res://ben_rpg/world/rooms/haunted_mansion_dollmaker_attic.tscn", "worldOrigin": Vector2i(300, 0),
 			"enabledPortIds": [&"Nw", &"Ne"], "portGates": {&"Ne": &"mansion_attic_latch_open"},
+			"navigationId": &"authored:hm13-dollmaker-attic-navigation", "collisionMaskId": &"authored:hm13-dollmaker-attic-collision",
+			"navigationLayout": {"id": &"hm13-dollmaker-attic-v1", "kind": &"authored", "usefulCellRange": Vector2i(101, 102), "walkableRects": [{"origin": Vector2i(4, 1), "size": Vector2i(10, 4)}, {"origin": Vector2i(3, 4), "size": Vector2i(12, 6)}]},
 			"visualProfileIds": [&"mansion_nursery_bed", &"mansion_archive_shelving", &"mansion_nursery_music_box"],
 			"featureIds": [&"vertical_clutter_maze", &"dollmaker_invoice", &"doll_resistant_charm", &"attic_stair"],
 			"chapterInteractions": [{"nodeName": "AtticStair", "kind": &"attic_stair", "cell": Vector2i(9, 8)}],

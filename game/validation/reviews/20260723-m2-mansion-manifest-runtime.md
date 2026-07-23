@@ -64,12 +64,12 @@ scene already has final collision or art approval.
 | HM-08 | C / M4 | 121 baseline / 124 opened authored | 4 | HM-07, HM-09 [two hands], HM-13, HM-16 [shortcut] |
 | HM-09 | C / L1 | 197 authored | 6 | HM-08 |
 | HM-10 | O / M2 | 114 authored | 4 | HM-02, HM-15 |
-| HM-11 | O / M3 | 240 | 4 | HM-05, HM-07 [latch], HM-12 [crypt key] |
-| HM-12 | O / L4 | 396 | 6 | HM-04 [13:13], HM-11 [crypt key] |
-| HM-13 | O / M1 | 192 | 4 | HM-14, HM-08 [attic latch] |
+| HM-11 | O / M3 | 136 authored | 4 | HM-05, HM-07 [latch], HM-12 [crypt key] |
+| HM-12 | O / L4 | 216 authored | 6 | HM-04 [13:13], HM-11 [crypt key] |
+| HM-13 | O / M1 | 101 closed / 102 opened authored | 4 | HM-14, HM-08 [attic latch] |
 | HM-14 | X / M2 | 121 baseline / 122 entered authored | 4 | HM-05, HM-06, HM-13 |
 | HM-15 | X / S3 | 76 authored | 2 | HM-06, HM-07, HM-10 |
-| HM-16 | X / M4 | 224 | 4 | HM-05, HM-08 [shortcut] |
+| HM-16 | X / M4 | 112 authored | 4 | HM-05, HM-08 [shortcut] |
 
 HM-01 owns a first authored 105-cell rain-gate layout: facade collision, side
 routes, porch, wet-stone crossway, and forecourt are recorded in the manifest
@@ -98,6 +98,11 @@ HM-09 now has a 197-cell Clock Mirror arena with a dedicated approach and result
 floor; HM-10 has a 114-cell conservatory branch with stable north arrivals and
 return path. The live handoff fixture verifies boss victory/reward and the
 conservatory branch; visual/input/capture approval remains pending.
+HM-11 now records a 136-cell Chapel with its crypt-key side vestibule; HM-12
+records a 216-cell Undercroft; HM-13 records a 101/102-cell attic with gated
+stair return; and HM-16 records a 112-cell Kitchen Lift shortcut. This closes
+the automated collision/useful-cell audit for all 16 Mansion rooms, but does not
+grant visual, input, capture, licensing, population, or release acceptance.
 The remaining rooms' cell values are generated open-interior counts, not audited
 useful-cell totals. They materially exceed the Section 9.4 S/M/L ranges in
 several rooms because final collision ownership is still a generated rectangle.

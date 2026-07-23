@@ -8,7 +8,17 @@ var _bed: Texture2D
 var _shelves: Texture2D
 var _box: Texture2D
 func configure(room_id: StringName, definition: Dictionary) -> void:
-	name = "AuthoredRoom_%s" % room_id; set_meta(&"room_id", room_id); _dimensions = definition.get("dimensions", Vector2i.ZERO); position = Vector2(definition.get("worldOrigin", Vector2i.ZERO) * 48); FEATURE_INSTALLER.install(self, room_id, definition); queue_redraw()
+	name = "AuthoredRoom_%s" % room_id
+	set_meta(&"room_id", room_id)
+	_dimensions = definition.get("dimensions", Vector2i.ZERO)
+	position = Vector2(definition.get("worldOrigin", Vector2i.ZERO) * 48)
+	var navigation_layer := get_node_or_null("NavigationAndCollision") as Node2D
+	if navigation_layer:
+		navigation_layer.set_meta(&"navigation_id", definition.get("navigationId", &""))
+		navigation_layer.set_meta(&"collision_mask_id", definition.get("collisionMaskId", &""))
+		navigation_layer.set_meta(&"navigation_layout", definition.get("navigationLayout", {}))
+	FEATURE_INSTALLER.install(self, room_id, definition)
+	queue_redraw()
 func _ready() -> void:
 	texture_filter = CanvasItem.TEXTURE_FILTER_NEAREST; _profiles = VISUAL_PROFILE_REGISTRY.new(); _bed = _profiles.texture(&"mansion_nursery_bed"); _shelves = _profiles.texture(&"mansion_archive_shelving"); _box = _profiles.texture(&"mansion_nursery_music_box"); queue_redraw()
 func _draw() -> void:
