@@ -12,6 +12,10 @@ const ANCHORS := {
 	&"frost_lich_emperor": {"roomId": &"FR-03", "cell": Vector2i(12, 5)},
 	&"kitsune_empress": {"roomId": &"MP-02", "cell": Vector2i(12, 5)},
 	&"archangel_commander": {"roomId": &"EM-03", "cell": Vector2i(12, 5)},
+	&"crimson_oni": {"roomId": &"MP-12", "cell": Vector2i(9, 7)},
+	&"cobalt_courier": {"roomId": &"HE-09", "cell": Vector2i(12, 7)},
+	&"mossback_surveyor": {"roomId": &"PV-10", "cell": Vector2i(12, 7)},
+	&"bulkhead_warden": {"roomId": &"AS-11", "cell": Vector2i(11, 7)},
 }
 
 

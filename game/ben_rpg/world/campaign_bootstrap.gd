@@ -2016,7 +2016,7 @@ func _spawn_crimson_oni() -> void:
 	var status: StringName = CampaignState.recruit_status.get(&"crimson_oni", &"undiscovered")
 	if status not in [&"undiscovered", &"available"]:
 		return
-	var spawn_cell := MOONPETAL_ORIGIN + Vector2i(14, 13)
+	var spawn_cell := RECRUIT_NAVIGATION.world_cell(&"crimson_oni")
 	# After the trial, the Oni crosses into Ben's safe universe as a prospective
 	# resident and waits beside the town-side Tea House instead of remaining an
 	# unexplained combatant in Moonpetal.
@@ -2081,7 +2081,7 @@ func _spawn_mossback_surveyor() -> void:
 	var status: StringName = CampaignState.recruit_status.get(&"mossback_surveyor", &"undiscovered")
 	if status not in [&"undiscovered", &"available"]:
 		return
-	var spawn_cell := PRIMEVAL_ORIGIN + Vector2i(22, 15)
+	var spawn_cell := RECRUIT_NAVIGATION.world_cell(&"mossback_surveyor")
 	# Passing the audit turns the monster into a resident. It waits near the
 	# Trailhead Lodge, where its farming and supply expertise has practical use.
 	if CampaignState.story_flags.get(&"mossback_surveyor_trial_complete", false):
@@ -2113,7 +2113,7 @@ func _spawn_cobalt_courier() -> void:
 	var status: StringName = CampaignState.recruit_status.get(&"cobalt_courier", &"undiscovered")
 	if status not in [&"undiscovered", &"available"]:
 		return
-	var spawn_cell := HELIOS_ORIGIN + Vector2i(22, 5)
+	var spawn_cell := RECRUIT_NAVIGATION.world_cell(&"cobalt_courier")
 	# Once its combat-verification clause is satisfied, the Courier starts a
 	# town delivery route beside the Afterlight Club.
 	if CampaignState.story_flags.get(&"cobalt_courier_trial_complete", false):
@@ -2145,7 +2145,7 @@ func _spawn_bulkhead_warden() -> void:
 	var status: StringName = CampaignState.recruit_status.get(&"bulkhead_warden", &"undiscovered")
 	if status not in [&"undiscovered", &"available"]:
 		return
-	var spawn_cell := STATION_ORIGIN + Vector2i(22, 15)
+	var spawn_cell := RECRUIT_NAVIGATION.world_cell(&"bulkhead_warden")
 	# After the structural interview, the Warden relocates peacefully to the
 	# Armory. It remains a normal recruit interaction, never a town threat.
 	if CampaignState.story_flags.get(&"bulkhead_warden_trial_complete", false):
