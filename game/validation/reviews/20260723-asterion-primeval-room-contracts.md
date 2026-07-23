@@ -155,9 +155,17 @@ The final Asterion batch repeated the same four scenes successfully at
 `test-artifacts/20260723-095056-c6ae251c`; its production-save sentinel also
 remained unchanged (`sentinel=True`).
 
+The first Primeval collision batch passed the same four contracts at
+`test-artifacts/20260723-095439-a298248b` and
+`test-artifacts/20260723-095457-f1d6a4bd`; its production-save sentinel also
+remained unchanged (`sentinel=True`). `PV-01` has 247 closed / 248 decoded
+cells, `PV-02` has 150, `PV-03` has 296-299 across terminal/caldera states,
+and `PV-04` has 150 authored useful cells.
+
 ## Decision
 
 Rework required before acceptance: no distribution eligibility, contact-sheet
 approval, or user visual/input sign-off is recorded for either world. All 14
-Asterion layouts are verified collision-contract evidence only; every Primeval
-layout still requires its own audit.
+Asterion layouts are verified collision-contract evidence only; `PV-01` through
+`PV-04` are likewise verified, while the remaining Primeval layouts still
+require their own audits.

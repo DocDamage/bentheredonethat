@@ -2955,3 +2955,6 @@ limit:
 - Asterion `AS-01` through `AS-14` now have explicit authored
   collision/useful-cell layouts. Every Primeval room retains a generated-
   interior navigation baseline pending its individual collision audit.
+- Primeval `PV-01` through `PV-04` now have explicit authored collision/useful-
+  cell layouts. `PV-05` through `PV-14` retain generated-interior navigation
+  baselines pending their individual collision audits.
