@@ -14,10 +14,7 @@ static func navigation_record(room_id: StringName, enabled_port_ids: Array[Strin
 	var dimensions: Vector2i = definition.get("dimensions", Vector2i.ZERO)
 	if dimensions == Vector2i.ZERO:
 		return {}
-	var walkable: Dictionary = {}
-	for y in range(1, dimensions.y - 1):
-		for x in range(1, dimensions.x - 1):
-			walkable[Vector2i(x, y)] = true
+	var walkable := _base_walkable(definition, dimensions)
 	var enabled_ports: Dictionary = {}
 	for port_id in enabled_port_ids:
 		enabled_ports[StringName(port_id)] = true
@@ -44,6 +41,28 @@ static func navigation_record(room_id: StringName, enabled_port_ids: Array[Strin
 	}
 
 
+static func _base_walkable(definition: Dictionary, dimensions: Vector2i) -> Dictionary:
+	var layout: Dictionary = definition.get("navigationLayout", {})
+	if StringName(layout.get("kind", &"")) != &"authored":
+		var generated: Dictionary = {}
+		for y in range(1, dimensions.y - 1):
+			for x in range(1, dimensions.x - 1):
+				generated[Vector2i(x, y)] = true
+		return generated
+	var authored: Dictionary = {}
+	for rect_definition in layout.get("walkableRects", []):
+		if not rect_definition is Dictionary:
+			continue
+		var origin: Vector2i = rect_definition.get("origin", Vector2i.ZERO)
+		var size: Vector2i = rect_definition.get("size", Vector2i.ZERO)
+		for y in range(origin.y, origin.y + size.y):
+			for x in range(origin.x, origin.x + size.x):
+				var cell := Vector2i(x, y)
+				if Rect2i(Vector2i.ZERO, dimensions).has_point(cell):
+					authored[cell] = true
+	return authored
+
+
 static func validate() -> PackedStringArray:
 	var errors: Array[String] = []
 	for room_id in ROOM_REGISTRY.room_ids():
@@ -53,6 +72,7 @@ static func validate() -> PackedStringArray:
 
 static func _validate_room(room_id: StringName, errors: Array[String]) -> void:
 	var definition := ROOM_REGISTRY.room(room_id)
+	var dimensions: Vector2i = definition.get("dimensions", Vector2i.ZERO)
 	var record := navigation_record(room_id)
 	if record.is_empty() or StringName(record.get("navigationId", &"")) == &"" or StringName(record.get("collisionMaskId", &"")) == &"":
 		errors.append("%s needs navigation and collision records." % room_id)
@@ -85,6 +105,32 @@ static func _validate_room(room_id: StringName, errors: Array[String]) -> void:
 		if not connected.has(cell):
 			errors.append("%s required navigation anchors are not connected." % room_id)
 			break
+	var layout: Dictionary = definition.get("navigationLayout", {})
+	if not layout.is_empty():
+		_validate_authored_layout(room_id, dimensions, layout, walkable, errors)
+
+
+static func _validate_authored_layout(room_id: StringName, dimensions: Vector2i, layout: Dictionary, walkable: Dictionary, errors: Array[String]) -> void:
+	if StringName(layout.get("kind", &"")) != &"authored":
+		errors.append("%s navigation layout must declare authored ownership." % room_id)
+		return
+	if StringName(layout.get("id", &"")) == &"":
+		errors.append("%s authored navigation layout needs a stable id." % room_id)
+	if layout.get("walkableRects", []).is_empty():
+		errors.append("%s authored navigation layout has no walkable rectangles." % room_id)
+	for rect_definition in layout.get("walkableRects", []):
+		if not rect_definition is Dictionary:
+			errors.append("%s authored navigation layout contains an invalid rectangle." % room_id)
+			continue
+		var origin: Vector2i = rect_definition.get("origin", Vector2i.ZERO)
+		var size: Vector2i = rect_definition.get("size", Vector2i.ZERO)
+		if size.x <= 0 or size.y <= 0 or not Rect2i(Vector2i.ZERO, dimensions).encloses(Rect2i(origin, size)):
+			errors.append("%s authored navigation rectangle %s/%s is outside the room." % [room_id, origin, size])
+	var useful_cell_target: Vector2i = layout.get("usefulCellRange", Vector2i.ZERO)
+	if useful_cell_target.x <= 0 or useful_cell_target.x > useful_cell_target.y:
+		errors.append("%s authored navigation layout needs a valid useful-cell range." % room_id)
+	elif walkable.size() < useful_cell_target.x or walkable.size() > useful_cell_target.y:
+		errors.append("%s authored navigation has %d useful cells outside %s." % [room_id, walkable.size(), useful_cell_target])
 
 
 static func _legal_follower_cells(cell: Vector2i, walkable: Dictionary) -> int:
