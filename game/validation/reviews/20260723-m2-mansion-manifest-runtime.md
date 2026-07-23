@@ -59,7 +59,7 @@ scene already has final collision or art approval.
 | HM-03 | C / M3 | 134 authored | 4 | HM-02 |
 | HM-04 | C / S1 | 60 baseline / 62 closed / 63 opened authored | 2 | HM-02, HM-05, HM-12 [13:13] |
 | HM-05 | C / M1 | 110 baseline / 111 closed / 112 opened authored | 4 | HM-04, HM-11, HM-14, HM-16 [shortcut] |
-| HM-06 | C / L2 | 384 | 6 | HM-14, HM-15 |
+| HM-06 | C / L2 | 207 authored | 6 | HM-14, HM-15 |
 | HM-07 | C / M3 | 240 | 4 | HM-15, HM-08, HM-11 [latch] |
 | HM-08 | C / M4 | 224 | 4 | HM-07, HM-09 [two hands], HM-13, HM-16 [shortcut] |
 | HM-09 | C / L1 | 352 | 6 | HM-08 |
@@ -68,7 +68,7 @@ scene already has final collision or art approval.
 | HM-12 | O / L4 | 396 | 6 | HM-04 [13:13], HM-11 [crypt key] |
 | HM-13 | O / M1 | 192 | 4 | HM-14, HM-08 [attic latch] |
 | HM-14 | X / M2 | 121 baseline / 122 entered authored | 4 | HM-05, HM-06, HM-13 |
-| HM-15 | X / S3 | 128 | 2 | HM-06, HM-07, HM-10 |
+| HM-15 | X / S3 | 76 authored | 2 | HM-06, HM-07, HM-10 |
 | HM-16 | X / M4 | 224 | 4 | HM-05, HM-08 [shortcut] |
 
 HM-01 owns a first authored 105-cell rain-gate layout: facade collision, side
@@ -84,6 +84,11 @@ HM-05 records archive aisles, its save-clock floor, and two follower-safe side
 vestibules (110-112 cells); HM-14 records its upper balcony, stair landing, and
 attic vestibule (121-122 cells). Their M-range counts are automatically
 verified, without granting visual/input/capture acceptance.
+HM-06 adds an L-scale portrait gallery with distinct upper arrivals, a central
+ambush/stage floor, and south viewing balcony (207 cells); HM-15 adds the
+S-scale reflected-service link (76 cells). Their gallery-to-Nursery route is
+covered by the existing live handoff fixture, but visual/input/capture approval
+remains pending.
 The remaining rooms' cell values are generated open-interior counts, not audited
 useful-cell totals. They materially exceed the Section 9.4 S/M/L ranges in
 several rooms because final collision ownership is still a generated rectangle.

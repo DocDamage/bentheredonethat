@@ -2939,6 +2939,6 @@ limit:
   Global recruit compatibility nodes remain separately owned migration work.
 - Manifest navigation validation now checks all 102 room records for safe
   arrivals, follower space, connected required anchors, and declared
-  navigation/collision IDs at commit `f55b0fcd`. `HM-01` through `HM-05` and
-  `HM-14` have explicit authored collision/useful-cell layouts; all other generated
+  navigation/collision IDs at commit `f55b0fcd`. `HM-01` through `HM-06` and
+  `HM-14`-`HM-15` have explicit authored collision/useful-cell layouts; all other generated
   interiors remain a baseline contract, not an authored collision audit.

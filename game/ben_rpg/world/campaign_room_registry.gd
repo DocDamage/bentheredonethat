@@ -638,6 +638,18 @@ static func room(room_id: StringName) -> Dictionary:
 			"scenePath": "res://ben_rpg/world/rooms/haunted_mansion_portrait_gallery.tscn",
 			"worldOrigin": Vector2i(300, 0),
 			"enabledPortIds": [&"Nw", &"Ne"],
+			"navigationId": &"authored:hm06-portrait-gallery-navigation",
+			"collisionMaskId": &"authored:hm06-portrait-gallery-collision",
+			"navigationLayout": {
+				"id": &"hm06-portrait-gallery-v1",
+				"kind": &"authored",
+				"usefulCellRange": Vector2i(207, 207),
+				"walkableRects": [
+					{"origin": Vector2i(6, 1), "size": Vector2i(14, 4)}, # framed upper-gallery arrivals
+					{"origin": Vector2i(3, 4), "size": Vector2i(19, 7)}, # portrait ambush floor and central stage
+					{"origin": Vector2i(5, 11), "size": Vector2i(16, 2)}, # south viewing balcony
+				],
+			},
 			"visualProfileIds": [&"mansion_gallery_left_portrait", &"mansion_gallery_right_portrait", &"mansion_gallery_upper_left_frame", &"mansion_gallery_upper_right_frame", &"mansion_gallery_stage_curtain"],
 			"featureIds": [&"portrait_ambush", &"silver_hour_hand", &"false_bottom_cache", &"central_portrait", &"rotating_frame_sightline"],
 			"chapterInteractions": [
@@ -650,6 +662,17 @@ static func room(room_id: StringName) -> Dictionary:
 			"scenePath": "res://ben_rpg/world/rooms/haunted_mansion_mirror_corridor.tscn",
 			"worldOrigin": Vector2i(300, 0),
 			"enabledPortIds": [&"Nw", &"Ne"],
+			"navigationId": &"authored:hm15-mirror-link-navigation",
+			"collisionMaskId": &"authored:hm15-mirror-link-collision",
+			"navigationLayout": {
+				"id": &"hm15-mirror-link-v1",
+				"kind": &"authored",
+				"usefulCellRange": Vector2i(76, 77),
+				"walkableRects": [
+					{"origin": Vector2i(4, 1), "size": Vector2i(10, 3)}, # mirror threshold and north arrivals
+					{"origin": Vector2i(2, 3), "size": Vector2i(14, 4)}, # reflected-service corridor
+				],
+			},
 			"visualProfileIds": [&"mansion_gallery_lower_left_frame", &"mansion_gallery_lower_right_frame", &"mansion_foyer_wall_tableau"],
 			"featureIds": [&"next_room_mirrors", &"false_reflection_encounter", &"reliable_reflection_loop"],
 		}, true)
@@ -913,9 +936,15 @@ static func _validate_manifest_test_rooms(errors: Array[String]) -> void:
 	var hm05 := room(&"HM-05")
 	if StringName(hm05.get("navigationId", &"")) != &"authored:hm05-servants-archive-navigation" or StringName(hm05.get("collisionMaskId", &"")) != &"authored:hm05-servants-archive-collision":
 		errors.append("HM-05 must own its authored archive navigation and collision records.")
+	var hm06 := room(&"HM-06")
+	if StringName(hm06.get("navigationId", &"")) != &"authored:hm06-portrait-gallery-navigation" or StringName(hm06.get("collisionMaskId", &"")) != &"authored:hm06-portrait-gallery-collision":
+		errors.append("HM-06 must own its authored portrait-gallery navigation and collision records.")
 	var hm14 := room(&"HM-14")
 	if StringName(hm14.get("navigationId", &"")) != &"authored:hm14-west-stair-navigation" or StringName(hm14.get("collisionMaskId", &"")) != &"authored:hm14-west-stair-collision":
 		errors.append("HM-14 must own its authored west-stair navigation and collision records.")
+	var hm15 := room(&"HM-15")
+	if StringName(hm15.get("navigationId", &"")) != &"authored:hm15-mirror-link-navigation" or StringName(hm15.get("collisionMaskId", &"")) != &"authored:hm15-mirror-link-collision":
+		errors.append("HM-15 must own its authored mirror-link navigation and collision records.")
 
 
 static func _reachable(start: StringName, target: StringName) -> bool:
