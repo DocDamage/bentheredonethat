@@ -2487,6 +2487,49 @@
       "sourceGroup": "src/combat"
     }
   ],
+  "packProvenanceDecisions": [
+    {
+      "canonicalPack": "Space Station Interior Tileset",
+      "creditEvidence": [],
+      "decision": "review_required",
+      "id": "asterion-sci-fi-spaceship-interior-v1",
+      "rationale": "Current runtime profiles use the legacy spaceship-interior subset; the planned canonical station kit has not yet been bound to exact terms/credit evidence.",
+      "runtimePack": "Sci-Fi Spaceship Interior Tileset Pack",
+      "termsEvidence": [],
+      "world": "Asterion"
+    },
+    {
+      "canonicalPack": "Haunted Mansion",
+      "creditEvidence": [],
+      "decision": "review_required",
+      "duplicateRelationship": "runtime files 1.png through 5.png match the canonical Haunted Mansion checksums",
+      "id": "mansion-haunted-mansion-v1",
+      "inventoryPackId": "Tilesets:Haunted Mansion",
+      "rationale": "Inventory reports no pack-local license candidate; canonical terms and attribution must be preserved before release admission.",
+      "runtimePack": "Haunted Mansion Pixel Art Tileset Pack",
+      "sourceChecksums": [
+        "acdcde19e54d70050d03f77c719e0e7d4285c68c54f7261863f3ce3e44f604cc",
+        "7b703a7e5eabd9017bfd4ae47bc8c5c328c9e237448a025d7e9de0d49a0b1bca",
+        "a8b3defc3bee6f3c919b0ea9fcabebc9427b22e0ef60ef1b5a7a445f4e619ca4",
+        "fabb60e8d270cf106674b7669dda3e7fe75c8ae9072ff86a4d867a259ed6ea7b",
+        "7f8c9fab086d0efe1cd7056926e4e19cfa32b144c9a8e4bfa54062c56a2816c2"
+      ],
+      "termsEvidence": [],
+      "world": "Mansion"
+    },
+    {
+      "canonicalPacks": [
+        "Jurassic World Pixel Art Megapack",
+        "Stone Age Modern Life Pixel Art Tileset Pack"
+      ],
+      "creditEvidence": [],
+      "decision": "review_required",
+      "id": "primeval-jurassic-and-stone-age-v1",
+      "rationale": "Runtime profiles draw from both packs; source-sheet decisions, terms, and any required credit remain a curator review rather than an inferred CC0 grant.",
+      "termsEvidence": [],
+      "world": "Primeval"
+    }
+  ],
   "schemaVersion": 2,
   "scope": "static Godot raster references; not a reachability or license-grant proof",
   "summary": {

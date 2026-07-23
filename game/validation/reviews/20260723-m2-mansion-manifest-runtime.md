@@ -115,6 +115,10 @@ before the locked size budget can be claimed.
 - The current runtime profiles are the per-room `visualProfileIds` declared in
   `CampaignRoomRegistry`; they are derivatives only and do not admit the
   proposed Haunted Mansion, Crimson Gothic, or supporting source packs.
+- Pack-level decision record: `res://ben_rpg/visual_assets/pack_provenance_decisions.json`
+  identifies the canonical Haunted Mansion set and its checksum-identical runtime
+  duplicate, but retains `review_required` because exact terms and credit evidence
+  have not been supplied. It is provenance evidence, not a distribution approval.
 - Active population roster: none. The current manifest has only anchor capacity
   (2-6 anchors per room); the locked SakPix identities, story-phase schedules,
   eight-direction profiles, and occupancy reservations have not been bound.

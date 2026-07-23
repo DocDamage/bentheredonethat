@@ -37,6 +37,25 @@ def load_eligibility(root: Path) -> tuple[str, dict[str, str]]:
     return default, result
 
 
+def load_pack_decisions(root: Path) -> list[dict[str, Any]]:
+    path = root / "game/ben_rpg/visual_assets/pack_provenance_decisions.json"
+    raw = json.loads(path.read_text(encoding="utf-8"))
+    if raw.get("schemaVersion") != 1 or not isinstance(raw.get("decisions"), list):
+        raise ValueError("pack provenance decisions must use schemaVersion 1 with a decisions list")
+    decisions: list[dict[str, Any]] = []
+    seen: set[str] = set()
+    for decision in raw["decisions"]:
+        if not isinstance(decision, dict):
+            raise ValueError("pack provenance decisions must be objects")
+        decision_id = decision.get("id")
+        status = decision.get("decision")
+        if not isinstance(decision_id, str) or not decision_id or decision_id in seen or status not in ELIGIBILITY_STATES:
+            raise ValueError("pack provenance decisions need unique ids and known eligibility states")
+        seen.add(decision_id)
+        decisions.append(decision)
+    return sorted(decisions, key=lambda decision: str(decision["id"]))
+
+
 def pack_root(root: Path, source: Path) -> Path:
     relative = source.relative_to(root)
     parts = relative.parts
@@ -82,6 +101,7 @@ def source_group(path: str) -> str:
 def build(root: Path) -> dict[str, Any]:
     inventory = json.loads((root / "game/ben_rpg/visual_assets/generated/runtime_visual_inventory.json").read_text(encoding="utf-8"))
     default_eligibility, eligibility_overrides = load_eligibility(root)
+    pack_decisions = load_pack_decisions(root)
     assets: list[dict[str, Any]] = []
     for entry in inventory.get("assets", []):
         path = str(entry["path"])
@@ -114,6 +134,7 @@ def build(root: Path) -> dict[str, Any]:
             "needsManualLicenseConfirmation": len(assets) - with_evidence,
             "distributionEligibility": eligibility_counts,
         },
+        "packProvenanceDecisions": pack_decisions,
         "assets": assets,
     }
 
