@@ -237,6 +237,25 @@ static func room(room_id: StringName) -> Dictionary:
 			"featureIds": [&"biocircuit_install", &"oxygen_restore", &"blue_state_switch", &"dock_tram_unlock"],
 			"asterionInteractions": [{"nodeName": "AsterionHydroConsole", "kind": &"hydroponics_console", "cell": Vector2i(13, 8)}],
 		}, true)
+	elif room_id == &"AS-07":
+		definition.merge({
+			"scenePath": "res://ben_rpg/world/rooms/asterion_command_spine.tscn",
+			"worldOrigin": Vector2i(350, 0),
+			"enabledPortIds": [&"Nw", &"Ne", &"E1", &"E2", &"Se"],
+			"portGates": {&"E1": &"asterion_station_restored", &"E2": &"asterion_station_restored", &"Se": &"asterion_station_restored"},
+			"visualProfileIds": [&"asterion_command_console", &"asterion_station_architecture"],
+			"featureIds": [&"security_checkpoint", &"control_gate_message", &"mother_computer_windows", &"two_cover_routes"],
+		}, true)
+	elif room_id == &"AS-08":
+		definition.merge({
+			"scenePath": "res://ben_rpg/world/rooms/asterion_station_control.tscn",
+			"worldOrigin": Vector2i(350, 0),
+			"enabledPortIds": [&"Nw", &"Ne"],
+			"portGates": {&"Ne": &"asterion_station_complete"},
+			"visualProfileIds": [&"asterion_command_console", &"asterion_station_architecture"],
+			"featureIds": [&"mother_computer_arena", &"ion_pistol_reward", &"astronaut_recruit_completion", &"stabilized_consoles"],
+			"bossEncounter": {"nodeName": "AsterionMotherComputer", "encounterId": &"asterion_mother_computer", "defeatedFlag": &"asterion_station_complete", "cell": Vector2i(12, 9)},
+		}, true)
 	elif room_id == &"HM-01":
 		definition.merge({
 			"scenePath": "res://ben_rpg/world/rooms/haunted_mansion_rain_gate.tscn",

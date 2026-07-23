@@ -11,6 +11,8 @@ const ROOM_SCENES := {
 	&"AS-04": preload("res://ben_rpg/world/rooms/asterion_medical_triage.tscn"),
 	&"AS-05": preload("res://ben_rpg/world/rooms/asterion_hydroponics_outer_walk.tscn"),
 	&"AS-06": preload("res://ben_rpg/world/rooms/asterion_oxygen_biocircuit_core.tscn"),
+	&"AS-07": preload("res://ben_rpg/world/rooms/asterion_command_spine.tscn"),
+	&"AS-08": preload("res://ben_rpg/world/rooms/asterion_station_control.tscn"),
 }
 
 
@@ -37,5 +39,8 @@ func _ready() -> void:
 	var medical := ROOM_REGISTRY.room(&"AS-04")
 	assert(medical.get("asterionInteractions", []).size() == 2, "Medical must own both Biocircuit and save beacon interactions.")
 	assert(ROOM_REGISTRY.room(&"AS-06").get("asterionInteractions", []).size() == 1, "Oxygen core must own the Biocircuit installation console.")
-	print("CAMPAIGN_ASTERION_FIRST_ROOMS_SMOKE_OK rooms=AS-01+AS-02+AS-03+AS-13+AS-04+AS-05+AS-06 handoff=FI-06 oxygen_spine=reciprocal")
+	assert(StringName(TRANSITION_ROUTER.resolve(&"AS-06", &"Ne").get("destinationRoom", &"")) == &"AS-07", "Oxygen restoration must route into Command Spine.")
+	assert(StringName(TRANSITION_ROUTER.resolve(&"AS-07", &"Ne").get("destinationRoom", &"")) == &"AS-08", "Command Spine must route into Station Control.")
+	assert(not (ROOM_REGISTRY.room(&"AS-08").get("bossEncounter", {}) as Dictionary).is_empty(), "Station Control must own the Mother Computer encounter.")
+	print("CAMPAIGN_ASTERION_FIRST_ROOMS_SMOKE_OK rooms=AS-01+AS-02+AS-03+AS-13+AS-04+AS-05+AS-06+AS-07+AS-08 handoff=FI-06 oxygen_spine=reciprocal")
 	get_tree().quit()
