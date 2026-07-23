@@ -46,7 +46,7 @@ jobs:
   isolated-smoke:
     name: Isolated Godot smoke
     runs-on: windows-latest
-    timeout-minutes: 45
+    timeout-minutes: 60
 
     steps:
       - name: Check out source
@@ -91,7 +91,11 @@ jobs:
           # The isolated runner subsequently launches every smoke scene normally
           # and remains the test authority.
           $bootstrap = Start-Process -FilePath $env:GODOT_EXECUTABLE -ArgumentList @('--headless', '--path', './game', '--editor') -PassThru -NoNewWindow
-          $deadline = (Get-Date).AddMinutes(12)
+          # LFS checkout and first import are occasionally slower on fresh
+          # Windows runners than the normal path. Keep the bootstrap bounded,
+          # but leave enough time for a clean project to produce the class
+          # cache before the all-smoke authority runs.
+          $deadline = (Get-Date).AddMinutes(20)
           $settled = $false
           do {
             Start-Sleep -Seconds 3
@@ -108,7 +112,7 @@ jobs:
             $bootstrap.WaitForExit()
           }
           if (-not $settled) {
-            throw 'Godot did not finish initial class-cache and runtime-texture imports within 12 minutes.'
+            throw 'Godot did not finish initial class-cache and runtime-texture imports within 20 minutes.'
           }
 
       - name: Run isolated smoke suite
