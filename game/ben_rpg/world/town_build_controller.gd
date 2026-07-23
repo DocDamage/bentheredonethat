@@ -3,6 +3,7 @@ extends CanvasLayer
 const FACILITY_ORDER := ["Cafe", "Library", "Clinic", "Armory"]
 const UI_ROOT := "res://game_assets/Tilesets/Dark RPG GUI Kit - Pixel Art Asset Pack"
 const UI_PARTY_HUD := UI_ROOT + "/dfgui_partyhud.png"
+const AREA_PRESENCE := preload("res://ben_rpg/world/campaign_area_presence.gd")
 
 var campaign: Node
 var visual: CampaignMapVisual
@@ -59,27 +60,16 @@ func _process(_delta: float) -> void:
 	if not gamepiece:
 		return
 	var current_cell := Gameboard.pixel_to_cell(gamepiece.position)
-	var is_in_mansion: bool = Rect2i(campaign.MANSION_ORIGIN, campaign.MANSION_SIZE).has_point(current_cell)
-	var is_in_station: bool = Rect2i(campaign.STATION_ORIGIN, campaign.STATION_SIZE).has_point(current_cell)
-	var is_in_primeval: bool = Rect2i(campaign.PRIMEVAL_ORIGIN, campaign.PRIMEVAL_SIZE).has_point(current_cell)
-	var is_in_helios: bool = Rect2i(campaign.HELIOS_ORIGIN, campaign.HELIOS_SIZE).has_point(current_cell)
-	var is_in_frosthold: bool = Rect2i(campaign.FROSTHOLD_ORIGIN, campaign.FROSTHOLD_SIZE).has_point(current_cell)
-	var is_in_moonpetal: bool = Rect2i(campaign.MOONPETAL_ORIGIN, campaign.MOONPETAL_SIZE).has_point(current_cell)
-	var is_in_empyreal: bool = Rect2i(campaign.EMPYREAL_ORIGIN, campaign.EMPYREAL_SIZE).has_point(current_cell)
-	var mansion_room := 0
-	if is_in_mansion:
-		var local: Vector2i = current_cell - campaign.MANSION_ORIGIN
-		if local.x >= 20:
-			mansion_room = 5
-		elif local.y >= 10 and local.x >= 10:
-			mansion_room = 4
-		elif local.y >= 10:
-			mansion_room = 3
-		elif local.x >= 10:
-			mansion_room = 2
-		else:
-			mansion_room = 1
-	var is_in_town: bool = Rect2i(campaign.TOWN_ORIGIN, campaign.TOWN_SIZE).has_point(current_cell)
+	var area := AREA_PRESENCE.snapshot(campaign, current_cell)
+	var is_in_town: bool = area[&"town"]
+	var is_in_mansion: bool = area[&"mansion"]
+	var is_in_station: bool = area[&"station"]
+	var is_in_primeval: bool = area[&"primeval"]
+	var is_in_helios: bool = area[&"helios"]
+	var is_in_frosthold: bool = area[&"frosthold"]
+	var is_in_moonpetal: bool = area[&"moonpetal"]
+	var is_in_empyreal: bool = area[&"empyreal"]
+	var mansion_room: int = area[&"mansion_room"]
 	if is_in_town != _was_in_town or is_in_mansion != _was_in_mansion or is_in_station != _was_in_station or is_in_primeval != _was_in_primeval or is_in_helios != _was_in_helios or is_in_frosthold != _was_in_frosthold or is_in_moonpetal != _was_in_moonpetal or is_in_empyreal != _was_in_empyreal or mansion_room != _mansion_room:
 		_was_in_town = is_in_town
 		_was_in_mansion = is_in_mansion
