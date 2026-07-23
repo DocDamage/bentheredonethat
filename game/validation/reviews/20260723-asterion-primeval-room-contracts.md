@@ -26,6 +26,73 @@ new bootstrap geometry or raw source-library paths.
 - Non-goals: bulk runtime admission of ignored Tilesets/EXPANSION/SakPix
   source libraries, final art approval, roster activation, and release status.
 
+## Production work-package matrix
+
+This record fulfills the documentation portion of the Section 19 batch for the
+two next migration worlds. The registry, rather than this table, remains the
+executable authority for exact port IDs, gates, scenes, interactions, profile
+IDs, and reciprocal arrivals.
+
+- User-visible result: Asterion retains its dock-to-control route and Primeval
+  retains its grove-to-caldera route while optional loops remain bidirectional.
+- Migration anchors: `FI-06 -> AS-01` and `FI-07 -> PV-01`; streamed save IDs
+  are `asterion_medical` (`AS-04`) and `primeval_relay` (`PV-07`).
+- Traversal targets: not yet specified or measured. This is intentionally a
+  preproduction blocker, not an assumed target.
+- Provisional performance budget for both worlds: 960x540 logical canvas, 60
+  FPS target, p95 <=16.7 ms, p99 <=33.3 ms, <=2 s room transition, <=1 GB peak
+  memory. No declared minimum machine or measurements exist.
+
+| World / room | Locked blueprint | Current generated navigation cells | Anchors | Executable destinations |
+| --- | --- | ---: | ---: | --- |
+| AS-01 | L1 | 352 | 6 | FI-06, AS-02, AS-14 |
+| AS-02 | M2 | 216 | 4 | AS-01, AS-03, AS-09 |
+| AS-03 | M3 | 240 | 4 | AS-02, AS-12, AS-13 |
+| AS-04 | M4 | 224 | 4 | AS-13, AS-12 |
+| AS-05 | M1 | 192 | 4 | AS-13, AS-06, AS-10 |
+| AS-06 | L2 | 384 | 6 | AS-05, AS-07 |
+| AS-07 | M3 | 240 | 4 | AS-06, AS-08, AS-10, AS-13, AS-14 |
+| AS-08 | L4 | 396 | 6 | AS-07, AS-11 |
+| AS-09 | M1 | 192 | 4 | AS-02 |
+| AS-10 | L2 | 384 | 6 | AS-05, AS-07 |
+| AS-11 | M3 | 240 | 4 | AS-13, AS-08 |
+| AS-12 | M4 | 224 | 4 | AS-03, AS-04 |
+| AS-13 | M1 | 192 | 4 | AS-03, AS-04, AS-05, AS-07, AS-11 |
+| AS-14 | S2 | 112 | 2 | AS-01, AS-07 |
+| PV-01 | L1 | 352 | 6 | FI-07, PV-02, PV-13 |
+| PV-02 | M2 | 216 | 4 | PV-01, PV-03, PV-13 |
+| PV-03 | L3 | 416 | 6 | PV-02, PV-04, PV-07, PV-10, PV-14 |
+| PV-04 | M4 | 224 | 4 | PV-03, PV-05, PV-11 |
+| PV-05 | L1 | 352 | 6 | PV-04, PV-06, PV-09, PV-13 |
+| PV-06 | M2 | 216 | 4 | PV-05 |
+| PV-07 | L3 | 416 | 6 | PV-03, PV-08, PV-11, PV-14 |
+| PV-08 | L4 | 396 | 6 | PV-07, PV-12, PV-14 |
+| PV-09 | M1 | 192 | 4 | PV-05, PV-13 |
+| PV-10 | L2 | 384 | 6 | PV-03 |
+| PV-11 | M3 | 240 | 4 | PV-04, PV-07 |
+| PV-12 | L4 | 396 | 6 | PV-08 |
+| PV-13 | M1 | 192 | 4 | PV-01, PV-02, PV-05, PV-09 |
+| PV-14 | S2 | 112 | 2 | PV-03, PV-07, PV-08 |
+
+The generated counts are not final useful-walkable-cell totals: the manifest
+navigation builder currently supplies an open interior rectangle. Each row
+needs final authored collision, walkable-cell, safe-arrival, and foreground
+audits before it can claim the Section 9.4 size class.
+
+### Art, population, and state-capture requirements
+
+- The current `visualProfileIds` arrays in `CampaignRoomRegistry` are the only
+  runtime profile list. They do not admit the locked Space Station/Jurassic
+  source families or their supporting packs.
+- Active population roster: none. Existing 2-6 anchor capacities are not a
+  SakPix roster, schedule, eight-direction binding, or route reservation.
+- Required captures: every room at first visit, stabilized, and postgame;
+  native/resolution matrix; keyboard/mouse and controller; every port, gate,
+  boss return, facility entry/return, and streamed save anchor.
+- Required saves: pre-medical and medical-anchor Asterion states; pre-relay,
+  relay-anchor, and post-caldera Primeval states, plus each relevant optional
+  gate state.
+
 ## Required evidence before acceptance
 
 - One work package per world with exact room graph, useful-cell totals,
@@ -43,4 +110,3 @@ new bootstrap geometry or raw source-library paths.
 Rework required before acceptance: no distribution eligibility, contact-sheet
 approval, or user visual/input sign-off is recorded for either world. The
 manifest contracts are implementation evidence only.
-

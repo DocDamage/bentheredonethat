@@ -27,6 +27,71 @@ distribution, controller, or performance approval.
   the prior room's runtime anchor so shared staging coordinates cannot unlock
   roster editing at an unrelated current-room location.
 
+## Production work-package matrix
+
+This is the Section 19 work-package record for the locked Mansion graph.  The
+registry is the executable source for port IDs, reciprocal bindings, room
+scenes, interaction IDs, gates, and profile IDs.  This matrix makes the
+remaining production contract auditable rather than implying that an authored
+scene already has final collision or art approval.
+
+- User-visible result: a 16-room, reciprocal Haunted Mansion route that keeps
+  the 4:44 sequence and makes its optional loops useful on a stabilized return.
+- Non-goals: admitting ignored source-library art, assigning the SakPix roster,
+  or granting visual, licensing, controller, performance, or product approval.
+- Runtime contract: `CampaignRoomRegistry.MANSION_ROOMS`, room scenes under
+  `res://ben_rpg/world/rooms/`, `CampaignRoomRuntime`, and
+  `CampaignRoomFeatureInstaller`.
+- Migration anchors: `FI-05 -> HM-01`; save IDs `mansion_archive` in `HM-05`
+  and `mansion_ballroom_antechamber` in `HM-08`; boss return is owned by
+  `HM-09`.
+- Traversal target: the `HM-05 -> HM-16 -> HM-08 -> HM-09` stabilized shortcut
+  must become a 2-5 minute return route. First-visit, stabilized, and postgame
+  route timings are not yet measured.
+- Provisional performance budget: 960x540 logical canvas, 60 FPS target, p95
+  <=16.7 ms, p99 <=33.3 ms, <=2 s room transition, <=1 GB peak memory. The
+  minimum machine and measurements remain unrecorded.
+
+| Room | Locked class / manifest blueprint | Current generated navigation cells | Population anchors | Executable port destinations |
+| --- | --- | ---: | ---: | --- |
+| HM-01 | C / M1 | 192 | 4 | FI-05, HM-02 |
+| HM-02 | C / L2 | 384 | 6 | HM-01, HM-03, HM-04 [4:44], HM-10 |
+| HM-03 | C / M3 | 240 | 4 | HM-02 |
+| HM-04 | C / S1 | 96 | 2 | HM-02, HM-05, HM-12 [13:13] |
+| HM-05 | C / M1 | 192 | 4 | HM-04, HM-11, HM-14, HM-16 [shortcut] |
+| HM-06 | C / L2 | 384 | 6 | HM-14, HM-15 |
+| HM-07 | C / M3 | 240 | 4 | HM-15, HM-08, HM-11 [latch] |
+| HM-08 | C / M4 | 224 | 4 | HM-07, HM-09 [two hands], HM-13, HM-16 [shortcut] |
+| HM-09 | C / L1 | 352 | 6 | HM-08 |
+| HM-10 | O / M2 | 216 | 4 | HM-02, HM-15 |
+| HM-11 | O / M3 | 240 | 4 | HM-05, HM-07 [latch], HM-12 [crypt key] |
+| HM-12 | O / L4 | 396 | 6 | HM-04 [13:13], HM-11 [crypt key] |
+| HM-13 | O / M1 | 192 | 4 | HM-14, HM-08 [attic latch] |
+| HM-14 | X / M2 | 216 | 4 | HM-05, HM-06, HM-13 |
+| HM-15 | X / S3 | 128 | 2 | HM-06, HM-07, HM-10 |
+| HM-16 | X / M4 | 224 | 4 | HM-05, HM-08 [shortcut] |
+
+The cell values above are the current generated open-interior navigation
+counts, not audited useful-cell totals. They materially exceed the Section 9.4
+S/M/L ranges in several rooms because final collision ownership is still a
+generated rectangle. Therefore the matrix records a production blocker: every
+room needs an authored collision/navigation audit and a measured useful-cell
+total before the locked size budget can be claimed.
+
+### Art, population, and state-capture requirements
+
+- The current runtime profiles are the per-room `visualProfileIds` declared in
+  `CampaignRoomRegistry`; they are derivatives only and do not admit the
+  proposed Haunted Mansion, Crimson Gothic, or supporting source packs.
+- Active population roster: none. The current manifest has only anchor capacity
+  (2-6 anchors per room); the locked SakPix identities, story-phase schedules,
+  eight-direction profiles, and occupancy reservations have not been bound.
+- Required captures: each `HM-*` room at first visit, stabilized, and postgame;
+  960x540 native plus required desktop sizes; keyboard/mouse and controller;
+  all ports, save anchors, interactions, boss return, and FI-05 entry/return.
+- Required save fixtures: pre-4:44, Archive anchor, both hands installed,
+  post-boss/stabilized, and 13:13/crypt-key optional state.
+
 ## Automated evidence
 
 Command run against the commit worktree:
@@ -61,4 +126,3 @@ Command run against the commit worktree:
   review for the Mansion slice.
 - Product/visual reviewer decision: pending. This work package is verified by
   automated evidence only; M2 is not accepted.
-
