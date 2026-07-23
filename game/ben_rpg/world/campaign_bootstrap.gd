@@ -164,6 +164,7 @@ const MANSION_LEGACY_ADAPTER := preload("res://ben_rpg/world/campaign_mansion_le
 const ROOM_STREAMER_SCRIPT := preload("res://ben_rpg/world/campaign_room_streamer.gd")
 const ROOM_REGISTRY := preload("res://ben_rpg/world/campaign_room_registry.gd")
 const RECRUIT_NAVIGATION := preload("res://ben_rpg/world/campaign_recruit_navigation.gd")
+const ROOM_MARKER_NAVIGATION := preload("res://ben_rpg/world/campaign_room_marker_navigation.gd")
 const NAVIGATION_BUILDER := preload("res://ben_rpg/world/campaign_navigation_builder.gd")
 const TRANSITION_ROUTER := preload("res://ben_rpg/world/campaign_transition_router.gd")
 const ROOM_RUNTIME_SCRIPT := preload("res://ben_rpg/world/campaign_room_runtime.gd")
@@ -1920,7 +1921,7 @@ func _spawn_mansion_boss_marker(world: Node2D) -> void:
 	_mansion_boss_marker.texture = _profiled_texture(&"clock_mirror_battle_actor")
 	_mansion_boss_marker.texture_filter = CanvasItem.TEXTURE_FILTER_NEAREST
 	# Stand the marker on the open floor rather than over the rear-wall furniture.
-	_mansion_boss_marker.position = Gameboard.cell_to_pixel(MANSION_ORIGIN + Vector2i(24, 9))
+	_mansion_boss_marker.position = Gameboard.cell_to_pixel(ROOM_MARKER_NAVIGATION.world_cell(&"mansion_appointment"))
 	_mansion_boss_marker.scale = Vector2(0.32, 0.32)
 	_mansion_boss_marker.visible = not CampaignState.story_flags.get(&"mansion_archive_boss_defeated", false)
 	world.add_child(_mansion_boss_marker)
@@ -2188,7 +2189,7 @@ func _spawn_asterion_boss_marker(world: Node2D) -> void:
 	_station_boss_marker.name = "AsterionMotherComputer"
 	_station_boss_marker.texture = _profiled_texture(&"mother_computer_battle_actor")
 	_station_boss_marker.texture_filter = CanvasItem.TEXTURE_FILTER_NEAREST
-	_station_boss_marker.position = Gameboard.cell_to_pixel(STATION_ORIGIN + Vector2i(24, 13)) + Vector2(0, 18)
+	_station_boss_marker.position = Gameboard.cell_to_pixel(ROOM_MARKER_NAVIGATION.world_cell(&"mother_computer")) + Vector2(0, 18)
 	_station_boss_marker.scale = Vector2(0.24, 0.24)
 	_station_boss_marker.visible = CampaignState.story_flags.get(&"asterion_anchor_built", false) and not CampaignState.story_flags.get(&"asterion_station_complete", false)
 	world.add_child(_station_boss_marker)
@@ -2214,7 +2215,7 @@ func _spawn_primeval_boss_marker(world: Node2D) -> void:
 	_primeval_boss_marker.name = "TyrantOfTheMorningCommute"
 	_primeval_boss_marker.texture = _profiled_texture(&"commute_tyrant_battle_actor")
 	_primeval_boss_marker.texture_filter = CanvasItem.TEXTURE_FILTER_NEAREST
-	_primeval_boss_marker.position = Gameboard.cell_to_pixel(PRIMEVAL_ORIGIN + Vector2i(24, 13)) + Vector2(0, 18)
+	_primeval_boss_marker.position = Gameboard.cell_to_pixel(ROOM_MARKER_NAVIGATION.world_cell(&"commute_tyrant")) + Vector2(0, 18)
 	_primeval_boss_marker.scale = Vector2(0.28, 0.28)
 	_primeval_boss_marker.visible = CampaignState.story_flags.get(&"primeval_caldera_open", false) and not CampaignState.story_flags.get(&"primeval_scenario_complete", false)
 	world.add_child(_primeval_boss_marker)
@@ -2241,7 +2242,7 @@ func _spawn_helios_boss_marker(world: Node2D) -> void:
 	_helios_boss_marker.name = "CivicSun"
 	_helios_boss_marker.texture = _profiled_texture(&"civic_sun_battle_actor")
 	_helios_boss_marker.texture_filter = CanvasItem.TEXTURE_FILTER_NEAREST
-	_helios_boss_marker.position = Gameboard.cell_to_pixel(HELIOS_ORIGIN + Vector2i(24, 13)) + Vector2(0, 18)
+	_helios_boss_marker.position = Gameboard.cell_to_pixel(ROOM_MARKER_NAVIGATION.world_cell(&"civic_sun")) + Vector2(0, 18)
 	_helios_boss_marker.scale = Vector2(0.24, 0.24)
 	_helios_boss_marker.visible = CampaignState.story_flags.get(&"helios_core_open", false) and not CampaignState.story_flags.get(&"helios_scenario_complete", false)
 	world.add_child(_helios_boss_marker)
@@ -2270,7 +2271,7 @@ func _spawn_frosthold_boss_marker(world: Node2D) -> void:
 	_frosthold_boss_marker.texture_filter = CanvasItem.TEXTURE_FILTER_NEAREST
 	# The field marker should read as the three-headed boss, not a tiny pile of
 	# pixels. The throne-room braziers are spaced to frame this silhouette.
-	_frosthold_boss_marker.position = Gameboard.cell_to_pixel(FROSTHOLD_ORIGIN + Vector2i(24, 13)) + Vector2(-24, 4)
+	_frosthold_boss_marker.position = Gameboard.cell_to_pixel(ROOM_MARKER_NAVIGATION.world_cell(&"whiteout_auditor")) + Vector2(-24, 4)
 	_frosthold_boss_marker.scale = Vector2(0.34, 0.34)
 	_frosthold_boss_marker.visible = CampaignState.story_flags.get(&"frosthold_throne_open", false) and not CampaignState.story_flags.get(&"frosthold_scenario_complete", false)
 	world.add_child(_frosthold_boss_marker)
@@ -2299,7 +2300,7 @@ func _spawn_moonpetal_boss_marker(world: Node2D) -> void:
 	_moonpetal_boss_marker.texture_filter = CanvasItem.TEXTURE_FILTER_NEAREST
 	# Present Enma at a readable boss scale on the processional lane, fully below
 	# the palace threshold and above the player's arrival tile.
-	_moonpetal_boss_marker.position = Gameboard.cell_to_pixel(MOONPETAL_ORIGIN + Vector2i(24, 14)) + Vector2(0, 16)
+	_moonpetal_boss_marker.position = Gameboard.cell_to_pixel(ROOM_MARKER_NAVIGATION.world_cell(&"magistrate_enma")) + Vector2(0, 16)
 	_moonpetal_boss_marker.scale = Vector2(0.32, 0.32)
 	_moonpetal_boss_marker.visible = CampaignState.story_flags.get(&"moonpetal_palace_open", false) and not CampaignState.story_flags.get(&"moonpetal_scenario_complete", false)
 	world.add_child(_moonpetal_boss_marker)
@@ -2347,7 +2348,7 @@ func _spawn_empyreal_boss_marker(world: Node2D) -> void:
 	_empyreal_boss_marker.name = "HighComptrollerOfGravity"
 	_empyreal_boss_marker.texture = _profiled_texture(&"high_comptroller_battle_actor")
 	_empyreal_boss_marker.texture_filter = CanvasItem.TEXTURE_FILTER_NEAREST
-	_empyreal_boss_marker.position = Gameboard.cell_to_pixel(EMPYREAL_ORIGIN + Vector2i(24, 13)) + Vector2(0, 18)
+	_empyreal_boss_marker.position = Gameboard.cell_to_pixel(ROOM_MARKER_NAVIGATION.world_cell(&"high_comptroller")) + Vector2(0, 18)
 	_empyreal_boss_marker.scale = Vector2(0.25, 0.25)
 	_empyreal_boss_marker.visible = false
 	world.add_child(_empyreal_boss_marker)
@@ -2386,24 +2387,28 @@ func _sync_boss_marker_visibility(area: String) -> void:
 	# 4:44 mirror appeared in the Archive, for example), making a coherent room
 	# look like a pile of unrelated props.
 	if _mansion_boss_marker:
-		_mansion_boss_marker.visible = area == "mansion_ballroom" and not CampaignState.story_flags.get(&"mansion_archive_boss_defeated", false)
+		_mansion_boss_marker.visible = _area_matches_room(area, &"HM-09", &"mansion_ballroom") and not CampaignState.story_flags.get(&"mansion_archive_boss_defeated", false)
 	if _station_boss_marker:
-		_station_boss_marker.visible = area == "station_control" and CampaignState.story_flags.get(&"asterion_anchor_built", false) and not CampaignState.story_flags.get(&"asterion_station_complete", false)
+		_station_boss_marker.visible = _area_matches_room(area, &"AS-08", &"station_control") and CampaignState.story_flags.get(&"asterion_anchor_built", false) and not CampaignState.story_flags.get(&"asterion_station_complete", false)
 	if _primeval_boss_marker:
-		_primeval_boss_marker.visible = area == "primeval_caldera" and CampaignState.story_flags.get(&"primeval_caldera_open", false) and not CampaignState.story_flags.get(&"primeval_scenario_complete", false)
+		_primeval_boss_marker.visible = _area_matches_room(area, &"PV-08", &"primeval_caldera") and CampaignState.story_flags.get(&"primeval_caldera_open", false) and not CampaignState.story_flags.get(&"primeval_scenario_complete", false)
 	if _helios_boss_marker:
-		_helios_boss_marker.visible = area == "helios_core" and CampaignState.story_flags.get(&"helios_core_open", false) and not CampaignState.story_flags.get(&"helios_scenario_complete", false)
+		_helios_boss_marker.visible = _area_matches_room(area, &"HE-08", &"helios_core") and CampaignState.story_flags.get(&"helios_core_open", false) and not CampaignState.story_flags.get(&"helios_scenario_complete", false)
 	if _frosthold_boss_marker:
-		_frosthold_boss_marker.visible = area == "frosthold_throne" and CampaignState.story_flags.get(&"frosthold_throne_open", false) and not CampaignState.story_flags.get(&"frosthold_scenario_complete", false)
+		_frosthold_boss_marker.visible = _area_matches_room(area, &"FR-08", &"frosthold_throne") and CampaignState.story_flags.get(&"frosthold_throne_open", false) and not CampaignState.story_flags.get(&"frosthold_scenario_complete", false)
 	if _moonpetal_boss_marker:
-		_moonpetal_boss_marker.visible = area == "moonpetal_palace" and CampaignState.story_flags.get(&"moonpetal_palace_open", false) and not CampaignState.story_flags.get(&"moonpetal_scenario_complete", false)
+		_moonpetal_boss_marker.visible = _area_matches_room(area, &"MP-08", &"moonpetal_palace") and CampaignState.story_flags.get(&"moonpetal_palace_open", false) and not CampaignState.story_flags.get(&"moonpetal_scenario_complete", false)
 	if _empyreal_boss_marker:
-		_empyreal_boss_marker.visible = area == "empyreal_tribunal" and CampaignState.story_flags.get(&"empyreal_tribunal_open", false) and not CampaignState.story_flags.get(&"empyreal_scenario_complete", false)
+		_empyreal_boss_marker.visible = _area_matches_room(area, &"EM-09", &"empyreal_tribunal") and CampaignState.story_flags.get(&"empyreal_tribunal_open", false) and not CampaignState.story_flags.get(&"empyreal_scenario_complete", false)
 	# Treasure markers are also world nodes. Gate them to their authored room so
 	# adjacent stages cannot show a chest floating in the surrounding void.
 	for cache in get_tree().get_nodes_in_group(&"universe_treasure_cache"):
 		if cache is UniverseTreasureInteraction:
 			cache.visible = String(cache.area_id) == area
+
+
+func _area_matches_room(area: String, room_id: StringName, legacy_area: StringName = &"") -> bool:
+	return area == "manifest:%s" % room_id or (legacy_area != &"" and area == legacy_area)
 
 
 func _update_primeval_nest_gate() -> void:
