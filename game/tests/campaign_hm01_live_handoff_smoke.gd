@@ -19,6 +19,8 @@ const BALLROOM_SAFE_CELL := STAGING_ORIGIN + Vector2i(8, 3)
 const CONSERVATORY_SAFE_CELL := STAGING_ORIGIN + Vector2i(6, 3)
 const KITCHEN_SAFE_CELL := STAGING_ORIGIN + Vector2i(6, 3)
 const ANTECHAMBER_LIFT_SAFE_CELL := STAGING_ORIGIN + Vector2i(14, 10)
+const CHAPEL_SAFE_CELL := STAGING_ORIGIN + Vector2i(7, 3)
+const NURSERY_CHAPEL_SAFE_CELL := STAGING_ORIGIN + Vector2i(18, 4)
 
 
 func _ready() -> void:
@@ -219,10 +221,23 @@ func _run() -> void:
 	assert(kitchen_root.has_node("InteractionLayer/ManifestInteraction/Feature_service_lift"))
 	var antechamber_return_port: Node = runtime.get_node_or_null("ManifestPort_HM-16_Ne")
 	assert(antechamber_return_port and Gameboard.pixel_to_cell(antechamber_return_port.arrival_coordinates) == ANTECHAMBER_LIFT_SAFE_CELL)
+	runtime.call(&"activate", &"HM-05")
+	main._place_player(ARCHIVE_SAFE_CELL)
+	await get_tree().process_frame
+	var chapel_port: Node = runtime.get_node_or_null("ManifestPort_HM-05_Ne")
+	assert(chapel_port and Gameboard.pixel_to_cell(chapel_port.arrival_coordinates) == CHAPEL_SAFE_CELL)
+	chapel_port.call(&"_on_blackout")
+	main._place_player(CHAPEL_SAFE_CELL)
+	await get_tree().process_frame
+	assert(runtime.call(&"active_room_id") == &"HM-11")
+	var chapel_root: Node2D = streamer.call(&"active_root") as Node2D
+	assert(chapel_root.has_node("InteractionLayer/ManifestInteraction/Feature_stained_glass_alignment"))
+	var nursery_latch: Node = runtime.get_node_or_null("ManifestPort_HM-11_Ne")
+	assert(nursery_latch and Gameboard.pixel_to_cell(nursery_latch.arrival_coordinates) == NURSERY_CHAPEL_SAFE_CELL)
 	var visual := main.get_node("Field/Map/CampaignWorld/GroundLayer/Visuals")
 	var foreground := main.get_node("Field/Map/CampaignWorld/ForegroundLayer/MansionForeground")
-	assert(visual.active_area == &"manifest:HM-16" and foreground.active_area == &"manifest:HM-16")
-	print("CAMPAIGN_HM01_LIVE_HANDOFF_SMOKE_OK entry=FI-05 HM-critical-spine=true clock_mirror_boss=true HM-02_to_HM-10_to_HM-15=true HM-05_to_HM-16_to_HM-08=true navigation=true archive+respite_save=true features=room_owned legacy_renderer=hidden camera=manifest")
+	assert(visual.active_area == &"manifest:HM-11" and foreground.active_area == &"manifest:HM-11")
+	print("CAMPAIGN_HM01_LIVE_HANDOFF_SMOKE_OK entry=FI-05 HM-critical-spine=true clock_mirror_boss=true optional_loops=HM10+HM16+HM11 navigation=true archive+respite_save=true features=room_owned legacy_renderer=hidden camera=manifest")
 	main.queue_free()
 	await get_tree().process_frame
 	get_tree().quit()
