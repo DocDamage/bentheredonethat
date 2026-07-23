@@ -278,6 +278,15 @@ static func room(room_id: StringName) -> Dictionary:
 	elif room_id == &"FR-03": definition.merge({"scenePath":"res://ben_rpg/world/rooms/frosthold_frozen_market.tscn","worldOrigin":Vector2i(500,0),"enabledPortIds":[&"Nw",&"Ne",&"E1",&"E2"]},true)
 	elif room_id == &"FR-04": definition.merge({"scenePath":"res://ben_rpg/world/rooms/frosthold_crystal_causeway_west.tscn","worldOrigin":Vector2i(500,0),"enabledPortIds":[&"Nw",&"Ne",&"E1"]},true)
 	elif room_id == &"FR-05": definition.merge({"scenePath":"res://ben_rpg/world/rooms/frosthold_first_thermal_lien.tscn","worldOrigin":Vector2i(500,0),"enabledPortIds":[&"Nw",&"Ne"]},true)
+	elif room_id == &"FR-06": definition.merge({"scenePath":"res://ben_rpg/world/rooms/frosthold_lien_device_hall.tscn","worldOrigin":Vector2i(500,0),"enabledPortIds":[&"Nw",&"Ne",&"E1",&"E2"]},true)
+	elif room_id == &"FR-07": definition.merge({"scenePath":"res://ben_rpg/world/rooms/frosthold_rune_throne_approach.tscn","worldOrigin":Vector2i(500,0),"enabledPortIds":[&"Nw",&"Ne",&"E1",&"E2"]},true)
+	elif room_id == &"FR-08": definition.merge({"scenePath":"res://ben_rpg/world/rooms/frosthold_white_court_chamber.tscn","worldOrigin":Vector2i(500,0),"enabledPortIds":[&"Nw",&"Ne"],"featureIds":[&"frosthold_white_court_boss"]},true)
+	elif room_id == &"FR-09": definition.merge({"scenePath":"res://ben_rpg/world/rooms/frosthold_lower_village_hearthline.tscn","worldOrigin":Vector2i(500,0),"enabledPortIds":[&"Nw",&"Ne"],"featureIds":[&"hearthline_relief"]},true)
+	elif room_id == &"FR-10": definition.merge({"scenePath":"res://ben_rpg/world/rooms/frosthold_crystalice_forest.tscn","worldOrigin":Vector2i(500,0),"enabledPortIds":[&"Nw",&"Ne"],"featureIds":[&"whiteout_safe_trail"]},true)
+	elif room_id == &"FR-11": definition.merge({"scenePath":"res://ben_rpg/world/rooms/frosthold_blueglass_ice_cavern.tscn","worldOrigin":Vector2i(500,0),"enabledPortIds":[&"Nw",&"Ne"],"featureIds":[&"reflection_latch"]},true)
+	elif room_id == &"FR-12": definition.merge({"scenePath":"res://ben_rpg/world/rooms/frosthold_treasury_collected_warmth.tscn","worldOrigin":Vector2i(500,0),"enabledPortIds":[&"Nw"],"featureIds":[&"three_audit_seals"]},true)
+	elif room_id == &"FR-13": definition.merge({"scenePath":"res://ben_rpg/world/rooms/frosthold_furnace_aqueduct.tscn","worldOrigin":Vector2i(500,0),"enabledPortIds":[&"Nw",&"Ne",&"E1"],"featureIds":[&"furnace_shortcut"]},true)
+	elif room_id == &"FR-14": definition.merge({"scenePath":"res://ben_rpg/world/rooms/frosthold_meltwater_sluice.tscn","worldOrigin":Vector2i(500,0),"enabledPortIds":[&"Nw",&"Ne",&"E1"],"featureIds":[&"accessible_return_walkway"]},true)
 	elif room_id == &"PV-01":
 		definition.merge({"scenePath": "res://ben_rpg/world/rooms/primeval_thunderfern_grove.tscn", "worldOrigin": Vector2i(400, 0), "enabledPortIds": [&"Nw", &"Ne", &"E1"], "portGates": {&"E1": &"primeval_terminal_decoded"}, "featureIds": [&"grove_intro_battle", &"looping_clearings", &"canopy_occlusion", &"tyrant_tracks"]}, true)
 	elif room_id == &"PV-02":
