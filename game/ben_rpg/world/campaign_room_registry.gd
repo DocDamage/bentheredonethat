@@ -28,6 +28,19 @@ const EMPYREAL_ROOM_IDS := [
 	&"EM-09", &"EM-10", &"EM-11", &"EM-12", &"EM-13", &"EM-14", &"EM-15", &"EM-16",
 ]
 
+## Facility portal records keep the town-facing name, entry room, and full
+## manifest graph together. Bootstrap only supplies the constructed lot's door
+## and return cells; new authored worlds require data here, not a new branch.
+const FACILITY_PORTALS := {
+	&"Haunted Mansion": {"prefix": "HauntedMansion", "entryRoomId": &"HM-01", "roomIds": MANSION_ROOM_IDS, "destinationId": &"haunted_mansion"},
+	&"Observatory": {"prefix": "AsterionStation", "entryRoomId": &"AS-01", "roomIds": ASTERION_ROOM_IDS},
+	&"Trailhead Lodge": {"prefix": "PrimevalExpanse", "entryRoomId": &"PV-01", "roomIds": PRIMEVAL_ROOM_IDS},
+	&"Afterlight Club": {"prefix": "HeliosArcology", "entryRoomId": &"HE-01", "roomIds": HELIOS_ROOM_IDS},
+	&"Cold Storage": {"prefix": "FrostholdKingdom", "entryRoomId": &"FR-01", "roomIds": FROSTHOLD_ROOM_IDS},
+	&"Tea House": {"prefix": "MoonpetalCourt", "entryRoomId": &"MP-01", "roomIds": MOONPETAL_ROOM_IDS},
+	&"Belfry": {"prefix": "EmpyrealCourt", "entryRoomId": &"EM-01", "roomIds": EMPYREAL_ROOM_IDS},
+}
+
 # Section 23.2 blueprint records. Coordinates are room-local movement cells;
 # the camera contract is derived from these dimensions at 48 world pixels per
 # cell. Keeping this matrix here prevents future rooms from inventing offsets in
@@ -254,6 +267,14 @@ static func _population_anchor_cells(dimensions: Vector2i, anchors: Array[String
 
 static func has_room(room_id: StringName) -> bool:
 	return MANSION_ROOMS.has(room_id) or ASTERION_ROOMS.has(room_id) or PRIMEVAL_ROOMS.has(room_id) or HELIOS_ROOMS.has(room_id) or FROSTHOLD_ROOMS.has(room_id) or MOONPETAL_ROOMS.has(room_id) or EMPYREAL_ROOMS.has(room_id) or MANIFEST_TEST_ROOMS.has(room_id)
+
+
+static func facility_portal(facility_name: StringName) -> Dictionary:
+	return (FACILITY_PORTALS.get(facility_name, {}) as Dictionary).duplicate(true)
+
+
+static func facility_portals() -> Dictionary:
+	return FACILITY_PORTALS.duplicate(true)
 
 
 static func room(room_id: StringName) -> Dictionary:
@@ -758,8 +779,27 @@ static func validate() -> PackedStringArray:
 	if _reachable_room_count(&"FR-01") != FROSTHOLD_ROOM_IDS.size(): errors.append("Frosthold room graph is not connected from FR-01.")
 	if _reachable_room_count(&"MP-01") != MOONPETAL_ROOM_IDS.size(): errors.append("Moonpetal room graph is not connected from MP-01.")
 	if _reachable_room_count(&"EM-01") != EMPYREAL_ROOM_IDS.size(): errors.append("Empyreal room graph is not connected from EM-01.")
+	_validate_facility_portals(errors)
 	_validate_manifest_test_rooms(errors)
 	return PackedStringArray(errors)
+
+
+static func _validate_facility_portals(errors: Array[String]) -> void:
+	if FACILITY_PORTALS.size() != 7:
+		errors.append("Manifest facility portal registry must define all seven authored worlds.")
+	for facility_name in FACILITY_PORTALS:
+		var portal: Dictionary = FACILITY_PORTALS[facility_name]
+		var prefix := String(portal.get("prefix", ""))
+		var entry_room_id := StringName(portal.get("entryRoomId", &""))
+		var portal_room_ids: Array = portal.get("roomIds", [])
+		if prefix == "" or entry_room_id == &"" or portal_room_ids.is_empty():
+			errors.append("Facility %s has an incomplete manifest portal record." % facility_name)
+			continue
+		if entry_room_id not in portal_room_ids or not has_room(entry_room_id):
+			errors.append("Facility %s entry room %s is not in its manifest graph." % [facility_name, entry_room_id])
+		for room_id in portal_room_ids:
+			if not has_room(room_id):
+				errors.append("Facility %s references unknown room %s." % [facility_name, room_id])
 
 
 static func _validate_manifest_test_rooms(errors: Array[String]) -> void:

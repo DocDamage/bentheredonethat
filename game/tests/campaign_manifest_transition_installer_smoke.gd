@@ -15,19 +15,24 @@ func _ready() -> void:
 	world.name = "CampaignWorld"
 	campaign.add_child(world)
 	var universes := [
-		{"prefix": "HauntedMansion", "entry": &"HM-01", "rooms": REGISTRY.MANSION_ROOM_IDS, "restricted": &"haunted_mansion"},
-		{"prefix": "AsterionStation", "entry": &"AS-01", "rooms": REGISTRY.ASTERION_ROOM_IDS},
-		{"prefix": "PrimevalExpanse", "entry": &"PV-01", "rooms": REGISTRY.PRIMEVAL_ROOM_IDS},
-		{"prefix": "HeliosArcology", "entry": &"HE-01", "rooms": REGISTRY.HELIOS_ROOM_IDS},
-		{"prefix": "FrostholdKingdom", "entry": &"FR-01", "rooms": REGISTRY.FROSTHOLD_ROOM_IDS},
-		{"prefix": "MoonpetalCourt", "entry": &"MP-01", "rooms": REGISTRY.MOONPETAL_ROOM_IDS},
-		{"prefix": "EmpyrealCourt", "entry": &"EM-01", "rooms": REGISTRY.EMPYREAL_ROOM_IDS},
+		{"facility": &"Haunted Mansion", "prefix": "HauntedMansion", "entry": &"HM-01", "rooms": REGISTRY.MANSION_ROOM_IDS, "restricted": &"haunted_mansion"},
+		{"facility": &"Observatory", "prefix": "AsterionStation", "entry": &"AS-01", "rooms": REGISTRY.ASTERION_ROOM_IDS},
+		{"facility": &"Trailhead Lodge", "prefix": "PrimevalExpanse", "entry": &"PV-01", "rooms": REGISTRY.PRIMEVAL_ROOM_IDS},
+		{"facility": &"Afterlight Club", "prefix": "HeliosArcology", "entry": &"HE-01", "rooms": REGISTRY.HELIOS_ROOM_IDS},
+		{"facility": &"Cold Storage", "prefix": "FrostholdKingdom", "entry": &"FR-01", "rooms": REGISTRY.FROSTHOLD_ROOM_IDS},
+		{"facility": &"Tea House", "prefix": "MoonpetalCourt", "entry": &"MP-01", "rooms": REGISTRY.MOONPETAL_ROOM_IDS},
+		{"facility": &"Belfry", "prefix": "EmpyrealCourt", "entry": &"EM-01", "rooms": REGISTRY.EMPYREAL_ROOM_IDS},
 	]
 	var total_routes := 0
 	for universe in universes:
+		var facility_name := StringName(universe["facility"])
 		var prefix := String(universe["prefix"])
 		var entry_room_id := StringName(universe["entry"])
 		var room_ids: Array = universe["rooms"]
+		var portal := REGISTRY.facility_portal(facility_name)
+		assert(portal.get("prefix", "") == prefix)
+		assert(StringName(portal.get("entryRoomId", &"")) == entry_room_id)
+		assert(portal.get("roomIds", []) == room_ids)
 		var arguments := [world, prefix, Vector2i(4, 4), Vector2i(2, 2), entry_room_id, room_ids]
 		if universe.has("restricted"):
 			arguments.append(StringName(universe["restricted"]))

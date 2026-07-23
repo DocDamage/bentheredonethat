@@ -969,20 +969,8 @@ func _apply_facility(plot_index: int, facility_name: String) -> void:
 	# the player in this frame cannot route through the new building.
 	var no_cleared_cells: Array[Vector2i] = []
 	_navigation.cells_changed.emit(no_cleared_cells, newly_blocked)
-	if facility_name == "Haunted Mansion":
-		_create_mansion_transitions(plot_index)
-	elif facility_name == "Observatory":
-		_create_asterion_transitions(plot_index)
-	elif facility_name == "Trailhead Lodge":
-		_create_primeval_transitions(plot_index)
-	elif facility_name == "Afterlight Club":
-		_create_helios_transitions(plot_index)
-	elif facility_name == "Cold Storage":
-		_create_frosthold_transitions(plot_index)
-	elif facility_name == "Tea House":
-		_create_moonpetal_transitions(plot_index)
-	elif facility_name == "Belfry":
-		_create_empyreal_transitions(plot_index)
+	if not ROOM_REGISTRY.facility_portal(StringName(facility_name)).is_empty():
+		_create_manifest_facility_portal(plot_index, facility_name)
 	else:
 		_ensure_facility_service(plot_index, facility_name)
 
@@ -1008,13 +996,7 @@ func _ensure_facility_service(plot_index: int, facility_name: String) -> void:
 func _restore_campaign_state() -> void:
 	for plot_index in CampaignState.built_facilities.keys():
 		_apply_facility(int(plot_index), CampaignState.built_facilities[plot_index])
-	_refresh_manifest_transition_group("HauntedMansionManifestTransitions", ROOM_REGISTRY.MANSION_ROOM_IDS)
-	_refresh_manifest_transition_group("AsterionStationManifestTransitions", ROOM_REGISTRY.ASTERION_ROOM_IDS)
-	_refresh_manifest_transition_group("PrimevalExpanseManifestTransitions", ROOM_REGISTRY.PRIMEVAL_ROOM_IDS)
-	_refresh_manifest_transition_group("HeliosArcologyManifestTransitions", ROOM_REGISTRY.HELIOS_ROOM_IDS)
-	_refresh_manifest_transition_group("FrostholdKingdomManifestTransitions", ROOM_REGISTRY.FROSTHOLD_ROOM_IDS)
-	_refresh_manifest_transition_group("MoonpetalCourtManifestTransitions", ROOM_REGISTRY.MOONPETAL_ROOM_IDS)
-	_refresh_manifest_transition_group("EmpyrealCourtManifestTransitions", ROOM_REGISTRY.EMPYREAL_ROOM_IDS)
+	_refresh_manifest_facility_transitions()
 	refresh_sandbox_object_collision()
 	if _sandbox_objects:
 		_sandbox_objects.queue_redraw()
@@ -1272,79 +1254,36 @@ func _spawn_fighter() -> void:
 	world.add_child(fighter)
 
 
-func _create_mansion_transitions(plot_index: int) -> void:
+func _create_manifest_facility_portal(plot_index: int, facility_name: String) -> void:
 	var world := get_node_or_null("Field/Map/CampaignWorld")
-	if not world or world.has_node("HauntedMansionEntrance"):
+	var portal := ROOM_REGISTRY.facility_portal(StringName(facility_name))
+	if not world or portal.is_empty():
 		return
 	var plot: Rect2i = FACILITY_PLOTS[plot_index]
 	var town_door := FACILITY_NAVIGATION.door_cell(TOWN_ORIGIN, plot)
 	var town_return := FACILITY_NAVIGATION.return_cell(TOWN_ORIGIN, plot)
-	_create_manifest_facility_transitions(world, "HauntedMansion", town_door, town_return, &"HM-01", ROOM_REGISTRY.MANSION_ROOM_IDS, &"haunted_mansion")
-
-
-func _create_asterion_transitions(plot_index: int) -> void:
-	var world := get_node_or_null("Field/Map/CampaignWorld")
-	if not world or world.has_node("AsterionStationEntrance"):
+	var prefix := String(portal.get("prefix", ""))
+	if prefix == "" or world.has_node("%sEntrance" % prefix):
 		return
-	var plot: Rect2i = FACILITY_PLOTS[plot_index]
-	var town_door := FACILITY_NAVIGATION.door_cell(TOWN_ORIGIN, plot)
-	var town_return := FACILITY_NAVIGATION.return_cell(TOWN_ORIGIN, plot)
-	_create_manifest_facility_transitions(world, "AsterionStation", town_door, town_return, &"AS-01", ROOM_REGISTRY.ASTERION_ROOM_IDS)
-	_spawn_astronaut()
+	_create_manifest_facility_transitions(
+		world,
+		prefix,
+		town_door,
+		town_return,
+		StringName(portal.get("entryRoomId", &"")),
+		portal.get("roomIds", []),
+		StringName(portal.get("destinationId", &"")),
+	)
+	_spawn_manifest_facility_recruit(StringName(facility_name))
 
 
-func _create_primeval_transitions(plot_index: int) -> void:
-	var world := get_node_or_null("Field/Map/CampaignWorld")
-	if not world or world.has_node("PrimevalExpanseEntrance"):
-		return
-	var plot: Rect2i = FACILITY_PLOTS[plot_index]
-	var town_door := FACILITY_NAVIGATION.door_cell(TOWN_ORIGIN, plot)
-	var town_return := FACILITY_NAVIGATION.return_cell(TOWN_ORIGIN, plot)
-	_create_manifest_facility_transitions(world, "PrimevalExpanse", town_door, town_return, &"PV-01", ROOM_REGISTRY.PRIMEVAL_ROOM_IDS)
-
-
-func _create_helios_transitions(plot_index: int) -> void:
-	var world := get_node_or_null("Field/Map/CampaignWorld")
-	if not world or world.has_node("HeliosArcologyEntrance"):
-		return
-	var plot: Rect2i = FACILITY_PLOTS[plot_index]
-	var town_door := FACILITY_NAVIGATION.door_cell(TOWN_ORIGIN, plot)
-	var town_return := FACILITY_NAVIGATION.return_cell(TOWN_ORIGIN, plot)
-	_create_manifest_facility_transitions(world, "HeliosArcology", town_door, town_return, &"HE-01", ROOM_REGISTRY.HELIOS_ROOM_IDS)
-	_spawn_neon_viper()
-
-
-func _create_frosthold_transitions(plot_index: int) -> void:
-	var world := get_node_or_null("Field/Map/CampaignWorld")
-	if not world or world.has_node("FrostholdKingdomEntrance"):
-		return
-	var plot: Rect2i = FACILITY_PLOTS[plot_index]
-	var town_door := FACILITY_NAVIGATION.door_cell(TOWN_ORIGIN, plot)
-	var town_return := FACILITY_NAVIGATION.return_cell(TOWN_ORIGIN, plot)
-	_create_manifest_facility_transitions(world, "FrostholdKingdom", town_door, town_return, &"FR-01", ROOM_REGISTRY.FROSTHOLD_ROOM_IDS)
-	_spawn_frost_lich()
-
-
-func _create_moonpetal_transitions(plot_index: int) -> void:
-	var world := get_node_or_null("Field/Map/CampaignWorld")
-	if not world or world.has_node("MoonpetalCourtEntrance"):
-		return
-	var plot: Rect2i = FACILITY_PLOTS[plot_index]
-	var town_door := FACILITY_NAVIGATION.door_cell(TOWN_ORIGIN, plot)
-	var town_return := FACILITY_NAVIGATION.return_cell(TOWN_ORIGIN, plot)
-	_create_manifest_facility_transitions(world, "MoonpetalCourt", town_door, town_return, &"MP-01", ROOM_REGISTRY.MOONPETAL_ROOM_IDS)
-	_spawn_kitsune()
-
-
-func _create_empyreal_transitions(plot_index: int) -> void:
-	var world := get_node_or_null("Field/Map/CampaignWorld")
-	if not world or world.has_node("EmpyrealCourtEntrance"):
-		return
-	var plot: Rect2i = FACILITY_PLOTS[plot_index]
-	var town_door := FACILITY_NAVIGATION.door_cell(TOWN_ORIGIN, plot)
-	var town_return := FACILITY_NAVIGATION.return_cell(TOWN_ORIGIN, plot)
-	_create_manifest_facility_transitions(world, "EmpyrealCourt", town_door, town_return, &"EM-01", ROOM_REGISTRY.EMPYREAL_ROOM_IDS)
-	_spawn_archangel()
+func _spawn_manifest_facility_recruit(facility_name: StringName) -> void:
+	match facility_name:
+		&"Observatory": _spawn_astronaut()
+		&"Afterlight Club": _spawn_neon_viper()
+		&"Cold Storage": _spawn_frost_lich()
+		&"Tea House": _spawn_kitsune()
+		&"Belfry": _spawn_archangel()
 
 
 func _create_manifest_facility_transitions(world: Node2D, prefix: String, town_door: Vector2i, town_return: Vector2i, entry_room_id: StringName, room_ids: Array, destination_id: StringName = &"") -> void:
@@ -1413,6 +1352,14 @@ func _refresh_manifest_transition_group(container_name: String, room_ids: Array)
 	var container := world.get_node_or_null(container_name) as Node2D
 	if container:
 		_refresh_manifest_room_transitions(container, room_ids)
+
+
+func _refresh_manifest_facility_transitions() -> void:
+	for portal in ROOM_REGISTRY.facility_portals().values():
+		var prefix := String(portal.get("prefix", ""))
+		var room_ids: Array = portal.get("roomIds", [])
+		if prefix != "" and not room_ids.is_empty():
+			_refresh_manifest_transition_group("%sManifestTransitions" % prefix, room_ids)
 
 
 func _ensure_campaign_input() -> void:
@@ -2264,13 +2211,7 @@ func _spawn_empyreal_boss_marker(world: Node2D) -> void:
 
 
 func _on_campaign_state_changed() -> void:
-	_refresh_manifest_transition_group("HauntedMansionManifestTransitions", ROOM_REGISTRY.MANSION_ROOM_IDS)
-	_refresh_manifest_transition_group("AsterionStationManifestTransitions", ROOM_REGISTRY.ASTERION_ROOM_IDS)
-	_refresh_manifest_transition_group("PrimevalExpanseManifestTransitions", ROOM_REGISTRY.PRIMEVAL_ROOM_IDS)
-	_refresh_manifest_transition_group("HeliosArcologyManifestTransitions", ROOM_REGISTRY.HELIOS_ROOM_IDS)
-	_refresh_manifest_transition_group("FrostholdKingdomManifestTransitions", ROOM_REGISTRY.FROSTHOLD_ROOM_IDS)
-	_refresh_manifest_transition_group("MoonpetalCourtManifestTransitions", ROOM_REGISTRY.MOONPETAL_ROOM_IDS)
-	_refresh_manifest_transition_group("EmpyrealCourtManifestTransitions", ROOM_REGISTRY.EMPYREAL_ROOM_IDS)
+	_refresh_manifest_facility_transitions()
 	if _visual:
 		_visual.queue_redraw()
 	_sync_sandbox_authored_entities()
