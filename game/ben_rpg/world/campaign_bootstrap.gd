@@ -1269,6 +1269,15 @@ func _create_asterion_transitions(plot_index: int) -> void:
 	var entry_arrival := entry_origin + TRANSITION_ROUTER.safe_arrival_cell(&"AS-01", &"Nw")
 	world.add_child(_create_transition("AsterionStationEntrance", town_door, entry_arrival))
 	world.add_child(_create_transition("AsterionStationExit", entry_origin + entry_port, town_return))
+	# These authored station rooms still use their established physical layout.
+	# Keep its links live while the complete 14-room graph remains a validated
+	# manifest contract rather than exposing unbuilt destinations.
+	world.add_child(_create_transition("StationDockToMess", STATION_DOCK_TO_MESS, STATION_MESS_FROM_DOCK))
+	world.add_child(_create_transition("StationMessToDock", STATION_MESS_RETURN, STATION_DOCK_FROM_MESS))
+	world.add_child(_create_transition("StationMessToHydro", STATION_MESS_TO_HYDRO, STATION_HYDRO_FROM_MESS))
+	world.add_child(_create_transition("StationHydroToMess", STATION_HYDRO_RETURN, STATION_MESS_FROM_HYDRO))
+	world.add_child(_create_transition("StationMessToMedical", STATION_MESS_TO_MEDICAL, STATION_MEDICAL_FROM_MESS))
+	world.add_child(_create_transition("StationMedicalToMess", STATION_MEDICAL_RETURN, STATION_MESS_FROM_MEDICAL))
 	_spawn_astronaut()
 
 
@@ -1285,6 +1294,12 @@ func _create_primeval_transitions(plot_index: int) -> void:
 	var entry_port: Vector2i = (entry_room.get("portCells", {}) as Dictionary).get(&"Nw", Vector2i.ZERO)
 	world.add_child(_create_transition("PrimevalExpanseEntrance", town_door, entry_origin + TRANSITION_ROUTER.safe_arrival_cell(&"PV-01", &"Nw")))
 	world.add_child(_create_transition("PrimevalExpanseExit", entry_origin + entry_port, town_return))
+	# Preserve navigation through the five authored Primeval rooms until the
+	# remaining manifest rooms have their own approved scene implementations.
+	world.add_child(_create_transition("PrimevalGroveToVillage", PRIMEVAL_GROVE_TO_VILLAGE, PRIMEVAL_VILLAGE_FROM_GROVE))
+	world.add_child(_create_transition("PrimevalVillageToGrove", PRIMEVAL_VILLAGE_RETURN, PRIMEVAL_GROVE_FROM_VILLAGE))
+	world.add_child(_create_transition("PrimevalVillageToRuins", PRIMEVAL_VILLAGE_TO_RUINS, PRIMEVAL_RUINS_FROM_VILLAGE))
+	world.add_child(_create_transition("PrimevalRuinsToVillage", PRIMEVAL_RUINS_RETURN, PRIMEVAL_VILLAGE_FROM_RUINS))
 
 
 func _create_helios_transitions(plot_index: int) -> void:

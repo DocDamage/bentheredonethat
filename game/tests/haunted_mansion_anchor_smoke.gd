@@ -1,6 +1,9 @@
 extends Node
 
 
+const MANIFEST_ENTRY_CELL := Vector2i(306, 3)
+const MANIFEST_EXIT_CELL := Vector2i(306, 1)
+
 func _ready() -> void:
 	_run.call_deferred()
 
@@ -39,20 +42,20 @@ func _run() -> void:
 
 	FieldEvents.cell_selected.emit(Vector2i(64, 16))
 	await get_tree().create_timer(6.0).timeout
-	if GamepieceRegistry.get_cell(Player.gamepiece) != Vector2i(4, 38):
-		_fail("Town mansion door did not enter the Haunted Mansion foyer")
+	if GamepieceRegistry.get_cell(Player.gamepiece) != MANIFEST_ENTRY_CELL:
+		_fail("Town mansion door did not enter the manifest Mansion rain gate")
 		return
-	if main._camera_area != "mansion_foyer":
-		_fail("Camera did not switch to isolated Haunted Mansion bounds")
+	if main._camera_area != "manifest:HM-01":
+		_fail("Camera did not switch to the manifest Mansion room bounds")
 		return
 
-	FieldEvents.cell_selected.emit(Vector2i(4, 39))
+	FieldEvents.cell_selected.emit(MANIFEST_EXIT_CELL)
 	await get_tree().create_timer(1.5).timeout
 	if GamepieceRegistry.get_cell(Player.gamepiece) != Vector2i(64, 17):
 		_fail("Haunted Mansion exit did not return to the safe town side")
 		return
 
-	print("HAUNTED_MANSION_ANCHOR_SMOKE_OK build=plot5 enter=(4,38) return=(64,17)")
+	print("HAUNTED_MANSION_ANCHOR_SMOKE_OK build=plot5 enter=(306,3) return=(64,17) runtime=manifest")
 	main.queue_free()
 	await get_tree().process_frame
 	get_tree().quit(0)

@@ -86,6 +86,11 @@ const REQUIRED_MATERIAL_SOURCES := {
 	},
 }
 
+# The harness runs hundreds of economy-only simulations. Encounter rewards are
+# static campaign data, so cache their resolved Ducket totals instead of
+# rebuilding battle actors on every seeded route.
+static var _encounter_ducket_rewards: Dictionary = {}
+
 
 static func run_suite(runs_per_profile := 100) -> Dictionary:
 	var source_errors := validate_material_sources()
@@ -191,11 +196,14 @@ static func validate_material_sources() -> Array[String]:
 
 
 static func _grant_encounter_rewards(state: Dictionary, encounter_id: StringName) -> int:
-	var encounter := CampaignCombatDatabase.encounter(encounter_id)
-	var earned := 0
-	for index in range((encounter.get("enemies", []) as Array).size()):
-		var enemy_id := StringName(encounter["enemies"][index])
-		earned += int(CampaignCombatDatabase.enemy_actor(enemy_id, index).get("duckets", 0))
+	var earned := int(_encounter_ducket_rewards.get(encounter_id, -1))
+	if earned < 0:
+		var encounter := CampaignCombatDatabase.encounter(encounter_id)
+		earned = 0
+		for index in range((encounter.get("enemies", []) as Array).size()):
+			var enemy_id := StringName(encounter["enemies"][index])
+			earned += int(CampaignCombatDatabase.enemy_actor(enemy_id, index).get("duckets", 0))
+		_encounter_ducket_rewards[encounter_id] = earned
 	state["duckets"] = int(state["duckets"]) + earned
 	return earned
 
