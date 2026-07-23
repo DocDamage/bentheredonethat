@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://tests/campaign_encounter_runtime_smoke.gd" id="1_runtime"]
+
+[node name="CampaignEncounterRuntimeSmoke" type="Node"]
+script = ExtResource("1_runtime")

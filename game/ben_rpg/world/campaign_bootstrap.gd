@@ -175,29 +175,23 @@ const RESTRICTED_AREA_TRANSITION := preload("res://ben_rpg/world/restricted_area
 const TOWN_BUILD_CONTROLLER := preload("res://ben_rpg/world/town_build_controller.gd")
 const FIGHTER_GAMEPIECE := preload("res://ben_rpg/characters/fighter_gamepiece.tscn")
 const CAMPAIGN_BATTLE := preload("res://ben_rpg/combat/campaign_battle.tscn")
-const MANSION_ENCOUNTER_CONTROLLER := preload("res://ben_rpg/world/mansion_encounter_controller.gd")
+const ENCOUNTER_RUNTIME_SCRIPT := preload("res://ben_rpg/world/campaign_encounter_runtime.gd")
 const MANSION_CLUE := preload("res://ben_rpg/world/mansion_clue_interaction.tscn")
 const MANSION_CHAPTER_INTERACTION := preload("res://ben_rpg/world/mansion_chapter_interaction.tscn")
 const MANSION_SAVE_POINT := preload("res://ben_rpg/world/mansion_save_point.tscn")
-const ASTERION_ENCOUNTER_CONTROLLER := preload("res://ben_rpg/world/asterion_encounter_controller.gd")
 const ASTERION_INTERACTION := preload("res://ben_rpg/world/asterion_interaction.tscn")
 const ASTRONAUT_GAMEPIECE := preload("res://ben_rpg/characters/astronaut_gamepiece.tscn")
-const PRIMEVAL_ENCOUNTER_CONTROLLER := preload("res://ben_rpg/world/primeval_encounter_controller.gd")
 const PRIMEVAL_INTERACTION := preload("res://ben_rpg/world/primeval_interaction.tscn")
 const CAVEMAN_GAMEPIECE := preload("res://ben_rpg/characters/caveman_gamepiece.tscn")
-const HELIOS_ENCOUNTER_CONTROLLER := preload("res://ben_rpg/world/helios_encounter_controller.gd")
 const NEON_VIPER_GAMEPIECE := preload("res://ben_rpg/characters/neon_viper_gamepiece.tscn")
 const FROST_LICH_GAMEPIECE := preload("res://ben_rpg/characters/frost_lich_gamepiece.tscn")
-const FROSTHOLD_ENCOUNTER_CONTROLLER := preload("res://ben_rpg/world/frosthold_encounter_controller.gd")
 const KITSUNE_GAMEPIECE := preload("res://ben_rpg/characters/kitsune_gamepiece.tscn")
 const CRIMSON_ONI_GAMEPIECE := preload("res://ben_rpg/characters/crimson_oni_gamepiece.tscn")
 const RIFT_JACKAL_GAMEPIECE := preload("res://ben_rpg/characters/rift_jackal_gamepiece.tscn")
 const MOSSBACK_SURVEYOR_GAMEPIECE := preload("res://ben_rpg/characters/mossback_surveyor_gamepiece.tscn")
 const COBALT_COURIER_GAMEPIECE := preload("res://ben_rpg/characters/cobalt_courier_gamepiece.tscn")
 const BULKHEAD_WARDEN_GAMEPIECE := preload("res://ben_rpg/characters/bulkhead_warden_gamepiece.tscn")
-const MOONPETAL_ENCOUNTER_CONTROLLER := preload("res://ben_rpg/world/moonpetal_encounter_controller.gd")
 const ARCHANGEL_GAMEPIECE := preload("res://ben_rpg/characters/archangel_gamepiece.tscn")
-const EMPYREAL_ENCOUNTER_CONTROLLER := preload("res://ben_rpg/world/empyreal_encounter_controller.gd")
 const CAMPAIGN_MENU := preload("res://ben_rpg/ui/campaign_menu.tscn")
 const CAMPAIGN_TITLE_SCREEN := preload("res://ben_rpg/ui/campaign_title_screen.tscn")
 const CAMPAIGN_ENDING_OVERLAY := preload("res://ben_rpg/ui/campaign_ending_overlay.gd")
@@ -248,6 +242,7 @@ var _primeval_foreground
 var _helios_foreground
 var _weather_overlay
 var _battle: CampaignBattle
+var _encounter_runtime: Node
 var _mansion_boss_marker: Sprite2D
 var _station_boss_marker: Sprite2D
 var _primeval_boss_marker: Sprite2D
@@ -423,34 +418,10 @@ func _enter_tree() -> void:
 	_sandbox_editor.campaign = self
 	_sandbox_editor.renderer = _sandbox_objects
 	add_child(_sandbox_editor)
-	var encounter_controller := MANSION_ENCOUNTER_CONTROLLER.new() as MansionEncounterController
-	encounter_controller.name = "MansionEncounters"
-	encounter_controller.battle = _battle
-	encounter_layer.add_child(encounter_controller)
-	var station_encounters := ASTERION_ENCOUNTER_CONTROLLER.new() as AsterionEncounterController
-	station_encounters.name = "AsterionEncounters"
-	station_encounters.battle = _battle
-	encounter_layer.add_child(station_encounters)
-	var primeval_encounters := PRIMEVAL_ENCOUNTER_CONTROLLER.new() as PrimevalEncounterController
-	primeval_encounters.name = "PrimevalEncounters"
-	primeval_encounters.battle = _battle
-	encounter_layer.add_child(primeval_encounters)
-	var helios_encounters := HELIOS_ENCOUNTER_CONTROLLER.new() as HeliosEncounterController
-	helios_encounters.name = "HeliosEncounters"
-	helios_encounters.battle = _battle
-	encounter_layer.add_child(helios_encounters)
-	var frosthold_encounters := FROSTHOLD_ENCOUNTER_CONTROLLER.new() as FrostholdEncounterController
-	frosthold_encounters.name = "FrostholdEncounters"
-	frosthold_encounters.battle = _battle
-	encounter_layer.add_child(frosthold_encounters)
-	var moonpetal_encounters := MOONPETAL_ENCOUNTER_CONTROLLER.new() as MoonpetalEncounterController
-	moonpetal_encounters.name = "MoonpetalEncounters"
-	moonpetal_encounters.battle = _battle
-	encounter_layer.add_child(moonpetal_encounters)
-	var empyreal_encounters := EMPYREAL_ENCOUNTER_CONTROLLER.new() as EmpyrealEncounterController
-	empyreal_encounters.name = "EmpyrealEncounters"
-	empyreal_encounters.battle = _battle
-	encounter_layer.add_child(empyreal_encounters)
+	_encounter_runtime = ENCOUNTER_RUNTIME_SCRIPT.new()
+	_encounter_runtime.name = "CampaignEncounterRuntime"
+	world.add_child(_encounter_runtime)
+	_encounter_runtime.call(&"install_legacy_controllers", encounter_layer, _battle)
 	_spawn_mansion_clues(world)
 	_spawn_mansion_chapter_interactions(world)
 	_spawn_mansion_save_point(world)

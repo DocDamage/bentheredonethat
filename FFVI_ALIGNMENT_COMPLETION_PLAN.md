@@ -2933,8 +2933,10 @@ limit:
   remain incomplete; this status must not be treated as a release claim.
 - Later-universe layout, scenario, treasure, and Bulkhead Warden fixtures now
   resolve room-owned ports and interactions through the active streamer at
-  commit `9703b526`; the legacy encounter-controller coordinate regions and
-  global recruit compatibility nodes remain separately owned migration work.
+  commit `9703b526`. The seven legacy encounter controllers now live behind
+  `CampaignEncounterRuntime`; their coordinate regions remain a compatibility
+  adapter until individual rooms receive authored zones.
+  Global recruit compatibility nodes remain separately owned migration work.
 - Manifest navigation validation now checks all 102 room records for safe
   arrivals, follower space, connected required anchors, and declared
   navigation/collision IDs at commit `f55b0fcd`. The current generated
