@@ -72,11 +72,18 @@ jobs:
 
       - name: Import project global classes
         shell: pwsh
-        run: >
-          & "$env:GODOT_EXECUTABLE"
-          --headless
-          --path ./game
-          --import
+        run: |
+          # Dialogic's editor plugin is not part of the runtime contract, but
+          # Godot loads it during a project import.  The supplied editor assets
+          # contain stale UID references in a clean checkout, so disable only
+          # editor plugins for this headless class-cache import.  The runtime
+          # autoload and every isolated smoke scene keep their normal project
+          # configuration.
+          $project = 'game/project.godot'
+          $content = Get-Content -LiteralPath $project -Raw
+          $content = [regex]::Replace($content, '(?m)^enabled=PackedStringArray\([^\r\n]*\)$', 'enabled=PackedStringArray()')
+          Set-Content -LiteralPath $project -Value $content -NoNewline -Encoding utf8
+          & "$env:GODOT_EXECUTABLE" --headless --path ./game --import
 
       - name: Run isolated smoke suite
         shell: pwsh
