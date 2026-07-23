@@ -172,7 +172,8 @@ static func room(room_id: StringName) -> Dictionary:
 		definition.merge({
 			"scenePath": "res://ben_rpg/world/rooms/haunted_mansion_clock_passage.tscn",
 			"worldOrigin": Vector2i(300, 0),
-			"enabledPortIds": [&"Nw", &"Ne"],
+			"enabledPortIds": [&"Nw", &"Ne", &"E1"],
+			"portGates": {&"E1": &"mansion_temporal_secret_found"},
 			"visualProfileIds": [&"mansion_foyer_clock", &"mansion_foyer_passage_door"],
 			"featureIds": [&"pendulum_blade_timing", &"clock_444_gate"],
 		}, true)
@@ -283,6 +284,14 @@ static func room(room_id: StringName) -> Dictionary:
 			"visualProfileIds": [&"mansion_gallery_stage_curtain", &"mansion_gallery_upper_left_frame", &"mansion_gallery_upper_right_frame"],
 			"featureIds": [&"stained_glass_alignment", &"anti_curse_accessory", &"nursery_latch"],
 			"chapterInteractions": [{"nodeName": "ChapelGlass", "kind": &"chapel_alignment", "cell": Vector2i(11, 7)}],
+		}, true)
+	elif room_id == &"HM-12":
+		definition.merge({
+			"scenePath": "res://ben_rpg/world/rooms/haunted_mansion_undercroft.tscn",
+			"worldOrigin": Vector2i(300, 0),
+			"enabledPortIds": [&"Nw", &"Ne"],
+			"visualProfileIds": [&"mansion_archive_wall_plain_tile", &"mansion_archive_wall_lit_tile", &"mansion_gallery_stage_curtain"],
+			"featureIds": [&"temporal_field_note", &"anchor_dust_payoff", &"infernal_elite", &"two_sided_exit"],
 		}, true)
 	return definition
 
