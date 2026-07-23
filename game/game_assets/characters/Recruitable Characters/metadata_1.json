@@ -1,0 +1,439 @@
+{
+  "group_id": null,
+  "states": [
+    {
+      "character": {
+        "id": "c45548f3-827e-4b09-a7e7-41d2ae022d82",
+        "name": "Cthulhu",
+        "prompt": "Generate for me Cthulhu, the Prince of Darkness. Traditional Squid look and tentacles over his mouth. Retro 16 bit art style. Terrifying looking. The final boss of any game. Lovecraftian look.",
+        "size": {
+          "width": 244,
+          "height": 244
+        },
+        "template_id": "mannequin",
+        "directions": 8,
+        "view": "side",
+        "created_at": "2026-07-14T06:51:12.174057+00:00"
+      },
+      "folder": "Cthulhu",
+      "frames": {
+        "rotations": {
+          "south": "Cthulhu/rotations/south.png",
+          "south-east": "Cthulhu/rotations/south-east.png",
+          "east": "Cthulhu/rotations/east.png",
+          "north-east": "Cthulhu/rotations/north-east.png",
+          "north": "Cthulhu/rotations/north.png",
+          "north-west": "Cthulhu/rotations/north-west.png",
+          "west": "Cthulhu/rotations/west.png",
+          "south-west": "Cthulhu/rotations/south-west.png"
+        },
+        "animations": {
+          "Cthulhu_Death": {
+            "north": [
+              "Cthulhu/animations/Cthulhu_Death/north/frame_000.png",
+              "Cthulhu/animations/Cthulhu_Death/north/frame_001.png",
+              "Cthulhu/animations/Cthulhu_Death/north/frame_002.png",
+              "Cthulhu/animations/Cthulhu_Death/north/frame_003.png",
+              "Cthulhu/animations/Cthulhu_Death/north/frame_004.png",
+              "Cthulhu/animations/Cthulhu_Death/north/frame_005.png",
+              "Cthulhu/animations/Cthulhu_Death/north/frame_006.png",
+              "Cthulhu/animations/Cthulhu_Death/north/frame_007.png"
+            ],
+            "west": [
+              "Cthulhu/animations/Cthulhu_Death/west/frame_000.png",
+              "Cthulhu/animations/Cthulhu_Death/west/frame_001.png",
+              "Cthulhu/animations/Cthulhu_Death/west/frame_002.png",
+              "Cthulhu/animations/Cthulhu_Death/west/frame_003.png",
+              "Cthulhu/animations/Cthulhu_Death/west/frame_004.png",
+              "Cthulhu/animations/Cthulhu_Death/west/frame_005.png",
+              "Cthulhu/animations/Cthulhu_Death/west/frame_006.png",
+              "Cthulhu/animations/Cthulhu_Death/west/frame_007.png"
+            ],
+            "north-west": [
+              "Cthulhu/animations/Cthulhu_Death/north-west/frame_000.png",
+              "Cthulhu/animations/Cthulhu_Death/north-west/frame_001.png",
+              "Cthulhu/animations/Cthulhu_Death/north-west/frame_002.png",
+              "Cthulhu/animations/Cthulhu_Death/north-west/frame_003.png",
+              "Cthulhu/animations/Cthulhu_Death/north-west/frame_004.png",
+              "Cthulhu/animations/Cthulhu_Death/north-west/frame_005.png",
+              "Cthulhu/animations/Cthulhu_Death/north-west/frame_006.png",
+              "Cthulhu/animations/Cthulhu_Death/north-west/frame_007.png"
+            ],
+            "north-east": [
+              "Cthulhu/animations/Cthulhu_Death/north-east/frame_000.png",
+              "Cthulhu/animations/Cthulhu_Death/north-east/frame_001.png",
+              "Cthulhu/animations/Cthulhu_Death/north-east/frame_002.png",
+              "Cthulhu/animations/Cthulhu_Death/north-east/frame_003.png",
+              "Cthulhu/animations/Cthulhu_Death/north-east/frame_004.png",
+              "Cthulhu/animations/Cthulhu_Death/north-east/frame_005.png",
+              "Cthulhu/animations/Cthulhu_Death/north-east/frame_006.png",
+              "Cthulhu/animations/Cthulhu_Death/north-east/frame_007.png"
+            ],
+            "east": [
+              "Cthulhu/animations/Cthulhu_Death/east/frame_000.png",
+              "Cthulhu/animations/Cthulhu_Death/east/frame_001.png",
+              "Cthulhu/animations/Cthulhu_Death/east/frame_002.png",
+              "Cthulhu/animations/Cthulhu_Death/east/frame_003.png",
+              "Cthulhu/animations/Cthulhu_Death/east/frame_004.png",
+              "Cthulhu/animations/Cthulhu_Death/east/frame_005.png",
+              "Cthulhu/animations/Cthulhu_Death/east/frame_006.png",
+              "Cthulhu/animations/Cthulhu_Death/east/frame_007.png"
+            ],
+            "south": [
+              "Cthulhu/animations/Cthulhu_Death/south/frame_000.png",
+              "Cthulhu/animations/Cthulhu_Death/south/frame_001.png",
+              "Cthulhu/animations/Cthulhu_Death/south/frame_002.png",
+              "Cthulhu/animations/Cthulhu_Death/south/frame_003.png",
+              "Cthulhu/animations/Cthulhu_Death/south/frame_004.png",
+              "Cthulhu/animations/Cthulhu_Death/south/frame_005.png",
+              "Cthulhu/animations/Cthulhu_Death/south/frame_006.png",
+              "Cthulhu/animations/Cthulhu_Death/south/frame_007.png"
+            ]
+          },
+          "Picking_Up": {
+            "south": [
+              "Cthulhu/animations/Picking_Up/south/frame_000.png",
+              "Cthulhu/animations/Picking_Up/south/frame_001.png",
+              "Cthulhu/animations/Picking_Up/south/frame_002.png",
+              "Cthulhu/animations/Picking_Up/south/frame_003.png",
+              "Cthulhu/animations/Picking_Up/south/frame_004.png"
+            ],
+            "east": [
+              "Cthulhu/animations/Picking_Up/east/frame_000.png",
+              "Cthulhu/animations/Picking_Up/east/frame_001.png",
+              "Cthulhu/animations/Picking_Up/east/frame_002.png",
+              "Cthulhu/animations/Picking_Up/east/frame_003.png",
+              "Cthulhu/animations/Picking_Up/east/frame_004.png"
+            ],
+            "north": [
+              "Cthulhu/animations/Picking_Up/north/frame_000.png",
+              "Cthulhu/animations/Picking_Up/north/frame_001.png",
+              "Cthulhu/animations/Picking_Up/north/frame_002.png",
+              "Cthulhu/animations/Picking_Up/north/frame_003.png",
+              "Cthulhu/animations/Picking_Up/north/frame_004.png"
+            ],
+            "south-east": [
+              "Cthulhu/animations/Picking_Up/south-east/frame_000.png",
+              "Cthulhu/animations/Picking_Up/south-east/frame_001.png",
+              "Cthulhu/animations/Picking_Up/south-east/frame_002.png",
+              "Cthulhu/animations/Picking_Up/south-east/frame_003.png",
+              "Cthulhu/animations/Picking_Up/south-east/frame_004.png"
+            ],
+            "west": [
+              "Cthulhu/animations/Picking_Up/west/frame_000.png",
+              "Cthulhu/animations/Picking_Up/west/frame_001.png",
+              "Cthulhu/animations/Picking_Up/west/frame_002.png",
+              "Cthulhu/animations/Picking_Up/west/frame_003.png",
+              "Cthulhu/animations/Picking_Up/west/frame_004.png"
+            ]
+          },
+          "Magic_Attacks": {
+            "south-east": [
+              "Cthulhu/animations/Magic_Attacks/south-east/frame_000.png",
+              "Cthulhu/animations/Magic_Attacks/south-east/frame_001.png",
+              "Cthulhu/animations/Magic_Attacks/south-east/frame_002.png",
+              "Cthulhu/animations/Magic_Attacks/south-east/frame_003.png",
+              "Cthulhu/animations/Magic_Attacks/south-east/frame_004.png",
+              "Cthulhu/animations/Magic_Attacks/south-east/frame_005.png"
+            ],
+            "south": [
+              "Cthulhu/animations/Magic_Attacks/south/frame_000.png",
+              "Cthulhu/animations/Magic_Attacks/south/frame_001.png",
+              "Cthulhu/animations/Magic_Attacks/south/frame_002.png",
+              "Cthulhu/animations/Magic_Attacks/south/frame_003.png",
+              "Cthulhu/animations/Magic_Attacks/south/frame_004.png",
+              "Cthulhu/animations/Magic_Attacks/south/frame_005.png"
+            ],
+            "north": [
+              "Cthulhu/animations/Magic_Attacks/north/frame_000.png",
+              "Cthulhu/animations/Magic_Attacks/north/frame_001.png",
+              "Cthulhu/animations/Magic_Attacks/north/frame_002.png",
+              "Cthulhu/animations/Magic_Attacks/north/frame_003.png",
+              "Cthulhu/animations/Magic_Attacks/north/frame_004.png",
+              "Cthulhu/animations/Magic_Attacks/north/frame_005.png",
+              "Cthulhu/animations/Magic_Attacks/north/frame_006.png"
+            ],
+            "east": [
+              "Cthulhu/animations/Magic_Attacks/east/frame_000.png",
+              "Cthulhu/animations/Magic_Attacks/east/frame_001.png",
+              "Cthulhu/animations/Magic_Attacks/east/frame_002.png",
+              "Cthulhu/animations/Magic_Attacks/east/frame_003.png",
+              "Cthulhu/animations/Magic_Attacks/east/frame_004.png",
+              "Cthulhu/animations/Magic_Attacks/east/frame_005.png",
+              "Cthulhu/animations/Magic_Attacks/east/frame_006.png"
+            ],
+            "south-west": [
+              "Cthulhu/animations/Magic_Attacks/south-west/frame_000.png",
+              "Cthulhu/animations/Magic_Attacks/south-west/frame_001.png",
+              "Cthulhu/animations/Magic_Attacks/south-west/frame_002.png",
+              "Cthulhu/animations/Magic_Attacks/south-west/frame_003.png",
+              "Cthulhu/animations/Magic_Attacks/south-west/frame_004.png",
+              "Cthulhu/animations/Magic_Attacks/south-west/frame_005.png"
+            ],
+            "north-west": [
+              "Cthulhu/animations/Magic_Attacks/north-west/frame_000.png",
+              "Cthulhu/animations/Magic_Attacks/north-west/frame_001.png",
+              "Cthulhu/animations/Magic_Attacks/north-west/frame_002.png",
+              "Cthulhu/animations/Magic_Attacks/north-west/frame_003.png",
+              "Cthulhu/animations/Magic_Attacks/north-west/frame_004.png",
+              "Cthulhu/animations/Magic_Attacks/north-west/frame_005.png"
+            ],
+            "north-east": [
+              "Cthulhu/animations/Magic_Attacks/north-east/frame_000.png",
+              "Cthulhu/animations/Magic_Attacks/north-east/frame_001.png",
+              "Cthulhu/animations/Magic_Attacks/north-east/frame_002.png",
+              "Cthulhu/animations/Magic_Attacks/north-east/frame_003.png",
+              "Cthulhu/animations/Magic_Attacks/north-east/frame_004.png",
+              "Cthulhu/animations/Magic_Attacks/north-east/frame_005.png"
+            ],
+            "west": [
+              "Cthulhu/animations/Magic_Attacks/west/frame_000.png",
+              "Cthulhu/animations/Magic_Attacks/west/frame_001.png",
+              "Cthulhu/animations/Magic_Attacks/west/frame_002.png",
+              "Cthulhu/animations/Magic_Attacks/west/frame_003.png",
+              "Cthulhu/animations/Magic_Attacks/west/frame_004.png",
+              "Cthulhu/animations/Magic_Attacks/west/frame_005.png",
+              "Cthulhu/animations/Magic_Attacks/west/frame_006.png"
+            ]
+          },
+          "Spellcasting": {
+            "east": [
+              "Cthulhu/animations/Spellcasting/east/frame_000.png",
+              "Cthulhu/animations/Spellcasting/east/frame_001.png",
+              "Cthulhu/animations/Spellcasting/east/frame_002.png",
+              "Cthulhu/animations/Spellcasting/east/frame_003.png",
+              "Cthulhu/animations/Spellcasting/east/frame_004.png",
+              "Cthulhu/animations/Spellcasting/east/frame_005.png"
+            ],
+            "south": [
+              "Cthulhu/animations/Spellcasting/south/frame_000.png",
+              "Cthulhu/animations/Spellcasting/south/frame_001.png",
+              "Cthulhu/animations/Spellcasting/south/frame_002.png",
+              "Cthulhu/animations/Spellcasting/south/frame_003.png",
+              "Cthulhu/animations/Spellcasting/south/frame_004.png",
+              "Cthulhu/animations/Spellcasting/south/frame_005.png"
+            ],
+            "west": [
+              "Cthulhu/animations/Spellcasting/west/frame_000.png",
+              "Cthulhu/animations/Spellcasting/west/frame_001.png",
+              "Cthulhu/animations/Spellcasting/west/frame_002.png",
+              "Cthulhu/animations/Spellcasting/west/frame_003.png",
+              "Cthulhu/animations/Spellcasting/west/frame_004.png",
+              "Cthulhu/animations/Spellcasting/west/frame_005.png"
+            ],
+            "north": [
+              "Cthulhu/animations/Spellcasting/north/frame_000.png",
+              "Cthulhu/animations/Spellcasting/north/frame_001.png",
+              "Cthulhu/animations/Spellcasting/north/frame_002.png",
+              "Cthulhu/animations/Spellcasting/north/frame_003.png",
+              "Cthulhu/animations/Spellcasting/north/frame_004.png",
+              "Cthulhu/animations/Spellcasting/north/frame_005.png"
+            ]
+          },
+          "Falling_Back_Death": {
+            "south-east": [
+              "Cthulhu/animations/Falling_Back_Death/south-east/frame_000.png",
+              "Cthulhu/animations/Falling_Back_Death/south-east/frame_001.png",
+              "Cthulhu/animations/Falling_Back_Death/south-east/frame_002.png",
+              "Cthulhu/animations/Falling_Back_Death/south-east/frame_003.png",
+              "Cthulhu/animations/Falling_Back_Death/south-east/frame_004.png",
+              "Cthulhu/animations/Falling_Back_Death/south-east/frame_005.png",
+              "Cthulhu/animations/Falling_Back_Death/south-east/frame_006.png"
+            ],
+            "north": [
+              "Cthulhu/animations/Falling_Back_Death/north/frame_000.png",
+              "Cthulhu/animations/Falling_Back_Death/north/frame_001.png",
+              "Cthulhu/animations/Falling_Back_Death/north/frame_002.png",
+              "Cthulhu/animations/Falling_Back_Death/north/frame_003.png",
+              "Cthulhu/animations/Falling_Back_Death/north/frame_004.png",
+              "Cthulhu/animations/Falling_Back_Death/north/frame_005.png",
+              "Cthulhu/animations/Falling_Back_Death/north/frame_006.png"
+            ],
+            "south-west": [
+              "Cthulhu/animations/Falling_Back_Death/south-west/frame_000.png",
+              "Cthulhu/animations/Falling_Back_Death/south-west/frame_001.png",
+              "Cthulhu/animations/Falling_Back_Death/south-west/frame_002.png",
+              "Cthulhu/animations/Falling_Back_Death/south-west/frame_003.png",
+              "Cthulhu/animations/Falling_Back_Death/south-west/frame_004.png",
+              "Cthulhu/animations/Falling_Back_Death/south-west/frame_005.png",
+              "Cthulhu/animations/Falling_Back_Death/south-west/frame_006.png"
+            ],
+            "north-east": [
+              "Cthulhu/animations/Falling_Back_Death/north-east/frame_000.png",
+              "Cthulhu/animations/Falling_Back_Death/north-east/frame_001.png",
+              "Cthulhu/animations/Falling_Back_Death/north-east/frame_002.png",
+              "Cthulhu/animations/Falling_Back_Death/north-east/frame_003.png",
+              "Cthulhu/animations/Falling_Back_Death/north-east/frame_004.png",
+              "Cthulhu/animations/Falling_Back_Death/north-east/frame_005.png",
+              "Cthulhu/animations/Falling_Back_Death/north-east/frame_006.png"
+            ],
+            "north-west": [
+              "Cthulhu/animations/Falling_Back_Death/north-west/frame_000.png",
+              "Cthulhu/animations/Falling_Back_Death/north-west/frame_001.png",
+              "Cthulhu/animations/Falling_Back_Death/north-west/frame_002.png",
+              "Cthulhu/animations/Falling_Back_Death/north-west/frame_003.png",
+              "Cthulhu/animations/Falling_Back_Death/north-west/frame_004.png",
+              "Cthulhu/animations/Falling_Back_Death/north-west/frame_005.png",
+              "Cthulhu/animations/Falling_Back_Death/north-west/frame_006.png"
+            ],
+            "south": [
+              "Cthulhu/animations/Falling_Back_Death/south/frame_000.png",
+              "Cthulhu/animations/Falling_Back_Death/south/frame_001.png",
+              "Cthulhu/animations/Falling_Back_Death/south/frame_002.png",
+              "Cthulhu/animations/Falling_Back_Death/south/frame_003.png",
+              "Cthulhu/animations/Falling_Back_Death/south/frame_004.png",
+              "Cthulhu/animations/Falling_Back_Death/south/frame_005.png",
+              "Cthulhu/animations/Falling_Back_Death/south/frame_006.png"
+            ]
+          },
+          "Breathing_Idle": {
+            "south": [
+              "Cthulhu/animations/Breathing_Idle/south/frame_000.png",
+              "Cthulhu/animations/Breathing_Idle/south/frame_001.png",
+              "Cthulhu/animations/Breathing_Idle/south/frame_002.png",
+              "Cthulhu/animations/Breathing_Idle/south/frame_003.png"
+            ],
+            "north": [
+              "Cthulhu/animations/Breathing_Idle/north/frame_000.png",
+              "Cthulhu/animations/Breathing_Idle/north/frame_001.png",
+              "Cthulhu/animations/Breathing_Idle/north/frame_002.png",
+              "Cthulhu/animations/Breathing_Idle/north/frame_003.png"
+            ],
+            "east": [
+              "Cthulhu/animations/Breathing_Idle/east/frame_000.png",
+              "Cthulhu/animations/Breathing_Idle/east/frame_001.png",
+              "Cthulhu/animations/Breathing_Idle/east/frame_002.png",
+              "Cthulhu/animations/Breathing_Idle/east/frame_003.png"
+            ],
+            "west": [
+              "Cthulhu/animations/Breathing_Idle/west/frame_000.png",
+              "Cthulhu/animations/Breathing_Idle/west/frame_001.png",
+              "Cthulhu/animations/Breathing_Idle/west/frame_002.png",
+              "Cthulhu/animations/Breathing_Idle/west/frame_003.png"
+            ]
+          },
+          "Telekinesis_Mind_Control": {
+            "north-west": [
+              "Cthulhu/animations/Telekinesis_Mind_Control/north-west/frame_000.png",
+              "Cthulhu/animations/Telekinesis_Mind_Control/north-west/frame_001.png",
+              "Cthulhu/animations/Telekinesis_Mind_Control/north-west/frame_002.png",
+              "Cthulhu/animations/Telekinesis_Mind_Control/north-west/frame_003.png",
+              "Cthulhu/animations/Telekinesis_Mind_Control/north-west/frame_004.png",
+              "Cthulhu/animations/Telekinesis_Mind_Control/north-west/frame_005.png"
+            ],
+            "west": [
+              "Cthulhu/animations/Telekinesis_Mind_Control/west/frame_000.png",
+              "Cthulhu/animations/Telekinesis_Mind_Control/west/frame_001.png",
+              "Cthulhu/animations/Telekinesis_Mind_Control/west/frame_002.png",
+              "Cthulhu/animations/Telekinesis_Mind_Control/west/frame_003.png",
+              "Cthulhu/animations/Telekinesis_Mind_Control/west/frame_004.png",
+              "Cthulhu/animations/Telekinesis_Mind_Control/west/frame_005.png",
+              "Cthulhu/animations/Telekinesis_Mind_Control/west/frame_006.png"
+            ],
+            "south-west": [
+              "Cthulhu/animations/Telekinesis_Mind_Control/south-west/frame_000.png",
+              "Cthulhu/animations/Telekinesis_Mind_Control/south-west/frame_001.png",
+              "Cthulhu/animations/Telekinesis_Mind_Control/south-west/frame_002.png",
+              "Cthulhu/animations/Telekinesis_Mind_Control/south-west/frame_003.png",
+              "Cthulhu/animations/Telekinesis_Mind_Control/south-west/frame_004.png",
+              "Cthulhu/animations/Telekinesis_Mind_Control/south-west/frame_005.png"
+            ],
+            "north": [
+              "Cthulhu/animations/Telekinesis_Mind_Control/north/frame_000.png",
+              "Cthulhu/animations/Telekinesis_Mind_Control/north/frame_001.png",
+              "Cthulhu/animations/Telekinesis_Mind_Control/north/frame_002.png",
+              "Cthulhu/animations/Telekinesis_Mind_Control/north/frame_003.png",
+              "Cthulhu/animations/Telekinesis_Mind_Control/north/frame_004.png",
+              "Cthulhu/animations/Telekinesis_Mind_Control/north/frame_005.png"
+            ],
+            "south-east": [
+              "Cthulhu/animations/Telekinesis_Mind_Control/south-east/frame_000.png",
+              "Cthulhu/animations/Telekinesis_Mind_Control/south-east/frame_001.png",
+              "Cthulhu/animations/Telekinesis_Mind_Control/south-east/frame_002.png",
+              "Cthulhu/animations/Telekinesis_Mind_Control/south-east/frame_003.png",
+              "Cthulhu/animations/Telekinesis_Mind_Control/south-east/frame_004.png",
+              "Cthulhu/animations/Telekinesis_Mind_Control/south-east/frame_005.png"
+            ],
+            "north-east": [
+              "Cthulhu/animations/Telekinesis_Mind_Control/north-east/frame_000.png",
+              "Cthulhu/animations/Telekinesis_Mind_Control/north-east/frame_001.png",
+              "Cthulhu/animations/Telekinesis_Mind_Control/north-east/frame_002.png",
+              "Cthulhu/animations/Telekinesis_Mind_Control/north-east/frame_003.png",
+              "Cthulhu/animations/Telekinesis_Mind_Control/north-east/frame_004.png",
+              "Cthulhu/animations/Telekinesis_Mind_Control/north-east/frame_005.png"
+            ],
+            "east": [
+              "Cthulhu/animations/Telekinesis_Mind_Control/east/frame_000.png",
+              "Cthulhu/animations/Telekinesis_Mind_Control/east/frame_001.png",
+              "Cthulhu/animations/Telekinesis_Mind_Control/east/frame_002.png",
+              "Cthulhu/animations/Telekinesis_Mind_Control/east/frame_003.png",
+              "Cthulhu/animations/Telekinesis_Mind_Control/east/frame_004.png",
+              "Cthulhu/animations/Telekinesis_Mind_Control/east/frame_005.png",
+              "Cthulhu/animations/Telekinesis_Mind_Control/east/frame_006.png"
+            ],
+            "south": [
+              "Cthulhu/animations/Telekinesis_Mind_Control/south/frame_000.png",
+              "Cthulhu/animations/Telekinesis_Mind_Control/south/frame_001.png",
+              "Cthulhu/animations/Telekinesis_Mind_Control/south/frame_002.png",
+              "Cthulhu/animations/Telekinesis_Mind_Control/south/frame_003.png",
+              "Cthulhu/animations/Telekinesis_Mind_Control/south/frame_004.png",
+              "Cthulhu/animations/Telekinesis_Mind_Control/south/frame_005.png"
+            ]
+          },
+          "Walking": {
+            "east": [
+              "Cthulhu/animations/Walking/east/frame_000.png",
+              "Cthulhu/animations/Walking/east/frame_001.png",
+              "Cthulhu/animations/Walking/east/frame_002.png",
+              "Cthulhu/animations/Walking/east/frame_003.png",
+              "Cthulhu/animations/Walking/east/frame_004.png",
+              "Cthulhu/animations/Walking/east/frame_005.png"
+            ],
+            "north-east": [
+              "Cthulhu/animations/Walking/north-east/frame_000.png",
+              "Cthulhu/animations/Walking/north-east/frame_001.png",
+              "Cthulhu/animations/Walking/north-east/frame_002.png",
+              "Cthulhu/animations/Walking/north-east/frame_003.png",
+              "Cthulhu/animations/Walking/north-east/frame_004.png",
+              "Cthulhu/animations/Walking/north-east/frame_005.png"
+            ],
+            "south-east": [
+              "Cthulhu/animations/Walking/south-east/frame_000.png",
+              "Cthulhu/animations/Walking/south-east/frame_001.png",
+              "Cthulhu/animations/Walking/south-east/frame_002.png",
+              "Cthulhu/animations/Walking/south-east/frame_003.png",
+              "Cthulhu/animations/Walking/south-east/frame_004.png",
+              "Cthulhu/animations/Walking/south-east/frame_005.png"
+            ],
+            "north-west": [
+              "Cthulhu/animations/Walking/north-west/frame_000.png",
+              "Cthulhu/animations/Walking/north-west/frame_001.png",
+              "Cthulhu/animations/Walking/north-west/frame_002.png",
+              "Cthulhu/animations/Walking/north-west/frame_003.png",
+              "Cthulhu/animations/Walking/north-west/frame_004.png",
+              "Cthulhu/animations/Walking/north-west/frame_005.png"
+            ],
+            "west": [
+              "Cthulhu/animations/Walking/west/frame_000.png",
+              "Cthulhu/animations/Walking/west/frame_001.png",
+              "Cthulhu/animations/Walking/west/frame_002.png",
+              "Cthulhu/animations/Walking/west/frame_003.png",
+              "Cthulhu/animations/Walking/west/frame_004.png",
+              "Cthulhu/animations/Walking/west/frame_005.png"
+            ],
+            "south-west": [
+              "Cthulhu/animations/Walking/south-west/frame_000.png",
+              "Cthulhu/animations/Walking/south-west/frame_001.png",
+              "Cthulhu/animations/Walking/south-west/frame_002.png",
+              "Cthulhu/animations/Walking/south-west/frame_003.png",
+              "Cthulhu/animations/Walking/south-west/frame_004.png",
+              "Cthulhu/animations/Walking/south-west/frame_005.png"
+            ]
+          }
+        }
+      }
+    }
+  ],
+  "export_version": "3.1",
+  "export_date": "2026-07-14T14:17:49.036634"
+}

@@ -1,0 +1,914 @@
+{
+  "group_id": null,
+  "states": [
+    {
+      "character": {
+        "id": "5fcddf86-d9a9-4508-b68b-32988b265c0c",
+        "name": "Dracula",
+        "prompt": "Create dracula, with sharp pointed teeth and blood on the tips. All back with a cape. Pale white face. Tall, dark hair, scary looking. Light on his feet so he should be fairly thin. Strong but skinny frame. Terrifying, like Vlad the impaler.",
+        "size": {
+          "width": 92,
+          "height": 92
+        },
+        "template_id": "mannequin",
+        "directions": 8,
+        "view": "side",
+        "created_at": "2026-07-13T15:49:10.577646+00:00"
+      },
+      "folder": "Dracula",
+      "frames": {
+        "rotations": {
+          "south": "Dracula/rotations/south.png",
+          "south-east": "Dracula/rotations/south-east.png",
+          "east": "Dracula/rotations/east.png",
+          "north-east": "Dracula/rotations/north-east.png",
+          "north": "Dracula/rotations/north.png",
+          "north-west": "Dracula/rotations/north-west.png",
+          "west": "Dracula/rotations/west.png",
+          "south-west": "Dracula/rotations/south-west.png"
+        },
+        "animations": {
+          "Death": {
+            "north": [
+              "Dracula/animations/Death/north/frame_000.png",
+              "Dracula/animations/Death/north/frame_001.png",
+              "Dracula/animations/Death/north/frame_002.png",
+              "Dracula/animations/Death/north/frame_003.png",
+              "Dracula/animations/Death/north/frame_004.png",
+              "Dracula/animations/Death/north/frame_005.png",
+              "Dracula/animations/Death/north/frame_006.png",
+              "Dracula/animations/Death/north/frame_007.png",
+              "Dracula/animations/Death/north/frame_008.png",
+              "Dracula/animations/Death/north/frame_009.png",
+              "Dracula/animations/Death/north/frame_010.png",
+              "Dracula/animations/Death/north/frame_011.png",
+              "Dracula/animations/Death/north/frame_012.png",
+              "Dracula/animations/Death/north/frame_013.png",
+              "Dracula/animations/Death/north/frame_014.png"
+            ],
+            "east": [
+              "Dracula/animations/Death/east/frame_000.png",
+              "Dracula/animations/Death/east/frame_001.png",
+              "Dracula/animations/Death/east/frame_002.png",
+              "Dracula/animations/Death/east/frame_003.png",
+              "Dracula/animations/Death/east/frame_004.png",
+              "Dracula/animations/Death/east/frame_005.png",
+              "Dracula/animations/Death/east/frame_006.png",
+              "Dracula/animations/Death/east/frame_007.png",
+              "Dracula/animations/Death/east/frame_008.png",
+              "Dracula/animations/Death/east/frame_009.png",
+              "Dracula/animations/Death/east/frame_010.png",
+              "Dracula/animations/Death/east/frame_011.png",
+              "Dracula/animations/Death/east/frame_012.png",
+              "Dracula/animations/Death/east/frame_013.png",
+              "Dracula/animations/Death/east/frame_014.png"
+            ],
+            "south": [
+              "Dracula/animations/Death/south/frame_000.png",
+              "Dracula/animations/Death/south/frame_001.png",
+              "Dracula/animations/Death/south/frame_002.png",
+              "Dracula/animations/Death/south/frame_003.png",
+              "Dracula/animations/Death/south/frame_004.png",
+              "Dracula/animations/Death/south/frame_005.png",
+              "Dracula/animations/Death/south/frame_006.png",
+              "Dracula/animations/Death/south/frame_007.png",
+              "Dracula/animations/Death/south/frame_008.png",
+              "Dracula/animations/Death/south/frame_009.png",
+              "Dracula/animations/Death/south/frame_010.png",
+              "Dracula/animations/Death/south/frame_011.png",
+              "Dracula/animations/Death/south/frame_012.png",
+              "Dracula/animations/Death/south/frame_013.png",
+              "Dracula/animations/Death/south/frame_014.png"
+            ],
+            "west": [
+              "Dracula/animations/Death/west/frame_000.png",
+              "Dracula/animations/Death/west/frame_001.png",
+              "Dracula/animations/Death/west/frame_002.png",
+              "Dracula/animations/Death/west/frame_003.png",
+              "Dracula/animations/Death/west/frame_004.png",
+              "Dracula/animations/Death/west/frame_005.png",
+              "Dracula/animations/Death/west/frame_006.png",
+              "Dracula/animations/Death/west/frame_007.png",
+              "Dracula/animations/Death/west/frame_008.png",
+              "Dracula/animations/Death/west/frame_009.png",
+              "Dracula/animations/Death/west/frame_010.png",
+              "Dracula/animations/Death/west/frame_011.png",
+              "Dracula/animations/Death/west/frame_012.png",
+              "Dracula/animations/Death/west/frame_013.png",
+              "Dracula/animations/Death/west/frame_014.png"
+            ]
+          },
+          "Disappear": {
+            "south": [
+              "Dracula/animations/Disappear/south/frame_000.png",
+              "Dracula/animations/Disappear/south/frame_001.png",
+              "Dracula/animations/Disappear/south/frame_002.png",
+              "Dracula/animations/Disappear/south/frame_003.png",
+              "Dracula/animations/Disappear/south/frame_004.png",
+              "Dracula/animations/Disappear/south/frame_005.png",
+              "Dracula/animations/Disappear/south/frame_006.png",
+              "Dracula/animations/Disappear/south/frame_007.png",
+              "Dracula/animations/Disappear/south/frame_008.png",
+              "Dracula/animations/Disappear/south/frame_009.png",
+              "Dracula/animations/Disappear/south/frame_010.png",
+              "Dracula/animations/Disappear/south/frame_011.png",
+              "Dracula/animations/Disappear/south/frame_012.png",
+              "Dracula/animations/Disappear/south/frame_013.png",
+              "Dracula/animations/Disappear/south/frame_014.png",
+              "Dracula/animations/Disappear/south/frame_015.png",
+              "Dracula/animations/Disappear/south/frame_016.png"
+            ],
+            "east": [
+              "Dracula/animations/Disappear/east/frame_000.png",
+              "Dracula/animations/Disappear/east/frame_001.png",
+              "Dracula/animations/Disappear/east/frame_002.png",
+              "Dracula/animations/Disappear/east/frame_003.png",
+              "Dracula/animations/Disappear/east/frame_004.png",
+              "Dracula/animations/Disappear/east/frame_005.png",
+              "Dracula/animations/Disappear/east/frame_006.png",
+              "Dracula/animations/Disappear/east/frame_007.png",
+              "Dracula/animations/Disappear/east/frame_008.png",
+              "Dracula/animations/Disappear/east/frame_009.png",
+              "Dracula/animations/Disappear/east/frame_010.png",
+              "Dracula/animations/Disappear/east/frame_011.png",
+              "Dracula/animations/Disappear/east/frame_012.png",
+              "Dracula/animations/Disappear/east/frame_013.png",
+              "Dracula/animations/Disappear/east/frame_014.png",
+              "Dracula/animations/Disappear/east/frame_015.png",
+              "Dracula/animations/Disappear/east/frame_016.png"
+            ],
+            "west": [
+              "Dracula/animations/Disappear/west/frame_000.png",
+              "Dracula/animations/Disappear/west/frame_001.png",
+              "Dracula/animations/Disappear/west/frame_002.png",
+              "Dracula/animations/Disappear/west/frame_003.png",
+              "Dracula/animations/Disappear/west/frame_004.png",
+              "Dracula/animations/Disappear/west/frame_005.png",
+              "Dracula/animations/Disappear/west/frame_006.png",
+              "Dracula/animations/Disappear/west/frame_007.png",
+              "Dracula/animations/Disappear/west/frame_008.png",
+              "Dracula/animations/Disappear/west/frame_009.png",
+              "Dracula/animations/Disappear/west/frame_010.png",
+              "Dracula/animations/Disappear/west/frame_011.png",
+              "Dracula/animations/Disappear/west/frame_012.png",
+              "Dracula/animations/Disappear/west/frame_013.png",
+              "Dracula/animations/Disappear/west/frame_014.png",
+              "Dracula/animations/Disappear/west/frame_015.png",
+              "Dracula/animations/Disappear/west/frame_016.png"
+            ],
+            "north": [
+              "Dracula/animations/Disappear/north/frame_000.png",
+              "Dracula/animations/Disappear/north/frame_001.png",
+              "Dracula/animations/Disappear/north/frame_002.png",
+              "Dracula/animations/Disappear/north/frame_003.png",
+              "Dracula/animations/Disappear/north/frame_004.png",
+              "Dracula/animations/Disappear/north/frame_005.png",
+              "Dracula/animations/Disappear/north/frame_006.png",
+              "Dracula/animations/Disappear/north/frame_007.png",
+              "Dracula/animations/Disappear/north/frame_008.png",
+              "Dracula/animations/Disappear/north/frame_009.png",
+              "Dracula/animations/Disappear/north/frame_010.png",
+              "Dracula/animations/Disappear/north/frame_011.png",
+              "Dracula/animations/Disappear/north/frame_012.png",
+              "Dracula/animations/Disappear/north/frame_013.png",
+              "Dracula/animations/Disappear/north/frame_014.png",
+              "Dracula/animations/Disappear/north/frame_015.png",
+              "Dracula/animations/Disappear/north/frame_016.png"
+            ]
+          },
+          "Drinking": {
+            "west": [
+              "Dracula/animations/Drinking/west/frame_000.png",
+              "Dracula/animations/Drinking/west/frame_001.png",
+              "Dracula/animations/Drinking/west/frame_002.png",
+              "Dracula/animations/Drinking/west/frame_003.png",
+              "Dracula/animations/Drinking/west/frame_004.png",
+              "Dracula/animations/Drinking/west/frame_005.png"
+            ],
+            "north-west": [
+              "Dracula/animations/Drinking/north-west/frame_000.png",
+              "Dracula/animations/Drinking/north-west/frame_001.png",
+              "Dracula/animations/Drinking/north-west/frame_002.png",
+              "Dracula/animations/Drinking/north-west/frame_003.png",
+              "Dracula/animations/Drinking/north-west/frame_004.png",
+              "Dracula/animations/Drinking/north-west/frame_005.png"
+            ],
+            "east": [
+              "Dracula/animations/Drinking/east/frame_000.png",
+              "Dracula/animations/Drinking/east/frame_001.png",
+              "Dracula/animations/Drinking/east/frame_002.png",
+              "Dracula/animations/Drinking/east/frame_003.png",
+              "Dracula/animations/Drinking/east/frame_004.png",
+              "Dracula/animations/Drinking/east/frame_005.png"
+            ],
+            "south": [
+              "Dracula/animations/Drinking/south/frame_000.png",
+              "Dracula/animations/Drinking/south/frame_001.png",
+              "Dracula/animations/Drinking/south/frame_002.png",
+              "Dracula/animations/Drinking/south/frame_003.png",
+              "Dracula/animations/Drinking/south/frame_004.png",
+              "Dracula/animations/Drinking/south/frame_005.png"
+            ],
+            "north-east": [
+              "Dracula/animations/Drinking/north-east/frame_000.png",
+              "Dracula/animations/Drinking/north-east/frame_001.png",
+              "Dracula/animations/Drinking/north-east/frame_002.png",
+              "Dracula/animations/Drinking/north-east/frame_003.png",
+              "Dracula/animations/Drinking/north-east/frame_004.png",
+              "Dracula/animations/Drinking/north-east/frame_005.png"
+            ]
+          },
+          "Flying_Kick": {
+            "south": [
+              "Dracula/animations/Flying_Kick/south/frame_000.png",
+              "Dracula/animations/Flying_Kick/south/frame_001.png",
+              "Dracula/animations/Flying_Kick/south/frame_002.png",
+              "Dracula/animations/Flying_Kick/south/frame_003.png",
+              "Dracula/animations/Flying_Kick/south/frame_004.png",
+              "Dracula/animations/Flying_Kick/south/frame_005.png"
+            ],
+            "east": [
+              "Dracula/animations/Flying_Kick/east/frame_000.png",
+              "Dracula/animations/Flying_Kick/east/frame_001.png",
+              "Dracula/animations/Flying_Kick/east/frame_002.png",
+              "Dracula/animations/Flying_Kick/east/frame_003.png",
+              "Dracula/animations/Flying_Kick/east/frame_004.png",
+              "Dracula/animations/Flying_Kick/east/frame_005.png"
+            ],
+            "north-west": [
+              "Dracula/animations/Flying_Kick/north-west/frame_000.png",
+              "Dracula/animations/Flying_Kick/north-west/frame_001.png",
+              "Dracula/animations/Flying_Kick/north-west/frame_002.png",
+              "Dracula/animations/Flying_Kick/north-west/frame_003.png",
+              "Dracula/animations/Flying_Kick/north-west/frame_004.png",
+              "Dracula/animations/Flying_Kick/north-west/frame_005.png"
+            ],
+            "north-east": [
+              "Dracula/animations/Flying_Kick/north-east/frame_000.png",
+              "Dracula/animations/Flying_Kick/north-east/frame_001.png",
+              "Dracula/animations/Flying_Kick/north-east/frame_002.png",
+              "Dracula/animations/Flying_Kick/north-east/frame_003.png",
+              "Dracula/animations/Flying_Kick/north-east/frame_004.png",
+              "Dracula/animations/Flying_Kick/north-east/frame_005.png"
+            ],
+            "west": [
+              "Dracula/animations/Flying_Kick/west/frame_000.png",
+              "Dracula/animations/Flying_Kick/west/frame_001.png",
+              "Dracula/animations/Flying_Kick/west/frame_002.png",
+              "Dracula/animations/Flying_Kick/west/frame_003.png",
+              "Dracula/animations/Flying_Kick/west/frame_004.png",
+              "Dracula/animations/Flying_Kick/west/frame_005.png"
+            ]
+          },
+          "Picking_Up": {
+            "north": [
+              "Dracula/animations/Picking_Up/north/frame_000.png",
+              "Dracula/animations/Picking_Up/north/frame_001.png",
+              "Dracula/animations/Picking_Up/north/frame_002.png",
+              "Dracula/animations/Picking_Up/north/frame_003.png",
+              "Dracula/animations/Picking_Up/north/frame_004.png"
+            ],
+            "west": [
+              "Dracula/animations/Picking_Up/west/frame_000.png",
+              "Dracula/animations/Picking_Up/west/frame_001.png",
+              "Dracula/animations/Picking_Up/west/frame_002.png",
+              "Dracula/animations/Picking_Up/west/frame_003.png",
+              "Dracula/animations/Picking_Up/west/frame_004.png"
+            ],
+            "south": [
+              "Dracula/animations/Picking_Up/south/frame_000.png",
+              "Dracula/animations/Picking_Up/south/frame_001.png",
+              "Dracula/animations/Picking_Up/south/frame_002.png",
+              "Dracula/animations/Picking_Up/south/frame_003.png",
+              "Dracula/animations/Picking_Up/south/frame_004.png"
+            ],
+            "east": [
+              "Dracula/animations/Picking_Up/east/frame_000.png",
+              "Dracula/animations/Picking_Up/east/frame_001.png",
+              "Dracula/animations/Picking_Up/east/frame_002.png",
+              "Dracula/animations/Picking_Up/east/frame_003.png",
+              "Dracula/animations/Picking_Up/east/frame_004.png"
+            ]
+          },
+          "Bites": {
+            "north-west": [
+              "Dracula/animations/Bites/north-west/frame_000.png",
+              "Dracula/animations/Bites/north-west/frame_001.png",
+              "Dracula/animations/Bites/north-west/frame_002.png",
+              "Dracula/animations/Bites/north-west/frame_003.png",
+              "Dracula/animations/Bites/north-west/frame_004.png",
+              "Dracula/animations/Bites/north-west/frame_005.png"
+            ],
+            "south": [
+              "Dracula/animations/Bites/south/frame_000.png",
+              "Dracula/animations/Bites/south/frame_001.png",
+              "Dracula/animations/Bites/south/frame_002.png",
+              "Dracula/animations/Bites/south/frame_003.png",
+              "Dracula/animations/Bites/south/frame_004.png",
+              "Dracula/animations/Bites/south/frame_005.png"
+            ],
+            "north": [
+              "Dracula/animations/Bites/north/frame_000.png",
+              "Dracula/animations/Bites/north/frame_001.png",
+              "Dracula/animations/Bites/north/frame_002.png",
+              "Dracula/animations/Bites/north/frame_003.png",
+              "Dracula/animations/Bites/north/frame_004.png",
+              "Dracula/animations/Bites/north/frame_005.png"
+            ],
+            "west": [
+              "Dracula/animations/Bites/west/frame_000.png",
+              "Dracula/animations/Bites/west/frame_001.png",
+              "Dracula/animations/Bites/west/frame_002.png",
+              "Dracula/animations/Bites/west/frame_003.png",
+              "Dracula/animations/Bites/west/frame_004.png",
+              "Dracula/animations/Bites/west/frame_005.png",
+              "Dracula/animations/Bites/west/frame_006.png"
+            ],
+            "north-east": [
+              "Dracula/animations/Bites/north-east/frame_000.png",
+              "Dracula/animations/Bites/north-east/frame_001.png",
+              "Dracula/animations/Bites/north-east/frame_002.png",
+              "Dracula/animations/Bites/north-east/frame_003.png",
+              "Dracula/animations/Bites/north-east/frame_004.png",
+              "Dracula/animations/Bites/north-east/frame_005.png"
+            ],
+            "east": [
+              "Dracula/animations/Bites/east/frame_000.png",
+              "Dracula/animations/Bites/east/frame_001.png",
+              "Dracula/animations/Bites/east/frame_002.png",
+              "Dracula/animations/Bites/east/frame_003.png",
+              "Dracula/animations/Bites/east/frame_004.png",
+              "Dracula/animations/Bites/east/frame_005.png",
+              "Dracula/animations/Bites/east/frame_006.png"
+            ]
+          },
+          "Running_Jump": {
+            "west": [
+              "Dracula/animations/Running_Jump/west/frame_000.png",
+              "Dracula/animations/Running_Jump/west/frame_001.png",
+              "Dracula/animations/Running_Jump/west/frame_002.png",
+              "Dracula/animations/Running_Jump/west/frame_003.png",
+              "Dracula/animations/Running_Jump/west/frame_004.png",
+              "Dracula/animations/Running_Jump/west/frame_005.png",
+              "Dracula/animations/Running_Jump/west/frame_006.png",
+              "Dracula/animations/Running_Jump/west/frame_007.png"
+            ],
+            "south": [
+              "Dracula/animations/Running_Jump/south/frame_000.png",
+              "Dracula/animations/Running_Jump/south/frame_001.png",
+              "Dracula/animations/Running_Jump/south/frame_002.png",
+              "Dracula/animations/Running_Jump/south/frame_003.png",
+              "Dracula/animations/Running_Jump/south/frame_004.png",
+              "Dracula/animations/Running_Jump/south/frame_005.png",
+              "Dracula/animations/Running_Jump/south/frame_006.png",
+              "Dracula/animations/Running_Jump/south/frame_007.png"
+            ],
+            "east": [
+              "Dracula/animations/Running_Jump/east/frame_000.png",
+              "Dracula/animations/Running_Jump/east/frame_001.png",
+              "Dracula/animations/Running_Jump/east/frame_002.png",
+              "Dracula/animations/Running_Jump/east/frame_003.png",
+              "Dracula/animations/Running_Jump/east/frame_004.png",
+              "Dracula/animations/Running_Jump/east/frame_005.png",
+              "Dracula/animations/Running_Jump/east/frame_006.png",
+              "Dracula/animations/Running_Jump/east/frame_007.png"
+            ],
+            "north": [
+              "Dracula/animations/Running_Jump/north/frame_000.png",
+              "Dracula/animations/Running_Jump/north/frame_001.png",
+              "Dracula/animations/Running_Jump/north/frame_002.png",
+              "Dracula/animations/Running_Jump/north/frame_003.png",
+              "Dracula/animations/Running_Jump/north/frame_004.png",
+              "Dracula/animations/Running_Jump/north/frame_005.png",
+              "Dracula/animations/Running_Jump/north/frame_006.png",
+              "Dracula/animations/Running_Jump/north/frame_007.png"
+            ]
+          },
+          "Appear": {
+            "east": [
+              "Dracula/animations/Appear/east/frame_000.png",
+              "Dracula/animations/Appear/east/frame_001.png",
+              "Dracula/animations/Appear/east/frame_002.png",
+              "Dracula/animations/Appear/east/frame_003.png",
+              "Dracula/animations/Appear/east/frame_004.png",
+              "Dracula/animations/Appear/east/frame_005.png",
+              "Dracula/animations/Appear/east/frame_006.png",
+              "Dracula/animations/Appear/east/frame_007.png",
+              "Dracula/animations/Appear/east/frame_008.png",
+              "Dracula/animations/Appear/east/frame_009.png",
+              "Dracula/animations/Appear/east/frame_010.png",
+              "Dracula/animations/Appear/east/frame_011.png",
+              "Dracula/animations/Appear/east/frame_012.png",
+              "Dracula/animations/Appear/east/frame_013.png",
+              "Dracula/animations/Appear/east/frame_014.png"
+            ],
+            "north": [
+              "Dracula/animations/Appear/north/frame_000.png",
+              "Dracula/animations/Appear/north/frame_001.png",
+              "Dracula/animations/Appear/north/frame_002.png",
+              "Dracula/animations/Appear/north/frame_003.png",
+              "Dracula/animations/Appear/north/frame_004.png",
+              "Dracula/animations/Appear/north/frame_005.png",
+              "Dracula/animations/Appear/north/frame_006.png",
+              "Dracula/animations/Appear/north/frame_007.png",
+              "Dracula/animations/Appear/north/frame_008.png",
+              "Dracula/animations/Appear/north/frame_009.png",
+              "Dracula/animations/Appear/north/frame_010.png",
+              "Dracula/animations/Appear/north/frame_011.png",
+              "Dracula/animations/Appear/north/frame_012.png",
+              "Dracula/animations/Appear/north/frame_013.png"
+            ],
+            "south": [
+              "Dracula/animations/Appear/south/frame_000.png",
+              "Dracula/animations/Appear/south/frame_001.png",
+              "Dracula/animations/Appear/south/frame_002.png",
+              "Dracula/animations/Appear/south/frame_003.png",
+              "Dracula/animations/Appear/south/frame_004.png",
+              "Dracula/animations/Appear/south/frame_005.png",
+              "Dracula/animations/Appear/south/frame_006.png",
+              "Dracula/animations/Appear/south/frame_007.png",
+              "Dracula/animations/Appear/south/frame_008.png",
+              "Dracula/animations/Appear/south/frame_009.png",
+              "Dracula/animations/Appear/south/frame_010.png",
+              "Dracula/animations/Appear/south/frame_011.png",
+              "Dracula/animations/Appear/south/frame_012.png",
+              "Dracula/animations/Appear/south/frame_013.png",
+              "Dracula/animations/Appear/south/frame_014.png"
+            ],
+            "west": [
+              "Dracula/animations/Appear/west/frame_000.png",
+              "Dracula/animations/Appear/west/frame_001.png",
+              "Dracula/animations/Appear/west/frame_002.png",
+              "Dracula/animations/Appear/west/frame_003.png",
+              "Dracula/animations/Appear/west/frame_004.png",
+              "Dracula/animations/Appear/west/frame_005.png",
+              "Dracula/animations/Appear/west/frame_006.png",
+              "Dracula/animations/Appear/west/frame_007.png",
+              "Dracula/animations/Appear/west/frame_008.png",
+              "Dracula/animations/Appear/west/frame_009.png",
+              "Dracula/animations/Appear/west/frame_010.png",
+              "Dracula/animations/Appear/west/frame_011.png",
+              "Dracula/animations/Appear/west/frame_012.png",
+              "Dracula/animations/Appear/west/frame_013.png",
+              "Dracula/animations/Appear/west/frame_014.png"
+            ]
+          },
+          "Throw_Object": {
+            "west": [
+              "Dracula/animations/Throw_Object/west/frame_000.png",
+              "Dracula/animations/Throw_Object/west/frame_001.png",
+              "Dracula/animations/Throw_Object/west/frame_002.png",
+              "Dracula/animations/Throw_Object/west/frame_003.png",
+              "Dracula/animations/Throw_Object/west/frame_004.png",
+              "Dracula/animations/Throw_Object/west/frame_005.png",
+              "Dracula/animations/Throw_Object/west/frame_006.png"
+            ],
+            "east": [
+              "Dracula/animations/Throw_Object/east/frame_000.png",
+              "Dracula/animations/Throw_Object/east/frame_001.png",
+              "Dracula/animations/Throw_Object/east/frame_002.png",
+              "Dracula/animations/Throw_Object/east/frame_003.png",
+              "Dracula/animations/Throw_Object/east/frame_004.png",
+              "Dracula/animations/Throw_Object/east/frame_005.png",
+              "Dracula/animations/Throw_Object/east/frame_006.png"
+            ],
+            "south": [
+              "Dracula/animations/Throw_Object/south/frame_000.png",
+              "Dracula/animations/Throw_Object/south/frame_001.png",
+              "Dracula/animations/Throw_Object/south/frame_002.png",
+              "Dracula/animations/Throw_Object/south/frame_003.png",
+              "Dracula/animations/Throw_Object/south/frame_004.png",
+              "Dracula/animations/Throw_Object/south/frame_005.png",
+              "Dracula/animations/Throw_Object/south/frame_006.png"
+            ],
+            "north": [
+              "Dracula/animations/Throw_Object/north/frame_000.png",
+              "Dracula/animations/Throw_Object/north/frame_001.png",
+              "Dracula/animations/Throw_Object/north/frame_002.png",
+              "Dracula/animations/Throw_Object/north/frame_003.png",
+              "Dracula/animations/Throw_Object/north/frame_004.png",
+              "Dracula/animations/Throw_Object/north/frame_005.png",
+              "Dracula/animations/Throw_Object/north/frame_006.png"
+            ]
+          },
+          "Dodge": {
+            "west": [
+              "Dracula/animations/Dodge/west/frame_000.png",
+              "Dracula/animations/Dodge/west/frame_001.png",
+              "Dracula/animations/Dodge/west/frame_002.png",
+              "Dracula/animations/Dodge/west/frame_003.png",
+              "Dracula/animations/Dodge/west/frame_004.png",
+              "Dracula/animations/Dodge/west/frame_005.png",
+              "Dracula/animations/Dodge/west/frame_006.png"
+            ],
+            "south": [
+              "Dracula/animations/Dodge/south/frame_000.png",
+              "Dracula/animations/Dodge/south/frame_001.png",
+              "Dracula/animations/Dodge/south/frame_002.png",
+              "Dracula/animations/Dodge/south/frame_003.png",
+              "Dracula/animations/Dodge/south/frame_004.png",
+              "Dracula/animations/Dodge/south/frame_005.png",
+              "Dracula/animations/Dodge/south/frame_006.png"
+            ],
+            "north": [
+              "Dracula/animations/Dodge/north/frame_000.png",
+              "Dracula/animations/Dodge/north/frame_001.png",
+              "Dracula/animations/Dodge/north/frame_002.png",
+              "Dracula/animations/Dodge/north/frame_003.png",
+              "Dracula/animations/Dodge/north/frame_004.png",
+              "Dracula/animations/Dodge/north/frame_005.png",
+              "Dracula/animations/Dodge/north/frame_006.png"
+            ],
+            "east": [
+              "Dracula/animations/Dodge/east/frame_000.png",
+              "Dracula/animations/Dodge/east/frame_001.png",
+              "Dracula/animations/Dodge/east/frame_002.png",
+              "Dracula/animations/Dodge/east/frame_003.png",
+              "Dracula/animations/Dodge/east/frame_004.png",
+              "Dracula/animations/Dodge/east/frame_005.png",
+              "Dracula/animations/Dodge/east/frame_006.png"
+            ]
+          },
+          "Taking_Punch": {
+            "south-east": [
+              "Dracula/animations/Taking_Punch/south-east/frame_000.png",
+              "Dracula/animations/Taking_Punch/south-east/frame_001.png",
+              "Dracula/animations/Taking_Punch/south-east/frame_002.png",
+              "Dracula/animations/Taking_Punch/south-east/frame_003.png",
+              "Dracula/animations/Taking_Punch/south-east/frame_004.png",
+              "Dracula/animations/Taking_Punch/south-east/frame_005.png"
+            ],
+            "north": [
+              "Dracula/animations/Taking_Punch/north/frame_000.png",
+              "Dracula/animations/Taking_Punch/north/frame_001.png",
+              "Dracula/animations/Taking_Punch/north/frame_002.png",
+              "Dracula/animations/Taking_Punch/north/frame_003.png",
+              "Dracula/animations/Taking_Punch/north/frame_004.png",
+              "Dracula/animations/Taking_Punch/north/frame_005.png"
+            ],
+            "south-west": [
+              "Dracula/animations/Taking_Punch/south-west/frame_000.png",
+              "Dracula/animations/Taking_Punch/south-west/frame_001.png",
+              "Dracula/animations/Taking_Punch/south-west/frame_002.png",
+              "Dracula/animations/Taking_Punch/south-west/frame_003.png",
+              "Dracula/animations/Taking_Punch/south-west/frame_004.png",
+              "Dracula/animations/Taking_Punch/south-west/frame_005.png"
+            ],
+            "west": [
+              "Dracula/animations/Taking_Punch/west/frame_000.png",
+              "Dracula/animations/Taking_Punch/west/frame_001.png",
+              "Dracula/animations/Taking_Punch/west/frame_002.png",
+              "Dracula/animations/Taking_Punch/west/frame_003.png",
+              "Dracula/animations/Taking_Punch/west/frame_004.png",
+              "Dracula/animations/Taking_Punch/west/frame_005.png"
+            ],
+            "east": [
+              "Dracula/animations/Taking_Punch/east/frame_000.png",
+              "Dracula/animations/Taking_Punch/east/frame_001.png",
+              "Dracula/animations/Taking_Punch/east/frame_002.png",
+              "Dracula/animations/Taking_Punch/east/frame_003.png",
+              "Dracula/animations/Taking_Punch/east/frame_004.png",
+              "Dracula/animations/Taking_Punch/east/frame_005.png"
+            ],
+            "south": [
+              "Dracula/animations/Taking_Punch/south/frame_000.png",
+              "Dracula/animations/Taking_Punch/south/frame_001.png",
+              "Dracula/animations/Taking_Punch/south/frame_002.png",
+              "Dracula/animations/Taking_Punch/south/frame_003.png",
+              "Dracula/animations/Taking_Punch/south/frame_004.png",
+              "Dracula/animations/Taking_Punch/south/frame_005.png"
+            ]
+          },
+          "Floating_Attacks": {
+            "south": [
+              "Dracula/animations/Floating_Attacks/south/frame_000.png",
+              "Dracula/animations/Floating_Attacks/south/frame_001.png",
+              "Dracula/animations/Floating_Attacks/south/frame_002.png",
+              "Dracula/animations/Floating_Attacks/south/frame_003.png",
+              "Dracula/animations/Floating_Attacks/south/frame_004.png",
+              "Dracula/animations/Floating_Attacks/south/frame_005.png",
+              "Dracula/animations/Floating_Attacks/south/frame_006.png",
+              "Dracula/animations/Floating_Attacks/south/frame_007.png",
+              "Dracula/animations/Floating_Attacks/south/frame_008.png",
+              "Dracula/animations/Floating_Attacks/south/frame_009.png",
+              "Dracula/animations/Floating_Attacks/south/frame_010.png",
+              "Dracula/animations/Floating_Attacks/south/frame_011.png",
+              "Dracula/animations/Floating_Attacks/south/frame_012.png",
+              "Dracula/animations/Floating_Attacks/south/frame_013.png",
+              "Dracula/animations/Floating_Attacks/south/frame_014.png"
+            ],
+            "north-west": [
+              "Dracula/animations/Floating_Attacks/north-west/frame_000.png",
+              "Dracula/animations/Floating_Attacks/north-west/frame_001.png",
+              "Dracula/animations/Floating_Attacks/north-west/frame_002.png",
+              "Dracula/animations/Floating_Attacks/north-west/frame_003.png",
+              "Dracula/animations/Floating_Attacks/north-west/frame_004.png",
+              "Dracula/animations/Floating_Attacks/north-west/frame_005.png",
+              "Dracula/animations/Floating_Attacks/north-west/frame_006.png",
+              "Dracula/animations/Floating_Attacks/north-west/frame_007.png",
+              "Dracula/animations/Floating_Attacks/north-west/frame_008.png",
+              "Dracula/animations/Floating_Attacks/north-west/frame_009.png",
+              "Dracula/animations/Floating_Attacks/north-west/frame_010.png",
+              "Dracula/animations/Floating_Attacks/north-west/frame_011.png",
+              "Dracula/animations/Floating_Attacks/north-west/frame_012.png",
+              "Dracula/animations/Floating_Attacks/north-west/frame_013.png",
+              "Dracula/animations/Floating_Attacks/north-west/frame_014.png"
+            ],
+            "west": [
+              "Dracula/animations/Floating_Attacks/west/frame_000.png",
+              "Dracula/animations/Floating_Attacks/west/frame_001.png",
+              "Dracula/animations/Floating_Attacks/west/frame_002.png",
+              "Dracula/animations/Floating_Attacks/west/frame_003.png",
+              "Dracula/animations/Floating_Attacks/west/frame_004.png",
+              "Dracula/animations/Floating_Attacks/west/frame_005.png",
+              "Dracula/animations/Floating_Attacks/west/frame_006.png",
+              "Dracula/animations/Floating_Attacks/west/frame_007.png",
+              "Dracula/animations/Floating_Attacks/west/frame_008.png",
+              "Dracula/animations/Floating_Attacks/west/frame_009.png",
+              "Dracula/animations/Floating_Attacks/west/frame_010.png",
+              "Dracula/animations/Floating_Attacks/west/frame_011.png",
+              "Dracula/animations/Floating_Attacks/west/frame_012.png",
+              "Dracula/animations/Floating_Attacks/west/frame_013.png",
+              "Dracula/animations/Floating_Attacks/west/frame_014.png"
+            ],
+            "south-east": [
+              "Dracula/animations/Floating_Attacks/south-east/frame_000.png",
+              "Dracula/animations/Floating_Attacks/south-east/frame_001.png",
+              "Dracula/animations/Floating_Attacks/south-east/frame_002.png",
+              "Dracula/animations/Floating_Attacks/south-east/frame_003.png",
+              "Dracula/animations/Floating_Attacks/south-east/frame_004.png",
+              "Dracula/animations/Floating_Attacks/south-east/frame_005.png",
+              "Dracula/animations/Floating_Attacks/south-east/frame_006.png",
+              "Dracula/animations/Floating_Attacks/south-east/frame_007.png",
+              "Dracula/animations/Floating_Attacks/south-east/frame_008.png",
+              "Dracula/animations/Floating_Attacks/south-east/frame_009.png",
+              "Dracula/animations/Floating_Attacks/south-east/frame_010.png",
+              "Dracula/animations/Floating_Attacks/south-east/frame_011.png",
+              "Dracula/animations/Floating_Attacks/south-east/frame_012.png",
+              "Dracula/animations/Floating_Attacks/south-east/frame_013.png",
+              "Dracula/animations/Floating_Attacks/south-east/frame_014.png"
+            ],
+            "north": [
+              "Dracula/animations/Floating_Attacks/north/frame_000.png",
+              "Dracula/animations/Floating_Attacks/north/frame_001.png",
+              "Dracula/animations/Floating_Attacks/north/frame_002.png",
+              "Dracula/animations/Floating_Attacks/north/frame_003.png",
+              "Dracula/animations/Floating_Attacks/north/frame_004.png",
+              "Dracula/animations/Floating_Attacks/north/frame_005.png",
+              "Dracula/animations/Floating_Attacks/north/frame_006.png",
+              "Dracula/animations/Floating_Attacks/north/frame_007.png",
+              "Dracula/animations/Floating_Attacks/north/frame_008.png",
+              "Dracula/animations/Floating_Attacks/north/frame_009.png",
+              "Dracula/animations/Floating_Attacks/north/frame_010.png",
+              "Dracula/animations/Floating_Attacks/north/frame_011.png",
+              "Dracula/animations/Floating_Attacks/north/frame_012.png",
+              "Dracula/animations/Floating_Attacks/north/frame_013.png",
+              "Dracula/animations/Floating_Attacks/north/frame_014.png"
+            ],
+            "east": [
+              "Dracula/animations/Floating_Attacks/east/frame_000.png",
+              "Dracula/animations/Floating_Attacks/east/frame_001.png",
+              "Dracula/animations/Floating_Attacks/east/frame_002.png",
+              "Dracula/animations/Floating_Attacks/east/frame_003.png",
+              "Dracula/animations/Floating_Attacks/east/frame_004.png",
+              "Dracula/animations/Floating_Attacks/east/frame_005.png",
+              "Dracula/animations/Floating_Attacks/east/frame_006.png",
+              "Dracula/animations/Floating_Attacks/east/frame_007.png",
+              "Dracula/animations/Floating_Attacks/east/frame_008.png",
+              "Dracula/animations/Floating_Attacks/east/frame_009.png",
+              "Dracula/animations/Floating_Attacks/east/frame_010.png",
+              "Dracula/animations/Floating_Attacks/east/frame_011.png",
+              "Dracula/animations/Floating_Attacks/east/frame_012.png",
+              "Dracula/animations/Floating_Attacks/east/frame_013.png",
+              "Dracula/animations/Floating_Attacks/east/frame_014.png"
+            ]
+          },
+          "Floating_Double_Jump": {
+            "north-west": [
+              "Dracula/animations/Floating_Double_Jump/north-west/frame_000.png",
+              "Dracula/animations/Floating_Double_Jump/north-west/frame_001.png",
+              "Dracula/animations/Floating_Double_Jump/north-west/frame_002.png",
+              "Dracula/animations/Floating_Double_Jump/north-west/frame_003.png",
+              "Dracula/animations/Floating_Double_Jump/north-west/frame_004.png",
+              "Dracula/animations/Floating_Double_Jump/north-west/frame_005.png",
+              "Dracula/animations/Floating_Double_Jump/north-west/frame_006.png",
+              "Dracula/animations/Floating_Double_Jump/north-west/frame_007.png",
+              "Dracula/animations/Floating_Double_Jump/north-west/frame_008.png",
+              "Dracula/animations/Floating_Double_Jump/north-west/frame_009.png",
+              "Dracula/animations/Floating_Double_Jump/north-west/frame_010.png",
+              "Dracula/animations/Floating_Double_Jump/north-west/frame_011.png",
+              "Dracula/animations/Floating_Double_Jump/north-west/frame_012.png",
+              "Dracula/animations/Floating_Double_Jump/north-west/frame_013.png",
+              "Dracula/animations/Floating_Double_Jump/north-west/frame_014.png"
+            ],
+            "east": [
+              "Dracula/animations/Floating_Double_Jump/east/frame_000.png",
+              "Dracula/animations/Floating_Double_Jump/east/frame_001.png",
+              "Dracula/animations/Floating_Double_Jump/east/frame_002.png",
+              "Dracula/animations/Floating_Double_Jump/east/frame_003.png",
+              "Dracula/animations/Floating_Double_Jump/east/frame_004.png",
+              "Dracula/animations/Floating_Double_Jump/east/frame_005.png",
+              "Dracula/animations/Floating_Double_Jump/east/frame_006.png",
+              "Dracula/animations/Floating_Double_Jump/east/frame_007.png",
+              "Dracula/animations/Floating_Double_Jump/east/frame_008.png",
+              "Dracula/animations/Floating_Double_Jump/east/frame_009.png",
+              "Dracula/animations/Floating_Double_Jump/east/frame_010.png",
+              "Dracula/animations/Floating_Double_Jump/east/frame_011.png",
+              "Dracula/animations/Floating_Double_Jump/east/frame_012.png",
+              "Dracula/animations/Floating_Double_Jump/east/frame_013.png",
+              "Dracula/animations/Floating_Double_Jump/east/frame_014.png"
+            ],
+            "north": [
+              "Dracula/animations/Floating_Double_Jump/north/frame_000.png",
+              "Dracula/animations/Floating_Double_Jump/north/frame_001.png",
+              "Dracula/animations/Floating_Double_Jump/north/frame_002.png",
+              "Dracula/animations/Floating_Double_Jump/north/frame_003.png",
+              "Dracula/animations/Floating_Double_Jump/north/frame_004.png",
+              "Dracula/animations/Floating_Double_Jump/north/frame_005.png",
+              "Dracula/animations/Floating_Double_Jump/north/frame_006.png",
+              "Dracula/animations/Floating_Double_Jump/north/frame_007.png",
+              "Dracula/animations/Floating_Double_Jump/north/frame_008.png",
+              "Dracula/animations/Floating_Double_Jump/north/frame_009.png",
+              "Dracula/animations/Floating_Double_Jump/north/frame_010.png",
+              "Dracula/animations/Floating_Double_Jump/north/frame_011.png",
+              "Dracula/animations/Floating_Double_Jump/north/frame_012.png",
+              "Dracula/animations/Floating_Double_Jump/north/frame_013.png",
+              "Dracula/animations/Floating_Double_Jump/north/frame_014.png"
+            ],
+            "west": [
+              "Dracula/animations/Floating_Double_Jump/west/frame_000.png",
+              "Dracula/animations/Floating_Double_Jump/west/frame_001.png",
+              "Dracula/animations/Floating_Double_Jump/west/frame_002.png",
+              "Dracula/animations/Floating_Double_Jump/west/frame_003.png",
+              "Dracula/animations/Floating_Double_Jump/west/frame_004.png",
+              "Dracula/animations/Floating_Double_Jump/west/frame_005.png",
+              "Dracula/animations/Floating_Double_Jump/west/frame_006.png",
+              "Dracula/animations/Floating_Double_Jump/west/frame_007.png",
+              "Dracula/animations/Floating_Double_Jump/west/frame_008.png",
+              "Dracula/animations/Floating_Double_Jump/west/frame_009.png",
+              "Dracula/animations/Floating_Double_Jump/west/frame_010.png",
+              "Dracula/animations/Floating_Double_Jump/west/frame_011.png",
+              "Dracula/animations/Floating_Double_Jump/west/frame_012.png",
+              "Dracula/animations/Floating_Double_Jump/west/frame_013.png",
+              "Dracula/animations/Floating_Double_Jump/west/frame_014.png"
+            ],
+            "north-east": [
+              "Dracula/animations/Floating_Double_Jump/north-east/frame_000.png",
+              "Dracula/animations/Floating_Double_Jump/north-east/frame_001.png",
+              "Dracula/animations/Floating_Double_Jump/north-east/frame_002.png",
+              "Dracula/animations/Floating_Double_Jump/north-east/frame_003.png",
+              "Dracula/animations/Floating_Double_Jump/north-east/frame_004.png",
+              "Dracula/animations/Floating_Double_Jump/north-east/frame_005.png",
+              "Dracula/animations/Floating_Double_Jump/north-east/frame_006.png",
+              "Dracula/animations/Floating_Double_Jump/north-east/frame_007.png",
+              "Dracula/animations/Floating_Double_Jump/north-east/frame_008.png",
+              "Dracula/animations/Floating_Double_Jump/north-east/frame_009.png",
+              "Dracula/animations/Floating_Double_Jump/north-east/frame_010.png",
+              "Dracula/animations/Floating_Double_Jump/north-east/frame_011.png",
+              "Dracula/animations/Floating_Double_Jump/north-east/frame_012.png",
+              "Dracula/animations/Floating_Double_Jump/north-east/frame_013.png",
+              "Dracula/animations/Floating_Double_Jump/north-east/frame_014.png"
+            ],
+            "south": [
+              "Dracula/animations/Floating_Double_Jump/south/frame_000.png",
+              "Dracula/animations/Floating_Double_Jump/south/frame_001.png",
+              "Dracula/animations/Floating_Double_Jump/south/frame_002.png",
+              "Dracula/animations/Floating_Double_Jump/south/frame_003.png",
+              "Dracula/animations/Floating_Double_Jump/south/frame_004.png",
+              "Dracula/animations/Floating_Double_Jump/south/frame_005.png",
+              "Dracula/animations/Floating_Double_Jump/south/frame_006.png",
+              "Dracula/animations/Floating_Double_Jump/south/frame_007.png",
+              "Dracula/animations/Floating_Double_Jump/south/frame_008.png",
+              "Dracula/animations/Floating_Double_Jump/south/frame_009.png",
+              "Dracula/animations/Floating_Double_Jump/south/frame_010.png",
+              "Dracula/animations/Floating_Double_Jump/south/frame_011.png",
+              "Dracula/animations/Floating_Double_Jump/south/frame_012.png",
+              "Dracula/animations/Floating_Double_Jump/south/frame_013.png",
+              "Dracula/animations/Floating_Double_Jump/south/frame_014.png"
+            ]
+          },
+          "Fight_Stance_Idle": {
+            "south": [
+              "Dracula/animations/Fight_Stance_Idle/south/frame_000.png",
+              "Dracula/animations/Fight_Stance_Idle/south/frame_001.png",
+              "Dracula/animations/Fight_Stance_Idle/south/frame_002.png",
+              "Dracula/animations/Fight_Stance_Idle/south/frame_003.png",
+              "Dracula/animations/Fight_Stance_Idle/south/frame_004.png",
+              "Dracula/animations/Fight_Stance_Idle/south/frame_005.png",
+              "Dracula/animations/Fight_Stance_Idle/south/frame_006.png",
+              "Dracula/animations/Fight_Stance_Idle/south/frame_007.png"
+            ],
+            "north": [
+              "Dracula/animations/Fight_Stance_Idle/north/frame_000.png",
+              "Dracula/animations/Fight_Stance_Idle/north/frame_001.png",
+              "Dracula/animations/Fight_Stance_Idle/north/frame_002.png",
+              "Dracula/animations/Fight_Stance_Idle/north/frame_003.png",
+              "Dracula/animations/Fight_Stance_Idle/north/frame_004.png",
+              "Dracula/animations/Fight_Stance_Idle/north/frame_005.png",
+              "Dracula/animations/Fight_Stance_Idle/north/frame_006.png",
+              "Dracula/animations/Fight_Stance_Idle/north/frame_007.png"
+            ],
+            "east": [
+              "Dracula/animations/Fight_Stance_Idle/east/frame_000.png",
+              "Dracula/animations/Fight_Stance_Idle/east/frame_001.png",
+              "Dracula/animations/Fight_Stance_Idle/east/frame_002.png",
+              "Dracula/animations/Fight_Stance_Idle/east/frame_003.png",
+              "Dracula/animations/Fight_Stance_Idle/east/frame_004.png",
+              "Dracula/animations/Fight_Stance_Idle/east/frame_005.png",
+              "Dracula/animations/Fight_Stance_Idle/east/frame_006.png",
+              "Dracula/animations/Fight_Stance_Idle/east/frame_007.png"
+            ],
+            "west": [
+              "Dracula/animations/Fight_Stance_Idle/west/frame_000.png",
+              "Dracula/animations/Fight_Stance_Idle/west/frame_001.png",
+              "Dracula/animations/Fight_Stance_Idle/west/frame_002.png",
+              "Dracula/animations/Fight_Stance_Idle/west/frame_003.png",
+              "Dracula/animations/Fight_Stance_Idle/west/frame_004.png",
+              "Dracula/animations/Fight_Stance_Idle/west/frame_005.png",
+              "Dracula/animations/Fight_Stance_Idle/west/frame_006.png",
+              "Dracula/animations/Fight_Stance_Idle/west/frame_007.png"
+            ]
+          },
+          "Cross_Punch": {
+            "west": [
+              "Dracula/animations/Cross_Punch/west/frame_000.png",
+              "Dracula/animations/Cross_Punch/west/frame_001.png",
+              "Dracula/animations/Cross_Punch/west/frame_002.png",
+              "Dracula/animations/Cross_Punch/west/frame_003.png",
+              "Dracula/animations/Cross_Punch/west/frame_004.png",
+              "Dracula/animations/Cross_Punch/west/frame_005.png"
+            ],
+            "south": [
+              "Dracula/animations/Cross_Punch/south/frame_000.png",
+              "Dracula/animations/Cross_Punch/south/frame_001.png",
+              "Dracula/animations/Cross_Punch/south/frame_002.png",
+              "Dracula/animations/Cross_Punch/south/frame_003.png",
+              "Dracula/animations/Cross_Punch/south/frame_004.png",
+              "Dracula/animations/Cross_Punch/south/frame_005.png"
+            ],
+            "east": [
+              "Dracula/animations/Cross_Punch/east/frame_000.png",
+              "Dracula/animations/Cross_Punch/east/frame_001.png",
+              "Dracula/animations/Cross_Punch/east/frame_002.png",
+              "Dracula/animations/Cross_Punch/east/frame_003.png",
+              "Dracula/animations/Cross_Punch/east/frame_004.png",
+              "Dracula/animations/Cross_Punch/east/frame_005.png"
+            ],
+            "north-west": [
+              "Dracula/animations/Cross_Punch/north-west/frame_000.png",
+              "Dracula/animations/Cross_Punch/north-west/frame_001.png",
+              "Dracula/animations/Cross_Punch/north-west/frame_002.png",
+              "Dracula/animations/Cross_Punch/north-west/frame_003.png",
+              "Dracula/animations/Cross_Punch/north-west/frame_004.png",
+              "Dracula/animations/Cross_Punch/north-west/frame_005.png"
+            ],
+            "north-east": [
+              "Dracula/animations/Cross_Punch/north-east/frame_000.png",
+              "Dracula/animations/Cross_Punch/north-east/frame_001.png",
+              "Dracula/animations/Cross_Punch/north-east/frame_002.png",
+              "Dracula/animations/Cross_Punch/north-east/frame_003.png",
+              "Dracula/animations/Cross_Punch/north-east/frame_004.png",
+              "Dracula/animations/Cross_Punch/north-east/frame_005.png"
+            ]
+          },
+          "Running": {
+            "west": [
+              "Dracula/animations/Running/west/frame_000.png",
+              "Dracula/animations/Running/west/frame_001.png",
+              "Dracula/animations/Running/west/frame_002.png",
+              "Dracula/animations/Running/west/frame_003.png",
+              "Dracula/animations/Running/west/frame_004.png",
+              "Dracula/animations/Running/west/frame_005.png"
+            ],
+            "north": [
+              "Dracula/animations/Running/north/frame_000.png",
+              "Dracula/animations/Running/north/frame_001.png",
+              "Dracula/animations/Running/north/frame_002.png",
+              "Dracula/animations/Running/north/frame_003.png",
+              "Dracula/animations/Running/north/frame_004.png",
+              "Dracula/animations/Running/north/frame_005.png"
+            ],
+            "east": [
+              "Dracula/animations/Running/east/frame_000.png",
+              "Dracula/animations/Running/east/frame_001.png",
+              "Dracula/animations/Running/east/frame_002.png",
+              "Dracula/animations/Running/east/frame_003.png",
+              "Dracula/animations/Running/east/frame_004.png",
+              "Dracula/animations/Running/east/frame_005.png"
+            ],
+            "south": [
+              "Dracula/animations/Running/south/frame_000.png",
+              "Dracula/animations/Running/south/frame_001.png",
+              "Dracula/animations/Running/south/frame_002.png",
+              "Dracula/animations/Running/south/frame_003.png",
+              "Dracula/animations/Running/south/frame_004.png",
+              "Dracula/animations/Running/south/frame_005.png"
+            ]
+          }
+        }
+      }
+    }
+  ],
+  "export_version": "3.1",
+  "export_date": "2026-07-14T00:33:27.506077"
+}

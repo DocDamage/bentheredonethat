@@ -1,0 +1,730 @@
+{
+  "group_id": null,
+  "states": [
+    {
+      "character": {
+        "id": "d23cdc01-3e3c-44d7-9a3d-b4980659c479",
+        "name": "Frankenstein's Monster",
+        "prompt": "Create Frankenstein with short black hair. Square head, bolts in both sides of his neck. Nothing on his back, just dark clothes that he's wearing. Scary looking frankestein with stitches and scars in his face. Greenish skin, blank white eyes. Just eyeballs for eyes, basically. Squarish shoulders and boots, he should look like a scary but conventional frankenstein!",
+        "size": {
+          "width": 88,
+          "height": 88
+        },
+        "template_id": "mannequin",
+        "directions": 8,
+        "view": "side",
+        "created_at": "2026-07-13T16:55:31.843519+00:00"
+      },
+      "folder": "Frankenstein_s_Monster",
+      "frames": {
+        "rotations": {
+          "south": "Frankenstein_s_Monster/rotations/south.png",
+          "south-east": "Frankenstein_s_Monster/rotations/south-east.png",
+          "east": "Frankenstein_s_Monster/rotations/east.png",
+          "north-east": "Frankenstein_s_Monster/rotations/north-east.png",
+          "north": "Frankenstein_s_Monster/rotations/north.png",
+          "north-west": "Frankenstein_s_Monster/rotations/north-west.png",
+          "west": "Frankenstein_s_Monster/rotations/west.png",
+          "south-west": "Frankenstein_s_Monster/rotations/south-west.png"
+        },
+        "animations": {
+          "Breathing_Idle": {
+            "north": [
+              "Frankenstein_s_Monster/animations/Breathing_Idle/north/frame_000.png",
+              "Frankenstein_s_Monster/animations/Breathing_Idle/north/frame_001.png",
+              "Frankenstein_s_Monster/animations/Breathing_Idle/north/frame_002.png",
+              "Frankenstein_s_Monster/animations/Breathing_Idle/north/frame_003.png"
+            ],
+            "west": [
+              "Frankenstein_s_Monster/animations/Breathing_Idle/west/frame_000.png",
+              "Frankenstein_s_Monster/animations/Breathing_Idle/west/frame_001.png",
+              "Frankenstein_s_Monster/animations/Breathing_Idle/west/frame_002.png",
+              "Frankenstein_s_Monster/animations/Breathing_Idle/west/frame_003.png"
+            ],
+            "east": [
+              "Frankenstein_s_Monster/animations/Breathing_Idle/east/frame_000.png",
+              "Frankenstein_s_Monster/animations/Breathing_Idle/east/frame_001.png",
+              "Frankenstein_s_Monster/animations/Breathing_Idle/east/frame_002.png",
+              "Frankenstein_s_Monster/animations/Breathing_Idle/east/frame_003.png"
+            ],
+            "south": [
+              "Frankenstein_s_Monster/animations/Breathing_Idle/south/frame_000.png",
+              "Frankenstein_s_Monster/animations/Breathing_Idle/south/frame_001.png",
+              "Frankenstein_s_Monster/animations/Breathing_Idle/south/frame_002.png",
+              "Frankenstein_s_Monster/animations/Breathing_Idle/south/frame_003.png"
+            ]
+          },
+          "Surprise_Uppercut": {
+            "north": [
+              "Frankenstein_s_Monster/animations/Surprise_Uppercut/north/frame_000.png",
+              "Frankenstein_s_Monster/animations/Surprise_Uppercut/north/frame_001.png",
+              "Frankenstein_s_Monster/animations/Surprise_Uppercut/north/frame_002.png",
+              "Frankenstein_s_Monster/animations/Surprise_Uppercut/north/frame_003.png",
+              "Frankenstein_s_Monster/animations/Surprise_Uppercut/north/frame_004.png",
+              "Frankenstein_s_Monster/animations/Surprise_Uppercut/north/frame_005.png",
+              "Frankenstein_s_Monster/animations/Surprise_Uppercut/north/frame_006.png"
+            ],
+            "west": [
+              "Frankenstein_s_Monster/animations/Surprise_Uppercut/west/frame_000.png",
+              "Frankenstein_s_Monster/animations/Surprise_Uppercut/west/frame_001.png",
+              "Frankenstein_s_Monster/animations/Surprise_Uppercut/west/frame_002.png",
+              "Frankenstein_s_Monster/animations/Surprise_Uppercut/west/frame_003.png",
+              "Frankenstein_s_Monster/animations/Surprise_Uppercut/west/frame_004.png",
+              "Frankenstein_s_Monster/animations/Surprise_Uppercut/west/frame_005.png",
+              "Frankenstein_s_Monster/animations/Surprise_Uppercut/west/frame_006.png"
+            ],
+            "east": [
+              "Frankenstein_s_Monster/animations/Surprise_Uppercut/east/frame_000.png",
+              "Frankenstein_s_Monster/animations/Surprise_Uppercut/east/frame_001.png",
+              "Frankenstein_s_Monster/animations/Surprise_Uppercut/east/frame_002.png",
+              "Frankenstein_s_Monster/animations/Surprise_Uppercut/east/frame_003.png",
+              "Frankenstein_s_Monster/animations/Surprise_Uppercut/east/frame_004.png",
+              "Frankenstein_s_Monster/animations/Surprise_Uppercut/east/frame_005.png",
+              "Frankenstein_s_Monster/animations/Surprise_Uppercut/east/frame_006.png"
+            ],
+            "south": [
+              "Frankenstein_s_Monster/animations/Surprise_Uppercut/south/frame_000.png",
+              "Frankenstein_s_Monster/animations/Surprise_Uppercut/south/frame_001.png",
+              "Frankenstein_s_Monster/animations/Surprise_Uppercut/south/frame_002.png",
+              "Frankenstein_s_Monster/animations/Surprise_Uppercut/south/frame_003.png",
+              "Frankenstein_s_Monster/animations/Surprise_Uppercut/south/frame_004.png",
+              "Frankenstein_s_Monster/animations/Surprise_Uppercut/south/frame_005.png",
+              "Frankenstein_s_Monster/animations/Surprise_Uppercut/south/frame_006.png"
+            ]
+          },
+          "Throw_Object": {
+            "south": [
+              "Frankenstein_s_Monster/animations/Throw_Object/south/frame_000.png",
+              "Frankenstein_s_Monster/animations/Throw_Object/south/frame_001.png",
+              "Frankenstein_s_Monster/animations/Throw_Object/south/frame_002.png",
+              "Frankenstein_s_Monster/animations/Throw_Object/south/frame_003.png",
+              "Frankenstein_s_Monster/animations/Throw_Object/south/frame_004.png",
+              "Frankenstein_s_Monster/animations/Throw_Object/south/frame_005.png",
+              "Frankenstein_s_Monster/animations/Throw_Object/south/frame_006.png"
+            ],
+            "west": [
+              "Frankenstein_s_Monster/animations/Throw_Object/west/frame_000.png",
+              "Frankenstein_s_Monster/animations/Throw_Object/west/frame_001.png",
+              "Frankenstein_s_Monster/animations/Throw_Object/west/frame_002.png",
+              "Frankenstein_s_Monster/animations/Throw_Object/west/frame_003.png",
+              "Frankenstein_s_Monster/animations/Throw_Object/west/frame_004.png",
+              "Frankenstein_s_Monster/animations/Throw_Object/west/frame_005.png",
+              "Frankenstein_s_Monster/animations/Throw_Object/west/frame_006.png"
+            ],
+            "east": [
+              "Frankenstein_s_Monster/animations/Throw_Object/east/frame_000.png",
+              "Frankenstein_s_Monster/animations/Throw_Object/east/frame_001.png",
+              "Frankenstein_s_Monster/animations/Throw_Object/east/frame_002.png",
+              "Frankenstein_s_Monster/animations/Throw_Object/east/frame_003.png",
+              "Frankenstein_s_Monster/animations/Throw_Object/east/frame_004.png",
+              "Frankenstein_s_Monster/animations/Throw_Object/east/frame_005.png",
+              "Frankenstein_s_Monster/animations/Throw_Object/east/frame_006.png"
+            ],
+            "north": [
+              "Frankenstein_s_Monster/animations/Throw_Object/north/frame_000.png",
+              "Frankenstein_s_Monster/animations/Throw_Object/north/frame_001.png",
+              "Frankenstein_s_Monster/animations/Throw_Object/north/frame_002.png",
+              "Frankenstein_s_Monster/animations/Throw_Object/north/frame_003.png",
+              "Frankenstein_s_Monster/animations/Throw_Object/north/frame_004.png",
+              "Frankenstein_s_Monster/animations/Throw_Object/north/frame_005.png",
+              "Frankenstein_s_Monster/animations/Throw_Object/north/frame_006.png"
+            ]
+          },
+          "Pick_Up_Item": {
+            "west": [
+              "Frankenstein_s_Monster/animations/Pick_Up_Item/west/frame_000.png",
+              "Frankenstein_s_Monster/animations/Pick_Up_Item/west/frame_001.png",
+              "Frankenstein_s_Monster/animations/Pick_Up_Item/west/frame_002.png",
+              "Frankenstein_s_Monster/animations/Pick_Up_Item/west/frame_003.png",
+              "Frankenstein_s_Monster/animations/Pick_Up_Item/west/frame_004.png"
+            ],
+            "south": [
+              "Frankenstein_s_Monster/animations/Pick_Up_Item/south/frame_000.png",
+              "Frankenstein_s_Monster/animations/Pick_Up_Item/south/frame_001.png",
+              "Frankenstein_s_Monster/animations/Pick_Up_Item/south/frame_002.png",
+              "Frankenstein_s_Monster/animations/Pick_Up_Item/south/frame_003.png",
+              "Frankenstein_s_Monster/animations/Pick_Up_Item/south/frame_004.png"
+            ],
+            "north": [
+              "Frankenstein_s_Monster/animations/Pick_Up_Item/north/frame_000.png",
+              "Frankenstein_s_Monster/animations/Pick_Up_Item/north/frame_001.png",
+              "Frankenstein_s_Monster/animations/Pick_Up_Item/north/frame_002.png",
+              "Frankenstein_s_Monster/animations/Pick_Up_Item/north/frame_003.png",
+              "Frankenstein_s_Monster/animations/Pick_Up_Item/north/frame_004.png"
+            ],
+            "east": [
+              "Frankenstein_s_Monster/animations/Pick_Up_Item/east/frame_000.png",
+              "Frankenstein_s_Monster/animations/Pick_Up_Item/east/frame_001.png",
+              "Frankenstein_s_Monster/animations/Pick_Up_Item/east/frame_002.png",
+              "Frankenstein_s_Monster/animations/Pick_Up_Item/east/frame_003.png",
+              "Frankenstein_s_Monster/animations/Pick_Up_Item/east/frame_004.png"
+            ]
+          },
+          "Taking_Punch": {
+            "west": [
+              "Frankenstein_s_Monster/animations/Taking_Punch/west/frame_000.png",
+              "Frankenstein_s_Monster/animations/Taking_Punch/west/frame_001.png",
+              "Frankenstein_s_Monster/animations/Taking_Punch/west/frame_002.png",
+              "Frankenstein_s_Monster/animations/Taking_Punch/west/frame_003.png",
+              "Frankenstein_s_Monster/animations/Taking_Punch/west/frame_004.png",
+              "Frankenstein_s_Monster/animations/Taking_Punch/west/frame_005.png"
+            ],
+            "south": [
+              "Frankenstein_s_Monster/animations/Taking_Punch/south/frame_000.png",
+              "Frankenstein_s_Monster/animations/Taking_Punch/south/frame_001.png",
+              "Frankenstein_s_Monster/animations/Taking_Punch/south/frame_002.png",
+              "Frankenstein_s_Monster/animations/Taking_Punch/south/frame_003.png",
+              "Frankenstein_s_Monster/animations/Taking_Punch/south/frame_004.png",
+              "Frankenstein_s_Monster/animations/Taking_Punch/south/frame_005.png"
+            ],
+            "east": [
+              "Frankenstein_s_Monster/animations/Taking_Punch/east/frame_000.png",
+              "Frankenstein_s_Monster/animations/Taking_Punch/east/frame_001.png",
+              "Frankenstein_s_Monster/animations/Taking_Punch/east/frame_002.png",
+              "Frankenstein_s_Monster/animations/Taking_Punch/east/frame_003.png",
+              "Frankenstein_s_Monster/animations/Taking_Punch/east/frame_004.png",
+              "Frankenstein_s_Monster/animations/Taking_Punch/east/frame_005.png"
+            ],
+            "north": [
+              "Frankenstein_s_Monster/animations/Taking_Punch/north/frame_000.png",
+              "Frankenstein_s_Monster/animations/Taking_Punch/north/frame_001.png",
+              "Frankenstein_s_Monster/animations/Taking_Punch/north/frame_002.png",
+              "Frankenstein_s_Monster/animations/Taking_Punch/north/frame_003.png",
+              "Frankenstein_s_Monster/animations/Taking_Punch/north/frame_004.png",
+              "Frankenstein_s_Monster/animations/Taking_Punch/north/frame_005.png"
+            ]
+          },
+          "Two-Footed_Jump": {
+            "west": [
+              "Frankenstein_s_Monster/animations/Two-Footed_Jump/west/frame_000.png",
+              "Frankenstein_s_Monster/animations/Two-Footed_Jump/west/frame_001.png",
+              "Frankenstein_s_Monster/animations/Two-Footed_Jump/west/frame_002.png",
+              "Frankenstein_s_Monster/animations/Two-Footed_Jump/west/frame_003.png",
+              "Frankenstein_s_Monster/animations/Two-Footed_Jump/west/frame_004.png",
+              "Frankenstein_s_Monster/animations/Two-Footed_Jump/west/frame_005.png",
+              "Frankenstein_s_Monster/animations/Two-Footed_Jump/west/frame_006.png"
+            ],
+            "east": [
+              "Frankenstein_s_Monster/animations/Two-Footed_Jump/east/frame_000.png",
+              "Frankenstein_s_Monster/animations/Two-Footed_Jump/east/frame_001.png",
+              "Frankenstein_s_Monster/animations/Two-Footed_Jump/east/frame_002.png",
+              "Frankenstein_s_Monster/animations/Two-Footed_Jump/east/frame_003.png",
+              "Frankenstein_s_Monster/animations/Two-Footed_Jump/east/frame_004.png",
+              "Frankenstein_s_Monster/animations/Two-Footed_Jump/east/frame_005.png",
+              "Frankenstein_s_Monster/animations/Two-Footed_Jump/east/frame_006.png"
+            ],
+            "south": [
+              "Frankenstein_s_Monster/animations/Two-Footed_Jump/south/frame_000.png",
+              "Frankenstein_s_Monster/animations/Two-Footed_Jump/south/frame_001.png",
+              "Frankenstein_s_Monster/animations/Two-Footed_Jump/south/frame_002.png",
+              "Frankenstein_s_Monster/animations/Two-Footed_Jump/south/frame_003.png",
+              "Frankenstein_s_Monster/animations/Two-Footed_Jump/south/frame_004.png",
+              "Frankenstein_s_Monster/animations/Two-Footed_Jump/south/frame_005.png",
+              "Frankenstein_s_Monster/animations/Two-Footed_Jump/south/frame_006.png"
+            ],
+            "north": [
+              "Frankenstein_s_Monster/animations/Two-Footed_Jump/north/frame_000.png",
+              "Frankenstein_s_Monster/animations/Two-Footed_Jump/north/frame_001.png",
+              "Frankenstein_s_Monster/animations/Two-Footed_Jump/north/frame_002.png",
+              "Frankenstein_s_Monster/animations/Two-Footed_Jump/north/frame_003.png",
+              "Frankenstein_s_Monster/animations/Two-Footed_Jump/north/frame_004.png",
+              "Frankenstein_s_Monster/animations/Two-Footed_Jump/north/frame_005.png",
+              "Frankenstein_s_Monster/animations/Two-Footed_Jump/north/frame_006.png"
+            ]
+          },
+          "Running": {
+            "south": [
+              "Frankenstein_s_Monster/animations/Running/south/frame_000.png",
+              "Frankenstein_s_Monster/animations/Running/south/frame_001.png",
+              "Frankenstein_s_Monster/animations/Running/south/frame_002.png",
+              "Frankenstein_s_Monster/animations/Running/south/frame_003.png",
+              "Frankenstein_s_Monster/animations/Running/south/frame_004.png",
+              "Frankenstein_s_Monster/animations/Running/south/frame_005.png"
+            ],
+            "north": [
+              "Frankenstein_s_Monster/animations/Running/north/frame_000.png",
+              "Frankenstein_s_Monster/animations/Running/north/frame_001.png",
+              "Frankenstein_s_Monster/animations/Running/north/frame_002.png",
+              "Frankenstein_s_Monster/animations/Running/north/frame_003.png",
+              "Frankenstein_s_Monster/animations/Running/north/frame_004.png",
+              "Frankenstein_s_Monster/animations/Running/north/frame_005.png"
+            ],
+            "west": [
+              "Frankenstein_s_Monster/animations/Running/west/frame_000.png",
+              "Frankenstein_s_Monster/animations/Running/west/frame_001.png",
+              "Frankenstein_s_Monster/animations/Running/west/frame_002.png",
+              "Frankenstein_s_Monster/animations/Running/west/frame_003.png",
+              "Frankenstein_s_Monster/animations/Running/west/frame_004.png",
+              "Frankenstein_s_Monster/animations/Running/west/frame_005.png"
+            ],
+            "east": [
+              "Frankenstein_s_Monster/animations/Running/east/frame_000.png",
+              "Frankenstein_s_Monster/animations/Running/east/frame_001.png",
+              "Frankenstein_s_Monster/animations/Running/east/frame_002.png",
+              "Frankenstein_s_Monster/animations/Running/east/frame_003.png",
+              "Frankenstein_s_Monster/animations/Running/east/frame_004.png",
+              "Frankenstein_s_Monster/animations/Running/east/frame_005.png"
+            ]
+          },
+          "Special_Jump": {
+            "west": [
+              "Frankenstein_s_Monster/animations/Special_Jump/west/frame_000.png",
+              "Frankenstein_s_Monster/animations/Special_Jump/west/frame_001.png",
+              "Frankenstein_s_Monster/animations/Special_Jump/west/frame_002.png",
+              "Frankenstein_s_Monster/animations/Special_Jump/west/frame_003.png",
+              "Frankenstein_s_Monster/animations/Special_Jump/west/frame_004.png",
+              "Frankenstein_s_Monster/animations/Special_Jump/west/frame_005.png",
+              "Frankenstein_s_Monster/animations/Special_Jump/west/frame_006.png",
+              "Frankenstein_s_Monster/animations/Special_Jump/west/frame_007.png",
+              "Frankenstein_s_Monster/animations/Special_Jump/west/frame_008.png",
+              "Frankenstein_s_Monster/animations/Special_Jump/west/frame_009.png",
+              "Frankenstein_s_Monster/animations/Special_Jump/west/frame_010.png",
+              "Frankenstein_s_Monster/animations/Special_Jump/west/frame_011.png",
+              "Frankenstein_s_Monster/animations/Special_Jump/west/frame_012.png",
+              "Frankenstein_s_Monster/animations/Special_Jump/west/frame_013.png",
+              "Frankenstein_s_Monster/animations/Special_Jump/west/frame_014.png"
+            ],
+            "east": [
+              "Frankenstein_s_Monster/animations/Special_Jump/east/frame_000.png",
+              "Frankenstein_s_Monster/animations/Special_Jump/east/frame_001.png",
+              "Frankenstein_s_Monster/animations/Special_Jump/east/frame_002.png",
+              "Frankenstein_s_Monster/animations/Special_Jump/east/frame_003.png",
+              "Frankenstein_s_Monster/animations/Special_Jump/east/frame_004.png",
+              "Frankenstein_s_Monster/animations/Special_Jump/east/frame_005.png",
+              "Frankenstein_s_Monster/animations/Special_Jump/east/frame_006.png",
+              "Frankenstein_s_Monster/animations/Special_Jump/east/frame_007.png",
+              "Frankenstein_s_Monster/animations/Special_Jump/east/frame_008.png",
+              "Frankenstein_s_Monster/animations/Special_Jump/east/frame_009.png",
+              "Frankenstein_s_Monster/animations/Special_Jump/east/frame_010.png",
+              "Frankenstein_s_Monster/animations/Special_Jump/east/frame_011.png",
+              "Frankenstein_s_Monster/animations/Special_Jump/east/frame_012.png",
+              "Frankenstein_s_Monster/animations/Special_Jump/east/frame_013.png",
+              "Frankenstein_s_Monster/animations/Special_Jump/east/frame_014.png"
+            ],
+            "south": [
+              "Frankenstein_s_Monster/animations/Special_Jump/south/frame_000.png",
+              "Frankenstein_s_Monster/animations/Special_Jump/south/frame_001.png",
+              "Frankenstein_s_Monster/animations/Special_Jump/south/frame_002.png",
+              "Frankenstein_s_Monster/animations/Special_Jump/south/frame_003.png",
+              "Frankenstein_s_Monster/animations/Special_Jump/south/frame_004.png",
+              "Frankenstein_s_Monster/animations/Special_Jump/south/frame_005.png",
+              "Frankenstein_s_Monster/animations/Special_Jump/south/frame_006.png",
+              "Frankenstein_s_Monster/animations/Special_Jump/south/frame_007.png",
+              "Frankenstein_s_Monster/animations/Special_Jump/south/frame_008.png",
+              "Frankenstein_s_Monster/animations/Special_Jump/south/frame_009.png",
+              "Frankenstein_s_Monster/animations/Special_Jump/south/frame_010.png",
+              "Frankenstein_s_Monster/animations/Special_Jump/south/frame_011.png",
+              "Frankenstein_s_Monster/animations/Special_Jump/south/frame_012.png",
+              "Frankenstein_s_Monster/animations/Special_Jump/south/frame_013.png",
+              "Frankenstein_s_Monster/animations/Special_Jump/south/frame_014.png"
+            ]
+          },
+          "Angry_Swing": {
+            "north": [
+              "Frankenstein_s_Monster/animations/Angry_Swing/north/frame_000.png",
+              "Frankenstein_s_Monster/animations/Angry_Swing/north/frame_001.png",
+              "Frankenstein_s_Monster/animations/Angry_Swing/north/frame_002.png",
+              "Frankenstein_s_Monster/animations/Angry_Swing/north/frame_003.png",
+              "Frankenstein_s_Monster/animations/Angry_Swing/north/frame_004.png",
+              "Frankenstein_s_Monster/animations/Angry_Swing/north/frame_005.png",
+              "Frankenstein_s_Monster/animations/Angry_Swing/north/frame_006.png",
+              "Frankenstein_s_Monster/animations/Angry_Swing/north/frame_007.png",
+              "Frankenstein_s_Monster/animations/Angry_Swing/north/frame_008.png",
+              "Frankenstein_s_Monster/animations/Angry_Swing/north/frame_009.png",
+              "Frankenstein_s_Monster/animations/Angry_Swing/north/frame_010.png",
+              "Frankenstein_s_Monster/animations/Angry_Swing/north/frame_011.png",
+              "Frankenstein_s_Monster/animations/Angry_Swing/north/frame_012.png",
+              "Frankenstein_s_Monster/animations/Angry_Swing/north/frame_013.png",
+              "Frankenstein_s_Monster/animations/Angry_Swing/north/frame_014.png"
+            ],
+            "west": [
+              "Frankenstein_s_Monster/animations/Angry_Swing/west/frame_000.png",
+              "Frankenstein_s_Monster/animations/Angry_Swing/west/frame_001.png",
+              "Frankenstein_s_Monster/animations/Angry_Swing/west/frame_002.png",
+              "Frankenstein_s_Monster/animations/Angry_Swing/west/frame_003.png",
+              "Frankenstein_s_Monster/animations/Angry_Swing/west/frame_004.png",
+              "Frankenstein_s_Monster/animations/Angry_Swing/west/frame_005.png",
+              "Frankenstein_s_Monster/animations/Angry_Swing/west/frame_006.png",
+              "Frankenstein_s_Monster/animations/Angry_Swing/west/frame_007.png",
+              "Frankenstein_s_Monster/animations/Angry_Swing/west/frame_008.png",
+              "Frankenstein_s_Monster/animations/Angry_Swing/west/frame_009.png",
+              "Frankenstein_s_Monster/animations/Angry_Swing/west/frame_010.png",
+              "Frankenstein_s_Monster/animations/Angry_Swing/west/frame_011.png",
+              "Frankenstein_s_Monster/animations/Angry_Swing/west/frame_012.png",
+              "Frankenstein_s_Monster/animations/Angry_Swing/west/frame_013.png",
+              "Frankenstein_s_Monster/animations/Angry_Swing/west/frame_014.png"
+            ],
+            "east": [
+              "Frankenstein_s_Monster/animations/Angry_Swing/east/frame_000.png",
+              "Frankenstein_s_Monster/animations/Angry_Swing/east/frame_001.png",
+              "Frankenstein_s_Monster/animations/Angry_Swing/east/frame_002.png",
+              "Frankenstein_s_Monster/animations/Angry_Swing/east/frame_003.png",
+              "Frankenstein_s_Monster/animations/Angry_Swing/east/frame_004.png",
+              "Frankenstein_s_Monster/animations/Angry_Swing/east/frame_005.png",
+              "Frankenstein_s_Monster/animations/Angry_Swing/east/frame_006.png",
+              "Frankenstein_s_Monster/animations/Angry_Swing/east/frame_007.png",
+              "Frankenstein_s_Monster/animations/Angry_Swing/east/frame_008.png",
+              "Frankenstein_s_Monster/animations/Angry_Swing/east/frame_009.png",
+              "Frankenstein_s_Monster/animations/Angry_Swing/east/frame_010.png",
+              "Frankenstein_s_Monster/animations/Angry_Swing/east/frame_011.png",
+              "Frankenstein_s_Monster/animations/Angry_Swing/east/frame_012.png",
+              "Frankenstein_s_Monster/animations/Angry_Swing/east/frame_013.png",
+              "Frankenstein_s_Monster/animations/Angry_Swing/east/frame_014.png"
+            ],
+            "south": [
+              "Frankenstein_s_Monster/animations/Angry_Swing/south/frame_000.png",
+              "Frankenstein_s_Monster/animations/Angry_Swing/south/frame_001.png",
+              "Frankenstein_s_Monster/animations/Angry_Swing/south/frame_002.png",
+              "Frankenstein_s_Monster/animations/Angry_Swing/south/frame_003.png",
+              "Frankenstein_s_Monster/animations/Angry_Swing/south/frame_004.png",
+              "Frankenstein_s_Monster/animations/Angry_Swing/south/frame_005.png",
+              "Frankenstein_s_Monster/animations/Angry_Swing/south/frame_006.png",
+              "Frankenstein_s_Monster/animations/Angry_Swing/south/frame_007.png",
+              "Frankenstein_s_Monster/animations/Angry_Swing/south/frame_008.png",
+              "Frankenstein_s_Monster/animations/Angry_Swing/south/frame_009.png",
+              "Frankenstein_s_Monster/animations/Angry_Swing/south/frame_010.png",
+              "Frankenstein_s_Monster/animations/Angry_Swing/south/frame_011.png",
+              "Frankenstein_s_Monster/animations/Angry_Swing/south/frame_012.png",
+              "Frankenstein_s_Monster/animations/Angry_Swing/south/frame_013.png",
+              "Frankenstein_s_Monster/animations/Angry_Swing/south/frame_014.png"
+            ]
+          },
+          "Falling_Back_Death": {
+            "north": [
+              "Frankenstein_s_Monster/animations/Falling_Back_Death/north/frame_000.png",
+              "Frankenstein_s_Monster/animations/Falling_Back_Death/north/frame_001.png",
+              "Frankenstein_s_Monster/animations/Falling_Back_Death/north/frame_002.png",
+              "Frankenstein_s_Monster/animations/Falling_Back_Death/north/frame_003.png",
+              "Frankenstein_s_Monster/animations/Falling_Back_Death/north/frame_004.png",
+              "Frankenstein_s_Monster/animations/Falling_Back_Death/north/frame_005.png",
+              "Frankenstein_s_Monster/animations/Falling_Back_Death/north/frame_006.png"
+            ],
+            "south": [
+              "Frankenstein_s_Monster/animations/Falling_Back_Death/south/frame_000.png",
+              "Frankenstein_s_Monster/animations/Falling_Back_Death/south/frame_001.png",
+              "Frankenstein_s_Monster/animations/Falling_Back_Death/south/frame_002.png",
+              "Frankenstein_s_Monster/animations/Falling_Back_Death/south/frame_003.png",
+              "Frankenstein_s_Monster/animations/Falling_Back_Death/south/frame_004.png",
+              "Frankenstein_s_Monster/animations/Falling_Back_Death/south/frame_005.png",
+              "Frankenstein_s_Monster/animations/Falling_Back_Death/south/frame_006.png"
+            ],
+            "west": [
+              "Frankenstein_s_Monster/animations/Falling_Back_Death/west/frame_000.png",
+              "Frankenstein_s_Monster/animations/Falling_Back_Death/west/frame_001.png",
+              "Frankenstein_s_Monster/animations/Falling_Back_Death/west/frame_002.png",
+              "Frankenstein_s_Monster/animations/Falling_Back_Death/west/frame_003.png",
+              "Frankenstein_s_Monster/animations/Falling_Back_Death/west/frame_004.png",
+              "Frankenstein_s_Monster/animations/Falling_Back_Death/west/frame_005.png",
+              "Frankenstein_s_Monster/animations/Falling_Back_Death/west/frame_006.png"
+            ],
+            "east": [
+              "Frankenstein_s_Monster/animations/Falling_Back_Death/east/frame_000.png",
+              "Frankenstein_s_Monster/animations/Falling_Back_Death/east/frame_001.png",
+              "Frankenstein_s_Monster/animations/Falling_Back_Death/east/frame_002.png",
+              "Frankenstein_s_Monster/animations/Falling_Back_Death/east/frame_003.png",
+              "Frankenstein_s_Monster/animations/Falling_Back_Death/east/frame_004.png",
+              "Frankenstein_s_Monster/animations/Falling_Back_Death/east/frame_005.png",
+              "Frankenstein_s_Monster/animations/Falling_Back_Death/east/frame_006.png"
+            ]
+          },
+          "Final_Death": {
+            "west": [
+              "Frankenstein_s_Monster/animations/Final_Death/west/frame_000.png",
+              "Frankenstein_s_Monster/animations/Final_Death/west/frame_001.png",
+              "Frankenstein_s_Monster/animations/Final_Death/west/frame_002.png",
+              "Frankenstein_s_Monster/animations/Final_Death/west/frame_003.png",
+              "Frankenstein_s_Monster/animations/Final_Death/west/frame_004.png",
+              "Frankenstein_s_Monster/animations/Final_Death/west/frame_005.png",
+              "Frankenstein_s_Monster/animations/Final_Death/west/frame_006.png",
+              "Frankenstein_s_Monster/animations/Final_Death/west/frame_007.png",
+              "Frankenstein_s_Monster/animations/Final_Death/west/frame_008.png",
+              "Frankenstein_s_Monster/animations/Final_Death/west/frame_009.png",
+              "Frankenstein_s_Monster/animations/Final_Death/west/frame_010.png",
+              "Frankenstein_s_Monster/animations/Final_Death/west/frame_011.png",
+              "Frankenstein_s_Monster/animations/Final_Death/west/frame_012.png",
+              "Frankenstein_s_Monster/animations/Final_Death/west/frame_013.png",
+              "Frankenstein_s_Monster/animations/Final_Death/west/frame_014.png"
+            ],
+            "east": [
+              "Frankenstein_s_Monster/animations/Final_Death/east/frame_000.png",
+              "Frankenstein_s_Monster/animations/Final_Death/east/frame_001.png",
+              "Frankenstein_s_Monster/animations/Final_Death/east/frame_002.png",
+              "Frankenstein_s_Monster/animations/Final_Death/east/frame_003.png",
+              "Frankenstein_s_Monster/animations/Final_Death/east/frame_004.png",
+              "Frankenstein_s_Monster/animations/Final_Death/east/frame_005.png",
+              "Frankenstein_s_Monster/animations/Final_Death/east/frame_006.png",
+              "Frankenstein_s_Monster/animations/Final_Death/east/frame_007.png",
+              "Frankenstein_s_Monster/animations/Final_Death/east/frame_008.png",
+              "Frankenstein_s_Monster/animations/Final_Death/east/frame_009.png",
+              "Frankenstein_s_Monster/animations/Final_Death/east/frame_010.png",
+              "Frankenstein_s_Monster/animations/Final_Death/east/frame_011.png",
+              "Frankenstein_s_Monster/animations/Final_Death/east/frame_012.png",
+              "Frankenstein_s_Monster/animations/Final_Death/east/frame_013.png",
+              "Frankenstein_s_Monster/animations/Final_Death/east/frame_014.png"
+            ],
+            "north": [
+              "Frankenstein_s_Monster/animations/Final_Death/north/frame_000.png",
+              "Frankenstein_s_Monster/animations/Final_Death/north/frame_001.png",
+              "Frankenstein_s_Monster/animations/Final_Death/north/frame_002.png",
+              "Frankenstein_s_Monster/animations/Final_Death/north/frame_003.png",
+              "Frankenstein_s_Monster/animations/Final_Death/north/frame_004.png",
+              "Frankenstein_s_Monster/animations/Final_Death/north/frame_005.png",
+              "Frankenstein_s_Monster/animations/Final_Death/north/frame_006.png",
+              "Frankenstein_s_Monster/animations/Final_Death/north/frame_007.png",
+              "Frankenstein_s_Monster/animations/Final_Death/north/frame_008.png",
+              "Frankenstein_s_Monster/animations/Final_Death/north/frame_009.png",
+              "Frankenstein_s_Monster/animations/Final_Death/north/frame_010.png",
+              "Frankenstein_s_Monster/animations/Final_Death/north/frame_011.png",
+              "Frankenstein_s_Monster/animations/Final_Death/north/frame_012.png",
+              "Frankenstein_s_Monster/animations/Final_Death/north/frame_013.png",
+              "Frankenstein_s_Monster/animations/Final_Death/north/frame_014.png"
+            ],
+            "south": [
+              "Frankenstein_s_Monster/animations/Final_Death/south/frame_000.png",
+              "Frankenstein_s_Monster/animations/Final_Death/south/frame_001.png",
+              "Frankenstein_s_Monster/animations/Final_Death/south/frame_002.png",
+              "Frankenstein_s_Monster/animations/Final_Death/south/frame_003.png",
+              "Frankenstein_s_Monster/animations/Final_Death/south/frame_004.png",
+              "Frankenstein_s_Monster/animations/Final_Death/south/frame_005.png",
+              "Frankenstein_s_Monster/animations/Final_Death/south/frame_006.png",
+              "Frankenstein_s_Monster/animations/Final_Death/south/frame_007.png",
+              "Frankenstein_s_Monster/animations/Final_Death/south/frame_008.png",
+              "Frankenstein_s_Monster/animations/Final_Death/south/frame_009.png",
+              "Frankenstein_s_Monster/animations/Final_Death/south/frame_010.png",
+              "Frankenstein_s_Monster/animations/Final_Death/south/frame_011.png",
+              "Frankenstein_s_Monster/animations/Final_Death/south/frame_012.png",
+              "Frankenstein_s_Monster/animations/Final_Death/south/frame_013.png",
+              "Frankenstein_s_Monster/animations/Final_Death/south/frame_014.png"
+            ]
+          },
+          "Crouching": {
+            "west": [
+              "Frankenstein_s_Monster/animations/Crouching/west/frame_000.png",
+              "Frankenstein_s_Monster/animations/Crouching/west/frame_001.png",
+              "Frankenstein_s_Monster/animations/Crouching/west/frame_002.png",
+              "Frankenstein_s_Monster/animations/Crouching/west/frame_003.png",
+              "Frankenstein_s_Monster/animations/Crouching/west/frame_004.png"
+            ],
+            "south": [
+              "Frankenstein_s_Monster/animations/Crouching/south/frame_000.png",
+              "Frankenstein_s_Monster/animations/Crouching/south/frame_001.png",
+              "Frankenstein_s_Monster/animations/Crouching/south/frame_002.png",
+              "Frankenstein_s_Monster/animations/Crouching/south/frame_003.png",
+              "Frankenstein_s_Monster/animations/Crouching/south/frame_004.png"
+            ],
+            "east": [
+              "Frankenstein_s_Monster/animations/Crouching/east/frame_000.png",
+              "Frankenstein_s_Monster/animations/Crouching/east/frame_001.png",
+              "Frankenstein_s_Monster/animations/Crouching/east/frame_002.png",
+              "Frankenstein_s_Monster/animations/Crouching/east/frame_003.png",
+              "Frankenstein_s_Monster/animations/Crouching/east/frame_004.png"
+            ],
+            "north": [
+              "Frankenstein_s_Monster/animations/Crouching/north/frame_000.png",
+              "Frankenstein_s_Monster/animations/Crouching/north/frame_001.png",
+              "Frankenstein_s_Monster/animations/Crouching/north/frame_002.png",
+              "Frankenstein_s_Monster/animations/Crouching/north/frame_003.png",
+              "Frankenstein_s_Monster/animations/Crouching/north/frame_004.png"
+            ]
+          },
+          "Cross_Punch": {
+            "north": [
+              "Frankenstein_s_Monster/animations/Cross_Punch/north/frame_000.png",
+              "Frankenstein_s_Monster/animations/Cross_Punch/north/frame_001.png",
+              "Frankenstein_s_Monster/animations/Cross_Punch/north/frame_002.png",
+              "Frankenstein_s_Monster/animations/Cross_Punch/north/frame_003.png",
+              "Frankenstein_s_Monster/animations/Cross_Punch/north/frame_004.png",
+              "Frankenstein_s_Monster/animations/Cross_Punch/north/frame_005.png"
+            ],
+            "east": [
+              "Frankenstein_s_Monster/animations/Cross_Punch/east/frame_000.png",
+              "Frankenstein_s_Monster/animations/Cross_Punch/east/frame_001.png",
+              "Frankenstein_s_Monster/animations/Cross_Punch/east/frame_002.png",
+              "Frankenstein_s_Monster/animations/Cross_Punch/east/frame_003.png",
+              "Frankenstein_s_Monster/animations/Cross_Punch/east/frame_004.png",
+              "Frankenstein_s_Monster/animations/Cross_Punch/east/frame_005.png"
+            ],
+            "west": [
+              "Frankenstein_s_Monster/animations/Cross_Punch/west/frame_000.png",
+              "Frankenstein_s_Monster/animations/Cross_Punch/west/frame_001.png",
+              "Frankenstein_s_Monster/animations/Cross_Punch/west/frame_002.png",
+              "Frankenstein_s_Monster/animations/Cross_Punch/west/frame_003.png",
+              "Frankenstein_s_Monster/animations/Cross_Punch/west/frame_004.png",
+              "Frankenstein_s_Monster/animations/Cross_Punch/west/frame_005.png"
+            ],
+            "south": [
+              "Frankenstein_s_Monster/animations/Cross_Punch/south/frame_000.png",
+              "Frankenstein_s_Monster/animations/Cross_Punch/south/frame_001.png",
+              "Frankenstein_s_Monster/animations/Cross_Punch/south/frame_002.png",
+              "Frankenstein_s_Monster/animations/Cross_Punch/south/frame_003.png",
+              "Frankenstein_s_Monster/animations/Cross_Punch/south/frame_004.png",
+              "Frankenstein_s_Monster/animations/Cross_Punch/south/frame_005.png"
+            ]
+          },
+          "High_Kick": {
+            "west": [
+              "Frankenstein_s_Monster/animations/High_Kick/west/frame_000.png",
+              "Frankenstein_s_Monster/animations/High_Kick/west/frame_001.png",
+              "Frankenstein_s_Monster/animations/High_Kick/west/frame_002.png",
+              "Frankenstein_s_Monster/animations/High_Kick/west/frame_003.png",
+              "Frankenstein_s_Monster/animations/High_Kick/west/frame_004.png",
+              "Frankenstein_s_Monster/animations/High_Kick/west/frame_005.png",
+              "Frankenstein_s_Monster/animations/High_Kick/west/frame_006.png"
+            ],
+            "east": [
+              "Frankenstein_s_Monster/animations/High_Kick/east/frame_000.png",
+              "Frankenstein_s_Monster/animations/High_Kick/east/frame_001.png",
+              "Frankenstein_s_Monster/animations/High_Kick/east/frame_002.png",
+              "Frankenstein_s_Monster/animations/High_Kick/east/frame_003.png",
+              "Frankenstein_s_Monster/animations/High_Kick/east/frame_004.png",
+              "Frankenstein_s_Monster/animations/High_Kick/east/frame_005.png",
+              "Frankenstein_s_Monster/animations/High_Kick/east/frame_006.png"
+            ],
+            "north": [
+              "Frankenstein_s_Monster/animations/High_Kick/north/frame_000.png",
+              "Frankenstein_s_Monster/animations/High_Kick/north/frame_001.png",
+              "Frankenstein_s_Monster/animations/High_Kick/north/frame_002.png",
+              "Frankenstein_s_Monster/animations/High_Kick/north/frame_003.png",
+              "Frankenstein_s_Monster/animations/High_Kick/north/frame_004.png",
+              "Frankenstein_s_Monster/animations/High_Kick/north/frame_005.png",
+              "Frankenstein_s_Monster/animations/High_Kick/north/frame_006.png"
+            ],
+            "south": [
+              "Frankenstein_s_Monster/animations/High_Kick/south/frame_000.png",
+              "Frankenstein_s_Monster/animations/High_Kick/south/frame_001.png",
+              "Frankenstein_s_Monster/animations/High_Kick/south/frame_002.png",
+              "Frankenstein_s_Monster/animations/High_Kick/south/frame_003.png",
+              "Frankenstein_s_Monster/animations/High_Kick/south/frame_004.png",
+              "Frankenstein_s_Monster/animations/High_Kick/south/frame_005.png",
+              "Frankenstein_s_Monster/animations/High_Kick/south/frame_006.png"
+            ]
+          },
+          "Frankenstein_Electric_Stomp": {
+            "south": [
+              "Frankenstein_s_Monster/animations/Frankenstein_Electric_Stomp/south/frame_000.png",
+              "Frankenstein_s_Monster/animations/Frankenstein_Electric_Stomp/south/frame_001.png",
+              "Frankenstein_s_Monster/animations/Frankenstein_Electric_Stomp/south/frame_002.png",
+              "Frankenstein_s_Monster/animations/Frankenstein_Electric_Stomp/south/frame_003.png",
+              "Frankenstein_s_Monster/animations/Frankenstein_Electric_Stomp/south/frame_004.png",
+              "Frankenstein_s_Monster/animations/Frankenstein_Electric_Stomp/south/frame_005.png",
+              "Frankenstein_s_Monster/animations/Frankenstein_Electric_Stomp/south/frame_006.png",
+              "Frankenstein_s_Monster/animations/Frankenstein_Electric_Stomp/south/frame_007.png",
+              "Frankenstein_s_Monster/animations/Frankenstein_Electric_Stomp/south/frame_008.png"
+            ],
+            "north": [
+              "Frankenstein_s_Monster/animations/Frankenstein_Electric_Stomp/north/frame_000.png",
+              "Frankenstein_s_Monster/animations/Frankenstein_Electric_Stomp/north/frame_001.png",
+              "Frankenstein_s_Monster/animations/Frankenstein_Electric_Stomp/north/frame_002.png",
+              "Frankenstein_s_Monster/animations/Frankenstein_Electric_Stomp/north/frame_003.png",
+              "Frankenstein_s_Monster/animations/Frankenstein_Electric_Stomp/north/frame_004.png",
+              "Frankenstein_s_Monster/animations/Frankenstein_Electric_Stomp/north/frame_005.png",
+              "Frankenstein_s_Monster/animations/Frankenstein_Electric_Stomp/north/frame_006.png",
+              "Frankenstein_s_Monster/animations/Frankenstein_Electric_Stomp/north/frame_007.png",
+              "Frankenstein_s_Monster/animations/Frankenstein_Electric_Stomp/north/frame_008.png"
+            ],
+            "east": [
+              "Frankenstein_s_Monster/animations/Frankenstein_Electric_Stomp/east/frame_000.png",
+              "Frankenstein_s_Monster/animations/Frankenstein_Electric_Stomp/east/frame_001.png",
+              "Frankenstein_s_Monster/animations/Frankenstein_Electric_Stomp/east/frame_002.png",
+              "Frankenstein_s_Monster/animations/Frankenstein_Electric_Stomp/east/frame_003.png",
+              "Frankenstein_s_Monster/animations/Frankenstein_Electric_Stomp/east/frame_004.png",
+              "Frankenstein_s_Monster/animations/Frankenstein_Electric_Stomp/east/frame_005.png",
+              "Frankenstein_s_Monster/animations/Frankenstein_Electric_Stomp/east/frame_006.png",
+              "Frankenstein_s_Monster/animations/Frankenstein_Electric_Stomp/east/frame_007.png",
+              "Frankenstein_s_Monster/animations/Frankenstein_Electric_Stomp/east/frame_008.png"
+            ],
+            "west": [
+              "Frankenstein_s_Monster/animations/Frankenstein_Electric_Stomp/west/frame_000.png",
+              "Frankenstein_s_Monster/animations/Frankenstein_Electric_Stomp/west/frame_001.png",
+              "Frankenstein_s_Monster/animations/Frankenstein_Electric_Stomp/west/frame_002.png",
+              "Frankenstein_s_Monster/animations/Frankenstein_Electric_Stomp/west/frame_003.png",
+              "Frankenstein_s_Monster/animations/Frankenstein_Electric_Stomp/west/frame_004.png",
+              "Frankenstein_s_Monster/animations/Frankenstein_Electric_Stomp/west/frame_005.png",
+              "Frankenstein_s_Monster/animations/Frankenstein_Electric_Stomp/west/frame_006.png",
+              "Frankenstein_s_Monster/animations/Frankenstein_Electric_Stomp/west/frame_007.png",
+              "Frankenstein_s_Monster/animations/Frankenstein_Electric_Stomp/west/frame_008.png"
+            ]
+          },
+          "Fight_Stance_Idle": {
+            "south": [
+              "Frankenstein_s_Monster/animations/Fight_Stance_Idle/south/frame_000.png",
+              "Frankenstein_s_Monster/animations/Fight_Stance_Idle/south/frame_001.png",
+              "Frankenstein_s_Monster/animations/Fight_Stance_Idle/south/frame_002.png",
+              "Frankenstein_s_Monster/animations/Fight_Stance_Idle/south/frame_003.png",
+              "Frankenstein_s_Monster/animations/Fight_Stance_Idle/south/frame_004.png",
+              "Frankenstein_s_Monster/animations/Fight_Stance_Idle/south/frame_005.png",
+              "Frankenstein_s_Monster/animations/Fight_Stance_Idle/south/frame_006.png",
+              "Frankenstein_s_Monster/animations/Fight_Stance_Idle/south/frame_007.png"
+            ],
+            "west": [
+              "Frankenstein_s_Monster/animations/Fight_Stance_Idle/west/frame_000.png",
+              "Frankenstein_s_Monster/animations/Fight_Stance_Idle/west/frame_001.png",
+              "Frankenstein_s_Monster/animations/Fight_Stance_Idle/west/frame_002.png",
+              "Frankenstein_s_Monster/animations/Fight_Stance_Idle/west/frame_003.png",
+              "Frankenstein_s_Monster/animations/Fight_Stance_Idle/west/frame_004.png",
+              "Frankenstein_s_Monster/animations/Fight_Stance_Idle/west/frame_005.png",
+              "Frankenstein_s_Monster/animations/Fight_Stance_Idle/west/frame_006.png",
+              "Frankenstein_s_Monster/animations/Fight_Stance_Idle/west/frame_007.png"
+            ],
+            "north": [
+              "Frankenstein_s_Monster/animations/Fight_Stance_Idle/north/frame_000.png",
+              "Frankenstein_s_Monster/animations/Fight_Stance_Idle/north/frame_001.png",
+              "Frankenstein_s_Monster/animations/Fight_Stance_Idle/north/frame_002.png",
+              "Frankenstein_s_Monster/animations/Fight_Stance_Idle/north/frame_003.png",
+              "Frankenstein_s_Monster/animations/Fight_Stance_Idle/north/frame_004.png",
+              "Frankenstein_s_Monster/animations/Fight_Stance_Idle/north/frame_005.png",
+              "Frankenstein_s_Monster/animations/Fight_Stance_Idle/north/frame_006.png",
+              "Frankenstein_s_Monster/animations/Fight_Stance_Idle/north/frame_007.png"
+            ],
+            "east": [
+              "Frankenstein_s_Monster/animations/Fight_Stance_Idle/east/frame_000.png",
+              "Frankenstein_s_Monster/animations/Fight_Stance_Idle/east/frame_001.png",
+              "Frankenstein_s_Monster/animations/Fight_Stance_Idle/east/frame_002.png",
+              "Frankenstein_s_Monster/animations/Fight_Stance_Idle/east/frame_003.png",
+              "Frankenstein_s_Monster/animations/Fight_Stance_Idle/east/frame_004.png",
+              "Frankenstein_s_Monster/animations/Fight_Stance_Idle/east/frame_005.png",
+              "Frankenstein_s_Monster/animations/Fight_Stance_Idle/east/frame_006.png",
+              "Frankenstein_s_Monster/animations/Fight_Stance_Idle/east/frame_007.png"
+            ]
+          },
+          "Push_Object": {
+            "west": [
+              "Frankenstein_s_Monster/animations/Push_Object/west/frame_000.png",
+              "Frankenstein_s_Monster/animations/Push_Object/west/frame_001.png",
+              "Frankenstein_s_Monster/animations/Push_Object/west/frame_002.png",
+              "Frankenstein_s_Monster/animations/Push_Object/west/frame_003.png",
+              "Frankenstein_s_Monster/animations/Push_Object/west/frame_004.png",
+              "Frankenstein_s_Monster/animations/Push_Object/west/frame_005.png"
+            ],
+            "north": [
+              "Frankenstein_s_Monster/animations/Push_Object/north/frame_000.png",
+              "Frankenstein_s_Monster/animations/Push_Object/north/frame_001.png",
+              "Frankenstein_s_Monster/animations/Push_Object/north/frame_002.png",
+              "Frankenstein_s_Monster/animations/Push_Object/north/frame_003.png",
+              "Frankenstein_s_Monster/animations/Push_Object/north/frame_004.png",
+              "Frankenstein_s_Monster/animations/Push_Object/north/frame_005.png"
+            ],
+            "south": [
+              "Frankenstein_s_Monster/animations/Push_Object/south/frame_000.png",
+              "Frankenstein_s_Monster/animations/Push_Object/south/frame_001.png",
+              "Frankenstein_s_Monster/animations/Push_Object/south/frame_002.png",
+              "Frankenstein_s_Monster/animations/Push_Object/south/frame_003.png",
+              "Frankenstein_s_Monster/animations/Push_Object/south/frame_004.png",
+              "Frankenstein_s_Monster/animations/Push_Object/south/frame_005.png"
+            ],
+            "east": [
+              "Frankenstein_s_Monster/animations/Push_Object/east/frame_000.png",
+              "Frankenstein_s_Monster/animations/Push_Object/east/frame_001.png",
+              "Frankenstein_s_Monster/animations/Push_Object/east/frame_002.png",
+              "Frankenstein_s_Monster/animations/Push_Object/east/frame_003.png",
+              "Frankenstein_s_Monster/animations/Push_Object/east/frame_004.png",
+              "Frankenstein_s_Monster/animations/Push_Object/east/frame_005.png"
+            ]
+          }
+        }
+      }
+    }
+  ],
+  "export_version": "3.1",
+  "export_date": "2026-07-14T01:27:32.802654"
+}
