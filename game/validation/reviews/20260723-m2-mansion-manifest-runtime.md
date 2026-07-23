@@ -119,6 +119,11 @@ before the locked size budget can be claimed.
   identifies the canonical Haunted Mansion set and its checksum-identical runtime
   duplicate, but retains `review_required` because exact terms and credit evidence
   have not been supplied. It is provenance evidence, not a distribution approval.
+- Native-scale source-sheet and resident-review evidence is generated locally by
+  `tools/build_vertical_slice_contact_sheets.py` from the exact M2 review config.
+  Its ignored `test-artifacts/vertical-slice-contact-sheets/` output is reviewer
+  input only: it does not crop/admit source art or approve density, palette,
+  perspective, character height, or foot anchors.
 - Active population roster: none. The current manifest has only anchor capacity
   (2-6 anchors per room); the locked SakPix identities, story-phase schedules,
   eight-direction profiles, and occupancy reservations have not been bound.

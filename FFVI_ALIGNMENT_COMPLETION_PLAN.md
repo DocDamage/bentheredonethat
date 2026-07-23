@@ -2942,3 +2942,8 @@ limit:
   navigation/collision IDs at commit `f55b0fcd`. All `HM-01` through `HM-16`
   now have explicit authored collision/useful-cell layouts; other universes'
   generated interiors remain a baseline contract, not an authored collision audit.
+- A local-only M2 review-sheet generator now assembles the locked Mansion,
+  Asterion, and Primeval source-sheet sets with their registered SakPix cohorts
+  at native scale and records source checksums. The resulting reviewer evidence
+  remains `review_required`; it does not constitute asset admission or visual
+  approval.

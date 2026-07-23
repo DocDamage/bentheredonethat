@@ -1,0 +1,40 @@
+{
+  "schemaVersion": 1,
+  "purpose": "local native-scale review evidence only; source-library paths are not runtime admission or distribution approval",
+  "worlds": [
+    {
+      "id": "mansion",
+      "roomPrefix": "HM-",
+      "environmentSourceGlobs": [
+        "assets/Tilesets/Haunted Mansion/*.png",
+        "assets/Tilesets/Crimson Gothic Castle/**/*.png"
+      ]
+    },
+    {
+      "id": "asterion",
+      "roomPrefix": "AS-",
+      "environmentSourceGlobs": [
+        "assets/Tilesets/Scifi space station/1. Metal floor tiles.png",
+        "assets/Tilesets/Scifi space station/2. Sci-fi wall tiles.png",
+        "assets/Tilesets/Scifi space station/4. Doors and airlocks.png",
+        "assets/Tilesets/Scifi space station/5. Windows and observation panels.png",
+        "assets/Tilesets/Scifi space station/6. Control panels and consoles.png",
+        "assets/Tilesets/Scifi space station/7. Computers and screens.png",
+        "assets/Tilesets/Scifi space station/8. Pipes and ventilation.png",
+        "assets/Tilesets/Scifi space station/9. Cables and wiring.png",
+        "assets/Tilesets/Scifi space station/12. Laboratory equipment.png",
+        "assets/Tilesets/Scifi space station/13. Energy and power services.png",
+        "assets/Tilesets/Scifi space station/16. Crates and cargo props.png",
+        "assets/Tilesets/Space Station Interior Tileset/space ship/*.png"
+      ]
+    },
+    {
+      "id": "primeval",
+      "roomPrefix": "PV-",
+      "environmentSourceGlobs": [
+        "assets/Tilesets/Jurassic world/Jurassic World Pixel Art Megapack/*.png",
+        "assets/Tilesets/Stone Age Modern Life Pixel Art Tileset Pack/*.png"
+      ]
+    }
+  ]
+}
