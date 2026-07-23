@@ -2910,10 +2910,15 @@ limit:
 - The shared manifest room runtime, navigation, streaming, reciprocal-transition,
   camera, feature-installation, and population-cohort platform is in place.
 - Haunted Mansion `HM-01` through `HM-16`, Asterion `AS-01` through `AS-14`,
-  and Primeval `PV-01` through `PV-14` have authored room-scene contracts and
-  focused smoke coverage for their critical routes.
-- Helios migration has begun: `HE-01` through `HE-03`, `HE-13`, and `HE-06`
-  have manifest contracts; the connected Clinic/Core route remains in progress.
+  Primeval `PV-01` through `PV-14`, Helios `HE-01` through `HE-14`, Frosthold
+  `FR-01` through `FR-14`, Moonpetal `MP-01` through `MP-14`, and Empyreal
+  `EM-01` through `EM-16` have authored room-scene contracts.
+- Facility portals resolve from the room registry, while the active room runtime
+  owns all internal reciprocal and state-gated ports. Bootstrap no longer
+  constructs a complete global universe transition graph.
+- Scene-owned feature installation covers authored interactions, save points,
+  treasure caches, boss contracts, and population cohorts; remaining legacy
+  global feature nodes require a separate compatibility-fixture migration.
 - Focused smoke checks are run at room-slice boundaries and commits are pushed
   to the alignment branch. The Section 23.16.7 and release-gate checklists
   remain incomplete; this status must not be treated as a release claim.
