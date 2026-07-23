@@ -2691,7 +2691,7 @@ menu, but no test file directly names `campaign_bootstrap.gd`,
 that is not sufficient evidence for responsibility-moving refactors. Add these
 black-box fixtures before changing ownership:
 
-- [ ] A legacy-room fixture records the current area ID, camera bounds/zoom,
+- [x] A legacy-room fixture records the current area ID, camera bounds/zoom,
   walkable component, interaction cells, boss gate, treasure, save point, and
   every bidirectional arrival/return pair for each existing room.
 - [x] A transition fixture proves that every current forward link returns to its
