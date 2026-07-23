@@ -59,6 +59,8 @@ func _run() -> void:
 	var gated_ports := _assert_dynamic_gate_overlays()
 	if gated_ports < 1:
 		return
+	if not _assert_navigation_ranges_across_gate_states():
+		return
 	var follower_arrivals := _assert_follower_safe_arrivals()
 	if follower_arrivals < 1:
 		return
@@ -139,6 +141,24 @@ func _all_gate_flags() -> Dictionary:
 		for flag in (REGISTRY.room(room_id).get("portGates", {}) as Dictionary).values():
 			flags[StringName(flag)] = true
 	return flags
+
+
+func _assert_navigation_ranges_across_gate_states() -> bool:
+	var errors: Array[String] = []
+	for state_flags in [{}, _all_gate_flags()]:
+		for room_id in REGISTRY.room_ids():
+			var layout: Dictionary = REGISTRY.room(room_id).get("navigationLayout", {})
+			var expected_range: Vector2i = layout.get("usefulCellRange", Vector2i.ZERO)
+			if expected_range == Vector2i.ZERO:
+				continue
+			var navigation := NAVIGATION.navigation_record(room_id, REGISTRY.enabled_port_ids(room_id, state_flags))
+			var actual := (navigation.get("walkable", {}) as Dictionary).size()
+			if actual < expected_range.x or actual > expected_range.y:
+				errors.append("%s=%d outside %s" % [room_id, actual, expected_range])
+	if not errors.is_empty():
+		_fail("Gate-state navigation ranges diverged: %s" % "; ".join(errors))
+		return false
+	return true
 
 
 func _assert_follower_safe_arrivals() -> int:
