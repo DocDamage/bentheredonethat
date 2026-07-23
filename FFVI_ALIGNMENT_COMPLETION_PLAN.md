@@ -2931,3 +2931,7 @@ limit:
 - Focused smoke checks are run at room-slice boundaries and commits are pushed
   to the alignment branch. The Section 23.16.7 and release-gate checklists
   remain incomplete; this status must not be treated as a release claim.
+- Later-universe layout, scenario, treasure, and Bulkhead Warden fixtures now
+  resolve room-owned ports and interactions through the active streamer at
+  commit `9703b526`; the legacy encounter-controller coordinate regions and
+  global recruit compatibility nodes remain separately owned migration work.
