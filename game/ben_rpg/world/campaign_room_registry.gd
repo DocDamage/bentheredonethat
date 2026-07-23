@@ -287,6 +287,14 @@ static func room(room_id: StringName) -> Dictionary:
 	elif room_id == &"FR-12": definition.merge({"scenePath":"res://ben_rpg/world/rooms/frosthold_treasury_collected_warmth.tscn","worldOrigin":Vector2i(500,0),"enabledPortIds":[&"Nw"],"featureIds":[&"three_audit_seals"]},true)
 	elif room_id == &"FR-13": definition.merge({"scenePath":"res://ben_rpg/world/rooms/frosthold_furnace_aqueduct.tscn","worldOrigin":Vector2i(500,0),"enabledPortIds":[&"Nw",&"Ne",&"E1"],"featureIds":[&"furnace_shortcut"]},true)
 	elif room_id == &"FR-14": definition.merge({"scenePath":"res://ben_rpg/world/rooms/frosthold_meltwater_sluice.tscn","worldOrigin":Vector2i(500,0),"enabledPortIds":[&"Nw",&"Ne",&"E1"],"featureIds":[&"accessible_return_walkway"]},true)
+	elif room_id == &"MP-01": definition.merge({"scenePath":"res://ben_rpg/world/rooms/moonpetal_vermilion_gate_terrace.tscn","worldOrigin":Vector2i(550,0),"enabledPortIds":[&"Nw",&"Ne",&"E1"]},true)
+	elif room_id == &"MP-02": definition.merge({"scenePath":"res://ben_rpg/world/rooms/moonpetal_blossom_court.tscn","worldOrigin":Vector2i(550,0),"enabledPortIds":[&"Nw",&"Ne",&"E1",&"E2"]},true)
+	elif room_id == &"MP-03": definition.merge({"scenePath":"res://ben_rpg/world/rooms/moonpetal_lantern_arcade.tscn","worldOrigin":Vector2i(550,0),"enabledPortIds":[&"Nw",&"Ne",&"E1",&"E2"]},true)
+	elif room_id == &"MP-04": definition.merge({"scenePath":"res://ben_rpg/world/rooms/moonpetal_mirror_garden_outer_walk.tscn","worldOrigin":Vector2i(550,0),"enabledPortIds":[&"Nw",&"Ne",&"E1"]},true)
+	elif room_id == &"MP-05": definition.merge({"scenePath":"res://ben_rpg/world/rooms/moonpetal_counterfeit_vow_pavilion.tscn","worldOrigin":Vector2i(550,0),"enabledPortIds":[&"Nw",&"Ne"],"featureIds":[&"garden_seal"]},true)
+	elif room_id == &"MP-06": definition.merge({"scenePath":"res://ben_rpg/world/rooms/moonpetal_bell_walk.tscn","worldOrigin":Vector2i(550,0),"enabledPortIds":[&"Nw",&"Ne",&"E1"],"featureIds":[&"fox_procession_ambush"]},true)
+	elif room_id == &"MP-07": definition.merge({"scenePath":"res://ben_rpg/world/rooms/moonpetal_moon_palace_approach.tscn","worldOrigin":Vector2i(550,0),"enabledPortIds":[&"Nw",&"Ne",&"E2"],"featureIds":[&"palace_seal"]},true)
+	elif room_id == &"MP-08": definition.merge({"scenePath":"res://ben_rpg/world/rooms/moonpetal_hall_true_moon.tscn","worldOrigin":Vector2i(550,0),"enabledPortIds":[&"Nw"],"featureIds":[&"magistrate_enma_boss"]},true)
 	elif room_id == &"PV-01":
 		definition.merge({"scenePath": "res://ben_rpg/world/rooms/primeval_thunderfern_grove.tscn", "worldOrigin": Vector2i(400, 0), "enabledPortIds": [&"Nw", &"Ne", &"E1"], "portGates": {&"E1": &"primeval_terminal_decoded"}, "featureIds": [&"grove_intro_battle", &"looping_clearings", &"canopy_occlusion", &"tyrant_tracks"]}, true)
 	elif room_id == &"PV-02":
