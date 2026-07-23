@@ -5,6 +5,7 @@ const ROUTER := preload("res://ben_rpg/world/campaign_transition_router.gd")
 const SCENES := {
 	&"PV-01": preload("res://ben_rpg/world/rooms/primeval_thunderfern_grove.tscn"), &"PV-02": preload("res://ben_rpg/world/rooms/primeval_stone_signal_crossing.tscn"), &"PV-03": preload("res://ben_rpg/world/rooms/primeval_borough.tscn"),
 	&"PV-04": preload("res://ben_rpg/world/rooms/primeval_canopy_causeway.tscn"), &"PV-05": preload("res://ben_rpg/world/rooms/primeval_jungle_ruins_court.tscn"), &"PV-06": preload("res://ben_rpg/world/rooms/primeval_cave_computer_vault.tscn"),
+	&"PV-07": preload("res://ben_rpg/world/rooms/primeval_relay_nest.tscn"), &"PV-08": preload("res://ben_rpg/world/rooms/primeval_caldera_crown.tscn"), &"PV-14": preload("res://ben_rpg/world/rooms/primeval_lava_tube_bypass.tscn"),
 }
 
 func _ready() -> void:
@@ -18,5 +19,9 @@ func _ready() -> void:
 	assert(StringName(ROUTER.resolve(&"PV-04", &"Ne").get("destinationRoom", &"")) == &"PV-05")
 	assert(StringName(ROUTER.resolve(&"PV-05", &"Ne").get("destinationRoom", &"")) == &"PV-06")
 	assert(REGISTRY.room(&"PV-06").get("primevalInteractions", []).size() == 1)
-	print("CAMPAIGN_PRIMEVAL_SPINE_SMOKE_OK rooms=PV-01..PV-06 terminal=room_owned")
+	assert(StringName(ROUTER.resolve(&"PV-03", &"E1").get("destinationRoom", &"")) == &"PV-07")
+	assert(StringName(ROUTER.resolve(&"PV-07", &"Ne").get("destinationRoom", &"")) == &"PV-08")
+	assert(REGISTRY.room(&"PV-07").get("primevalInteractions", []).size() == 2)
+	assert(not (REGISTRY.room(&"PV-08").get("bossEncounter", {}) as Dictionary).is_empty())
+	print("CAMPAIGN_PRIMEVAL_SPINE_SMOKE_OK rooms=PV-01..PV-08+PV-14 relay=room_owned")
 	get_tree().quit()

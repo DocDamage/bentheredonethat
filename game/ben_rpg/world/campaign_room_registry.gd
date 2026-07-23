@@ -204,6 +204,12 @@ static func room(room_id: StringName) -> Dictionary:
 		definition.merge({"scenePath": "res://ben_rpg/world/rooms/primeval_jungle_ruins_court.tscn", "worldOrigin": Vector2i(400, 0), "enabledPortIds": [&"Nw", &"Ne", &"E1", &"E2"], "portGates": {&"E2": &"primeval_terminal_decoded"}, "featureIds": [&"signal_glyph_hub", &"ruin_formation", &"specialist_supply_hollow", &"ruin_return_gate"]}, true)
 	elif room_id == &"PV-06":
 		definition.merge({"scenePath": "res://ben_rpg/world/rooms/primeval_cave_computer_vault.tscn", "worldOrigin": Vector2i(400, 0), "enabledPortIds": [&"Nw"], "featureIds": [&"translator_requirement", &"cave_os", &"remote_relay_unlock", &"isolated_ancient_tech"], "primevalInteractions": [{"nodeName": "PrimevalCaveTerminal", "kind": &"cave_terminal", "cell": Vector2i(10, 7)}]}, true)
+	elif room_id == &"PV-07":
+		definition.merge({"scenePath": "res://ben_rpg/world/rooms/primeval_relay_nest.tscn", "worldOrigin": Vector2i(400, 0), "enabledPortIds": [&"Nw", &"Ne", &"E1", &"E2"], "portGates": {&"Nw": &"primeval_terminal_decoded", &"Ne": &"primeval_caldera_open"}, "featureIds": [&"dinosaur_attendant_ambush", &"egg_relay", &"all_green_borough_state"], "primevalInteractions": [{"nodeName": "PrimevalAnchorTotem", "kind": &"anchor_totem", "savePointId": &"primeval_nest", "cell": Vector2i(8, 10)}, {"nodeName": "PrimevalRelayNest", "kind": &"relay_nest", "cell": Vector2i(15, 8)}]}, true)
+	elif room_id == &"PV-08":
+		definition.merge({"scenePath": "res://ben_rpg/world/rooms/primeval_caldera_crown.tscn", "worldOrigin": Vector2i(400, 0), "enabledPortIds": [&"Nw", &"Ne", &"E1"], "portGates": {&"Nw": &"primeval_caldera_open", &"Ne": &"primeval_scenario_complete", &"E1": &"primeval_caldera_open"}, "featureIds": [&"caldera_vista", &"cooled_post_victory_route", &"mammoth_club_reward"], "bossEncounter": {"nodeName": "CommuteTyrant", "encounterId": &"primeval_commute_tyrant", "defeatedFlag": &"primeval_scenario_complete", "cell": Vector2i(12, 10)}}, true)
+	elif room_id == &"PV-14":
+		definition.merge({"scenePath": "res://ben_rpg/world/rooms/primeval_lava_tube_bypass.tscn", "worldOrigin": Vector2i(400, 0), "enabledPortIds": [&"Nw", &"Ne", &"E1"], "portGates": {&"Ne": &"primeval_terminal_decoded", &"E1": &"primeval_caldera_open"}, "featureIds": [&"fossilized_service_tunnel", &"green_traffic_doors", &"stabilized_shortcut"]}, true)
 	elif room_id == &"AS-01":
 		definition.merge({
 			"scenePath": "res://ben_rpg/world/rooms/asterion_docking_collar.tscn",
