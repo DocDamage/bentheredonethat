@@ -1048,8 +1048,15 @@ func refresh_sandbox_object_collision() -> void:
 	if not _navigation:
 		return
 	var blocked := _blocked_cells()
+	# Facility entrances are navigation contracts, including in sandbox mode.
+	# User props and terrain may decorate the district around them, but may not
+	# strand a service or portal by covering its doorway or its town-side return.
+	var facility_access_cells := {}
 	for plot_index in CampaignState.built_facilities.keys():
 		var plot: Rect2i = FACILITY_PLOTS[int(plot_index)]
+		var door_cell := TOWN_ORIGIN + Vector2i(plot.position.x + plot.size.x / 2, plot.end.y - 1)
+		facility_access_cells[door_cell] = true
+		facility_access_cells[door_cell + Vector2i.DOWN] = true
 		for y in range(plot.position.y, plot.end.y):
 			for x in range(plot.position.x, plot.end.x):
 				var local_cell := Vector2i(x, y)
@@ -1069,6 +1076,8 @@ func refresh_sandbox_object_collision() -> void:
 		var terrain_definition: Dictionary = SANDBOX_TERRAIN_CATALOG.definition(CampaignState.town_terrain_at(cell))
 		if bool(terrain_definition.get("blocks", false)):
 			blocked[cell] = true
+	for access_cell in facility_access_cells:
+		blocked.erase(access_cell)
 	var cleared_cells: Array[Vector2i] = []
 	var blocked_cells: Array[Vector2i] = []
 	for y in range(TOWN_SIZE.y):
