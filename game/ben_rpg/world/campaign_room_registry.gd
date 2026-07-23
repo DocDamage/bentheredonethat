@@ -15,6 +15,11 @@ const ASTERION_ROOM_IDS := [
 	&"AS-09", &"AS-10", &"AS-11", &"AS-12", &"AS-13", &"AS-14",
 ]
 
+const PRIMEVAL_ROOM_IDS := [
+	&"PV-01", &"PV-02", &"PV-03", &"PV-04", &"PV-05", &"PV-06", &"PV-07", &"PV-08",
+	&"PV-09", &"PV-10", &"PV-11", &"PV-12", &"PV-13", &"PV-14",
+]
+
 # Section 23.2 blueprint records. Coordinates are room-local movement cells;
 # the camera contract is derived from these dimensions at 48 world pixels per
 # cell. Keeping this matrix here prevents future rooms from inventing offsets in
@@ -70,6 +75,23 @@ static var ASTERION_ROOMS := {
 	&"AS-12": _room(&"M4", &"zone", &"Tsw", 4, [[&"Nw", &"AS-03"], [&"Ne", &"AS-04"]]),
 	&"AS-13": _room(&"M1", &"none", &"none", 4, [[&"Nw", &"AS-03"], [&"Ne", &"AS-04"], [&"E1", &"AS-05"], [&"E2", &"AS-07"], [&"Se", &"AS-11"]]),
 	&"AS-14": _room(&"S2", &"none", &"none", 2, [[&"Nw", &"AS-01"], [&"Ne", &"AS-07"]]),
+}
+
+static var PRIMEVAL_ROOMS := {
+	&"PV-01": _room(&"L1", &"boss", &"none", 6, [[&"Nw", &"FI-07"], [&"Ne", &"PV-02"], [&"E1", &"PV-13"]]),
+	&"PV-02": _room(&"M2", &"zone", &"none", 4, [[&"Nw", &"PV-01"], [&"Ne", &"PV-03"], [&"E1", &"PV-13"]]),
+	&"PV-03": _room(&"L3", &"zone", &"none", 6, [[&"Nw", &"PV-02"], [&"Ne", &"PV-04"], [&"E1", &"PV-07"], [&"E2", &"PV-10"], [&"Se", &"PV-14"]]),
+	&"PV-04": _room(&"M4", &"zone", &"none", 4, [[&"Nw", &"PV-03"], [&"Ne", &"PV-05"], [&"E1", &"PV-11"]]),
+	&"PV-05": _room(&"L1", &"zone", &"Tnw", 6, [[&"Nw", &"PV-04"], [&"Ne", &"PV-06"], [&"E1", &"PV-09"], [&"E2", &"PV-13"]]),
+	&"PV-06": _room(&"M2", &"zone", &"none", 4, [[&"Nw", &"PV-05"]]),
+	&"PV-07": _room(&"L3", &"scripted_only", &"none", 6, [[&"Nw", &"PV-03"], [&"Ne", &"PV-08"], [&"E1", &"PV-11"], [&"E2", &"PV-14"]]),
+	&"PV-08": _room(&"L4", &"boss", &"Tsw", 6, [[&"Nw", &"PV-07"], [&"Ne", &"PV-12"], [&"E1", &"PV-14"]]),
+	&"PV-09": _room(&"M1", &"zone", &"Tnw", 4, [[&"Nw", &"PV-05"], [&"Ne", &"PV-13"]]),
+	&"PV-10": _room(&"L2", &"zone", &"Tne", 6, [[&"Nw", &"PV-03"]]),
+	&"PV-11": _room(&"M3", &"zone", &"Tse", 4, [[&"Nw", &"PV-04"], [&"Ne", &"PV-07"]]),
+	&"PV-12": _room(&"L4", &"scripted_only", &"Tsw", 6, [[&"Nw", &"PV-08"]]),
+	&"PV-13": _room(&"M1", &"none", &"none", 4, [[&"Nw", &"PV-01"], [&"Ne", &"PV-02"], [&"E1", &"PV-05"], [&"E2", &"PV-09"]]),
+	&"PV-14": _room(&"S2", &"none", &"none", 2, [[&"Nw", &"PV-03"], [&"Ne", &"PV-07"], [&"E1", &"PV-08"]]),
 }
 
 # This scene is deliberately a small, self-contained proof of the platform. It
@@ -164,13 +186,19 @@ static func _population_anchor_cells(dimensions: Vector2i, anchors: Array[String
 
 
 static func has_room(room_id: StringName) -> bool:
-	return MANSION_ROOMS.has(room_id) or ASTERION_ROOMS.has(room_id) or MANIFEST_TEST_ROOMS.has(room_id)
+	return MANSION_ROOMS.has(room_id) or ASTERION_ROOMS.has(room_id) or PRIMEVAL_ROOMS.has(room_id) or MANIFEST_TEST_ROOMS.has(room_id)
 
 
 static func room(room_id: StringName) -> Dictionary:
-	var source: Dictionary = MANSION_ROOMS if MANSION_ROOMS.has(room_id) else (ASTERION_ROOMS if ASTERION_ROOMS.has(room_id) else MANIFEST_TEST_ROOMS)
+	var source: Dictionary = MANSION_ROOMS if MANSION_ROOMS.has(room_id) else (ASTERION_ROOMS if ASTERION_ROOMS.has(room_id) else (PRIMEVAL_ROOMS if PRIMEVAL_ROOMS.has(room_id) else MANIFEST_TEST_ROOMS))
 	var definition := (source.get(room_id, {}) as Dictionary).duplicate(true)
-	if room_id == &"AS-01":
+	if room_id == &"PV-01":
+		definition.merge({"scenePath": "res://ben_rpg/world/rooms/primeval_thunderfern_grove.tscn", "worldOrigin": Vector2i(400, 0), "enabledPortIds": [&"Nw", &"Ne", &"E1"], "portGates": {&"E1": &"primeval_terminal_decoded"}, "featureIds": [&"grove_intro_battle", &"looping_clearings", &"canopy_occlusion", &"tyrant_tracks"]}, true)
+	elif room_id == &"PV-02":
+		definition.merge({"scenePath": "res://ben_rpg/world/rooms/primeval_stone_signal_crossing.tscn", "worldOrigin": Vector2i(400, 0), "enabledPortIds": [&"Nw", &"Ne", &"E1"], "featureIds": [&"traffic_totem", &"meteor_warning", &"pulsing_signal_stones"], "primevalInteractions": [{"nodeName": "PrimevalTrafficTotem", "kind": &"traffic_totem", "cell": Vector2i(10, 6)}]}, true)
+	elif room_id == &"PV-03":
+		definition.merge({"scenePath": "res://ben_rpg/world/rooms/primeval_borough.tscn", "worldOrigin": Vector2i(400, 0), "enabledPortIds": [&"Nw", &"Ne", &"E1", &"E2", &"Se"], "portGates": {&"E1": &"primeval_terminal_decoded", &"Se": &"primeval_caldera_open"}, "featureIds": [&"caveman_meeting", &"population_hub", &"locked_relay_trail", &"green_traffic_state"]}, true)
+	elif room_id == &"AS-01":
 		definition.merge({
 			"scenePath": "res://ben_rpg/world/rooms/asterion_docking_collar.tscn",
 			"worldOrigin": Vector2i(350, 0),
@@ -467,6 +495,8 @@ static func room_ids() -> Array[StringName]:
 		result.append(room_id)
 	for room_id in ASTERION_ROOM_IDS:
 		result.append(room_id)
+	for room_id in PRIMEVAL_ROOM_IDS:
+		result.append(room_id)
 	return result
 
 
@@ -557,9 +587,9 @@ static func validate() -> PackedStringArray:
 			port_ids[port_id] = true
 			if not (definition.get("portCells", {}) as Dictionary).has(port_id):
 				errors.append("%s.%s has no blueprint port cell." % [room_id, port_id])
-			if (destination.begins_with("HM-") or destination.begins_with("AS-")) and not has_room(destination):
+			if (destination.begins_with("HM-") or destination.begins_with("AS-") or destination.begins_with("PV-")) and not has_room(destination):
 				errors.append("%s.%s targets unknown room %s." % [room_id, port_id, destination])
-			elif not destination.begins_with("HM-") and not destination.begins_with("AS-") and destination not in [&"FI-05", &"FI-06"]:
+			elif not destination.begins_with("HM-") and not destination.begins_with("AS-") and not destination.begins_with("PV-") and destination not in [&"FI-05", &"FI-06", &"FI-07"]:
 				errors.append("%s.%s targets undeclared external room %s." % [room_id, port_id, destination])
 	if not _reachable(&"HM-01", &"HM-09"):
 		errors.append("Mansion critical path cannot reach HM-09 from HM-01.")
@@ -567,6 +597,8 @@ static func validate() -> PackedStringArray:
 		errors.append("Mansion room graph is not connected from HM-01.")
 	if _reachable_room_count(&"AS-01") != ASTERION_ROOM_IDS.size():
 		errors.append("Asterion room graph is not connected from AS-01.")
+	if _reachable_room_count(&"PV-01") != PRIMEVAL_ROOM_IDS.size():
+		errors.append("Primeval room graph is not connected from PV-01.")
 	_validate_manifest_test_rooms(errors)
 	return PackedStringArray(errors)
 

@@ -8,7 +8,8 @@ func _ready() -> void:
 	for error in errors:
 		push_error(error)
 	assert(errors.is_empty(), "Room registry validation failed with %d error(s)." % errors.size())
-	assert(ROOM_REGISTRY.room_ids().size() == 30, "Expected the locked Mansion and Asterion room graphs.")
+	assert(ROOM_REGISTRY.room_ids().size() == 44, "Expected the locked Mansion, Asterion, and Primeval room graphs.")
+	assert(ROOM_REGISTRY.ports(&"PV-01").size() == 3, "PV-01 requires Trailhead, Primeval, and switchback ports.")
 	assert(ROOM_REGISTRY.room(&"HM-09").get("encounterPolicy") == &"boss", "HM-09 must remain the boss room.")
 	assert(ROOM_REGISTRY.ports(&"HM-01").size() == 2, "HM-01 requires facility and Mansion entry ports.")
 	assert(ROOM_REGISTRY.ports(&"AS-01").size() == 3, "AS-01 requires Observatory, Asterion, and tram ports.")
@@ -20,5 +21,5 @@ func _ready() -> void:
 	assert(foyer.get("populationAnchors") == [&"P1", &"P2", &"P3", &"P4", &"P5", &"P6"])
 	assert((foyer.get("populationAnchorCells") as Dictionary).get(&"P1") == Vector2i(6, 6))
 	assert(foyer.get("collisionMaskId") == &"generated:L2-collision")
-	print("CAMPAIGN_ROOM_REGISTRY_SMOKE_OK rooms=30 entries=HM-01+AS-01 boss=HM-09 graph=connected blueprints=resolved")
+	print("CAMPAIGN_ROOM_REGISTRY_SMOKE_OK rooms=44 entries=HM-01+AS-01+PV-01 boss=HM-09 graph=connected blueprints=resolved")
 	get_tree().quit()

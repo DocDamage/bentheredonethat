@@ -11,6 +11,7 @@ const MANSION_SAVE_POINT := preload("res://ben_rpg/world/mansion_save_point.tscn
 const MANSION_CHAPTER_INTERACTION := preload("res://ben_rpg/world/mansion_chapter_interaction.tscn")
 const MANSION_BOSS_INTERACTION := preload("res://ben_rpg/world/campaign_mansion_boss_interaction.tscn")
 const ASTERION_INTERACTION := preload("res://ben_rpg/world/asterion_interaction.tscn")
+const PRIMEVAL_INTERACTION := preload("res://ben_rpg/world/primeval_interaction.tscn")
 
 
 static func install(root: Node2D, room_id: StringName, definition: Dictionary) -> void:
@@ -43,6 +44,12 @@ static func install(root: Node2D, room_id: StringName, definition: Dictionary) -
 			if save_point_id != &"":
 				var world_origin: Vector2i = definition.get("worldOrigin", Vector2i.ZERO)
 				CampaignState.register_runtime_save_point(save_point_id, world_origin + anchor_cell)
+		for primeval_definition in definition.get("primevalInteractions", []):
+			var primeval_interaction := PRIMEVAL_INTERACTION.instantiate()
+			primeval_interaction.name = String(primeval_definition.get("nodeName", "PrimevalInteraction"))
+			primeval_interaction.set("interaction_kind", StringName(primeval_definition.get("kind", &"")))
+			primeval_interaction.position = Vector2((primeval_definition.get("cell", Vector2i.ZERO) as Vector2i) * 48)
+			interaction_layer.add_child(primeval_interaction)
 		var boss_definition: Dictionary = definition.get("bossEncounter", {})
 		if not boss_definition.is_empty():
 			var boss_interaction := MANSION_BOSS_INTERACTION.instantiate()

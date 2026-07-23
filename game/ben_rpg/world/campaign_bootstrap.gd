@@ -772,7 +772,7 @@ func _update_camera_limits(force := false) -> void:
 		CampaignState.mark_story_flag(&"mansion_entered")
 	elif area.begins_with("station") or manifest_room_id.begins_with("AS-"):
 		CampaignState.mark_story_flag(&"asterion_entered")
-	elif area.begins_with("primeval"):
+	elif area.begins_with("primeval") or manifest_room_id.begins_with("PV-"):
 		CampaignState.mark_story_flag(&"primeval_entered")
 	elif area.begins_with("helios"):
 		CampaignState.mark_story_flag(&"helios_entered")
@@ -1278,14 +1278,11 @@ func _create_primeval_transitions(plot_index: int) -> void:
 	var local_door := Vector2i(plot.position.x + plot.size.x / 2, plot.end.y - 1)
 	var town_door := TOWN_ORIGIN + local_door
 	var town_return := TOWN_ORIGIN + Vector2i(local_door.x, plot.end.y)
-	world.add_child(_create_transition("PrimevalExpanseEntrance", town_door, PRIMEVAL_SPAWN))
-	world.add_child(_create_transition("PrimevalExpanseExit", PRIMEVAL_EXIT, town_return))
-	world.add_child(_create_transition("PrimevalGroveToVillage", PRIMEVAL_GROVE_TO_VILLAGE, PRIMEVAL_VILLAGE_FROM_GROVE))
-	world.add_child(_create_transition("PrimevalVillageToGrove", PRIMEVAL_VILLAGE_RETURN, PRIMEVAL_GROVE_FROM_VILLAGE))
-	world.add_child(_create_transition("PrimevalVillageToRuins", PRIMEVAL_VILLAGE_TO_RUINS, PRIMEVAL_RUINS_FROM_VILLAGE))
-	world.add_child(_create_transition("PrimevalRuinsToVillage", PRIMEVAL_RUINS_RETURN, PRIMEVAL_VILLAGE_FROM_RUINS))
-	_update_primeval_nest_gate()
-	_update_primeval_caldera_gate()
+	var entry_room := ROOM_REGISTRY.room(&"PV-01")
+	var entry_origin: Vector2i = entry_room.get("worldOrigin", PRIMEVAL_ORIGIN)
+	var entry_port: Vector2i = (entry_room.get("portCells", {}) as Dictionary).get(&"Nw", Vector2i.ZERO)
+	world.add_child(_create_transition("PrimevalExpanseEntrance", town_door, entry_origin + TRANSITION_ROUTER.safe_arrival_cell(&"PV-01", &"Nw")))
+	world.add_child(_create_transition("PrimevalExpanseExit", entry_origin + entry_port, town_return))
 
 
 func _create_helios_transitions(plot_index: int) -> void:
