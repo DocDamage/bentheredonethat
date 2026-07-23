@@ -6,16 +6,8 @@ const SCI_FI_PACK := "res://game_assets/monsters/cp42-g31_sci_fi_entities/"
 const VILLAIN_PACK := "res://game_assets/monsters/cp44-j31_villains/"
 const YOKAI_PACK := "res://game_assets/monsters/cp41-a181_japanese_yokai_urban_legends/"
 const VISUAL_PROFILE_REGISTRY := preload("res://ben_rpg/world/campaign_visual_profile_registry.gd")
-const FALLBACK_PARTY_SPRITE := "res://game_assets/characters/Main Character/Ben_Franklin/rotations/west.png"
-const PARTY_BATTLE_PROFILES := {
-	&"ben": &"ben_battle_actor", &"fighter": &"fighter_battle_actor", &"astronaut": &"astronaut_battle_actor",
-	&"caveman": &"caveman_battle_actor", &"crimson_oni": &"crimson_oni_challenger_battle_actor",
-	&"rift_jackal": &"rift_jackal_battle_actor", &"mossback_surveyor": &"mossback_surveyor_battle_actor",
-	&"cobalt_courier": &"cobalt_courier_battle_actor", &"bulkhead_warden": &"bulkhead_warden_battle_actor",
-	&"kitsune_empress": &"kitsune_empress_battle_actor", &"neon_viper": &"neon_viper_battle_actor",
-	&"archangel_commander": &"archangel_commander_battle_actor", &"frost_lich_emperor": &"frost_lich_emperor_battle_actor",
-	&"velociraptor": &"velociraptor_battle_actor",
-}
+const FALLBACK_PARTY_PROFILE := &"ben_battle_actor"
+const RAPTOR_BATTLE_PROFILE := &"velociraptor_battle_actor"
 const AUTHORED_BATTLE_ANIMATION_SOURCES := {
 	&"ben": {
 		"battle_animation_root": "res://game_assets/characters/Main Character/Ben_Franklin/animations", "battle_animation_fps": 12.0,
@@ -237,9 +229,12 @@ static func action_ids() -> Array[StringName]:
 
 
 static func party_actor(character_id: StringName, progress: Dictionary) -> Dictionary:
-	var visual_profile := StringName(PARTY_BATTLE_PROFILES.get(character_id, &""))
-	var visual_sprite := _visual_sprite(visual_profile) if visual_profile != &"" else {}
-	if visual_profile != &"" and visual_sprite.is_empty():
+	var recruit: Dictionary = CampaignState.recruit_catalog.get(character_id, {})
+	# New catalog entries fall back to a reviewed profile, never a formatted raw
+	# asset path. Established company entries declare their own profile metadata.
+	var visual_profile := StringName(recruit.get("battle_profile", FALLBACK_PARTY_PROFILE))
+	var visual_sprite := _visual_sprite(visual_profile)
+	if visual_sprite.is_empty():
 		return {}
 	var level := int(progress.get("level", 1))
 	var build := CampaignState.actor_build(character_id)
@@ -284,18 +279,12 @@ static func party_actor(character_id: StringName, progress: Dictionary) -> Dicti
 	# Recruit folders can be added without changing this combat database. Catalog
 	# metadata supplies identity and optional tuning; the battle image itself is
 	# resolved from the reviewed party profile map above.
-	var recruit: Dictionary = CampaignState.recruit_catalog.get(character_id, {})
 	var stats: Dictionary = recruit.get("combat_stats", {})
 	var generic_actions: Array = recruit.get("combat_actions", [&"attack", &"defend", &"tonic", &"ether", &"smelling_salts", &"phoenix_tonic", &"escape"]).duplicate()
 	for learned_action in learned_actions:
 		if learned_action not in generic_actions:
 			generic_actions.append(learned_action)
-	var sprite_path := String(visual_sprite.get("sprite_path", ""))
-	if sprite_path.is_empty():
-		var asset_pack := String(recruit.get("asset_pack", "Main Character/Ben_Franklin"))
-		sprite_path = String(recruit.get("battle_sprite", "res://game_assets/characters/%s/rotations/west.png" % asset_pack))
-		if not ResourceLoader.exists(sprite_path):
-			sprite_path = FALLBACK_PARTY_SPRITE
+	var sprite_path := String(visual_sprite["sprite_path"])
 	var generic := _actor(character_id, String(recruit.get("name", String(character_id).capitalize())), "party",
 		int(stats.get("max_hp", 155)) + (level - 1) * int(stats.get("hp_growth", 18)) + int(bonuses[&"max_hp"]),
 		int(stats.get("max_mp", 24)) + (level - 1) * int(stats.get("mp_growth", 3)) + int(bonuses[&"max_mp"]),
@@ -305,8 +294,7 @@ static func party_actor(character_id: StringName, progress: Dictionary) -> Dicti
 		int(stats.get("spirit", 18)) + level * int(stats.get("spirit_growth", 2)) + int(bonuses[&"spirit"]),
 		int(stats.get("speed", 30)) + level * int(stats.get("speed_growth", 1)) + int(bonuses[&"speed"]),
 		sprite_path, generic_actions, progress)
-	if visual_profile != &"":
-		_apply_visual_sprite(generic, visual_profile, visual_sprite)
+	_apply_visual_sprite(generic, visual_profile, visual_sprite)
 	_apply_build_element_rates(generic, build)
 	generic["formation"] = CampaignState.formation_for(character_id)
 	_attach_authored_battle_animation(generic, character_id, recruit)
@@ -318,7 +306,7 @@ static func _apply_build_element_rates(actor: Dictionary, build: Dictionary) -> 
 
 
 static func raptor_actor() -> Dictionary:
-	var visual_profile := StringName(PARTY_BATTLE_PROFILES[&"velociraptor"])
+	var visual_profile := RAPTOR_BATTLE_PROFILE
 	var visual_sprite := _visual_sprite(visual_profile)
 	if visual_sprite.is_empty():
 		return {}

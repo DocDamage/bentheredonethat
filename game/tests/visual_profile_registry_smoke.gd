@@ -208,13 +208,10 @@ func _ready() -> void:
 			get_tree().quit(1)
 			return
 	CampaignState.reset_new_game()
-	if CampaignCombatDatabase.PARTY_BATTLE_PROFILES.size() != CampaignState.recruit_catalog.size() + 1:
-		printerr("VISUAL_PROFILE_REGISTRY_SMOKE_FAILED party_profile_count")
-		get_tree().quit(1)
-		return
-	for character_id in CampaignCombatDatabase.PARTY_BATTLE_PROFILES:
-		var party_profile := StringName(CampaignCombatDatabase.PARTY_BATTLE_PROFILES[character_id])
-		var party_actor := CampaignCombatDatabase.raptor_actor() if character_id == &"velociraptor" else CampaignCombatDatabase.party_actor(character_id, CampaignState.character_progress[character_id])
+	var party_profile_count := 0
+	for character_id in CampaignState.recruit_catalog:
+		var party_profile := StringName(CampaignState.recruit_catalog[character_id].get("battle_profile", &""))
+		var party_actor := CampaignCombatDatabase.party_actor(character_id, CampaignState.character_progress[character_id])
 		if party_profile == &"" or not registry.has(party_profile) or StringName(party_actor.get("sprite_profile", &"")) != party_profile:
 			printerr("VISUAL_PROFILE_REGISTRY_SMOKE_FAILED unprofiled_party_actor=" + character_id)
 			get_tree().quit(1)
@@ -223,6 +220,14 @@ func _ready() -> void:
 			printerr("VISUAL_PROFILE_REGISTRY_SMOKE_FAILED party_resolution=" + character_id)
 			get_tree().quit(1)
 			return
+		party_profile_count += 1
+	var raptor_profile := CampaignCombatDatabase.RAPTOR_BATTLE_PROFILE
+	var raptor_actor := CampaignCombatDatabase.raptor_actor()
+	if not registry.has(raptor_profile) or StringName(raptor_actor.get("sprite_profile", &"")) != raptor_profile:
+		printerr("VISUAL_PROFILE_REGISTRY_SMOKE_FAILED unprofiled_party_actor=velociraptor")
+		get_tree().quit(1)
+		return
+	party_profile_count += 1
 	for case_data in [
 		[&"rift_jackal_challenger", &"rift_jackal_battle_actor"],
 		[&"bulkhead_warden_challenger", &"bulkhead_warden_battle_actor"],
@@ -250,5 +255,5 @@ func _ready() -> void:
 			printerr("VISUAL_PROFILE_REGISTRY_SMOKE_FAILED battle_actor=" + enemy_id)
 			get_tree().quit(1)
 			return
-	print("VISUAL_PROFILE_REGISTRY_SMOKE_OK profiles=%d catalog_enemies=%d party_actors=%d armory_icons=%d runtime=manifest ids+textures+combat_profiles=stable" % [registry.profile_count(), CampaignCombatDatabase.BESTIARY_ORDER.size(), CampaignCombatDatabase.PARTY_BATTLE_PROFILES.size(), CampaignState.ARMORY_STOCK.size()])
+	print("VISUAL_PROFILE_REGISTRY_SMOKE_OK profiles=%d catalog_enemies=%d party_actors=%d armory_icons=%d runtime=manifest ids+textures+combat_profiles=stable" % [registry.profile_count(), CampaignCombatDatabase.BESTIARY_ORDER.size(), party_profile_count, CampaignState.ARMORY_STOCK.size()])
 	get_tree().quit(0)

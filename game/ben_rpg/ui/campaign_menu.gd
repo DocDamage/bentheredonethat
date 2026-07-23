@@ -7,11 +7,6 @@ const UI_ROOT := "res://game_assets/Tilesets/Dark RPG GUI Kit - Pixel Art Asset 
 const UI_PARTY_HUD := UI_ROOT + "/dfgui_partyhud.png"
 const UI_BUTTON := UI_ROOT + "/dfgui_button-empty.png"
 const VISUAL_PROFILE_REGISTRY := preload("res://ben_rpg/world/campaign_visual_profile_registry.gd")
-const CHARACTER_PORTRAIT_PROFILES := {
-	&"ben": &"ben_company_portrait",
-	&"fighter": &"fighter_company_portrait",
-	&"astronaut": &"astronaut_company_portrait",
-}
 const CHARACTER_PORTRAIT_REGIONS := {
 	&"ben": Rect2(20, 15, 48, 58),
 	&"fighter": Rect2(30, 24, 62, 76),
@@ -353,19 +348,12 @@ func _refresh_profile() -> void:
 	var actor := CampaignCombatDatabase.party_actor(selected_character, progress)
 	_profile_name.text = String(actor.get("display_name", selected_character))
 	var recruit: Dictionary = CampaignState.recruit_catalog.get(selected_character, {})
-	var asset_pack := String(recruit.get("asset_pack", "Main Character/Ben_Franklin"))
-	var portrait_profile := StringName(CHARACTER_PORTRAIT_PROFILES.get(selected_character, &""))
-	var portrait_path := ""
-	if portrait_profile != &"":
-		if not _visual_profiles:
-			_visual_profiles = VISUAL_PROFILE_REGISTRY.new()
-		portrait_path = _visual_profiles.texture_path(portrait_profile)
-	if portrait_path.is_empty():
-		portrait_path = String(recruit.get("portrait_path", "res://game_assets/characters/%s/rotations/south.png" % asset_pack))
-	if not ResourceLoader.exists(portrait_path):
-		if not _visual_profiles:
-			_visual_profiles = VISUAL_PROFILE_REGISTRY.new()
-		portrait_path = _visual_profiles.texture_path(&"ben_company_portrait")
+	var portrait_profile := StringName(recruit.get("portrait_profile", recruit.get("battle_profile", &"ben_company_portrait")))
+	if not _visual_profiles:
+		_visual_profiles = VISUAL_PROFILE_REGISTRY.new()
+	if not _visual_profiles.has(portrait_profile):
+		portrait_profile = &"ben_company_portrait"
+	var portrait_path: String = _visual_profiles.texture_path(portrait_profile)
 	var portrait_texture := load(portrait_path) as Texture2D
 	var portrait_atlas := AtlasTexture.new()
 	portrait_atlas.atlas = portrait_texture

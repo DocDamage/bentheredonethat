@@ -3014,3 +3014,12 @@ limit:
   10 legacy compatibility visuals, and two dynamic character-path templates.
   These classifications preserve the release denominator without falsely
   marking any source as profile-approved or distribution-admitted.
+- The dynamic character-path stream has since been removed: company battle and
+  portrait fallbacks resolve through registered profile IDs, reducing the live
+  static visual denominator to 183 sources with 162 profiled and 21 remaining
+  gaps (11 addon UI and 10 compatibility visuals).
+- Recruit metadata now owns each company member's battle and portrait profile
+  IDs. The menu, combat database, and profile-registry fixture consume that
+  shared contract; the five-scene menu/roster/battle/state/profile validation
+  milestone and all 22 asset-tool checks passed with the isolated save sentinel
+  unchanged.

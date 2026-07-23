@@ -932,6 +932,7 @@ var _play_session_running := false
 var recruit_catalog: Dictionary = {
 	&"ben": {
 		"name": "Benjamin Franklin",
+		"battle_profile": &"ben_battle_actor", "portrait_profile": &"ben_company_portrait",
 		"specialty": "Inventor and support",
 		"adjacent_skills": ["Diplomacy", "Research", "Logistics"],
 		"work_specialties": [&"Invention", &"Research"],
@@ -940,6 +941,7 @@ var recruit_catalog: Dictionary = {
 	},
 	&"fighter": {
 		"name": "Fighter",
+		"battle_profile": &"fighter_battle_actor", "portrait_profile": &"fighter_company_portrait",
 		"specialty": "Martial combat",
 		"adjacent_skills": ["Security", "Athletics"],
 		"work_specialties": [&"Combat", &"Security"],
@@ -949,6 +951,7 @@ var recruit_catalog: Dictionary = {
 	},
 	&"astronaut": {
 		"name": "Astronaut",
+		"battle_profile": &"astronaut_battle_actor", "portrait_profile": &"astronaut_company_portrait",
 		"specialty": "Ranged combat and navigation",
 		"adjacent_skills": ["Security", "Engineering"],
 		"work_specialties": [&"Navigation", &"Combat"],
@@ -958,6 +961,7 @@ var recruit_catalog: Dictionary = {
 	},
 	&"caveman": {
 		"name": "Caveman", "specialty": "Survival and brute force",
+		"battle_profile": &"caveman_battle_actor", "portrait_profile": &"caveman_battle_actor",
 		"adjacent_skills": ["Athletics", "Farming", "Logistics"],
 		"work_specialties": [&"Athletics", &"Farming"], "work_adjacent": [&"Security", &"Logistics"],
 		"asset_pack": "Recruitable Characters/caveman/Caveman", "field_animation_scene": "res://ben_rpg/characters/caveman_field_animation.tscn", "portrait_region": Rect2(20, 21, 49, 50),
@@ -967,6 +971,7 @@ var recruit_catalog: Dictionary = {
 	},
 	&"crimson_oni": {
 		"name": "Crimson Oni", "specialty": "Dueling and security",
+		"battle_profile": &"crimson_oni_challenger_battle_actor", "portrait_profile": &"crimson_oni_challenger_battle_actor",
 		"adjacent_skills": ["Athletics", "Occult"],
 		"work_specialties": [&"Combat", &"Security"], "work_adjacent": [&"Athletics", &"Occult"],
 		"asset_pack": "Recruitable Characters/crimson oni samurai", "field_animation_scene": "res://ben_rpg/characters/crimson_oni_field_animation.tscn", "portrait_region": Rect2(46, 43, 95, 101),
@@ -976,6 +981,7 @@ var recruit_catalog: Dictionary = {
 	},
 	&"rift_jackal": {
 		"name": "Rift Jackal", "specialty": "Tracking and threshold security",
+		"battle_profile": &"rift_jackal_battle_actor", "portrait_profile": &"rift_jackal_battle_actor",
 		"adjacent_skills": ["Occult", "Navigation", "Athletics"],
 		"work_specialties": [&"Security", &"Navigation"], "work_adjacent": [&"Occult", &"Athletics", &"Logistics"],
 		"asset_pack": "Topdown Monsters Part 1", "field_animation_scene": "res://ben_rpg/characters/rift_jackal_field_animation.tscn", "portrait_path": "res://game_assets/characters/Topdown Monsters Part 1/Sliced/Rift Jackal/00_idle/frame_000.png",
@@ -993,6 +999,7 @@ var recruit_catalog: Dictionary = {
 	},
 	&"mossback_surveyor": {
 		"name": "Mossback Surveyor", "specialty": "Cultivation and supply logistics",
+		"battle_profile": &"mossback_surveyor_battle_actor", "portrait_profile": &"mossback_surveyor_battle_actor",
 		"adjacent_skills": ["Medicine", "Research", "Athletics"],
 		"work_specialties": [&"Farming", &"Logistics"], "work_adjacent": [&"Medicine", &"Research", &"Athletics"],
 		"asset_pack": "Topdown Monsters Part 1", "field_animation_scene": "res://ben_rpg/characters/mossback_surveyor_field_animation.tscn", "portrait_path": "res://game_assets/characters/Topdown Monsters Part 1/Sliced/Mossback Surveyor/00_idle/frame_000.png",
@@ -1010,6 +1017,7 @@ var recruit_catalog: Dictionary = {
 	},
 	&"cobalt_courier": {
 		"name": "Cobalt Courier", "specialty": "Navigation and rift logistics",
+		"battle_profile": &"cobalt_courier_battle_actor", "portrait_profile": &"cobalt_courier_battle_actor",
 		"adjacent_skills": ["Engineering", "Security", "Diplomacy"],
 		"work_specialties": [&"Navigation", &"Logistics"], "work_adjacent": [&"Engineering", &"Security", &"Diplomacy"],
 		"asset_pack": "Topdown Monsters Part 1", "field_animation_scene": "res://ben_rpg/characters/cobalt_courier_field_animation.tscn", "portrait_path": "res://game_assets/characters/Topdown Monsters Part 1/Sliced/Cobalt Courier/00_idle/frame_000.png",
@@ -1027,6 +1035,7 @@ var recruit_catalog: Dictionary = {
 	},
 	&"bulkhead_warden": {
 		"name": "Bulkhead Warden", "specialty": "Structural engineering and security",
+		"battle_profile": &"bulkhead_warden_battle_actor", "portrait_profile": &"bulkhead_warden_battle_actor",
 		"adjacent_skills": ["Logistics", "Research", "Athletics"],
 		"work_specialties": [&"Engineering", &"Security"], "work_adjacent": [&"Logistics", &"Research", &"Athletics"],
 		"asset_pack": "Topdown Monsters Part 1", "field_animation_scene": "res://ben_rpg/characters/bulkhead_warden_field_animation.tscn", "portrait_path": "res://game_assets/characters/Topdown Monsters Part 1/Sliced/Bulkhead Warden/00_idle/frame_000.png",
@@ -1044,6 +1053,7 @@ var recruit_catalog: Dictionary = {
 	},
 	&"kitsune_empress": {
 		"name": "Kitsune Empress", "specialty": "Illusion and diplomacy",
+		"battle_profile": &"kitsune_empress_battle_actor", "portrait_profile": &"kitsune_empress_battle_actor",
 		"adjacent_skills": ["Occult", "Research"],
 		"work_specialties": [&"Diplomacy", &"Occult"], "work_adjacent": [&"Research", &"Medicine"],
 		"asset_pack": "Recruitable Characters/kitsune empress", "field_animation_scene": "res://ben_rpg/characters/kitsune_field_animation.tscn", "portrait_region": Rect2(34, 36, 85, 84),
@@ -1053,6 +1063,7 @@ var recruit_catalog: Dictionary = {
 	},
 	&"neon_viper": {
 		"name": "Neon Viper", "specialty": "Infiltration and engineering",
+		"battle_profile": &"neon_viper_battle_actor", "portrait_profile": &"neon_viper_battle_actor",
 		"adjacent_skills": ["Security", "Navigation"],
 		"work_specialties": [&"Engineering", &"Security"], "work_adjacent": [&"Navigation", &"Logistics"],
 		"asset_pack": "Recruitable Characters/neon viper - cyberpunk female", "field_animation_scene": "res://ben_rpg/characters/neon_viper_field_animation.tscn", "portrait_region": Rect2(44, 28, 39, 72),
@@ -1062,6 +1073,7 @@ var recruit_catalog: Dictionary = {
 	},
 	&"archangel_commander": {
 		"name": "Archangel Commander", "specialty": "Protection and medicine",
+		"battle_profile": &"archangel_commander_battle_actor", "portrait_profile": &"archangel_commander_battle_actor",
 		"adjacent_skills": ["Diplomacy", "Occult"],
 		"work_specialties": [&"Medicine", &"Security"], "work_adjacent": [&"Diplomacy", &"Occult"],
 		"asset_pack": "Recruitable Characters/Archangel Commander — Legendary Celestial Warrior Hero", "field_animation_scene": "res://ben_rpg/characters/archangel_field_animation.tscn", "portrait_region": Rect2(28, 30, 70, 68),
@@ -1071,6 +1083,7 @@ var recruit_catalog: Dictionary = {
 	},
 	&"frost_lich_emperor": {
 		"name": "Frost Lich Emperor", "specialty": "Cold sorcery and occult research",
+		"battle_profile": &"frost_lich_emperor_battle_actor", "portrait_profile": &"frost_lich_emperor_battle_actor",
 		"adjacent_skills": ["Research", "Invention"],
 		"work_specialties": [&"Occult", &"Research"], "work_adjacent": [&"Invention", &"Diplomacy"],
 		"asset_pack": "Recruitable Characters/💀 The Frost Lich King Emperor", "field_animation_scene": "res://ben_rpg/characters/frost_lich_field_animation.tscn", "portrait_region": Rect2(28, 28, 67, 68),

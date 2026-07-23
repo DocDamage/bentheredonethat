@@ -1572,28 +1572,6 @@
       "distributionEligibility": "review_required",
       "licenseReviewStatus": "review_required",
       "localLicenseEvidence": [
-        "game/LICENSE"
-      ],
-      "path": "res://game_assets/characters/%s/rotations/south.png",
-      "profileIds": [],
-      "sourceGroup": "characters/%s",
-      "unprofiledClassification": "dynamic_template_visual"
-    },
-    {
-      "distributionEligibility": "review_required",
-      "licenseReviewStatus": "review_required",
-      "localLicenseEvidence": [
-        "game/LICENSE"
-      ],
-      "path": "res://game_assets/characters/%s/rotations/west.png",
-      "profileIds": [],
-      "sourceGroup": "characters/%s",
-      "unprofiledClassification": "dynamic_template_visual"
-    },
-    {
-      "distributionEligibility": "review_required",
-      "licenseReviewStatus": "review_required",
-      "localLicenseEvidence": [
         "game_assets/characters/LICENSE",
         "game_assets/characters/Main Character/license.txt"
       ],
@@ -2766,18 +2744,17 @@
   "schemaVersion": 2,
   "scope": "static Godot raster references; not a reachability or license-grant proof",
   "summary": {
-    "assets": 185,
+    "assets": 183,
     "distributionEligibility": {
       "distribution_confirmed": 0,
       "rejected": 0,
-      "review_required": 185
+      "review_required": 183
     },
     "needsManualLicenseConfirmation": 0,
     "unprofiledByClassification": {
-      "dynamic_template_visual": 2,
       "legacy_compatibility_visual": 10,
       "third_party_addon_ui": 11
     },
-    "withLocalLicenseEvidence": 185
+    "withLocalLicenseEvidence": 183
   }
 }
