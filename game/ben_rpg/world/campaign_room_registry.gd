@@ -458,6 +458,16 @@ static func room(room_id: StringName) -> Dictionary:
 			"scenePath": "res://ben_rpg/world/rooms/asterion_hydroponics_outer_walk.tscn",
 			"worldOrigin": Vector2i(350, 0),
 			"enabledPortIds": [&"Nw", &"Ne", &"E1"],
+			"navigationId": &"authored:as05-hydroponics-outer-walk-navigation", "collisionMaskId": &"authored:as05-hydroponics-outer-walk-collision",
+			"navigationLayout": {
+				"id": &"as05-hydroponics-outer-walk-v1", "kind": &"authored", "usefulCellRange": Vector2i(128, 128),
+				"walkableRects": [
+					{"origin": Vector2i(5, 1), "size": Vector2i(9, 4)}, # greenhouse door arrivals
+					{"origin": Vector2i(3, 4), "size": Vector2i(12, 7)}, # two canopy lanes and drone floor
+					{"origin": Vector2i(15, 3), "size": Vector2i(2, 4)}, # observation-ring threshold
+					{"origin": Vector2i(5, 10), "size": Vector2i(9, 2)}, # oxygen-line return walk
+				],
+			},
 			"visualProfileIds": [&"asterion_hydroponics_bed", &"asterion_hydro_control_bank"],
 			"featureIds": [&"greenhouse_patrol", &"two_canopy_lanes", &"sealed_greenhouse", &"oxygen_line_terminus"],
 			"bossEncounter": {"nodeName": "HydroponicsSecurityDrones", "encounterId": &"asterion_hydro_ambush", "defeatedFlag": &"asterion_hydro_ambush_cleared", "cell": Vector2i(10, 7)},
@@ -468,6 +478,15 @@ static func room(room_id: StringName) -> Dictionary:
 			"worldOrigin": Vector2i(350, 0),
 			"enabledPortIds": [&"Nw", &"Ne"],
 			"portGates": {&"Ne": &"asterion_station_restored"},
+			"navigationId": &"authored:as06-oxygen-biocircuit-navigation", "collisionMaskId": &"authored:as06-oxygen-biocircuit-collision",
+			"navigationLayout": {
+				"id": &"as06-oxygen-biocircuit-v1", "kind": &"authored", "usefulCellRange": Vector2i(259, 260),
+				"walkableRects": [
+					{"origin": Vector2i(7, 1), "size": Vector2i(12, 4)}, # upper airlock arrivals
+					{"origin": Vector2i(3, 4), "size": Vector2i(20, 10)}, # oxygen core and blue-state console floor
+					{"origin": Vector2i(7, 13), "size": Vector2i(12, 3)}, # restored-core return apron
+				],
+			},
 			"visualProfileIds": [&"asterion_hydro_control_bank", &"asterion_station_architecture"],
 			"featureIds": [&"biocircuit_install", &"oxygen_restore", &"blue_state_switch", &"dock_tram_unlock"],
 			"asterionInteractions": [{"nodeName": "AsterionHydroConsole", "kind": &"hydroponics_console", "cell": Vector2i(13, 8)}],
@@ -478,6 +497,16 @@ static func room(room_id: StringName) -> Dictionary:
 			"worldOrigin": Vector2i(350, 0),
 			"enabledPortIds": [&"Nw", &"Ne", &"E1", &"E2", &"Se"],
 			"portGates": {&"E1": &"asterion_station_restored", &"E2": &"asterion_station_restored", &"Se": &"asterion_station_restored"},
+			"navigationId": &"authored:as07-command-spine-navigation", "collisionMaskId": &"authored:as07-command-spine-collision",
+			"navigationLayout": {
+				"id": &"as07-command-spine-v1", "kind": &"authored", "usefulCellRange": Vector2i(179, 183),
+				"walkableRects": [
+					{"origin": Vector2i(6, 1), "size": Vector2i(11, 4)}, # security-checkpoint arrivals
+					{"origin": Vector2i(3, 4), "size": Vector2i(17, 7)}, # command consoles and cover routes
+					{"origin": Vector2i(19, 3), "size": Vector2i(2, 8)}, # restored pressure-lock side spine
+					{"origin": Vector2i(6, 10), "size": Vector2i(11, 3)}, # tram and control return lane
+				],
+			},
 			"visualProfileIds": [&"asterion_command_console", &"asterion_station_architecture"],
 			"featureIds": [&"security_checkpoint", &"control_gate_message", &"mother_computer_windows", &"two_cover_routes"],
 		}, true)
@@ -487,6 +516,15 @@ static func room(room_id: StringName) -> Dictionary:
 			"worldOrigin": Vector2i(350, 0),
 			"enabledPortIds": [&"Nw", &"Ne"],
 			"portGates": {&"Ne": &"asterion_station_complete"},
+			"navigationId": &"authored:as08-station-control-navigation", "collisionMaskId": &"authored:as08-station-control-collision",
+			"navigationLayout": {
+				"id": &"as08-station-control-v1", "kind": &"authored", "usefulCellRange": Vector2i(263, 264),
+				"walkableRects": [
+					{"origin": Vector2i(7, 1), "size": Vector2i(11, 4)}, # command-deck arrivals
+					{"origin": Vector2i(3, 4), "size": Vector2i(18, 11)}, # Mother Computer arena and stabilized consoles
+					{"origin": Vector2i(7, 14), "size": Vector2i(11, 4)}, # post-victory reward floor
+				],
+			},
 			"visualProfileIds": [&"asterion_command_console", &"asterion_station_architecture"],
 			"featureIds": [&"mother_computer_arena", &"ion_pistol_reward", &"astronaut_recruit_completion", &"stabilized_consoles"],
 			"bossEncounter": {"nodeName": "AsterionMotherComputer", "encounterId": &"asterion_mother_computer", "defeatedFlag": &"asterion_station_complete", "cell": Vector2i(12, 9)},

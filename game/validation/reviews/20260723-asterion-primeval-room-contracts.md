@@ -86,6 +86,12 @@ Their navigation and collision IDs
 are scene-owned manifest records; every remaining Asterion row remains a
 generated baseline until its own audit lands.
 
+The second Asterion batch covers the hydroponics-to-control route: `AS-05` 128,
+`AS-06` 259 closed / 260 restored, `AS-07` 179 closed / 183 restored, and
+`AS-08` 263 closed / 264 post-completion useful cells. The remaining service,
+observation, maintenance, cryo, pressure-lock, and tram rooms remain baseline
+contracts until their separate collision audit.
+
 ### Art, population, and state-capture requirements
 
 - The current `visualProfileIds` arrays in `CampaignRoomRegistry` are the only
@@ -134,9 +140,14 @@ generated baseline until its own audit lands.
 - The known shutdown-only 61 ObjectDB / 26 resource signature remained present;
   this focused batch neither attributes nor accepts that release-level issue.
 
+The second collision batch repeated the same four scenes successfully at
+`test-artifacts/20260723-094413-40804b6c` and
+`test-artifacts/20260723-094426-5085642e`; its production-save sentinel also
+remained unchanged (`sentinel=True`).
+
 ## Decision
 
 Rework required before acceptance: no distribution eligibility, contact-sheet
 approval, or user visual/input sign-off is recorded for either world. The first
-four Asterion layouts are verified collision-contract evidence only; the
+eight Asterion layouts are verified collision-contract evidence only; the
 remaining Asterion and all Primeval layouts still require their own audits.
