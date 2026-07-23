@@ -12,6 +12,17 @@ const MANSION_CHAPTER_INTERACTION := preload("res://ben_rpg/world/mansion_chapte
 const MANSION_BOSS_INTERACTION := preload("res://ben_rpg/world/campaign_mansion_boss_interaction.tscn")
 const ASTERION_INTERACTION := preload("res://ben_rpg/world/asterion_interaction.tscn")
 const PRIMEVAL_INTERACTION := preload("res://ben_rpg/world/primeval_interaction.tscn")
+const HELIOS_INTERACTION := preload("res://ben_rpg/world/helios_interaction.tscn")
+const FROSTHOLD_INTERACTION := preload("res://ben_rpg/world/frosthold_interaction.tscn")
+const MOONPETAL_INTERACTION := preload("res://ben_rpg/world/moonpetal_interaction.tscn")
+const EMPYREAL_INTERACTION := preload("res://ben_rpg/world/empyreal_interaction.tscn")
+
+const UNIVERSE_INTERACTION_SCENES := {
+	"heliosInteractions": HELIOS_INTERACTION,
+	"frostholdInteractions": FROSTHOLD_INTERACTION,
+	"moonpetalInteractions": MOONPETAL_INTERACTION,
+	"empyrealInteractions": EMPYREAL_INTERACTION,
+}
 
 
 static func install(root: Node2D, room_id: StringName, definition: Dictionary) -> void:
@@ -55,6 +66,8 @@ static func install(root: Node2D, room_id: StringName, definition: Dictionary) -
 			if save_point_id != &"":
 				var world_origin: Vector2i = definition.get("worldOrigin", Vector2i.ZERO)
 				CampaignState.register_runtime_save_point(save_point_id, world_origin + anchor_cell)
+		for property_name in UNIVERSE_INTERACTION_SCENES:
+			_install_universe_interactions(interaction_layer, definition, property_name, UNIVERSE_INTERACTION_SCENES[property_name] as PackedScene)
 		var boss_definition: Dictionary = definition.get("bossEncounter", {})
 		if not boss_definition.is_empty():
 			var boss_interaction := MANSION_BOSS_INTERACTION.instantiate()
@@ -92,3 +105,13 @@ static func install(root: Node2D, room_id: StringName, definition: Dictionary) -
 		cohort.set_meta(&"assignments", population_schedule.get("assignments", []))
 		cohort.set_meta(&"unavailable_population_ids", population_schedule.get("unavailable", []))
 		actors_layer.add_child(cohort)
+
+
+static func _install_universe_interactions(interaction_layer: Node2D, definition: Dictionary, property_name: String, interaction_scene: PackedScene) -> void:
+	for interaction_definition in definition.get(property_name, []):
+		var interaction := interaction_scene.instantiate()
+		var anchor_cell: Vector2i = interaction_definition.get("cell", Vector2i.ZERO)
+		interaction.name = String(interaction_definition.get("nodeName", "ManifestUniverseInteraction"))
+		interaction.set("interaction_kind", StringName(interaction_definition.get("kind", &"")))
+		interaction.position = Vector2(anchor_cell * 48)
+		interaction_layer.add_child(interaction)

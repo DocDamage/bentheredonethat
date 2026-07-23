@@ -185,10 +185,8 @@ const PRIMEVAL_ENCOUNTER_CONTROLLER := preload("res://ben_rpg/world/primeval_enc
 const PRIMEVAL_INTERACTION := preload("res://ben_rpg/world/primeval_interaction.tscn")
 const CAVEMAN_GAMEPIECE := preload("res://ben_rpg/characters/caveman_gamepiece.tscn")
 const HELIOS_ENCOUNTER_CONTROLLER := preload("res://ben_rpg/world/helios_encounter_controller.gd")
-const HELIOS_INTERACTION := preload("res://ben_rpg/world/helios_interaction.tscn")
 const NEON_VIPER_GAMEPIECE := preload("res://ben_rpg/characters/neon_viper_gamepiece.tscn")
 const FROST_LICH_GAMEPIECE := preload("res://ben_rpg/characters/frost_lich_gamepiece.tscn")
-const FROSTHOLD_INTERACTION := preload("res://ben_rpg/world/frosthold_interaction.tscn")
 const FROSTHOLD_ENCOUNTER_CONTROLLER := preload("res://ben_rpg/world/frosthold_encounter_controller.gd")
 const KITSUNE_GAMEPIECE := preload("res://ben_rpg/characters/kitsune_gamepiece.tscn")
 const CRIMSON_ONI_GAMEPIECE := preload("res://ben_rpg/characters/crimson_oni_gamepiece.tscn")
@@ -196,10 +194,8 @@ const RIFT_JACKAL_GAMEPIECE := preload("res://ben_rpg/characters/rift_jackal_gam
 const MOSSBACK_SURVEYOR_GAMEPIECE := preload("res://ben_rpg/characters/mossback_surveyor_gamepiece.tscn")
 const COBALT_COURIER_GAMEPIECE := preload("res://ben_rpg/characters/cobalt_courier_gamepiece.tscn")
 const BULKHEAD_WARDEN_GAMEPIECE := preload("res://ben_rpg/characters/bulkhead_warden_gamepiece.tscn")
-const MOONPETAL_INTERACTION := preload("res://ben_rpg/world/moonpetal_interaction.tscn")
 const MOONPETAL_ENCOUNTER_CONTROLLER := preload("res://ben_rpg/world/moonpetal_encounter_controller.gd")
 const ARCHANGEL_GAMEPIECE := preload("res://ben_rpg/characters/archangel_gamepiece.tscn")
-const EMPYREAL_INTERACTION := preload("res://ben_rpg/world/empyreal_interaction.tscn")
 const EMPYREAL_ENCOUNTER_CONTROLLER := preload("res://ben_rpg/world/empyreal_encounter_controller.gd")
 const UNIVERSE_TREASURE_INTERACTION := preload("res://ben_rpg/world/universe_treasure_interaction.tscn")
 const CAMPAIGN_MENU := preload("res://ben_rpg/ui/campaign_menu.tscn")
@@ -459,13 +455,9 @@ func _enter_tree() -> void:
 	_spawn_asterion_boss_marker(world)
 	_spawn_primeval_interactions(world)
 	_spawn_primeval_boss_marker(world)
-	_spawn_helios_interactions(world)
 	_spawn_helios_boss_marker(world)
-	_spawn_frosthold_interactions(world)
 	_spawn_frosthold_boss_marker(world)
-	_spawn_moonpetal_interactions(world)
 	_spawn_moonpetal_boss_marker(world)
-	_spawn_empyreal_interactions(world)
 	_spawn_universe_treasure_caches(world)
 	_spawn_empyreal_boss_marker(world)
 	if not CampaignState.state_changed.is_connected(_on_campaign_state_changed):
@@ -2221,22 +2213,6 @@ func _spawn_primeval_boss_marker(world: Node2D) -> void:
 	world.add_child(_primeval_boss_marker)
 
 
-func _spawn_helios_interactions(world: Node2D) -> void:
-	_add_helios_interaction(world, "HeliosOrdinanceTerminal", &"ordinance_terminal", Vector2i(16, 3))
-	_add_helios_interaction(world, "HeliosTransitNode", &"transit_node", Vector2i(24, 3))
-	# The supplied clinic quadrant has a complete circular beacon at this cell.
-	_add_helios_interaction(world, "HeliosSaveBeacon", &"save_beacon", Vector2i(14, 13))
-	_add_helios_interaction(world, "HeliosClinicNode", &"clinic_node", Vector2i(16, 13))
-
-
-func _add_helios_interaction(world: Node2D, node_name: String, kind: StringName, local_cell: Vector2i) -> void:
-	var interaction = HELIOS_INTERACTION.instantiate()
-	interaction.name = node_name
-	interaction.interaction_kind = kind
-	interaction.position = Gameboard.cell_to_pixel(HELIOS_ORIGIN + local_cell)
-	world.add_child(interaction)
-
-
 func _spawn_helios_boss_marker(world: Node2D) -> void:
 	_helios_boss_marker = Sprite2D.new()
 	_helios_boss_marker.name = "CivicSun"
@@ -2246,22 +2222,6 @@ func _spawn_helios_boss_marker(world: Node2D) -> void:
 	_helios_boss_marker.scale = Vector2(0.24, 0.24)
 	_helios_boss_marker.visible = CampaignState.story_flags.get(&"helios_core_open", false) and not CampaignState.story_flags.get(&"helios_scenario_complete", false)
 	world.add_child(_helios_boss_marker)
-
-
-func _spawn_frosthold_interactions(world: Node2D) -> void:
-	_add_frosthold_interaction(world, "FrostholdHeatTaxRune", &"heat_tax_rune", Vector2i(22, 3))
-	_add_frosthold_interaction(world, "FrostholdCausewaySeal", &"causeway_seal", Vector2i(26, 3))
-	# Interact at the base of the left blue brazier, not in the middle of its flame.
-	_add_frosthold_interaction(world, "FrostholdSaveBrazier", &"save_brazier", Vector2i(12, 15))
-	_add_frosthold_interaction(world, "FrostholdThroneSeal", &"throne_seal", Vector2i(16, 13))
-
-
-func _add_frosthold_interaction(world: Node2D, node_name: String, kind: StringName, local_cell: Vector2i) -> void:
-	var interaction = FROSTHOLD_INTERACTION.instantiate()
-	interaction.name = node_name
-	interaction.interaction_kind = kind
-	interaction.position = Gameboard.cell_to_pixel(FROSTHOLD_ORIGIN + local_cell)
-	world.add_child(interaction)
 
 
 func _spawn_frosthold_boss_marker(world: Node2D) -> void:
@@ -2277,22 +2237,6 @@ func _spawn_frosthold_boss_marker(world: Node2D) -> void:
 	world.add_child(_frosthold_boss_marker)
 
 
-func _spawn_moonpetal_interactions(world: Node2D) -> void:
-	_add_moonpetal_interaction(world, "MoonpetalVowTablet", &"vow_tablet", Vector2i(22, 3))
-	_add_moonpetal_interaction(world, "MoonpetalGardenSeal", &"garden_seal", Vector2i(26, 3))
-	# Ground the hotspot at the supplied lantern's base.
-	_add_moonpetal_interaction(world, "MoonpetalSaveLantern", &"save_lantern", Vector2i(11, 15))
-	_add_moonpetal_interaction(world, "MoonpetalPalaceSeal", &"palace_seal", Vector2i(16, 13))
-
-
-func _add_moonpetal_interaction(world: Node2D, node_name: String, kind: StringName, local_cell: Vector2i) -> void:
-	var interaction = MOONPETAL_INTERACTION.instantiate()
-	interaction.name = node_name
-	interaction.interaction_kind = kind
-	interaction.position = Gameboard.cell_to_pixel(MOONPETAL_ORIGIN + local_cell)
-	world.add_child(interaction)
-
-
 func _spawn_moonpetal_boss_marker(world: Node2D) -> void:
 	_moonpetal_boss_marker = Sprite2D.new()
 	_moonpetal_boss_marker.name = "MagistrateEnma"
@@ -2304,23 +2248,6 @@ func _spawn_moonpetal_boss_marker(world: Node2D) -> void:
 	_moonpetal_boss_marker.scale = Vector2(0.32, 0.32)
 	_moonpetal_boss_marker.visible = CampaignState.story_flags.get(&"moonpetal_palace_open", false) and not CampaignState.story_flags.get(&"moonpetal_scenario_complete", false)
 	world.add_child(_moonpetal_boss_marker)
-
-
-func _spawn_empyreal_interactions(world: Node2D) -> void:
-	_add_empyreal_interaction(world, "EmpyrealGravityOrdinance", &"gravity_ordinance", Vector2i(22, 3))
-	_add_empyreal_interaction(world, "EmpyrealAerieSeal", &"aerie_seal", Vector2i(16, 3))
-	# The Aerie's complete gravity crystal is its local anchor; the garden fountain
-	# is in a different room and must not own an invisible remote interaction.
-	_add_empyreal_interaction(world, "EmpyrealSaveFountain", &"save_fountain", Vector2i(14, 15))
-	_add_empyreal_interaction(world, "EmpyrealTribunalSeal", &"tribunal_seal", Vector2i(16, 13))
-
-
-func _add_empyreal_interaction(world: Node2D, node_name: String, kind: StringName, local_cell: Vector2i) -> void:
-	var interaction = EMPYREAL_INTERACTION.instantiate()
-	interaction.name = node_name
-	interaction.interaction_kind = kind
-	interaction.position = Gameboard.cell_to_pixel(EMPYREAL_ORIGIN + local_cell)
-	world.add_child(interaction)
 
 
 func _spawn_universe_treasure_caches(world: Node2D) -> void:
