@@ -136,6 +136,22 @@ The final Asterion batch audits that service-side loop: `AS-09` 119, `AS-10`
   relay-anchor, and post-caldera Primeval states, plus each relevant optional
   gate state.
 
+## Native-scale review-input regeneration
+
+The July 23 deterministic contact-sheet batch regenerated and freshness-checked
+the following local reviewer inputs under
+`test-artifacts/vertical-slice-contact-sheets/`:
+
+- Asterion: 16 source-environment sheets and all 10 target population
+  identities (`asterion-environment.png`, `asterion-population.png`).
+- Primeval: 31 source-environment sheets and all 15 target population
+  identities (`primeval-environment.png`, `primeval-population.png`).
+
+`vertical_slice_contact_sheets.json` records their source checksums and
+eight-direction rotations. These artifacts are evidence-generation outputs
+only; they do not approve palette, density, crop, foot anchors, distribution
+eligibility, or active population.
+
 ## Required evidence before acceptance
 
 - One work package per world with exact room graph, useful-cell totals,

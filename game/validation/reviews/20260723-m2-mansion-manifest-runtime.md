@@ -144,6 +144,18 @@ before the locked size budget can be claimed.
 - Required save fixtures: pre-4:44, Archive anchor, both hands installed,
   post-boss/stabilized, and 13:13/crypt-key optional state.
 
+## Native-scale review-input regeneration
+
+The July 23 deterministic contact-sheet batch regenerated and freshness-checked
+the Mansion review inputs at
+`test-artifacts/vertical-slice-contact-sheets/mansion-environment.png` and
+`test-artifacts/vertical-slice-contact-sheets/mansion-population.png`.
+`vertical_slice_contact_sheets.json` records 33 source-environment sheets and
+all 54 target population identities in eight directions. The artifacts are
+local reviewer inputs only: their successful regeneration does not approve
+their palette, density, crop, foot anchor, distribution eligibility, or live
+population activation.
+
 ## Automated evidence
 
 Command run against the commit worktree:
