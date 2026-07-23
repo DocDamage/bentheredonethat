@@ -1,7 +1,6 @@
-[gd_scene load_steps=7 format=3 uid="uid://ugsq7u4cue4w"]
+[gd_scene load_steps=6 format=3 uid="uid://ugsq7u4cue4w"]
 
 [ext_resource type="PackedScene" uid="uid://badexg85lctrq" path="res://src/combat/battlers/battler_anim.tscn" id="1_ws2uh"]
-[ext_resource type="Texture2D" uid="uid://e4b6flk7roy3" path="res://combat/battlers/bugcat/bugcat.png" id="2_jiam4"]
 
 [sub_resource type="Animation" id="Animation_r4wpi"]
 length = 0.001
@@ -95,7 +94,7 @@ _data = {
 }
 
 [node name="BugcatAnim" instance=ExtResource("1_ws2uh")]
-battler_icon = ExtResource("2_jiam4")
+battler_icon_profile = &"legacy_bugcat_battle_actor"
 
 [node name="AnimationPlayer" parent="Pivot" index="0"]
 libraries = {
@@ -103,7 +102,6 @@ libraries = {
 }
 
 [node name="Sprite2D" type="Sprite2D" parent="Pivot" index="1"]
-texture = ExtResource("2_jiam4")
 offset = Vector2(0, -163)
 
 [node name="FrontAnchor" parent="." index="1"]

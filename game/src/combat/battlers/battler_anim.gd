@@ -10,6 +10,7 @@ class_name BattlerAnim extends Marker2D
 
 ## Dictates how far the battler moves forwards and backwards at the beginning/end of its turn.
 const MOVE_OFFSET: = 140.0
+const VISUAL_PROFILE_REGISTRY := preload("res://ben_rpg/world/campaign_visual_profile_registry.gd")
 
 ## Determines which direction the battler faces on the screen.
 enum Direction { LEFT, RIGHT }
@@ -24,6 +25,7 @@ signal animation_finished(name)
 
 ## An icon that shows up on the turn bar.
 @export var battler_icon: Texture
+@export var battler_icon_profile: StringName
 
 ## Determines which direction the [BattlerAnim] faces. This is generally set by whichever "side"
 ## the battler is on, player or enemy.
@@ -49,6 +51,15 @@ var _rest_position: = Vector2.ZERO
 
 
 func _ready() -> void:
+	if battler_icon_profile != &"":
+		var profiles := VISUAL_PROFILE_REGISTRY.new()
+		if not profiles.has(battler_icon_profile):
+			push_error("Battler animation references missing visual profile: %s" % battler_icon_profile)
+		else:
+			battler_icon = profiles.texture(battler_icon_profile)
+			var sprite := get_node_or_null("Pivot/Sprite2D") as Sprite2D
+			if sprite:
+				sprite.texture = battler_icon
 	_anim.animation_finished.connect(
 		func _on_animation_player_finished(anim_name: String) -> void:
 			animation_finished.emit(anim_name)

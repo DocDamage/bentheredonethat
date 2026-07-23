@@ -23,10 +23,17 @@ class RuntimeVisualInventoryTests(unittest.TestCase):
             len(unprofiled),
             sum(result["stats"]["unprofiledByClassification"].values()),
         )
-        self.assertEqual(result["stats"]["profileRequiredUnprofiledAssetSources"], 10)
+        self.assertEqual(result["stats"]["profileRequiredUnprofiledAssetSources"], 0)
         self.assertEqual(result["stats"]["thirdPartyDependencyVisualSources"], 11)
-        self.assertEqual(result["stats"]["profileRequiredAssetSources"], 172)
-        self.assertEqual(result["stats"]["profileRequiredProfiledAssetSources"], 162)
+        self.assertEqual(result["stats"]["profileRequiredAssetSources"], 171)
+        self.assertEqual(result["stats"]["profileRequiredProfiledAssetSources"], 171)
+
+    def test_legacy_compatibility_sources_resolve_through_profiles(self) -> None:
+        root = Path(__file__).resolve().parents[2]
+        result = inventory.build(root)
+        legacy = [entry for entry in result["assets"] if entry["path"].startswith(("res://combat/", "res://overworld/"))]
+        self.assertTrue(legacy)
+        self.assertTrue(all(entry["profileCoverage"] == "profiled" for entry in legacy))
 
     def test_known_gap_classes_route_to_their_correct_migration_stream(self) -> None:
         self.assertEqual(

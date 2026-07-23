@@ -1,7 +1,6 @@
-[gd_scene load_steps=18 format=3 uid="uid://wivtmf75ic3f"]
+[gd_scene load_steps=17 format=3 uid="uid://wivtmf75ic3f"]
 
 [ext_resource type="PackedScene" uid="uid://b3ciqydkjnkkx" path="res://src/combat/combat_arena.tscn" id="1_etpkf"]
-[ext_resource type="Texture2D" uid="uid://w55nt3s833tb" path="res://combat/arenas/steppes.png" id="2_i30nm"]
 [ext_resource type="AudioStream" uid="uid://dagiejnj8dwqb" path="res://assets/music/squashin_bugs_fixed.mp3" id="2_vo8mp"]
 [ext_resource type="Script" uid="uid://dwj347l1r1os2" path="res://src/combat/battlers/battler.gd" id="4_6ngh4"]
 [ext_resource type="Resource" uid="uid://chuarvle06xxf" path="res://combat/battlers/bugcat/bugcat_stats.tres" id="5_1st0g"]
@@ -20,9 +19,9 @@
 
 [node name="TestCombatArena" instance=ExtResource("1_etpkf")]
 music = ExtResource("2_vo8mp")
+background_visual_profile = &"legacy_steppes_battle_backdrop"
 
 [node name="Background" parent="." index="0"]
-texture = ExtResource("2_i30nm")
 
 [node name="Battler" type="Node2D" parent="Battlers" index="0"]
 position = Vector2(465, 722)

@@ -235,86 +235,78 @@
     },
     {
       "path": "res://combat/arenas/steppes.png",
-      "profileCoverage": "migration_required",
-      "profileIds": [],
+      "profileCoverage": "profiled",
+      "profileIds": [
+        "legacy_steppes_battle_backdrop"
+      ],
       "references": [
         {
-          "file": "game/overworld/maps/town/battles/test_combat_arena.tscn",
-          "line": 4,
-          "resolution": "literal"
-        },
-        {
-          "file": "game/overworld/maps/town/battles/test_combat_arena2.tscn",
-          "line": 4,
-          "resolution": "literal"
+          "file": "game/ben_rpg/visual_assets/visual_profiles.json",
+          "line": 1931,
+          "profileId": "legacy_steppes_battle_backdrop",
+          "resolution": "profile_runtime_texture"
         }
-      ],
-      "unprofiledClassification": "legacy_compatibility_visual"
+      ]
     },
     {
       "path": "res://combat/battlers/bear/bear.png",
-      "profileCoverage": "migration_required",
-      "profileIds": [],
+      "profileCoverage": "profiled",
+      "profileIds": [
+        "legacy_bear_battle_actor"
+      ],
       "references": [
         {
-          "file": "game/combat/battlers/bear/bear_anim.tscn",
-          "line": 4,
-          "resolution": "literal"
+          "file": "game/ben_rpg/visual_assets/visual_profiles.json",
+          "line": 1932,
+          "profileId": "legacy_bear_battle_actor",
+          "resolution": "profile_runtime_texture"
         }
-      ],
-      "unprofiledClassification": "legacy_compatibility_visual"
-    },
-    {
-      "path": "res://combat/battlers/bear/icon_punch.svg",
-      "profileCoverage": "migration_required",
-      "profileIds": [],
-      "references": [
-        {
-          "file": "game/src/combat/ui/action_menu/ui_action_button.tscn",
-          "line": 8,
-          "resolution": "literal"
-        }
-      ],
-      "unprofiledClassification": "legacy_compatibility_visual"
+      ]
     },
     {
       "path": "res://combat/battlers/bugcat/bugcat.png",
-      "profileCoverage": "migration_required",
-      "profileIds": [],
+      "profileCoverage": "profiled",
+      "profileIds": [
+        "legacy_bugcat_battle_actor"
+      ],
       "references": [
         {
-          "file": "game/combat/battlers/bugcat/bugcat_anim.tscn",
-          "line": 4,
-          "resolution": "literal"
+          "file": "game/ben_rpg/visual_assets/visual_profiles.json",
+          "line": 1933,
+          "profileId": "legacy_bugcat_battle_actor",
+          "resolution": "profile_runtime_texture"
         }
-      ],
-      "unprofiledClassification": "legacy_compatibility_visual"
+      ]
     },
     {
       "path": "res://combat/battlers/squirrel/squirrel.png",
-      "profileCoverage": "migration_required",
-      "profileIds": [],
+      "profileCoverage": "profiled",
+      "profileIds": [
+        "legacy_squirrel_battle_actor"
+      ],
       "references": [
         {
-          "file": "game/combat/battlers/squirrel/squirrel_anim.tscn",
-          "line": 4,
-          "resolution": "literal"
+          "file": "game/ben_rpg/visual_assets/visual_profiles.json",
+          "line": 1934,
+          "profileId": "legacy_squirrel_battle_actor",
+          "resolution": "profile_runtime_texture"
         }
-      ],
-      "unprofiledClassification": "legacy_compatibility_visual"
+      ]
     },
     {
       "path": "res://combat/battlers/wolf/wolf.png",
-      "profileCoverage": "migration_required",
-      "profileIds": [],
+      "profileCoverage": "profiled",
+      "profileIds": [
+        "legacy_wolf_battle_actor"
+      ],
       "references": [
         {
-          "file": "game/combat/battlers/wolf/wolf_anim.tscn",
-          "line": 4,
-          "resolution": "literal"
+          "file": "game/ben_rpg/visual_assets/visual_profiles.json",
+          "line": 1935,
+          "profileId": "legacy_wolf_battle_actor",
+          "resolution": "profile_runtime_texture"
         }
-      ],
-      "unprofiledClassification": "legacy_compatibility_visual"
+      ]
     },
     {
       "path": "res://game_assets/Tilesets/Ancient Greek Mythology/1. Marble floor tiles.png",
@@ -3542,7 +3534,7 @@
       "references": [
         {
           "file": "game/ben_rpg/visual_assets/visual_profiles.json",
-          "line": 1933,
+          "line": 1942,
           "profileId": "velociraptor_battle_actor",
           "resolution": "profile_runtime_texture"
         }
@@ -4525,60 +4517,68 @@
     },
     {
       "path": "res://overworld/characters/character_generic.png",
-      "profileCoverage": "migration_required",
-      "profileIds": [],
+      "profileCoverage": "profiled",
+      "profileIds": [
+        "legacy_generic_field_actor"
+      ],
       "references": [
         {
-          "file": "game/overworld/characters/generic_character_gfx.tscn",
-          "line": 5,
-          "resolution": "literal"
+          "file": "game/ben_rpg/visual_assets/visual_profiles.json",
+          "line": 1936,
+          "profileId": "legacy_generic_field_actor",
+          "resolution": "profile_runtime_texture"
         }
-      ],
-      "unprofiledClassification": "legacy_compatibility_visual"
+      ]
     },
     {
       "path": "res://overworld/characters/gobot_field.png",
-      "profileCoverage": "migration_required",
-      "profileIds": [],
+      "profileCoverage": "profiled",
+      "profileIds": [
+        "legacy_gobot_field_actor"
+      ],
       "references": [
         {
-          "file": "game/overworld/characters/gobot_gfx.tscn",
-          "line": 5,
-          "resolution": "literal"
+          "file": "game/ben_rpg/visual_assets/visual_profiles.json",
+          "line": 1937,
+          "profileId": "legacy_gobot_field_actor",
+          "resolution": "profile_runtime_texture"
         }
-      ],
-      "unprofiledClassification": "legacy_compatibility_visual"
+      ]
     },
     {
       "path": "res://overworld/maps/tilesets/dungeon_tilemap.png",
-      "profileCoverage": "migration_required",
-      "profileIds": [],
+      "profileCoverage": "profiled",
+      "profileIds": [
+        "legacy_dungeon_tilemap"
+      ],
       "references": [
         {
-          "file": "game/src/field/cutscenes/templates/treasure_chests/treasure_chest.tscn",
-          "line": 7,
-          "resolution": "literal"
+          "file": "game/ben_rpg/visual_assets/visual_profiles.json",
+          "line": 1938,
+          "profileId": "legacy_dungeon_tilemap",
+          "resolution": "profile_runtime_texture"
         },
         {
           "file": "game/src/main.tscn",
           "line": 11,
           "resolution": "literal"
         }
-      ],
-      "unprofiledClassification": "legacy_compatibility_visual"
+      ]
     },
     {
       "path": "res://overworld/maps/tilesets/town_tilemap.png",
-      "profileCoverage": "migration_required",
-      "profileIds": [],
+      "profileCoverage": "profiled",
+      "profileIds": [
+        "legacy_town_tilemap"
+      ],
       "references": [
         {
-          "file": "game/src/field/cutscenes/templates/doors/door.tscn",
-          "line": 4,
-          "resolution": "literal"
+          "file": "game/ben_rpg/visual_assets/visual_profiles.json",
+          "line": 1939,
+          "profileId": "legacy_town_tilemap",
+          "resolution": "profile_runtime_texture"
         }
-      ],
-      "unprofiledClassification": "legacy_compatibility_visual"
+      ]
     },
     {
       "path": "res://src/combat/ui/action_menu/action_description_background.png",
@@ -4804,16 +4804,16 @@
   "schemaVersion": 2,
   "scope": "static Godot .gd/.tscn raster literals and approved profile runtime textures (tests, validation, and editor-only paths excluded)",
   "stats": {
-    "assets": 183,
-    "profileRequiredAssetSources": 172,
-    "profileRequiredProfiledAssetSources": 162,
-    "profileRequiredUnprofiledAssetSources": 10,
-    "profiledAssetSources": 162,
+    "assets": 182,
+    "profileRequiredAssetSources": 171,
+    "profileRequiredProfiledAssetSources": 171,
+    "profileRequiredUnprofiledAssetSources": 0,
+    "profiledAssetSources": 171,
     "thirdPartyDependencyVisualSources": 11,
-    "unprofiledAssetSources": 21,
+    "unprofiledAssetSources": 11,
     "unprofiledByClassification": {
       "dynamic_template_visual": 0,
-      "legacy_compatibility_visual": 10,
+      "legacy_compatibility_visual": 0,
       "third_party_addon_ui": 11
     }
   }

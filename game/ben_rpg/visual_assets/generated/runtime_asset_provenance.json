@@ -223,10 +223,12 @@
         "game/LICENSE"
       ],
       "path": "res://combat/arenas/steppes.png",
-      "profileCoverage": "migration_required",
-      "profileIds": [],
+      "profileCoverage": "profiled",
+      "profileIds": [
+        "legacy_steppes_battle_backdrop"
+      ],
       "sourceGroup": "combat/arenas",
-      "unprofiledClassification": "legacy_compatibility_visual"
+      "unprofiledClassification": ""
     },
     {
       "distributionEligibility": "review_required",
@@ -235,22 +237,12 @@
         "game/LICENSE"
       ],
       "path": "res://combat/battlers/bear/bear.png",
-      "profileCoverage": "migration_required",
-      "profileIds": [],
-      "sourceGroup": "combat/battlers",
-      "unprofiledClassification": "legacy_compatibility_visual"
-    },
-    {
-      "distributionEligibility": "review_required",
-      "licenseReviewStatus": "review_required",
-      "localLicenseEvidence": [
-        "game/LICENSE"
+      "profileCoverage": "profiled",
+      "profileIds": [
+        "legacy_bear_battle_actor"
       ],
-      "path": "res://combat/battlers/bear/icon_punch.svg",
-      "profileCoverage": "migration_required",
-      "profileIds": [],
       "sourceGroup": "combat/battlers",
-      "unprofiledClassification": "legacy_compatibility_visual"
+      "unprofiledClassification": ""
     },
     {
       "distributionEligibility": "review_required",
@@ -259,10 +251,12 @@
         "game/LICENSE"
       ],
       "path": "res://combat/battlers/bugcat/bugcat.png",
-      "profileCoverage": "migration_required",
-      "profileIds": [],
+      "profileCoverage": "profiled",
+      "profileIds": [
+        "legacy_bugcat_battle_actor"
+      ],
       "sourceGroup": "combat/battlers",
-      "unprofiledClassification": "legacy_compatibility_visual"
+      "unprofiledClassification": ""
     },
     {
       "distributionEligibility": "review_required",
@@ -271,10 +265,12 @@
         "game/LICENSE"
       ],
       "path": "res://combat/battlers/squirrel/squirrel.png",
-      "profileCoverage": "migration_required",
-      "profileIds": [],
+      "profileCoverage": "profiled",
+      "profileIds": [
+        "legacy_squirrel_battle_actor"
+      ],
       "sourceGroup": "combat/battlers",
-      "unprofiledClassification": "legacy_compatibility_visual"
+      "unprofiledClassification": ""
     },
     {
       "distributionEligibility": "review_required",
@@ -283,10 +279,12 @@
         "game/LICENSE"
       ],
       "path": "res://combat/battlers/wolf/wolf.png",
-      "profileCoverage": "migration_required",
-      "profileIds": [],
+      "profileCoverage": "profiled",
+      "profileIds": [
+        "legacy_wolf_battle_actor"
+      ],
       "sourceGroup": "combat/battlers",
-      "unprofiledClassification": "legacy_compatibility_visual"
+      "unprofiledClassification": ""
     },
     {
       "distributionEligibility": "review_required",
@@ -2637,10 +2635,12 @@
         "game/LICENSE"
       ],
       "path": "res://overworld/characters/character_generic.png",
-      "profileCoverage": "migration_required",
-      "profileIds": [],
+      "profileCoverage": "profiled",
+      "profileIds": [
+        "legacy_generic_field_actor"
+      ],
       "sourceGroup": "overworld/characters",
-      "unprofiledClassification": "legacy_compatibility_visual"
+      "unprofiledClassification": ""
     },
     {
       "distributionEligibility": "review_required",
@@ -2649,10 +2649,12 @@
         "game/LICENSE"
       ],
       "path": "res://overworld/characters/gobot_field.png",
-      "profileCoverage": "migration_required",
-      "profileIds": [],
+      "profileCoverage": "profiled",
+      "profileIds": [
+        "legacy_gobot_field_actor"
+      ],
       "sourceGroup": "overworld/characters",
-      "unprofiledClassification": "legacy_compatibility_visual"
+      "unprofiledClassification": ""
     },
     {
       "distributionEligibility": "review_required",
@@ -2661,10 +2663,12 @@
         "game/LICENSE"
       ],
       "path": "res://overworld/maps/tilesets/dungeon_tilemap.png",
-      "profileCoverage": "migration_required",
-      "profileIds": [],
+      "profileCoverage": "profiled",
+      "profileIds": [
+        "legacy_dungeon_tilemap"
+      ],
       "sourceGroup": "overworld/maps",
-      "unprofiledClassification": "legacy_compatibility_visual"
+      "unprofiledClassification": ""
     },
     {
       "distributionEligibility": "review_required",
@@ -2673,10 +2677,12 @@
         "game/LICENSE"
       ],
       "path": "res://overworld/maps/tilesets/town_tilemap.png",
-      "profileCoverage": "migration_required",
-      "profileIds": [],
+      "profileCoverage": "profiled",
+      "profileIds": [
+        "legacy_town_tilemap"
+      ],
       "sourceGroup": "overworld/maps",
-      "unprofiledClassification": "legacy_compatibility_visual"
+      "unprofiledClassification": ""
     },
     {
       "distributionEligibility": "review_required",
@@ -2927,22 +2933,20 @@
   "schemaVersion": 2,
   "scope": "static Godot raster references; not a reachability or license-grant proof",
   "summary": {
-    "assets": 183,
+    "assets": 182,
     "distributionEligibility": {
       "distribution_confirmed": 0,
       "rejected": 0,
-      "review_required": 183
+      "review_required": 182
     },
     "needsManualLicenseConfirmation": 0,
     "profileCoverage": {
       "external_dependency": 11,
-      "migration_required": 10,
-      "profiled": 162
+      "profiled": 171
     },
     "unprofiledByClassification": {
-      "legacy_compatibility_visual": 10,
       "third_party_addon_ui": 11
     },
-    "withLocalLicenseEvidence": 183
+    "withLocalLicenseEvidence": 182
   }
 }

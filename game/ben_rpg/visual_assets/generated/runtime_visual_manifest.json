@@ -8212,6 +8212,402 @@
       "cropApproval": "approved",
       "distributionEligibility": "review_required",
       "fieldScaleStatus": "approved",
+      "goldenCapture": "game/validation/battle-full-company-rebuilt.png",
+      "id": "legacy_bear_battle_actor",
+      "kind": "battle_actor",
+      "licenseReference": "game/ben_rpg/visual_assets/generated/runtime_asset_provenance.json",
+      "placement": {
+        "collisionFootprint": "battle_actor",
+        "footAnchor": [
+          209,
+          369
+        ],
+        "scaleClass": "actor"
+      },
+      "releaseVisualAcceptance": "prototype_only",
+      "renderScale": 1.0,
+      "renderScaleY": 1.0,
+      "source": {
+        "alphaBounds": [
+          0,
+          0,
+          418,
+          370
+        ],
+        "pack": "Legacy compatibility",
+        "region": [
+          0,
+          0,
+          418,
+          370
+        ],
+        "runtimeTexture": "game/combat/battlers/bear/bear.png",
+        "sha256": "06ef6c4d5adbca018069b83c4e73053a9af9b7d10f2ebb342c64e6b72458a6c2",
+        "sourceChecksum": "06ef6c4d5adbca018069b83c4e73053a9af9b7d10f2ebb342c64e6b72458a6c2",
+        "sourceDensity": 1
+      },
+      "surface": "battle",
+      "worldDrawSize": [
+        418,
+        370
+      ]
+    },
+    {
+      "cropApproval": "approved",
+      "distributionEligibility": "review_required",
+      "fieldScaleStatus": "approved",
+      "goldenCapture": "game/validation/battle-full-company-rebuilt.png",
+      "id": "legacy_bugcat_battle_actor",
+      "kind": "battle_actor",
+      "licenseReference": "game/ben_rpg/visual_assets/generated/runtime_asset_provenance.json",
+      "placement": {
+        "collisionFootprint": "battle_actor",
+        "footAnchor": [
+          120,
+          325
+        ],
+        "scaleClass": "actor"
+      },
+      "releaseVisualAcceptance": "prototype_only",
+      "renderScale": 1.0,
+      "renderScaleY": 1.0,
+      "source": {
+        "alphaBounds": [
+          0,
+          0,
+          241,
+          326
+        ],
+        "pack": "Legacy compatibility",
+        "region": [
+          0,
+          0,
+          241,
+          326
+        ],
+        "runtimeTexture": "game/combat/battlers/bugcat/bugcat.png",
+        "sha256": "c382ac025c6e238aea6db323e57f4a190d29a6331baa56659e9b035b897c8e26",
+        "sourceChecksum": "c382ac025c6e238aea6db323e57f4a190d29a6331baa56659e9b035b897c8e26",
+        "sourceDensity": 1
+      },
+      "surface": "battle",
+      "worldDrawSize": [
+        241,
+        326
+      ]
+    },
+    {
+      "cropApproval": "approved",
+      "distributionEligibility": "review_required",
+      "fieldScaleStatus": "approved",
+      "goldenCapture": "game/validation/field-inventory.png",
+      "id": "legacy_dungeon_tilemap",
+      "kind": "legacy_tile_atlas",
+      "licenseReference": "game/ben_rpg/visual_assets/generated/runtime_asset_provenance.json",
+      "placement": {
+        "collisionFootprint": "legacy_tile_atlas",
+        "footAnchor": [
+          101,
+          185
+        ],
+        "scaleClass": "tile"
+      },
+      "releaseVisualAcceptance": "prototype_only",
+      "renderScale": 1.0,
+      "renderScaleY": 1.0,
+      "source": {
+        "alphaBounds": [
+          0,
+          0,
+          203,
+          186
+        ],
+        "pack": "Legacy compatibility",
+        "region": [
+          0,
+          0,
+          203,
+          186
+        ],
+        "runtimeTexture": "game/overworld/maps/tilesets/dungeon_tilemap.png",
+        "sha256": "5653222ac495d89e942f9b636300759b3f38e85b26e9b888676f2e9ab834095a",
+        "sourceChecksum": "5653222ac495d89e942f9b636300759b3f38e85b26e9b888676f2e9ab834095a",
+        "sourceDensity": 1
+      },
+      "surface": "field",
+      "worldDrawSize": [
+        203,
+        186
+      ]
+    },
+    {
+      "cropApproval": "approved",
+      "distributionEligibility": "review_required",
+      "fieldScaleStatus": "approved",
+      "goldenCapture": "game/validation/field-inventory.png",
+      "id": "legacy_generic_field_actor",
+      "kind": "field_actor",
+      "licenseReference": "game/ben_rpg/visual_assets/generated/runtime_asset_provenance.json",
+      "placement": {
+        "collisionFootprint": "field_actor",
+        "footAnchor": [
+          36,
+          161
+        ],
+        "scaleClass": "actor"
+      },
+      "releaseVisualAcceptance": "prototype_only",
+      "renderScale": 1.0,
+      "renderScaleY": 1.0,
+      "source": {
+        "alphaBounds": [
+          0,
+          0,
+          72,
+          162
+        ],
+        "pack": "Legacy compatibility",
+        "region": [
+          0,
+          0,
+          72,
+          162
+        ],
+        "runtimeTexture": "game/overworld/characters/character_generic.png",
+        "sha256": "6ee8e24cdccc5119e306662472af86711f0a8a51c0c25ed1d126a4eb73f00c46",
+        "sourceChecksum": "6ee8e24cdccc5119e306662472af86711f0a8a51c0c25ed1d126a4eb73f00c46",
+        "sourceDensity": 1
+      },
+      "surface": "field",
+      "worldDrawSize": [
+        72,
+        162
+      ]
+    },
+    {
+      "cropApproval": "approved",
+      "distributionEligibility": "review_required",
+      "fieldScaleStatus": "approved",
+      "goldenCapture": "game/validation/field-inventory.png",
+      "id": "legacy_gobot_field_actor",
+      "kind": "field_actor",
+      "licenseReference": "game/ben_rpg/visual_assets/generated/runtime_asset_provenance.json",
+      "placement": {
+        "collisionFootprint": "field_actor",
+        "footAnchor": [
+          36,
+          161
+        ],
+        "scaleClass": "actor"
+      },
+      "releaseVisualAcceptance": "prototype_only",
+      "renderScale": 1.0,
+      "renderScaleY": 1.0,
+      "source": {
+        "alphaBounds": [
+          0,
+          0,
+          72,
+          162
+        ],
+        "pack": "Legacy compatibility",
+        "region": [
+          0,
+          0,
+          72,
+          162
+        ],
+        "runtimeTexture": "game/overworld/characters/gobot_field.png",
+        "sha256": "285f61110d430fb2ea0bd1b518303c5e976f6246c9200897df5b1c132581a840",
+        "sourceChecksum": "285f61110d430fb2ea0bd1b518303c5e976f6246c9200897df5b1c132581a840",
+        "sourceDensity": 1
+      },
+      "surface": "field",
+      "worldDrawSize": [
+        72,
+        162
+      ]
+    },
+    {
+      "cropApproval": "approved",
+      "distributionEligibility": "review_required",
+      "fieldScaleStatus": "approved",
+      "goldenCapture": "game/validation/battle-full-company-rebuilt.png",
+      "id": "legacy_squirrel_battle_actor",
+      "kind": "battle_actor",
+      "licenseReference": "game/ben_rpg/visual_assets/generated/runtime_asset_provenance.json",
+      "placement": {
+        "collisionFootprint": "battle_actor",
+        "footAnchor": [
+          171,
+          301
+        ],
+        "scaleClass": "actor"
+      },
+      "releaseVisualAcceptance": "prototype_only",
+      "renderScale": 1.0,
+      "renderScaleY": 1.0,
+      "source": {
+        "alphaBounds": [
+          0,
+          0,
+          343,
+          302
+        ],
+        "pack": "Legacy compatibility",
+        "region": [
+          0,
+          0,
+          343,
+          302
+        ],
+        "runtimeTexture": "game/combat/battlers/squirrel/squirrel.png",
+        "sha256": "d0dcee90c15e9cd4a9bfcdff098aae30f805837d6eccc3eb244ac6759d6954df",
+        "sourceChecksum": "d0dcee90c15e9cd4a9bfcdff098aae30f805837d6eccc3eb244ac6759d6954df",
+        "sourceDensity": 1
+      },
+      "surface": "battle",
+      "worldDrawSize": [
+        343,
+        302
+      ]
+    },
+    {
+      "cropApproval": "approved",
+      "distributionEligibility": "review_required",
+      "fieldScaleStatus": "approved",
+      "goldenCapture": "game/validation/battle-full-company-rebuilt.png",
+      "id": "legacy_steppes_battle_backdrop",
+      "kind": "battle_backdrop",
+      "licenseReference": "game/ben_rpg/visual_assets/generated/runtime_asset_provenance.json",
+      "placement": {
+        "collisionFootprint": "battle_backdrop",
+        "footAnchor": [
+          960,
+          1079
+        ],
+        "scaleClass": "landmark"
+      },
+      "releaseVisualAcceptance": "prototype_only",
+      "renderScale": 1.0,
+      "renderScaleY": 1.0,
+      "source": {
+        "alphaBounds": [
+          0,
+          0,
+          1920,
+          1080
+        ],
+        "pack": "Legacy compatibility",
+        "region": [
+          0,
+          0,
+          1920,
+          1080
+        ],
+        "runtimeTexture": "game/combat/arenas/steppes.png",
+        "sha256": "3d5831e6e4ae10d5404dab45fc62e7e503a969c48f6543e3f0d7a257eddd7abd",
+        "sourceChecksum": "3d5831e6e4ae10d5404dab45fc62e7e503a969c48f6543e3f0d7a257eddd7abd",
+        "sourceDensity": 1
+      },
+      "surface": "battle",
+      "worldDrawSize": [
+        1920,
+        1080
+      ]
+    },
+    {
+      "cropApproval": "approved",
+      "distributionEligibility": "review_required",
+      "fieldScaleStatus": "approved",
+      "goldenCapture": "game/validation/field-inventory.png",
+      "id": "legacy_town_tilemap",
+      "kind": "legacy_tile_atlas",
+      "licenseReference": "game/ben_rpg/visual_assets/generated/runtime_asset_provenance.json",
+      "placement": {
+        "collisionFootprint": "legacy_tile_atlas",
+        "footAnchor": [
+          101,
+          185
+        ],
+        "scaleClass": "tile"
+      },
+      "releaseVisualAcceptance": "prototype_only",
+      "renderScale": 1.0,
+      "renderScaleY": 1.0,
+      "source": {
+        "alphaBounds": [
+          0,
+          0,
+          203,
+          186
+        ],
+        "pack": "Legacy compatibility",
+        "region": [
+          0,
+          0,
+          203,
+          186
+        ],
+        "runtimeTexture": "game/overworld/maps/tilesets/town_tilemap.png",
+        "sha256": "35fcec2f8ea098137204b49e28c23bcce5c612cdb8947bb1eac4aabb8623e550",
+        "sourceChecksum": "35fcec2f8ea098137204b49e28c23bcce5c612cdb8947bb1eac4aabb8623e550",
+        "sourceDensity": 1
+      },
+      "surface": "field",
+      "worldDrawSize": [
+        203,
+        186
+      ]
+    },
+    {
+      "cropApproval": "approved",
+      "distributionEligibility": "review_required",
+      "fieldScaleStatus": "approved",
+      "goldenCapture": "game/validation/battle-full-company-rebuilt.png",
+      "id": "legacy_wolf_battle_actor",
+      "kind": "battle_actor",
+      "licenseReference": "game/ben_rpg/visual_assets/generated/runtime_asset_provenance.json",
+      "placement": {
+        "collisionFootprint": "battle_actor",
+        "footAnchor": [
+          211,
+          469
+        ],
+        "scaleClass": "actor"
+      },
+      "releaseVisualAcceptance": "prototype_only",
+      "renderScale": 1.0,
+      "renderScaleY": 1.0,
+      "source": {
+        "alphaBounds": [
+          0,
+          0,
+          422,
+          470
+        ],
+        "pack": "Legacy compatibility",
+        "region": [
+          0,
+          0,
+          422,
+          470
+        ],
+        "runtimeTexture": "game/combat/battlers/wolf/wolf.png",
+        "sha256": "64ac9d7592a821524ebc28ff6b8ce8b3192595514c5c08776d5fb95d125e2b06",
+        "sourceChecksum": "64ac9d7592a821524ebc28ff6b8ce8b3192595514c5c08776d5fb95d125e2b06",
+        "sourceDensity": 1
+      },
+      "surface": "battle",
+      "worldDrawSize": [
+        422,
+        470
+      ]
+    },
+    {
+      "cropApproval": "approved",
+      "distributionEligibility": "review_required",
+      "fieldScaleStatus": "approved",
       "goldenCapture": "game/validation/asterion-control-rebuilt.png",
       "id": "machine_commander_battle_actor",
       "kind": "battle_actor",

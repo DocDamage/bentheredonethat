@@ -1,7 +1,6 @@
-[gd_scene load_steps=21 format=3 uid="uid://bq6b26pctmol4"]
+[gd_scene load_steps=20 format=3 uid="uid://bq6b26pctmol4"]
 
 [ext_resource type="PackedScene" uid="uid://b3ciqydkjnkkx" path="res://src/combat/combat_arena.tscn" id="1_tqh6v"]
-[ext_resource type="Texture2D" uid="uid://w55nt3s833tb" path="res://combat/arenas/steppes.png" id="2_5pnp5"]
 [ext_resource type="AudioStream" uid="uid://dj7yf3u7fdxdu" path="res://assets/music/the_fun_run.mp3" id="2_gvpi1"]
 [ext_resource type="PackedScene" uid="uid://8f7e4yxs3poj" path="res://combat/battlers/wolf/wolf_anim.tscn" id="5_2jmm4"]
 [ext_resource type="Resource" uid="uid://chuarvle06xxf" path="res://combat/battlers/bugcat/bugcat_stats.tres" id="5_46fcu"]
@@ -23,9 +22,9 @@
 
 [node name="TestCombatArena" instance=ExtResource("1_tqh6v")]
 music = ExtResource("2_gvpi1")
+background_visual_profile = &"legacy_steppes_battle_backdrop"
 
 [node name="Background" parent="." index="0"]
-texture = ExtResource("2_5pnp5")
 
 [node name="Battler2" type="Node2D" parent="Battlers" index="0"]
 position = Vector2(249, 853)

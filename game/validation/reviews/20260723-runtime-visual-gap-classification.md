@@ -40,3 +40,21 @@ corrected profile-registry log is retained in
 the production-save sentinel. The complete asset-tool test suite also passed
 22 tests, and the inventory, provenance, and runtime visual manifest are
 current.
+
+## Compatibility-profile migration
+
+All 10 campaign-owned compatibility sources were migrated after the earlier
+classification record: nine PNG sources are now manifest profiles, and the
+remaining legacy action-menu SVG reference was removed. The inventory now has
+182 static sources: all 171 profile-required sources are profiled and the 11
+unprofiled entries are Dialogic third-party UI dependencies.
+
+The six-scene regression batch in
+`test-artifacts/20260723-132433-82946f03` passed the legacy resource contract,
+visual registry, campaign battle/menu, inventory encounter, and transition soak
+checks with the production-save sentinel unchanged. The direct profile bridge
+fixture passed separately in `test-artifacts/20260723-132707-bb6d9fd8`, proving
+that the four legacy battler scenes and both legacy field-character scenes load
+their textures through the profile registry. These are migration/provenance
+facts only; all sources remain `review_required` and no final visual or
+distribution approval is implied.

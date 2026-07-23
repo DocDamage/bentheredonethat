@@ -3032,3 +3032,10 @@ limit:
   core, optional, duplicate, reserve, and support classes. Release-code source
   quarantine validation confirms that no release file points directly at the
   ignored Tilesets, EXPANSION, or SakPix staging roots.
+- The static visual inventory's campaign-owned denominator is now fully
+  profile-backed: 171 of 171 sources resolve through profiles. The legacy
+  battle sprites/backdrop, field sprites, doors, and chest atlas consumers use
+  stable profile IDs; the obsolete standalone action-menu SVG is no longer a
+  release reference. The 11 retained unprofiled sources are Dialogic bundled
+  dependency UI, separately tracked and still `review_required` for
+  distribution.
