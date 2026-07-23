@@ -2967,3 +2967,6 @@ limit:
 - Moonpetal `MP-01` through `MP-14` now have explicit authored collision/useful-
   cell layouts. Their visual, input, foreground, safe-arrival, population, and
   licensing acceptance evidence remains outstanding.
+- Empyreal `EM-01` through `EM-16` now have explicit authored collision/useful-
+  cell layouts. Their visual, input, foreground, safe-arrival, population, and
+  licensing acceptance evidence remains outstanding.
