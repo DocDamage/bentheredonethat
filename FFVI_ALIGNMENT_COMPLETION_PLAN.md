@@ -1065,7 +1065,7 @@ first_visit_variant, stabilized_variant, postgame_variant
 - [ ] Capture every room in each materially different state. The minimum set is
   first visit and stabilized; gated, boss, restoration, and postgame rooms need
   their additional declared variants.
-- [ ] Generate a graph report showing critical path, optional branches, loops,
+- [x] Generate a graph report showing critical path, optional branches, loops,
   gates, saves, returns, and unreachable nodes for every story-state fixture.
 
 ### 9.5 Recommended implementation order
@@ -2981,3 +2981,8 @@ limit:
   each of the seven core universes to validated `Nw` safe arrivals, and reload
   activates that room before placing the player. The focused save/manifest
   milestone passed with its isolated production-save sentinel unchanged.
+- `CampaignRoomGraphReport` now provides a non-instantiating audit of all 102
+  rooms for fresh, mid-puzzle, stabilized, and postgame flag sets. It reports
+  active and blocked links, reciprocal edges, reachable/unreachable rooms,
+  save points, and facility-return paths; the graph/manifest milestone passed
+  with its isolated production-save sentinel unchanged.
