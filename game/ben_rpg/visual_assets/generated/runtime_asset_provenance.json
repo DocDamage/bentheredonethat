@@ -7,6 +7,7 @@
         "game/LICENSE"
       ],
       "path": "res://addons/dialogic/Modules/Character/update_mirror.svg",
+      "profileCoverage": "external_dependency",
       "profileIds": [],
       "sourceGroup": "addons/dialogic",
       "unprofiledClassification": "third_party_addon_ui"
@@ -18,6 +19,7 @@
         "game/LICENSE"
       ],
       "path": "res://addons/dialogic/Modules/Character/update_portrait.svg",
+      "profileCoverage": "external_dependency",
       "profileIds": [],
       "sourceGroup": "addons/dialogic",
       "unprofiledClassification": "third_party_addon_ui"
@@ -29,6 +31,7 @@
         "game/LICENSE"
       ],
       "path": "res://addons/dialogic/Modules/Character/update_position.svg",
+      "profileCoverage": "external_dependency",
       "profileIds": [],
       "sourceGroup": "addons/dialogic",
       "unprofiledClassification": "third_party_addon_ui"
@@ -40,6 +43,7 @@
         "game/LICENSE"
       ],
       "path": "res://addons/dialogic/Modules/Character/update_z_index.svg",
+      "profileCoverage": "external_dependency",
       "profileIds": [],
       "sourceGroup": "addons/dialogic",
       "unprofiledClassification": "third_party_addon_ui"
@@ -51,6 +55,7 @@
         "game/LICENSE"
       ],
       "path": "res://addons/dialogic/Modules/Clear/clear_background.svg",
+      "profileCoverage": "external_dependency",
       "profileIds": [],
       "sourceGroup": "addons/dialogic",
       "unprofiledClassification": "third_party_addon_ui"
@@ -62,6 +67,7 @@
         "game/LICENSE"
       ],
       "path": "res://addons/dialogic/Modules/Clear/clear_characters.svg",
+      "profileCoverage": "external_dependency",
       "profileIds": [],
       "sourceGroup": "addons/dialogic",
       "unprofiledClassification": "third_party_addon_ui"
@@ -73,6 +79,7 @@
         "game/LICENSE"
       ],
       "path": "res://addons/dialogic/Modules/Clear/clear_music.svg",
+      "profileCoverage": "external_dependency",
       "profileIds": [],
       "sourceGroup": "addons/dialogic",
       "unprofiledClassification": "third_party_addon_ui"
@@ -84,6 +91,7 @@
         "game/LICENSE"
       ],
       "path": "res://addons/dialogic/Modules/Clear/clear_positions.svg",
+      "profileCoverage": "external_dependency",
       "profileIds": [],
       "sourceGroup": "addons/dialogic",
       "unprofiledClassification": "third_party_addon_ui"
@@ -95,6 +103,7 @@
         "game/LICENSE"
       ],
       "path": "res://addons/dialogic/Modules/Clear/clear_style.svg",
+      "profileCoverage": "external_dependency",
       "profileIds": [],
       "sourceGroup": "addons/dialogic",
       "unprofiledClassification": "third_party_addon_ui"
@@ -106,6 +115,7 @@
         "game/LICENSE"
       ],
       "path": "res://addons/dialogic/Modules/Clear/clear_textbox.svg",
+      "profileCoverage": "external_dependency",
       "profileIds": [],
       "sourceGroup": "addons/dialogic",
       "unprofiledClassification": "third_party_addon_ui"
@@ -117,6 +127,7 @@
         "game/LICENSE"
       ],
       "path": "res://addons/dialogic/Modules/DefaultLayoutParts/Layer_VN_Textbox/next.svg",
+      "profileCoverage": "external_dependency",
       "profileIds": [],
       "sourceGroup": "addons/dialogic",
       "unprofiledClassification": "third_party_addon_ui"
@@ -128,6 +139,7 @@
         "game/LICENSE"
       ],
       "path": "res://assets/gui/emotes/emote__.png",
+      "profileCoverage": "profiled",
       "profileIds": [
         "interaction_emote_empty"
       ],
@@ -141,6 +153,7 @@
         "game/LICENSE"
       ],
       "path": "res://assets/gui/emotes/emote_combat.png",
+      "profileCoverage": "profiled",
       "profileIds": [
         "interaction_emote_combat"
       ],
@@ -154,6 +167,7 @@
         "game/LICENSE"
       ],
       "path": "res://assets/gui/emotes/emote_exclamations.png",
+      "profileCoverage": "profiled",
       "profileIds": [
         "interaction_emote_exclamation"
       ],
@@ -167,6 +181,7 @@
         "game/LICENSE"
       ],
       "path": "res://assets/gui/emotes/emote_question.png",
+      "profileCoverage": "profiled",
       "profileIds": [
         "interaction_emote_question"
       ],
@@ -180,6 +195,7 @@
         "game/LICENSE"
       ],
       "path": "res://ben_rpg/visual_assets/derived/frosthold_blue_torch.png",
+      "profileCoverage": "profiled",
       "profileIds": [
         "frosthold_blue_torch"
       ],
@@ -193,6 +209,7 @@
         "game/LICENSE"
       ],
       "path": "res://ben_rpg/visual_assets/derived/town_library_facade.png",
+      "profileCoverage": "profiled",
       "profileIds": [
         "town_library_facade"
       ],
@@ -206,6 +223,7 @@
         "game/LICENSE"
       ],
       "path": "res://combat/arenas/steppes.png",
+      "profileCoverage": "migration_required",
       "profileIds": [],
       "sourceGroup": "combat/arenas",
       "unprofiledClassification": "legacy_compatibility_visual"
@@ -217,6 +235,7 @@
         "game/LICENSE"
       ],
       "path": "res://combat/battlers/bear/bear.png",
+      "profileCoverage": "migration_required",
       "profileIds": [],
       "sourceGroup": "combat/battlers",
       "unprofiledClassification": "legacy_compatibility_visual"
@@ -228,6 +247,7 @@
         "game/LICENSE"
       ],
       "path": "res://combat/battlers/bear/icon_punch.svg",
+      "profileCoverage": "migration_required",
       "profileIds": [],
       "sourceGroup": "combat/battlers",
       "unprofiledClassification": "legacy_compatibility_visual"
@@ -239,6 +259,7 @@
         "game/LICENSE"
       ],
       "path": "res://combat/battlers/bugcat/bugcat.png",
+      "profileCoverage": "migration_required",
       "profileIds": [],
       "sourceGroup": "combat/battlers",
       "unprofiledClassification": "legacy_compatibility_visual"
@@ -250,6 +271,7 @@
         "game/LICENSE"
       ],
       "path": "res://combat/battlers/squirrel/squirrel.png",
+      "profileCoverage": "migration_required",
       "profileIds": [],
       "sourceGroup": "combat/battlers",
       "unprofiledClassification": "legacy_compatibility_visual"
@@ -261,6 +283,7 @@
         "game/LICENSE"
       ],
       "path": "res://combat/battlers/wolf/wolf.png",
+      "profileCoverage": "migration_required",
       "profileIds": [],
       "sourceGroup": "combat/battlers",
       "unprofiledClassification": "legacy_compatibility_visual"
@@ -272,6 +295,7 @@
         "game_assets/Tilesets/LICENSE"
       ],
       "path": "res://game_assets/Tilesets/Ancient Greek Mythology/1. Marble floor tiles.png",
+      "profileCoverage": "profiled",
       "profileIds": [
         "empyreal_aerie_battle_backdrop",
         "empyreal_forum_battle_backdrop",
@@ -290,6 +314,7 @@
         "game_assets/Tilesets/LICENSE"
       ],
       "path": "res://game_assets/Tilesets/Ancient Greek Mythology/Sliced/appeal_fountain.png",
+      "profileCoverage": "profiled",
       "profileIds": [
         "empyreal_appeal_fountain"
       ],
@@ -303,6 +328,7 @@
         "game_assets/Tilesets/LICENSE"
       ],
       "path": "res://game_assets/Tilesets/Ancient Greek Mythology/Sliced/belfry_building.png",
+      "profileCoverage": "profiled",
       "profileIds": [
         "belfry_building"
       ],
@@ -316,6 +342,7 @@
         "game_assets/Tilesets/LICENSE"
       ],
       "path": "res://game_assets/Tilesets/Ancient Greek Mythology/Sliced/blue_balustrade.png",
+      "profileCoverage": "profiled",
       "profileIds": [
         "empyreal_blue_balustrade"
       ],
@@ -329,6 +356,7 @@
         "game_assets/Tilesets/LICENSE"
       ],
       "path": "res://game_assets/Tilesets/Ancient Greek Mythology/Sliced/blue_column.png",
+      "profileCoverage": "profiled",
       "profileIds": [
         "empyreal_blue_column"
       ],
@@ -342,6 +370,7 @@
         "game_assets/Tilesets/LICENSE"
       ],
       "path": "res://game_assets/Tilesets/Ancient Greek Mythology/Sliced/crystal_altar.png",
+      "profileCoverage": "profiled",
       "profileIds": [
         "empyreal_crystal_altar"
       ],
@@ -355,6 +384,7 @@
         "game_assets/Tilesets/LICENSE"
       ],
       "path": "res://game_assets/Tilesets/Ancient Greek Mythology/Sliced/flower_offering.png",
+      "profileCoverage": "profiled",
       "profileIds": [
         "empyreal_flower_offering"
       ],
@@ -368,6 +398,7 @@
         "game_assets/Tilesets/LICENSE"
       ],
       "path": "res://game_assets/Tilesets/Ancient Greek Mythology/Sliced/fruit_offering.png",
+      "profileCoverage": "profiled",
       "profileIds": [
         "empyreal_fruit_offering"
       ],
@@ -381,6 +412,7 @@
         "game_assets/Tilesets/LICENSE"
       ],
       "path": "res://game_assets/Tilesets/Ancient Greek Mythology/Sliced/golden_olive_tree.png",
+      "profileCoverage": "profiled",
       "profileIds": [
         "empyreal_golden_olive_tree"
       ],
@@ -394,6 +426,7 @@
         "game_assets/Tilesets/LICENSE"
       ],
       "path": "res://game_assets/Tilesets/Ancient Greek Mythology/Sliced/gravity_crystal.png",
+      "profileCoverage": "profiled",
       "profileIds": [
         "empyreal_gravity_crystal"
       ],
@@ -407,6 +440,7 @@
         "game_assets/Tilesets/LICENSE"
       ],
       "path": "res://game_assets/Tilesets/Ancient Greek Mythology/Sliced/griffin_statue.png",
+      "profileCoverage": "profiled",
       "profileIds": [
         "empyreal_griffin_statue"
       ],
@@ -420,6 +454,7 @@
         "game_assets/Tilesets/LICENSE"
       ],
       "path": "res://game_assets/Tilesets/Ancient Greek Mythology/Sliced/horse_statue.png",
+      "profileCoverage": "profiled",
       "profileIds": [
         "empyreal_horse_statue"
       ],
@@ -433,6 +468,7 @@
         "game_assets/Tilesets/LICENSE"
       ],
       "path": "res://game_assets/Tilesets/Ancient Greek Mythology/Sliced/justice_statue.png",
+      "profileCoverage": "profiled",
       "profileIds": [
         "empyreal_justice_statue"
       ],
@@ -446,6 +482,7 @@
         "game_assets/Tilesets/LICENSE"
       ],
       "path": "res://game_assets/Tilesets/Ancient Greek Mythology/Sliced/lotus_altar.png",
+      "profileCoverage": "profiled",
       "profileIds": [
         "empyreal_lotus_altar"
       ],
@@ -459,6 +496,7 @@
         "game_assets/Tilesets/LICENSE"
       ],
       "path": "res://game_assets/Tilesets/Ancient Greek Mythology/Sliced/marble_cracked.png",
+      "profileCoverage": "profiled",
       "profileIds": [
         "empyreal_marble_cracked_tile"
       ],
@@ -472,6 +510,7 @@
         "game_assets/Tilesets/LICENSE"
       ],
       "path": "res://game_assets/Tilesets/Ancient Greek Mythology/Sliced/marble_gold_quarter.png",
+      "profileCoverage": "profiled",
       "profileIds": [
         "empyreal_marble_gold_quarter_tile"
       ],
@@ -485,6 +524,7 @@
         "game_assets/Tilesets/LICENSE"
       ],
       "path": "res://game_assets/Tilesets/Ancient Greek Mythology/Sliced/marble_plain.png",
+      "profileCoverage": "profiled",
       "profileIds": [
         "empyreal_marble_plain_tile"
       ],
@@ -498,6 +538,7 @@
         "game_assets/Tilesets/LICENSE"
       ],
       "path": "res://game_assets/Tilesets/Ancient Greek Mythology/Sliced/music_statue.png",
+      "profileCoverage": "profiled",
       "profileIds": [
         "empyreal_music_statue"
       ],
@@ -511,6 +552,7 @@
         "game_assets/Tilesets/LICENSE"
       ],
       "path": "res://game_assets/Tilesets/Ancient Greek Mythology/Sliced/ordinance_book.png",
+      "profileCoverage": "profiled",
       "profileIds": [
         "empyreal_ordinance_book"
       ],
@@ -524,6 +566,7 @@
         "game_assets/Tilesets/LICENSE"
       ],
       "path": "res://game_assets/Tilesets/Ancient Greek Mythology/Sliced/pediment_door.png",
+      "profileCoverage": "profiled",
       "profileIds": [
         "empyreal_pediment_door"
       ],
@@ -537,6 +580,7 @@
         "game_assets/Tilesets/LICENSE"
       ],
       "path": "res://game_assets/Tilesets/Ancient Greek Mythology/Sliced/plain_column.png",
+      "profileCoverage": "profiled",
       "profileIds": [
         "empyreal_plain_column"
       ],
@@ -550,6 +594,7 @@
         "game_assets/Tilesets/LICENSE"
       ],
       "path": "res://game_assets/Tilesets/Ancient Greek Mythology/Sliced/reliquary_portal.png",
+      "profileCoverage": "profiled",
       "profileIds": [
         "empyreal_reliquary_portal"
       ],
@@ -563,6 +608,7 @@
         "game_assets/Tilesets/LICENSE"
       ],
       "path": "res://game_assets/Tilesets/Ancient Greek Mythology/Sliced/silver_olive_tree.png",
+      "profileCoverage": "profiled",
       "profileIds": [
         "empyreal_silver_olive_tree"
       ],
@@ -576,6 +622,7 @@
         "game_assets/Tilesets/LICENSE"
       ],
       "path": "res://game_assets/Tilesets/Ancient Greek Mythology/Sliced/tribunal_gate.png",
+      "profileCoverage": "profiled",
       "profileIds": [
         "empyreal_tribunal_gate"
       ],
@@ -589,6 +636,7 @@
         "game_assets/Tilesets/LICENSE"
       ],
       "path": "res://game_assets/Tilesets/Ancient Greek Mythology/Sliced/tribunal_orrery.png",
+      "profileCoverage": "profiled",
       "profileIds": [
         "empyreal_tribunal_orrery"
       ],
@@ -602,6 +650,7 @@
         "game_assets/Tilesets/LICENSE"
       ],
       "path": "res://game_assets/Tilesets/Ancient Greek Mythology/Sliced/winged_statue.png",
+      "profileCoverage": "profiled",
       "profileIds": [
         "empyreal_winged_statue"
       ],
@@ -615,6 +664,7 @@
         "game_assets/Tilesets/LICENSE"
       ],
       "path": "res://game_assets/Tilesets/Bright Cyberpunk Pixel Art Tileset Pack/1.png",
+      "profileCoverage": "profiled",
       "profileIds": [
         "helios_civic_sun_battle_backdrop",
         "helios_core_quadrant",
@@ -633,6 +683,7 @@
         "game_assets/Tilesets/LICENSE"
       ],
       "path": "res://game_assets/Tilesets/Bright Cyberpunk Pixel Art Tileset Pack/3.png",
+      "profileCoverage": "profiled",
       "profileIds": [
         "afterlight_club_facade",
         "helios_observatory_facade"
@@ -647,6 +698,7 @@
         "game_assets/Tilesets/LICENSE"
       ],
       "path": "res://game_assets/Tilesets/Bright Cyberpunk Pixel Art Tileset Pack/5.png",
+      "profileCoverage": "profiled",
       "profileIds": [
         "helios_clinic_battle_backdrop",
         "helios_clinic_quadrant",
@@ -663,6 +715,7 @@
         "game_assets/Tilesets/LICENSE"
       ],
       "path": "res://game_assets/Tilesets/Dark RPG GUI Kit - Pixel Art Asset Pack/dfgui_icon-chest.png",
+      "profileCoverage": "profiled",
       "profileIds": [
         "universe_treasure_chest"
       ],
@@ -676,6 +729,7 @@
         "game_assets/Tilesets/LICENSE"
       ],
       "path": "res://game_assets/Tilesets/Flying Islands/PNG/Sliced/sky_clouds.png",
+      "profileCoverage": "profiled",
       "profileIds": [
         "empyreal_sky_cloud_bank"
       ],
@@ -689,6 +743,7 @@
         "game_assets/Tilesets/LICENSE"
       ],
       "path": "res://game_assets/Tilesets/Frozen kingdom/Frozen Kingdom – Top-Down Pixel Art Asset Pack/1. Snow ground tiles.png",
+      "profileCoverage": "profiled",
       "profileIds": [
         "frosthold_snow_battle_backdrop",
         "frosthold_snow_ground_tile",
@@ -710,6 +765,7 @@
         "game_assets/Tilesets/LICENSE"
       ],
       "path": "res://game_assets/Tilesets/Frozen kingdom/Frozen Kingdom – Top-Down Pixel Art Asset Pack/10. Frozen Trees and pines.png",
+      "profileCoverage": "profiled",
       "profileIds": [
         "frosthold_gate_tree",
         "frosthold_gate_tree_right"
@@ -724,6 +780,7 @@
         "game_assets/Tilesets/LICENSE"
       ],
       "path": "res://game_assets/Tilesets/Frozen kingdom/Frozen Kingdom – Top-Down Pixel Art Asset Pack/12. Torches and blue flames.png",
+      "profileCoverage": "profiled",
       "profileIds": [
         "frosthold_gate_torch_right",
         "frosthold_hall_torch_left"
@@ -738,6 +795,7 @@
         "game_assets/Tilesets/LICENSE"
       ],
       "path": "res://game_assets/Tilesets/Frozen kingdom/Frozen Kingdom – Top-Down Pixel Art Asset Pack/13. Frozen ruins.png",
+      "profileCoverage": "profiled",
       "profileIds": [
         "frosthold_gate_ruin",
         "frosthold_gate_ruin_right"
@@ -752,6 +810,7 @@
         "game_assets/Tilesets/LICENSE"
       ],
       "path": "res://game_assets/Tilesets/Frozen kingdom/Frozen Kingdom – Top-Down Pixel Art Asset Pack/14. Magical runes.png",
+      "profileCoverage": "profiled",
       "profileIds": [
         "frosthold_causeway_rune",
         "frosthold_hall_rune_left",
@@ -768,6 +827,7 @@
         "game_assets/Tilesets/LICENSE"
       ],
       "path": "res://game_assets/Tilesets/Frozen kingdom/Frozen Kingdom – Top-Down Pixel Art Asset Pack/16. Frozen market stalls.png",
+      "profileCoverage": "profiled",
       "profileIds": [
         "frosthold_market_stall",
         "frosthold_market_stall_right",
@@ -783,6 +843,7 @@
         "game_assets/Tilesets/LICENSE"
       ],
       "path": "res://game_assets/Tilesets/Frozen kingdom/Frozen Kingdom – Top-Down Pixel Art Asset Pack/5. Ice castle walls.png",
+      "profileCoverage": "profiled",
       "profileIds": [
         "frosthold_gate_castle",
         "frosthold_hall_central_arch",
@@ -800,6 +861,7 @@
         "game_assets/Tilesets/LICENSE"
       ],
       "path": "res://game_assets/Tilesets/Frozen kingdom/Frozen Kingdom – Top-Down Pixel Art Asset Pack/7. Nordic wooden houses.png",
+      "profileCoverage": "profiled",
       "profileIds": [
         "frosthold_market_house",
         "frosthold_market_house_right",
@@ -815,6 +877,7 @@
         "game_assets/Tilesets/LICENSE"
       ],
       "path": "res://game_assets/Tilesets/Frozen kingdom/Frozen Kingdom – Top-Down Pixel Art Asset Pack/8. Icy bridges.png",
+      "profileCoverage": "profiled",
       "profileIds": [
         "frosthold_causeway_bridge",
         "frosthold_causeway_bridge_lower"
@@ -829,6 +892,7 @@
         "game_assets/Tilesets/LICENSE"
       ],
       "path": "res://game_assets/Tilesets/Frozen kingdom/Frozen Kingdom – Top-Down Pixel Art Asset Pack/9. Crystal formations.png",
+      "profileCoverage": "profiled",
       "profileIds": [
         "frosthold_causeway_crystal_bank",
         "frosthold_causeway_crystal_bank_right"
@@ -843,6 +907,7 @@
         "game_assets/Tilesets/LICENSE"
       ],
       "path": "res://game_assets/Tilesets/Haunted Mansion Pixel Art Tileset Pack/1.png",
+      "profileCoverage": "profiled",
       "profileIds": [
         "haunted_mansion_exterior",
         "sandbox_haunted_facade"
@@ -857,6 +922,7 @@
         "game_assets/Tilesets/LICENSE"
       ],
       "path": "res://game_assets/Tilesets/Haunted Mansion Pixel Art Tileset Pack/2.png",
+      "profileCoverage": "profiled",
       "profileIds": [
         "mansion_archive_cabinet",
         "mansion_archive_wall_lit_tile",
@@ -897,6 +963,7 @@
         "game_assets/Tilesets/LICENSE"
       ],
       "path": "res://game_assets/Tilesets/Haunted Mansion Pixel Art Tileset Pack/3.png",
+      "profileCoverage": "profiled",
       "profileIds": [
         "mansion_nursery_bed",
         "mansion_nursery_left_wall_panel",
@@ -928,6 +995,7 @@
         "game_assets/Tilesets/LICENSE"
       ],
       "path": "res://game_assets/Tilesets/Haunted Mansion Pixel Art Tileset Pack/4.png",
+      "profileCoverage": "profiled",
       "profileIds": [
         "mansion_archive_shelving",
         "mansion_archive_tall_shelving",
@@ -951,6 +1019,7 @@
         "game_assets/Tilesets/LICENSE"
       ],
       "path": "res://game_assets/Tilesets/Jurassic world/Jurassic World Pixel Art Megapack/11. Dinosaur nests and eggs.png",
+      "profileCoverage": "profiled",
       "profileIds": [
         "primeval_nest_left",
         "primeval_nest_right",
@@ -966,6 +1035,7 @@
         "game_assets/Tilesets/LICENSE"
       ],
       "path": "res://game_assets/Tilesets/Jurassic world/Jurassic World Pixel Art Megapack/19. Modular jungle ruins.png",
+      "profileCoverage": "profiled",
       "profileIds": [
         "primeval_caldera_forecourt",
         "primeval_caldera_pillar",
@@ -987,6 +1057,7 @@
         "game_assets/Tilesets/LICENSE"
       ],
       "path": "res://game_assets/Tilesets/Jurassic world/Jurassic World Pixel Art Megapack/21. Dinosaurs.png",
+      "profileCoverage": "profiled",
       "profileIds": [
         "commute_tyrant_battle_actor",
         "municipal_spinosaur_battle_actor",
@@ -1003,6 +1074,7 @@
         "game_assets/Tilesets/LICENSE"
       ],
       "path": "res://game_assets/Tilesets/Jurassic world/Jurassic World Pixel Art Megapack/7. Tropical trees and ferns.png",
+      "profileCoverage": "profiled",
       "profileIds": [
         "primeval_grove_canopy",
         "primeval_grove_canopy_mid",
@@ -1021,6 +1093,7 @@
         "game_assets/Tilesets/LICENSE"
       ],
       "path": "res://game_assets/Tilesets/Modern Bar & Nightclub Pixel Art Tileset Pack/4.png",
+      "profileCoverage": "profiled",
       "profileIds": [
         "afterlight_club_sign"
       ],
@@ -1034,6 +1107,7 @@
         "game_assets/Tilesets/LICENSE"
       ],
       "path": "res://game_assets/Tilesets/Modern Laboratory Pixel Art Tileset Pack/1.png",
+      "profileCoverage": "profiled",
       "profileIds": [
         "laboratory_floor_tile",
         "laboratory_wall_tile",
@@ -1052,6 +1126,7 @@
         "game_assets/Tilesets/LICENSE"
       ],
       "path": "res://game_assets/Tilesets/Modern Laboratory Pixel Art Tileset Pack/2.png",
+      "profileCoverage": "profiled",
       "profileIds": [
         "laboratory_utility_bank",
         "laboratory_ventilation_run"
@@ -1066,6 +1141,7 @@
         "game_assets/Tilesets/LICENSE"
       ],
       "path": "res://game_assets/Tilesets/Modern Laboratory Pixel Art Tileset Pack/3.png",
+      "profileCoverage": "profiled",
       "profileIds": [
         "laboratory_analysis_station",
         "laboratory_center_storage",
@@ -1089,6 +1165,7 @@
         "game_assets/Tilesets/LICENSE"
       ],
       "path": "res://game_assets/Tilesets/Modern Laboratory Pixel Art Tileset Pack/4.png",
+      "profileCoverage": "profiled",
       "profileIds": [
         "laboratory_exit_doors",
         "sandbox_lab_computer",
@@ -1104,6 +1181,7 @@
         "game_assets/Tilesets/LICENSE"
       ],
       "path": "res://game_assets/Tilesets/Modern World Overworld Pixel Tileset/1.png",
+      "profileCoverage": "profiled",
       "profileIds": [
         "sandbox_modern_cobble",
         "sandbox_modern_dirt",
@@ -1120,6 +1198,7 @@
         "game_assets/Tilesets/LICENSE"
       ],
       "path": "res://game_assets/Tilesets/Modern World Overworld Pixel Tileset/2.png",
+      "profileCoverage": "profiled",
       "profileIds": [
         "town_foundation_stone_tile",
         "town_grass_tile",
@@ -1135,6 +1214,7 @@
         "game_assets/Tilesets/LICENSE"
       ],
       "path": "res://game_assets/Tilesets/Modern World Overworld Pixel Tileset/3.png",
+      "profileCoverage": "profiled",
       "profileIds": [
         "laboratory_exterior",
         "sandbox_modern_blue_cottage",
@@ -1156,6 +1236,7 @@
         "game_assets/Tilesets/Ranch Stuff/assets/user_interfaces/fonts/roboto/LICENSE"
       ],
       "path": "res://game_assets/Tilesets/Ranch Stuff/assets/animals/cats/cat_01/idle/cat_01_idle_down_16x20.png",
+      "profileCoverage": "profiled",
       "profileIds": [
         "sandbox_ranch_cat"
       ],
@@ -1171,6 +1252,7 @@
         "game_assets/Tilesets/Ranch Stuff/assets/user_interfaces/fonts/roboto/LICENSE"
       ],
       "path": "res://game_assets/Tilesets/Ranch Stuff/assets/animals/cows/cow_01/black/idle/cow_01_black_idle_down_32x32.png",
+      "profileCoverage": "profiled",
       "profileIds": [
         "sandbox_ranch_cow"
       ],
@@ -1186,6 +1268,7 @@
         "game_assets/Tilesets/Ranch Stuff/assets/user_interfaces/fonts/roboto/LICENSE"
       ],
       "path": "res://game_assets/Tilesets/Ranch Stuff/assets/buildings/building_01_16x16.png",
+      "profileCoverage": "profiled",
       "profileIds": [
         "sandbox_ranch_house"
       ],
@@ -1201,6 +1284,7 @@
         "game_assets/Tilesets/Ranch Stuff/assets/user_interfaces/fonts/roboto/LICENSE"
       ],
       "path": "res://game_assets/Tilesets/Ranch Stuff/assets/crops/corn/growth_basic/corn_16x32_8frames.png",
+      "profileCoverage": "profiled",
       "profileIds": [
         "sandbox_ranch_corn"
       ],
@@ -1216,6 +1300,7 @@
         "game_assets/Tilesets/Ranch Stuff/assets/user_interfaces/fonts/roboto/LICENSE"
       ],
       "path": "res://game_assets/Tilesets/Ranch Stuff/assets/crops/pumpkin/growth_basic/pumpkin_16x16_7frames.png",
+      "profileCoverage": "profiled",
       "profileIds": [
         "sandbox_ranch_pumpkin"
       ],
@@ -1231,6 +1316,7 @@
         "game_assets/Tilesets/Ranch Stuff/assets/user_interfaces/fonts/roboto/LICENSE"
       ],
       "path": "res://game_assets/Tilesets/Ranch Stuff/assets/tiles/ground_01_16x16.png",
+      "profileCoverage": "profiled",
       "profileIds": [
         "sandbox_ranch_dirt",
         "sandbox_ranch_farmland",
@@ -1249,6 +1335,7 @@
         "game_assets/Tilesets/Ranch Stuff/assets/user_interfaces/fonts/roboto/LICENSE"
       ],
       "path": "res://game_assets/Tilesets/Ranch Stuff/assets/tiles/snow_01_16x16.png",
+      "profileCoverage": "profiled",
       "profileIds": [
         "sandbox_ranch_snow"
       ],
@@ -1264,6 +1351,7 @@
         "game_assets/Tilesets/Ranch Stuff/assets/user_interfaces/fonts/roboto/LICENSE"
       ],
       "path": "res://game_assets/Tilesets/Ranch Stuff/assets/tiles/tree_01_16x16.png",
+      "profileCoverage": "profiled",
       "profileIds": [
         "sandbox_ranch_oak",
         "sandbox_ranch_sapling",
@@ -1282,6 +1370,7 @@
         "game_assets/Tilesets/Ranch Stuff/assets/user_interfaces/fonts/roboto/LICENSE"
       ],
       "path": "res://game_assets/Tilesets/Ranch Stuff/assets/tiles/water_01_16x16_5frames.png",
+      "profileCoverage": "profiled",
       "profileIds": [
         "sandbox_ranch_water"
       ],
@@ -1295,6 +1384,7 @@
         "game_assets/Tilesets/LICENSE"
       ],
       "path": "res://game_assets/Tilesets/Sakura Temple Asset Pack/Decorative framed garden tiles.png",
+      "profileCoverage": "profiled",
       "profileIds": [
         "moonpetal_framed_garden_island",
         "moonpetal_framed_garden_island_right",
@@ -1311,6 +1401,7 @@
         "game_assets/Tilesets/LICENSE"
       ],
       "path": "res://game_assets/Tilesets/Sakura Temple Asset Pack/Floor tiles.png",
+      "profileCoverage": "profiled",
       "profileIds": [
         "moonpetal_bell_battle_backdrop",
         "moonpetal_court_battle_backdrop",
@@ -1328,6 +1419,7 @@
         "game_assets/Tilesets/LICENSE"
       ],
       "path": "res://game_assets/Tilesets/Sakura Temple Asset Pack/Lanterns and lights.png",
+      "profileCoverage": "profiled",
       "profileIds": [
         "moonpetal_gate_lantern",
         "moonpetal_gate_lantern_right"
@@ -1342,6 +1434,7 @@
         "game_assets/Tilesets/LICENSE"
       ],
       "path": "res://game_assets/Tilesets/Sakura Temple Asset Pack/Sakura trees.png",
+      "profileCoverage": "profiled",
       "profileIds": [
         "moonpetal_court_tree_canopy",
         "moonpetal_court_tree_canopy_right"
@@ -1356,6 +1449,7 @@
         "game_assets/Tilesets/LICENSE"
       ],
       "path": "res://game_assets/Tilesets/Sakura Temple Asset Pack/Shrine Gates.png",
+      "profileCoverage": "profiled",
       "profileIds": [
         "moonpetal_bell_walk_gate_left",
         "moonpetal_bell_walk_gate_right",
@@ -1371,6 +1465,7 @@
         "game_assets/Tilesets/LICENSE"
       ],
       "path": "res://game_assets/Tilesets/Sakura Temple Asset Pack/Stone patchs and walkways.png",
+      "profileCoverage": "profiled",
       "profileIds": [
         "moonpetal_processional_path"
       ],
@@ -1384,6 +1479,7 @@
         "game_assets/Tilesets/LICENSE"
       ],
       "path": "res://game_assets/Tilesets/Sakura Temple Asset Pack/Water and ponds.png",
+      "profileCoverage": "profiled",
       "profileIds": [
         "moonpetal_mirror_pond"
       ],
@@ -1397,6 +1493,7 @@
         "game_assets/Tilesets/LICENSE"
       ],
       "path": "res://game_assets/Tilesets/Sakura Temple Asset Pack/temple building parts.png",
+      "profileCoverage": "profiled",
       "profileIds": [
         "moonpetal_court_temple",
         "moonpetal_palace_facade",
@@ -1412,6 +1509,7 @@
         "game_assets/Tilesets/LICENSE"
       ],
       "path": "res://game_assets/Tilesets/Sci-Fi Spaceship Interior Tileset Pack/1.png",
+      "profileCoverage": "profiled",
       "profileIds": [
         "asterion_dock_battle_backdrop",
         "asterion_station_architecture",
@@ -1438,6 +1536,7 @@
         "game_assets/Tilesets/LICENSE"
       ],
       "path": "res://game_assets/Tilesets/Sci-Fi Spaceship Interior Tileset Pack/10.png",
+      "profileCoverage": "profiled",
       "profileIds": [
         "asterion_medical_battle_backdrop",
         "asterion_medical_cabinet",
@@ -1457,6 +1556,7 @@
         "game_assets/Tilesets/LICENSE"
       ],
       "path": "res://game_assets/Tilesets/Sci-Fi Spaceship Interior Tileset Pack/2.png",
+      "profileCoverage": "profiled",
       "profileIds": [
         "asterion_mess_banner",
         "asterion_mess_counter",
@@ -1477,6 +1577,7 @@
         "game_assets/Tilesets/LICENSE"
       ],
       "path": "res://game_assets/Tilesets/Sci-Fi Spaceship Interior Tileset Pack/3.png",
+      "profileCoverage": "profiled",
       "profileIds": [
         "asterion_hydro_battle_backdrop",
         "asterion_hydro_control_bank",
@@ -1495,6 +1596,7 @@
         "game_assets/Tilesets/LICENSE"
       ],
       "path": "res://game_assets/Tilesets/Sci-Fi Spaceship Interior Tileset Pack/6.png",
+      "profileCoverage": "profiled",
       "profileIds": [
         "asterion_command_battle_backdrop",
         "asterion_command_console",
@@ -1512,6 +1614,7 @@
         "game_assets/Tilesets/LICENSE"
       ],
       "path": "res://game_assets/Tilesets/Sci-Fi Spaceship Interior Tileset Pack/8.png",
+      "profileCoverage": "profiled",
       "profileIds": [
         "asterion_dock_bulkhead",
         "asterion_dock_hull",
@@ -1528,6 +1631,7 @@
         "game_assets/Tilesets/LICENSE"
       ],
       "path": "res://game_assets/Tilesets/Stone Age Modern Life Pixel Art Tileset Pack/1.png",
+      "profileCoverage": "profiled",
       "profileIds": [
         "primeval_village_awning_left",
         "primeval_village_awning_right",
@@ -1547,6 +1651,7 @@
         "game_assets/Tilesets/LICENSE"
       ],
       "path": "res://game_assets/Tilesets/Stone Age Modern Life Pixel Art Tileset Pack/7.png",
+      "profileCoverage": "profiled",
       "profileIds": [
         "primeval_anchor_totem"
       ],
@@ -1560,6 +1665,7 @@
         "game_assets/Tilesets/LICENSE"
       ],
       "path": "res://game_assets/Tilesets/Stone Age Modern Life Pixel Art Tileset Pack/9.png",
+      "profileCoverage": "profiled",
       "profileIds": [
         "primeval_desert_ground_quadrant",
         "primeval_ground_battle_backdrop",
@@ -1576,6 +1682,7 @@
         "game_assets/characters/Main Character/license.txt"
       ],
       "path": "res://game_assets/characters/Main Character/Ben_Franklin/rotations/south.png",
+      "profileCoverage": "profiled",
       "profileIds": [
         "ben_company_portrait"
       ],
@@ -1590,6 +1697,7 @@
         "game_assets/characters/Main Character/license.txt"
       ],
       "path": "res://game_assets/characters/Main Character/Ben_Franklin/rotations/west.png",
+      "profileCoverage": "profiled",
       "profileIds": [
         "ben_battle_actor"
       ],
@@ -1611,6 +1719,7 @@
         "game_assets/characters/Recruitable Characters/💀 The Frost Lich King Emperor/license.txt"
       ],
       "path": "res://game_assets/characters/Recruitable Characters/Archangel Commander — Legendary Celestial Warrior Hero/rotations/west.png",
+      "profileCoverage": "profiled",
       "profileIds": [
         "archangel_commander_battle_actor"
       ],
@@ -1632,6 +1741,7 @@
         "game_assets/characters/Recruitable Characters/💀 The Frost Lich King Emperor/license.txt"
       ],
       "path": "res://game_assets/characters/Recruitable Characters/Fighter/Fighter/rotations/south.png",
+      "profileCoverage": "profiled",
       "profileIds": [
         "fighter_company_portrait"
       ],
@@ -1653,6 +1763,7 @@
         "game_assets/characters/Recruitable Characters/💀 The Frost Lich King Emperor/license.txt"
       ],
       "path": "res://game_assets/characters/Recruitable Characters/Fighter/Fighter/rotations/west.png",
+      "profileCoverage": "profiled",
       "profileIds": [
         "fighter_battle_actor"
       ],
@@ -1674,6 +1785,7 @@
         "game_assets/characters/Recruitable Characters/💀 The Frost Lich King Emperor/license.txt"
       ],
       "path": "res://game_assets/characters/Recruitable Characters/astronaut/Astronaut/rotations/south.png",
+      "profileCoverage": "profiled",
       "profileIds": [
         "astronaut_company_portrait"
       ],
@@ -1695,6 +1807,7 @@
         "game_assets/characters/Recruitable Characters/💀 The Frost Lich King Emperor/license.txt"
       ],
       "path": "res://game_assets/characters/Recruitable Characters/astronaut/Astronaut/rotations/west.png",
+      "profileCoverage": "profiled",
       "profileIds": [
         "astronaut_battle_actor"
       ],
@@ -1716,6 +1829,7 @@
         "game_assets/characters/Recruitable Characters/💀 The Frost Lich King Emperor/license.txt"
       ],
       "path": "res://game_assets/characters/Recruitable Characters/caveman/Caveman/rotations/west.png",
+      "profileCoverage": "profiled",
       "profileIds": [
         "caveman_battle_actor"
       ],
@@ -1737,6 +1851,7 @@
         "game_assets/characters/Recruitable Characters/💀 The Frost Lich King Emperor/license.txt"
       ],
       "path": "res://game_assets/characters/Recruitable Characters/crimson oni samurai/rotations/west.png",
+      "profileCoverage": "profiled",
       "profileIds": [
         "crimson_oni_challenger_battle_actor"
       ],
@@ -1758,6 +1873,7 @@
         "game_assets/characters/Recruitable Characters/💀 The Frost Lich King Emperor/license.txt"
       ],
       "path": "res://game_assets/characters/Recruitable Characters/kitsune empress/rotations/west.png",
+      "profileCoverage": "profiled",
       "profileIds": [
         "kitsune_empress_battle_actor"
       ],
@@ -1779,6 +1895,7 @@
         "game_assets/characters/Recruitable Characters/💀 The Frost Lich King Emperor/license.txt"
       ],
       "path": "res://game_assets/characters/Recruitable Characters/neon viper - cyberpunk female/rotations/west.png",
+      "profileCoverage": "profiled",
       "profileIds": [
         "neon_viper_battle_actor"
       ],
@@ -1800,6 +1917,7 @@
         "game_assets/characters/Recruitable Characters/💀 The Frost Lich King Emperor/license.txt"
       ],
       "path": "res://game_assets/characters/Recruitable Characters/💀 The Frost Lich King Emperor/rotations/west.png",
+      "profileCoverage": "profiled",
       "profileIds": [
         "frost_lich_emperor_battle_actor"
       ],
@@ -1813,6 +1931,7 @@
         "game_assets/characters/LICENSE"
       ],
       "path": "res://game_assets/characters/Topdown Monsters Part 1/Sliced/Bulkhead Warden/00_idle/frame_000.png",
+      "profileCoverage": "profiled",
       "profileIds": [
         "bulkhead_warden_battle_actor"
       ],
@@ -1826,6 +1945,7 @@
         "game_assets/characters/LICENSE"
       ],
       "path": "res://game_assets/characters/Topdown Monsters Part 1/Sliced/Cobalt Courier/00_idle/frame_000.png",
+      "profileCoverage": "profiled",
       "profileIds": [
         "cobalt_courier_battle_actor"
       ],
@@ -1839,6 +1959,7 @@
         "game_assets/characters/LICENSE"
       ],
       "path": "res://game_assets/characters/Topdown Monsters Part 1/Sliced/Mossback Surveyor/00_idle/frame_000.png",
+      "profileCoverage": "profiled",
       "profileIds": [
         "mossback_surveyor_battle_actor"
       ],
@@ -1852,6 +1973,7 @@
         "game_assets/characters/LICENSE"
       ],
       "path": "res://game_assets/characters/Topdown Monsters Part 1/Sliced/Rift Jackal/00_idle/frame_000.png",
+      "profileCoverage": "profiled",
       "profileIds": [
         "rift_jackal_battle_actor"
       ],
@@ -1866,6 +1988,7 @@
         "game_assets/characters/Velociraptor/license.txt"
       ],
       "path": "res://game_assets/characters/Velociraptor/Tiny_Velociraptor/rotations/west.png",
+      "profileCoverage": "profiled",
       "profileIds": [
         "velociraptor_battle_actor"
       ],
@@ -1879,6 +2002,7 @@
         "game_assets/items/LICENSE"
       ],
       "path": "res://game_assets/items/armory/Singles/Armor_Singles/Copper/Copper_Chestplate1.png",
+      "profileCoverage": "profiled",
       "profileIds": [
         "item_copper_chestplate_1"
       ],
@@ -1892,6 +2016,7 @@
         "game_assets/items/LICENSE"
       ],
       "path": "res://game_assets/items/armory/Singles/Armor_Singles/Copper/Copper_Gloves1.png",
+      "profileCoverage": "profiled",
       "profileIds": [
         "item_copper_gloves_1"
       ],
@@ -1905,6 +2030,7 @@
         "game_assets/items/LICENSE"
       ],
       "path": "res://game_assets/items/armory/Singles/Armor_Singles/Copper/Copper_Helmet1.png",
+      "profileCoverage": "profiled",
       "profileIds": [
         "item_copper_helmet_1"
       ],
@@ -1918,6 +2044,7 @@
         "game_assets/items/LICENSE"
       ],
       "path": "res://game_assets/items/armory/Singles/Armor_Singles/Iron/Iron_Chestplate1.png",
+      "profileCoverage": "profiled",
       "profileIds": [
         "item_iron_chestplate_1"
       ],
@@ -1931,6 +2058,7 @@
         "game_assets/items/LICENSE"
       ],
       "path": "res://game_assets/items/armory/Singles/Armor_Singles/Iron/Iron_Chestplate5.png",
+      "profileCoverage": "profiled",
       "profileIds": [
         "item_iron_chestplate_5"
       ],
@@ -1944,6 +2072,7 @@
         "game_assets/items/LICENSE"
       ],
       "path": "res://game_assets/items/armory/Singles/Armor_Singles/Iron/Iron_Gloves5.png",
+      "profileCoverage": "profiled",
       "profileIds": [
         "item_iron_gloves_5"
       ],
@@ -1957,6 +2086,7 @@
         "game_assets/items/LICENSE"
       ],
       "path": "res://game_assets/items/armory/Singles/Armor_Singles/Iron/Iron_Gloves9.png",
+      "profileCoverage": "profiled",
       "profileIds": [
         "item_iron_gloves_9"
       ],
@@ -1970,6 +2100,7 @@
         "game_assets/items/LICENSE"
       ],
       "path": "res://game_assets/items/armory/Singles/Armor_Singles/Iron/Iron_Helmet5.png",
+      "profileCoverage": "profiled",
       "profileIds": [
         "item_iron_helmet_5"
       ],
@@ -1983,6 +2114,7 @@
         "game_assets/items/LICENSE"
       ],
       "path": "res://game_assets/items/armory/Singles/Armor_Singles/Iron/Iron_Helmet8.png",
+      "profileCoverage": "profiled",
       "profileIds": [
         "item_iron_helmet_8"
       ],
@@ -1996,6 +2128,7 @@
         "game_assets/items/LICENSE"
       ],
       "path": "res://game_assets/items/armory/Singles/Weapon_Singles/Iron/Iron_Weapon1.png",
+      "profileCoverage": "profiled",
       "profileIds": [
         "item_iron_weapon_1"
       ],
@@ -2009,6 +2142,7 @@
         "game_assets/items/LICENSE"
       ],
       "path": "res://game_assets/items/armory/Singles/Weapon_Singles/Iron/Iron_Weapon8.png",
+      "profileCoverage": "profiled",
       "profileIds": [
         "item_iron_weapon_8"
       ],
@@ -2022,6 +2156,7 @@
         "game_assets/items/LICENSE"
       ],
       "path": "res://game_assets/items/resources_items_artifacts_loot/PNG/Transperent/Icon15.png",
+      "profileCoverage": "profiled",
       "profileIds": [
         "item_artifact_15"
       ],
@@ -2035,6 +2170,7 @@
         "game_assets/items/LICENSE"
       ],
       "path": "res://game_assets/items/resources_items_artifacts_loot/PNG/Transperent/Icon18.png",
+      "profileCoverage": "profiled",
       "profileIds": [
         "item_artifact_18"
       ],
@@ -2048,6 +2184,7 @@
         "game_assets/items/LICENSE"
       ],
       "path": "res://game_assets/items/resources_items_artifacts_loot/PNG/Transperent/Icon20.png",
+      "profileCoverage": "profiled",
       "profileIds": [
         "item_artifact_20"
       ],
@@ -2061,6 +2198,7 @@
         "game_assets/items/LICENSE"
       ],
       "path": "res://game_assets/items/resources_items_artifacts_loot/PNG/Transperent/Icon31.png",
+      "profileCoverage": "profiled",
       "profileIds": [
         "item_artifact_31"
       ],
@@ -2074,6 +2212,7 @@
         "game_assets/items/LICENSE"
       ],
       "path": "res://game_assets/items/resources_items_artifacts_loot/PNG/Transperent/Icon42.png",
+      "profileCoverage": "profiled",
       "profileIds": [
         "item_artifact_42"
       ],
@@ -2087,6 +2226,7 @@
         "game_assets/items/LICENSE"
       ],
       "path": "res://game_assets/items/resources_items_artifacts_loot/PNG/Transperent/Icon9.png",
+      "profileCoverage": "profiled",
       "profileIds": [
         "item_artifact_9"
       ],
@@ -2100,6 +2240,7 @@
         "game_assets/monsters/LICENSE"
       ],
       "path": "res://game_assets/monsters/cp41-a181_japanese_yokai_urban_legends/CP_A186_NingyoPassGiantSpider.png",
+      "profileCoverage": "profiled",
       "profileIds": [
         "vow_spider_battle_actor"
       ],
@@ -2113,6 +2254,7 @@
         "game_assets/monsters/LICENSE"
       ],
       "path": "res://game_assets/monsters/cp41-a181_japanese_yokai_urban_legends/CP_A199_KasaJizo.png",
+      "profileCoverage": "profiled",
       "profileIds": [
         "memory_inspector_battle_actor"
       ],
@@ -2126,6 +2268,7 @@
         "game_assets/monsters/LICENSE"
       ],
       "path": "res://game_assets/monsters/cp41-a181_japanese_yokai_urban_legends/CP_A204_FoxWeddingAttendant.png",
+      "profileCoverage": "profiled",
       "profileIds": [
         "fox_attendant_battle_actor"
       ],
@@ -2139,6 +2282,7 @@
         "game_assets/monsters/LICENSE"
       ],
       "path": "res://game_assets/monsters/cp41-a181_japanese_yokai_urban_legends/CP_A210_Enma.png",
+      "profileCoverage": "profiled",
       "profileIds": [
         "magistrate_enma_battle_actor"
       ],
@@ -2152,6 +2296,7 @@
         "game_assets/monsters/LICENSE"
       ],
       "path": "res://game_assets/monsters/cp42-g31_sci_fi_entities/CP_G31_MechSoldier.png",
+      "profileCoverage": "profiled",
       "profileIds": [
         "helios_mech_battle_actor"
       ],
@@ -2165,6 +2310,7 @@
         "game_assets/monsters/LICENSE"
       ],
       "path": "res://game_assets/monsters/cp42-g31_sci_fi_entities/CP_G33_AssassinRobot.png",
+      "profileCoverage": "profiled",
       "profileIds": [
         "helios_assassin_battle_actor"
       ],
@@ -2178,6 +2324,7 @@
         "game_assets/monsters/LICENSE"
       ],
       "path": "res://game_assets/monsters/cp42-g31_sci_fi_entities/CP_G37_WorkRobot.png",
+      "profileCoverage": "profiled",
       "profileIds": [
         "work_robot_battle_actor"
       ],
@@ -2191,6 +2338,7 @@
         "game_assets/monsters/LICENSE"
       ],
       "path": "res://game_assets/monsters/cp42-g31_sci_fi_entities/CP_G38_SentryDrone.png",
+      "profileCoverage": "profiled",
       "profileIds": [
         "sentry_drone_battle_actor"
       ],
@@ -2204,6 +2352,7 @@
         "game_assets/monsters/LICENSE"
       ],
       "path": "res://game_assets/monsters/cp42-g31_sci_fi_entities/CP_G39_SecurityRobot.png",
+      "profileCoverage": "profiled",
       "profileIds": [
         "helios_security_battle_actor"
       ],
@@ -2217,6 +2366,7 @@
         "game_assets/monsters/LICENSE"
       ],
       "path": "res://game_assets/monsters/cp42-g31_sci_fi_entities/CP_G40_GunnerRobot.png",
+      "profileCoverage": "profiled",
       "profileIds": [
         "helios_gunner_battle_actor"
       ],
@@ -2230,6 +2380,7 @@
         "game_assets/monsters/LICENSE"
       ],
       "path": "res://game_assets/monsters/cp42-g31_sci_fi_entities/CP_G43_UtilityRobot.png",
+      "profileCoverage": "profiled",
       "profileIds": [
         "medical_robot_battle_actor"
       ],
@@ -2243,6 +2394,7 @@
         "game_assets/monsters/LICENSE"
       ],
       "path": "res://game_assets/monsters/cp42-g31_sci_fi_entities/CP_G52_MachineCommander.png",
+      "profileCoverage": "profiled",
       "profileIds": [
         "machine_commander_battle_actor"
       ],
@@ -2256,6 +2408,7 @@
         "game_assets/monsters/LICENSE"
       ],
       "path": "res://game_assets/monsters/cp42-g31_sci_fi_entities/CP_G56_Guardian.png",
+      "profileCoverage": "profiled",
       "profileIds": [
         "civic_sun_battle_actor"
       ],
@@ -2269,6 +2422,7 @@
         "game_assets/monsters/LICENSE"
       ],
       "path": "res://game_assets/monsters/cp42-g31_sci_fi_entities/CP_G59_MotherComputer.png",
+      "profileCoverage": "profiled",
       "profileIds": [
         "mother_computer_battle_actor"
       ],
@@ -2282,6 +2436,7 @@
         "game_assets/monsters/LICENSE"
       ],
       "path": "res://game_assets/monsters/cp44-j31_villains/CP_J31_WindFighter.png",
+      "profileCoverage": "profiled",
       "profileIds": [
         "wind_bailiff_battle_actor"
       ],
@@ -2295,6 +2450,7 @@
         "game_assets/monsters/LICENSE"
       ],
       "path": "res://game_assets/monsters/cp44-j31_villains/CP_J32_StormWingFighter.png",
+      "profileCoverage": "profiled",
       "profileIds": [
         "storm_repossessor_battle_actor"
       ],
@@ -2308,6 +2464,7 @@
         "game_assets/monsters/LICENSE"
       ],
       "path": "res://game_assets/monsters/cp44-j31_villains/CP_J33_DarkNecromancer.png",
+      "profileCoverage": "profiled",
       "profileIds": [
         "frost_necromancer_battle_actor"
       ],
@@ -2321,6 +2478,7 @@
         "game_assets/monsters/LICENSE"
       ],
       "path": "res://game_assets/monsters/cp44-j31_villains/CP_J35_WaterColossus.png",
+      "profileCoverage": "profiled",
       "profileIds": [
         "ice_colossus_battle_actor"
       ],
@@ -2334,6 +2492,7 @@
         "game_assets/monsters/LICENSE"
       ],
       "path": "res://game_assets/monsters/cp44-j31_villains/CP_J37_ElementalFusionKnight.png",
+      "profileCoverage": "profiled",
       "profileIds": [
         "gravity_knight_battle_actor"
       ],
@@ -2347,6 +2506,7 @@
         "game_assets/monsters/LICENSE"
       ],
       "path": "res://game_assets/monsters/cp44-j31_villains/CP_J49_FallenNobleMage.png",
+      "profileCoverage": "profiled",
       "profileIds": [
         "fallen_notary_battle_actor"
       ],
@@ -2360,6 +2520,7 @@
         "game_assets/monsters/LICENSE"
       ],
       "path": "res://game_assets/monsters/cp44-j31_villains/CP_J56_WaterClubWarrior.png",
+      "profileCoverage": "profiled",
       "profileIds": [
         "frost_collector_battle_actor"
       ],
@@ -2373,6 +2534,7 @@
         "game_assets/monsters/LICENSE"
       ],
       "path": "res://game_assets/monsters/cp44-j31_villains/CP_J59_StormCommander.png",
+      "profileCoverage": "profiled",
       "profileIds": [
         "high_comptroller_battle_actor"
       ],
@@ -2386,6 +2548,7 @@
         "game_assets/monsters/LICENSE"
       ],
       "path": "res://game_assets/monsters/cp44-j31_villains/CP_J60_ElementalFusionDragon.png",
+      "profileCoverage": "profiled",
       "profileIds": [
         "whiteout_auditor_battle_actor"
       ],
@@ -2400,6 +2563,7 @@
         "game_assets/monsters/cp45-f91_horror_and_nightmares/license.txt"
       ],
       "path": "res://game_assets/monsters/cp45-f91_horror_and_nightmares/CP_F091_SchoolgirlGhost_01.png",
+      "profileCoverage": "profiled",
       "profileIds": [
         "schoolgirl_ghost_battle_actor"
       ],
@@ -2414,6 +2578,7 @@
         "game_assets/monsters/cp45-f91_horror_and_nightmares/license.txt"
       ],
       "path": "res://game_assets/monsters/cp45-f91_horror_and_nightmares/CP_F095_HauntedComposerPortrait.png",
+      "profileCoverage": "profiled",
       "profileIds": [
         "composer_portrait_battle_actor"
       ],
@@ -2428,6 +2593,7 @@
         "game_assets/monsters/cp45-f91_horror_and_nightmares/license.txt"
       ],
       "path": "res://game_assets/monsters/cp45-f91_horror_and_nightmares/CP_F098_WarBookGhost.png",
+      "profileCoverage": "profiled",
       "profileIds": [
         "war_book_battle_actor"
       ],
@@ -2442,6 +2608,7 @@
         "game_assets/monsters/cp45-f91_horror_and_nightmares/license.txt"
       ],
       "path": "res://game_assets/monsters/cp45-f91_horror_and_nightmares/CP_F117_HauntedJapaneseDoll.png",
+      "profileCoverage": "profiled",
       "profileIds": [
         "haunted_doll_battle_actor"
       ],
@@ -2456,6 +2623,7 @@
         "game_assets/monsters/cp45-f91_horror_and_nightmares/license.txt"
       ],
       "path": "res://game_assets/monsters/cp45-f91_horror_and_nightmares/CP_F119_HauntedClockMirror.png",
+      "profileCoverage": "profiled",
       "profileIds": [
         "clock_mirror_battle_actor"
       ],
@@ -2469,6 +2637,7 @@
         "game/LICENSE"
       ],
       "path": "res://overworld/characters/character_generic.png",
+      "profileCoverage": "migration_required",
       "profileIds": [],
       "sourceGroup": "overworld/characters",
       "unprofiledClassification": "legacy_compatibility_visual"
@@ -2480,6 +2649,7 @@
         "game/LICENSE"
       ],
       "path": "res://overworld/characters/gobot_field.png",
+      "profileCoverage": "migration_required",
       "profileIds": [],
       "sourceGroup": "overworld/characters",
       "unprofiledClassification": "legacy_compatibility_visual"
@@ -2491,6 +2661,7 @@
         "game/LICENSE"
       ],
       "path": "res://overworld/maps/tilesets/dungeon_tilemap.png",
+      "profileCoverage": "migration_required",
       "profileIds": [],
       "sourceGroup": "overworld/maps",
       "unprofiledClassification": "legacy_compatibility_visual"
@@ -2502,6 +2673,7 @@
         "game/LICENSE"
       ],
       "path": "res://overworld/maps/tilesets/town_tilemap.png",
+      "profileCoverage": "migration_required",
       "profileIds": [],
       "sourceGroup": "overworld/maps",
       "unprofiledClassification": "legacy_compatibility_visual"
@@ -2513,6 +2685,7 @@
         "game/LICENSE"
       ],
       "path": "res://src/combat/ui/action_menu/action_description_background.png",
+      "profileCoverage": "profiled",
       "profileIds": [
         "battle_ui_action_description"
       ],
@@ -2526,6 +2699,7 @@
         "game/LICENSE"
       ],
       "path": "res://src/combat/ui/action_menu/menu_action_bg.png",
+      "profileCoverage": "profiled",
       "profileIds": [
         "battle_ui_action_button"
       ],
@@ -2539,6 +2713,7 @@
         "game/LICENSE"
       ],
       "path": "res://src/combat/ui/action_menu/menu_action_bg_disabled.png",
+      "profileCoverage": "profiled",
       "profileIds": [
         "battle_ui_action_button_disabled"
       ],
@@ -2552,6 +2727,7 @@
         "game/LICENSE"
       ],
       "path": "res://src/combat/ui/action_menu/menu_action_bg_focused.png",
+      "profileCoverage": "profiled",
       "profileIds": [
         "battle_ui_action_button_focused"
       ],
@@ -2565,6 +2741,7 @@
         "game/LICENSE"
       ],
       "path": "res://src/combat/ui/action_menu/menu_action_bg_pressed.png",
+      "profileCoverage": "profiled",
       "profileIds": [
         "battle_ui_action_button_pressed"
       ],
@@ -2578,6 +2755,7 @@
         "game/LICENSE"
       ],
       "path": "res://src/combat/ui/action_menu/menu_selection_arrow.png",
+      "profileCoverage": "profiled",
       "profileIds": [
         "battle_ui_selection_arrow"
       ],
@@ -2591,6 +2769,7 @@
         "game/LICENSE"
       ],
       "path": "res://src/combat/ui/battler_entry/battler_hud_background.png",
+      "profileCoverage": "profiled",
       "profileIds": [
         "battle_ui_battler_hud"
       ],
@@ -2604,6 +2783,7 @@
         "game/LICENSE"
       ],
       "path": "res://src/combat/ui/battler_entry/energy_point_bg.png",
+      "profileCoverage": "profiled",
       "profileIds": [
         "battle_ui_energy_point"
       ],
@@ -2617,6 +2797,7 @@
         "game/LICENSE"
       ],
       "path": "res://src/combat/ui/battler_entry/energy_point_fill.png",
+      "profileCoverage": "profiled",
       "profileIds": [
         "battle_ui_energy_fill"
       ],
@@ -2630,6 +2811,7 @@
         "game/LICENSE"
       ],
       "path": "res://src/combat/ui/battler_entry/life_bar_bg.png",
+      "profileCoverage": "profiled",
       "profileIds": [
         "battle_ui_life_bar"
       ],
@@ -2643,6 +2825,7 @@
         "game/LICENSE"
       ],
       "path": "res://src/combat/ui/battler_entry/life_bar_fill.png",
+      "profileCoverage": "profiled",
       "profileIds": [
         "battle_ui_life_fill"
       ],
@@ -2751,6 +2934,11 @@
       "review_required": 183
     },
     "needsManualLicenseConfirmation": 0,
+    "profileCoverage": {
+      "external_dependency": 11,
+      "migration_required": 10,
+      "profiled": 162
+    },
     "unprofiledByClassification": {
       "legacy_compatibility_visual": 10,
       "third_party_addon_ui": 11

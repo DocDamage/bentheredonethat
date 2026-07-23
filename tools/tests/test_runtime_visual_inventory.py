@@ -23,6 +23,10 @@ class RuntimeVisualInventoryTests(unittest.TestCase):
             len(unprofiled),
             sum(result["stats"]["unprofiledByClassification"].values()),
         )
+        self.assertEqual(result["stats"]["profileRequiredUnprofiledAssetSources"], 10)
+        self.assertEqual(result["stats"]["thirdPartyDependencyVisualSources"], 11)
+        self.assertEqual(result["stats"]["profileRequiredAssetSources"], 172)
+        self.assertEqual(result["stats"]["profileRequiredProfiledAssetSources"], 162)
 
     def test_known_gap_classes_route_to_their_correct_migration_stream(self) -> None:
         self.assertEqual(

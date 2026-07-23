@@ -148,6 +148,7 @@ def build(root: Path) -> dict[str, Any]:
             "sourceGroup": source_group(path),
             "profileIds": sorted(entry.get("profileIds", [])),
             "unprofiledClassification": entry.get("unprofiledClassification", ""),
+            "profileCoverage": entry.get("profileCoverage", "migration_required"),
             "localLicenseEvidence": evidence,
             "distributionEligibility": eligibility,
             "licenseReviewStatus": eligibility,
@@ -155,10 +156,13 @@ def build(root: Path) -> dict[str, Any]:
     with_evidence = sum(bool(asset["localLicenseEvidence"]) for asset in assets)
     eligibility_counts = {state: sum(asset["distributionEligibility"] == state for asset in assets) for state in sorted(ELIGIBILITY_STATES)}
     classification_counts: dict[str, int] = {}
+    coverage_counts: dict[str, int] = {}
     for asset in assets:
         classification = asset["unprofiledClassification"]
         if classification:
             classification_counts[classification] = classification_counts.get(classification, 0) + 1
+        coverage = asset["profileCoverage"]
+        coverage_counts[coverage] = coverage_counts.get(coverage, 0) + 1
     return {
         "schemaVersion": 2,
         "scope": "static Godot raster references; not a reachability or license-grant proof",
@@ -168,6 +172,7 @@ def build(root: Path) -> dict[str, Any]:
             "needsManualLicenseConfirmation": len(assets) - with_evidence,
             "distributionEligibility": eligibility_counts,
             "unprofiledByClassification": dict(sorted(classification_counts.items())),
+            "profileCoverage": dict(sorted(coverage_counts.items())),
         },
         "packProvenanceDecisions": pack_decisions,
         "assets": assets,

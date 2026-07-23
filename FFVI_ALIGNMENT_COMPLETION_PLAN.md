@@ -3023,3 +3023,7 @@ limit:
   shared contract; the five-scene menu/roster/battle/state/profile validation
   milestone and all 22 asset-tool checks passed with the isolated save sentinel
   unchanged.
+- The visual ledger now reports third-party bundled UI separately from
+  campaign-owned profile coverage: 162 of 172 profile-required sources are
+  profiled, while the 11 Dialogic dependency visuals remain visible as external
+  dependencies rather than being hidden from the broader provenance audit.

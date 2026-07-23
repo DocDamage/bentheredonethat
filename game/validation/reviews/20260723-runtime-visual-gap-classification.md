@@ -10,6 +10,12 @@ The static runtime inventory contains 183 sources: 162 have one or more visual
 profiles and 21 have not yet been migrated. Every unprofiled source now carries
 an explicit `unprofiledClassification`; no unclassified gap is permitted.
 
+Of those sources, 172 are campaign-owned or compatibility visuals that require
+profile coverage. The 11 Dialogic module visuals are retained as explicit
+third-party dependency records, not quietly removed from the provenance audit.
+Thus the actionable campaign profile denominator is 162 of 172, with 10
+compatibility migrations outstanding.
+
 | Classification | Sources | Owner and next action |
 | --- | ---: | --- |
 | `third_party_addon_ui` | 11 | Dialogic module and default-layout SVGs. Track them as a bundled dependency and retain their upstream license evidence; do not create campaign-content profiles for plugin internals. |

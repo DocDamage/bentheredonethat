@@ -25,6 +25,7 @@ UNPROFILED_CLASSIFICATIONS = {
     "legacy_compatibility_visual",
     "dynamic_template_visual",
 }
+EXTERNAL_PROFILE_CLASSES = {"third_party_addon_ui"}
 
 
 def release_files(root: Path) -> list[Path]:
@@ -130,8 +131,13 @@ def build(root: Path) -> dict[str, Any]:
         )
     for entry in entries:
         if not entry["profileIds"]:
-            entry["unprofiledClassification"] = unprofiled_classification(entry["path"])
+            classification = unprofiled_classification(entry["path"])
+            entry["unprofiledClassification"] = classification
+            entry["profileCoverage"] = "external_dependency" if classification in EXTERNAL_PROFILE_CLASSES else "migration_required"
+        else:
+            entry["profileCoverage"] = "profiled"
     profiled = sum(1 for entry in entries if entry["profileIds"])
+    profile_required = [entry for entry in entries if entry["profileCoverage"] != "external_dependency"]
     unprofiled_by_classification = {
         classification: sum(entry.get("unprofiledClassification") == classification for entry in entries)
         for classification in sorted(UNPROFILED_CLASSIFICATIONS)
@@ -144,6 +150,10 @@ def build(root: Path) -> dict[str, Any]:
             "profiledAssetSources": profiled,
             "unprofiledAssetSources": len(entries) - profiled,
             "unprofiledByClassification": unprofiled_by_classification,
+            "profileRequiredAssetSources": len(profile_required),
+            "profileRequiredProfiledAssetSources": sum(entry["profileCoverage"] == "profiled" for entry in profile_required),
+            "profileRequiredUnprofiledAssetSources": sum(entry["profileCoverage"] == "migration_required" for entry in profile_required),
+            "thirdPartyDependencyVisualSources": sum(entry["profileCoverage"] == "external_dependency" for entry in entries),
         },
         "assets": entries,
     }
