@@ -601,7 +601,10 @@ static func room(room_id: StringName) -> Dictionary:
 				"kind": &"authored",
 				"usefulCellRange": Vector2i(90, 139),
 				"walkableRects": [
-					{"origin": Vector2i(6, 1), "size": Vector2i(7, 1)}, # gate lintel
+					# Keep the two port thresholds separate. A top-lintel walkable
+					# strip made pathfinding to Ne cross Nw, which is the facility
+					# return trigger; the dry porch and east facade are the interior
+					# traversal route instead.
 					{"origin": Vector2i(6, 2), "size": Vector2i(1, 7)}, # west facade edge
 					{"origin": Vector2i(12, 2), "size": Vector2i(1, 7)}, # east facade edge
 					{"origin": Vector2i(4, 3), "size": Vector2i(3, 3)}, # west entry terrace

@@ -1,9 +1,10 @@
 class_name CampaignRoomRuntime
-extends Node
+extends Node2D
 
 ## Owns the active manifest room's navigation and reciprocal port triggers.
 ## Staging coordinates are shared by streamed rooms, so only this node changes
-## collision and ports when the active scene changes.
+## collision and ports when the active scene changes. It is a Node2D so its
+## dynamically-instanced port triggers inherit the field canvas transform.
 
 signal active_room_changed(room_id: StringName)
 

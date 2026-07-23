@@ -2997,3 +2997,8 @@ limit:
   rooms; `none`, boss, and scripted-only rooms do not receive random encounter
   ownership. Legacy controllers remain a compatibility adapter for retired
   coordinate regions.
+- Manifest port triggers now inherit the field canvas transform, defer room
+  replacement until their blackout transition has restored input, and retain a
+  direct callback adapter for focused contract fixtures. The HM-01 controller
+  and click handoff now verifies a real collision transition into HM-02 at its
+  safe arrival without crossing the separate facility-return port.
