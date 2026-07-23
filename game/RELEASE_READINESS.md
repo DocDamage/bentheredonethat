@@ -128,13 +128,16 @@ from the human, platform, licensing, and performance sign-offs that remain.
 - `runtime_asset_provenance.json` is generated from the static runtime visual
   inventory and checked by `npm run validate:assets`. Its companion
   `distribution_eligibility.json` assigns every tracked runtime source one of
-  `distribution_confirmed`, `review_required`, or `rejected`; all 159 currently
+  `distribution_confirmed`, `review_required`, or `rejected`; all 182 currently
   remain `review_required` pending terms, attribution, and redistribution
   confirmation. The visual-manifest generator rejects a profile sourced from a
   rejected asset. This is a review ledger, not a claim of distribution rights.
-- The runtime visual registry currently contains 193 approved profiles covering
-  135 of the 159 static source textures, including the active Town, Primeval,
-  Frosthold, Moonpetal, Empyreal, Mansion, and Asterion battle materials. The
+- The runtime visual registry currently contains 377 review-required profiles
+  covering all 171 profile-required static source textures. The remaining 11
+  static sources are Dialogic bundled addon UI SVGs, which remain visible as
+  third-party dependencies rather than campaign-profile gaps. The coverage
+  includes the active Town, Primeval, Frosthold, Moonpetal, Empyreal, Mansion,
+  and Asterion battle materials. The
   battle profile smoke verifies all 53 catalog entries have approved backdrop
   profiles and renders 24 representative texture/region pairs; `CampaignBattle`
   rejects any encounter without an approved backdrop profile. All 38 catalog
@@ -142,18 +145,16 @@ from the human, platform, licensing, and performance sign-offs that remain.
   standard Mansion, Asterion, Helios, Frosthold, Moonpetal, and Empyreal
   enemies, resolve through approved profiles. All 13 catalog party characters
   and the Velociraptor companion also resolve through approved battle
-  profiles; dynamically added editor/test recruits retain a checked raw-path
-  fallback. The Armory's 20 purchasable equipment entries declare approved,
+  profiles; dynamically added editor/test recruits use registered profile
+  fallbacks. The Armory's 20 purchasable equipment entries declare approved,
   checksum-validated icon profiles which the company menu resolves through the
   registry. The supplied battle command/HUD skins and the title/Company
   portraits for Ben, Fighter, and Astronaut also resolve through approved
   profiles. Interaction emotes, the universe treasure marker, all 20 sandbox
   terrain brushes, and the live Ranch/Modern/Haunted/Laboratory sandbox props
   resolve through approved profiles in the live map and editor previews as
-  well. The remaining 24
-  source textures are deliberately reported as unprofiled
-  and remain release-review work; this is progress evidence, not a claim of
-  full visual-profile coverage.
+  well. This is profile-coverage evidence only; final visual and distribution
+  acceptance remain release-review work.
 
 ## Release blockers
 
@@ -165,10 +166,10 @@ from the human, platform, licensing, and performance sign-offs that remain.
   editor. Push the prepared smoke workflow and record its first clean remote
   pass. The local 4.7.1 x86_64 templates and baseline export are verified.
 - [ ] Set the approved shipping version and final Windows publisher/signing metadata.
-- [ ] Complete terms review for the 157 static raster sources currently marked
-  `needs_manual_license_confirmation` in `runtime_asset_provenance.json`, then
-  extend the ledger to audio, fonts, addons, and dynamically resolved assets;
-  consolidate required notices into shipped credits.
+- [ ] Complete distribution review for all 182 static runtime visual sources
+  currently marked `review_required`, then extend the ledger to audio, fonts,
+  addons, and dynamically resolved assets; consolidate required notices into
+  shipped credits.
 - [ ] Archive two fresh-save end-to-end playthroughs and one migrated-save run,
   including recall, defeat/retry, partial-puzzle reload, and backup recovery.
 - [ ] Perform complete keyboard/mouse and modern-controller playthroughs at all

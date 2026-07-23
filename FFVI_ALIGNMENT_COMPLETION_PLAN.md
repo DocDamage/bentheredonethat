@@ -1740,7 +1740,7 @@ parallel at the implementation/proof stage.
 | Milestone | Audit state | Evidence | Remaining gate |
 | --- | --- | --- | --- |
 | M0 — Verification green | In progress | Local runtime and source-library asset contracts pass; isolated Godot save sentinel remains protected; draft PR #1 has active remote jobs | A clean remote browser/runtime-asset/Godot pass and a fresh all-smoke baseline are still required |
-| M1 — Visual foundation | In progress | `FIELD_SCALE_BIBLE.md`, 368 visual profiles, runtime inventory/provenance generators, layered field registry, eight foreground scripts, camera rounding, and focused smoke tests exist | Vertical-slice profile coverage is not 100%; 162/185 static runtime textures are profiled; native-scale review and camera/resolution sign-off remain open |
+| M1 — Visual foundation | In progress | `FIELD_SCALE_BIBLE.md`, 377 review-required visual profiles, runtime inventory/provenance generators, layered field registry, eight foreground scripts, camera rounding, and focused smoke tests exist | All 171 campaign-owned static runtime sources are profile-backed; native-scale visual and camera/resolution sign-off, plus distribution review, remain open |
 | M2 — Mansion vertical slice | In progress; legacy proof only | A five-room Mansion layout expansion, foreground capture, collision/layout smoke coverage, and refreshed room captures exist | Implement and accept all `HM-01`-`HM-16` rooms, locked links, supplied Tilesets profiles, associated SakPix population, puzzle continuity, native-scale input, save/reload, and reviewer sign-off |
 | M3 — Shared presentation | In progress | Battle profile coverage, battle accessibility tests, text scaling, persisted accessibility settings, field-layer/transition-soak tests, and an independent Empyreal ground renderer exist | Human readability and input sign-off remain open; shared field architecture is transitional rather than a complete replacement of the procedural renderer |
 | M4 — Universe migration | Started early; pre-amendment prototypes | Each non-Mansion universe has an expanded 8x4 footprint/layout prototype; all six foreground implementations, including Helios, exist; refreshed captures and layout tests exist | The 8x4 prototypes do not satisfy the locked 14/16-room manifests. Build and accept every Section 9.4 room with admitted Tilesets/EXPANSION profiles and associated SakPix populations after M0/M2 gates; no universe has complete human sign-off |
@@ -1804,8 +1804,8 @@ parallel at the implementation/proof stage.
    smoke scene.
 4. Open a draft pull request or manually dispatch the workflow and record clean
    remote browser, runtime-asset, and Godot jobs for the exact head SHA.
-5. Confirm distribution eligibility and finish the 24 unprofiled static runtime
-   textures needed by the vertical slice.
+5. Confirm distribution eligibility and complete native-scale visual review for
+   the fully profile-backed vertical slice (171/171 campaign-owned sources).
 6. Record its native-scale visual, input, save, performance, and reviewer
    acceptance evidence.
 7. Only then promote the remaining universe migrations from implementation
