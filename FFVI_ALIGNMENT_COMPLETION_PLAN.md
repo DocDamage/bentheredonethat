@@ -3035,6 +3035,11 @@ limit:
   overlays before and after live story-flag refresh, and all 264 arrival cells
   with at least three live follower positions. It is a migration safety net,
   not room-by-room visual or final traversal acceptance.
+- The manifest-wide streaming fixture activates all 102 authored rooms through
+  the production runtime and confirms that the streamer retains exactly one
+  active root while releasing each of the prior 101 roots. This verifies the
+  active-room replacement boundary, not approved-vista-neighbor, cohort,
+  performance, or release acceptance.
 - The full isolated Godot smoke matrix completed cleanly after the manifest
   port handoff change: all 125 retained scene logs in
   `test-artifacts/20260723-124703-6a6a6f3a` contain no test failure, assertion,
