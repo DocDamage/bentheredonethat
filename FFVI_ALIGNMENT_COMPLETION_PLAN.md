@@ -2694,17 +2694,17 @@ black-box fixtures before changing ownership:
 - [ ] A legacy-room fixture records the current area ID, camera bounds/zoom,
   walkable component, interaction cells, boss gate, treasure, save point, and
   every bidirectional arrival/return pair for each existing room.
-- [ ] A transition fixture proves that every current forward link returns to its
+- [x] A transition fixture proves that every current forward link returns to its
   declared source-safe cell under locked and unlocked story states.
 - [ ] A navigation fixture compares visible floor, blocked scenery, dynamic
   gate overlays, facility footprints, and follower-safe arrival cells.
-- [ ] An eleven-lot facility fixture records construction, collision, service or
+- [x] An eleven-lot facility fixture records construction, collision, service or
   portal installation, stable interior entry, exact-lot return, relocation, and
   save/reload behavior.
-- [ ] A population fixture records identity, source profile, story-phase
+- [x] A population fixture records identity, source profile, story-phase
   presence, route reservations, dialogue, relocation, and persistence for the
   existing residents before the data source changes.
-- [ ] A `CampaignState` contract fixture records the public calls and signals
+- [x] A `CampaignState` contract fixture records the public calls and signals
   used by the bootstrap, menu, battle, facilities, quests, residents, and tests.
   Internal extraction may not require all callers to change in one patch.
 - [ ] A migrated-save fixture covers the current save version, every existing
