@@ -592,6 +592,18 @@ static func room(room_id: StringName) -> Dictionary:
 			"worldOrigin": Vector2i(300, 0),
 			"enabledPortIds": [&"Nw", &"Ne", &"E1", &"E2"],
 			"portGates": {&"E2": &"mansion_ballroom_open"},
+			"navigationId": &"authored:hm05-servants-archive-navigation",
+			"collisionMaskId": &"authored:hm05-servants-archive-collision",
+			"navigationLayout": {
+				"id": &"hm05-servants-archive-v1",
+				"kind": &"authored",
+				"usefulCellRange": Vector2i(110, 112),
+				"walkableRects": [
+					{"origin": Vector2i(4, 1), "size": Vector2i(10, 4)}, # archive entry and cabinet apron
+					{"origin": Vector2i(3, 4), "size": Vector2i(12, 6)}, # records aisles and anchor-clock floor
+					{"origin": Vector2i(14, 3), "size": Vector2i(2, 7)}, # gallery and kitchen side vestibules
+				],
+			},
 			"visualProfileIds": [&"mansion_archive_shelving", &"mansion_archive_cabinet", &"mansion_foyer_clock"],
 			"featureIds": [&"servant_records", &"archive_retry_anchor"],
 			"savePoint": {
@@ -606,6 +618,18 @@ static func room(room_id: StringName) -> Dictionary:
 			"scenePath": "res://ben_rpg/world/rooms/haunted_mansion_portrait_balcony.tscn",
 			"worldOrigin": Vector2i(300, 0),
 			"enabledPortIds": [&"Nw", &"Ne", &"E1"],
+			"navigationId": &"authored:hm14-west-stair-navigation",
+			"collisionMaskId": &"authored:hm14-west-stair-collision",
+			"navigationLayout": {
+				"id": &"hm14-west-stair-v1",
+				"kind": &"authored",
+				"usefulCellRange": Vector2i(121, 122),
+				"walkableRects": [
+					{"origin": Vector2i(4, 1), "size": Vector2i(11, 4)}, # upper balcony arrival
+					{"origin": Vector2i(3, 4), "size": Vector2i(14, 6)}, # stair landing and portrait overlook
+					{"origin": Vector2i(16, 3), "size": Vector2i(2, 3)}, # attic side-vestibule and follower space
+				],
+			},
 			"visualProfileIds": [&"mansion_gallery_left_portrait", &"mansion_gallery_right_portrait", &"mansion_gallery_stage_curtain"],
 			"featureIds": [&"west_stair", &"portrait_balcony", &"gallery_return_banister"],
 		}, true)
@@ -886,6 +910,12 @@ static func _validate_manifest_test_rooms(errors: Array[String]) -> void:
 	var hm04 := room(&"HM-04")
 	if StringName(hm04.get("navigationId", &"")) != &"authored:hm04-clock-passage-navigation" or StringName(hm04.get("collisionMaskId", &"")) != &"authored:hm04-clock-passage-collision":
 		errors.append("HM-04 must own its authored clock-passage navigation and collision records.")
+	var hm05 := room(&"HM-05")
+	if StringName(hm05.get("navigationId", &"")) != &"authored:hm05-servants-archive-navigation" or StringName(hm05.get("collisionMaskId", &"")) != &"authored:hm05-servants-archive-collision":
+		errors.append("HM-05 must own its authored archive navigation and collision records.")
+	var hm14 := room(&"HM-14")
+	if StringName(hm14.get("navigationId", &"")) != &"authored:hm14-west-stair-navigation" or StringName(hm14.get("collisionMaskId", &"")) != &"authored:hm14-west-stair-collision":
+		errors.append("HM-14 must own its authored west-stair navigation and collision records.")
 
 
 static func _reachable(start: StringName, target: StringName) -> bool:

@@ -58,7 +58,7 @@ scene already has final collision or art approval.
 | HM-02 | C / L2 | 215 closed / 216 opened authored | 6 | HM-01, HM-03, HM-04 [4:44], HM-10 |
 | HM-03 | C / M3 | 134 authored | 4 | HM-02 |
 | HM-04 | C / S1 | 60 baseline / 62 closed / 63 opened authored | 2 | HM-02, HM-05, HM-12 [13:13] |
-| HM-05 | C / M1 | 192 | 4 | HM-04, HM-11, HM-14, HM-16 [shortcut] |
+| HM-05 | C / M1 | 110 baseline / 111 closed / 112 opened authored | 4 | HM-04, HM-11, HM-14, HM-16 [shortcut] |
 | HM-06 | C / L2 | 384 | 6 | HM-14, HM-15 |
 | HM-07 | C / M3 | 240 | 4 | HM-15, HM-08, HM-11 [latch] |
 | HM-08 | C / M4 | 224 | 4 | HM-07, HM-09 [two hands], HM-13, HM-16 [shortcut] |
@@ -67,7 +67,7 @@ scene already has final collision or art approval.
 | HM-11 | O / M3 | 240 | 4 | HM-05, HM-07 [latch], HM-12 [crypt key] |
 | HM-12 | O / L4 | 396 | 6 | HM-04 [13:13], HM-11 [crypt key] |
 | HM-13 | O / M1 | 192 | 4 | HM-14, HM-08 [attic latch] |
-| HM-14 | X / M2 | 216 | 4 | HM-05, HM-06, HM-13 |
+| HM-14 | X / M2 | 121 baseline / 122 entered authored | 4 | HM-05, HM-06, HM-13 |
 | HM-15 | X / S3 | 128 | 2 | HM-06, HM-07, HM-10 |
 | HM-16 | X / M4 | 224 | 4 | HM-05, HM-08 [shortcut] |
 
@@ -80,6 +80,10 @@ adds a 134-cell bookshelf-bounded study, while HM-04 adds a 60-cell baseline,
 62-cell entered pendulum passage (63 when its
 optional undercroft route opens). These rooms' M/L/S-range counts are
 automatically verified but still need visual/input/capture acceptance.
+HM-05 records archive aisles, its save-clock floor, and two follower-safe side
+vestibules (110-112 cells); HM-14 records its upper balcony, stair landing, and
+attic vestibule (121-122 cells). Their M-range counts are automatically
+verified, without granting visual/input/capture acceptance.
 The remaining rooms' cell values are generated open-interior counts, not audited
 useful-cell totals. They materially exceed the Section 9.4 S/M/L ranges in
 several rooms because final collision ownership is still a generated rectangle.
