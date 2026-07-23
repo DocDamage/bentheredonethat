@@ -1,9 +1,10 @@
 extends CanvasLayer
 
-const FACILITY_ORDER := ["Cafe", "Library", "Clinic", "Armory"]
 const UI_ROOT := "res://game_assets/Tilesets/Dark RPG GUI Kit - Pixel Art Asset Pack"
 const UI_PARTY_HUD := UI_ROOT + "/dfgui_partyhud.png"
 const AREA_PRESENCE := preload("res://ben_rpg/world/campaign_area_presence.gd")
+const BUILD_SELECTION := preload("res://ben_rpg/world/town_build_selection.gd")
+const PRESSURE_PRESENTATION := preload("res://ben_rpg/world/town_encounter_pressure_presentation.gd")
 
 var campaign: Node
 var visual: CampaignMapVisual
@@ -126,10 +127,7 @@ func _input(event: InputEvent) -> void:
 
 
 func _select_next_plot(direction: int) -> void:
-	for _attempt in range(visual.FACILITY_PLOTS.size()):
-		selected_plot = wrapi(selected_plot + direction, 0, visual.FACILITY_PLOTS.size())
-		if not visual.built_facilities.has(selected_plot):
-			break
+	selected_plot = BUILD_SELECTION.next_available_plot(selected_plot, direction, visual.FACILITY_PLOTS.size(), visual.built_facilities)
 	visual.set_build_state(true, selected_plot)
 	_update_hud()
 
@@ -285,38 +283,16 @@ func _bar_style(region: Rect2, margin: float) -> StyleBoxTexture:
 func _update_encounter_pressure(data: Dictionary) -> void:
 	if not _danger_panel or _hud_suppressed:
 		return
-	var ward_steps := int(data.get("ward_steps", CampaignState.encounter_ward_steps))
-	var cooldown := int(data.get("cooldown", 0))
-	var active := bool(data.get("active", false))
-	if ward_steps > 0:
-		_danger_panel.show()
-		_danger_icon.texture = load(UI_ROOT + "/dfgui_icon-pouch.png")
-		_danger_label.text = "RIFT WARD  •  %d SAFE STEPS" % ward_steps
-		_danger_label.add_theme_color_override("font_color", Color(0.5, 0.96, 1.0))
-		_danger_bar.max_value = 120
-		_danger_bar.value = ward_steps
-		return
-	if cooldown > 0:
-		_danger_panel.show()
-		_danger_icon.texture = load(UI_ROOT + "/dfgui_icon-shield.png")
-		_danger_label.text = "ENCOUNTER GRACE  •  %d STEPS" % cooldown
-		_danger_label.add_theme_color_override("font_color", Color(0.58, 0.94, 0.72))
-		_danger_bar.max_value = 8
-		_danger_bar.value = cooldown
-		return
-	if not active:
+	var presentation := PRESSURE_PRESENTATION.describe(data, CampaignState.encounter_ward_steps)
+	if not presentation[&"visible"]:
 		_danger_panel.hide()
 		return
-	var threshold := maxi(1, int(data.get("threshold", 1)))
-	var steps := clampi(int(data.get("steps", 0)), 0, threshold)
-	var ratio := float(steps) / float(threshold)
-	var state := "CALM" if ratio < 0.35 else ("RISING" if ratio < 0.72 else "IMMINENT")
 	_danger_panel.show()
-	_danger_icon.texture = load(UI_ROOT + "/dfgui_icon-monsterbook.png")
-	_danger_label.text = "ENCOUNTER PRESSURE  •  %s" % state
-	_danger_label.add_theme_color_override("font_color", Color(0.72, 0.9, 1.0) if ratio < 0.35 else (Color(1.0, 0.8, 0.42) if ratio < 0.72 else Color(1.0, 0.42, 0.38)))
-	_danger_bar.max_value = threshold
-	_danger_bar.value = steps
+	_danger_icon.texture = load(UI_ROOT + "/" + String(presentation[&"icon"]))
+	_danger_label.text = String(presentation[&"text"])
+	_danger_label.add_theme_color_override("font_color", presentation[&"color"] as Color)
+	_danger_bar.max_value = float(presentation[&"maximum"])
+	_danger_bar.value = float(presentation[&"value"])
 
 
 func _update_hud() -> void:
@@ -591,18 +567,11 @@ func _current_blueprint() -> String:
 
 
 func _next_foundation_blueprint() -> String:
-	for facility_name in FACILITY_ORDER:
-		if facility_name not in CampaignState.built_facilities.values():
-			return facility_name
-	return ""
+	return BUILD_SELECTION.next_foundation_blueprint(CampaignState.built_facilities)
 
 
 func _founding_facility_count() -> int:
-	var count := 0
-	for facility_name in FACILITY_ORDER:
-		if facility_name in CampaignState.built_facilities.values():
-			count += 1
-	return count
+	return BUILD_SELECTION.founding_facility_count(CampaignState.built_facilities)
 
 
 func _selected_anchor_definition() -> Dictionary:
