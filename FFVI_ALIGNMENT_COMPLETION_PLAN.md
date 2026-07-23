@@ -179,7 +179,7 @@ unless that tree is restored explicitly as a licensed artifact.
 
 **Acceptance criteria:**
 
-- [ ] `npm run validate:runtime-assets` exits 0 from a fresh clone with no local
+- [x] `npm run validate:runtime-assets` exits 0 from a fresh clone with no local
   `assets/` directory.
 - [ ] `npm run validate:source-library` and the local aggregate
   `npm run validate:assets` exit 0 when the approved source library is present.
@@ -197,14 +197,14 @@ unless that tree is restored explicitly as a licensed artifact.
 ### 5.3 Make CI evidence authoritative — P1
 
 - [x] Publish the prepared GitHub workflow on a feature branch.
-- [ ] Open a draft pull request or manually dispatch the workflow for the exact
+- [x] Open a draft pull request or manually dispatch the workflow for the exact
   head SHA being evaluated.
-- [ ] Record the first clean remote pass of every smoke scene discovered at that
+- [x] Record the first clean remote pass of every smoke scene discovered at that
   commit. Record the count as evidence; do not hard-code it as the gate.
-- [ ] Run `npm run check` plus the clean-checkout runtime-asset command in CI.
+- [x] Run `npm run check` plus the clean-checkout runtime-asset command in CI.
 - [x] Fail CI when the visual manifest is stale.
 - [x] Retain logs for failed Godot scenes.
-- [ ] Prove the workflow passes from a clean checkout without the ignored
+- [x] Prove the workflow passes from a clean checkout without the ignored
   `assets/` source library.
 
 ---

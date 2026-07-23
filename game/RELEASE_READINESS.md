@@ -89,8 +89,12 @@ from the human, platform, licensing, and performance sign-offs that remain.
   fails clearly when its preset or matching export templates are absent.
 - `.github/workflows/godot-smoke.yml` pins Godot 4.7.1 on a Windows runner and
   runs the isolated smoke suite from a clean checkout, retaining test artifacts.
-  It has not yet executed remotely because the local commits have not been
-  published to `origin`.
+  The first clean remote pass was run `30003047658` on July 23, 2026 at commit
+  `396571db`: `npm run check` passed 16 tests, `npm run validate:runtime-assets`
+  passed, and all 114 discovered isolated Godot smoke scenes passed. The
+  retained artifact is `godot-smoke-30003047658` (ID `8562299582`). The remote
+  runner's `sentinel=False` is expected because it has no normal production
+  save directory; local isolated validation remains the save-safety authority.
 - The Windows preset excludes the inactive MCP addon, Dialogic editor-only
   resources, smoke tests, and visual captures; the export log confirms those
   paths are absent. Runtime Dialogic code reads the required character
