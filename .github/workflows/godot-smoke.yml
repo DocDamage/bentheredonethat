@@ -70,7 +70,7 @@ jobs:
           }
           "GODOT_EXECUTABLE=$($godot.FullName)" | Out-File -FilePath $env:GITHUB_ENV -Append -Encoding utf8
 
-      - name: Import project global classes
+      - name: Bootstrap project global-class cache
         shell: pwsh
         run: |
           # Dialogic's editor plugin is not part of the runtime contract, but
@@ -83,7 +83,20 @@ jobs:
           $content = Get-Content -LiteralPath $project -Raw
           $content = [regex]::Replace($content, '(?m)^enabled=PackedStringArray\([^\r\n]*\)$', 'enabled=PackedStringArray()')
           Set-Content -LiteralPath $project -Value $content -NoNewline -Encoding utf8
-          & "$env:GODOT_EXECUTABLE" --headless --path ./game --import
+          # Godot's first clean-checkout `--headless --import` can wait
+          # indefinitely while constructing global_script_class_cache.cfg. Start
+          # the editor once, give cache generation time to complete, then stop
+          # that bootstrap process. The isolated runner subsequently launches
+          # every smoke scene normally and remains the test authority.
+          $bootstrap = Start-Process -FilePath $env:GODOT_EXECUTABLE -ArgumentList @('--headless', '--path', './game', '--editor') -PassThru -NoNewWindow
+          Start-Sleep -Seconds 12
+          if (-not $bootstrap.HasExited) {
+            Stop-Process -Id $bootstrap.Id -Force
+            $bootstrap.WaitForExit()
+          }
+          if (-not (Test-Path -LiteralPath 'game/.godot/global_script_class_cache.cfg' -PathType Leaf)) {
+            throw 'Godot did not create global_script_class_cache.cfg during the clean-checkout bootstrap.'
+          }
 
       - name: Run isolated smoke suite
         shell: pwsh

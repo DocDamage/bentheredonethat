@@ -1657,7 +1657,7 @@ Complete these tasks before adding new campaign content:
    save/reload, and provisional performance sign-off for the vertical slice.
 13. [ ] Open a draft pull request or dispatch the workflow, then archive the
    first clean remote baseline for the exact tested SHA.
-14. [ ] Generate and review deterministic inventories for `assets/Tilesets`
+14. [x] Generate and review deterministic inventories for `assets/Tilesets`
    and `assets/EXPANSION`, including all 149 Tilesets dispositions, duplicate
    families, engine-demo exclusions, dimensions, checksums, license candidates,
    and the Section 9 world assignments.
@@ -1718,6 +1718,12 @@ parallel at the implementation/proof stage.
 
 ### Fresh verification evidence
 
+- `npm run validate:source-inventory`: pass on July 23, 2026. The deterministic
+  ignored-source inventory matches the locked 149-pack Tilesets disposition
+  register and records 155 packs / 69,017 files (149 Tilesets packs / 5,714
+  files and six EXPANSION packs / 63,303 files), including 5,548 exact
+  duplicate families. All 155 packs remain `review_required` for distribution;
+  inventory evidence is not a license decision or runtime admission.
 - `npm run check`: pass, 16/16 browser tests.
 - `npm run validate:source-library`: pass. The approved library contains 21,018
   catalogued rasters with 0 errors and 0 warnings; all 51 NPC visuals are

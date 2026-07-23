@@ -36,6 +36,11 @@ from the human, platform, licensing, and performance sign-offs that remain.
   gate. `npm run validate:source-library` makes the ignored local `assets/`
   requirement explicit; `npm run validate:assets` aggregates both workstation
   contracts. Remote evidence for the revised command remains pending.
+- `npm run validate:source-inventory` rehashed the ignored source libraries on
+  July 23, 2026. Its checked inventory matches the complete 149-pack Tilesets
+  disposition register and records 155 packs / 69,017 files, including 5,548
+  exact duplicate families. This is curation evidence only: all 155 packs still
+  require distribution review and none is admitted by the inventory itself.
 - A verbose isolated shutdown baseline on Godot 4.7.1 exits successfully but
   reports 61 ObjectDB instances (24 `GDScript`, 21 `Node`, five `RegEx`, four
   `Timer`, two each of `PackedScene` and `SceneState`, plus single audio/native
