@@ -13,6 +13,7 @@ from __future__ import annotations
 import argparse
 import hashlib
 import json
+import re
 import sys
 from collections import Counter, defaultdict
 from concurrent.futures import ThreadPoolExecutor
@@ -26,6 +27,53 @@ RASTER_SUFFIXES = {".png", ".jpg", ".jpeg", ".webp", ".gif", ".bmp", ".svg"}
 LICENSE_NAMES = {"license", "license.txt", "licence", "licence.txt", "copying", "notice", "notice.txt", "credits", "credits.md", "attribution", "attribution.txt", "readme", "readme.md"}
 ENGINE_SUFFIXES = {".exe", ".dll", ".pck", ".godot", ".rpgsave", ".rvdata", ".rvdata2", ".rmmzsave", ".js", ".html", ".ttf", ".otf", ".woff", ".woff2"}
 ENGINE_DIR_MARKERS = {"demo", "demos", "example", "examples", "sample", "samples", ".godot", "node_modules"}
+PLAN_DISPOSITION_HEADING = "#### Complete `assets/Tilesets` disposition register"
+PLAN_DISPOSITION_END_HEADING = "#### Required showcase-sheet bindings"
+PLAN_DISPOSITION_PATTERN = re.compile(r"^\| `([^`]+)` \|[^|]*\| ([^|]+) \| (.+) \|$")
+PLAN_DISPOSITIONS = {
+    "Core-P": "core_primary",
+    "Core-S": "core_secondary",
+    "Annex": "optional_address",
+    "Reserve": "reserve",
+    "Support": "shared_support",
+    "Duplicate": "duplicate_quarantine",
+}
+
+
+def locked_tileset_dispositions(root: Path) -> dict[str, dict[str, str]]:
+    """Read the plan's complete Tilesets register as a checked curation input.
+
+    The source library remains ignored, so the plan is the tracked authority for
+    the intended use of each top-level pack.  This deliberately records a plan
+    disposition and destination, not a license grant or runtime admission.
+    """
+    plan_path = root / "FFVI_ALIGNMENT_COMPLETION_PLAN.md"
+    if not plan_path.is_file():
+        raise ValueError(f"locked Tilesets disposition register is missing: {plan_path}")
+    plan = plan_path.read_text(encoding="utf-8")
+    try:
+        table = plan.split(PLAN_DISPOSITION_HEADING, 1)[1].split(PLAN_DISPOSITION_END_HEADING, 1)[0]
+    except IndexError as error:
+        raise ValueError("locked Tilesets disposition register is missing or incomplete") from error
+    dispositions: dict[str, dict[str, str]] = {}
+    for line in table.splitlines():
+        match = PLAN_DISPOSITION_PATTERN.match(line)
+        if not match:
+            continue
+        pack, source_disposition, destination = match.groups()
+        disposition = PLAN_DISPOSITIONS.get(source_disposition)
+        if disposition is None:
+            raise ValueError(f"unknown plan disposition for Tilesets/{pack}: {source_disposition}")
+        if pack in dispositions:
+            raise ValueError(f"duplicate plan disposition for Tilesets/{pack}")
+        dispositions[pack] = {
+            "disposition": disposition,
+            "planDisposition": source_disposition,
+            "plannedDestination": destination,
+        }
+    if not dispositions:
+        raise ValueError("locked Tilesets disposition register has no pack rows")
+    return dispositions
 
 
 def sha256(path: Path) -> str:
@@ -73,7 +121,9 @@ def file_record(root: Path, path: Path) -> dict[str, Any]:
     }
 
 
-def inventory_root(label: str, root: Path) -> tuple[dict[str, Any], dict[str, list[str]]]:
+def inventory_root(
+    label: str, root: Path, planned_dispositions: dict[str, dict[str, str]] | None = None
+) -> tuple[dict[str, Any], dict[str, list[str]]]:
     if not root.is_dir():
         raise ValueError(f"source library root is unavailable: {root}")
     by_pack: dict[str, list[dict[str, Any]]] = defaultdict(list)
@@ -101,11 +151,14 @@ def inventory_root(label: str, root: Path) -> tuple[dict[str, Any], dict[str, li
         dimensions = Counter(f"{item['dimensions'][0]}x{item['dimensions'][1]}" for item in files if item["dimensions"])
         extensions = Counter(item["extension"] for item in files)
         digest = hashlib.sha256("\n".join(f"{item['path']}\0{item['sha256']}" for item in files).encode("utf-8")).hexdigest()
+        plan_record = (planned_dispositions or {}).get(name)
         packs.append({
             "id": f"{label}:{name}",
             "pack": name,
-            "disposition": "pending_manual_review",
-            "assignment": None,
+            "disposition": plan_record["disposition"] if plan_record else "unclassified_pending_review",
+            "planDisposition": plan_record["planDisposition"] if plan_record else None,
+            "plannedDestination": plan_record["plannedDestination"] if plan_record else None,
+            "distributionEligibility": "review_required",
             "contentChecksum": digest,
             "fileCount": len(files),
             "extensionCounts": dict(sorted(extensions.items())),
@@ -124,7 +177,18 @@ def inventory_root(label: str, root: Path) -> tuple[dict[str, Any], dict[str, li
 
 
 def build(root: Path, tilesets_root: Path, expansion_root: Path) -> dict[str, Any]:
-    tilesets, tile_duplicates = inventory_root("Tilesets", tilesets_root)
+    planned_tilesets = locked_tileset_dispositions(root)
+    actual_tilesets = {path.name for path in tilesets_root.iterdir() if path.is_dir()}
+    missing = sorted(actual_tilesets - set(planned_tilesets), key=str.casefold)
+    unknown = sorted(set(planned_tilesets) - actual_tilesets, key=str.casefold)
+    if missing or unknown:
+        details = []
+        if missing:
+            details.append("missing plan rows: " + ", ".join(missing))
+        if unknown:
+            details.append("unknown plan rows: " + ", ".join(unknown))
+        raise ValueError("locked Tilesets disposition register does not match source library; " + "; ".join(details))
+    tilesets, tile_duplicates = inventory_root("Tilesets", tilesets_root, planned_tilesets)
     expansion, expansion_duplicates = inventory_root("EXPANSION", expansion_root)
     duplicates: dict[str, list[str]] = defaultdict(list)
     for family in (tile_duplicates, expansion_duplicates):
@@ -134,9 +198,10 @@ def build(root: Path, tilesets_root: Path, expansion_root: Path) -> dict[str, An
         {"sha256": checksum, "paths": sorted(paths, key=str.casefold)}
         for checksum, paths in sorted(duplicates.items()) if len(paths) > 1
     ]
+    disposition_counts = Counter(pack["disposition"] for pack in tilesets["packs"])
     return {
-        "schemaVersion": 1,
-        "scope": "ignored curator source libraries; not release runtime data",
+        "schemaVersion": 2,
+        "scope": "ignored curator source libraries; Tilesets dispositions are locked planning inputs, not release runtime data or license grants",
         "nearDuplicateStatus": "not_computed",
         "libraries": [tilesets, expansion],
         "exactDuplicateFamilies": duplicate_families,
@@ -144,7 +209,8 @@ def build(root: Path, tilesets_root: Path, expansion_root: Path) -> dict[str, An
             "packs": tilesets["packCount"] + expansion["packCount"],
             "files": sum(pack["fileCount"] for library in (tilesets, expansion) for pack in library["packs"]),
             "exactDuplicateFamilies": len(duplicate_families),
-            "packsPendingManualReview": tilesets["packCount"] + expansion["packCount"],
+            "tilesetsDispositionCounts": dict(sorted(disposition_counts.items())),
+            "packsAwaitingDistributionReview": tilesets["packCount"] + expansion["packCount"],
         },
     }
 
