@@ -530,6 +530,20 @@ static func room(room_id: StringName) -> Dictionary:
 			"worldOrigin": Vector2i(300, 0),
 			"enabledPortIds": [&"Nw", &"Ne", &"E1", &"E2"],
 			"portGates": {&"E1": &"mansion_first_room_complete"},
+			"navigationId": &"authored:hm02-west-foyer-navigation",
+			"collisionMaskId": &"authored:hm02-west-foyer-collision",
+			"navigationLayout": {
+				"id": &"hm02-west-foyer-v1",
+				"kind": &"authored",
+				"usefulCellRange": Vector2i(214, 216),
+				"walkableRects": [
+					{"origin": Vector2i(5, 1), "size": Vector2i(17, 4)}, # entry gallery and chandelier apron
+					{"origin": Vector2i(4, 4), "size": Vector2i(17, 7)}, # central clock hall
+					{"origin": Vector2i(20, 5), "size": Vector2i(3, 3)}, # 4:44 servants' wallpaper seam
+					{"origin": Vector2i(5, 11), "size": Vector2i(18, 2)}, # south lounge and return route
+					{"origin": Vector2i(22, 13), "size": Vector2i(1, 1)}, # conservatory departure landing
+				],
+			},
 			"visualProfileIds": [&"mansion_foyer_clock", &"mansion_foyer_wall_tableau"],
 		}, true)
 	elif room_id == &"HM-03":
@@ -840,6 +854,9 @@ static func _validate_manifest_test_rooms(errors: Array[String]) -> void:
 		errors.append("HM-01 must reference the admitted Mansion exterior profile.")
 	if StringName(hm01.get("navigationId", &"")) != &"authored:hm01-rain-gate-navigation" or StringName(hm01.get("collisionMaskId", &"")) != &"authored:hm01-rain-gate-collision":
 		errors.append("HM-01 must own its authored rain-gate navigation and collision records.")
+	var hm02 := room(&"HM-02")
+	if StringName(hm02.get("navigationId", &"")) != &"authored:hm02-west-foyer-navigation" or StringName(hm02.get("collisionMaskId", &"")) != &"authored:hm02-west-foyer-collision":
+		errors.append("HM-02 must own its authored west-foyer navigation and collision records.")
 
 
 static func _reachable(start: StringName, target: StringName) -> bool:

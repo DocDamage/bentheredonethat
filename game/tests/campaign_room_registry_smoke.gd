@@ -24,7 +24,7 @@ func _ready() -> void:
 	assert((foyer.get("portCells") as Dictionary).get(&"E1") == Vector2i(24, 6), "HM-02 must bind E1 to the L2 port cell.")
 	assert(foyer.get("populationAnchors") == [&"P1", &"P2", &"P3", &"P4", &"P5", &"P6"])
 	assert((foyer.get("populationAnchorCells") as Dictionary).get(&"P1") == Vector2i(6, 6))
-	assert(foyer.get("collisionMaskId") == &"generated:L2-collision")
+	assert(foyer.get("collisionMaskId") == &"authored:hm02-west-foyer-collision")
 	assert(ROOM_REGISTRY.room(&"FR-08").get("encounterPolicy") == &"boss", "FR-08 must remain the Frosthold boss room.")
 	assert(ROOM_REGISTRY.room(&"MP-08").get("encounterPolicy") == &"boss", "MP-08 must remain the Moonpetal boss room.")
 	assert(ROOM_REGISTRY.room(&"EM-09").get("encounterPolicy") == &"boss", "EM-09 must remain the Empyreal boss room.")
