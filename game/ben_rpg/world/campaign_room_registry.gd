@@ -427,6 +427,8 @@ static func room(room_id: StringName) -> Dictionary:
 			"worldOrigin": Vector2i(350, 0),
 			"enabledPortIds": [&"Nw", &"Ne", &"E1", &"E2", &"Se"],
 			"portGates": {&"E2": &"asterion_station_restored"},
+			"navigationId": &"authored:as13-pressure-lock-junction-navigation", "collisionMaskId": &"authored:as13-pressure-lock-junction-collision",
+			"navigationLayout": {"id": &"as13-pressure-lock-junction-v1", "kind": &"authored", "usefulCellRange": Vector2i(143, 145), "walkableRects": [{"origin": Vector2i(5, 1), "size": Vector2i(9, 4)}, {"origin": Vector2i(3, 4), "size": Vector2i(12, 7)}, {"origin": Vector2i(15, 3), "size": Vector2i(2, 8)}, {"origin": Vector2i(5, 10), "size": Vector2i(9, 3)}]},
 			"visualProfileIds": [&"asterion_dock_bulkhead", &"asterion_station_architecture"],
 			"featureIds": [&"colored_pipe_symbols", &"medical_hydro_split", &"doorway_exclusion_patrol"],
 		}, true)
@@ -534,6 +536,8 @@ static func room(room_id: StringName) -> Dictionary:
 			"scenePath": "res://ben_rpg/world/rooms/asterion_bonded_customs_vault.tscn",
 			"worldOrigin": Vector2i(350, 0),
 			"enabledPortIds": [&"Nw"],
+			"navigationId": &"authored:as09-bonded-customs-vault-navigation", "collisionMaskId": &"authored:as09-bonded-customs-vault-collision",
+			"navigationLayout": {"id": &"as09-bonded-customs-vault-v1", "kind": &"authored", "usefulCellRange": Vector2i(119, 119), "walkableRects": [{"origin": Vector2i(5, 1), "size": Vector2i(9, 4)}, {"origin": Vector2i(3, 4), "size": Vector2i(12, 7)}, {"origin": Vector2i(5, 10), "size": Vector2i(9, 2)}]},
 			"visualProfileIds": [&"asterion_dock_bulkhead", &"asterion_station_architecture"],
 			"featureIds": [&"cargo_override", &"shelf_puzzle", &"contraband_gear_cache"],
 			"asterionInteractions": [{"nodeName": "AsterionCargoCache", "kind": &"cargo_cache", "cell": Vector2i(9, 7)}],
@@ -544,6 +548,8 @@ static func room(room_id: StringName) -> Dictionary:
 			"worldOrigin": Vector2i(350, 0),
 			"enabledPortIds": [&"Nw", &"Ne"],
 			"portGates": {&"Ne": &"asterion_station_restored"},
+			"navigationId": &"authored:as10-observation-ring-navigation", "collisionMaskId": &"authored:as10-observation-ring-collision",
+			"navigationLayout": {"id": &"as10-observation-ring-v1", "kind": &"authored", "usefulCellRange": Vector2i(259, 260), "walkableRects": [{"origin": Vector2i(7, 1), "size": Vector2i(12, 4)}, {"origin": Vector2i(3, 4), "size": Vector2i(20, 10)}, {"origin": Vector2i(7, 13), "size": Vector2i(12, 3)}]},
 			"visualProfileIds": [&"asterion_dock_hull", &"asterion_command_console"],
 			"featureIds": [&"curved_vista", &"shutter_controls", &"zero_pressure_optional_combat", &"empyreal_star_chart"],
 		}, true)
@@ -553,6 +559,8 @@ static func room(room_id: StringName) -> Dictionary:
 			"worldOrigin": Vector2i(350, 0),
 			"enabledPortIds": [&"Nw", &"Ne"],
 			"portGates": {&"Nw": &"asterion_station_complete", &"Ne": &"asterion_station_complete"},
+			"navigationId": &"authored:as11-maintenance-bay-navigation", "collisionMaskId": &"authored:as11-maintenance-bay-collision",
+			"navigationLayout": {"id": &"as11-maintenance-bay-v1", "kind": &"authored", "usefulCellRange": Vector2i(162, 164), "walkableRects": [{"origin": Vector2i(6, 1), "size": Vector2i(11, 4)}, {"origin": Vector2i(3, 4), "size": Vector2i(17, 7)}, {"origin": Vector2i(5, 10), "size": Vector2i(12, 2)}]},
 			"visualProfileIds": [&"asterion_station_architecture", &"asterion_dock_bulkhead"],
 			"featureIds": [&"load_bearing_switches", &"engineering_loot", &"two_sided_shortcut", &"bulkhead_warden_trial"],
 			"bossEncounter": {"nodeName": "BulkheadWardenTrial", "encounterId": &"asterion_bulkhead_warden_trial", "defeatedFlag": &"bulkhead_warden_trial_complete", "cell": Vector2i(11, 7)},
@@ -563,6 +571,8 @@ static func room(room_id: StringName) -> Dictionary:
 			"worldOrigin": Vector2i(350, 0),
 			"enabledPortIds": [&"Nw", &"Ne"],
 			"portGates": {&"Ne": &"asterion_medical_ambush_cleared"},
+			"navigationId": &"authored:as12-cryosleep-berths-navigation", "collisionMaskId": &"authored:as12-cryosleep-berths-collision",
+			"navigationLayout": {"id": &"as12-cryosleep-berths-v1", "kind": &"authored", "usefulCellRange": Vector2i(148, 149), "walkableRects": [{"origin": Vector2i(5, 1), "size": Vector2i(9, 4)}, {"origin": Vector2i(3, 4), "size": Vector2i(13, 8)}, {"origin": Vector2i(5, 11), "size": Vector2i(9, 3)}]},
 			"visualProfileIds": [&"asterion_medical_station", &"asterion_station_architecture"],
 			"featureIds": [&"identity_logs", &"pod_releases", &"medical_supply_cache", &"relocating_residents"],
 		}, true)
@@ -572,6 +582,8 @@ static func room(room_id: StringName) -> Dictionary:
 			"worldOrigin": Vector2i(350, 0),
 			"enabledPortIds": [&"Nw", &"Ne"],
 			"portGates": {&"Ne": &"asterion_station_restored"},
+			"navigationId": &"authored:as14-service-tram-navigation", "collisionMaskId": &"authored:as14-service-tram-collision",
+			"navigationLayout": {"id": &"as14-service-tram-v1", "kind": &"authored", "usefulCellRange": Vector2i(71, 72), "walkableRects": [{"origin": Vector2i(4, 1), "size": Vector2i(8, 3)}, {"origin": Vector2i(2, 3), "size": Vector2i(12, 4)}, {"origin": Vector2i(4, 6), "size": Vector2i(8, 2)}]},
 			"visualProfileIds": [&"asterion_dock_bulkhead", &"asterion_station_architecture"],
 			"featureIds": [&"tram_platform", &"stabilized_shortcut", &"saved_arrival_anchor"],
 		}, true)

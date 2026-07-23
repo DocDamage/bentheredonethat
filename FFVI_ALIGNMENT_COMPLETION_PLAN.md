@@ -2952,7 +2952,6 @@ limit:
   record. The evidence is verified by the runtime provenance builder, but no
   decision has been promoted beyond `review_required` without final derivative
   admission and licensing review.
-- Asterion `AS-01` through `AS-08` now have explicit authored
-  collision/useful-cell layouts. The remaining Asterion rooms and every
-  Primeval room retain generated-interior navigation baselines pending their
-  individual collision audits.
+- Asterion `AS-01` through `AS-14` now have explicit authored
+  collision/useful-cell layouts. Every Primeval room retains a generated-
+  interior navigation baseline pending its individual collision audit.

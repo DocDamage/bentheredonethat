@@ -92,6 +92,11 @@ The second Asterion batch covers the hydroponics-to-control route: `AS-05` 128,
 observation, maintenance, cryo, pressure-lock, and tram rooms remain baseline
 contracts until their separate collision audit.
 
+The final Asterion batch audits that service-side loop: `AS-09` 119, `AS-10`
+259 closed / 260 restored, `AS-11` 162 closed / 164 post-completion, `AS-12`
+148 closed / 149 post-ambush, `AS-13` 143 closed / 145 restored, and `AS-14`
+71 closed / 72 restored useful cells.
+
 ### Art, population, and state-capture requirements
 
 - The current `visualProfileIds` arrays in `CampaignRoomRegistry` are the only
@@ -145,9 +150,14 @@ The second collision batch repeated the same four scenes successfully at
 `test-artifacts/20260723-094426-5085642e`; its production-save sentinel also
 remained unchanged (`sentinel=True`).
 
+The final Asterion batch repeated the same four scenes successfully at
+`test-artifacts/20260723-095043-01600d35` and
+`test-artifacts/20260723-095056-c6ae251c`; its production-save sentinel also
+remained unchanged (`sentinel=True`).
+
 ## Decision
 
 Rework required before acceptance: no distribution eligibility, contact-sheet
-approval, or user visual/input sign-off is recorded for either world. The first
-eight Asterion layouts are verified collision-contract evidence only; the
-remaining Asterion and all Primeval layouts still require their own audits.
+approval, or user visual/input sign-off is recorded for either world. All 14
+Asterion layouts are verified collision-contract evidence only; every Primeval
+layout still requires its own audit.
