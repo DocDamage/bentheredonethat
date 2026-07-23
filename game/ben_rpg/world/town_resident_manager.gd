@@ -4,49 +4,7 @@ const GAMEPIECE_SCENE := preload("res://src/field/gamepieces/gamepiece.tscn")
 const RESIDENT_ANIMATION := preload("res://ben_rpg/world/town_resident_animation.tscn")
 const RESIDENT_CONTROLLER := preload("res://ben_rpg/world/town_resident_controller.gd")
 const RESIDENT_INTERACTION := preload("res://ben_rpg/world/town_resident_interaction.tscn")
-const ASSET_ROOT := "res://game_assets/characters/NPCs/Cozy Village NPC Collection Vol.1"
-const PROFILES := {
-	&"cafe_owner": {
-		"name": "Mara Bell", "role": "Café proprietor", "facility": "Cafe",
-		"asset": "3._Caf_Owner", "home": Vector2i(40, 3), "work": Vector2i(44, 9),
-		"plaza": Vector2i(49, 11), "errand": Vector2i(41, 15), "work_label": "PREPARING SERVICE",
-		"work_tasks": [
-			{"label": "GRINDING COFFEE", "station": -2, "pose": &"craft"},
-			{"label": "SERVING THE COUNTER", "station": 0, "pose": &"serve"},
-			{"label": "CHECKING THE PANTRY", "station": 2, "pose": &"inspect"},
-		],
-	},
-	&"librarian": {
-		"name": "Elias Quill", "role": "Town librarian", "facility": "Library",
-		"asset": "9._Librarian", "home": Vector2i(64, 3), "work": Vector2i(57, 9),
-		"plaza": Vector2i(51, 11), "errand": Vector2i(62, 15), "work_label": "CATALOGING BOOKS",
-		"work_tasks": [
-			{"label": "SHELVING FIELD REPORTS", "station": -2, "pose": &"inspect"},
-			{"label": "CATALOGING MONSTERS", "station": 0, "pose": &"craft"},
-			{"label": "DECODING A FAULT-LINE MAP", "station": 2, "pose": &"inspect"},
-		],
-	},
-	&"farmer": {
-		"name": "Ada Furrow", "role": "Town grower", "requires_foundations": true,
-		"asset": "2._Village_Farmer", "home": Vector2i(39, 18), "work": Vector2i(43, 18),
-		"plaza": Vector2i(49, 12), "errand": Vector2i(41, 12), "work_label": "TENDING CROPS",
-		"work_tasks": [
-			{"label": "WATERING THE EAST ROW", "station": -2, "pose": &"craft"},
-			{"label": "TURNING COMPOST", "station": 0, "pose": &"craft"},
-			{"label": "HARVESTING TOWN PRODUCE", "station": 2, "pose": &"inspect"},
-		],
-	},
-	&"clinic_aide": {
-		"name": "Nell Shepherd", "role": "Clinic aide", "facility": "Clinic",
-		"asset": "11._Shepherd_Girl", "home": Vector2i(64, 18), "work": Vector2i(58, 17),
-		"plaza": Vector2i(52, 12), "errand": Vector2i(61, 12), "work_label": "CHECKING SUPPLIES",
-		"work_tasks": [
-			{"label": "STERILIZING INSTRUMENTS", "station": -2, "pose": &"craft"},
-			{"label": "PREPARING TONICS", "station": 0, "pose": &"serve"},
-			{"label": "CHECKING RECOVERY COTS", "station": 2, "pose": &"inspect"},
-		],
-	},
-}
+const RESIDENT_CATALOG := preload("res://ben_rpg/world/town_resident_catalog.gd")
 
 var campaign: Node
 var residents: Dictionary = {}
@@ -62,7 +20,7 @@ func _ready() -> void:
 
 
 func sync_residents() -> void:
-	for resident_id in PROFILES.keys():
+	for resident_id in RESIDENT_CATALOG.resident_ids():
 		var unlocked := _resident_unlocked(StringName(resident_id))
 		if unlocked and not residents.has(resident_id):
 			_spawn_resident(StringName(resident_id))
@@ -76,7 +34,7 @@ func sync_residents() -> void:
 
 
 func activity_plan(resident_id: StringName, current_cell: Vector2i) -> Dictionary:
-	var profile: Dictionary = PROFILES.get(resident_id, {})
+	var profile: Dictionary = RESIDENT_CATALOG.profile(resident_id)
 	if profile.is_empty():
 		return {"activity": &"home", "label": "AT HOME", "target": current_cell}
 	var minute := int(CampaignState.town_time_minutes) % 1440
@@ -187,7 +145,7 @@ func resident_at_cell(cell: Vector2i) -> Dictionary:
 func resident_summary(resident_id: StringName) -> Dictionary:
 	if not residents.has(resident_id):
 		return {}
-	var profile: Dictionary = PROFILES.get(resident_id, {})
+	var profile: Dictionary = RESIDENT_CATALOG.profile(resident_id)
 	var entry: Dictionary = residents[resident_id]
 	var gamepiece := entry.get("gamepiece") as Gamepiece
 	var controller = entry.get("controller")
@@ -196,7 +154,7 @@ func resident_summary(resident_id: StringName) -> Dictionary:
 		"name": String(profile.get("name", "Resident")),
 		"role": String(profile.get("role", "Town resident")),
 		"pack": &"Cozy Village NPC Collection Vol.1",
-		"texture": "%s/%s/rotations/south.png" % [ASSET_ROOT, String(profile.get("asset", ""))],
+		"texture": RESIDENT_CATALOG.rotation_path(resident_id),
 		"activity": StringName(controller.activity) if controller else &"home",
 		"activity_label": String(controller.activity_label) if controller else "AT HOME",
 		"pose": StringName(controller.activity_pose) if controller else &"rest",
@@ -265,7 +223,7 @@ func record_resident_state(resident_id: StringName, cell: Vector2i, activity: St
 
 
 func _spawn_resident(resident_id: StringName) -> void:
-	var profile: Dictionary = PROFILES[resident_id]
+	var profile: Dictionary = RESIDENT_CATALOG.profile(resident_id)
 	var saved: Dictionary = CampaignState.resident_state(resident_id)
 	var home: Vector2i = profile.get("home", Vector2i.ZERO)
 	var requested := Vector2i(int(saved.get("x", home.x)), int(saved.get("y", home.y)))
@@ -278,7 +236,7 @@ func _spawn_resident(resident_id: StringName) -> void:
 	gamepiece.move_speed = 120.0 + float(abs(hash(resident_id)) % 4) * 6.0
 	gamepiece.set_meta("resident_id", resident_id)
 	var animation = RESIDENT_ANIMATION.instantiate()
-	animation.configure(String(profile.get("name", "Resident")), "%s/%s" % [ASSET_ROOT, String(profile.get("asset", ""))])
+	animation.configure(String(profile.get("name", "Resident")), "%s/%s" % [RESIDENT_CATALOG.ASSET_ROOT, String(profile.get("asset", ""))])
 	gamepiece.get_node("PathFollow2D").add_child(animation)
 	gamepiece.animation = animation
 	var controller = RESIDENT_CONTROLLER.new()
@@ -299,7 +257,7 @@ func _spawn_resident(resident_id: StringName) -> void:
 func _resident_unlocked(resident_id: StringName) -> bool:
 	if CampaignState.sandbox_mode:
 		return true
-	var profile: Dictionary = PROFILES.get(resident_id, {})
+	var profile: Dictionary = RESIDENT_CATALOG.profile(resident_id)
 	var facility := String(profile.get("facility", ""))
 	if not facility.is_empty():
 		return facility in CampaignState.built_facilities.values()
@@ -331,26 +289,7 @@ func resident_dialogue(resident_id: StringName) -> Array[String]:
 	var role := String(summary.get("role", "Town resident"))
 	var activity_label := String(summary.get("activity_label", "AT HOME"))
 	var lines: Array[String] = ["%s — %s" % [name.to_upper(), role], activity_label.capitalize() + "."]
-	match resident_id:
-		&"cafe_owner":
-			lines.append("MARA: A town runs on three things: safe roads, hot coffee, and someone remembering who still owes for pie.")
-		&"librarian":
-			var record := CampaignState.library_record_summary()
-			lines.append("ELIAS: The field ledger currently lists %d of %d known species. Defeat one and I can add its habits and drops." % [record.get("bestiary_seen", 0), record.get("bestiary_total", 0)])
-		&"farmer":
-			lines.append("ADA: Facility work keeps progressing while you adventure. A specialist finishes faster; adjacent training improves the harvest.")
-		&"clinic_aide":
-			lines.append("NELL: Save points restore the whole company. If everyone falls, we can still bring them home with one HP—dignity costs extra.")
-	if CampaignState.postgame_rematch_available():
-		match resident_id:
-			&"cafe_owner":
-				lines.append("MARA: Since the Court stopped taxing altitude, the pie rises exactly as much as it wants to.")
-			&"librarian":
-				lines.append("ELIAS: The Tribunal Ledger offers a strictly recreational gravity hearing. I have marked it: NO DUPLICATE REWARDS.")
-			&"farmer":
-				lines.append("ADA: The new fault-line lamps keep the east row warm. Apparently public gravity is good for tomatoes.")
-			&"clinic_aide":
-				lines.append("NELL: The Archangel volunteered at the Clinic. Their bedside manner is celestial, but their handwriting is terrible.")
+	lines.append_array(RESIDENT_CATALOG.dialogue_lines(resident_id, CampaignState.library_record_summary(), CampaignState.postgame_rematch_available()))
 	return lines
 
 
