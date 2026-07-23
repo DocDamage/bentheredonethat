@@ -7,6 +7,7 @@ extends RefCounted
 ## treasure cells, or interaction cells.
 
 const REGISTRY_PATH := "res://ben_rpg/population/generated/population_registry.json"
+const TRANSITION_ROUTER := preload("res://ben_rpg/world/campaign_transition_router.gd")
 
 static var _identities: Dictionary = {}
 
@@ -36,6 +37,30 @@ static func schedule(room_id: StringName, definition: Dictionary, reserved_cells
 		occupied[anchor_cell] = identity_id
 		assignments.append({"identityId": identity_id, "runtimeProfileId": _runtime_profile_id(profile), "anchor": anchor_id, "cell": anchor_cell, "room": room_id})
 	return {"assignments": assignments, "unavailable": unavailable}
+
+
+static func reserved_cells_for_room(room_id: StringName, definition: Dictionary) -> Dictionary:
+	## Reserve every non-resident location that the active scene exposes. The
+	## scheduler can therefore remain data-only while room installation ensures
+	## no cohort actor occupies a port, arrival, feature, treasure, boss, or save.
+	var reserved: Dictionary = {}
+	for port_id in (definition.get("portCells", {}) as Dictionary).keys():
+		var port_cell: Vector2i = definition["portCells"][port_id]
+		reserved[port_cell] = "port:%s" % port_id
+		var arrival := TRANSITION_ROUTER.safe_arrival_cell(room_id, StringName(port_id))
+		if arrival != Vector2i.ZERO:
+			reserved[arrival] = "safe_arrival:%s" % port_id
+	for property_name in [&"chapterInteractions", &"asterionInteractions", &"primevalInteractions", &"heliosInteractions", &"frostholdInteractions", &"moonpetalInteractions", &"empyrealInteractions", &"universeTreasures"]:
+		for feature in definition.get(property_name, []):
+			if feature is Dictionary:
+				_reserve_feature_cell(reserved, feature.get("cell", Vector2i.ZERO), property_name)
+	var save_point: Dictionary = definition.get("savePoint", {})
+	if not save_point.is_empty():
+		_reserve_feature_cell(reserved, save_point.get("cell", Vector2i.ZERO), "save_point")
+	var boss: Dictionary = definition.get("bossEncounter", {})
+	if not boss.is_empty():
+		_reserve_feature_cell(reserved, boss.get("cell", Vector2i.ZERO), "boss")
+	return reserved
 
 
 static func schedule_profiles(room_id: StringName, identities: Array[Dictionary], anchors: Dictionary, reserved_cells: Dictionary = {}) -> Dictionary:
@@ -77,6 +102,11 @@ static func _runtime_profile_id(profile: Dictionary) -> StringName:
 	if value is StringName:
 		return value
 	return StringName(value) if value is String else &""
+
+
+static func _reserve_feature_cell(reserved: Dictionary, value: Variant, label: String) -> void:
+	if value is Vector2i and value != Vector2i.ZERO:
+		reserved[value] = label
 
 
 static func _string_field(profile: Dictionary, key: String) -> String:

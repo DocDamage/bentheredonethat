@@ -2986,3 +2986,8 @@ limit:
   active and blocked links, reciprocal edges, reachable/unreachable rooms,
   save points, and facility-return paths; the graph/manifest milestone passed
   with its isolated production-save sentinel unchanged.
+- Room cohort installation now reserves ports, reciprocal safe arrivals,
+  interactions, treasures, bosses, and save anchors before scheduling a
+  population assignment. This guards future admitted runtime profiles from
+  overlapping gameplay-critical cells; production identity admission and actor
+  spawning remain separate, incomplete population work.

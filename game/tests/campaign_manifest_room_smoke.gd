@@ -25,6 +25,7 @@ func _ready() -> void:
 	assert(room.has_node("YSortedActorsAndProps/PopulationCohort"))
 	var cohort := room.get_node("YSortedActorsAndProps/PopulationCohort")
 	assert(cohort.get_meta(&"population_ids") == [&"test-room-caretaker"])
+	assert((cohort.get_meta(&"reserved_cells", {}) as Dictionary).has(Vector2i(4, 1)))
 	var route := ROUTER.resolve(&"TEST-01", &"Nw")
 	assert(StringName(route.get("destinationRoom", &"")) == &"TEST-01")
 	assert(StringName(route.get("arrivalPort", &"")) == &"Ne")

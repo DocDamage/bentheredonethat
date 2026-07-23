@@ -104,9 +104,11 @@ static func install(root: Node2D, room_id: StringName, definition: Dictionary) -
 	if actors_layer:
 		var cohort := Node2D.new()
 		cohort.name = "PopulationCohort"
-		var population_schedule := POPULATION_SCHEDULER.schedule(room_id, definition)
+		var reserved_cells := POPULATION_SCHEDULER.reserved_cells_for_room(room_id, definition)
+		var population_schedule := POPULATION_SCHEDULER.schedule(room_id, definition, reserved_cells)
 		cohort.set_meta(&"population_ids", definition.get("populationIds", []))
 		cohort.set_meta(&"population_anchors", definition.get("populationAnchors", []))
+		cohort.set_meta(&"reserved_cells", reserved_cells)
 		cohort.set_meta(&"assignments", population_schedule.get("assignments", []))
 		cohort.set_meta(&"unavailable_population_ids", population_schedule.get("unavailable", []))
 		actors_layer.add_child(cohort)
