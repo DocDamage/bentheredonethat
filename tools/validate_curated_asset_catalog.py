@@ -35,11 +35,24 @@ ASSET_LIBRARY_ROOT = "assets"
 IGNORED_DIRS = frozenset(
     {".git", ".playwright-cli", "output", "music", "sfx", "node_modules", "__pycache__", "tools"}
 )
-# Assets restored beneath this root are an unreviewed local staging library, not
-# part of the approved curated source library.  Keeping it explicit prevents a
-# workstation sync from changing the catalog denominator, while `path()` still
-# rejects any attempt to publish a curated entry from the quarantine.
-QUARANTINED_SOURCE_ROOTS = frozenset({"expansion"})
+# Assets restored beneath these roots are unreviewed local staging libraries,
+# not part of the approved curated source library.  Keeping them explicit
+# prevents a workstation sync from changing the catalog denominator, while
+# `path()` still rejects any attempt to publish a curated entry from quarantine.
+# The five new recruit folders include generation metadata but no distribution
+# terms, so they remain quarantined until a reviewed admission package exists.
+# Other folders under Recruitable Characters are already catalogued and must
+# stay in the denominator.
+QUARANTINED_SOURCE_PREFIXES = frozenset({
+    ("assets", "expansion"),
+    ("assets", "characters", "recruitable characters", "abe_lincoln"),
+    ("assets", "characters", "recruitable characters", "cthulhu"),
+    ("assets", "characters", "recruitable characters", "dark_mage_64x64_pack"),
+    ("assets", "characters", "recruitable characters", "draculafinal"),
+    ("assets", "characters", "recruitable characters", "frankenstein_s_monster"),
+    ("assets", "characters", "recruitable characters", "fighter", "animations"),
+    ("assets", "characters", "recruitable characters", "fighter", "rotations"),
+})
 ASSIGNMENT = re.compile(r"window\s*\.\s*CURATED_ART_ASSET_CATALOG\s*=\s*")
 AERO_PATH = "assets/characters/quirky npcs/fullcolor/aeronaut.png"
 AERO_RECT = (7, 6, 27, 59)
@@ -85,11 +98,8 @@ class Validator:
             return False
         if parts[0].casefold() in IGNORED_DIRS or parts[0].startswith("."):
             return True
-        if (
-            len(parts) >= 2
-            and parts[0] == ASSET_LIBRARY_ROOT
-            and parts[1].casefold() in QUARANTINED_SOURCE_ROOTS
-        ):
+        normalized = tuple(part.casefold() for part in parts)
+        if any(normalized[:len(prefix)] == prefix for prefix in QUARANTINED_SOURCE_PREFIXES):
             return True
         return any(part.casefold() in IGNORED_DIRS for part in parts[:-1])
 

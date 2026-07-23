@@ -28,6 +28,14 @@ class ReleaseSourceReferenceTests(unittest.TestCase):
             path.write_text('const TILE = "../assets/EXPANSION/candidate.png"\n', encoding="utf-8")
             self.assertEqual(len(validator.violations(root)), 1)
 
+    def test_unreviewed_recruit_drop_is_rejected(self) -> None:
+        with tempfile.TemporaryDirectory() as temporary:
+            root = Path(temporary)
+            path = root / "game/ben_rpg/world/area.gd"
+            path.parent.mkdir(parents=True)
+            path.write_text('const ACTOR = "../assets/characters/Recruitable Characters/Abe_Lincoln/rotations/south.png"\n', encoding="utf-8")
+            self.assertEqual(len(validator.violations(root)), 1)
+
 
 if __name__ == "__main__":
     unittest.main()

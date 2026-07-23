@@ -19,6 +19,7 @@ FORBIDDEN_ROOTS = (
     re.compile(r"(?<![a-z0-9_])assets/tilesets(?:/|$)"),
     re.compile(r"(?<![a-z0-9_])assets/expansion(?:/|$)"),
     re.compile(r"(?<![a-z0-9_])assets/characters/sakpix - 8-direction characters - all as of 7-3-26(?:/|$)"),
+    re.compile(r"(?<![a-z0-9_])assets/characters/recruitable characters(?:/|$)"),
 )
 RELEASE_SUFFIXES = {".gd", ".tscn", ".json", ".tres", ".res"}
 EXCLUDED_PARTS = {"tests", "validation", "editor"}
