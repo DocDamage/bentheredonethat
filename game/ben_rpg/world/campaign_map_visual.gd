@@ -10,8 +10,6 @@ const LAB_SIZE := Vector2i(20, 12)
 const TOWN_SIZE := Vector2i(32, 28)
 const MANSION_ORIGIN := Vector2i(0, 32)
 const MANSION_SIZE := Vector2i(28, 18)
-const STATION_ORIGIN := Vector2i(36, 32)
-const STATION_SIZE := Vector2i(28, 18)
 const PRIMEVAL_ORIGIN := Vector2i(72, 32)
 const PRIMEVAL_SIZE := Vector2i(28, 18)
 const HELIOS_ORIGIN := Vector2i(108, 32)
@@ -39,14 +37,6 @@ const MANSION_PLANK_GRAIN_PROFILES := [
 	[&"mansion_plank_grain_0_1", &"mansion_plank_grain_1_1"],
 	[&"mansion_plank_grain_0_2", &"mansion_plank_grain_1_2"],
 	[&"mansion_plank_grain_0_3", &"mansion_plank_grain_1_3"],
-]
-const ASTERION_WALL_TILE_PROFILES := [
-	[&"asterion_station_wall_0_0", &"asterion_station_wall_1_0"],
-	[&"asterion_station_wall_0_1", &"asterion_station_wall_1_1"],
-]
-const ASTERION_FLOOR_TILE_PROFILES := [
-	[&"asterion_station_floor_0_0", &"asterion_station_floor_1_0"],
-	[&"asterion_station_floor_0_1", &"asterion_station_floor_1_1"],
 ]
 const FROSTHOLD_GROUND_TILE_PROFILES := [
 	&"frosthold_snow_ground_tile",
@@ -90,7 +80,6 @@ var town_ground: Texture2D
 var haunted_interior: Texture2D
 var haunted_storage: Texture2D
 var haunted_bedroom: Texture2D
-var station_architecture: Texture2D
 var helios_structures: Texture2D
 var nightclub_signs: Texture2D
 var frozen_ground: Texture2D
@@ -118,7 +107,6 @@ func _ready() -> void:
 	haunted_interior = visual_profiles.texture(&"mansion_archive_cabinet")
 	haunted_bedroom = visual_profiles.texture(&"mansion_nursery_bed")
 	haunted_storage = visual_profiles.texture(&"mansion_archive_shelving")
-	station_architecture = visual_profiles.texture(&"asterion_station_wall_0_0")
 	helios_structures = visual_profiles.texture(&"helios_observatory_facade")
 	nightclub_signs = visual_profiles.texture(&"afterlight_club_sign")
 	frozen_ground = visual_profiles.texture(&"frosthold_snow_ground_tile")
@@ -163,7 +151,6 @@ func _draw() -> void:
 	draw_laboratory()
 	draw_town()
 	draw_haunted_mansion()
-	draw_asterion_station()
 
 
 func draw_laboratory() -> void:
@@ -720,60 +707,6 @@ func _draw_moonpetal_processional_path(room_offset: Vector2) -> void:
 	draw_set_transform(room_offset + Vector2(220, 174), PI * 0.5)
 	profile_tile(&"moonpetal_processional_path", sakura_paths, Vector2.ZERO)
 	draw_set_transform(Vector2.ZERO, 0.0, Vector2.ONE)
-
-
-func draw_asterion_station() -> void:
-	if not active_area.begins_with("station"):
-		return
-	var offset := Vector2(STATION_ORIGIN * TILE)
-	draw_rect(Rect2(offset, Vector2(STATION_SIZE * TILE)), Color(0.015, 0.025, 0.055), true)
-	# At the room-framing camera scale, neighboring rooms would otherwise show as
-	# disconnected furniture floating in the surrounding void. Only the room the
-	# player occupies is rendered while inside the station.
-	var room_definitions := {
-		&"station_dock": [Vector2i(0, 0), &"dock"],
-		&"station_mess": [Vector2i(10, 0), &"mess"],
-		&"station_hydro": [Vector2i(20, 0), &"hydro"],
-		&"station_medical": [Vector2i(10, 10), &"medical"],
-		&"station_control": [Vector2i(20, 10), &"control"],
-	}
-	if room_definitions.has(active_area):
-		var definition: Array = room_definitions[active_area]
-		var room_offset := offset + Vector2(definition[0] * TILE)
-		_draw_station_room_backdrop(room_offset)
-		_draw_station_room(room_offset, definition[1])
-		return
-	for definition in room_definitions.values():
-		_draw_station_room(offset + Vector2(definition[0] * TILE), definition[1])
-
-
-func _draw_station_room_backdrop(room_offset: Vector2) -> void:
-	# An 8x8 interior is smaller than the 960x540 gameplay camera. Without a
-	# local hull pass, the camera exposed Godot's default gray canvas at the room
-	# edges, which reads as an unfinished void rather than exterior station space.
-	# This is intentionally non-navigable—the navigation layer opens only the
-	# painted 8x4 floor—but it gives every room an authored outer boundary.
-	var bounds := Rect2(room_offset - Vector2(288, 96), Vector2(960, 576))
-	draw_rect(bounds, Color(0.008, 0.018, 0.043), true)
-	var seam_color := Color(0.10, 0.21, 0.34, 0.38)
-	for x in range(0, 21):
-		var line_x := bounds.position.x + x * TILE
-		draw_line(Vector2(line_x, bounds.position.y), Vector2(line_x, bounds.end.y), seam_color, 2.0)
-	for y in range(0, 13):
-		var line_y := bounds.position.y + y * TILE
-		draw_line(Vector2(bounds.position.x, line_y), Vector2(bounds.end.x, line_y), seam_color, 2.0)
-
-
-func _draw_station_room(room_offset: Vector2, room_kind: StringName) -> void:
-	# Every room is an 8x8 native 48px stage. Wall and floor materials are sampled
-	# on their authored grid. All furniture below uses measured opaque bounds for
-	# one complete prop; no rectangle crosses into a neighboring atlas object.
-	for y in range(8):
-		for x in range(8):
-			var tile_profile: StringName = ASTERION_WALL_TILE_PROFILES[y % 2][x % 2] if y < 4 else ASTERION_FLOOR_TILE_PROFILES[y % 2][x % 2]
-			profile_tile(tile_profile, station_architecture, room_offset + Vector2(x, y) * TILE)
-	# A hard baseboard makes the blocked wall area and open floor legible.
-	draw_rect(Rect2(room_offset + Vector2(0, 190), Vector2(384, 4)), Color(0.08, 0.16, 0.24, 0.9), true)
 
 
 func _draw_mansion_room_shell(room_offset: Vector2, bedroom_wall: bool) -> void:
