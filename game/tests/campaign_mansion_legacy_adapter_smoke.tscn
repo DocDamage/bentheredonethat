@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://tests/campaign_mansion_legacy_adapter_smoke.gd" id="1_adapter"]
+
+[node name="CampaignMansionLegacyAdapterSmoke" type="Node"]
+script = ExtResource("1_adapter")

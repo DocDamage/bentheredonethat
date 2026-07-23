@@ -1722,7 +1722,7 @@
         },
         {
           "file": "game/ben_rpg/world/campaign_bootstrap.gd",
-          "line": 2136,
+          "line": 2143,
           "resolution": "literal"
         }
       ]
@@ -2301,7 +2301,7 @@
         },
         {
           "file": "game/ben_rpg/world/campaign_bootstrap.gd",
-          "line": 1494,
+          "line": 1501,
           "resolution": "literal"
         },
         {
@@ -4039,7 +4039,7 @@
         },
         {
           "file": "game/ben_rpg/world/campaign_bootstrap.gd",
-          "line": 2221,
+          "line": 2228,
           "resolution": "literal"
         }
       ]
@@ -4170,7 +4170,7 @@
         },
         {
           "file": "game/ben_rpg/world/campaign_bootstrap.gd",
-          "line": 2165,
+          "line": 2172,
           "resolution": "literal"
         }
       ]
@@ -4189,7 +4189,7 @@
         },
         {
           "file": "game/ben_rpg/world/campaign_bootstrap.gd",
-          "line": 2109,
+          "line": 2116,
           "resolution": "literal"
         }
       ]
@@ -4306,7 +4306,7 @@
         },
         {
           "file": "game/ben_rpg/world/campaign_bootstrap.gd",
-          "line": 2271,
+          "line": 2278,
           "resolution": "literal"
         }
       ]
@@ -4325,7 +4325,7 @@
         },
         {
           "file": "game/ben_rpg/world/campaign_bootstrap.gd",
-          "line": 2192,
+          "line": 2199,
           "resolution": "literal"
         }
       ]
@@ -4400,7 +4400,7 @@
         },
         {
           "file": "game/ben_rpg/world/campaign_bootstrap.gd",
-          "line": 1840,
+          "line": 1847,
           "resolution": "literal"
         }
       ]

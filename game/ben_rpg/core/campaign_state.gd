@@ -169,6 +169,11 @@ const UNIVERSE_SAVE_POINTS := {
 	&"moonpetal_bell_walk": {"name": "Bell Walk Memory Lantern", "cell": Vector2i(191, 47), "flag": &"moonpetal_save_found"},
 	&"empyreal_aerie": {"name": "Aerie Anchor Crystal", "cell": Vector2i(230, 47), "flag": &"empyreal_save_found"},
 }
+
+# Active authored rooms may place a compatibility save-point ID at a streamed
+# coordinate. This is session-owned placement data, not save content: the
+# stable ID and its activation flag remain the serialized contract.
+var _runtime_save_point_cells: Dictionary = {}
 const UNIVERSE_TREASURE_CACHES := {
 	&"primeval_ruins_plinth": {
 		"name": "Misfiled Fossil Plinth", "flag": &"primeval_ruins_treasure_claimed",
@@ -2319,12 +2324,16 @@ func activate_save_point(save_point_id: StringName) -> bool:
 	return true
 
 
+func register_runtime_save_point(save_point_id: StringName, cell: Vector2i) -> void:
+	_runtime_save_point_cells[save_point_id] = cell
+
+
 func activated_save_point_near(cell: Vector2i, radius := 2) -> Dictionary:
 	for save_point_id in UNIVERSE_SAVE_POINTS:
 		var definition: Dictionary = UNIVERSE_SAVE_POINTS[save_point_id]
 		if not bool(story_flags.get(definition["flag"], false)):
 			continue
-		var anchor_cell: Vector2i = definition["cell"]
+		var anchor_cell: Vector2i = _runtime_save_point_cells.get(save_point_id, definition["cell"])
 		if abs(cell.x - anchor_cell.x) + abs(cell.y - anchor_cell.y) <= radius:
 			var result := definition.duplicate(true)
 			result["id"] = save_point_id

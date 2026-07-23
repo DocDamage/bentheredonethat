@@ -23,26 +23,6 @@ const STATION_SPAWN := STATION_ORIGIN + Vector2i(4, 6)
 const STATION_EXIT := STATION_ORIGIN + Vector2i(4, 7)
 const MANSION_SPAWN := MANSION_ORIGIN + Vector2i(4, 6)
 const MANSION_EXIT := MANSION_ORIGIN + Vector2i(4, 7)
-const MANSION_PASSAGE_DOOR := MANSION_ORIGIN + Vector2i(6, 4)
-const MANSION_PASSAGE_RETURN := MANSION_ORIGIN + Vector2i(11, 4)
-const MANSION_ARCHIVE_ARRIVAL := MANSION_ORIGIN + Vector2i(12, 5)
-const MANSION_FOYER_RETURN := MANSION_ORIGIN + Vector2i(5, 5)
-const MANSION_ARCHIVE_TO_GALLERY := MANSION_ORIGIN + Vector2i(14, 6)
-const MANSION_GALLERY_FROM_ARCHIVE := MANSION_ORIGIN + Vector2i(4, 15)
-const MANSION_GALLERY_RETURN := MANSION_ORIGIN + Vector2i(4, 16)
-const MANSION_ARCHIVE_FROM_GALLERY := MANSION_ORIGIN + Vector2i(14, 5)
-const MANSION_GALLERY_TO_NURSERY := MANSION_ORIGIN + Vector2i(6, 14)
-const MANSION_NURSERY_FROM_GALLERY := MANSION_ORIGIN + Vector2i(12, 15)
-const MANSION_NURSERY_RETURN := MANSION_ORIGIN + Vector2i(11, 14)
-const MANSION_GALLERY_FROM_NURSERY := MANSION_ORIGIN + Vector2i(5, 15)
-const MANSION_NURSERY_TO_BALLROOM := MANSION_ORIGIN + Vector2i(16, 14)
-const MANSION_BALLROOM_FROM_NURSERY := MANSION_ORIGIN + Vector2i(22, 10)
-const MANSION_BALLROOM_RETURN := MANSION_ORIGIN + Vector2i(21, 10)
-const MANSION_NURSERY_FROM_BALLROOM := MANSION_ORIGIN + Vector2i(15, 15)
-# The servants' route becomes a genuine loop after the opening clue sequence,
-# allowing a return to the foyer without replaying the archive corridor.
-const MANSION_FOYER_SHORTCUT := MANSION_ORIGIN + Vector2i(1, 6)
-const MANSION_GALLERY_SHORTCUT := MANSION_ORIGIN + Vector2i(1, 16)
 const STATION_DOCK_TO_MESS := STATION_ORIGIN + Vector2i(6, 4)
 const STATION_MESS_FROM_DOCK := STATION_ORIGIN + Vector2i(11, 5)
 const STATION_MESS_RETURN := STATION_ORIGIN + Vector2i(11, 4)
@@ -172,6 +152,12 @@ const EMPYREAL_GROUND_SCRIPT := preload("res://ben_rpg/world/campaign_empyreal_g
 const FROSTHOLD_FOREGROUND_SCRIPT := preload("res://ben_rpg/world/campaign_frosthold_foreground.gd")
 const PRIMEVAL_FOREGROUND_SCRIPT := preload("res://ben_rpg/world/campaign_primeval_foreground.gd")
 const HELIOS_FOREGROUND_SCRIPT := preload("res://ben_rpg/world/campaign_helios_foreground.gd")
+const MANSION_LEGACY_ADAPTER := preload("res://ben_rpg/world/campaign_mansion_legacy_adapter.gd")
+const ROOM_STREAMER_SCRIPT := preload("res://ben_rpg/world/campaign_room_streamer.gd")
+const ROOM_REGISTRY := preload("res://ben_rpg/world/campaign_room_registry.gd")
+const NAVIGATION_BUILDER := preload("res://ben_rpg/world/campaign_navigation_builder.gd")
+const TRANSITION_ROUTER := preload("res://ben_rpg/world/campaign_transition_router.gd")
+const ROOM_RUNTIME_SCRIPT := preload("res://ben_rpg/world/campaign_room_runtime.gd")
 const WEATHER_OVERLAY_SCRIPT := preload("res://ben_rpg/world/campaign_weather_overlay.gd")
 const AREA_TRANSITION := preload("res://src/field/cutscenes/templates/area_transitions/area_transition.tscn")
 const RESTRICTED_AREA_TRANSITION := preload("res://ben_rpg/world/restricted_area_transition.tscn")
@@ -233,6 +219,8 @@ const FACILITY_PLOTS := [
 var _camera_area := ""
 var _navigation: GameboardLayer
 var _visual: CampaignMapVisual
+var _room_streamer: Node
+var _room_runtime: Node
 var _empyreal_ground
 var _mansion_foreground
 var _town_foreground
@@ -297,6 +285,9 @@ func _enter_tree() -> void:
 	world.name = "CampaignWorld"
 	world.y_sort_enabled = true
 	map.add_child(world)
+	_room_streamer = ROOM_STREAMER_SCRIPT.new()
+	_room_streamer.name = "RoomStreamer"
+	world.add_child(_room_streamer)
 	# Keep the campaign's established public nodes reachable while beginning the
 	# renderer migration with real canvas layers.  Future map migrations can move
 	# interactions into these groups without changing the world root again.
@@ -336,6 +327,10 @@ func _enter_tree() -> void:
 	low_decoration_layer.add_child(_sandbox_objects)
 	_navigation = _create_navigation_layer()
 	navigation_layer.add_child(_navigation)
+	_room_runtime = ROOM_RUNTIME_SCRIPT.new()
+	_room_runtime.name = "ManifestRoomRuntime"
+	_room_runtime.call(&"configure", _room_streamer, _navigation)
+	world.add_child(_room_runtime)
 	_resident_manager = TOWN_RESIDENT_MANAGER_SCRIPT.new()
 	_resident_manager.name = "TownResidents"
 	_resident_manager.campaign = self
@@ -657,7 +652,14 @@ func _update_camera_limits(force := false) -> void:
 		return
 	var current_cell := Gameboard.pixel_to_cell(gamepiece.position)
 	var area := "lab"
-	if Rect2i(EMPYREAL_ORIGIN, EMPYREAL_SIZE).has_point(current_cell):
+	var manifest_room_id := StringName(_room_runtime.call(&"room_at_cell", current_cell)) if _room_runtime else &""
+	if manifest_room_id == &"":
+		manifest_room_id = ROOM_REGISTRY.room_id_at_world_cell(current_cell)
+		if manifest_room_id != &"" and _room_runtime:
+			_room_runtime.call(&"activate", manifest_room_id)
+	if manifest_room_id != &"":
+		area = "manifest:%s" % manifest_room_id
+	elif Rect2i(EMPYREAL_ORIGIN, EMPYREAL_SIZE).has_point(current_cell):
 		var empyreal_local := current_cell - EMPYREAL_ORIGIN
 		if empyreal_local.y >= 10 and empyreal_local.x >= 20:
 			area = "empyreal_tribunal"
@@ -730,22 +732,17 @@ func _update_camera_limits(force := false) -> void:
 		else:
 			area = "primeval_grove"
 	elif Rect2i(MANSION_ORIGIN, MANSION_SIZE).has_point(current_cell):
-		var mansion_local := current_cell - MANSION_ORIGIN
-		if mansion_local.x >= 20:
-			area = "mansion_ballroom"
-		elif mansion_local.y >= 10 and mansion_local.x >= 10:
-			area = "mansion_nursery"
-		elif mansion_local.y >= 10:
-			area = "mansion_gallery"
-		elif mansion_local.x >= 10:
-			area = "mansion_archive"
-		else:
-			area = "mansion_foyer"
+		area = String(MANSION_LEGACY_ADAPTER.area_for_cell(current_cell))
 	elif current_cell.x >= TOWN_ORIGIN.x:
 		area = "town"
 	if not force and area == _camera_area:
 		return
 	_camera_area = area
+	if _room_streamer:
+		if manifest_room_id != &"":
+			_room_streamer.call(&"activate_room", manifest_room_id)
+		else:
+			_room_streamer.call(&"activate_legacy_mansion_area", StringName(area))
 	_sync_boss_marker_visibility(area)
 	if _visual:
 		_visual.set_active_area(StringName(area))
@@ -771,7 +768,7 @@ func _update_camera_limits(force := false) -> void:
 		_weather_overlay.set_active_area(StringName(area))
 	if area == "town":
 		CampaignState.mark_story_flag(&"town_entered")
-	elif area.begins_with("mansion"):
+	elif area.begins_with("mansion") or manifest_room_id.begins_with("HM-"):
 		CampaignState.mark_story_flag(&"mansion_entered")
 	elif area.begins_with("station"):
 		CampaignState.mark_story_flag(&"asterion_entered")
@@ -787,24 +784,17 @@ func _update_camera_limits(force := false) -> void:
 		CampaignState.mark_story_flag(&"empyreal_entered")
 	var origin := Vector2i.ZERO
 	var size := LAB_SIZE
-	if area == "town":
+	if manifest_room_id != &"":
+		var manifest_definition := ROOM_REGISTRY.room(manifest_room_id)
+		origin = manifest_definition.get("worldOrigin", Vector2i.ZERO)
+		size = manifest_definition.get("dimensions", Vector2i.ZERO)
+	elif area == "town":
 		origin = TOWN_ORIGIN
 		size = TOWN_SIZE
-	elif area == "mansion_foyer":
-		origin = MANSION_ORIGIN
-		size = Vector2i(8, 8)
-	elif area == "mansion_archive":
-		origin = MANSION_ORIGIN + Vector2i(10, 0)
-		size = Vector2i(8, 8)
-	elif area == "mansion_gallery":
-		origin = MANSION_ORIGIN + Vector2i(0, 10)
-		size = Vector2i(8, 8)
-	elif area == "mansion_nursery":
-		origin = MANSION_ORIGIN + Vector2i(10, 10)
-		size = Vector2i(8, 8)
-	elif area == "mansion_ballroom":
-		origin = MANSION_ORIGIN + Vector2i(20, 5)
-		size = Vector2i(8, 8)
+	elif MANSION_LEGACY_ADAPTER.has_area(StringName(area)):
+		var mansion_bounds: Rect2i = MANSION_LEGACY_ADAPTER.bounds_for_area(StringName(area))
+		origin = mansion_bounds.position
+		size = mansion_bounds.size
 	elif area == "station_dock":
 		origin = STATION_ORIGIN
 		size = Vector2i(8, 8)
@@ -902,7 +892,7 @@ func _update_camera_limits(force := false) -> void:
 	# An 8x8 room is 384px tall. At the old 2x zoom it became 768px tall in a
 	# 540px window, permanently cropping the back wall and its authored props.
 	# 1.25x frames the complete 480px room while keeping native pixel art crisp.
-	Camera.zoom = Vector2(1.25, 1.25) if area.begins_with("station") or area.begins_with("primeval") or area.begins_with("helios") or area.begins_with("frosthold") or area.begins_with("moonpetal") or area.begins_with("empyreal") else (Vector2(2.0, 2.0) if area.begins_with("mansion") else Vector2.ONE)
+	Camera.zoom = Vector2.ONE if manifest_room_id != &"" else (Vector2(1.25, 1.25) if area.begins_with("station") or area.begins_with("primeval") or area.begins_with("helios") or area.begins_with("frosthold") or area.begins_with("moonpetal") or area.begins_with("empyreal") else (Vector2(2.0, 2.0) if area.begins_with("mansion") else Vector2.ONE))
 	# Main is deliberately scaled to preserve OpenRPG's 1920x1080 UI while
 	# presenting these 48px field tiles at one output pixel per source pixel.
 	# Camera2D limits use global canvas coordinates, so include that scale.
@@ -1255,8 +1245,12 @@ func _create_mansion_transitions(plot_index: int) -> void:
 	var local_door := Vector2i(plot.position.x + plot.size.x / 2, plot.end.y - 1)
 	var town_door := TOWN_ORIGIN + local_door
 	var town_return := TOWN_ORIGIN + Vector2i(local_door.x, plot.end.y)
-	world.add_child(_create_restricted_transition("HauntedMansionEntrance", town_door, MANSION_SPAWN, town_return, &"haunted_mansion"))
-	world.add_child(_create_transition("HauntedMansionExit", MANSION_EXIT, town_return))
+	var entry_room := ROOM_REGISTRY.room(&"HM-01")
+	var entry_origin: Vector2i = entry_room.get("worldOrigin", MANSION_ORIGIN)
+	var entry_port: Vector2i = (entry_room.get("portCells", {}) as Dictionary).get(&"Nw", Vector2i.ZERO)
+	var entry_arrival := entry_origin + TRANSITION_ROUTER.safe_arrival_cell(&"HM-01", &"Nw")
+	world.add_child(_create_restricted_transition("HauntedMansionEntrance", town_door, entry_arrival, town_return, &"haunted_mansion"))
+	world.add_child(_create_transition("HauntedMansionExit", entry_origin + entry_port, town_return))
 
 
 func _create_asterion_transitions(plot_index: int) -> void:
@@ -1569,6 +1563,18 @@ func _create_navigation_layer() -> GameboardLayer:
 			var is_blocked := blocked.has(cell)
 			layer.set_cell(cell, 0, blocked_tile if is_blocked else clear_tile, 0)
 			(blocked_cells if is_blocked else cleared_cells).append(cell)
+	for room_id in ROOM_REGISTRY.streamed_room_ids():
+		var definition := ROOM_REGISTRY.room(room_id)
+		var room_origin: Vector2i = definition.get("worldOrigin", Vector2i.ZERO)
+		var navigation_record := NAVIGATION_BUILDER.navigation_record(room_id)
+		var room_dimensions: Vector2i = navigation_record.get("dimensions", Vector2i.ZERO)
+		var walkable: Dictionary = navigation_record.get("walkable", {})
+		for y in range(room_dimensions.y):
+			for x in range(room_dimensions.x):
+				var cell := room_origin + Vector2i(x, y)
+				var is_blocked := not walkable.has(Vector2i(x, y))
+				layer.set_cell(cell, 0, blocked_tile if is_blocked else clear_tile, 0)
+				(blocked_cells if is_blocked else cleared_cells).append(cell)
 	# Programmatic TileMap cells are populated before the node's _ready(), so its
 	# automatic update can precede Gameboard's signal registration. Re-announce
 	# the initial state immediately after registration to build the path graph.
@@ -1637,9 +1643,9 @@ func _blocked_cells() -> Dictionary:
 	blocked[MANSION_ORIGIN + Vector2i(16, 5)] = true
 	blocked[MANSION_ORIGIN + Vector2i(24, 9)] = true
 	if not CampaignState.story_flags.get(&"mansion_first_room_complete", false):
-		blocked[MANSION_PASSAGE_DOOR] = true
+		blocked[MANSION_LEGACY_ADAPTER.passage_gate_cell()] = true
 	if not CampaignState.story_flags.get(&"mansion_ballroom_open", false):
-		blocked[MANSION_NURSERY_TO_BALLROOM] = true
+		blocked[MANSION_LEGACY_ADAPTER.ballroom_gate_cell()] = true
 	blocked.erase(MANSION_EXIT)
 
 	# Asterion's painted rooms visibly expose an eight-wide, four-cell-deep floor.
@@ -2559,24 +2565,18 @@ func _update_mansion_passage() -> void:
 		return
 	var is_open: bool = bool(CampaignState.story_flags.get(&"mansion_first_room_complete", false))
 	var atlas_cell: Vector2i = Vector2i(2, 2) if is_open else Vector2i(1, 4)
-	_navigation.set_cell(MANSION_PASSAGE_DOOR, 0, atlas_cell, 0)
+	var gate_cell := MANSION_LEGACY_ADAPTER.passage_gate_cell()
+	_navigation.set_cell(gate_cell, 0, atlas_cell, 0)
 	var cleared: Array[Vector2i] = []
 	var blocked: Array[Vector2i] = []
-	(cleared if is_open else blocked).append(MANSION_PASSAGE_DOOR)
+	(cleared if is_open else blocked).append(gate_cell)
 	_navigation.cells_changed.emit(cleared, blocked)
 	if not is_open:
 		return
 	var world := get_node_or_null("Field/Map/CampaignWorld")
 	if not world or world.has_node("MansionServantsPassage"):
 		return
-	world.add_child(_create_transition("MansionServantsPassage", MANSION_PASSAGE_DOOR, MANSION_ARCHIVE_ARRIVAL))
-	world.add_child(_create_transition("MansionServantsPassageReturn", MANSION_PASSAGE_RETURN, MANSION_FOYER_RETURN))
-	world.add_child(_create_transition("MansionArchiveToGallery", MANSION_ARCHIVE_TO_GALLERY, MANSION_GALLERY_FROM_ARCHIVE))
-	world.add_child(_create_transition("MansionGalleryToArchive", MANSION_GALLERY_RETURN, MANSION_ARCHIVE_FROM_GALLERY))
-	world.add_child(_create_transition("MansionGalleryToNursery", MANSION_GALLERY_TO_NURSERY, MANSION_NURSERY_FROM_GALLERY))
-	world.add_child(_create_transition("MansionNurseryToGallery", MANSION_NURSERY_RETURN, MANSION_GALLERY_FROM_NURSERY))
-	world.add_child(_create_transition("MansionFoyerServiceShortcut", MANSION_FOYER_SHORTCUT, MANSION_GALLERY_SHORTCUT))
-	world.add_child(_create_transition("MansionGalleryServiceShortcut", MANSION_GALLERY_SHORTCUT, MANSION_FOYER_SHORTCUT))
+	_add_mansion_transitions(world, MANSION_LEGACY_ADAPTER.passage_transition_definitions())
 
 
 func _update_mansion_ballroom_gate() -> void:
@@ -2584,18 +2584,26 @@ func _update_mansion_ballroom_gate() -> void:
 		return
 	var is_open := bool(CampaignState.story_flags.get(&"mansion_ballroom_open", false))
 	var atlas_cell := Vector2i(2, 2) if is_open else Vector2i(1, 4)
-	_navigation.set_cell(MANSION_NURSERY_TO_BALLROOM, 0, atlas_cell, 0)
+	var gate_cell := MANSION_LEGACY_ADAPTER.ballroom_gate_cell()
+	_navigation.set_cell(gate_cell, 0, atlas_cell, 0)
 	var cleared: Array[Vector2i] = []
 	var blocked: Array[Vector2i] = []
-	(cleared if is_open else blocked).append(MANSION_NURSERY_TO_BALLROOM)
+	(cleared if is_open else blocked).append(gate_cell)
 	_navigation.cells_changed.emit(cleared, blocked)
 	if not is_open:
 		return
 	var world := get_node_or_null("Field/Map/CampaignWorld")
 	if not world or world.has_node("MansionNurseryToBallroom"):
 		return
-	world.add_child(_create_transition("MansionNurseryToBallroom", MANSION_NURSERY_TO_BALLROOM, MANSION_BALLROOM_FROM_NURSERY))
-	world.add_child(_create_transition("MansionBallroomToNursery", MANSION_BALLROOM_RETURN, MANSION_NURSERY_FROM_BALLROOM))
+	_add_mansion_transitions(world, MANSION_LEGACY_ADAPTER.ballroom_transition_definitions())
+
+
+func _add_mansion_transitions(world: Node, definitions: Array[Dictionary]) -> void:
+	for definition in definitions:
+		var transition_name: String = String(definition[&"name"])
+		var source_cell: Vector2i = definition[&"from"]
+		var arrival_cell: Vector2i = definition[&"to"]
+		world.add_child(_create_transition(transition_name, source_cell, arrival_cell))
 
 
 func _add_boundaries(blocked: Dictionary, origin: Vector2i, size: Vector2i) -> void:

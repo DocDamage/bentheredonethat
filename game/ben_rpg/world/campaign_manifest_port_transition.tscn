@@ -1,0 +1,7 @@
+[gd_scene load_steps=3 format=3]
+
+[ext_resource type="PackedScene" path="res://src/field/cutscenes/templates/area_transitions/area_transition.tscn" id="1"]
+[ext_resource type="Script" path="res://ben_rpg/world/campaign_manifest_port_transition.gd" id="2"]
+
+[node name="ManifestPortTransition" instance=ExtResource("1")]
+script = ExtResource("2")

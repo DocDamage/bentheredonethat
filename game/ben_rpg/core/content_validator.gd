@@ -9,6 +9,13 @@ const ALLY_KINDS := [&"heal", &"item_heal", &"item_mp", &"revive", &"cleanse", &
 const SAVE_MIGRATOR := preload("res://ben_rpg/core/save_migrator.gd")
 const SETTINGS_REPOSITORY := preload("res://ben_rpg/core/settings_repository.gd")
 const CAMPAIGN_BALANCE_HARNESS := preload("res://ben_rpg/core/campaign_balance_harness.gd")
+const CAMPAIGN_ROOM_REGISTRY := preload("res://ben_rpg/world/campaign_room_registry.gd")
+const MANSION_LEGACY_ADAPTER := preload("res://ben_rpg/world/campaign_mansion_legacy_adapter.gd")
+const CAMPAIGN_ROOM_STREAMER := preload("res://ben_rpg/world/campaign_room_streamer.gd")
+const CAMPAIGN_TRANSITION_ROUTER := preload("res://ben_rpg/world/campaign_transition_router.gd")
+const CAMPAIGN_NAVIGATION_BUILDER := preload("res://ben_rpg/world/campaign_navigation_builder.gd")
+const CAMPAIGN_CAMERA_CONTROLLER := preload("res://ben_rpg/world/campaign_camera_controller.gd")
+const CAMPAIGN_POPULATION_SCHEDULER := preload("res://ben_rpg/world/campaign_population_scheduler.gd")
 
 
 static func validate_all() -> PackedStringArray:
@@ -25,7 +32,25 @@ static func validate_all() -> PackedStringArray:
 	_validate_skill_trees(errors)
 	_validate_balance_contracts(errors)
 	_validate_persistence_contracts(errors)
+	_validate_room_registry(errors)
 	return PackedStringArray(errors)
+
+
+static func _validate_room_registry(errors: Array[String]) -> void:
+	for error in CAMPAIGN_ROOM_REGISTRY.validate():
+		errors.append(error)
+	for error in MANSION_LEGACY_ADAPTER.validate():
+		errors.append(error)
+	for error in CAMPAIGN_ROOM_STREAMER.validate():
+		errors.append(error)
+	for error in CAMPAIGN_TRANSITION_ROUTER.validate():
+		errors.append(error)
+	for error in CAMPAIGN_NAVIGATION_BUILDER.validate():
+		errors.append(error)
+	for error in CAMPAIGN_CAMERA_CONTROLLER.validate():
+		errors.append(error)
+	for error in CAMPAIGN_POPULATION_SCHEDULER.validate():
+		errors.append(error)
 
 
 static func _validate_actions(errors: Array[String]) -> void:

@@ -1668,10 +1668,10 @@ Complete these tasks before adding new campaign content:
    Asterion, and Primeval using their locked primary Tilesets kits; approve
    density, palette, perspective, character height, heading-free crops, and
    foot-anchor conversions.
-17. [ ] Add the population-registry schema and validation for stable identity,
+17. [x] Add the population-registry schema and validation for stable identity,
    canonical home, eight directions, story phase, route occupancy, profile, and
    provenance before placing new residents by hand.
-18. [ ] Add a release-code check that rejects direct references to all three
+18. [x] Add a release-code check that rejects direct references to all three
    local source roots: `assets/Tilesets`, `assets/EXPANSION`, and the SakPix
    staging tree.
 19. [ ] Write the Mansion, Asterion, and Primeval work-package records against
