@@ -1010,8 +1010,7 @@ func _ensure_facility_service(plot_index: int, facility_name: String) -> void:
 		service.menu = _campaign_menu
 		world.add_child(service)
 	var plot: Rect2i = FACILITY_PLOTS[plot_index]
-	var local_door := Vector2i(plot.position.x + plot.size.x / 2, plot.end.y - 1)
-	service.position = Gameboard.cell_to_pixel(TOWN_ORIGIN + local_door)
+	service.position = Gameboard.cell_to_pixel(FACILITY_NAVIGATION.door_cell(TOWN_ORIGIN, plot))
 
 
 func _restore_campaign_state() -> void:
@@ -1136,7 +1135,7 @@ func sandbox_required_routes_reachable() -> bool:
 	required_cells.append(lab_origin + Vector2i(int(lab_footprint.x / 2), lab_footprint.y))
 	for plot_index in CampaignState.built_facilities.keys():
 		var plot: Rect2i = FACILITY_PLOTS[int(plot_index)]
-		required_cells.append(TOWN_ORIGIN + Vector2i(plot.position.x + int(plot.size.x / 2), plot.end.y - 1))
+		required_cells.append(FACILITY_NAVIGATION.door_cell(TOWN_ORIGIN, plot))
 	for target in required_cells:
 		if not Gameboard.pathfinder.has_cell(target):
 			return false
@@ -1293,9 +1292,8 @@ func _create_mansion_transitions(plot_index: int) -> void:
 	if not world or world.has_node("HauntedMansionEntrance"):
 		return
 	var plot: Rect2i = FACILITY_PLOTS[plot_index]
-	var local_door := Vector2i(plot.position.x + plot.size.x / 2, plot.end.y - 1)
-	var town_door := TOWN_ORIGIN + local_door
-	var town_return := TOWN_ORIGIN + Vector2i(local_door.x, plot.end.y)
+	var town_door := FACILITY_NAVIGATION.door_cell(TOWN_ORIGIN, plot)
+	var town_return := FACILITY_NAVIGATION.return_cell(TOWN_ORIGIN, plot)
 	var entry_room := ROOM_REGISTRY.room(&"HM-01")
 	var entry_origin: Vector2i = entry_room.get("worldOrigin", MANSION_ORIGIN)
 	var entry_port: Vector2i = (entry_room.get("portCells", {}) as Dictionary).get(&"Nw", Vector2i.ZERO)
@@ -1309,9 +1307,8 @@ func _create_asterion_transitions(plot_index: int) -> void:
 	if not world or world.has_node("AsterionStationEntrance"):
 		return
 	var plot: Rect2i = FACILITY_PLOTS[plot_index]
-	var local_door := Vector2i(plot.position.x + plot.size.x / 2, plot.end.y - 1)
-	var town_door := TOWN_ORIGIN + local_door
-	var town_return := TOWN_ORIGIN + Vector2i(local_door.x, plot.end.y)
+	var town_door := FACILITY_NAVIGATION.door_cell(TOWN_ORIGIN, plot)
+	var town_return := FACILITY_NAVIGATION.return_cell(TOWN_ORIGIN, plot)
 	var entry_room := ROOM_REGISTRY.room(&"AS-01")
 	var entry_origin: Vector2i = entry_room.get("worldOrigin", STATION_ORIGIN)
 	var entry_port: Vector2i = (entry_room.get("portCells", {}) as Dictionary).get(&"Nw", Vector2i.ZERO)
@@ -1335,9 +1332,8 @@ func _create_primeval_transitions(plot_index: int) -> void:
 	if not world or world.has_node("PrimevalExpanseEntrance"):
 		return
 	var plot: Rect2i = FACILITY_PLOTS[plot_index]
-	var local_door := Vector2i(plot.position.x + plot.size.x / 2, plot.end.y - 1)
-	var town_door := TOWN_ORIGIN + local_door
-	var town_return := TOWN_ORIGIN + Vector2i(local_door.x, plot.end.y)
+	var town_door := FACILITY_NAVIGATION.door_cell(TOWN_ORIGIN, plot)
+	var town_return := FACILITY_NAVIGATION.return_cell(TOWN_ORIGIN, plot)
 	var entry_room := ROOM_REGISTRY.room(&"PV-01")
 	var entry_origin: Vector2i = entry_room.get("worldOrigin", PRIMEVAL_ORIGIN)
 	var entry_port: Vector2i = (entry_room.get("portCells", {}) as Dictionary).get(&"Nw", Vector2i.ZERO)
@@ -1356,9 +1352,8 @@ func _create_helios_transitions(plot_index: int) -> void:
 	if not world or world.has_node("HeliosArcologyEntrance"):
 		return
 	var plot: Rect2i = FACILITY_PLOTS[plot_index]
-	var local_door := Vector2i(plot.position.x + plot.size.x / 2, plot.end.y - 1)
-	var town_door := TOWN_ORIGIN + local_door
-	var town_return := TOWN_ORIGIN + Vector2i(local_door.x, plot.end.y)
+	var town_door := FACILITY_NAVIGATION.door_cell(TOWN_ORIGIN, plot)
+	var town_return := FACILITY_NAVIGATION.return_cell(TOWN_ORIGIN, plot)
 	world.add_child(_create_transition("HeliosArcologyEntrance", town_door, HELIOS_SPAWN))
 	world.add_child(_create_transition("HeliosArcologyExit", HELIOS_EXIT, town_return))
 	world.add_child(_create_transition("HeliosSkybridgeToMarket", HELIOS_SKYBRIDGE_TO_MARKET, HELIOS_MARKET_FROM_SKYBRIDGE))
@@ -1375,9 +1370,8 @@ func _create_frosthold_transitions(plot_index: int) -> void:
 	if not world or world.has_node("FrostholdKingdomEntrance"):
 		return
 	var plot: Rect2i = FACILITY_PLOTS[plot_index]
-	var local_door := Vector2i(plot.position.x + plot.size.x / 2, plot.end.y - 1)
-	var town_door := TOWN_ORIGIN + local_door
-	var town_return := TOWN_ORIGIN + Vector2i(local_door.x, plot.end.y)
+	var town_door := FACILITY_NAVIGATION.door_cell(TOWN_ORIGIN, plot)
+	var town_return := FACILITY_NAVIGATION.return_cell(TOWN_ORIGIN, plot)
 	world.add_child(_create_transition("FrostholdKingdomEntrance", town_door, FROSTHOLD_SPAWN))
 	world.add_child(_create_transition("FrostholdKingdomExit", FROSTHOLD_EXIT, town_return))
 	world.add_child(_create_transition("FrostholdGateToMarket", FROSTHOLD_GATE_TO_MARKET, FROSTHOLD_MARKET_FROM_GATE))
@@ -1394,9 +1388,8 @@ func _create_moonpetal_transitions(plot_index: int) -> void:
 	if not world or world.has_node("MoonpetalCourtEntrance"):
 		return
 	var plot: Rect2i = FACILITY_PLOTS[plot_index]
-	var local_door := Vector2i(plot.position.x + plot.size.x / 2, plot.end.y - 1)
-	var town_door := TOWN_ORIGIN + local_door
-	var town_return := TOWN_ORIGIN + Vector2i(local_door.x, plot.end.y)
+	var town_door := FACILITY_NAVIGATION.door_cell(TOWN_ORIGIN, plot)
+	var town_return := FACILITY_NAVIGATION.return_cell(TOWN_ORIGIN, plot)
 	world.add_child(_create_transition("MoonpetalCourtEntrance", town_door, MOONPETAL_SPAWN))
 	world.add_child(_create_transition("MoonpetalCourtExit", MOONPETAL_EXIT, town_return))
 	world.add_child(_create_transition("MoonpetalGateToCourt", MOONPETAL_GATE_TO_COURT, MOONPETAL_COURT_FROM_GATE))
@@ -1413,9 +1406,8 @@ func _create_empyreal_transitions(plot_index: int) -> void:
 	if not world or world.has_node("EmpyrealCourtEntrance"):
 		return
 	var plot: Rect2i = FACILITY_PLOTS[plot_index]
-	var local_door := Vector2i(plot.position.x + plot.size.x / 2, plot.end.y - 1)
-	var town_door := TOWN_ORIGIN + local_door
-	var town_return := TOWN_ORIGIN + Vector2i(local_door.x, plot.end.y)
+	var town_door := FACILITY_NAVIGATION.door_cell(TOWN_ORIGIN, plot)
+	var town_return := FACILITY_NAVIGATION.return_cell(TOWN_ORIGIN, plot)
 	world.add_child(_create_transition("EmpyrealCourtEntrance", town_door, EMPYREAL_SPAWN))
 	world.add_child(_create_transition("EmpyrealCourtExit", EMPYREAL_EXIT, town_return))
 	world.add_child(_create_transition("EmpyrealLandingToGarden", EMPYREAL_LANDING_TO_GARDEN, EMPYREAL_GARDEN_FROM_LANDING))
