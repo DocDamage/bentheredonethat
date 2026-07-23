@@ -3021,6 +3021,14 @@ limit:
   technical review evidence only; it does not satisfy the 192-location /
   384-capture target or grant visual, input, licensing, performance, product,
   or release acceptance.
+- The runtime staging grid now spans every manifest world origin, and a live
+  controller fixture has exercised one D-pad move from every 264 declared
+  internal-port arrival across all 102 rooms. The capture runner also verifies
+  that each frame's target cell is live and that the player remains there before
+  writing the image; the refreshed 238-frame `controller-staging-fix` artifact
+  is still `visual_review_only`. This is narrow arrival/movement and technical
+  capture evidence, not full controller, visual, licensing, or release
+  acceptance.
 - The full isolated Godot smoke matrix completed cleanly after the manifest
   port handoff change: all 125 retained scene logs in
   `test-artifacts/20260723-124703-6a6a6f3a` contain no test failure, assertion,

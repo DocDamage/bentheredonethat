@@ -59,6 +59,10 @@ func _capture_variant(variant: Dictionary, capture_tag: String) -> bool:
 
 func _capture_state(state_id: StringName, flags: Dictionary, capture_tag: String, requested_room_ids: Array = [], variant: Dictionary = {}) -> bool:
 	CampaignState.reset_new_game()
+	# A capture is a camera/room review input, not a party-composition test. Keep
+	# followers out of the staging cells so a follower cannot make _place_player
+	# silently fall back to the lab spawn.
+	CampaignState.party = [&"ben"]
 	for flag in flags:
 		CampaignState.story_flags[flag] = flags[flag]
 	CampaignState.state_changed.emit()
@@ -81,7 +85,18 @@ func _capture_state(state_id: StringName, flags: Dictionary, capture_tag: String
 			main.queue_free()
 			_fail("%s has no safe capture cell." % room_id)
 			return false
-		main._place_player(definition.get("worldOrigin", Vector2i.ZERO) + capture_cell)
+		var target_cell: Vector2i = definition.get("worldOrigin", Vector2i.ZERO) + capture_cell
+		var current_player_cell := GamepieceRegistry.get_cell(Player.gamepiece) if Player.gamepiece else Gameboard.INVALID_CELL
+		if not Gameboard.pathfinder.has_cell(target_cell) and current_player_cell != target_cell:
+			main.queue_free()
+			_fail("%s capture cell %s is not live after activation." % [room_id, target_cell])
+			return false
+		main._place_player(target_cell)
+		await get_tree().process_frame
+		if Player.gamepiece == null or GamepieceRegistry.get_cell(Player.gamepiece) != target_cell:
+			main.queue_free()
+			_fail("%s capture placement did not remain at %s." % [room_id, target_cell])
+			return false
 		await _settle()
 		var capture_path := "%s/%s-%s-native-%s.png" % [CAPTURE_ROOT, String(room_id).to_lower(), state_id, capture_tag]
 		if not CAPTURE_GUARD.save_viewport_png(get_viewport(), capture_path, "Core manifest %s %s" % [room_id, state_id]):

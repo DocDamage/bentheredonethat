@@ -547,9 +547,10 @@ func _place_player(requested_cell: Vector2i) -> void:
 	if player.is_moving():
 		player.stop()
 	var destination := requested_cell
-	if not Gameboard.pathfinder.has_cell(destination) or GamepieceRegistry.get_gamepiece(destination):
-		destination = LAB_SPAWN
 	var current := GamepieceRegistry.get_cell(player)
+	var occupant := GamepieceRegistry.get_gamepiece(destination)
+	if not Gameboard.pathfinder.has_cell(destination) or (occupant != null and occupant != player):
+		destination = LAB_SPAWN
 	if current != destination:
 		GamepieceRegistry.move_gamepiece(player, destination)
 	player.position = Gameboard.cell_to_pixel(destination)
