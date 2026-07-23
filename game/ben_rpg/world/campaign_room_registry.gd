@@ -268,6 +268,8 @@ static func room(room_id: StringName) -> Dictionary:
 	elif room_id == &"HE-06": definition.merge({"scenePath":"res://ben_rpg/world/rooms/helios_clinic.tscn","worldOrigin":Vector2i(450,0),"enabledPortIds":[&"Nw",&"Ne"]},true)
 	elif room_id == &"HE-07": definition.merge({"scenePath":"res://ben_rpg/world/rooms/helios_transit_exchange.tscn","worldOrigin":Vector2i(450,0),"enabledPortIds":[&"Nw",&"Ne",&"E1",&"E2",&"Se"],"featureIds":[&"transit_daylight_node",&"core_route"]},true)
 	elif room_id == &"HE-08": definition.merge({"scenePath":"res://ben_rpg/world/rooms/helios_solar_core.tscn","worldOrigin":Vector2i(450,0),"enabledPortIds":[&"Nw"],"featureIds":[&"civic_sun_boss",&"midnight_restore"]},true)
+	elif room_id == &"HE-09": definition.merge({"scenePath":"res://ben_rpg/world/rooms/helios_service_undercity.tscn","worldOrigin":Vector2i(450,0),"enabledPortIds":[&"Nw",&"Ne"]},true)
+	elif room_id == &"HE-10": definition.merge({"scenePath":"res://ben_rpg/world/rooms/helios_rooftop_night_garden.tscn","worldOrigin":Vector2i(450,0),"enabledPortIds":[&"Nw",&"Ne"]},true)
 	elif room_id == &"PV-01":
 		definition.merge({"scenePath": "res://ben_rpg/world/rooms/primeval_thunderfern_grove.tscn", "worldOrigin": Vector2i(400, 0), "enabledPortIds": [&"Nw", &"Ne", &"E1"], "portGates": {&"E1": &"primeval_terminal_decoded"}, "featureIds": [&"grove_intro_battle", &"looping_clearings", &"canopy_occlusion", &"tyrant_tracks"]}, true)
 	elif room_id == &"PV-02":
