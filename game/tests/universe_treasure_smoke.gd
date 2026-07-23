@@ -2,11 +2,11 @@ extends Node
 
 
 const CACHES := {
-	&"primeval_ruins_plinth": {"node": "PrimevalRuinsTreasure", "cell": Vector2i(98, 35), "area": &"primeval_ruins", "flag": &"primeval_ruins_treasure_claimed"},
-	&"helios_market_terminal": {"node": "HeliosMarketTreasure", "cell": Vector2i(125, 38), "area": &"helios_market", "flag": &"helios_market_treasure_claimed"},
-	&"frosthold_heat_cache": {"node": "FrostholdMarketTreasure", "cell": Vector2i(158, 36), "area": &"frosthold_market", "flag": &"frosthold_market_treasure_claimed"},
-	&"moonpetal_offering": {"node": "MoonpetalGardenTreasure", "cell": Vector2i(201, 35), "area": &"moonpetal_garden", "flag": &"moonpetal_garden_treasure_claimed"},
-	&"empyreal_tithe_basin": {"node": "EmpyrealGardenTreasure", "cell": Vector2i(230, 35), "area": &"empyreal_garden", "flag": &"empyreal_garden_treasure_claimed"},
+	&"primeval_ruins_plinth": {"room_id": &"PV-05", "node": "PrimevalRuinsTreasure", "cell": Vector2i(13, 8), "flag": &"primeval_ruins_treasure_claimed"},
+	&"helios_market_terminal": {"room_id": &"HE-03", "node": "HeliosMarketTreasure", "cell": Vector2i(17, 8), "flag": &"helios_market_treasure_claimed"},
+	&"frosthold_heat_cache": {"room_id": &"FR-03", "node": "FrostholdMarketTreasure", "cell": Vector2i(14, 8), "flag": &"frosthold_market_treasure_claimed"},
+	&"moonpetal_offering": {"room_id": &"MP-04", "node": "MoonpetalGardenTreasure", "cell": Vector2i(12, 8), "flag": &"moonpetal_garden_treasure_claimed"},
+	&"empyreal_tithe_basin": {"room_id": &"EM-03", "node": "EmpyrealGardenTreasure", "cell": Vector2i(14, 8), "flag": &"empyreal_garden_treasure_claimed"},
 }
 
 
@@ -32,32 +32,38 @@ func _run() -> void:
 	for _frame in range(8):
 		await get_tree().process_frame
 	var world: Node = main.get_node("Field/Map/CampaignWorld")
+	var runtime: Node = world.get_node("ManifestRoomRuntime")
+	var streamer: Node = world.get_node("RoomStreamer")
 	if CampaignState.UNIVERSE_TREASURE_CACHES.size() != CACHES.size():
 		_fail("The shared cache registry does not contain all five later universes")
 		return
 	if CampaignState.claim_universe_treasure(&"imaginary_cache").get("reason") != "unknown":
 		_fail("An unknown treasure cache was accepted")
 		return
-	var helios_cache := world.get_node("HeliosMarketTreasure") as UniverseTreasureInteraction
-	main._place_player(Vector2i(131, 38))
-	for _frame in range(3):
-		await get_tree().process_frame
-	if helios_cache.is_visible_in_tree():
+
+	runtime.call(&"activate", &"HE-04")
+	await get_tree().process_frame
+	var transit_root := streamer.call(&"active_root") as Node2D
+	if transit_root.get_node_or_null("InteractionLayer/HeliosMarketTreasure"):
 		_fail("Helios Market treasure leaked into the adjacent Transit scene")
 		return
-	main._place_player(Vector2i(121, 38))
-	for _frame in range(3):
-		await get_tree().process_frame
-	if not helios_cache.is_visible_in_tree():
-		_fail("Helios Market treasure was hidden in its authored room")
+	runtime.call(&"activate", &"HE-03")
+	await get_tree().process_frame
+	var market_root := streamer.call(&"active_root") as Node2D
+	if not market_root.get_node_or_null("InteractionLayer/HeliosMarketTreasure"):
+		_fail("Helios Market treasure was not installed in its authored room")
 		return
 
 	var expected_duckets := CampaignState.duckets
 	for cache_id in CACHES:
 		var expected: Dictionary = CACHES[cache_id]
-		var interaction := world.get_node_or_null(expected["node"]) as UniverseTreasureInteraction
-		if not interaction or interaction.cache_id != cache_id or interaction.area_id != expected["area"]:
-			_fail("Missing or misconfigured treasure interaction: %s" % expected["node"])
+		var room_id := StringName(expected["room_id"])
+		runtime.call(&"activate", room_id)
+		await get_tree().process_frame
+		var root := streamer.call(&"active_root") as Node2D
+		var interaction := root.get_node_or_null("InteractionLayer/%s" % expected["node"]) as UniverseTreasureInteraction
+		if not interaction or interaction.cache_id != cache_id or interaction.area_id != "manifest:%s" % room_id:
+			_fail("Missing or misconfigured room-scoped treasure interaction: %s" % expected["node"])
 			return
 		if Gameboard.pixel_to_cell(interaction.position) != expected["cell"]:
 			_fail("Treasure hotspot is not grounded on its authored prop: %s" % cache_id)
@@ -119,7 +125,7 @@ func _run() -> void:
 			_fail("Randomized treasure changed after reload")
 			return
 
-	print("UNIVERSE_TREASURE_SMOKE_OK caches=5 room_gated=true visible=true controller+mouse=true randomized_gear=5 supplies=true duckets=true no_duplicates=true persistence=true")
+	print("UNIVERSE_TREASURE_SMOKE_OK caches=5 room_scoped=true visible=true controller+mouse=true randomized_gear=5 supplies=true duckets=true no_duplicates=true persistence=true")
 	main.queue_free()
 	await get_tree().process_frame
 	get_tree().quit(0)

@@ -1,6 +1,7 @@
 extends Node
 
 const PRESENTATION := preload("res://ben_rpg/combat/battle_presentation_catalog.gd")
+const RECRUIT_NAVIGATION := preload("res://ben_rpg/world/campaign_recruit_navigation.gd")
 const TEST_SAVE := "user://bulkhead_warden_recruit_smoke.json"
 const SLICE_ROOT := "res://game_assets/characters/Topdown Monsters Part 1/Sliced/Bulkhead Warden"
 const IDLE_FRAME := SLICE_ROOT + "/00_idle/frame_000.png"
@@ -49,7 +50,7 @@ func _run() -> void:
 		_fail("The Warden did not appear after Asterion Station was stabilized")
 		return
 	var gamepiece: Gamepiece = world.get_node("RecruitableBulkheadWarden")
-	if Gameboard.pixel_to_cell(gamepiece.position) != Vector2i(58, 47) or gamepiece.animation == null or gamepiece.animation._sprite.scale.x > 0.82:
+	if Gameboard.pixel_to_cell(gamepiece.position) != RECRUIT_NAVIGATION.world_cell(&"bulkhead_warden") or gamepiece.animation == null or gamepiece.animation._sprite.scale.x > 0.82:
 		_fail("The supplied construct was misplaced or not animated at field-character scale")
 		return
 	var interaction = gamepiece.get_node("RecruitInteraction")

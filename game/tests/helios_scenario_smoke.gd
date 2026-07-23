@@ -28,15 +28,11 @@ func _run() -> void:
 	for _frame in range(8):
 		await get_tree().process_frame
 	var world: Node = main.get_node("Field/Map/CampaignWorld")
-	for transition_name in ["HeliosArcologyEntrance", "HeliosArcologyExit", "HeliosSkybridgeToMarket", "HeliosMarketToSkybridge", "HeliosMarketToTransit", "HeliosTransitToMarket"]:
-		if not world.has_node(transition_name):
-			_fail("Missing Helios transition: " + transition_name)
-			return
-	if not Gameboard.pathfinder.has_cell(main.HELIOS_ORIGIN + Vector2i(3, 6)):
-		_fail("The expanded gameboard did not register Helios movement cells")
-		return
-	if main._navigation.get_cell_atlas_coords(main.HELIOS_MARKET_TO_CLINIC) != Vector2i(1, 4):
-		_fail("The Recovery Clinic route was not invention-gated")
+	var runtime: Node = world.get_node("ManifestRoomRuntime")
+	var streamer: Node = world.get_node("RoomStreamer")
+	runtime.call(&"activate", &"HE-01")
+	if not runtime.has_node("ManifestPort_HE-01_Ne"):
+		_fail("The Helios entry room did not install its authored reciprocal port")
 		return
 	if not world.has_node("RecruitableNeonViper"):
 		_fail("Neon Viper did not appear in the Public Market")
@@ -54,22 +50,27 @@ func _run() -> void:
 	if CampaignState.recruit_status.get(&"neon_viper") != &"available":
 		_fail("Meeting Neon Viper did not discover the supplied recruit")
 		return
-	world.get_node("HeliosOrdinanceTerminal").apply_interaction(false)
+	runtime.call(&"activate", &"HE-03")
+	await get_tree().process_frame
+	var market_root := streamer.call(&"active_root") as Node2D
+	market_root.get_node("InteractionLayer/HeliosOrdinanceTerminal").apply_interaction(false)
 	CampaignState.duckets = 500
 	CampaignState.add_item(&"research_notes", 1, false)
 	CampaignState.add_item(&"anchor_dust", 1, false)
 	if not CampaignState.craft_invention(&"night_phase_inverter"):
 		_fail("The ordinance did not unlock Ben's Nocturnal Phase Inverter")
 		return
+	runtime.call(&"activate", &"HE-05")
 	await get_tree().process_frame
-	if main._navigation.get_cell_atlas_coords(main.HELIOS_MARKET_TO_CLINIC) != Vector2i(2, 2) or not world.has_node("HeliosMarketToClinic"):
-		_fail("The Phase Inverter did not open the Recovery Clinic route")
-		return
-	world.get_node("HeliosTransitNode").apply_interaction(false)
+	var transit_root := streamer.call(&"active_root") as Node2D
+	transit_root.get_node("InteractionLayer/HeliosTransitNode").apply_interaction(false)
 	await _trigger_and_win(controller, battle, main.HELIOS_ORIGIN + Vector2i(13, 15), &"helios_clinic_ambush")
-	world.get_node("HeliosClinicNode").apply_interaction(false)
+	runtime.call(&"activate", &"HE-06")
 	await get_tree().process_frame
-	if main._navigation.get_cell_atlas_coords(main.HELIOS_TRANSIT_TO_CORE) != Vector2i(2, 2) or not world.has_node("HeliosTransitToCore"):
+	var clinic_root := streamer.call(&"active_root") as Node2D
+	clinic_root.get_node("InteractionLayer/HeliosClinicNode").apply_interaction(false)
+	await get_tree().process_frame
+	if not CampaignState.story_flags.get(&"helios_core_open", false):
 		_fail("Disabling both daylight nodes did not open the Solar Core")
 		return
 	await _trigger_and_win(controller, battle, main.HELIOS_ORIGIN + Vector2i(23, 15), &"helios_civic_sun")

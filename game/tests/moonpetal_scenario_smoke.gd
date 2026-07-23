@@ -30,15 +30,11 @@ func _run() -> void:
 	for _frame in range(8):
 		await get_tree().process_frame
 	var world: Node = main.get_node("Field/Map/CampaignWorld")
-	for transition_name in ["MoonpetalCourtEntrance", "MoonpetalCourtExit", "MoonpetalGateToCourt", "MoonpetalCourtToGate", "MoonpetalCourtToGarden", "MoonpetalGardenToCourt"]:
-		if not world.has_node(transition_name):
-			_fail("Missing Moonpetal transition: " + transition_name)
-			return
-	if not Gameboard.pathfinder.has_cell(main.MOONPETAL_ORIGIN + Vector2i(3, 6)):
-		_fail("The expanded gameboard did not register Moonpetal movement cells")
-		return
-	if main._navigation.get_cell_atlas_coords(main.MOONPETAL_COURT_TO_BELL_WALK) != Vector2i(1, 4):
-		_fail("The Bell Walk route was not invention-gated")
+	var runtime: Node = world.get_node("ManifestRoomRuntime")
+	var streamer: Node = world.get_node("RoomStreamer")
+	runtime.call(&"activate", &"MP-01")
+	if not runtime.has_node("ManifestPort_MP-01_Ne"):
+		_fail("The Moonpetal entry room did not install its authored reciprocal port")
 		return
 	if not world.has_node("RecruitableKitsune"):
 		_fail("The supplied Kitsune Empress did not appear in Blossom Court")
@@ -56,22 +52,31 @@ func _run() -> void:
 	if CampaignState.recruit_status.get(&"kitsune_empress") != &"available":
 		_fail("Meeting the Kitsune Empress did not discover the supplied recruit")
 		return
-	world.get_node("MoonpetalVowTablet").apply_interaction(false)
+	runtime.call(&"activate", &"MP-02")
+	await get_tree().process_frame
+	var court_root := streamer.call(&"active_root") as Node2D
+	court_root.get_node("InteractionLayer/MoonpetalVowTablet").apply_interaction(false)
 	CampaignState.duckets = 800
 	CampaignState.add_item(&"research_notes", 2, false)
 	CampaignState.add_item(&"anchor_dust", 2, false)
 	if not CampaignState.craft_invention(&"veracity_lantern"):
 		_fail("The duplicated vow did not unlock Ben's Veracity Lantern")
 		return
-	world.get_node("MoonpetalGardenSeal").apply_interaction(false)
+	runtime.call(&"activate", &"MP-05")
 	await get_tree().process_frame
-	if main._navigation.get_cell_atlas_coords(main.MOONPETAL_COURT_TO_BELL_WALK) != Vector2i(2, 2) or not world.has_node("MoonpetalCourtToBellWalk"):
+	var garden_root := streamer.call(&"active_root") as Node2D
+	garden_root.get_node("InteractionLayer/MoonpetalGardenSeal").apply_interaction(false)
+	await get_tree().process_frame
+	if not CampaignState.story_flags.get(&"moonpetal_bell_walk_open", false):
 		_fail("The Lantern did not open the Bell Walk route")
 		return
 	await _trigger_and_win(controller, battle, main.MOONPETAL_ORIGIN + Vector2i(13, 15), &"moonpetal_bell_ambush")
-	world.get_node("MoonpetalPalaceSeal").apply_interaction(false)
+	runtime.call(&"activate", &"MP-07")
 	await get_tree().process_frame
-	if main._navigation.get_cell_atlas_coords(main.MOONPETAL_GARDEN_TO_PALACE) != Vector2i(2, 2) or not world.has_node("MoonpetalGardenToPalace"):
+	var palace_root := streamer.call(&"active_root") as Node2D
+	palace_root.get_node("InteractionLayer/MoonpetalPalaceSeal").apply_interaction(false)
+	await get_tree().process_frame
+	if not CampaignState.story_flags.get(&"moonpetal_palace_open", false):
 		_fail("The final vow did not open the Moon Palace")
 		return
 	await _trigger_and_win(controller, battle, main.MOONPETAL_ORIGIN + Vector2i(23, 15), &"moonpetal_magistrate_enma")

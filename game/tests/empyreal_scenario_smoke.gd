@@ -32,15 +32,11 @@ func _run() -> void:
 	for _frame in range(8):
 		await get_tree().process_frame
 	var world: Node = main.get_node("Field/Map/CampaignWorld")
-	for transition_name in ["EmpyrealCourtEntrance", "EmpyrealCourtExit", "EmpyrealLandingToGarden", "EmpyrealGardenToLanding", "EmpyrealGardenToForum", "EmpyrealForumToGarden"]:
-		if not world.has_node(transition_name):
-			_fail("Missing Empyreal transition: " + transition_name)
-			return
-	if not Gameboard.pathfinder.has_cell(main.EMPYREAL_ORIGIN + Vector2i(3, 6)):
-		_fail("The expanded gameboard did not register Empyreal movement cells")
-		return
-	if main._navigation.get_cell_atlas_coords(main.EMPYREAL_GARDEN_TO_AERIE) != Vector2i(1, 4):
-		_fail("The Reliquary Aerie route was not invention-gated")
+	var runtime: Node = world.get_node("ManifestRoomRuntime")
+	var streamer: Node = world.get_node("RoomStreamer")
+	runtime.call(&"activate", &"EM-01")
+	if not runtime.has_node("ManifestPort_EM-01_Ne"):
+		_fail("The Empyreal entry room did not install its authored reciprocal port")
 		return
 	if not world.has_node("RecruitableArchangel"):
 		_fail("The supplied Archangel Commander did not appear in the Garden")
@@ -56,22 +52,31 @@ func _run() -> void:
 	if not CampaignState.story_flags.get(&"archangel_commander_met", false):
 		_fail("Meeting the Archangel did not begin the scenario")
 		return
-	world.get_node("EmpyrealGravityOrdinance").apply_interaction(false)
+	runtime.call(&"activate", &"EM-03")
+	await get_tree().process_frame
+	var garden_root := streamer.call(&"active_root") as Node2D
+	garden_root.get_node("InteractionLayer/EmpyrealGravityOrdinance").apply_interaction(false)
 	CampaignState.duckets = 1000
 	CampaignState.add_item(&"research_notes", 2, false)
 	CampaignState.add_item(&"anchor_dust", 2, false)
 	if not CampaignState.craft_invention(&"galvanic_counterweight"):
 		_fail("Ordinance 9-G did not unlock Ben's Galvanic Counterweight")
 		return
-	world.get_node("EmpyrealAerieSeal").apply_interaction(false)
+	runtime.call(&"activate", &"EM-05")
 	await get_tree().process_frame
-	if main._navigation.get_cell_atlas_coords(main.EMPYREAL_GARDEN_TO_AERIE) != Vector2i(2, 2) or not world.has_node("EmpyrealGardenToAerie"):
+	var aerie_root := streamer.call(&"active_root") as Node2D
+	aerie_root.get_node("InteractionLayer/EmpyrealAerieSeal").apply_interaction(false)
+	await get_tree().process_frame
+	if not CampaignState.story_flags.get(&"empyreal_aerie_open", false):
 		_fail("The Counterweight did not open the Reliquary Aerie")
 		return
 	await _trigger_and_win(controller, battle, main.EMPYREAL_ORIGIN + Vector2i(13, 15), &"empyreal_aerie_ambush")
-	world.get_node("EmpyrealTribunalSeal").apply_interaction(false)
+	runtime.call(&"activate", &"EM-08")
 	await get_tree().process_frame
-	if main._navigation.get_cell_atlas_coords(main.EMPYREAL_FORUM_TO_TRIBUNAL) != Vector2i(2, 2) or not world.has_node("EmpyrealForumToTribunal"):
+	var tribunal_root := streamer.call(&"active_root") as Node2D
+	tribunal_root.get_node("InteractionLayer/EmpyrealTribunalSeal").apply_interaction(false)
+	await get_tree().process_frame
+	if not CampaignState.story_flags.get(&"empyreal_tribunal_open", false):
 		_fail("The final gravity seal did not open the Tribunal")
 		return
 	await _trigger_and_win(controller, battle, main.EMPYREAL_ORIGIN + Vector2i(23, 15), &"empyreal_high_comptroller")

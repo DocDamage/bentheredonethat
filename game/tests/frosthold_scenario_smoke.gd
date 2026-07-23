@@ -28,15 +28,11 @@ func _run() -> void:
 	for _frame in range(8):
 		await get_tree().process_frame
 	var world: Node = main.get_node("Field/Map/CampaignWorld")
-	for transition_name in ["FrostholdKingdomEntrance", "FrostholdKingdomExit", "FrostholdGateToMarket", "FrostholdMarketToGate", "FrostholdMarketToCauseway", "FrostholdCausewayToMarket"]:
-		if not world.has_node(transition_name):
-			_fail("Missing Frosthold transition: " + transition_name)
-			return
-	if not Gameboard.pathfinder.has_cell(main.FROSTHOLD_ORIGIN + Vector2i(3, 6)):
-		_fail("The expanded gameboard did not register Frosthold movement cells")
-		return
-	if main._navigation.get_cell_atlas_coords(main.FROSTHOLD_MARKET_TO_RUNE_HALL) != Vector2i(1, 4):
-		_fail("The Rune Hall route was not invention-gated")
+	var runtime: Node = world.get_node("ManifestRoomRuntime")
+	var streamer: Node = world.get_node("RoomStreamer")
+	runtime.call(&"activate", &"FR-01")
+	if not runtime.has_node("ManifestPort_FR-01_Ne"):
+		_fail("The Frosthold entry room did not install its authored reciprocal port")
 		return
 	if not world.has_node("RecruitableFrostLich"):
 		_fail("The supplied Frost Lich Emperor did not appear in the Frozen Market")
@@ -54,22 +50,31 @@ func _run() -> void:
 	if CampaignState.recruit_status.get(&"frost_lich_emperor") != &"available":
 		_fail("Meeting the Frost Lich did not discover the supplied recruit")
 		return
-	world.get_node("FrostholdHeatTaxRune").apply_interaction(false)
+	runtime.call(&"activate", &"FR-03")
+	await get_tree().process_frame
+	var market_root := streamer.call(&"active_root") as Node2D
+	market_root.get_node("InteractionLayer/FrostholdHeatTaxRune").apply_interaction(false)
 	CampaignState.duckets = 600
 	CampaignState.add_item(&"research_notes", 2, false)
 	CampaignState.add_item(&"anchor_dust", 1, false)
 	if not CampaignState.craft_invention(&"thermal_arbitration_coil"):
 		_fail("The heat-tax rune did not unlock Ben's Thermal Arbitration Coil")
 		return
-	world.get_node("FrostholdCausewaySeal").apply_interaction(false)
+	runtime.call(&"activate", &"FR-05")
 	await get_tree().process_frame
-	if main._navigation.get_cell_atlas_coords(main.FROSTHOLD_MARKET_TO_RUNE_HALL) != Vector2i(2, 2) or not world.has_node("FrostholdMarketToRuneHall"):
+	var seal_root := streamer.call(&"active_root") as Node2D
+	seal_root.get_node("InteractionLayer/FrostholdCausewaySeal").apply_interaction(false)
+	await get_tree().process_frame
+	if not CampaignState.story_flags.get(&"frosthold_causeway_seal_open", false):
 		_fail("The Coil did not open the Rune Hall route")
 		return
 	await _trigger_and_win(controller, battle, main.FROSTHOLD_ORIGIN + Vector2i(13, 15), &"frosthold_rune_ambush")
-	world.get_node("FrostholdThroneSeal").apply_interaction(false)
+	runtime.call(&"activate", &"FR-07")
 	await get_tree().process_frame
-	if main._navigation.get_cell_atlas_coords(main.FROSTHOLD_CAUSEWAY_TO_THRONE) != Vector2i(2, 2) or not world.has_node("FrostholdCausewayToThrone"):
+	var throne_root := streamer.call(&"active_root") as Node2D
+	throne_root.get_node("InteractionLayer/FrostholdThroneSeal").apply_interaction(false)
+	await get_tree().process_frame
+	if not CampaignState.story_flags.get(&"frosthold_throne_open", false):
 		_fail("The second seal did not open the Ice Throne")
 		return
 	await _trigger_and_win(controller, battle, main.FROSTHOLD_ORIGIN + Vector2i(23, 15), &"frosthold_whiteout_auditor")
