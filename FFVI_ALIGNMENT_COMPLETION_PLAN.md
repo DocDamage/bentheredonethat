@@ -3029,6 +3029,12 @@ limit:
   is still `visual_review_only`. This is narrow arrival/movement and technical
   capture evidence, not full controller, visual, licensing, or release
   acceptance.
+- The navigation characterization fixture now evaluates both the catalog and
+  active streamed Gameboard: six visible-floor/approach cells, 15 solid-scenery
+  cells, all 11 facility footprints and their door/return cells, 36 gated port
+  overlays before and after live story-flag refresh, and all 264 arrival cells
+  with at least three live follower positions. It is a migration safety net,
+  not room-by-room visual or final traversal acceptance.
 - The full isolated Godot smoke matrix completed cleanly after the manifest
   port handoff change: all 125 retained scene logs in
   `test-artifacts/20260723-124703-6a6a6f3a` contain no test failure, assertion,

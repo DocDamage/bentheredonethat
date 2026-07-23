@@ -56,12 +56,16 @@ func _run() -> void:
 	var facility_cells := _assert_facility_footprints()
 	if facility_cells < 1:
 		return
-	var gated_ports := _assert_dynamic_gate_overlays()
+	var runtime: Node = main.get_node_or_null("Field/Map/CampaignWorld/ManifestRoomRuntime")
+	if runtime == null:
+		_fail("Live campaign did not expose the manifest room runtime.")
+		return
+	var gated_ports := _assert_dynamic_gate_overlays(runtime)
 	if gated_ports < 1:
 		return
 	if not _assert_navigation_ranges_across_gate_states():
 		return
-	var follower_arrivals := _assert_follower_safe_arrivals()
+	var follower_arrivals := _assert_follower_safe_arrivals(runtime)
 	if follower_arrivals < 1:
 		return
 	main.queue_free()
@@ -108,10 +112,15 @@ func _assert_facility_footprints() -> int:
 	return FACILITY_PLOTS.size()
 
 
-func _assert_dynamic_gate_overlays() -> int:
+func _assert_dynamic_gate_overlays(runtime: Node) -> int:
 	var fresh_flags := {}
 	var unlocked_flags := _all_gate_flags()
 	var gated_ports := 0
+	# Verify the immutable navigation record first, then exercise the same
+	# overlay through the active streamed room and Gameboard pathfinder.
+	for flag in unlocked_flags:
+		CampaignState.story_flags[StringName(flag)] = false
+	CampaignState.state_changed.emit()
 	for room_id in REGISTRY.room_ids():
 		var definition := REGISTRY.room(room_id)
 		var gates: Dictionary = definition.get("portGates", {})
@@ -124,6 +133,7 @@ func _assert_dynamic_gate_overlays() -> int:
 		var unlocked_walkable: Dictionary = unlocked_navigation.get("walkable", {})
 		for raw_port_id in gates:
 			var port_id := StringName(raw_port_id)
+			var gate_flag := StringName(gates[raw_port_id])
 			var gate_cell: Vector2i = port_cells.get(port_id, Vector2i.ZERO)
 			if gate_cell == Vector2i.ZERO:
 				_fail("%s.%s gate has no navigation cell" % [room_id, port_id])
@@ -131,6 +141,18 @@ func _assert_dynamic_gate_overlays() -> int:
 			if fresh_walkable.has(gate_cell) or not unlocked_walkable.has(gate_cell):
 				_fail("%s.%s did not change its blocked gate overlay with story state" % [room_id, port_id])
 				return 0
+			runtime.call(&"activate", room_id)
+			var world_gate_cell: Vector2i = definition.get("worldOrigin", Vector2i.ZERO) + gate_cell
+			if Gameboard.pathfinder.has_cell(world_gate_cell):
+				_fail("%s.%s live gate remained walkable while %s was false" % [room_id, port_id, gate_flag])
+				return 0
+			CampaignState.story_flags[gate_flag] = true
+			CampaignState.state_changed.emit()
+			if not Gameboard.pathfinder.has_cell(world_gate_cell):
+				_fail("%s.%s live gate stayed blocked after %s" % [room_id, port_id, gate_flag])
+				return 0
+			CampaignState.story_flags[gate_flag] = false
+			CampaignState.state_changed.emit()
 			gated_ports += 1
 	return gated_ports
 
@@ -161,8 +183,11 @@ func _assert_navigation_ranges_across_gate_states() -> bool:
 	return true
 
 
-func _assert_follower_safe_arrivals() -> int:
+func _assert_follower_safe_arrivals(runtime: Node) -> int:
 	var flags := _all_gate_flags()
+	for flag in flags:
+		CampaignState.story_flags[StringName(flag)] = true
+	CampaignState.state_changed.emit()
 	var arrivals := 0
 	for room_id in REGISTRY.room_ids():
 		for port in REGISTRY.ports(room_id):
@@ -178,6 +203,19 @@ func _assert_follower_safe_arrivals() -> int:
 			var walkable: Dictionary = navigation.get("walkable", {})
 			if not walkable.has(arrival) or NAVIGATION._legal_follower_cells(arrival, walkable) < 3:
 				_fail("%s.%s has no follower-safe arrival in %s" % [room_id, port_id, destination_room_id])
+				return 0
+			runtime.call(&"activate", destination_room_id)
+			var destination_origin: Vector2i = REGISTRY.room(destination_room_id).get("worldOrigin", Vector2i.ZERO)
+			var world_arrival := destination_origin + arrival
+			if not Gameboard.pathfinder.has_cell(world_arrival):
+				_fail("%s.%s arrival %s is not live in %s" % [room_id, port_id, world_arrival, destination_room_id])
+				return 0
+			var live_follower_cells := 0
+			for direction in [Vector2i.UP, Vector2i.DOWN, Vector2i.LEFT, Vector2i.RIGHT]:
+				if Gameboard.pathfinder.has_cell(world_arrival + direction):
+					live_follower_cells += 1
+			if live_follower_cells < 3:
+				_fail("%s.%s arrival %s leaves only %d live follower cells" % [room_id, port_id, world_arrival, live_follower_cells])
 				return 0
 			arrivals += 1
 	return arrivals
