@@ -2915,10 +2915,13 @@ limit:
   `EM-01` through `EM-16` have authored room-scene contracts.
 - Facility portals resolve from the room registry, while the active room runtime
   owns all internal reciprocal and state-gated ports. Bootstrap no longer
-  constructs a complete global universe transition graph.
+  constructs a complete global universe transition graph. Focused Asterion and
+  Primeval scenario checks now assert these active-room ports and passed at
+  commit `3b4a2274`.
 - Scene-owned feature installation covers authored interactions, save points,
   treasure caches, boss contracts, and population cohorts; remaining legacy
-  global feature nodes require a separate compatibility-fixture migration.
+  global feature nodes require a separate compatibility-fixture migration. The
+  installer now shares its runtime save-point registration path (`62209428`).
 - Focused smoke checks are run at room-slice boundaries and commits are pushed
   to the alignment branch. The Section 23.16.7 and release-gate checklists
   remain incomplete; this status must not be treated as a release claim.
