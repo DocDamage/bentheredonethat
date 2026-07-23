@@ -681,6 +681,18 @@ static func room(room_id: StringName) -> Dictionary:
 			"scenePath": "res://ben_rpg/world/rooms/haunted_mansion_nursery.tscn",
 			"worldOrigin": Vector2i(300, 0),
 			"enabledPortIds": [&"Nw", &"Ne"],
+			"navigationId": &"authored:hm07-borrowed-years-navigation",
+			"collisionMaskId": &"authored:hm07-borrowed-years-collision",
+			"navigationLayout": {
+				"id": &"hm07-borrowed-years-v1",
+				"kind": &"authored",
+				"usefulCellRange": Vector2i(136, 136),
+				"walkableRects": [
+					{"origin": Vector2i(5, 1), "size": Vector2i(12, 4)}, # nursery doorway and wall-panel apron
+					{"origin": Vector2i(3, 4), "size": Vector2i(16, 6)}, # bed, music-box, and toy-chest floor
+					{"origin": Vector2i(18, 3), "size": Vector2i(2, 3)}, # chapel-latch vestibule and follower space
+				],
+			},
 			"visualProfileIds": [&"mansion_nursery_bed", &"mansion_nursery_music_box", &"mansion_nursery_left_wall_panel", &"mansion_nursery_right_wall_panel"],
 			"featureIds": [&"doll_ambush", &"silver_hour_hand_socket", &"brass_minute_hand", &"toy_chest_cache", &"wooden_raptor"],
 			"chapterInteractions": [
@@ -694,6 +706,18 @@ static func room(room_id: StringName) -> Dictionary:
 			"worldOrigin": Vector2i(300, 0),
 			"enabledPortIds": [&"Nw", &"Ne", &"E1", &"E2"],
 			"portGates": {&"Ne": &"mansion_ballroom_open", &"E1": &"mansion_attic_latch_open", &"E2": &"mansion_ballroom_open"},
+			"navigationId": &"authored:hm08-ballroom-antechamber-navigation",
+			"collisionMaskId": &"authored:hm08-ballroom-antechamber-collision",
+			"navigationLayout": {
+				"id": &"hm08-ballroom-antechamber-v1",
+				"kind": &"authored",
+				"usefulCellRange": Vector2i(121, 124),
+				"walkableRects": [
+					{"origin": Vector2i(4, 1), "size": Vector2i(10, 5)}, # chandelier threshold and ballroom lock
+					{"origin": Vector2i(3, 5), "size": Vector2i(12, 6)}, # preparation floor and respite clock
+					{"origin": Vector2i(14, 4), "size": Vector2i(2, 8)}, # attic and ballroom side vestibule
+				],
+			},
 			"visualProfileIds": [&"mansion_ballroom_chandelier", &"mansion_ballroom_door_frame", &"mansion_foyer_clock"],
 			"featureIds": [&"two_hand_ballroom_lock", &"ballroom_preparation_area", &"hand_socket_display"],
 			"savePoint": {
@@ -939,6 +963,12 @@ static func _validate_manifest_test_rooms(errors: Array[String]) -> void:
 	var hm06 := room(&"HM-06")
 	if StringName(hm06.get("navigationId", &"")) != &"authored:hm06-portrait-gallery-navigation" or StringName(hm06.get("collisionMaskId", &"")) != &"authored:hm06-portrait-gallery-collision":
 		errors.append("HM-06 must own its authored portrait-gallery navigation and collision records.")
+	var hm07 := room(&"HM-07")
+	if StringName(hm07.get("navigationId", &"")) != &"authored:hm07-borrowed-years-navigation" or StringName(hm07.get("collisionMaskId", &"")) != &"authored:hm07-borrowed-years-collision":
+		errors.append("HM-07 must own its authored nursery navigation and collision records.")
+	var hm08 := room(&"HM-08")
+	if StringName(hm08.get("navigationId", &"")) != &"authored:hm08-ballroom-antechamber-navigation" or StringName(hm08.get("collisionMaskId", &"")) != &"authored:hm08-ballroom-antechamber-collision":
+		errors.append("HM-08 must own its authored antechamber navigation and collision records.")
 	var hm14 := room(&"HM-14")
 	if StringName(hm14.get("navigationId", &"")) != &"authored:hm14-west-stair-navigation" or StringName(hm14.get("collisionMaskId", &"")) != &"authored:hm14-west-stair-collision":
 		errors.append("HM-14 must own its authored west-stair navigation and collision records.")

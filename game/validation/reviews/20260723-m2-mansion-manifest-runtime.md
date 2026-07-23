@@ -60,8 +60,8 @@ scene already has final collision or art approval.
 | HM-04 | C / S1 | 60 baseline / 62 closed / 63 opened authored | 2 | HM-02, HM-05, HM-12 [13:13] |
 | HM-05 | C / M1 | 110 baseline / 111 closed / 112 opened authored | 4 | HM-04, HM-11, HM-14, HM-16 [shortcut] |
 | HM-06 | C / L2 | 207 authored | 6 | HM-14, HM-15 |
-| HM-07 | C / M3 | 240 | 4 | HM-15, HM-08, HM-11 [latch] |
-| HM-08 | C / M4 | 224 | 4 | HM-07, HM-09 [two hands], HM-13, HM-16 [shortcut] |
+| HM-07 | C / M3 | 136 authored | 4 | HM-15, HM-08, HM-11 [latch] |
+| HM-08 | C / M4 | 121 baseline / 124 opened authored | 4 | HM-07, HM-09 [two hands], HM-13, HM-16 [shortcut] |
 | HM-09 | C / L1 | 352 | 6 | HM-08 |
 | HM-10 | O / M2 | 216 | 4 | HM-02, HM-15 |
 | HM-11 | O / M3 | 240 | 4 | HM-05, HM-07 [latch], HM-12 [crypt key] |
@@ -89,6 +89,11 @@ ambush/stage floor, and south viewing balcony (207 cells); HM-15 adds the
 S-scale reflected-service link (76 cells). Their gallery-to-Nursery route is
 covered by the existing live handoff fixture, but visual/input/capture approval
 remains pending.
+HM-07 now records the music-box, toy-chest, and chapel-latch floor (136 cells),
+including a follower-safe side vestibule. HM-08 records the ballroom-lock and
+respite-clock preparation area plus its gated side vestibule (121 baseline /
+124 opened cells). The live fixture verifies both clock-hand rewards, the save
+anchor, and the boss-door release; visual/input/capture approval remains pending.
 The remaining rooms' cell values are generated open-interior counts, not audited
 useful-cell totals. They materially exceed the Section 9.4 S/M/L ranges in
 several rooms because final collision ownership is still a generated rectangle.
