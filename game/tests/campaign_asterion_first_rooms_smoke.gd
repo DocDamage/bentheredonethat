@@ -7,6 +7,10 @@ const ROOM_SCENES := {
 	&"AS-01": preload("res://ben_rpg/world/rooms/asterion_docking_collar.tscn"),
 	&"AS-02": preload("res://ben_rpg/world/rooms/asterion_customs_cargo_intake.tscn"),
 	&"AS-03": preload("res://ben_rpg/world/rooms/asterion_mess_deck.tscn"),
+	&"AS-13": preload("res://ben_rpg/world/rooms/asterion_pressure_lock_junction.tscn"),
+	&"AS-04": preload("res://ben_rpg/world/rooms/asterion_medical_triage.tscn"),
+	&"AS-05": preload("res://ben_rpg/world/rooms/asterion_hydroponics_outer_walk.tscn"),
+	&"AS-06": preload("res://ben_rpg/world/rooms/asterion_oxygen_biocircuit_core.tscn"),
 }
 
 
@@ -26,5 +30,12 @@ func _ready() -> void:
 	assert(as02_route.get("arrivalCell") == Vector2i(6, 3), "AS-02 arrival must be two cells inside its Nw port.")
 	var as03_route := TRANSITION_ROUTER.resolve(&"AS-02", &"Ne")
 	assert(StringName(as03_route.get("destinationRoom", &"")) == &"AS-03", "AS-02 must route to AS-03.")
-	print("CAMPAIGN_ASTERION_FIRST_ROOMS_SMOKE_OK rooms=AS-01+AS-02+AS-03 handoff=FI-06 routes=reciprocal")
+	assert(StringName(TRANSITION_ROUTER.resolve(&"AS-03", &"E1").get("destinationRoom", &"")) == &"AS-13", "Mess must route to the pressure-lock junction.")
+	assert(StringName(TRANSITION_ROUTER.resolve(&"AS-13", &"Ne").get("destinationRoom", &"")) == &"AS-04", "Junction must route to Medical.")
+	assert(StringName(TRANSITION_ROUTER.resolve(&"AS-13", &"E1").get("destinationRoom", &"")) == &"AS-05", "Junction must route to Hydroponics.")
+	assert(StringName(TRANSITION_ROUTER.resolve(&"AS-05", &"Ne").get("destinationRoom", &"")) == &"AS-06", "Hydroponics must route to the oxygen core.")
+	var medical := ROOM_REGISTRY.room(&"AS-04")
+	assert(medical.get("asterionInteractions", []).size() == 2, "Medical must own both Biocircuit and save beacon interactions.")
+	assert(ROOM_REGISTRY.room(&"AS-06").get("asterionInteractions", []).size() == 1, "Oxygen core must own the Biocircuit installation console.")
+	print("CAMPAIGN_ASTERION_FIRST_ROOMS_SMOKE_OK rooms=AS-01+AS-02+AS-03+AS-13+AS-04+AS-05+AS-06 handoff=FI-06 oxygen_spine=reciprocal")
 	get_tree().quit()

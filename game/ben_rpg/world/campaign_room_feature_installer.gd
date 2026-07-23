@@ -10,6 +10,7 @@ const POPULATION_SCHEDULER := preload("res://ben_rpg/world/campaign_population_s
 const MANSION_SAVE_POINT := preload("res://ben_rpg/world/mansion_save_point.tscn")
 const MANSION_CHAPTER_INTERACTION := preload("res://ben_rpg/world/mansion_chapter_interaction.tscn")
 const MANSION_BOSS_INTERACTION := preload("res://ben_rpg/world/campaign_mansion_boss_interaction.tscn")
+const ASTERION_INTERACTION := preload("res://ben_rpg/world/asterion_interaction.tscn")
 
 
 static func install(root: Node2D, room_id: StringName, definition: Dictionary) -> void:
@@ -31,6 +32,17 @@ static func install(root: Node2D, room_id: StringName, definition: Dictionary) -
 			chapter_interaction.set("interaction_kind", StringName(chapter_definition.get("kind", &"")))
 			chapter_interaction.position = Vector2((chapter_definition.get("cell", Vector2i.ZERO) as Vector2i) * 48)
 			interaction_layer.add_child(chapter_interaction)
+		for asterion_definition in definition.get("asterionInteractions", []):
+			var asterion_interaction := ASTERION_INTERACTION.instantiate()
+			var save_point_id := StringName(asterion_definition.get("savePointId", &""))
+			var anchor_cell: Vector2i = asterion_definition.get("cell", Vector2i.ZERO)
+			asterion_interaction.name = String(asterion_definition.get("nodeName", "AsterionInteraction"))
+			asterion_interaction.set("interaction_kind", StringName(asterion_definition.get("kind", &"")))
+			asterion_interaction.position = Vector2(anchor_cell * 48)
+			interaction_layer.add_child(asterion_interaction)
+			if save_point_id != &"":
+				var world_origin: Vector2i = definition.get("worldOrigin", Vector2i.ZERO)
+				CampaignState.register_runtime_save_point(save_point_id, world_origin + anchor_cell)
 		var boss_definition: Dictionary = definition.get("bossEncounter", {})
 		if not boss_definition.is_empty():
 			var boss_interaction := MANSION_BOSS_INTERACTION.instantiate()

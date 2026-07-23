@@ -195,6 +195,48 @@ static func room(room_id: StringName) -> Dictionary:
 			"visualProfileIds": [&"asterion_mess_banner", &"asterion_station_architecture"],
 			"featureIds": [&"emergency_lighting", &"medical_hydro_logs", &"post_oxygen_residents"],
 		}, true)
+	elif room_id == &"AS-13":
+		definition.merge({
+			"scenePath": "res://ben_rpg/world/rooms/asterion_pressure_lock_junction.tscn",
+			"worldOrigin": Vector2i(350, 0),
+			"enabledPortIds": [&"Nw", &"Ne", &"E1", &"E2", &"Se"],
+			"portGates": {&"E2": &"asterion_station_restored"},
+			"visualProfileIds": [&"asterion_dock_bulkhead", &"asterion_station_architecture"],
+			"featureIds": [&"colored_pipe_symbols", &"medical_hydro_split", &"doorway_exclusion_patrol"],
+		}, true)
+	elif room_id == &"AS-04":
+		definition.merge({
+			"scenePath": "res://ben_rpg/world/rooms/asterion_medical_triage.tscn",
+			"worldOrigin": Vector2i(350, 0),
+			"enabledPortIds": [&"Nw", &"Ne"],
+			"portGates": {&"Ne": &"asterion_medical_ambush_cleared"},
+			"visualProfileIds": [&"asterion_medical_station", &"asterion_medical_cabinet"],
+			"featureIds": [&"medical_robot_ambush", &"biocircuit_drawer", &"patrol_safe_interactions"],
+			"bossEncounter": {"nodeName": "MedicalRobotAmbush", "encounterId": &"asterion_medical_ambush", "defeatedFlag": &"asterion_medical_ambush_cleared", "cell": Vector2i(12, 8)},
+			"asterionInteractions": [
+				{"nodeName": "AsterionBiocircuit", "kind": &"medical_biocircuit", "cell": Vector2i(9, 6)},
+				{"nodeName": "AsterionSaveBeacon", "kind": &"save_beacon", "savePointId": &"asterion_medical", "cell": Vector2i(7, 10)},
+			],
+		}, true)
+	elif room_id == &"AS-05":
+		definition.merge({
+			"scenePath": "res://ben_rpg/world/rooms/asterion_hydroponics_outer_walk.tscn",
+			"worldOrigin": Vector2i(350, 0),
+			"enabledPortIds": [&"Nw", &"Ne", &"E1"],
+			"visualProfileIds": [&"asterion_hydroponics_bed", &"asterion_hydro_control_bank"],
+			"featureIds": [&"greenhouse_patrol", &"two_canopy_lanes", &"sealed_greenhouse", &"oxygen_line_terminus"],
+			"bossEncounter": {"nodeName": "HydroponicsSecurityDrones", "encounterId": &"asterion_hydro_ambush", "defeatedFlag": &"asterion_hydro_ambush_cleared", "cell": Vector2i(10, 7)},
+		}, true)
+	elif room_id == &"AS-06":
+		definition.merge({
+			"scenePath": "res://ben_rpg/world/rooms/asterion_oxygen_biocircuit_core.tscn",
+			"worldOrigin": Vector2i(350, 0),
+			"enabledPortIds": [&"Nw", &"Ne"],
+			"portGates": {&"Ne": &"asterion_station_restored"},
+			"visualProfileIds": [&"asterion_hydro_control_bank", &"asterion_station_architecture"],
+			"featureIds": [&"biocircuit_install", &"oxygen_restore", &"blue_state_switch", &"dock_tram_unlock"],
+			"asterionInteractions": [{"nodeName": "AsterionHydroConsole", "kind": &"hydroponics_console", "cell": Vector2i(13, 8)}],
+		}, true)
 	elif room_id == &"HM-01":
 		definition.merge({
 			"scenePath": "res://ben_rpg/world/rooms/haunted_mansion_rain_gate.tscn",
