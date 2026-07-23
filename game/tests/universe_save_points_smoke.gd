@@ -2,14 +2,14 @@ extends Node
 
 
 const POINTS := {
-	&"mansion_archive": {"node": "ArchiveAnchorClock", "cell": Vector2i(12, 35), "flag": &"mansion_archive_save_found"},
-	&"mansion_ballroom_antechamber": {"node": "NurseryRespiteClock", "cell": Vector2i(13, 49), "flag": &"mansion_ballroom_respite_found"},
-	&"asterion_medical": {"node": "AsterionSaveBeacon", "cell": Vector2i(52, 45), "flag": &"asterion_save_found"},
-	&"primeval_nest": {"node": "PrimevalAnchorTotem", "cell": Vector2i(84, 45), "flag": &"primeval_save_found"},
-	&"helios_clinic": {"node": "HeliosSaveBeacon", "cell": Vector2i(122, 45), "flag": &"helios_save_found"},
-	&"frosthold_rune_hall": {"node": "FrostholdSaveBrazier", "cell": Vector2i(156, 47), "flag": &"frosthold_save_found"},
-	&"moonpetal_bell_walk": {"node": "MoonpetalSaveLantern", "cell": Vector2i(191, 47), "flag": &"moonpetal_save_found"},
-	&"empyreal_aerie": {"node": "EmpyrealSaveFountain", "cell": Vector2i(230, 47), "flag": &"empyreal_save_found"},
+	&"mansion_archive": {"room": &"HM-05", "node": "ArchiveAnchorClock", "cell": Vector2i(309, 7), "flag": &"mansion_archive_save_found"},
+	&"mansion_ballroom_antechamber": {"room": &"HM-08", "node": "NurseryRespiteClock", "cell": Vector2i(309, 8), "flag": &"mansion_ballroom_respite_found"},
+	&"asterion_medical": {"room": &"AS-04", "node": "AsterionSaveBeacon", "cell": Vector2i(357, 10), "flag": &"asterion_save_found"},
+	&"primeval_nest": {"room": &"PV-07", "node": "PrimevalAnchorTotem", "cell": Vector2i(408, 10), "flag": &"primeval_save_found"},
+	&"helios_clinic": {"room": &"HE-06", "node": "HeliosSaveBeacon", "cell": Vector2i(458, 10), "flag": &"helios_save_found"},
+	&"frosthold_rune_hall": {"room": &"FR-06", "node": "FrostholdSaveBrazier", "cell": Vector2i(512, 11), "flag": &"frosthold_save_found"},
+	&"moonpetal_bell_walk": {"room": &"MP-06", "node": "MoonpetalSaveLantern", "cell": Vector2i(558, 11), "flag": &"moonpetal_save_found"},
+	&"empyreal_aerie": {"room": &"EM-07", "node": "EmpyrealSaveFountain", "cell": Vector2i(611, 11), "flag": &"empyreal_save_found"},
 }
 
 
@@ -25,8 +25,9 @@ func _run() -> void:
 	for _frame in range(8):
 		await get_tree().process_frame
 
-	var world: Node = main.get_node("Field/Map/CampaignWorld")
 	var menu: CampaignMenu = main.get_node("CampaignMenu")
+	var streamer: Node = main.get_node("Field/Map/CampaignWorld/RoomStreamer")
+	var room_runtime: Node = main.get_node("Field/Map/CampaignWorld/ManifestRoomRuntime")
 	menu.suppress_persistence = true
 	var player: Gamepiece = Player.gamepiece
 	if not player or CampaignState.UNIVERSE_SAVE_POINTS.size() != POINTS.size():
@@ -38,15 +39,21 @@ func _run() -> void:
 
 	for point_id in POINTS:
 		var expected: Dictionary = POINTS[point_id]
+		room_runtime.call(&"activate", expected["room"])
+		# Keep the camera's active-room resolver aligned with the room being
+		# inspected; staged rooms share coordinates and only one is loaded at once.
+		_move_player(player, expected["cell"])
+		await get_tree().process_frame
+		var active_room: Node = streamer.call(&"active_root")
 		var definition: Dictionary = CampaignState.UNIVERSE_SAVE_POINTS.get(point_id, {})
 		if definition.get("cell") != expected["cell"] or definition.get("flag") != expected["flag"]:
 			_fail("The registry disagrees with the authored placement for %s" % point_id)
 			return
-		var interaction := world.get_node_or_null(expected["node"])
+		var interaction := active_room.get_node_or_null("InteractionLayer/%s" % expected["node"])
 		if not interaction:
-			_fail("Missing save-point interaction: %s" % expected["node"])
+			_fail("Missing save-point interaction: %s (active=%s layer_children=%s)" % [expected["node"], active_room.get_meta(&"room_id", &""), _child_names(active_room.get_node("InteractionLayer"))])
 			return
-		if Gameboard.pixel_to_cell(interaction.position) != expected["cell"]:
+		if Gameboard.pixel_to_cell(active_room.position + interaction.position) != expected["cell"]:
 			_fail("The interaction is not grounded on its visible prop: %s" % expected["node"])
 			return
 		if not interaction.has_node("InteractionArea2D") or not interaction.has_node("Button"):
@@ -108,6 +115,13 @@ func _move_player(player: Gamepiece, cell: Vector2i) -> void:
 	player.position = Gameboard.cell_to_pixel(cell)
 	player.rest_position = player.position
 	GamepieceRegistry.move_gamepiece(player, cell)
+
+
+func _child_names(parent: Node) -> Array[String]:
+	var names: Array[String] = []
+	for child in parent.get_children():
+		names.append(String(child.name))
+	return names
 
 
 func _fail(message: String) -> void:

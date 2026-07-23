@@ -43,6 +43,7 @@ func activate(room_id: StringName) -> void:
 	if room_id == _active_room_id:
 		return
 	var previous := _active_room_id
+	_unregister_room_save_points(previous)
 	_active_room_id = room_id
 	_apply_navigation(previous, room_id)
 	if _streamer:
@@ -85,6 +86,21 @@ func _set_room_cells(room_id: StringName, walkable: Dictionary, cleared: Array[V
 			var is_open := walkable.has(local_cell)
 			_navigation.set_cell(world_cell, 0, Vector2i(2, 2) if is_open else Vector2i(1, 4), 0)
 			(cleared if is_open else blocked).append(world_cell)
+
+
+func _unregister_room_save_points(room_id: StringName) -> void:
+	if room_id == &"":
+		return
+	var definition := ROOM_REGISTRY.room(room_id)
+	var save_point: Dictionary = definition.get("savePoint", {})
+	var save_point_id := StringName(save_point.get("id", &""))
+	if save_point_id != &"":
+		CampaignState.unregister_runtime_save_point(save_point_id)
+	for property_name in [&"asterionInteractions", &"primevalInteractions", &"heliosInteractions", &"frostholdInteractions", &"moonpetalInteractions", &"empyrealInteractions"]:
+		for interaction_definition in definition.get(property_name, []):
+			var interaction_save_point_id := StringName(interaction_definition.get("savePointId", &""))
+			if interaction_save_point_id != &"":
+				CampaignState.unregister_runtime_save_point(interaction_save_point_id)
 
 
 func _install_port_transitions(room_id: StringName) -> void:

@@ -116,10 +116,12 @@ static func _install_universe_interactions(interaction_layer: Node2D, definition
 	for interaction_definition in definition.get(property_name, []):
 		var interaction := interaction_scene.instantiate()
 		var anchor_cell: Vector2i = interaction_definition.get("cell", Vector2i.ZERO)
+		var save_point_id := StringName(interaction_definition.get("savePointId", &""))
 		interaction.name = String(interaction_definition.get("nodeName", "ManifestUniverseInteraction"))
 		interaction.set("interaction_kind", StringName(interaction_definition.get("kind", &"")))
 		interaction.position = Vector2(anchor_cell * 48)
 		interaction_layer.add_child(interaction)
+		_register_save_point(definition, save_point_id, anchor_cell)
 
 
 static func _register_save_point(definition: Dictionary, save_point_id: StringName, anchor_cell: Vector2i) -> void:

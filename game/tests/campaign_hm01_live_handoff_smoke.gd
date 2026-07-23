@@ -38,7 +38,9 @@ func _run() -> void:
 	get_tree().root.add_child(main)
 	for _frame in range(5):
 		await get_tree().process_frame
-	main._create_mansion_transitions(0)
+	# Facility portals are now resolved through the room registry. Exercise the
+	# production facade rather than the removed Mansion-only transition builder.
+	main._create_manifest_facility_portal(0, &"Haunted Mansion")
 	var entrance := main.get_node_or_null("Field/Map/CampaignWorld/HauntedMansionEntrance") as AreaTransition
 	var exit := main.get_node_or_null("Field/Map/CampaignWorld/HauntedMansionExit") as AreaTransition
 	assert(entrance and exit, "Mansion facility must own manifest entry and exit transitions.")

@@ -160,14 +160,14 @@ const TOWN_STATE_OVERLAYS := {
 # retry metadata, and roster access. Cells are absolute gameboard cells so a
 # future room rearrangement cannot silently leave the menu checking an old prop.
 const UNIVERSE_SAVE_POINTS := {
-	&"mansion_archive": {"name": "Archive Anchor Clock", "cell": Vector2i(12, 35), "flag": &"mansion_archive_save_found"},
-	&"mansion_ballroom_antechamber": {"name": "Nursery Respite Clock", "cell": Vector2i(13, 49), "flag": &"mansion_ballroom_respite_found"},
-	&"asterion_medical": {"name": "Asterion Medical Beacon", "cell": Vector2i(52, 45), "flag": &"asterion_save_found"},
-	&"primeval_nest": {"name": "Relay Nest Anchor Totem", "cell": Vector2i(84, 45), "flag": &"primeval_save_found"},
-	&"helios_clinic": {"name": "Afterlight Clinic Beacon", "cell": Vector2i(122, 45), "flag": &"helios_save_found"},
-	&"frosthold_rune_hall": {"name": "Rune Hall Save Brazier", "cell": Vector2i(156, 47), "flag": &"frosthold_save_found"},
-	&"moonpetal_bell_walk": {"name": "Bell Walk Memory Lantern", "cell": Vector2i(191, 47), "flag": &"moonpetal_save_found"},
-	&"empyreal_aerie": {"name": "Aerie Anchor Crystal", "cell": Vector2i(230, 47), "flag": &"empyreal_save_found"},
+	&"mansion_archive": {"name": "Archive Anchor Clock", "cell": Vector2i(309, 7), "flag": &"mansion_archive_save_found", "streamed": true},
+	&"mansion_ballroom_antechamber": {"name": "Nursery Respite Clock", "cell": Vector2i(309, 8), "flag": &"mansion_ballroom_respite_found", "streamed": true},
+	&"asterion_medical": {"name": "Asterion Medical Beacon", "cell": Vector2i(357, 10), "flag": &"asterion_save_found", "streamed": true},
+	&"primeval_nest": {"name": "Relay Nest Anchor Totem", "cell": Vector2i(408, 10), "flag": &"primeval_save_found", "streamed": true},
+	&"helios_clinic": {"name": "Afterlight Clinic Beacon", "cell": Vector2i(458, 10), "flag": &"helios_save_found", "streamed": true},
+	&"frosthold_rune_hall": {"name": "Rune Hall Save Brazier", "cell": Vector2i(512, 11), "flag": &"frosthold_save_found", "streamed": true},
+	&"moonpetal_bell_walk": {"name": "Bell Walk Memory Lantern", "cell": Vector2i(558, 11), "flag": &"moonpetal_save_found", "streamed": true},
+	&"empyreal_aerie": {"name": "Aerie Anchor Crystal", "cell": Vector2i(611, 11), "flag": &"empyreal_save_found", "streamed": true},
 }
 
 # Active authored rooms may place a compatibility save-point ID at a streamed
@@ -1100,6 +1100,7 @@ func _process(delta: float) -> void:
 
 func reset_new_game() -> void:
 	sandbox_mode = false
+	_runtime_save_point_cells.clear()
 	play_time_seconds = 0.0
 	save_timestamp = 0
 	last_save_cell = Vector2i(10, 9)
@@ -2328,12 +2329,18 @@ func register_runtime_save_point(save_point_id: StringName, cell: Vector2i) -> v
 	_runtime_save_point_cells[save_point_id] = cell
 
 
+func unregister_runtime_save_point(save_point_id: StringName) -> void:
+	_runtime_save_point_cells.erase(save_point_id)
+
+
 func activated_save_point_near(cell: Vector2i, radius := 2) -> Dictionary:
 	var closest: Dictionary = {}
 	var closest_distance := radius + 1
 	for save_point_id in UNIVERSE_SAVE_POINTS:
 		var definition: Dictionary = UNIVERSE_SAVE_POINTS[save_point_id]
 		if not bool(story_flags.get(definition["flag"], false)):
+			continue
+		if bool(definition.get("streamed", false)) and not _runtime_save_point_cells.has(save_point_id):
 			continue
 		var anchor_cell: Vector2i = _runtime_save_point_cells.get(save_point_id, definition["cell"])
 		var distance: int = abs(cell.x - anchor_cell.x) + abs(cell.y - anchor_cell.y)

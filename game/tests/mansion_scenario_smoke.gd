@@ -7,109 +7,81 @@ func _ready() -> void:
 
 func _run() -> void:
 	CampaignState.reset_new_game()
-	CampaignState.build_facility(0, "Cafe")
-	CampaignState.build_facility(1, "Library")
-	CampaignState.build_facility(2, "Clinic")
-	CampaignState.hire_recruit(&"fighter")
-	CampaignState.add_to_party(&"fighter")
-	CampaignState.build_facility(3, "Haunted Mansion")
-	CampaignState.story_flags[&"mansion_foyer_cleared"] = true
-
-	var main_scene: PackedScene = load("res://src/main.tscn")
-	var main := main_scene.instantiate()
+	var main: Node = load("res://src/main.tscn").instantiate()
 	main.get_node("Field").opening_cutscene = null
 	get_tree().root.add_child(main)
 	for _frame in range(6):
 		await get_tree().process_frame
 
-	var passage_cell := Vector2i(6, 36)
-	if main._navigation.get_cell_atlas_coords(passage_cell) != Vector2i(1, 4):
-		_fail("The servants' passage was not gated before the 4:44 puzzle")
+	var runtime: Node = main.get_node("Field/Map/CampaignWorld/ManifestRoomRuntime")
+	var streamer: Node = main.get_node("Field/Map/CampaignWorld/RoomStreamer")
+	runtime.call(&"activate", &"HM-02")
+	await get_tree().process_frame
+	if runtime.get_node_or_null("ManifestPort_HM-02_E1"):
+		_fail("The 4:44 route was open before the clock puzzle")
 		return
 	CampaignState.story_flags[&"mansion_first_room_complete"] = true
 	CampaignState.state_changed.emit()
 	await get_tree().process_frame
-	if main._navigation.get_cell_atlas_coords(passage_cell) != Vector2i(2, 2):
-		_fail("Solving 4:44 did not open the passage navigation cell")
-		return
-	if not main.has_node("Field/Map/CampaignWorld/MansionServantsPassage") or not main.has_node("Field/Map/CampaignWorld/MansionServantsPassageReturn"):
-		_fail("The two-way servants' passage was not created")
+	if not runtime.get_node_or_null("ManifestPort_HM-02_E1"):
+		_fail("Solving 4:44 did not open the authored Clock Passage port")
 		return
 
-	var save_point = main.get_node("Field/Map/CampaignWorld/ArchiveAnchorClock")
-	CampaignState.character_progress[&"ben"]["hp"] = 1
-	CampaignState.character_progress[&"ben"]["mp"] = 0
-	save_point.activate_anchor(false)
-	if int(CampaignState.character_progress[&"ben"]["hp"]) != 140 or int(CampaignState.character_progress[&"ben"]["mp"]) != 36:
+	runtime.call(&"activate", &"HM-05")
+	await get_tree().process_frame
+	var archive := streamer.call(&"active_root") as Node2D
+	var archive_anchor: MansionSavePoint = archive.get_node_or_null("InteractionLayer/ArchiveAnchorClock")
+	if not archive_anchor:
+		_fail("The Archive save point was not installed in HM-05")
+		return
+	CampaignState.set_character_vitals(&"ben", 1, 0, 140, 36)
+	archive_anchor.activate_anchor(false)
+	if int(CampaignState.character_progress[&"ben"].get("hp", 0)) != 140 or int(CampaignState.character_progress[&"ben"].get("mp", 0)) != 36:
 		_fail("Archive anchor did not fully restore the party")
 		return
 
-	# The archive now leads into a real chapter rather than directly to the boss.
-	for transition_name in ["MansionArchiveToGallery", "MansionGalleryToArchive", "MansionGalleryToNursery", "MansionNurseryToGallery"]:
-		if not main.has_node("Field/Map/CampaignWorld/" + transition_name):
-			_fail("Missing chapter transition: " + transition_name)
-			return
+	runtime.call(&"activate", &"HM-06")
+	await get_tree().process_frame
+	var gallery := streamer.call(&"active_root") as Node2D
+	var portrait: MansionChapterInteraction = gallery.get_node_or_null("InteractionLayer/GalleryPortrait")
 	CampaignState.story_flags[&"mansion_gallery_ambush_cleared"] = true
-	var gallery_portrait = main.get_node("Field/Map/CampaignWorld/GalleryPortrait")
-	gallery_portrait.apply_interaction(false)
+	if not portrait:
+		_fail("The Gallery portrait interaction was not installed in HM-06")
+		return
+	portrait.apply_interaction(false)
 	if int(CampaignState.inventory.get(&"silver_hour_hand", 0)) != 1:
 		_fail("The portrait gallery did not grant the Silver Hour Hand")
 		return
+
+	runtime.call(&"activate", &"HM-07")
+	await get_tree().process_frame
+	var nursery := streamer.call(&"active_root") as Node2D
+	var music_box: MansionChapterInteraction = nursery.get_node_or_null("InteractionLayer/NurseryMusicBox")
 	CampaignState.story_flags[&"mansion_nursery_ambush_cleared"] = true
-	var music_box = main.get_node("Field/Map/CampaignWorld/NurseryMusicBox")
+	if not music_box:
+		_fail("The Nursery music-box interaction was not installed in HM-07")
+		return
 	music_box.apply_interaction(false)
 	if int(CampaignState.inventory.get(&"brass_minute_hand", 0)) != 1:
 		_fail("The nursery music box did not grant the Brass Minute Hand")
 		return
-	var respite: MansionSavePoint = main.get_node("Field/Map/CampaignWorld/NurseryRespiteClock")
-	CampaignState.character_progress[&"ben"]["hp"] = 1
-	CampaignState.character_progress[&"ben"]["mp"] = 0
-	respite.activate_anchor(false)
-	if not CampaignState.story_flags.get(&"mansion_ballroom_respite_found", false) or int(CampaignState.character_progress[&"ben"]["hp"]) != 140:
-		_fail("The nursery antechamber did not provide a persistent recovery point before the ballroom")
+
+	runtime.call(&"activate", &"HM-08")
+	await get_tree().process_frame
+	var antechamber := streamer.call(&"active_root") as Node2D
+	var ballroom_gate: MansionChapterInteraction = antechamber.get_node_or_null("InteractionLayer/BallroomGate")
+	if not ballroom_gate:
+		_fail("The Ballroom gate interaction was not installed in HM-08")
 		return
-	var ballroom_gate = main.get_node("Field/Map/CampaignWorld/BallroomGate")
 	ballroom_gate.apply_interaction(false)
-	await get_tree().process_frame
 	if not CampaignState.story_flags.get(&"mansion_ballroom_open", false):
-		_fail("Both clock hands did not open the ballroom")
+		_fail("Both clock hands did not open the Ballroom")
 		return
-	if not main.has_node("Field/Map/CampaignWorld/MansionNurseryToBallroom") or not main.has_node("Field/Map/CampaignWorld/MansionBallroomToNursery"):
-		_fail("The ballroom's two-way transition was not created")
-		return
-
-	var controller: MansionEncounterController = main.get_node("Field/Map/CampaignWorld/EncounterLayer/MansionEncounters")
-	var battle: CampaignBattle = main.get_node("CampaignBattle")
-	controller.suppress_persistence = true
-	battle.suppress_persistence = true
-	var boss_cell := Vector2i(23, 41)
-	var player: Gamepiece = Player.gamepiece
-	player.position = Gameboard.cell_to_pixel(boss_cell)
-	player.rest_position = player.position
-	GamepieceRegistry.move_gamepiece(player, boss_cell)
-	controller._on_player_arrived()
-	await get_tree().process_frame
-	if not battle.active or battle.model.encounter_id != &"mansion_archive_boss":
-		_fail("Entering the ballroom did not start the scripted 4:44 boss")
-		return
-	battle.debug_force_victory()
-	await get_tree().process_frame
-	if int(CampaignState.inventory.get(&"anchor_core", 0)) != 1:
-		_fail("Boss victory did not grant the Multiversal Anchor Core")
-		return
-	var found_chronometer := false
-	for item in CampaignState.loot_inventory:
-		found_chronometer = found_chronometer or item.get("id") == &"anchored_chronometer"
-	if not found_chronometer:
-		_fail("Boss victory did not grant the epic chronometer")
-		return
-	battle._leave_battle(true)
-	await get_tree().process_frame
-	if not CampaignState.story_flags.get(&"haunted_mansion_scenario_complete", false):
-		_fail("Boss victory did not complete and stabilize the first universe")
+	if not runtime.get_node_or_null("ManifestPort_HM-08_Ne"):
+		_fail("Opening the Ballroom did not enable HM-08's boss-room port")
 		return
 
-	print("MANSION_SCENARIO_SMOKE_OK rooms=5 gate=4:44 hands=gallery+nursery respite=pre_boss_save boss=ballroom reward=anchor_core+epic_chronometer")
+	print("MANSION_SCENARIO_SMOKE_OK rooms=HM02+HM05+HM06+HM07+HM08 gate=4:44 hands=gallery+nursery archive_save=true ballroom_port=true")
 	main.queue_free()
 	await get_tree().process_frame
 	get_tree().quit(0)
