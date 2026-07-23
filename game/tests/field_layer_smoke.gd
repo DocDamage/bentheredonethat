@@ -32,6 +32,7 @@ func _run() -> void:
 	var visual := ground.get_node_or_null("Visuals") as CampaignMapVisual
 	var empyreal_ground := ground.get_node_or_null("EmpyrealGround") as Node2D
 	var frosthold_ground := ground.get_node_or_null("FrostholdGround") as Node2D
+	var moonpetal_ground := ground.get_node_or_null("MoonpetalGround") as Node2D
 	var mansion_foreground := foreground.get_node_or_null("MansionForeground") as Node2D
 	var town_foreground := foreground.get_node_or_null("TownForeground") as Node2D
 	var asterion_foreground := foreground.get_node_or_null("AsterionForeground") as Node2D
@@ -40,7 +41,7 @@ func _run() -> void:
 	var frosthold_foreground := foreground.get_node_or_null("FrostholdForeground") as Node2D
 	var primeval_foreground := foreground.get_node_or_null("PrimevalForeground") as Node2D
 	var helios_foreground := foreground.get_node_or_null("HeliosForeground") as Node2D
-	if not visual or not empyreal_ground or not frosthold_ground or not mansion_foreground or not town_foreground or not asterion_foreground or not moonpetal_foreground or not empyreal_foreground or not frosthold_foreground or not primeval_foreground or not helios_foreground:
+	if not visual or not empyreal_ground or not frosthold_ground or not moonpetal_ground or not mansion_foreground or not town_foreground or not asterion_foreground or not moonpetal_foreground or not empyreal_foreground or not frosthold_foreground or not primeval_foreground or not helios_foreground:
 		_fail("field background or foreground renderer was not attached")
 		return
 	Player.gamepiece.position = Gameboard.cell_to_pixel(Vector2i(12, 36))
@@ -64,8 +65,8 @@ func _run() -> void:
 	Player.gamepiece.position = Gameboard.cell_to_pixel(Vector2i(184, 38))
 	main._update_camera_limits(true)
 	await get_tree().process_frame
-	if moonpetal_foreground.get("active_area") != &"moonpetal_gate":
-		_fail("Moonpetal foreground did not follow area activation")
+	if moonpetal_ground.get("active_area") != &"moonpetal_gate" or moonpetal_foreground.get("active_area") != &"moonpetal_gate":
+		_fail("Moonpetal ground and foreground did not follow area activation")
 		return
 	Player.gamepiece.position = Gameboard.cell_to_pixel(Vector2i(220, 38))
 	main._update_camera_limits(true)
@@ -91,7 +92,7 @@ func _run() -> void:
 	if helios_foreground.get("active_area") != &"helios_skybridge":
 		_fail("Helios foreground did not follow area activation")
 		return
-	print("FIELD_LAYER_SMOKE_OK layers=7 empyreal+frosthold_ground+foreground mansion+town+asterion+moonpetal+primeval+helios_foreground=active y_sort=enabled")
+	print("FIELD_LAYER_SMOKE_OK layers=7 empyreal+frosthold+moonpetal_ground+foreground mansion+town+asterion+primeval+helios_foreground=active y_sort=enabled")
 	main.queue_free()
 	await get_tree().process_frame
 	get_tree().quit(0)
