@@ -210,6 +210,7 @@ const SANDBOX_TERRAIN_CATALOG := preload("res://ben_rpg/world/sandbox_terrain_ca
 const TOWN_RESIDENT_MANAGER_SCRIPT := preload("res://ben_rpg/world/town_resident_manager.gd")
 const PARTY_FOLLOWER_TRAIN_SCRIPT := preload("res://ben_rpg/world/party_follower_train.gd")
 const TOWN_FACILITY_INTERACTION := preload("res://ben_rpg/world/town_facility_interaction.tscn")
+const FACILITY_NAVIGATION := preload("res://ben_rpg/world/campaign_facility_navigation.gd")
 const FACILITY_PLOTS := [
 	Rect2i(7, 5, 5, 4),
 	Rect2i(18, 5, 5, 4),
@@ -968,16 +969,9 @@ func build_facility(plot_index: int, facility_name: String, universe_id: StringN
 func _apply_facility(plot_index: int, facility_name: String) -> void:
 	_visual.set_facility(plot_index, facility_name)
 	var plot: Rect2i = FACILITY_PLOTS[plot_index]
-	var newly_blocked: Array[Vector2i] = []
-	for y in range(plot.position.y, plot.end.y):
-		for x in range(plot.position.x, plot.end.x):
-			var local_cell := Vector2i(x, y)
-			# Keep a front-door approach tile open at the bottom center.
-			if local_cell == Vector2i(plot.position.x + plot.size.x / 2, plot.end.y - 1):
-				continue
-			var global_cell := TOWN_ORIGIN + local_cell
-			_navigation.set_cell(global_cell, 0, Vector2i(1, 4), 0)
-			newly_blocked.append(global_cell)
+	var newly_blocked := FACILITY_NAVIGATION.blocked_cells(TOWN_ORIGIN, plot)
+	for blocked_cell in newly_blocked:
+		_navigation.set_cell(blocked_cell, 0, Vector2i(1, 4), 0)
 	# Runtime-created TileMapLayer changes may batch their notification until a
 	# later physics tick. Announce collision immediately so path queries made by
 	# the player in this frame cannot route through the new building.
@@ -1051,12 +1045,9 @@ func refresh_sandbox_object_collision() -> void:
 	# Facility entrances are navigation contracts, including in sandbox mode.
 	# User props and terrain may decorate the district around them, but may not
 	# strand a service or portal by covering its doorway or its town-side return.
-	var facility_access_cells := {}
+	var facility_access_cells := FACILITY_NAVIGATION.access_cells(TOWN_ORIGIN, FACILITY_PLOTS, CampaignState.built_facilities)
 	for plot_index in CampaignState.built_facilities.keys():
 		var plot: Rect2i = FACILITY_PLOTS[int(plot_index)]
-		var door_cell := TOWN_ORIGIN + Vector2i(plot.position.x + plot.size.x / 2, plot.end.y - 1)
-		facility_access_cells[door_cell] = true
-		facility_access_cells[door_cell + Vector2i.DOWN] = true
 		for y in range(plot.position.y, plot.end.y):
 			for x in range(plot.position.x, plot.end.x):
 				var local_cell := Vector2i(x, y)
