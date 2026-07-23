@@ -4,6 +4,11 @@ const GUIDANCE := preload("res://ben_rpg/world/town_objective_guidance.gd")
 
 
 func _ready() -> void:
+	assert(GUIDANCE.mansion({}, 1) == "HAUNTED MANSION  •  Cross the first arch. Stay alert: active-time encounters await.")
+	assert(GUIDANCE.mansion({&"mansion_foyer_cleared": true}, 1) == "THE HOUSE KEEPS TIME  •  Examine the stopped grandfather clock.")
+	assert(GUIDANCE.mansion({&"mansion_archive_save_found": true}, 2) == "THE LOWER GALLERY  •  Follow the house's impossible records beyond the archive.")
+	assert(GUIDANCE.mansion({&"mansion_minute_hand_found": true}, 4) == "THE BALLROOM LOCK  •  Place both recovered clock hands into the final door.")
+	assert(GUIDANCE.mansion({&"mansion_archive_boss_defeated": true}, 5) == "UNIVERSE STABILIZED  •  Return to town with the Multiversal Anchor Core.")
 	assert(GUIDANCE.asterion({}) == "ASTERION STATION  •  Survive the docking bay's automated security check.")
 	assert(GUIDANCE.asterion({&"asterion_dock_cleared": true}) == "ONE SURVIVOR  •  Speak with the armed Astronaut in Docking.")
 	assert(GUIDANCE.asterion({&"asterion_astronaut_met": true}) == "THE LAST SHIFT  •  Search Medical for the organic circuit that controls life support.")
@@ -19,5 +24,5 @@ func _ready() -> void:
 	assert(GUIDANCE.frosthold({&"frosthold_causeway_seal_open": true}, []) == "RUNE HALL  •  Cross the opened seal and face the royal collection detail.")
 	assert(GUIDANCE.moonpetal({&"moonpetal_bell_walk_open": true}, []) == "BELL WALK  •  Face the wedding procession guarding the final vow.")
 	assert(GUIDANCE.empyreal({&"empyreal_aerie_open": true}, []) == "RELIQUARY AERIE  •  Stop the wing-repossession detail.")
-	print("TOWN_OBJECTIVE_GUIDANCE_SMOKE_OK worlds=6 priority=complete")
+	print("TOWN_OBJECTIVE_GUIDANCE_SMOKE_OK worlds=7 priority=complete")
 	get_tree().quit()

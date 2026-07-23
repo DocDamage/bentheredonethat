@@ -5,6 +5,22 @@ extends RefCounted
 ## state and returns presentation data; TownBuildController applies it to HUD
 ## nodes and keeps responsibility for visibility and input mode.
 
+static func mansion(story_flags: Dictionary, room: int) -> String:
+	if story_flags.get(&"mansion_archive_boss_defeated", false): return "UNIVERSE STABILIZED  •  Return to town with the Multiversal Anchor Core."
+	if room == 5: return "THE 4:44 APPOINTMENT  •  Defeat the reflection that has been waiting since 1776."
+	if not story_flags.get(&"mansion_ballroom_open", false) and story_flags.get(&"mansion_minute_hand_found", false): return "THE BALLROOM LOCK  •  Place both recovered clock hands into the final door."
+	if room == 4 and story_flags.get(&"mansion_nursery_ambush_cleared", false): return "THE BROKEN LULLABY  •  Fit the Silver Hour Hand into the nursery music box."
+	if room == 4: return "THE DOLL PROCESSION  •  Secure the nursery before examining its music box."
+	if room == 3 and story_flags.get(&"mansion_gallery_ambush_cleared", false): return "A PAINTED HOUR  •  Search the central portrait for the first clock hand."
+	if room == 3: return "THE PORTRAITS OBJECT  •  Survive the gallery's hostile reception."
+	if room == 2 and story_flags.get(&"mansion_archive_save_found", false): return "THE LOWER GALLERY  •  Follow the house's impossible records beyond the archive."
+	if room == 2: return "A CLOCK THAT REMEMBERS  •  Calibrate the archive clock to restore and save."
+	if story_flags.get(&"mansion_first_room_complete", false): return "SERVANTS' PASSAGE  •  The 4:44 mechanism opened the west door."
+	if story_flags.get(&"mansion_ledger_found", false): return "4:44  •  Return to the stopped clock and set the hour recorded in the ledger."
+	if story_flags.get(&"mansion_clock_examined", false): return "THE MISSING HOUR  •  Search the dust-covered bookcase for the household ledger."
+	if story_flags.get(&"mansion_foyer_cleared", false): return "THE HOUSE KEEPS TIME  •  Examine the stopped grandfather clock."
+	return "HAUNTED MANSION  •  Cross the first arch. Stay alert: active-time encounters await."
+
 static func asterion(story_flags: Dictionary) -> String:
 	if story_flags.get(&"asterion_station_complete", false):
 		return "SHIFT ENDED  •  Speak with the Astronaut and offer a permanent place in Franklin & Company."

@@ -309,34 +309,7 @@ func _update_hud() -> void:
 		return
 	_objective_icon.texture = load(UI_ROOT + ("/dfgui_icon-clock.png" if _was_in_mansion else ("/dfgui_icon-skillbook.png" if _was_in_station or _was_in_primeval or _was_in_helios or _was_in_frosthold or _was_in_moonpetal or _was_in_empyreal else ("/dfgui_icon-crafthammer.png" if _was_in_town else "/dfgui_icon-info.png"))))
 	if _was_in_mansion:
-		if CampaignState.story_flags.get(&"mansion_archive_boss_defeated", false):
-			_set_objective("UNIVERSE STABILIZED  •  Return to town with the Multiversal Anchor Core.")
-		elif _mansion_room == 5:
-			_set_objective("THE 4:44 APPOINTMENT  •  Defeat the reflection that has been waiting since 1776.")
-		elif not CampaignState.story_flags.get(&"mansion_ballroom_open", false) and CampaignState.story_flags.get(&"mansion_minute_hand_found", false):
-			_set_objective("THE BALLROOM LOCK  •  Place both recovered clock hands into the final door.")
-		elif _mansion_room == 4 and CampaignState.story_flags.get(&"mansion_nursery_ambush_cleared", false):
-			_set_objective("THE BROKEN LULLABY  •  Fit the Silver Hour Hand into the nursery music box.")
-		elif _mansion_room == 4:
-			_set_objective("THE DOLL PROCESSION  •  Secure the nursery before examining its music box.")
-		elif _mansion_room == 3 and CampaignState.story_flags.get(&"mansion_gallery_ambush_cleared", false):
-			_set_objective("A PAINTED HOUR  •  Search the central portrait for the first clock hand.")
-		elif _mansion_room == 3:
-			_set_objective("THE PORTRAITS OBJECT  •  Survive the gallery's hostile reception.")
-		elif _mansion_room == 2 and CampaignState.story_flags.get(&"mansion_archive_save_found", false):
-			_set_objective("THE LOWER GALLERY  •  Follow the house's impossible records beyond the archive.")
-		elif _mansion_room == 2:
-			_set_objective("A CLOCK THAT REMEMBERS  •  Calibrate the archive clock to restore and save.")
-		elif CampaignState.story_flags.get(&"mansion_first_room_complete", false):
-			_set_objective("SERVANTS' PASSAGE  •  The 4:44 mechanism opened the west door.")
-		elif CampaignState.story_flags.get(&"mansion_ledger_found", false):
-			_set_objective("4:44  •  Return to the stopped clock and set the hour recorded in the ledger.")
-		elif CampaignState.story_flags.get(&"mansion_clock_examined", false):
-			_set_objective("THE MISSING HOUR  •  Search the dust-covered bookcase for the household ledger.")
-		elif CampaignState.story_flags.get(&"mansion_foyer_cleared", false):
-			_set_objective("THE HOUSE KEEPS TIME  •  Examine the stopped grandfather clock.")
-		else:
-			_set_objective("HAUNTED MANSION  •  Cross the first arch. Stay alert: active-time encounters await.")
+		_set_objective(OBJECTIVE_GUIDANCE.mansion(CampaignState.story_flags, _mansion_room))
 		_build_panel.hide()
 		return
 	if _was_in_station:
