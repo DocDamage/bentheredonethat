@@ -956,6 +956,73 @@ static func room_ids() -> Array[StringName]:
 	return result
 
 
+## Returns the non-baseline render states declared by the room manifest. The
+## capture runner owns baseline first-visit/stabilized frames for every room;
+## this matrix adds one room-local frame for each distinct gate, restoration,
+## boss-result, or postgame state that can alter a declared room contract.
+static func capture_variants() -> Array[Dictionary]:
+	var variants: Array[Dictionary] = []
+	var variant_indices: Dictionary = {}
+	for room_id in room_ids():
+		var definition := room(room_id)
+		var gates: Dictionary = definition.get("portGates", {})
+		for raw_flag in gates.values():
+			var flag := StringName(raw_flag)
+			if flag == &"":
+				continue
+			_append_capture_variant(variants, variant_indices, room_id, flag, _capture_gate_kind(flag))
+		var boss: Dictionary = definition.get("bossEncounter", {})
+		var defeated_flag := StringName(boss.get("defeatedFlag", &""))
+		if defeated_flag != &"":
+			_append_capture_variant(variants, variant_indices, room_id, defeated_flag, &"boss")
+		for raw_feature_id in definition.get("featureIds", []):
+			if String(raw_feature_id).contains("postgame"):
+				variants.append({
+					"roomId": room_id,
+					"state": &"postgame",
+					"sourceState": &"postgame",
+					"setFlags": {},
+					"flag": &"postgame_unlocked",
+					"kinds": [&"postgame"],
+				})
+	return variants
+
+
+static func _append_capture_variant(variants: Array[Dictionary], variant_indices: Dictionary, room_id: StringName, flag: StringName, kind: StringName) -> void:
+	var key := "%s|%s" % [room_id, flag]
+	if variant_indices.has(key):
+		var index := int(variant_indices[key])
+		var existing := variants[index]
+		var kinds: Array = existing.get("kinds", [])
+		if kind not in kinds:
+			kinds.append(kind)
+			existing["kinds"] = kinds
+			existing["state"] = _capture_variant_state_id(flag, kinds)
+			variants[index] = existing
+		return
+	variant_indices[key] = variants.size()
+	variants.append({
+		"roomId": room_id,
+		"state": _capture_variant_state_id(flag, [kind]),
+		"sourceState": &"fresh",
+		"setFlags": {flag: true},
+		"flag": flag,
+		"kinds": [kind],
+	})
+
+
+static func _capture_gate_kind(flag: StringName) -> StringName:
+	return &"restoration" if String(flag).contains("restored") else &"gate"
+
+
+static func _capture_variant_state_id(flag: StringName, kinds: Array) -> StringName:
+	if &"boss" in kinds:
+		return StringName("boss-%s-defeated" % flag)
+	if &"restoration" in kinds:
+		return StringName("restoration-%s-complete" % flag)
+	return StringName("gate-%s-open" % flag)
+
+
 static func ports(room_id: StringName) -> Array[Dictionary]:
 	return room(room_id).get("ports", []) as Array[Dictionary]
 
@@ -1066,8 +1133,44 @@ static func validate() -> PackedStringArray:
 	if _reachable_room_count(&"MP-01") != MOONPETAL_ROOM_IDS.size(): errors.append("Moonpetal room graph is not connected from MP-01.")
 	if _reachable_room_count(&"EM-01") != EMPYREAL_ROOM_IDS.size(): errors.append("Empyreal room graph is not connected from EM-01.")
 	_validate_facility_portals(errors)
+	_validate_capture_variants(errors)
 	_validate_manifest_test_rooms(errors)
 	return PackedStringArray(errors)
+
+
+static func _validate_capture_variants(errors: Array[String]) -> void:
+	var seen: Dictionary = {}
+	for variant in capture_variants():
+		var room_id := StringName(variant.get("roomId", &""))
+		var state_id := StringName(variant.get("state", &""))
+		var source_state := StringName(variant.get("sourceState", &""))
+		var flag := StringName(variant.get("flag", &""))
+		var kinds: Array = variant.get("kinds", [])
+		var key := "%s|%s" % [room_id, flag]
+		if room_id == &"" or not has_room(room_id) or state_id == &"" or kinds.is_empty():
+			errors.append("Capture matrix contains an incomplete variant record.")
+			continue
+		if seen.has(key):
+			errors.append("Capture matrix duplicates %s." % key)
+		seen[key] = true
+		if source_state not in [&"fresh", &"postgame"]:
+			errors.append("Capture matrix %s has invalid source state %s." % [key, source_state])
+		var definition := room(room_id)
+		for raw_kind in kinds:
+			var kind := StringName(raw_kind)
+			if kind in [&"gate", &"restoration"] and flag not in (definition.get("portGates", {}) as Dictionary).values():
+				errors.append("Capture matrix %s does not bind its %s flag to a port gate." % [key, kind])
+			elif kind == &"boss" and StringName((definition.get("bossEncounter", {}) as Dictionary).get("defeatedFlag", &"")) != flag:
+				errors.append("Capture matrix %s does not bind its boss flag to the room boss encounter." % key)
+			elif kind == &"postgame" and not _has_postgame_feature(definition):
+				errors.append("Capture matrix %s has no declared postgame feature." % key)
+
+
+static func _has_postgame_feature(definition: Dictionary) -> bool:
+	for raw_feature_id in definition.get("featureIds", []):
+		if String(raw_feature_id).contains("postgame"):
+			return true
+	return false
 
 
 static func _validate_facility_portals(errors: Array[String]) -> void:

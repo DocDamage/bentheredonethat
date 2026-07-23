@@ -1,7 +1,8 @@
 extends Node
 
-## Produces the current 102-room manifest baseline at first visit and
-## stabilized state. Output stays in the isolated user directory and is
+## Produces the 102-room manifest baseline at first visit and stabilized state,
+## then every room-local gate, restoration, boss-result, and postgame variant
+## declared by the registry. Output stays in the isolated user directory and is
 ## reviewer input only; it does not make a visual, input, or release claim.
 
 const CAPTURE_GUARD := preload("res://validation/visual_capture_guard.gd")
@@ -32,6 +33,9 @@ func _capture_all() -> void:
 	for state_id in CAPTURE_STATES:
 		if not await _capture_state(state_id, GRAPH_REPORT.story_state(state_id), capture_tag):
 			return
+	for variant in REGISTRY.capture_variants():
+		if not await _capture_variant(variant, capture_tag):
+			return
 	if not _write_manifest(capture_tag):
 		_fail("Could not write core capture manifest.")
 		return
@@ -39,7 +43,21 @@ func _capture_all() -> void:
 	get_tree().quit(0)
 
 
-func _capture_state(state_id: StringName, flags: Dictionary, capture_tag: String) -> bool:
+func _capture_variant(variant: Dictionary, capture_tag: String) -> bool:
+	var source_state := StringName(variant.get("sourceState", &"fresh"))
+	var flags := GRAPH_REPORT.story_state(source_state)
+	for raw_flag in (variant.get("setFlags", {}) as Dictionary):
+		flags[StringName(raw_flag)] = bool((variant.get("setFlags", {}) as Dictionary)[raw_flag])
+	return await _capture_state(
+		StringName(variant.get("state", &"")),
+		flags,
+		capture_tag,
+		[variant.get("roomId", &"")],
+		variant,
+	)
+
+
+func _capture_state(state_id: StringName, flags: Dictionary, capture_tag: String, requested_room_ids: Array = [], variant: Dictionary = {}) -> bool:
 	CampaignState.reset_new_game()
 	for flag in flags:
 		CampaignState.story_flags[flag] = flags[flag]
@@ -53,7 +71,9 @@ func _capture_state(state_id: StringName, flags: Dictionary, capture_tag: String
 		main.queue_free()
 		_fail("Core capture could not find the manifest room runtime.")
 		return false
-	for room_id in REGISTRY.room_ids():
+	var room_ids: Array = requested_room_ids if not requested_room_ids.is_empty() else REGISTRY.room_ids()
+	for raw_room_id in room_ids:
+		var room_id := StringName(raw_room_id)
 		runtime.call(&"activate", room_id)
 		var definition := REGISTRY.room(room_id)
 		var capture_cell := _capture_cell(room_id)
@@ -71,6 +91,9 @@ func _capture_state(state_id: StringName, flags: Dictionary, capture_tag: String
 		_capture_records.append({
 			"roomId": room_id,
 			"state": state_id,
+			"sourceState": StringName(variant.get("sourceState", state_id)),
+			"captureKinds": variant.get("kinds", [&"baseline"]),
+			"stateFlag": StringName(variant.get("flag", &"")),
 			"path": capture_path,
 			"resolution": get_viewport().get_visible_rect().size,
 			"captureTag": capture_tag,
