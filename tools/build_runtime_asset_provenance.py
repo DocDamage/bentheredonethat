@@ -147,12 +147,18 @@ def build(root: Path) -> dict[str, Any]:
             "path": path,
             "sourceGroup": source_group(path),
             "profileIds": sorted(entry.get("profileIds", [])),
+            "unprofiledClassification": entry.get("unprofiledClassification", ""),
             "localLicenseEvidence": evidence,
             "distributionEligibility": eligibility,
             "licenseReviewStatus": eligibility,
         })
     with_evidence = sum(bool(asset["localLicenseEvidence"]) for asset in assets)
     eligibility_counts = {state: sum(asset["distributionEligibility"] == state for asset in assets) for state in sorted(ELIGIBILITY_STATES)}
+    classification_counts: dict[str, int] = {}
+    for asset in assets:
+        classification = asset["unprofiledClassification"]
+        if classification:
+            classification_counts[classification] = classification_counts.get(classification, 0) + 1
     return {
         "schemaVersion": 2,
         "scope": "static Godot raster references; not a reachability or license-grant proof",
@@ -161,6 +167,7 @@ def build(root: Path) -> dict[str, Any]:
             "withLocalLicenseEvidence": with_evidence,
             "needsManualLicenseConfirmation": len(assets) - with_evidence,
             "distributionEligibility": eligibility_counts,
+            "unprofiledByClassification": dict(sorted(classification_counts.items())),
         },
         "packProvenanceDecisions": pack_decisions,
         "assets": assets,

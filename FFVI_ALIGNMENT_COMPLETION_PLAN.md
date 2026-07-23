@@ -3009,3 +3009,8 @@ limit:
   useful cells after removal of the five-cell unsafe top-lintel route. Normal
   Godot shutdown object/resource warnings remain a known baseline and are not
   reported as test failures.
+- The runtime visual inventory now assigns every remaining unprofiled static
+  source to an explicit migration stream: 11 bundled Dialogic addon UI visuals,
+  10 legacy compatibility visuals, and two dynamic character-path templates.
+  These classifications preserve the release denominator without falsely
+  marking any source as profile-approved or distribution-admitted.

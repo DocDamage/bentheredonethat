@@ -20,6 +20,11 @@ RASTER_SUFFIXES = {".png", ".jpg", ".jpeg", ".webp", ".gif", ".svg"}
 STRING_PATTERN = re.compile(r'(["\'])(.*?)(?<!\\)\1')
 CONST_PATTERN = re.compile(r'^\s*const\s+([A-Z][A-Z0-9_]*)\s*(?::[^=]+)?=\s*(["\'])(.*?)(?<!\\)\2')
 CONCAT_PATTERN = re.compile(r'\b([A-Z][A-Z0-9_]*)\s*\+\s*(["\'])(.*?)(?<!\\)\2')
+UNPROFILED_CLASSIFICATIONS = {
+    "third_party_addon_ui",
+    "legacy_compatibility_visual",
+    "dynamic_template_visual",
+}
 
 
 def release_files(root: Path) -> list[Path]:
@@ -70,6 +75,22 @@ def profile_sources(root: Path) -> dict[str, list[dict[str, Any]]]:
     return result
 
 
+def unprofiled_classification(asset_path: str) -> str:
+    """Make every remaining gap explicit without treating it as profile approval.
+
+    The inventory deliberately includes bundled addon UI and compatibility
+    scenes so the release denominator cannot hide them. Those sources have
+    different next actions from campaign-owned content profiles: addon art must
+    be tracked as a third-party dependency, compatibility scenes must migrate,
+    and %s paths must resolve through data-owned profile IDs.
+    """
+    if asset_path.startswith("res://addons/"):
+        return "third_party_addon_ui"
+    if "%s" in asset_path:
+        return "dynamic_template_visual"
+    return "legacy_compatibility_visual"
+
+
 def build(root: Path) -> dict[str, Any]:
     profiles = profile_sources(root)
     references: dict[str, list[dict[str, Any]]] = defaultdict(list)
@@ -107,11 +128,23 @@ def build(root: Path) -> dict[str, Any]:
                 "references": refs,
             }
         )
+    for entry in entries:
+        if not entry["profileIds"]:
+            entry["unprofiledClassification"] = unprofiled_classification(entry["path"])
     profiled = sum(1 for entry in entries if entry["profileIds"])
+    unprofiled_by_classification = {
+        classification: sum(entry.get("unprofiledClassification") == classification for entry in entries)
+        for classification in sorted(UNPROFILED_CLASSIFICATIONS)
+    }
     return {
         "schemaVersion": 2,
         "scope": "static Godot .gd/.tscn raster literals and approved profile runtime textures (tests, validation, and editor-only paths excluded)",
-        "stats": {"assets": len(entries), "profiledAssetSources": profiled, "unprofiledAssetSources": len(entries) - profiled},
+        "stats": {
+            "assets": len(entries),
+            "profiledAssetSources": profiled,
+            "unprofiledAssetSources": len(entries) - profiled,
+            "unprofiledByClassification": unprofiled_by_classification,
+        },
         "assets": entries,
     }
 
