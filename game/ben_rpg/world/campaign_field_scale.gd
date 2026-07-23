@@ -87,6 +87,27 @@ static func scaled_anchor(source_anchor: Vector2, render_scale: float) -> Vector
 	return snap_to_world_pixels(source_anchor * render_scale)
 
 
+static func validate() -> PackedStringArray:
+	var errors: Array[String] = []
+	if MOVEMENT_CELL_PIXELS != 48:
+		errors.append("Field movement cell must remain 48 world pixels until a replacement is approved.")
+	if LOGICAL_VIEWPORT_PIXELS != Vector2i(1920, 1080) or DEFAULT_WINDOW_PIXELS != Vector2i(960, 540):
+		errors.append("Field viewport contract must remain 1920x1080 logical and 960x540 default.")
+	if FIELD_CHARACTER_VISIBLE_HEIGHT.x <= 0 or FIELD_CHARACTER_VISIBLE_HEIGHT.x > FIELD_CHARACTER_VISIBLE_HEIGHT.y:
+		errors.append("Field character visible-height range is invalid.")
+	for semantic_id in [&"doorway", &"single_story_facade", &"multi_story_facade", &"tree", &"counter", &"bed", &"chair", &"treasure", &"boss"]:
+		var range := semantic_size_range(semantic_id)
+		if range.x <= 0 or range.x > range.y:
+			errors.append("Field semantic size range is invalid for %s." % semantic_id)
+	for source_density in SOURCE_DENSITY_SCALES:
+		if not is_equal_approx(source_density_scale(source_density) * source_density, MOVEMENT_CELL_PIXELS):
+			errors.append("Field source-density conversion is inconsistent for %spx." % source_density)
+	for render_scale in APPROVED_FIELD_RENDER_SCALES:
+		if render_scale <= 0.0:
+			errors.append("Field render-scale allowlist contains a non-positive value.")
+	return PackedStringArray(errors)
+
+
 static func is_pixel_aligned(world_position: Vector2) -> bool:
 	return is_equal_approx(world_position.x, roundf(world_position.x)) and is_equal_approx(world_position.y, roundf(world_position.y))
 

@@ -149,3 +149,23 @@ func world_doorway(profile_id: StringName) -> Vector2:
 		return Vector2.ZERO
 	var scale := render_scale_vector(profile_id)
 	return FIELD_SCALE.snap_to_world_pixels(Vector2(values[0] * scale.x, values[1] * scale.y))
+
+
+func validate() -> PackedStringArray:
+	var errors: Array[String] = []
+	if _profiles.is_empty():
+		errors.append("Visual profile manifest must contain profiles.")
+	for profile_id in profile_ids():
+		var profile := get_profile(profile_id)
+		var surface := String(profile.get("surface", ""))
+		if surface not in ["field", "battle", "portrait", "ui"]:
+			errors.append("Visual profile %s has an invalid surface." % profile_id)
+			continue
+		if surface == "field" and not field_scale_contract_valid(profile_id):
+			errors.append("Field profile %s has no auditable scale status." % profile_id)
+		if String(profile.get("releaseVisualAcceptance", "")) == "final_approved" and not is_final_field_scale_approved(profile_id):
+			errors.append("Final-approved field profile %s has not passed the field-scale contract." % profile_id)
+		var foot_anchor := world_foot_anchor(profile_id)
+		if not FIELD_SCALE.is_pixel_aligned(foot_anchor):
+			errors.append("Visual profile %s resolves its foot anchor to fractional world pixels." % profile_id)
+	return PackedStringArray(errors)
