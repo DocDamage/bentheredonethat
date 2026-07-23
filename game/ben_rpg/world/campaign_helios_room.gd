@@ -7,6 +7,8 @@ const PROFILE_BY_ROOM := {
 	&"HE-01": &"helios_skybridge_quadrant",
 	&"HE-02": &"helios_market_quadrant",
 	&"HE-03": &"helios_market_quadrant",
+	&"HE-04": &"helios_transit_quadrant",
+	&"HE-05": &"helios_core_quadrant",
 	&"HE-06": &"helios_clinic_quadrant",
 	&"HE-07": &"helios_transit_quadrant",
 	&"HE-08": &"helios_core_quadrant",

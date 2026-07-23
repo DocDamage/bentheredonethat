@@ -262,6 +262,8 @@ static func room(room_id: StringName) -> Dictionary:
 	if room_id == &"HE-01": definition.merge({"scenePath":"res://ben_rpg/world/rooms/helios_afterlight_skybridge.tscn","worldOrigin":Vector2i(450,0),"enabledPortIds":[&"Nw",&"Ne",&"E1"]},true)
 	elif room_id == &"HE-02": definition.merge({"scenePath":"res://ben_rpg/world/rooms/helios_curfew_customs.tscn","worldOrigin":Vector2i(450,0),"enabledPortIds":[&"Nw",&"Ne",&"E1"]},true)
 	elif room_id == &"HE-03": definition.merge({"scenePath":"res://ben_rpg/world/rooms/helios_public_market.tscn","worldOrigin":Vector2i(450,0),"enabledPortIds":[&"Nw",&"Ne",&"E1",&"E2"]},true)
+	elif room_id == &"HE-04": definition.merge({"scenePath":"res://ben_rpg/world/rooms/helios_transit_concourse.tscn","worldOrigin":Vector2i(450,0),"enabledPortIds":[&"Nw",&"Ne",&"E1"]},true)
+	elif room_id == &"HE-05": definition.merge({"scenePath":"res://ben_rpg/world/rooms/helios_transit_phase_substation.tscn","worldOrigin":Vector2i(450,0),"enabledPortIds":[&"Nw"]},true)
 	elif room_id == &"HE-13": definition.merge({"scenePath":"res://ben_rpg/world/rooms/helios_grid_junction.tscn","worldOrigin":Vector2i(450,0),"enabledPortIds":[&"Nw",&"Ne",&"E1",&"E2"],"featureIds":[&"phase_inverter_route",&"night_grid_switch"]},true)
 	elif room_id == &"HE-06": definition.merge({"scenePath":"res://ben_rpg/world/rooms/helios_clinic.tscn","worldOrigin":Vector2i(450,0),"enabledPortIds":[&"Nw",&"Ne"]},true)
 	elif room_id == &"HE-07": definition.merge({"scenePath":"res://ben_rpg/world/rooms/helios_transit_exchange.tscn","worldOrigin":Vector2i(450,0),"enabledPortIds":[&"Nw",&"Ne",&"E1",&"E2",&"Se"],"featureIds":[&"transit_daylight_node",&"core_route"]},true)
