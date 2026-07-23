@@ -1053,7 +1053,7 @@ first_visit_variant, stabilized_variant, postgame_variant
   wall, encounter trigger, moving NPC route, or unopened gate.
 - [ ] Give each room its own collision/navigation ownership and generated route
   coverage data. Universe-wide invisible blockers are prohibited.
-- [ ] Declare random-encounter policy per room: `none`, `step`, `zone`, or
+- [x] Declare random-encounter policy per room: `none`, `step`, `zone`, or
   `scripted_only`, plus formation pool and cooldown. Safe, puzzle, boss, and
   population-heavy rooms default to `none` or `scripted_only`.
 - [ ] Bind residents through the population registry by room ID and story
@@ -2991,3 +2991,9 @@ limit:
   population assignment. This guards future admitted runtime profiles from
   overlapping gameplay-critical cells; production identity admission and actor
   spawning remain separate, incomplete population work.
+- Every authored room now resolves a validated encounter contract with policy,
+  formation pool, threshold, anti-repeat depth, cooldown, and safe-zone source.
+  The active room runtime creates a manifest-only encounter director for `zone`
+  rooms; `none`, boss, and scripted-only rooms do not receive random encounter
+  ownership. Legacy controllers remain a compatibility adapter for retired
+  coordinate regions.

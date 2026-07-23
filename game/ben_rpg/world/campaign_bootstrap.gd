@@ -428,6 +428,7 @@ func _enter_tree() -> void:
 	_encounter_runtime.name = "CampaignEncounterRuntime"
 	world.add_child(_encounter_runtime)
 	_encounter_runtime.call(&"install_legacy_controllers", encounter_layer, _battle)
+	_encounter_runtime.call(&"bind_room_runtime", _room_runtime)
 	_spawn_mansion_clues(world)
 	_spawn_mansion_chapter_interactions(world)
 	_spawn_mansion_save_point(world)

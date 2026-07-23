@@ -10,6 +10,7 @@ const MANSION_ROOM_IDS := [
 	&"HM-09", &"HM-10", &"HM-11", &"HM-12", &"HM-13", &"HM-14", &"HM-15", &"HM-16",
 ]
 const FIELD_SCALE := preload("res://ben_rpg/world/campaign_field_scale.gd")
+const COMBAT_DATABASE := preload("res://ben_rpg/combat/campaign_combat_database.gd")
 
 const ASTERION_ROOM_IDS := [
 	&"AS-01", &"AS-02", &"AS-03", &"AS-04", &"AS-05", &"AS-06", &"AS-07", &"AS-08",
@@ -900,7 +901,37 @@ static func room(room_id: StringName) -> Dictionary:
 			"featureIds": [&"vertical_clutter_maze", &"dollmaker_invoice", &"doll_resistant_charm", &"attic_stair"],
 			"chapterInteractions": [{"nodeName": "AtticStair", "kind": &"attic_stair", "cell": Vector2i(9, 8)}],
 		}, true)
+	if not definition.is_empty() and room_id != &"TEST-01":
+		definition["encounterContract"] = _encounter_contract(room_id, StringName(definition.get("encounterPolicy", &"none")))
 	return definition
+
+
+static func _encounter_contract(room_id: StringName, policy: StringName) -> Dictionary:
+	var pool: Array[StringName] = []
+	if policy == &"zone":
+		if room_id.begins_with("HM-"):
+			pool = [&"mansion_restless_books", &"mansion_lost_hours", &"mansion_restless_portraits"]
+		elif room_id.begins_with("AS-"):
+			pool = [&"asterion_maintenance_detail", &"asterion_greenhouse_patrol", &"asterion_medical_patrol", &"asterion_command_patrol"]
+		elif room_id.begins_with("PV-"):
+			pool = [&"primeval_raptor_pack", &"primeval_heavy_herd", &"primeval_nest_patrol", &"primeval_caldera_patrol"]
+		elif room_id.begins_with("HE-"):
+			pool = [&"helios_market_patrol", &"helios_transit_patrol", &"helios_clinic_patrol"]
+		elif room_id.begins_with("FR-"):
+			pool = [&"frosthold_market_patrol", &"frosthold_causeway_patrol", &"frosthold_rune_patrol"]
+		elif room_id.begins_with("MP-"):
+			pool = [&"moonpetal_court_patrol", &"moonpetal_garden_patrol", &"moonpetal_bell_patrol"]
+		elif room_id.begins_with("EM-"):
+			pool = [&"empyreal_garden_patrol", &"empyreal_forum_patrol", &"empyreal_aerie_patrol"]
+	return {
+		"policy": policy,
+		"formationPool": pool,
+		"thresholdMin": 11,
+		"thresholdMax": 17,
+		"cooldownSteps": 8,
+		"antiRepeatDepth": 2,
+		"zoneSource": &"walkable_minus_reserved" if policy == &"zone" else &"none",
+	}
 
 
 static func room_ids() -> Array[StringName]:
@@ -1000,6 +1031,12 @@ static func validate() -> PackedStringArray:
 		var anchors := int(definition.get("populationAnchorCount", 0))
 		if anchors < 1 or anchors > 6:
 			errors.append("%s has invalid population anchor count %d." % [room_id, anchors])
+		var encounter_contract: Dictionary = definition.get("encounterContract", {})
+		if StringName(encounter_contract.get("policy", &"")) != policy:
+			errors.append("%s encounter contract does not match its policy." % room_id)
+		for encounter_id in encounter_contract.get("formationPool", []):
+			if not COMBAT_DATABASE.has_encounter(encounter_id):
+				errors.append("%s encounter contract references unknown formation %s." % [room_id, encounter_id])
 		var port_ids: Dictionary = {}
 		for port in ports(room_id):
 			var port_id := StringName(port.get("id", &""))

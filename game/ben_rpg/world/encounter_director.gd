@@ -16,6 +16,7 @@ var threshold_min := 11
 var threshold_max := 17
 var encounter_count_flag: StringName = &""
 var anti_repeat_depth := 2
+var cooldown_steps_after_battle := 8
 var _steps_in_danger := 0
 var _encounter_threshold := 13
 var _cooldown_steps := 0
@@ -135,7 +136,7 @@ func _record_random_encounter(encounter_id: StringName) -> void:
 func _on_battle_finished(victory: bool, encounter_id: StringName) -> void:
 	if not victory:
 		return
-	_cooldown_steps = 8
+	_cooldown_steps = cooldown_steps_after_battle
 	CampaignState.report_encounter_pressure(universe_id, 0, _encounter_threshold, false, _cooldown_steps)
 	if encounter_count_flag != &"":
 		CampaignState.story_flags[encounter_count_flag] = int(CampaignState.story_flags.get(encounter_count_flag, 0)) + 1
