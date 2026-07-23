@@ -205,6 +205,10 @@ static func room(room_id: StringName) -> Dictionary:
 			"enabledPortIds": [&"Nw", &"Ne"],
 			"visualProfileIds": [&"mansion_gallery_left_portrait", &"mansion_gallery_right_portrait", &"mansion_gallery_upper_left_frame", &"mansion_gallery_upper_right_frame", &"mansion_gallery_stage_curtain"],
 			"featureIds": [&"portrait_ambush", &"silver_hour_hand", &"false_bottom_cache", &"central_portrait", &"rotating_frame_sightline"],
+			"chapterInteractions": [
+				{"nodeName": "GalleryPortrait", "kind": &"gallery_portrait", "cell": Vector2i(13, 6)},
+				{"nodeName": "GalleryCache", "kind": &"gallery_cache", "cell": Vector2i(4, 7)},
+			],
 		}, true)
 	elif room_id == &"HM-15":
 		definition.merge({
@@ -221,6 +225,10 @@ static func room(room_id: StringName) -> Dictionary:
 			"enabledPortIds": [&"Nw"],
 			"visualProfileIds": [&"mansion_nursery_bed", &"mansion_nursery_music_box", &"mansion_nursery_left_wall_panel", &"mansion_nursery_right_wall_panel"],
 			"featureIds": [&"doll_ambush", &"silver_hour_hand_socket", &"brass_minute_hand", &"toy_chest_cache", &"wooden_raptor"],
+			"chapterInteractions": [
+				{"nodeName": "NurseryMusicBox", "kind": &"nursery_music_box", "cell": Vector2i(12, 6)},
+				{"nodeName": "NurseryCache", "kind": &"nursery_cache", "cell": Vector2i(16, 8)},
+			],
 		}, true)
 	return definition
 

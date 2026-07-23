@@ -119,6 +119,11 @@ func _run() -> void:
 	var gallery_root: Node2D = streamer.call(&"active_root") as Node2D
 	assert(gallery_root.has_node("InteractionLayer/ManifestInteraction/Feature_portrait_ambush"))
 	assert(gallery_root.has_node("InteractionLayer/ManifestInteraction/Feature_silver_hour_hand"))
+	var gallery_portrait: Node = gallery_root.get_node_or_null("InteractionLayer/GalleryPortrait")
+	assert(gallery_portrait)
+	CampaignState.mark_story_flag(&"mansion_gallery_ambush_cleared")
+	gallery_portrait.call("apply_interaction", false)
+	assert(bool(CampaignState.story_flags.get(&"mansion_hour_hand_found", false)))
 	var mirror_port: Node = runtime.get_node_or_null("ManifestPort_HM-06_Ne")
 	assert(mirror_port and Gameboard.pixel_to_cell(mirror_port.arrival_coordinates) == MIRROR_SAFE_CELL)
 	mirror_port.call(&"_on_blackout")
@@ -136,6 +141,11 @@ func _run() -> void:
 	var nursery_root: Node2D = streamer.call(&"active_root") as Node2D
 	assert(nursery_root.has_node("InteractionLayer/ManifestInteraction/Feature_doll_ambush"))
 	assert(nursery_root.has_node("InteractionLayer/ManifestInteraction/Feature_brass_minute_hand"))
+	var music_box: Node = nursery_root.get_node_or_null("InteractionLayer/NurseryMusicBox")
+	assert(music_box)
+	CampaignState.mark_story_flag(&"mansion_nursery_ambush_cleared")
+	music_box.call("apply_interaction", false)
+	assert(bool(CampaignState.story_flags.get(&"mansion_minute_hand_found", false)))
 	assert(not runtime.has_node("ManifestPort_HM-07_Ne"), "HM-07's Antechamber exit remains sealed until HM-08 is authored.")
 	var visual := main.get_node("Field/Map/CampaignWorld/GroundLayer/Visuals")
 	var foreground := main.get_node("Field/Map/CampaignWorld/ForegroundLayer/MansionForeground")
