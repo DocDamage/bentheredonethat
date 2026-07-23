@@ -967,7 +967,6 @@ func _ensure_facility_service(plot_index: int, facility_name: String) -> void:
 func _restore_campaign_state() -> void:
 	for plot_index in CampaignState.built_facilities.keys():
 		_apply_facility(int(plot_index), CampaignState.built_facilities[plot_index])
-	_refresh_manifest_facility_transitions()
 	refresh_sandbox_object_collision()
 	if _sandbox_objects:
 		_sandbox_objects.queue_redraw()
@@ -1236,13 +1235,12 @@ func _create_manifest_facility_portal(plot_index: int, facility_name: String) ->
 	var prefix := String(portal.get("prefix", ""))
 	if prefix == "" or world.has_node("%sEntrance" % prefix):
 		return
-	_create_manifest_facility_transitions(
+	_create_manifest_facility_portal_transitions(
 		world,
 		prefix,
 		town_door,
 		town_return,
 		StringName(portal.get("entryRoomId", &"")),
-		portal.get("roomIds", []),
 		StringName(portal.get("destinationId", &"")),
 	)
 	_spawn_manifest_facility_recruit(StringName(facility_name))
@@ -1257,7 +1255,7 @@ func _spawn_manifest_facility_recruit(facility_name: StringName) -> void:
 		&"Belfry": _spawn_archangel()
 
 
-func _create_manifest_facility_transitions(world: Node2D, prefix: String, town_door: Vector2i, town_return: Vector2i, entry_room_id: StringName, room_ids: Array, destination_id: StringName = &"") -> void:
+func _create_manifest_facility_portal_transitions(world: Node2D, prefix: String, town_door: Vector2i, town_return: Vector2i, entry_room_id: StringName, destination_id: StringName = &"") -> void:
 	var entry_definition := ROOM_REGISTRY.room(entry_room_id)
 	var entry_origin: Vector2i = entry_definition.get("worldOrigin", Vector2i.ZERO)
 	var entry_port: Vector2i = (entry_definition.get("portCells", {}) as Dictionary).get(&"Nw", Vector2i.ZERO)
@@ -1267,70 +1265,6 @@ func _create_manifest_facility_transitions(world: Node2D, prefix: String, town_d
 	else:
 		world.add_child(_create_restricted_transition("%sEntrance" % prefix, town_door, entry_arrival, town_return, destination_id))
 	world.add_child(_create_transition("%sExit" % prefix, entry_origin + entry_port, town_return))
-	var container := Node2D.new()
-	container.name = "%sManifestTransitions" % prefix
-	world.add_child(container)
-	_refresh_manifest_room_transitions(container, room_ids)
-
-
-func _refresh_manifest_room_transitions(container: Node2D, room_ids: Array) -> void:
-	for child in container.get_children():
-		container.remove_child(child)
-		child.free()
-	var room_lookup := {}
-	for room_id in room_ids:
-		room_lookup[room_id] = true
-	for room_id in room_ids:
-		var source_definition := ROOM_REGISTRY.room(room_id)
-		var source_origin: Vector2i = source_definition.get("worldOrigin", Vector2i.ZERO)
-		var source_ports: Dictionary = source_definition.get("portCells", {})
-		for port_id in ROOM_REGISTRY.enabled_port_ids(room_id):
-			var route := TRANSITION_ROUTER.resolve(room_id, port_id)
-			var destination_room_id: StringName = route.get("destinationRoom", &"")
-			if route.is_empty() or not room_lookup.has(destination_room_id):
-				continue
-			var destination_origin: Vector2i = ROOM_REGISTRY.room(destination_room_id).get("worldOrigin", Vector2i.ZERO)
-			var source_cell: Vector2i = source_origin + source_ports.get(port_id, Vector2i.ZERO)
-			var destination_cell: Vector2i = destination_origin + route.get("arrivalCell", Vector2i.ZERO)
-			container.add_child(_create_transition("%s_%s" % [room_id, port_id], source_cell, destination_cell))
-	_refresh_manifest_navigation(room_ids)
-
-
-func _refresh_manifest_navigation(room_ids: Array) -> void:
-	if not _navigation:
-		return
-	var cleared_cells: Array[Vector2i] = []
-	var blocked_cells: Array[Vector2i] = []
-	for room_id in room_ids:
-		var definition := ROOM_REGISTRY.room(room_id)
-		var origin: Vector2i = definition.get("worldOrigin", Vector2i.ZERO)
-		var record := NAVIGATION_BUILDER.navigation_record(room_id)
-		var dimensions: Vector2i = record.get("dimensions", Vector2i.ZERO)
-		var walkable: Dictionary = record.get("walkable", {})
-		for y in range(dimensions.y):
-			for x in range(dimensions.x):
-				var cell := origin + Vector2i(x, y)
-				var is_blocked := not walkable.has(Vector2i(x, y))
-				_navigation.set_cell(cell, 0, Vector2i(1, 4) if is_blocked else Vector2i(2, 2), 0)
-				(blocked_cells if is_blocked else cleared_cells).append(cell)
-	_navigation.cells_changed.emit(cleared_cells, blocked_cells)
-
-
-func _refresh_manifest_transition_group(container_name: String, room_ids: Array) -> void:
-	var world := get_node_or_null("Field/Map/CampaignWorld")
-	if not world:
-		return
-	var container := world.get_node_or_null(container_name) as Node2D
-	if container:
-		_refresh_manifest_room_transitions(container, room_ids)
-
-
-func _refresh_manifest_facility_transitions() -> void:
-	for portal in ROOM_REGISTRY.facility_portals().values():
-		var prefix := String(portal.get("prefix", ""))
-		var room_ids: Array = portal.get("roomIds", [])
-		if prefix != "" and not room_ids.is_empty():
-			_refresh_manifest_transition_group("%sManifestTransitions" % prefix, room_ids)
 
 
 func _ensure_campaign_input() -> void:
@@ -2182,7 +2116,6 @@ func _spawn_empyreal_boss_marker(world: Node2D) -> void:
 
 
 func _on_campaign_state_changed() -> void:
-	_refresh_manifest_facility_transitions()
 	if _visual:
 		_visual.queue_redraw()
 	_sync_sandbox_authored_entities()
