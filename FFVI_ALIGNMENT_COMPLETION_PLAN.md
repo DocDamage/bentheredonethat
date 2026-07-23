@@ -3008,6 +3008,11 @@ limit:
   direct callback adapter for focused contract fixtures. The HM-01 controller
   and click handoff now verifies a real collision transition into HM-02 at its
   safe arrival without crossing the separate facility-return port.
+- A windowed Mansion manifest capture runner now records 48 isolated 960×540
+  review inputs: every `HM-01` through `HM-16` room at first visit, stabilized,
+  and postgame. Its JSON manifest records the tested SHA and state for each
+  image; the captures remain `visual_review_only` and do not grant visual,
+  input, licensing, performance, or product acceptance.
 - The full isolated Godot smoke matrix completed cleanly after the manifest
   port handoff change: all 125 retained scene logs in
   `test-artifacts/20260723-124703-6a6a6f3a` contain no test failure, assertion,
