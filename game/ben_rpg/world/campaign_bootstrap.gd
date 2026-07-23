@@ -1,6 +1,7 @@
 extends Node2D
 
 const CONTENT_VALIDATOR := preload("res://ben_rpg/core/content_validator.gd")
+const VISUAL_PROFILE_REGISTRY := preload("res://ben_rpg/world/campaign_visual_profile_registry.gd")
 const TILE := 48
 const LAB_SIZE := Vector2i(20, 12)
 const TOWN_ORIGIN := Vector2i(36, 0)
@@ -219,6 +220,7 @@ const FACILITY_PLOTS := [
 var _camera_area := ""
 var _navigation: GameboardLayer
 var _visual: CampaignMapVisual
+var _visual_profiles := VISUAL_PROFILE_REGISTRY.new()
 var _room_streamer: Node
 var _room_runtime: Node
 var _empyreal_ground
@@ -1487,7 +1489,7 @@ func _create_navigation_layer() -> GameboardLayer:
 	tile_set.set_custom_data_layer_type(0, TYPE_BOOL)
 
 	var atlas := TileSetAtlasSource.new()
-	atlas.texture = load("res://game_assets/Tilesets/Ranch Stuff/assets/tiles/ground_01_16x16.png")
+	atlas.texture = _visual_profiles.texture(&"sandbox_ranch_dirt")
 	atlas.texture_region_size = Vector2i(16, 16)
 	var clear_tile := Vector2i(2, 2)
 	var blocked_tile := Vector2i(1, 4)
@@ -1578,6 +1580,19 @@ func _create_navigation_layer() -> GameboardLayer:
 		CONNECT_ONE_SHOT
 	)
 	return layer
+
+
+func _profiled_texture(profile_id: StringName) -> Texture2D:
+	if not _visual_profiles.has(profile_id):
+		push_error("Campaign marker references missing visual profile: %s" % profile_id)
+		return null
+	var source_texture := _visual_profiles.texture(profile_id)
+	if not source_texture:
+		return null
+	var atlas := AtlasTexture.new()
+	atlas.atlas = source_texture
+	atlas.region = _visual_profiles.region(profile_id)
+	return atlas
 
 
 func _blocked_cells() -> Dictionary:
@@ -1845,7 +1860,7 @@ func _spawn_mansion_save_point(world: Node2D) -> void:
 func _spawn_mansion_boss_marker(world: Node2D) -> void:
 	_mansion_boss_marker = Sprite2D.new()
 	_mansion_boss_marker.name = "The444Appointment"
-	_mansion_boss_marker.texture = load("res://game_assets/monsters/cp45-f91_horror_and_nightmares/CP_F119_HauntedClockMirror.png")
+	_mansion_boss_marker.texture = _profiled_texture(&"clock_mirror_battle_actor")
 	_mansion_boss_marker.texture_filter = CanvasItem.TEXTURE_FILTER_NEAREST
 	# Stand the marker on the open floor rather than over the rear-wall furniture.
 	_mansion_boss_marker.position = Gameboard.cell_to_pixel(MANSION_ORIGIN + Vector2i(24, 9))
@@ -2114,7 +2129,7 @@ func _spawn_archangel() -> void:
 func _spawn_asterion_boss_marker(world: Node2D) -> void:
 	_station_boss_marker = Sprite2D.new()
 	_station_boss_marker.name = "AsterionMotherComputer"
-	_station_boss_marker.texture = load("res://game_assets/monsters/cp42-g31_sci_fi_entities/CP_G59_MotherComputer.png")
+	_station_boss_marker.texture = _profiled_texture(&"mother_computer_battle_actor")
 	_station_boss_marker.texture_filter = CanvasItem.TEXTURE_FILTER_NEAREST
 	_station_boss_marker.position = Gameboard.cell_to_pixel(STATION_ORIGIN + Vector2i(24, 13)) + Vector2(0, 18)
 	_station_boss_marker.scale = Vector2(0.24, 0.24)
@@ -2140,10 +2155,7 @@ func _add_primeval_interaction(world: Node2D, node_name: String, kind: StringNam
 func _spawn_primeval_boss_marker(world: Node2D) -> void:
 	_primeval_boss_marker = Sprite2D.new()
 	_primeval_boss_marker.name = "TyrantOfTheMorningCommute"
-	var atlas := AtlasTexture.new()
-	atlas.atlas = load("res://game_assets/Tilesets/Jurassic world/Jurassic World Pixel Art Megapack/21. Dinosaurs.png")
-	atlas.region = Rect2(52, 226, 239, 161)
-	_primeval_boss_marker.texture = atlas
+	_primeval_boss_marker.texture = _profiled_texture(&"commute_tyrant_battle_actor")
 	_primeval_boss_marker.texture_filter = CanvasItem.TEXTURE_FILTER_NEAREST
 	_primeval_boss_marker.position = Gameboard.cell_to_pixel(PRIMEVAL_ORIGIN + Vector2i(24, 13)) + Vector2(0, 18)
 	_primeval_boss_marker.scale = Vector2(0.28, 0.28)
@@ -2170,7 +2182,7 @@ func _add_helios_interaction(world: Node2D, node_name: String, kind: StringName,
 func _spawn_helios_boss_marker(world: Node2D) -> void:
 	_helios_boss_marker = Sprite2D.new()
 	_helios_boss_marker.name = "CivicSun"
-	_helios_boss_marker.texture = load("res://game_assets/monsters/cp42-g31_sci_fi_entities/CP_G56_Guardian.png")
+	_helios_boss_marker.texture = _profiled_texture(&"civic_sun_battle_actor")
 	_helios_boss_marker.texture_filter = CanvasItem.TEXTURE_FILTER_NEAREST
 	_helios_boss_marker.position = Gameboard.cell_to_pixel(HELIOS_ORIGIN + Vector2i(24, 13)) + Vector2(0, 18)
 	_helios_boss_marker.scale = Vector2(0.24, 0.24)
@@ -2197,7 +2209,7 @@ func _add_frosthold_interaction(world: Node2D, node_name: String, kind: StringNa
 func _spawn_frosthold_boss_marker(world: Node2D) -> void:
 	_frosthold_boss_marker = Sprite2D.new()
 	_frosthold_boss_marker.name = "WhiteoutAuditor"
-	_frosthold_boss_marker.texture = load("res://game_assets/monsters/cp44-j31_villains/CP_J60_ElementalFusionDragon.png")
+	_frosthold_boss_marker.texture = _profiled_texture(&"whiteout_auditor_battle_actor")
 	_frosthold_boss_marker.texture_filter = CanvasItem.TEXTURE_FILTER_NEAREST
 	# The field marker should read as the three-headed boss, not a tiny pile of
 	# pixels. The throne-room braziers are spaced to frame this silhouette.
@@ -2226,7 +2238,7 @@ func _add_moonpetal_interaction(world: Node2D, node_name: String, kind: StringNa
 func _spawn_moonpetal_boss_marker(world: Node2D) -> void:
 	_moonpetal_boss_marker = Sprite2D.new()
 	_moonpetal_boss_marker.name = "MagistrateEnma"
-	_moonpetal_boss_marker.texture = load("res://game_assets/monsters/cp41-a181_japanese_yokai_urban_legends/CP_A210_Enma.png")
+	_moonpetal_boss_marker.texture = _profiled_texture(&"magistrate_enma_battle_actor")
 	_moonpetal_boss_marker.texture_filter = CanvasItem.TEXTURE_FILTER_NEAREST
 	# Present Enma at a readable boss scale on the processional lane, fully below
 	# the palace threshold and above the player's arrival tile.
@@ -2276,7 +2288,7 @@ func _add_universe_treasure(world: Node2D, node_name: String, cache_id: StringNa
 func _spawn_empyreal_boss_marker(world: Node2D) -> void:
 	_empyreal_boss_marker = Sprite2D.new()
 	_empyreal_boss_marker.name = "HighComptrollerOfGravity"
-	_empyreal_boss_marker.texture = load("res://game_assets/monsters/cp44-j31_villains/CP_J59_StormCommander.png")
+	_empyreal_boss_marker.texture = _profiled_texture(&"high_comptroller_battle_actor")
 	_empyreal_boss_marker.texture_filter = CanvasItem.TEXTURE_FILTER_NEAREST
 	_empyreal_boss_marker.position = Gameboard.cell_to_pixel(EMPYREAL_ORIGIN + Vector2i(24, 13)) + Vector2(0, 18)
 	_empyreal_boss_marker.scale = Vector2(0.25, 0.25)

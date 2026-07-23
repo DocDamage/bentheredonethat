@@ -11,6 +11,7 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[2]
 PROFILE_PATH = ROOT / "game/ben_rpg/visual_assets/visual_profiles.json"
 MAP_VISUAL = ROOT / "game/ben_rpg/world/campaign_map_visual.gd"
+BOOTSTRAP = ROOT / "game/ben_rpg/world/campaign_bootstrap.gd"
 EMPYREAL_GROUND = ROOT / "game/ben_rpg/world/campaign_empyreal_ground.gd"
 RENDERERS = [
     ROOT / "game/ben_rpg/world/campaign_asterion_foreground.gd",
@@ -46,6 +47,24 @@ class ProfiledForegroundRendererTests(unittest.TestCase):
         used_ids = re.findall(r'_profile_tile\(&"(empyreal_[^"]+)"', empyreal_source)
         self.assertTrue(used_ids)
         self.assertTrue(set(used_ids) <= profile_ids)
+
+    def test_campaign_boss_markers_resolve_through_approved_profiles(self) -> None:
+        source = BOOTSTRAP.read_text(encoding="utf-8")
+        expected_ids = {
+            "clock_mirror_battle_actor",
+            "mother_computer_battle_actor",
+            "commute_tyrant_battle_actor",
+            "civic_sun_battle_actor",
+            "whiteout_auditor_battle_actor",
+            "magistrate_enma_battle_actor",
+            "high_comptroller_battle_actor",
+        }
+        profile_ids = {profile["id"] for profile in json.loads(PROFILE_PATH.read_text(encoding="utf-8"))["profiles"]}
+        used_ids = set(re.findall(r'_profiled_texture\(&"([^"]+)"', source))
+        self.assertTrue(expected_ids <= used_ids)
+        self.assertTrue(used_ids <= profile_ids)
+        self.assertNotIn('load("res://game_assets/monsters/', source)
+        self.assertNotIn('load("res://game_assets/Tilesets/Jurassic world/', source)
 
 
 if __name__ == "__main__":
