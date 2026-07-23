@@ -24,6 +24,8 @@ func apply_interaction(save_after: bool = true) -> Array[String]:
 			events = _open_nursery_cache()
 		&"ballroom_gate":
 			events = _open_ballroom_gate()
+		&"chapel_alignment":
+			events = _align_chapel_glass()
 		_:
 			events = ["The Mansion declines to explain this particular impossibility."]
 	CampaignState.state_changed.emit()
@@ -114,3 +116,17 @@ func _open_ballroom_gate() -> Array[String]:
 		"The hands turn to 4:44. The double doors open onto a room that has been waiting since 1776.",
 		"BEN: Our host is punctual. Let us disappoint it professionally.",
 	]
+
+
+func _align_chapel_glass() -> Array[String]:
+	if CampaignState.story_flags.get(&"mansion_crypt_key_found", false):
+		return ["The chapel glass remains aligned. The crypt key is already warm in Ben's pocket."]
+	if not CampaignState.story_flags.get(&"mansion_temporal_secret_found", false):
+		return ["The stained glass rejects ordinary time. The thirteenth resonance must be solved at the foyer clock first."]
+	CampaignState.story_flags[&"mansion_crypt_key_found"] = true
+	CampaignState.loot_inventory.append({
+		"instance_id": "mansion-chapel-ward", "id": &"chapel_ward_charm", "base_name": "Chapel Ward Charm",
+		"display_name": "Fixed Chapel Ward Charm", "slot": "accessory", "rarity": "Rare", "rarity_color": "#58a6ff",
+		"modifiers": [{"name": "of Warding", "stat": "spirit", "value": 4}], "kind": "gear", "source_pack": "Haunted Mansion",
+	})
+	return ["The thirteenth chime aligns the chapel glass. A ward charm and the undercroft's crypt key slide from the altar.", "Crypt Key obtained; the sealed undercroft entrance opens."]

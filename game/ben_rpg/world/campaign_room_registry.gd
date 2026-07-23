@@ -278,9 +278,11 @@ static func room(room_id: StringName) -> Dictionary:
 		definition.merge({
 			"scenePath": "res://ben_rpg/world/rooms/haunted_mansion_mourning_chapel.tscn",
 			"worldOrigin": Vector2i(300, 0),
-			"enabledPortIds": [&"Nw", &"Ne"],
+			"enabledPortIds": [&"Nw", &"Ne", &"E1"],
+			"portGates": {&"E1": &"mansion_crypt_key_found"},
 			"visualProfileIds": [&"mansion_gallery_stage_curtain", &"mansion_gallery_upper_left_frame", &"mansion_gallery_upper_right_frame"],
 			"featureIds": [&"stained_glass_alignment", &"anti_curse_accessory", &"nursery_latch"],
+			"chapterInteractions": [{"nodeName": "ChapelGlass", "kind": &"chapel_alignment", "cell": Vector2i(11, 7)}],
 		}, true)
 	return definition
 

@@ -232,6 +232,11 @@ func _run() -> void:
 	assert(runtime.call(&"active_room_id") == &"HM-11")
 	var chapel_root: Node2D = streamer.call(&"active_root") as Node2D
 	assert(chapel_root.has_node("InteractionLayer/ManifestInteraction/Feature_stained_glass_alignment"))
+	var chapel_glass: Node = chapel_root.get_node_or_null("InteractionLayer/ChapelGlass")
+	assert(chapel_glass)
+	CampaignState.mark_story_flag(&"mansion_temporal_secret_found")
+	chapel_glass.call("apply_interaction", false)
+	assert(bool(CampaignState.story_flags.get(&"mansion_crypt_key_found", false)))
 	var nursery_latch: Node = runtime.get_node_or_null("ManifestPort_HM-11_Ne")
 	assert(nursery_latch and Gameboard.pixel_to_cell(nursery_latch.arrival_coordinates) == NURSERY_CHAPEL_SAFE_CELL)
 	var visual := main.get_node("Field/Map/CampaignWorld/GroundLayer/Visuals")
