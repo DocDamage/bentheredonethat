@@ -27,10 +27,15 @@ func _run() -> void:
 		await get_tree().process_frame
 
 	var world := main.get_node("Field/Map/CampaignWorld")
-	for transition_name in ["AsterionStationEntrance", "AsterionStationExit", "StationDockToMess", "StationMessToHydro", "StationMessToMedical"]:
+	for transition_name in ["AsterionStationEntrance", "AsterionStationExit"]:
 		if not world.has_node(transition_name):
 			_fail("Missing Asterion transition: " + transition_name)
 			return
+	var room_runtime := world.get_node("ManifestRoomRuntime")
+	room_runtime.activate(&"AS-01")
+	if not room_runtime.has_node("ManifestPort_AS-01_Ne") or room_runtime.has_node("ManifestPort_AS-01_E1"):
+		_fail("Asterion internal ports were not installed by the active room runtime")
+		return
 	var town_entrance := world.get_node("AsterionStationEntrance") as AreaTransition
 	var expected_town_door := Vector2i(64, 16)
 	if town_entrance.position != Gameboard.cell_to_pixel(expected_town_door) or not Gameboard.pathfinder.has_cell(expected_town_door):
@@ -42,8 +47,7 @@ func _run() -> void:
 	if not world.has_node("RecruitableAstronaut"):
 		_fail("The supplied Astronaut did not appear in Asterion Docking")
 		return
-	var gate_cell: Vector2i = main.STATION_HYDRO_TO_CONTROL
-	if main._navigation.get_cell_atlas_coords(gate_cell) != Vector2i(1, 4):
+	if room_runtime.has_node("ManifestPort_AS-01_E1"):
 		_fail("Station Control was not oxygen-gated before Hydroponics restoration")
 		return
 
@@ -72,7 +76,8 @@ func _run() -> void:
 	if not CampaignState.story_flags.get(&"asterion_station_restored", false):
 		_fail("Hydroponics did not restore the oxygen loop")
 		return
-	if main._navigation.get_cell_atlas_coords(gate_cell) != Vector2i(2, 2) or not world.has_node("StationHydroToControl"):
+	room_runtime.activate(&"AS-01")
+	if not room_runtime.has_node("ManifestPort_AS-01_E1"):
 		_fail("Oxygen restoration did not unlock the Control route")
 		return
 

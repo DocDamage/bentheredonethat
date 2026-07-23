@@ -29,14 +29,19 @@ func _run() -> void:
 	for _frame in range(8):
 		await get_tree().process_frame
 	var world: Node = main.get_node("Field/Map/CampaignWorld")
-	for transition_name in ["PrimevalExpanseEntrance", "PrimevalExpanseExit", "PrimevalGroveToVillage", "PrimevalVillageToGrove", "PrimevalVillageToRuins", "PrimevalRuinsToVillage"]:
+	for transition_name in ["PrimevalExpanseEntrance", "PrimevalExpanseExit"]:
 		if not world.has_node(transition_name):
 			_fail("Missing Primeval transition: " + transition_name)
 			return
+	var room_runtime := world.get_node("ManifestRoomRuntime")
+	room_runtime.activate(&"PV-03")
+	if not room_runtime.has_node("ManifestPort_PV-03_Ne") or room_runtime.has_node("ManifestPort_PV-03_E1"):
+		_fail("Primeval internal ports were not installed by the active room runtime")
+		return
 	if not Gameboard.pathfinder.has_cell(main.PRIMEVAL_ORIGIN + Vector2i(4, 5)):
 		_fail("The expanded gameboard did not register Primeval movement cells")
 		return
-	if main._navigation.get_cell_atlas_coords(main.PRIMEVAL_VILLAGE_TO_NEST) != Vector2i(1, 4):
+	if room_runtime.has_node("ManifestPort_PV-03_E1"):
 		_fail("The Relay Nest route was not puzzle-gated")
 		return
 	if not world.has_node("RecruitableCaveman"):
@@ -78,14 +83,16 @@ func _run() -> void:
 		return
 	world.get_node("PrimevalCaveTerminal").apply_interaction(false)
 	await get_tree().process_frame
-	if main._navigation.get_cell_atlas_coords(main.PRIMEVAL_VILLAGE_TO_NEST) != Vector2i(2, 2) or not world.has_node("PrimevalVillageToNest"):
+	room_runtime.activate(&"PV-03")
+	if not room_runtime.has_node("ManifestPort_PV-03_E1"):
 		_fail("Decoding the cave computer did not open the Relay Nest route")
 		return
 
 	await _trigger_and_win(main, controller, battle, main.PRIMEVAL_ORIGIN + Vector2i(12, 15), &"primeval_nest_ambush")
 	world.get_node("PrimevalRelayNest").apply_interaction(false)
 	await get_tree().process_frame
-	if main._navigation.get_cell_atlas_coords(main.PRIMEVAL_RUINS_TO_CALDERA) != Vector2i(2, 2) or not world.has_node("PrimevalRuinsToCaldera"):
+	room_runtime.activate(&"PV-07")
+	if not room_runtime.has_node("ManifestPort_PV-07_Ne"):
 		_fail("Resetting the relay did not open the Caldera route")
 		return
 
