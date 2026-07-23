@@ -181,11 +181,11 @@ unless that tree is restored explicitly as a licensed artifact.
 
 - [x] `npm run validate:runtime-assets` exits 0 from a fresh clone with no local
   `assets/` directory.
-- [ ] `npm run validate:source-library` and the local aggregate
+- [x] `npm run validate:source-library` and the local aggregate
   `npm run validate:assets` exit 0 when the approved source library is present.
 - [x] All 51 NPCs report editor-ready.
 - [x] Removing or misspelling a required NPC file makes the validator fail.
-- [ ] Browser network requests still resolve to the reorganized asset paths.
+- [x] Browser network requests still resolve to the reorganized asset paths.
 
 ### 5.2 Preserve isolated save safety — P0
 
