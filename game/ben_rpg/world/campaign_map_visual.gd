@@ -164,7 +164,6 @@ func _draw() -> void:
 	draw_town()
 	draw_haunted_mansion()
 	draw_asterion_station()
-	draw_primeval_expanse()
 
 
 func draw_laboratory() -> void:
