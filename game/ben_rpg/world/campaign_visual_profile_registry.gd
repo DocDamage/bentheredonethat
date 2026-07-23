@@ -6,6 +6,7 @@ extends RefCounted
 ## manifest is generated and checksum-validated before it is consumed here.
 
 const MANIFEST_PATH := "res://ben_rpg/visual_assets/generated/runtime_visual_manifest.json"
+const FIELD_SCALE := preload("res://ben_rpg/world/campaign_field_scale.gd")
 
 var _profiles: Dictionary = {}
 
@@ -30,6 +31,14 @@ func has(profile_id: StringName) -> bool:
 
 func profile_count() -> int:
 	return _profiles.size()
+
+
+func profile_ids() -> Array[StringName]:
+	var ids: Array[StringName] = []
+	for profile_id in _profiles:
+		ids.append(StringName(profile_id))
+	ids.sort()
+	return ids
 
 
 func get_profile(profile_id: StringName) -> Dictionary:
@@ -78,6 +87,51 @@ func world_draw_size(profile_id: StringName) -> Vector2:
 	return Vector2(values[0], values[1])
 
 
+func render_scale(profile_id: StringName) -> float:
+	var profile := get_profile(profile_id)
+	return float(profile.get("renderScale", 0.0))
+
+
+func render_scale_vector(profile_id: StringName) -> Vector2:
+	var profile := get_profile(profile_id)
+	return Vector2(float(profile.get("renderScale", 0.0)), float(profile.get("renderScaleY", profile.get("renderScale", 0.0))))
+
+
+func has_legacy_scale_exception(profile_id: StringName) -> bool:
+	var profile := get_profile(profile_id)
+	return not String(profile.get("legacyScaleException", "")).is_empty()
+
+
+func field_scale_status(profile_id: StringName) -> StringName:
+	var profile := get_profile(profile_id)
+	return StringName(profile.get("fieldScaleStatus", &""))
+
+
+func field_scale_contract_valid(profile_id: StringName) -> bool:
+	var profile := get_profile(profile_id)
+	if profile.is_empty():
+		return false
+	var surface := String(profile.get("surface", "field"))
+	if surface != "field":
+		return true
+	return field_scale_status(profile_id) in [&"approved", &"legacy_exception", &"prototype_review_required"]
+
+
+func is_final_field_scale_approved(profile_id: StringName) -> bool:
+	var profile := get_profile(profile_id)
+	return String(profile.get("surface", "field")) != "field" or field_scale_status(profile_id) == &"approved"
+
+
+func world_foot_anchor(profile_id: StringName) -> Vector2:
+	var profile := get_profile(profile_id)
+	var placement: Dictionary = profile.get("placement", {})
+	var values: Array = placement.get("footAnchor", [])
+	if values.size() != 2:
+		return Vector2.ZERO
+	var scale := render_scale_vector(profile_id)
+	return FIELD_SCALE.snap_to_world_pixels(Vector2(values[0] * scale.x, values[1] * scale.y))
+
+
 func doorway(profile_id: StringName) -> Vector2:
 	var profile := get_profile(profile_id)
 	var placement: Dictionary = profile.get("placement", {})
@@ -85,3 +139,13 @@ func doorway(profile_id: StringName) -> Vector2:
 	if values.size() != 2:
 		return Vector2.ZERO
 	return Vector2(values[0], values[1])
+
+
+func world_doorway(profile_id: StringName) -> Vector2:
+	var profile := get_profile(profile_id)
+	var placement: Dictionary = profile.get("placement", {})
+	var values: Array = placement.get("doorway", [])
+	if values.size() != 2:
+		return Vector2.ZERO
+	var scale := render_scale_vector(profile_id)
+	return FIELD_SCALE.snap_to_world_pixels(Vector2(values[0] * scale.x, values[1] * scale.y))

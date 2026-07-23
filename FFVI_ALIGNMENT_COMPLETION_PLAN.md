@@ -217,14 +217,14 @@ The current project combines 16-, 48-, 96-, and higher-density art with manually
 
 **Required standards:**
 
-- [ ] Keep the movement grid at 48 world pixels unless a prototype proves a better replacement.
-- [ ] Define a standard field-character height range.
-- [ ] Define doorway, single-story facade, multi-story facade, tree, counter, bed, chair, treasure, and boss size ranges relative to a character.
-- [ ] Require integer or exact reciprocal scaling with nearest-neighbor filtering.
-- [ ] Prohibit arbitrary fractional scale and fractional final placement.
-- [ ] Define foot anchors and collision bases separately from visible image bounds.
-- [ ] Define battle-sprite scale separately from field-sprite scale.
-- [ ] Define portrait crops separately from both field and battle frames.
+- [x] Keep the movement grid at 48 world pixels unless a prototype proves a better replacement.
+- [x] Define a standard field-character height range.
+- [x] Define doorway, single-story facade, multi-story facade, tree, counter, bed, chair, treasure, and boss size ranges relative to a character.
+- [x] Require integer or exact reciprocal scaling with nearest-neighbor filtering for new field profiles.
+- [ ] Prohibit arbitrary fractional scale and fractional final placement. One prototype-only Mansion profile has an explicit 0.75x migration exception pending capture-parity replacement; final-approved profiles are rejected without an approved scale.
+- [x] Define foot anchors and collision bases separately from visible image bounds.
+- [x] Define battle-sprite scale separately from field-sprite scale.
+- [x] Define portrait crops separately from both field and battle frames.
 
 **Suggested density conversions:**
 
@@ -239,9 +239,9 @@ These are starting rules, not permission to combine visually incompatible packs 
 
 ### 6.2 Lock a pixel-stable camera — P1
 
-- [ ] Choose the intended logical resolution and document why it fits the field scale.
-- [ ] Ensure the camera lands on integer world pixels after following and transitions.
-- [ ] Verify one-tile movement at the default window size, native 1080p, 1440p, 4K, and common 16:10 sizes.
+- [x] Choose the intended logical resolution and document why it fits the field scale.
+- [x] Ensure the camera lands on integer world pixels after following and transitions.
+- [x] Verify one-tile movement at the default window size, native 1080p, 1440p, 4K, and common 16:10 sizes through deterministic camera-frame coverage.
 - [ ] Eliminate visible single-pixel shimmer in movement captures.
 - [ ] Avoid showing large empty voids around small rooms.
 - [ ] Make the camera reveal enough upcoming path for navigation without making characters and UI unreadably small.

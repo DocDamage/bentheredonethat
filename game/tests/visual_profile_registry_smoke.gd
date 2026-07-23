@@ -7,6 +7,29 @@ const SANDBOX_TERRAIN_CATALOG := preload("res://ben_rpg/world/sandbox_terrain_ca
 
 func _ready() -> void:
 	var registry = PROFILE_REGISTRY.new()
+	var documented_legacy_scale_exceptions := 0
+	var prototype_scale_reviews := 0
+	for profile_id in registry.profile_ids():
+		if not registry.field_scale_contract_valid(profile_id):
+			printerr("VISUAL_PROFILE_REGISTRY_SMOKE_FAILED field_scale=" + profile_id)
+			get_tree().quit(1)
+			return
+		if registry.has_legacy_scale_exception(profile_id):
+			documented_legacy_scale_exceptions += 1
+		if registry.field_scale_status(profile_id) == &"prototype_review_required":
+			prototype_scale_reviews += 1
+	if documented_legacy_scale_exceptions != 1 or not registry.has_legacy_scale_exception(&"mansion_foyer_passage_door"):
+		printerr("VISUAL_PROFILE_REGISTRY_SMOKE_FAILED legacy_scale_exception_inventory")
+		get_tree().quit(1)
+		return
+	if prototype_scale_reviews <= 0 or registry.is_final_field_scale_approved(&"mansion_foyer_passage_door"):
+		printerr("VISUAL_PROFILE_REGISTRY_SMOKE_FAILED prototype_scale_review_inventory")
+		get_tree().quit(1)
+		return
+	if registry.render_scale(&"frosthold_gate_tree") != 0.5 or registry.world_foot_anchor(&"frosthold_gate_tree") != Vector2(47, 130):
+		printerr("VISUAL_PROFILE_REGISTRY_SMOKE_FAILED field_scale_anchor")
+		get_tree().quit(1)
+		return
 	for profile_id in [
 		&"laboratory_exterior",
 		&"town_library_facade",

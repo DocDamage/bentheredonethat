@@ -917,7 +917,7 @@
       "worldDrawSize": [56, 78], "licenseReference": "game/ben_rpg/visual_assets/generated/runtime_asset_provenance.json", "cropApproval": "approved", "goldenCapture": "game/validation/mansion-nursery-live.png"
     },
     {
-      "id": "mansion_foyer_passage_door", "kind": "prop",
+      "id": "mansion_foyer_passage_door", "kind": "prop", "legacyScaleException": "Legacy 0.75x foyer passage door; replace with an approved 0.5x/1x crop only after capture-parity review.",
       "source": {"pack": "Haunted Mansion Pixel Art Tileset Pack", "runtimeTexture": "game/game_assets/Tilesets/Haunted Mansion Pixel Art Tileset Pack/4.png", "sourceChecksum": "fabb60e8d270cf106674b7669dda3e7fe75c8ae9072ff86a4d867a259ed6ea7b", "sourceDensity": 48, "region": [296, 672, 88, 96], "alphaBounds": [296, 672, 88, 96]},
       "placement": {"footAnchor": [44, 95], "scaleClass": "prop", "collisionFootprint": "passage_door"},
       "worldDrawSize": [66, 72], "licenseReference": "game/ben_rpg/visual_assets/generated/runtime_asset_provenance.json", "cropApproval": "approved", "goldenCapture": "game/validation/mansion-foyer-layout-pass.png"

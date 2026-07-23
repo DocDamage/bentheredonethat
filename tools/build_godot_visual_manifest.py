@@ -16,6 +16,8 @@ SCALE_CLASSES = {"actor", "building", "landmark", "prop", "tile"}
 CROP_APPROVAL_STATES = {"approved"}
 DISTRIBUTION_ELIGIBILITY_STATES = {"distribution_confirmed", "review_required", "rejected"}
 RELEASE_VISUAL_ACCEPTANCE_STATES = {"prototype_only", "final_approved"}
+APPROVED_FIELD_RENDER_SCALES = (0.5, 1.0, 2.0, 3.0)
+SURFACES = {"field", "battle", "portrait", "ui"}
 
 
 def fail(message: str) -> None:
@@ -49,6 +51,23 @@ def sha256(path: Path) -> str:
         for block in iter(lambda: source.read(1024 * 1024), b""):
             digest.update(block)
     return digest.hexdigest()
+
+
+def inferred_surface(kind: str) -> str:
+    if "portrait" in kind:
+        return "portrait"
+    if kind.startswith("battle_"):
+        return "battle"
+    if kind.startswith("ui_") or kind == "icon":
+        return "ui"
+    return "field"
+
+
+def matching_field_render_scale(source_region: list[int], world_draw_size: list[int]) -> float | None:
+    for scale in APPROVED_FIELD_RENDER_SCALES:
+        if world_draw_size == [round(source_region[2] * scale), round(source_region[3] * scale)]:
+            return scale
+    return None
 
 
 def validate(root: Path, raw: dict[str, Any]) -> dict[str, Any]:
@@ -134,6 +153,31 @@ def validate(root: Path, raw: dict[str, Any]) -> dict[str, Any]:
         license_reference_path = (root / license_reference).resolve()
         if not license_reference_path.is_file() or root not in license_reference_path.parents:
             fail(f"{profile_id}.licenseReference references missing evidence {license_reference!r}")
+        world_draw_size = pair(profile.get("worldDrawSize"), f"{profile_id}.worldDrawSize", positive=True)
+        surface = profile.get("surface", inferred_surface(profile["kind"]))
+        if surface not in SURFACES:
+            fail(f"{profile_id}.surface is invalid")
+        render_scale = matching_field_render_scale(source_region, world_draw_size) if surface == "field" else None
+        legacy_scale_exception = profile.get("legacyScaleException", "")
+        if not isinstance(legacy_scale_exception, str):
+            fail(f"{profile_id}.legacyScaleException must be a string when present")
+        if surface == "field" and render_scale is None and release_visual_acceptance == "final_approved" and not legacy_scale_exception:
+            fail(f"{profile_id} cannot receive final visual acceptance with an arbitrary field scale")
+        if surface != "field" and legacy_scale_exception:
+            fail(f"{profile_id}.legacyScaleException is only valid for field profiles")
+        if release_visual_acceptance == "final_approved" and legacy_scale_exception:
+            fail(f"{profile_id} cannot receive final visual acceptance while it has a legacy scale exception")
+        render_scale_y = render_scale
+        if render_scale is None:
+            render_scale = world_draw_size[0] / source_region[2]
+            render_scale_y = world_draw_size[1] / source_region[3]
+            if legacy_scale_exception and abs(render_scale - render_scale_y) > 0.000001:
+                fail(f"{profile_id}.legacyScaleException must preserve a uniform render scale")
+        field_scale_status = "approved"
+        if surface == "field" and legacy_scale_exception:
+            field_scale_status = "legacy_exception"
+        elif surface == "field" and matching_field_render_scale(source_region, world_draw_size) is None:
+            field_scale_status = "prototype_review_required"
         normalized = {
             "id": profile_id,
             "kind": profile["kind"],
@@ -147,13 +191,19 @@ def validate(root: Path, raw: dict[str, Any]) -> dict[str, Any]:
                 "alphaBounds": alpha_bounds,
             },
             "placement": {"footAnchor": foot_anchor, "scaleClass": scale_class, "collisionFootprint": collision_footprint},
-            "worldDrawSize": pair(profile.get("worldDrawSize"), f"{profile_id}.worldDrawSize", positive=True),
+            "worldDrawSize": world_draw_size,
+            "surface": surface,
+            "renderScale": render_scale,
+            "renderScaleY": render_scale_y,
+            "fieldScaleStatus": field_scale_status,
             "licenseReference": license_reference.replace("\\", "/"),
             "distributionEligibility": eligibility,
             "releaseVisualAcceptance": release_visual_acceptance,
             "cropApproval": crop_approval,
             "goldenCapture": golden_capture.replace("\\", "/"),
         }
+        if legacy_scale_exception:
+            normalized["legacyScaleException"] = legacy_scale_exception
         if "doorway" in placement:
             doorway = pair(placement["doorway"], f"{profile_id}.placement.doorway")
             if not (0 <= doorway[0] < source_region[2] and 0 <= doorway[1] < source_region[3]):
