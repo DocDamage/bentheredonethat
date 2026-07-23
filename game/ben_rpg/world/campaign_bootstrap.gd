@@ -163,6 +163,7 @@ const HELIOS_FOREGROUND_SCRIPT := preload("res://ben_rpg/world/campaign_helios_f
 const MANSION_LEGACY_ADAPTER := preload("res://ben_rpg/world/campaign_mansion_legacy_adapter.gd")
 const ROOM_STREAMER_SCRIPT := preload("res://ben_rpg/world/campaign_room_streamer.gd")
 const ROOM_REGISTRY := preload("res://ben_rpg/world/campaign_room_registry.gd")
+const RECRUIT_NAVIGATION := preload("res://ben_rpg/world/campaign_recruit_navigation.gd")
 const NAVIGATION_BUILDER := preload("res://ben_rpg/world/campaign_navigation_builder.gd")
 const TRANSITION_ROUTER := preload("res://ben_rpg/world/campaign_transition_router.gd")
 const ROOM_RUNTIME_SCRIPT := preload("res://ben_rpg/world/campaign_room_runtime.gd")
@@ -1976,7 +1977,7 @@ func _spawn_neon_viper() -> void:
 		return
 	var viper := NEON_VIPER_GAMEPIECE.instantiate() as Gamepiece
 	viper.name = "RecruitableNeonViper"
-	viper.position = Gameboard.cell_to_pixel(HELIOS_ORIGIN + Vector2i(12, 5))
+	viper.position = Gameboard.cell_to_pixel(RECRUIT_NAVIGATION.world_cell(&"neon_viper"))
 	world.add_child(viper)
 
 
@@ -1989,7 +1990,7 @@ func _spawn_frost_lich() -> void:
 		return
 	var lich := FROST_LICH_GAMEPIECE.instantiate() as Gamepiece
 	lich.name = "RecruitableFrostLich"
-	lich.position = Gameboard.cell_to_pixel(FROSTHOLD_ORIGIN + Vector2i(12, 5))
+	lich.position = Gameboard.cell_to_pixel(RECRUIT_NAVIGATION.world_cell(&"frost_lich_emperor"))
 	world.add_child(lich)
 
 
@@ -2002,7 +2003,7 @@ func _spawn_kitsune() -> void:
 		return
 	var kitsune := KITSUNE_GAMEPIECE.instantiate() as Gamepiece
 	kitsune.name = "RecruitableKitsune"
-	kitsune.position = Gameboard.cell_to_pixel(MOONPETAL_ORIGIN + Vector2i(12, 5))
+	kitsune.position = Gameboard.cell_to_pixel(RECRUIT_NAVIGATION.world_cell(&"kitsune_empress"))
 	world.add_child(kitsune)
 
 
@@ -2178,7 +2179,7 @@ func _spawn_archangel() -> void:
 		return
 	var archangel := ARCHANGEL_GAMEPIECE.instantiate() as Gamepiece
 	archangel.name = "RecruitableArchangel"
-	archangel.position = Gameboard.cell_to_pixel(EMPYREAL_ORIGIN + Vector2i(12, 5))
+	archangel.position = Gameboard.cell_to_pixel(RECRUIT_NAVIGATION.world_cell(&"archangel_commander"))
 	world.add_child(archangel)
 
 
