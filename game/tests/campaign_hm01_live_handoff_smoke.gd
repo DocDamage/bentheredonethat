@@ -8,6 +8,8 @@ const STUDY_SAFE_CELL := STAGING_ORIGIN + Vector2i(7, 3)
 const PASSAGE_SAFE_CELL := STAGING_ORIGIN + Vector2i(4, 3)
 const ARCHIVE_SAFE_CELL := STAGING_ORIGIN + Vector2i(6, 3)
 const ARCHIVE_SAVE_CELL := STAGING_ORIGIN + Vector2i(9, 7)
+const BALCONY_SAFE_CELL := STAGING_ORIGIN + Vector2i(6, 3)
+const GALLERY_SAFE_CELL := STAGING_ORIGIN + Vector2i(8, 3)
 
 
 func _ready() -> void:
@@ -93,10 +95,38 @@ func _run() -> void:
 	archive_anchor.call("activate_anchor", false)
 	assert(bool(CampaignState.story_flags.get(&"mansion_archive_save_found", false)))
 	assert(CampaignState.activated_save_point_near(ARCHIVE_SAVE_CELL).get("id", &"") == &"mansion_archive")
+	var balcony_port: Node = runtime.get_node_or_null("ManifestPort_HM-05_E1")
+	assert(balcony_port and Gameboard.pixel_to_cell(balcony_port.arrival_coordinates) == BALCONY_SAFE_CELL)
+	balcony_port.call(&"_on_blackout")
+	main._place_player(BALCONY_SAFE_CELL)
+	await get_tree().process_frame
+	assert(runtime.call(&"active_room_id") == &"HM-14")
+	var balcony_root: Node2D = streamer.call(&"active_root") as Node2D
+	assert(balcony_root.has_node("InteractionLayer/ManifestInteraction/Feature_portrait_balcony"))
+	var gallery_port: Node = runtime.get_node_or_null("ManifestPort_HM-14_Ne")
+	if not gallery_port:
+		_fail("HM-14 did not install its Gallery port")
+		return
+	if Gameboard.pixel_to_cell(gallery_port.arrival_coordinates) != GALLERY_SAFE_CELL:
+		_fail("HM-14 Gallery arrival was %s, expected %s" % [Gameboard.pixel_to_cell(gallery_port.arrival_coordinates), GALLERY_SAFE_CELL])
+		return
+	gallery_port.call(&"_on_blackout")
+	main._place_player(GALLERY_SAFE_CELL)
+	await get_tree().process_frame
+	assert(runtime.call(&"active_room_id") == &"HM-06")
+	var gallery_root: Node2D = streamer.call(&"active_root") as Node2D
+	assert(gallery_root.has_node("InteractionLayer/ManifestInteraction/Feature_portrait_ambush"))
+	assert(gallery_root.has_node("InteractionLayer/ManifestInteraction/Feature_silver_hour_hand"))
+	assert(not runtime.has_node("ManifestPort_HM-06_Ne"), "HM-06's Mirror Corridor exit remains sealed until HM-15 is authored.")
 	var visual := main.get_node("Field/Map/CampaignWorld/GroundLayer/Visuals")
 	var foreground := main.get_node("Field/Map/CampaignWorld/ForegroundLayer/MansionForeground")
-	assert(visual.active_area == &"manifest:HM-05" and foreground.active_area == &"manifest:HM-05")
-	print("CAMPAIGN_HM01_LIVE_HANDOFF_SMOKE_OK entry=FI-05 HM-01_to_HM-02_to_HM-03=true clock_444_to_HM-04_to_HM-05=true navigation=true archive_save=true features=room_owned legacy_renderer=hidden camera=manifest")
+	assert(visual.active_area == &"manifest:HM-06" and foreground.active_area == &"manifest:HM-06")
+	print("CAMPAIGN_HM01_LIVE_HANDOFF_SMOKE_OK entry=FI-05 HM-01_to_HM-02_to_HM-03=true clock_444_to_HM-04_to_HM-05_to_HM-14_to_HM-06=true navigation=true archive_save=true gallery_contract=true features=room_owned legacy_renderer=hidden camera=manifest")
 	main.queue_free()
 	await get_tree().process_frame
 	get_tree().quit()
+
+
+func _fail(message: String) -> void:
+	printerr("CAMPAIGN_HM01_LIVE_HANDOFF_SMOKE_FAILED: " + message)
+	get_tree().quit(1)
