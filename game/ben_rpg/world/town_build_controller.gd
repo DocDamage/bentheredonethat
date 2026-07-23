@@ -5,6 +5,7 @@ const UI_PARTY_HUD := UI_ROOT + "/dfgui_partyhud.png"
 const AREA_PRESENCE := preload("res://ben_rpg/world/campaign_area_presence.gd")
 const BUILD_SELECTION := preload("res://ben_rpg/world/town_build_selection.gd")
 const PRESSURE_PRESENTATION := preload("res://ben_rpg/world/town_encounter_pressure_presentation.gd")
+const OBJECTIVE_GUIDANCE := preload("res://ben_rpg/world/town_objective_guidance.gd")
 
 var campaign: Node
 var visual: CampaignMapVisual
@@ -339,37 +340,11 @@ func _update_hud() -> void:
 		_build_panel.hide()
 		return
 	if _was_in_station:
-		if CampaignState.story_flags.get(&"asterion_station_complete", false):
-			_set_objective("SHIFT ENDED  •  Speak with the Astronaut and offer a permanent place in Franklin & Company.", true)
-		elif CampaignState.story_flags.get(&"asterion_station_restored", false):
-			_set_objective("STATION CONTROL  •  Oxygen is stable. Appeal the final shift directly to the Mother Computer.", true)
-		elif CampaignState.story_flags.get(&"asterion_biocircuit_found", false):
-			_set_objective("THE OXYGEN LOOP  •  Install the recovered biocircuit in Hydroponics.", true)
-		elif CampaignState.story_flags.get(&"asterion_astronaut_met", false):
-			_set_objective("THE LAST SHIFT  •  Search Medical for the organic circuit that controls life support.", true)
-		elif CampaignState.story_flags.get(&"asterion_dock_cleared", false):
-			_set_objective("ONE SURVIVOR  •  Speak with the armed Astronaut in Docking.", true)
-		else:
-			_set_objective("ASTERION STATION  •  Survive the docking bay's automated security check.", true)
+		_set_objective(OBJECTIVE_GUIDANCE.asterion(CampaignState.story_flags), true)
 		_build_panel.hide()
 		return
 	if _was_in_primeval:
-		if CampaignState.story_flags.get(&"primeval_scenario_complete", false):
-			_set_objective("COMMUTE ENDED  •  Return to the Village and offer the Caveman a permanent company position.", true)
-		elif CampaignState.story_flags.get(&"primeval_caldera_open", false):
-			_set_objective("MORNING COMMUTE  •  Enter the caldera and stop the tyrant answering the meteor siren.", true)
-		elif CampaignState.story_flags.get(&"primeval_nest_ambush_cleared", false):
-			_set_objective("RELAY NEST  •  Reset the egg-shaped meteor relay and restore the party.", true)
-		elif CampaignState.story_flags.get(&"primeval_terminal_decoded", false):
-			_set_objective("NEST ATTENDANTS  •  Follow the decoded route and defend the relay nest.", true)
-		elif &"paleo_translator" in CampaignState.owned_inventions:
-			_set_objective("CAVE COMPUTER  •  Use Ben's Telegraph on the terminal in the jungle Ruins.", true)
-		elif CampaignState.story_flags.get(&"primeval_traffic_clue_found", false):
-			_set_objective("PALEO-LINGUISTICS  •  Recall to the laboratory and invent the Telegraph.", true)
-		elif CampaignState.story_flags.get(&"primeval_grove_cleared", false):
-			_set_objective("PRIMEVAL BOROUGH  •  Meet its maintainer, then inspect the stone traffic signal.", true)
-		else:
-			_set_objective("PRIMEVAL EXPANSE  •  Survive the Grove's unlicensed welcoming committee.", true)
+		_set_objective(OBJECTIVE_GUIDANCE.primeval(CampaignState.story_flags, CampaignState.owned_inventions), true)
 		_build_panel.hide()
 		return
 	if _was_in_helios:
