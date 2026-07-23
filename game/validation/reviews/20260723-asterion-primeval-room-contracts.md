@@ -75,9 +75,10 @@ IDs, and reciprocal arrivals.
 | PV-14 | S2 | 112 | 2 | PV-03, PV-07, PV-08 |
 
 The generated counts are not final useful-walkable-cell totals: the manifest
-navigation builder currently supplies an open interior rectangle. Each row
-needs final authored collision, walkable-cell, safe-arrival, and foreground
-audits before it can claim the Section 9.4 size class.
+navigation builder formerly supplied an open interior rectangle. Every listed
+Primeval room now has an authored collision/useful-cell contract; its remaining
+safe-arrival, foreground, art, and input evidence is still required before it
+can claim the Section 9.4 size class.
 
 The first Asterion collision-audit batch now replaces those generated interiors
 with authored docking/cargo/medical layouts: `AS-01` 247 closed / 248 restored,
@@ -168,10 +169,16 @@ The second Primeval collision batch passed at
 remained unchanged (`sentinel=True`). `PV-05` has 257 closed / 258 decoded,
 `PV-06` 144-145, `PV-07` 296-298, and `PV-08` 262-265 authored useful cells.
 
+The final Primeval batch passed at `test-artifacts/20260723-100433-a7cce308`
+and `test-artifacts/20260723-100445-bf9462ac`; its production-save sentinel
+also remained unchanged (`sentinel=True`). `PV-09` has 120, `PV-10` 259-260,
+`PV-11` 162-164, `PV-12` 262-265, `PV-13` 141, and `PV-14` 71-72 authored
+useful cells.
+
 ## Decision
 
 Rework required before acceptance: no distribution eligibility, contact-sheet
 approval, or user visual/input sign-off is recorded for either world. All 14
-Asterion layouts are verified collision-contract evidence only; `PV-01` through
-`PV-08` are likewise verified, while the remaining Primeval layouts still
-require their own audits.
+Asterion and Primeval layouts are verified collision-contract evidence only.
+Their distribution eligibility, contact-sheet approval, and user
+visual/input sign-off remain outstanding.
