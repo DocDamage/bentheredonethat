@@ -14,7 +14,10 @@ const PROFILE_BY_ROOM := {
 	&"HE-08": &"helios_core_quadrant",
 	&"HE-09": &"helios_transit_quadrant",
 	&"HE-10": &"helios_skybridge_quadrant",
+	&"HE-11": &"helios_market_quadrant",
+	&"HE-12": &"helios_clinic_quadrant",
 	&"HE-13": &"helios_transit_quadrant",
+	&"HE-14": &"helios_transit_quadrant",
 }
 
 var _size := Vector2i.ZERO
