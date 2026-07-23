@@ -3013,12 +3013,14 @@ limit:
   and postgame. Its JSON manifest records the tested SHA and state for each
   image; the captures remain `visual_review_only` and do not grant visual,
   input, licensing, performance, or product acceptance.
-- A windowed core manifest baseline runner now records 204 isolated review
-  inputs: 102 registered production rooms at fresh and stabilized states. Its
-  JSON manifest records the tested SHA and `visual_review_only` input mode for
-  every image. This is technical review evidence only; it does not satisfy the
-  192-location / 384-capture target or grant visual, input, licensing,
-  performance, product, or release acceptance.
+- A windowed core manifest state-matrix runner now records 238 isolated review
+  inputs: 204 fresh/stabilized baselines for the 102 registered production rooms
+  plus 34 distinct manifest-declared gate, restoration, boss-result, and
+  postgame variants. Its JSON manifest records the tested SHA, source state,
+  state flag, and `visual_review_only` input mode for every image. This is
+  technical review evidence only; it does not satisfy the 192-location /
+  384-capture target or grant visual, input, licensing, performance, product,
+  or release acceptance.
 - The full isolated Godot smoke matrix completed cleanly after the manifest
   port handoff change: all 125 retained scene logs in
   `test-artifacts/20260723-124703-6a6a6f3a` contain no test failure, assertion,
