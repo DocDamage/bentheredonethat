@@ -210,6 +210,16 @@ static func room(room_id: StringName) -> Dictionary:
 		definition.merge({"scenePath": "res://ben_rpg/world/rooms/primeval_caldera_crown.tscn", "worldOrigin": Vector2i(400, 0), "enabledPortIds": [&"Nw", &"Ne", &"E1"], "portGates": {&"Nw": &"primeval_caldera_open", &"Ne": &"primeval_scenario_complete", &"E1": &"primeval_caldera_open"}, "featureIds": [&"caldera_vista", &"cooled_post_victory_route", &"mammoth_club_reward"], "bossEncounter": {"nodeName": "CommuteTyrant", "encounterId": &"primeval_commute_tyrant", "defeatedFlag": &"primeval_scenario_complete", "cell": Vector2i(12, 10)}}, true)
 	elif room_id == &"PV-14":
 		definition.merge({"scenePath": "res://ben_rpg/world/rooms/primeval_lava_tube_bypass.tscn", "worldOrigin": Vector2i(400, 0), "enabledPortIds": [&"Nw", &"Ne", &"E1"], "portGates": {&"Ne": &"primeval_terminal_decoded", &"E1": &"primeval_caldera_open"}, "featureIds": [&"fossilized_service_tunnel", &"green_traffic_doors", &"stabilized_shortcut"]}, true)
+	elif room_id == &"PV-09":
+		definition.merge({"scenePath": "res://ben_rpg/world/rooms/primeval_luminous_fungal_hollow.tscn", "worldOrigin": Vector2i(400, 0), "enabledPortIds": [&"Nw", &"Ne"], "featureIds": [&"light_spore_path", &"restorative_fungus_cache", &"optional_fungal_formation"]}, true)
+	elif room_id == &"PV-10":
+		definition.merge({"scenePath": "res://ben_rpg/world/rooms/primeval_fossil_survey_quarry.tscn", "worldOrigin": Vector2i(400, 0), "enabledPortIds": [&"Nw"], "featureIds": [&"three_fossil_eras", &"equipment_material_reward", &"mossback_trial"]}, true)
+	elif room_id == &"PV-11":
+		definition.merge({"scenePath": "res://ben_rpg/world/rooms/primeval_raptor_nursery.tscn", "worldOrigin": Vector2i(400, 0), "enabledPortIds": [&"Nw", &"Ne"], "portGates": {&"Ne": &"primeval_caldera_open"}, "featureIds": [&"egg_protection", &"nest_latch", &"calm_post_reset"]}, true)
+	elif room_id == &"PV-12":
+		definition.merge({"scenePath": "res://ben_rpg/world/rooms/primeval_storm_dragon_roost.tscn", "worldOrigin": Vector2i(400, 0), "enabledPortIds": [&"Nw"], "portGates": {&"Nw": &"primeval_scenario_complete"}, "featureIds": [&"wind_rock_traversal", &"elite_dragon", &"lightning_charm"]}, true)
+	elif room_id == &"PV-13":
+		definition.merge({"scenePath": "res://ben_rpg/world/rooms/primeval_river_switchbacks.tscn", "worldOrigin": Vector2i(400, 0), "enabledPortIds": [&"Nw", &"Ne", &"E1", &"E2"], "portGates": {&"Nw": &"primeval_terminal_decoded", &"E1": &"primeval_terminal_decoded"}, "featureIds": [&"stepping_stones", &"vine_return_cut", &"encounter_light_return"]}, true)
 	elif room_id == &"AS-01":
 		definition.merge({
 			"scenePath": "res://ben_rpg/world/rooms/asterion_docking_collar.tscn",
