@@ -54,9 +54,14 @@ static func validate() -> PackedStringArray:
 			var destination_room := StringName(binding.get("destination", &""))
 			if destination_room in [&"FI-05", &"FI-06", &"FI-07", &"FI-08", &"FI-09", &"FI-10", &"FI-11"]:
 				continue
-			var mansion_route := resolve(room_id, port_id)
-			if mansion_route.is_empty():
-				errors.append("Mansion route %s.%s cannot resolve a reciprocal arrival." % [room_id, port_id])
+			var route := resolve(room_id, port_id)
+			if route.is_empty():
+				errors.append("Campaign route %s.%s cannot resolve a reciprocal arrival." % [room_id, port_id])
+				continue
+			var arrival_port := StringName(route.get("arrivalPort", &""))
+			var return_binding := ROOM_REGISTRY.port(destination_room, arrival_port)
+			if StringName(return_binding.get("destination", &"")) != room_id:
+				errors.append("Campaign route %s.%s reaches %s.%s, which does not return to %s." % [room_id, port_id, destination_room, arrival_port, room_id])
 	for source_port in [&"Nw", &"Ne"]:
 		var route := resolve(&"TEST-01", source_port)
 		if route.is_empty() or StringName(route.get("destinationRoom", &"")) != &"TEST-01":

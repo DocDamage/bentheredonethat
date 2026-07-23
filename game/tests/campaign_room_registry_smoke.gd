@@ -5,9 +5,13 @@ const ROOM_REGISTRY := preload("res://ben_rpg/world/campaign_room_registry.gd")
 
 func _ready() -> void:
 	var errors := ROOM_REGISTRY.validate()
+	var router_errors := preload("res://ben_rpg/world/campaign_transition_router.gd").validate()
 	for error in errors:
 		push_error(error)
+	for error in router_errors:
+		push_error(error)
 	assert(errors.is_empty(), "Room registry validation failed with %d error(s)." % errors.size())
+	assert(router_errors.is_empty(), "Every non-facility room port must resolve to a true return route: %s" % router_errors)
 	assert(ROOM_REGISTRY.room_ids().size() == 102, "Expected the locked seven-world, 102-room core graph.")
 	assert(ROOM_REGISTRY.ports(&"PV-01").size() == 3, "PV-01 requires Trailhead, Primeval, and switchback ports.")
 	assert(ROOM_REGISTRY.room(&"HM-09").get("encounterPolicy") == &"boss", "HM-09 must remain the boss room.")
