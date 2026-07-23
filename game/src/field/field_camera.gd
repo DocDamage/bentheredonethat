@@ -49,46 +49,18 @@ func _on_viewport_resized() -> void:
 	if not gameboard_properties:
 		return
 	
-	# Calculate tentative camera boundaries based on the gameboard.
-	var boundary_left: = gameboard_properties.extents.position.x * gameboard_properties.cell_size.x
-	var boundary_top: = gameboard_properties.extents.position.y * gameboard_properties.cell_size.y
-	var boundary_right: = gameboard_properties.extents.end.x * gameboard_properties.cell_size.x
-	var boundary_bottom: = gameboard_properties.extents.end.y * gameboard_properties.cell_size.y
-
-	# We'll also want the current viewport boundary sizes.
-	var vp_size: = get_viewport_rect().size / global_scale
-	var boundary_width: = boundary_right - boundary_left
-	var boundary_height: = boundary_bottom - boundary_top
-
-	# If the boundary size is less than the viewport size, the camera limits will be smaller than
-	# the camera dimensions (which does all kinds of crazy things in-game).
-	# Therefore, if this is the case we'll want to centre the camera on the gameboard and set the
-	# limits to be that of the viewport, locking the camera to one or both axes.
-	# Start by checking the x-axis.
-	# Note that the camera limits must be in global coordinates to function correctly, so account
-	# using the global scale.
-	if boundary_width < vp_size.x:
-		# Set the camera position to the centre of the gameboard.
-		position.x = (gameboard_properties.extents.position.x \
-			+ gameboard_properties.extents.size.x/2.0) * gameboard_properties.cell_size.x
-
-		# And add/subtract half the viewport dimension to come up with the limits. This will fix the
-		# camera with the gameboard centred.
-		limit_left = (position.x - vp_size.x/2.0)*global_scale.x as int
-		limit_right = (position.x + vp_size.x/2.0)*global_scale.x as int
-
-	# If, however, the viewport is smaller than the gameplay area, the camera can be free to move
-	# as needed.
-	else:
-		limit_left = boundary_left*global_scale.x as int
-		limit_right = boundary_right*global_scale.x as int
-
-	# Perform the same checks as above for the y-axis.
-	if boundary_height < vp_size.y:
-		position.y = (gameboard_properties.extents.position.y +\
-			gameboard_properties.extents.size.y/2.0) * gameboard_properties.cell_size.y
-		limit_top = (position.y - vp_size.y/2.0)*global_scale.y as int
-		limit_bottom = (position.y + vp_size.y/2.0)*global_scale.y as int
-	else:
-		limit_top = boundary_top*global_scale.y as int
-		limit_bottom = boundary_bottom*global_scale.y as int
+	var frame := FIELD_SCALE.camera_frame(
+		gameboard_properties.extents,
+		gameboard_properties.cell_size,
+		get_viewport_rect().size,
+		global_scale,
+		position,
+	)
+	if frame.is_empty():
+		return
+	position = frame.get("position", position)
+	var limits: Rect2i = frame.get("limits", Rect2i())
+	limit_left = limits.position.x
+	limit_top = limits.position.y
+	limit_right = limits.end.x
+	limit_bottom = limits.end.y

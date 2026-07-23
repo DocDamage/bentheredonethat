@@ -40,3 +40,43 @@ static func is_pixel_aligned(world_position: Vector2) -> bool:
 
 static func snap_to_world_pixels(world_position: Vector2) -> Vector2:
 	return world_position.round()
+
+
+static func camera_frame(extents: Rect2i, cell_size: Vector2i, viewport_size: Vector2, global_scale: Vector2, current_position: Vector2) -> Dictionary:
+	## Reproduces the field camera's limit/centering math without a live viewport.
+	## Limits are global canvas coordinates; the returned position stays in world
+	## coordinates and changes only on axes locked by a room smaller than view.
+	if cell_size.x <= 0 or cell_size.y <= 0 or global_scale.x <= 0.0 or global_scale.y <= 0.0:
+		return {}
+	var boundary_left := extents.position.x * cell_size.x
+	var boundary_top := extents.position.y * cell_size.y
+	var boundary_right := extents.end.x * cell_size.x
+	var boundary_bottom := extents.end.y * cell_size.y
+	var viewport_world := viewport_size / global_scale
+	var position := current_position
+	var locked_x := boundary_right - boundary_left < viewport_world.x
+	var locked_y := boundary_bottom - boundary_top < viewport_world.y
+	var limit_left: int
+	var limit_right: int
+	var limit_top: int
+	var limit_bottom: int
+	if locked_x:
+		position.x = (extents.position.x + extents.size.x / 2.0) * cell_size.x
+		limit_left = int((position.x - viewport_world.x * 0.5) * global_scale.x)
+		limit_right = int((position.x + viewport_world.x * 0.5) * global_scale.x)
+	else:
+		limit_left = int(boundary_left * global_scale.x)
+		limit_right = int(boundary_right * global_scale.x)
+	if locked_y:
+		position.y = (extents.position.y + extents.size.y / 2.0) * cell_size.y
+		limit_top = int((position.y - viewport_world.y * 0.5) * global_scale.y)
+		limit_bottom = int((position.y + viewport_world.y * 0.5) * global_scale.y)
+	else:
+		limit_top = int(boundary_top * global_scale.y)
+		limit_bottom = int(boundary_bottom * global_scale.y)
+	return {
+		"position": snap_to_world_pixels(position),
+		"limits": Rect2i(limit_left, limit_top, limit_right - limit_left, limit_bottom - limit_top),
+		"lockedX": locked_x,
+		"lockedY": locked_y,
+	}
