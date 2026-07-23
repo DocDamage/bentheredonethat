@@ -1014,14 +1014,10 @@ func _restore_campaign_state() -> void:
 	_update_primeval_nest_gate()
 	_update_primeval_caldera_gate()
 	_update_primeval_canopy_shortcut()
-	_update_helios_clinic_gate()
-	_update_helios_core_gate()
-	_update_frosthold_rune_hall_gate()
-	_update_frosthold_throne_gate()
-	_update_moonpetal_bell_walk_gate()
-	_update_moonpetal_palace_gate()
-	_update_empyreal_aerie_gate()
-	_update_empyreal_tribunal_gate()
+	_refresh_manifest_transition_group("HeliosArcologyManifestTransitions", ROOM_REGISTRY.HELIOS_ROOM_IDS)
+	_refresh_manifest_transition_group("FrostholdKingdomManifestTransitions", ROOM_REGISTRY.FROSTHOLD_ROOM_IDS)
+	_refresh_manifest_transition_group("MoonpetalCourtManifestTransitions", ROOM_REGISTRY.MOONPETAL_ROOM_IDS)
+	_refresh_manifest_transition_group("EmpyrealCourtManifestTransitions", ROOM_REGISTRY.EMPYREAL_ROOM_IDS)
 	refresh_sandbox_object_collision()
 	if _sandbox_objects:
 		_sandbox_objects.queue_redraw()
@@ -1346,15 +1342,8 @@ func _create_helios_transitions(plot_index: int) -> void:
 	var plot: Rect2i = FACILITY_PLOTS[plot_index]
 	var town_door := FACILITY_NAVIGATION.door_cell(TOWN_ORIGIN, plot)
 	var town_return := FACILITY_NAVIGATION.return_cell(TOWN_ORIGIN, plot)
-	world.add_child(_create_transition("HeliosArcologyEntrance", town_door, HELIOS_SPAWN))
-	world.add_child(_create_transition("HeliosArcologyExit", HELIOS_EXIT, town_return))
-	world.add_child(_create_transition("HeliosSkybridgeToMarket", HELIOS_SKYBRIDGE_TO_MARKET, HELIOS_MARKET_FROM_SKYBRIDGE))
-	world.add_child(_create_transition("HeliosMarketToSkybridge", HELIOS_MARKET_RETURN, HELIOS_SKYBRIDGE_FROM_MARKET))
-	world.add_child(_create_transition("HeliosMarketToTransit", HELIOS_MARKET_TO_TRANSIT, HELIOS_TRANSIT_FROM_MARKET))
-	world.add_child(_create_transition("HeliosTransitToMarket", HELIOS_TRANSIT_RETURN, HELIOS_MARKET_FROM_TRANSIT))
+	_create_manifest_facility_transitions(world, "HeliosArcology", town_door, town_return, &"HE-01", ROOM_REGISTRY.HELIOS_ROOM_IDS)
 	_spawn_neon_viper()
-	_update_helios_clinic_gate()
-	_update_helios_core_gate()
 
 
 func _create_frosthold_transitions(plot_index: int) -> void:
@@ -1364,15 +1353,8 @@ func _create_frosthold_transitions(plot_index: int) -> void:
 	var plot: Rect2i = FACILITY_PLOTS[plot_index]
 	var town_door := FACILITY_NAVIGATION.door_cell(TOWN_ORIGIN, plot)
 	var town_return := FACILITY_NAVIGATION.return_cell(TOWN_ORIGIN, plot)
-	world.add_child(_create_transition("FrostholdKingdomEntrance", town_door, FROSTHOLD_SPAWN))
-	world.add_child(_create_transition("FrostholdKingdomExit", FROSTHOLD_EXIT, town_return))
-	world.add_child(_create_transition("FrostholdGateToMarket", FROSTHOLD_GATE_TO_MARKET, FROSTHOLD_MARKET_FROM_GATE))
-	world.add_child(_create_transition("FrostholdMarketToGate", FROSTHOLD_MARKET_RETURN, FROSTHOLD_GATE_FROM_MARKET))
-	world.add_child(_create_transition("FrostholdMarketToCauseway", FROSTHOLD_MARKET_TO_CAUSEWAY, FROSTHOLD_CAUSEWAY_FROM_MARKET))
-	world.add_child(_create_transition("FrostholdCausewayToMarket", FROSTHOLD_CAUSEWAY_RETURN, FROSTHOLD_MARKET_FROM_CAUSEWAY))
+	_create_manifest_facility_transitions(world, "FrostholdKingdom", town_door, town_return, &"FR-01", ROOM_REGISTRY.FROSTHOLD_ROOM_IDS)
 	_spawn_frost_lich()
-	_update_frosthold_rune_hall_gate()
-	_update_frosthold_throne_gate()
 
 
 func _create_moonpetal_transitions(plot_index: int) -> void:
@@ -1382,15 +1364,8 @@ func _create_moonpetal_transitions(plot_index: int) -> void:
 	var plot: Rect2i = FACILITY_PLOTS[plot_index]
 	var town_door := FACILITY_NAVIGATION.door_cell(TOWN_ORIGIN, plot)
 	var town_return := FACILITY_NAVIGATION.return_cell(TOWN_ORIGIN, plot)
-	world.add_child(_create_transition("MoonpetalCourtEntrance", town_door, MOONPETAL_SPAWN))
-	world.add_child(_create_transition("MoonpetalCourtExit", MOONPETAL_EXIT, town_return))
-	world.add_child(_create_transition("MoonpetalGateToCourt", MOONPETAL_GATE_TO_COURT, MOONPETAL_COURT_FROM_GATE))
-	world.add_child(_create_transition("MoonpetalCourtToGate", MOONPETAL_COURT_RETURN, MOONPETAL_GATE_FROM_COURT))
-	world.add_child(_create_transition("MoonpetalCourtToGarden", MOONPETAL_COURT_TO_GARDEN, MOONPETAL_GARDEN_FROM_COURT))
-	world.add_child(_create_transition("MoonpetalGardenToCourt", MOONPETAL_GARDEN_RETURN, MOONPETAL_COURT_FROM_GARDEN))
+	_create_manifest_facility_transitions(world, "MoonpetalCourt", town_door, town_return, &"MP-01", ROOM_REGISTRY.MOONPETAL_ROOM_IDS)
 	_spawn_kitsune()
-	_update_moonpetal_bell_walk_gate()
-	_update_moonpetal_palace_gate()
 
 
 func _create_empyreal_transitions(plot_index: int) -> void:
@@ -1400,15 +1375,72 @@ func _create_empyreal_transitions(plot_index: int) -> void:
 	var plot: Rect2i = FACILITY_PLOTS[plot_index]
 	var town_door := FACILITY_NAVIGATION.door_cell(TOWN_ORIGIN, plot)
 	var town_return := FACILITY_NAVIGATION.return_cell(TOWN_ORIGIN, plot)
-	world.add_child(_create_transition("EmpyrealCourtEntrance", town_door, EMPYREAL_SPAWN))
-	world.add_child(_create_transition("EmpyrealCourtExit", EMPYREAL_EXIT, town_return))
-	world.add_child(_create_transition("EmpyrealLandingToGarden", EMPYREAL_LANDING_TO_GARDEN, EMPYREAL_GARDEN_FROM_LANDING))
-	world.add_child(_create_transition("EmpyrealGardenToLanding", EMPYREAL_GARDEN_RETURN, EMPYREAL_LANDING_FROM_GARDEN))
-	world.add_child(_create_transition("EmpyrealGardenToForum", EMPYREAL_GARDEN_TO_FORUM, EMPYREAL_FORUM_FROM_GARDEN))
-	world.add_child(_create_transition("EmpyrealForumToGarden", EMPYREAL_FORUM_RETURN, EMPYREAL_GARDEN_FROM_FORUM))
+	_create_manifest_facility_transitions(world, "EmpyrealCourt", town_door, town_return, &"EM-01", ROOM_REGISTRY.EMPYREAL_ROOM_IDS)
 	_spawn_archangel()
-	_update_empyreal_aerie_gate()
-	_update_empyreal_tribunal_gate()
+
+
+func _create_manifest_facility_transitions(world: Node2D, prefix: String, town_door: Vector2i, town_return: Vector2i, entry_room_id: StringName, room_ids: Array) -> void:
+	var entry_definition := ROOM_REGISTRY.room(entry_room_id)
+	var entry_origin: Vector2i = entry_definition.get("worldOrigin", Vector2i.ZERO)
+	var entry_port: Vector2i = (entry_definition.get("portCells", {}) as Dictionary).get(&"Nw", Vector2i.ZERO)
+	world.add_child(_create_transition("%sEntrance" % prefix, town_door, entry_origin + TRANSITION_ROUTER.safe_arrival_cell(entry_room_id, &"Nw")))
+	world.add_child(_create_transition("%sExit" % prefix, entry_origin + entry_port, town_return))
+	var container := Node2D.new()
+	container.name = "%sManifestTransitions" % prefix
+	world.add_child(container)
+	_refresh_manifest_room_transitions(container, room_ids)
+
+
+func _refresh_manifest_room_transitions(container: Node2D, room_ids: Array) -> void:
+	for child in container.get_children():
+		container.remove_child(child)
+		child.free()
+	var room_lookup := {}
+	for room_id in room_ids:
+		room_lookup[room_id] = true
+	for room_id in room_ids:
+		var source_definition := ROOM_REGISTRY.room(room_id)
+		var source_origin: Vector2i = source_definition.get("worldOrigin", Vector2i.ZERO)
+		var source_ports: Dictionary = source_definition.get("portCells", {})
+		for port_id in ROOM_REGISTRY.enabled_port_ids(room_id):
+			var route := TRANSITION_ROUTER.resolve(room_id, port_id)
+			var destination_room_id: StringName = route.get("destinationRoom", &"")
+			if route.is_empty() or not room_lookup.has(destination_room_id):
+				continue
+			var destination_origin: Vector2i = ROOM_REGISTRY.room(destination_room_id).get("worldOrigin", Vector2i.ZERO)
+			var source_cell: Vector2i = source_origin + source_ports.get(port_id, Vector2i.ZERO)
+			var destination_cell: Vector2i = destination_origin + route.get("arrivalCell", Vector2i.ZERO)
+			container.add_child(_create_transition("%s_%s" % [room_id, port_id], source_cell, destination_cell))
+	_refresh_manifest_navigation(room_ids)
+
+
+func _refresh_manifest_navigation(room_ids: Array) -> void:
+	if not _navigation:
+		return
+	var cleared_cells: Array[Vector2i] = []
+	var blocked_cells: Array[Vector2i] = []
+	for room_id in room_ids:
+		var definition := ROOM_REGISTRY.room(room_id)
+		var origin: Vector2i = definition.get("worldOrigin", Vector2i.ZERO)
+		var record := NAVIGATION_BUILDER.navigation_record(room_id)
+		var dimensions: Vector2i = record.get("dimensions", Vector2i.ZERO)
+		var walkable: Dictionary = record.get("walkable", {})
+		for y in range(dimensions.y):
+			for x in range(dimensions.x):
+				var cell := origin + Vector2i(x, y)
+				var is_blocked := not walkable.has(Vector2i(x, y))
+				_navigation.set_cell(cell, 0, Vector2i(1, 4) if is_blocked else Vector2i(2, 2), 0)
+				(blocked_cells if is_blocked else cleared_cells).append(cell)
+	_navigation.cells_changed.emit(cleared_cells, blocked_cells)
+
+
+func _refresh_manifest_transition_group(container_name: String, room_ids: Array) -> void:
+	var world := get_node_or_null("Field/Map/CampaignWorld")
+	if not world:
+		return
+	var container := world.get_node_or_null(container_name) as Node2D
+	if container:
+		_refresh_manifest_room_transitions(container, room_ids)
 
 
 func _ensure_campaign_input() -> void:
@@ -2266,14 +2298,10 @@ func _on_campaign_state_changed() -> void:
 	_update_primeval_nest_gate()
 	_update_primeval_caldera_gate()
 	_update_primeval_canopy_shortcut()
-	_update_helios_clinic_gate()
-	_update_helios_core_gate()
-	_update_frosthold_rune_hall_gate()
-	_update_frosthold_throne_gate()
-	_update_moonpetal_bell_walk_gate()
-	_update_moonpetal_palace_gate()
-	_update_empyreal_aerie_gate()
-	_update_empyreal_tribunal_gate()
+	_refresh_manifest_transition_group("HeliosArcologyManifestTransitions", ROOM_REGISTRY.HELIOS_ROOM_IDS)
+	_refresh_manifest_transition_group("FrostholdKingdomManifestTransitions", ROOM_REGISTRY.FROSTHOLD_ROOM_IDS)
+	_refresh_manifest_transition_group("MoonpetalCourtManifestTransitions", ROOM_REGISTRY.MOONPETAL_ROOM_IDS)
+	_refresh_manifest_transition_group("EmpyrealCourtManifestTransitions", ROOM_REGISTRY.EMPYREAL_ROOM_IDS)
 	if _visual:
 		_visual.queue_redraw()
 	_sync_sandbox_authored_entities()
@@ -2364,148 +2392,6 @@ func _update_primeval_gate(cell: Vector2i, flag: StringName, forward_name: Strin
 		return
 	var world := get_node_or_null("Field/Map/CampaignWorld")
 	if not world or world.has_node(forward_name) or not CampaignState.story_flags.get(&"primeval_anchor_built", false):
-		return
-	world.add_child(_create_transition(forward_name, cell, forward_arrival))
-	world.add_child(_create_transition(return_name, return_cell, return_arrival))
-
-
-func _update_helios_clinic_gate() -> void:
-	var is_open := &"night_phase_inverter" in CampaignState.owned_inventions
-	_update_helios_gate(
-		HELIOS_MARKET_TO_CLINIC, is_open,
-		"HeliosMarketToClinic", HELIOS_CLINIC_FROM_MARKET,
-		"HeliosClinicToMarket", HELIOS_CLINIC_RETURN, HELIOS_MARKET_FROM_CLINIC
-	)
-
-
-func _update_helios_core_gate() -> void:
-	_update_helios_gate(
-		HELIOS_TRANSIT_TO_CORE, bool(CampaignState.story_flags.get(&"helios_core_open", false)),
-		"HeliosTransitToCore", HELIOS_CORE_FROM_TRANSIT,
-		"HeliosCoreToTransit", HELIOS_CORE_RETURN, HELIOS_TRANSIT_FROM_CORE
-	)
-
-
-func _update_helios_gate(cell: Vector2i, is_open: bool, forward_name: String, forward_arrival: Vector2i, return_name: String, return_cell: Vector2i, return_arrival: Vector2i) -> void:
-	if not _navigation:
-		return
-	var atlas_cell := Vector2i(2, 2) if is_open else Vector2i(1, 4)
-	_navigation.set_cell(cell, 0, atlas_cell, 0)
-	var cleared: Array[Vector2i] = []
-	var blocked: Array[Vector2i] = []
-	(cleared if is_open else blocked).append(cell)
-	_navigation.cells_changed.emit(cleared, blocked)
-	if not is_open:
-		return
-	var world := get_node_or_null("Field/Map/CampaignWorld")
-	if not world or world.has_node(forward_name) or not CampaignState.story_flags.get(&"helios_anchor_built", false):
-		return
-	world.add_child(_create_transition(forward_name, cell, forward_arrival))
-	world.add_child(_create_transition(return_name, return_cell, return_arrival))
-
-
-func _update_frosthold_rune_hall_gate() -> void:
-	_update_frosthold_gate(
-		FROSTHOLD_MARKET_TO_RUNE_HALL,
-		bool(CampaignState.story_flags.get(&"frosthold_causeway_seal_open", false)),
-		"FrostholdMarketToRuneHall", FROSTHOLD_RUNE_HALL_FROM_MARKET,
-		"FrostholdRuneHallToMarket", FROSTHOLD_RUNE_HALL_RETURN, FROSTHOLD_MARKET_FROM_RUNE_HALL
-	)
-
-
-func _update_frosthold_throne_gate() -> void:
-	_update_frosthold_gate(
-		FROSTHOLD_CAUSEWAY_TO_THRONE,
-		bool(CampaignState.story_flags.get(&"frosthold_throne_open", false)),
-		"FrostholdCausewayToThrone", FROSTHOLD_THRONE_FROM_CAUSEWAY,
-		"FrostholdThroneToCauseway", FROSTHOLD_THRONE_RETURN, FROSTHOLD_CAUSEWAY_FROM_THRONE
-	)
-
-
-func _update_frosthold_gate(cell: Vector2i, is_open: bool, forward_name: String, forward_arrival: Vector2i, return_name: String, return_cell: Vector2i, return_arrival: Vector2i) -> void:
-	if not _navigation:
-		return
-	var atlas_cell := Vector2i(2, 2) if is_open else Vector2i(1, 4)
-	_navigation.set_cell(cell, 0, atlas_cell, 0)
-	var cleared: Array[Vector2i] = []
-	var blocked: Array[Vector2i] = []
-	(cleared if is_open else blocked).append(cell)
-	_navigation.cells_changed.emit(cleared, blocked)
-	if not is_open:
-		return
-	var world := get_node_or_null("Field/Map/CampaignWorld")
-	if not world or world.has_node(forward_name) or not CampaignState.story_flags.get(&"frosthold_anchor_built", false):
-		return
-	world.add_child(_create_transition(forward_name, cell, forward_arrival))
-	world.add_child(_create_transition(return_name, return_cell, return_arrival))
-
-
-func _update_moonpetal_bell_walk_gate() -> void:
-	_update_moonpetal_gate(
-		MOONPETAL_COURT_TO_BELL_WALK,
-		bool(CampaignState.story_flags.get(&"moonpetal_bell_walk_open", false)),
-		"MoonpetalCourtToBellWalk", MOONPETAL_BELL_WALK_FROM_COURT,
-		"MoonpetalBellWalkToCourt", MOONPETAL_BELL_WALK_RETURN, MOONPETAL_COURT_FROM_BELL_WALK
-	)
-
-
-func _update_moonpetal_palace_gate() -> void:
-	_update_moonpetal_gate(
-		MOONPETAL_GARDEN_TO_PALACE,
-		bool(CampaignState.story_flags.get(&"moonpetal_palace_open", false)),
-		"MoonpetalGardenToPalace", MOONPETAL_PALACE_FROM_GARDEN,
-		"MoonpetalPalaceToGarden", MOONPETAL_PALACE_RETURN, MOONPETAL_GARDEN_FROM_PALACE
-	)
-
-
-func _update_moonpetal_gate(cell: Vector2i, is_open: bool, forward_name: String, forward_arrival: Vector2i, return_name: String, return_cell: Vector2i, return_arrival: Vector2i) -> void:
-	if not _navigation:
-		return
-	var atlas_cell := Vector2i(2, 2) if is_open else Vector2i(1, 4)
-	_navigation.set_cell(cell, 0, atlas_cell, 0)
-	var cleared: Array[Vector2i] = []
-	var blocked: Array[Vector2i] = []
-	(cleared if is_open else blocked).append(cell)
-	_navigation.cells_changed.emit(cleared, blocked)
-	if not is_open:
-		return
-	var world := get_node_or_null("Field/Map/CampaignWorld")
-	if not world or world.has_node(forward_name) or not CampaignState.story_flags.get(&"moonpetal_anchor_built", false):
-		return
-	world.add_child(_create_transition(forward_name, cell, forward_arrival))
-	world.add_child(_create_transition(return_name, return_cell, return_arrival))
-
-
-func _update_empyreal_aerie_gate() -> void:
-	_update_empyreal_gate(
-		EMPYREAL_GARDEN_TO_AERIE,
-		bool(CampaignState.story_flags.get(&"empyreal_aerie_open", false)),
-		"EmpyrealGardenToAerie", EMPYREAL_AERIE_FROM_GARDEN,
-		"EmpyrealAerieToGarden", EMPYREAL_AERIE_RETURN, EMPYREAL_GARDEN_FROM_AERIE
-	)
-
-
-func _update_empyreal_tribunal_gate() -> void:
-	_update_empyreal_gate(
-		EMPYREAL_FORUM_TO_TRIBUNAL,
-		bool(CampaignState.story_flags.get(&"empyreal_tribunal_open", false)),
-		"EmpyrealForumToTribunal", EMPYREAL_TRIBUNAL_FROM_FORUM,
-		"EmpyrealTribunalToForum", EMPYREAL_TRIBUNAL_RETURN, EMPYREAL_FORUM_FROM_TRIBUNAL
-	)
-
-
-func _update_empyreal_gate(cell: Vector2i, is_open: bool, forward_name: String, forward_arrival: Vector2i, return_name: String, return_cell: Vector2i, return_arrival: Vector2i) -> void:
-	if not _navigation:
-		return
-	_navigation.set_cell(cell, 0, Vector2i(2, 2) if is_open else Vector2i(1, 4), 0)
-	var cleared: Array[Vector2i] = []
-	var blocked: Array[Vector2i] = []
-	(cleared if is_open else blocked).append(cell)
-	_navigation.cells_changed.emit(cleared, blocked)
-	if not is_open:
-		return
-	var world := get_node_or_null("Field/Map/CampaignWorld")
-	if not world or world.has_node(forward_name) or not CampaignState.story_flags.get(&"empyreal_anchor_built", false):
 		return
 	world.add_child(_create_transition(forward_name, cell, forward_arrival))
 	world.add_child(_create_transition(return_name, return_cell, return_arrival))
