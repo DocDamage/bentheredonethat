@@ -6,10 +6,7 @@ const TERRAIN_CATALOG := preload("res://ben_rpg/world/sandbox_terrain_catalog.gd
 const SANDBOX_VISUAL_RESOLVER := preload("res://ben_rpg/world/sandbox_visual_resolver.gd")
 const VISUAL_PROFILE_REGISTRY := preload("res://ben_rpg/world/campaign_visual_profile_registry.gd")
 const TOWN_ORIGIN := Vector2i(36, 0)
-const LAB_SIZE := Vector2i(20, 12)
 const TOWN_SIZE := Vector2i(32, 28)
-const MANSION_ORIGIN := Vector2i(0, 32)
-const MANSION_SIZE := Vector2i(28, 18)
 const PRIMEVAL_ORIGIN := Vector2i(72, 32)
 const PRIMEVAL_SIZE := Vector2i(28, 18)
 const HELIOS_ORIGIN := Vector2i(108, 32)
@@ -20,24 +17,6 @@ const MOONPETAL_ORIGIN := Vector2i(180, 32)
 const MOONPETAL_SIZE := Vector2i(28, 18)
 const EMPYREAL_ORIGIN := Vector2i(216, 32)
 const EMPYREAL_SIZE := Vector2i(28, 18)
-const MANSION_ARCHIVE_OFFSET := Vector2i(10, 0)
-const MANSION_GALLERY_OFFSET := Vector2i(0, 10)
-const MANSION_NURSERY_OFFSET := Vector2i(10, 10)
-const MANSION_BALLROOM_OFFSET := Vector2i(20, 5)
-const MANSION_INTERIOR_WALL_PROFILES := [
-	[&"mansion_interior_wall_0_0", &"mansion_interior_wall_1_0", &"mansion_interior_wall_2_0", &"mansion_interior_wall_3_0"],
-	[&"mansion_interior_wall_0_1", &"mansion_interior_wall_1_1", &"mansion_interior_wall_2_1", &"mansion_interior_wall_3_1"],
-]
-const MANSION_NURSERY_WALL_PROFILES := [
-	[&"mansion_nursery_wall_0_0", &"mansion_nursery_wall_1_0", &"mansion_nursery_wall_2_0", &"mansion_nursery_wall_3_0", &"mansion_nursery_wall_4_0", &"mansion_nursery_wall_5_0", &"mansion_nursery_wall_6_0", &"mansion_nursery_wall_7_0"],
-	[&"mansion_nursery_wall_0_1", &"mansion_nursery_wall_1_1", &"mansion_nursery_wall_2_1", &"mansion_nursery_wall_3_1", &"mansion_nursery_wall_4_1", &"mansion_nursery_wall_5_1", &"mansion_nursery_wall_6_1", &"mansion_nursery_wall_7_1"],
-]
-const MANSION_PLANK_GRAIN_PROFILES := [
-	[&"mansion_plank_grain_0_0", &"mansion_plank_grain_1_0"],
-	[&"mansion_plank_grain_0_1", &"mansion_plank_grain_1_1"],
-	[&"mansion_plank_grain_0_2", &"mansion_plank_grain_1_2"],
-	[&"mansion_plank_grain_0_3", &"mansion_plank_grain_1_3"],
-]
 const FROSTHOLD_GROUND_TILE_PROFILES := [
 	&"frosthold_snow_ground_tile",
 	&"frosthold_snow_ground_variant_1",
@@ -72,14 +51,7 @@ const FACILITY_PROFILE_IDS := {
 	"Tea House": &"town_tea_house_facade",
 }
 
-var lab_wall: Texture2D
-var lab_utility: Texture2D
-var lab_props: Texture2D
-var lab_doors: Texture2D
 var town_ground: Texture2D
-var haunted_interior: Texture2D
-var haunted_storage: Texture2D
-var haunted_bedroom: Texture2D
 var helios_structures: Texture2D
 var nightclub_signs: Texture2D
 var frozen_ground: Texture2D
@@ -96,17 +68,7 @@ var visual_profiles
 func _ready() -> void:
 	texture_filter = CanvasItem.TEXTURE_FILTER_NEAREST
 	visual_profiles = VISUAL_PROFILE_REGISTRY.new()
-	# Laboratory profiles are the source-of-truth for both approved crop metadata
-	# and runtime asset paths. The individual room draw calls can now migrate
-	# one crop at a time without reintroducing path literals here.
-	lab_wall = visual_profiles.texture(&"laboratory_floor_tile")
-	lab_utility = visual_profiles.texture(&"laboratory_utility_bank")
-	lab_props = visual_profiles.texture(&"laboratory_analysis_station")
-	lab_doors = visual_profiles.texture(&"laboratory_exit_doors")
 	town_ground = visual_profiles.texture(&"town_grass_tile")
-	haunted_interior = visual_profiles.texture(&"mansion_archive_cabinet")
-	haunted_bedroom = visual_profiles.texture(&"mansion_nursery_bed")
-	haunted_storage = visual_profiles.texture(&"mansion_archive_shelving")
 	helios_structures = visual_profiles.texture(&"helios_observatory_facade")
 	nightclub_signs = visual_profiles.texture(&"afterlight_club_sign")
 	frozen_ground = visual_profiles.texture(&"frosthold_snow_ground_tile")
@@ -148,41 +110,7 @@ func _draw() -> void:
 	# An area transition owns the visible field. Rendering every universe into a
 	# single canvas was needlessly expensive and also made an accidental camera
 	# limit leak reveal neighbouring rooms. Each area function now opts in below.
-	draw_laboratory()
 	draw_town()
-	draw_haunted_mansion()
-
-
-func draw_laboratory() -> void:
-	if active_area != &"lab":
-		return
-	for y in range(LAB_SIZE.y):
-		for x in range(LAB_SIZE.x):
-			var floor_profile: StringName = &"laboratory_wall_tile" if y <= 2 else &"laboratory_floor_tile"
-			profile_tile(floor_profile, lab_wall, Vector2(x * TILE, y * TILE))
-	# Rear-wall architecture remains in two coherent banks: a labeled observation
-	# bay and one complete ventilation run. The floor equipment below is cut into
-	# individual alpha islands; the previous 336px/384px row crops reproduced the
-	# atlas's presentation rows and made unrelated benches touch edge-to-edge.
-	profile_tile(&"laboratory_utility_bank", lab_utility, Vector2(TILE, TILE))
-	profile_tile(&"laboratory_ventilation_run", lab_utility, Vector2(11 * TILE, 0))
-	# West analysis bank: three distinct stations with breathing room.
-	profile_tile(&"laboratory_analysis_station", lab_props, Vector2(48, 190))
-	profile_tile(&"laboratory_west_terminal", lab_props, Vector2(166, 198))
-	profile_tile(&"laboratory_west_spectrometer", lab_props, Vector2(282, 198))
-	# East fabrication bank mirrors the footprint without duplicating the art.
-	profile_tile(&"laboratory_east_fabricator", lab_props, Vector2(528, 198))
-	profile_tile(&"laboratory_east_reactor", lab_props, Vector2(646, 198))
-	profile_tile(&"laboratory_east_calibrator", lab_props, Vector2(764, 198))
-	# Two contained fume hoods define the lower work alcoves. They stay entirely
-	# outside the central invention aisle and no longer include neighbouring atlas
-	# stools, cabinets, or blank presentation cells.
-	profile_tile(&"laboratory_west_storage", lab_props, Vector2(48, 384))
-	profile_tile(&"laboratory_center_storage", lab_props, Vector2(190, 384))
-	profile_tile(&"laboratory_east_generator", lab_props, Vector2(676, 350))
-	profile_tile(&"laboratory_east_coolant", lab_props, Vector2(790, 350))
-	# A coherent double-door crop marks the physical exit at the bottom wall.
-	profile_tile(&"laboratory_exit_doors", lab_doors, Vector2(9 * TILE, 10 * TILE))
 
 
 func draw_town() -> void:
@@ -425,61 +353,6 @@ func get_plot_at_canvas_position(canvas_position: Vector2) -> int:
 	return -1
 
 
-func draw_haunted_mansion() -> void:
-	if not active_area.begins_with("mansion"):
-		return
-	var offset := Vector2(MANSION_ORIGIN * TILE)
-	var room_offsets := {
-		&"mansion_foyer": Vector2i.ZERO,
-		&"mansion_archive": MANSION_ARCHIVE_OFFSET,
-		&"mansion_gallery": MANSION_GALLERY_OFFSET,
-		&"mansion_nursery": MANSION_NURSERY_OFFSET,
-		&"mansion_ballroom": MANSION_BALLROOM_OFFSET,
-	}
-	var active_room_offset := offset + Vector2(room_offsets.get(active_area, Vector2i.ZERO) * TILE)
-	draw_rect(Rect2(active_room_offset, Vector2(8 * TILE, 8 * TILE)), Color(0.025, 0.021, 0.028), true)
-	match active_area:
-		&"mansion_foyer": _draw_mansion_foyer(offset)
-		&"mansion_archive": _draw_mansion_archive(offset)
-		&"mansion_gallery": _draw_mansion_gallery(offset)
-		&"mansion_nursery": _draw_mansion_nursery(offset)
-		&"mansion_ballroom": _draw_mansion_ballroom(offset)
-
-
-func _draw_mansion_foyer(room_offset: Vector2) -> void:
-	_draw_mansion_room_shell(room_offset, false)
-	profile_tile(&"mansion_foyer_clock", haunted_interior, room_offset + Vector2(20, 18))
-	profile_tile(&"mansion_foyer_wall_tableau", haunted_interior, room_offset + Vector2(100, 26))
-	profile_tile(&"mansion_archive_cabinet", haunted_interior, room_offset + Vector2(216, 74))
-	draw_rect(Rect2(room_offset + Vector2(3 * TILE, 7 * TILE), Vector2(2 * TILE, TILE)), Color(0.36, 0.24, 0.16, 0.32), true)
-
-
-func _draw_mansion_archive(offset: Vector2) -> void:
-	var room_offset := offset + Vector2(MANSION_ARCHIVE_OFFSET * TILE)
-	for y in range(4):
-		for x in range(8):
-			var profile_id: StringName = &"mansion_archive_wall_lit_tile" if (x + y) % 3 == 0 else &"mansion_archive_wall_plain_tile"
-			profile_tile(profile_id, haunted_interior, room_offset + Vector2(x, y) * TILE)
-	_draw_mansion_plank_floor(room_offset)
-
-
-func _draw_mansion_gallery(offset: Vector2) -> void:
-	var room_offset := offset + Vector2(MANSION_GALLERY_OFFSET * TILE)
-	_draw_mansion_room_shell(room_offset, false)
-
-
-func _draw_mansion_nursery(offset: Vector2) -> void:
-	var room_offset := offset + Vector2(MANSION_NURSERY_OFFSET * TILE)
-	_draw_mansion_room_shell(room_offset, true)
-	profile_tile(&"mansion_nursery_left_wall_panel", haunted_bedroom, room_offset + Vector2(1, 2))
-	profile_tile(&"mansion_nursery_right_wall_panel", haunted_bedroom, room_offset + Vector2(193, 2))
-
-
-func _draw_mansion_ballroom(offset: Vector2) -> void:
-	var room_offset := offset + Vector2(MANSION_BALLROOM_OFFSET * TILE)
-	_draw_mansion_room_shell(room_offset, false)
-
-
 func draw_primeval_expanse() -> void:
 	if not active_area.begins_with("primeval"):
 		return
@@ -707,63 +580,3 @@ func _draw_moonpetal_processional_path(room_offset: Vector2) -> void:
 	draw_set_transform(room_offset + Vector2(220, 174), PI * 0.5)
 	profile_tile(&"moonpetal_processional_path", sakura_paths, Vector2.ZERO)
 	draw_set_transform(Vector2.ZERO, 0.0, Vector2.ONE)
-
-
-func _draw_mansion_room_shell(room_offset: Vector2, bedroom_wall: bool) -> void:
-	for y in range(4):
-		for x in range(8):
-			if bedroom_wall:
-				var nursery_profile_id: StringName = MANSION_NURSERY_WALL_PROFILES[y % 2][x % 8]
-				profile_tile(nursery_profile_id, haunted_bedroom, room_offset + Vector2(x, y) * TILE)
-			else:
-				var profile_id: StringName = MANSION_INTERIOR_WALL_PROFILES[y % 2][x % 4]
-				profile_tile(profile_id, haunted_interior, room_offset + Vector2(x, y) * TILE)
-	_draw_mansion_plank_floor(room_offset)
-
-
-func _draw_mansion_plank_floor(room_offset: Vector2) -> void:
-	# The source showcase has only a 96x96 unobstructed floor fragment. Repeating
-	# it produced identical cracks and black seams every two movement cells. Build
-	# one continuous staggered board floor instead, using the pack's wood palette.
-	var floor_top := 192
-	var floor_height := 192
-	draw_rect(Rect2(room_offset + Vector2(0, floor_top), Vector2(384, floor_height)), Color("4a342b"), true)
-	var board_colors := [Color("543d32"), Color("594034"), Color("4e382f"), Color("5d4437")]
-	var board_height := 16
-	var board_width := 64
-	for row in range(int(floor_height / board_height)):
-		var y := floor_top + row * board_height
-		var first_x := -32 if row % 2 == 1 else 0
-		var board_index := 0
-		for board_x in range(first_x, 384, board_width):
-			var left := maxi(board_x, 0)
-			var right := mini(board_x + board_width, 384)
-			if right <= left:
-				continue
-			var color: Color = board_colors[(row * 2 + board_index) % board_colors.size()]
-			var destination := Rect2(room_offset + Vector2(left, y), Vector2(right - left, board_height))
-			draw_rect(destination, color, true)
-			# Reuse narrow native-resolution grain strips from the clean lower-right
-			# portion of the pack's wood floor. Each strip is an approved profile, so
-			# this procedural tiling does not reintroduce anonymous atlas rectangles.
-			for grain_x in range(left, right, 32):
-				var grain_row := (row * 3 + board_index) % 4
-				var grain_column := (row + board_index + int((grain_x - left) / 32.0)) % 2
-				var grain_profile: StringName = MANSION_PLANK_GRAIN_PROFILES[grain_row][grain_column]
-				profile_tile(grain_profile, haunted_interior, room_offset + Vector2(grain_x, y))
-			draw_line(room_offset + Vector2(left, y), room_offset + Vector2(right, y), Color("2a1c19"), 2.0)
-			if left > 0:
-				draw_line(room_offset + Vector2(left, y), room_offset + Vector2(left, y + board_height), Color("34231e"), 1.0)
-			# Short deterministic grain strokes keep the floor textured without
-			# repeating a conspicuous crack pattern from the showcase panel.
-			var grain_x := left + 7 + ((row * 11 + board_index * 17) % 18)
-			var grain_end := mini(grain_x + 16 + ((row + board_index) % 15), right - 5)
-			if grain_end > grain_x:
-				draw_line(room_offset + Vector2(grain_x, y + 5), room_offset + Vector2(grain_end, y + 5), Color("3b2923"), 1.0)
-			if (row + board_index) % 2 == 0:
-				var second_x := maxi(left + 5, right - 27)
-				draw_line(room_offset + Vector2(second_x, y + 11), room_offset + Vector2(right - 7, y + 11), Color("6a4d3f"), 1.0)
-			board_index += 1
-	# A restrained threshold line visually joins the wall and floor without the
-	# repeated torn-board ridge that the sampled atlas fragment introduced.
-	draw_rect(Rect2(room_offset + Vector2(0, floor_top - 4), Vector2(384, 6)), Color("2d201c"), true)

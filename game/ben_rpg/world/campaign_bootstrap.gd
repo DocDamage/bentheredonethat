@@ -155,6 +155,8 @@ const MOONPETAL_GROUND_SCRIPT := preload("res://ben_rpg/world/campaign_moonpetal
 const HELIOS_GROUND_SCRIPT := preload("res://ben_rpg/world/campaign_helios_ground.gd")
 const PRIMEVAL_GROUND_SCRIPT := preload("res://ben_rpg/world/campaign_primeval_ground.gd")
 const ASTERION_GROUND_SCRIPT := preload("res://ben_rpg/world/campaign_asterion_ground.gd")
+const MANSION_GROUND_SCRIPT := preload("res://ben_rpg/world/campaign_mansion_ground.gd")
+const LABORATORY_GROUND_SCRIPT := preload("res://ben_rpg/world/campaign_laboratory_ground.gd")
 const FROSTHOLD_FOREGROUND_SCRIPT := preload("res://ben_rpg/world/campaign_frosthold_foreground.gd")
 const PRIMEVAL_FOREGROUND_SCRIPT := preload("res://ben_rpg/world/campaign_primeval_foreground.gd")
 const HELIOS_FOREGROUND_SCRIPT := preload("res://ben_rpg/world/campaign_helios_foreground.gd")
@@ -234,6 +236,8 @@ var _moonpetal_ground
 var _helios_ground
 var _primeval_ground
 var _asterion_ground
+var _mansion_ground
+var _laboratory_ground
 var _mansion_foreground
 var _town_foreground
 var _asterion_foreground
@@ -349,6 +353,12 @@ func _enter_tree() -> void:
 	_asterion_ground = ASTERION_GROUND_SCRIPT.new()
 	_asterion_ground.name = "AsterionGround"
 	ground_layer.add_child(_asterion_ground)
+	_mansion_ground = MANSION_GROUND_SCRIPT.new()
+	_mansion_ground.name = "MansionGround"
+	ground_layer.add_child(_mansion_ground)
+	_laboratory_ground = LABORATORY_GROUND_SCRIPT.new()
+	_laboratory_ground.name = "LaboratoryGround"
+	ground_layer.add_child(_laboratory_ground)
 	_sandbox_objects = SANDBOX_OBJECTS_SCRIPT.new()
 	_sandbox_objects.name = "SandboxTownObjects"
 	low_decoration_layer.add_child(_sandbox_objects)
@@ -785,6 +795,10 @@ func _update_camera_limits(force := false) -> void:
 		_primeval_ground.set_active_area(StringName(area))
 	if _asterion_ground:
 		_asterion_ground.set_active_area(StringName(area))
+	if _mansion_ground:
+		_mansion_ground.set_active_area(StringName(area))
+	if _laboratory_ground:
+		_laboratory_ground.set_active_area(StringName(area))
 	if _mansion_foreground:
 		_mansion_foreground.set_active_area(StringName(area))
 	if _town_foreground:
