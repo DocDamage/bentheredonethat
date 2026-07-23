@@ -2935,3 +2935,7 @@ limit:
   resolve room-owned ports and interactions through the active streamer at
   commit `9703b526`; the legacy encounter-controller coordinate regions and
   global recruit compatibility nodes remain separately owned migration work.
+- Manifest navigation validation now checks all 102 room records for safe
+  arrivals, follower space, connected required anchors, and declared
+  navigation/collision IDs at commit `f55b0fcd`. The current generated
+  interiors remain a baseline contract, not an authored collision audit.
