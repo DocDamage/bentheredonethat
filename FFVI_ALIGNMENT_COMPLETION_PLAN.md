@@ -1264,20 +1264,20 @@ The browser implementation is not the release target, but it is part of the repo
 
 **Tasks:**
 
-- [ ] Constrain the grid row with `minmax(0, 1fr)` or an equivalent layout.
-- [ ] Make `.start-copy` the actual scroll container.
-- [ ] Ensure focus navigation scrolls focused controls into view.
-- [ ] Test empty-save and populated-save title states.
-- [ ] Test the expanded save manager and town-founder setup.
+- [x] Constrain the grid row with `minmax(0, 1fr)` or an equivalent layout.
+- [x] Make `.start-copy` the actual scroll container.
+- [x] Ensure focus navigation scrolls focused controls into view.
+- [x] Test empty-save and populated-save title states.
+- [x] Test the expanded save manager and town-founder setup.
 
 **Viewport matrix:**
 
-- [ ] 800x600.
-- [ ] 1024x768.
-- [ ] 1280x720.
-- [ ] 1366x768.
-- [ ] 1440x900.
-- [ ] Narrow/mobile breakpoint.
+- [x] 800x600.
+- [x] 1024x768.
+- [x] 1280x720.
+- [x] 1366x768.
+- [x] 1440x900.
+- [x] Narrow/mobile breakpoint.
 
 ### 11.2 Clarify implementation ownership — P2
 
