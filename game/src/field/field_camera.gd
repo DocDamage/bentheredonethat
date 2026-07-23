@@ -7,6 +7,8 @@
 class_name FieldCamera
 extends Camera2D
 
+const FIELD_SCALE := preload("res://ben_rpg/world/campaign_field_scale.gd")
+
 @export var gameboard_properties: GameboardProperties:
 	set(value):
 		_on_viewport_resized()
@@ -33,7 +35,7 @@ func _process(_delta: float) -> void:
 	# world pixels while a gamepiece is moving, which creates visible shimmer even
 	# when every sprite itself is placed correctly. Snap only the final camera
 	# position so movement retains its normal cadence without subpixel sampling.
-	position = position.round()
+	position = FIELD_SCALE.snap_to_world_pixels(position)
 
 
 func reset_position() -> void:

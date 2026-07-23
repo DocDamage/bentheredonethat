@@ -17,7 +17,7 @@
 &"portraits": {
 "Default": {
 "export_overrides": {
-"image": "\"res://overworld/characters/monk.atlastex\""
+"image": "\"res://overworld/characters/monk.tres\""
 },
 "image": "",
 "mirror": false,

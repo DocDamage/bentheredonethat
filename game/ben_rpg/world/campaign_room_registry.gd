@@ -9,6 +9,7 @@ const MANSION_ROOM_IDS := [
 	&"HM-01", &"HM-02", &"HM-03", &"HM-04", &"HM-05", &"HM-06", &"HM-07", &"HM-08",
 	&"HM-09", &"HM-10", &"HM-11", &"HM-12", &"HM-13", &"HM-14", &"HM-15", &"HM-16",
 ]
+const FIELD_SCALE := preload("res://ben_rpg/world/campaign_field_scale.gd")
 
 const ASTERION_ROOM_IDS := [
 	&"AS-01", &"AS-02", &"AS-03", &"AS-04", &"AS-05", &"AS-06", &"AS-07", &"AS-08",
@@ -169,7 +170,7 @@ static var MANIFEST_TEST_ROOMS := {
 	&"TEST-01": {
 		"blueprint": &"S1",
 		"dimensions": Vector2i(14, 10),
-		"cameraBounds": Rect2i(0, 0, 672, 480),
+		"cameraBounds": FIELD_SCALE.camera_bounds_for_cells(Vector2i(14, 10)),
 		"scenePath": "res://ben_rpg/world/rooms/manifest_test_room.tscn",
 		"collisionMaskId": &"generated:manifest-test-room",
 		"navigationId": &"generated:manifest-test-room",
@@ -206,7 +207,7 @@ static func _room(blueprint: StringName, encounter_policy: StringName, treasure_
 	return {
 		"blueprint": blueprint,
 		"dimensions": dimensions,
-		"cameraBounds": Rect2i(Vector2i.ZERO, dimensions * 48),
+		"cameraBounds": FIELD_SCALE.camera_bounds_for_cells(dimensions),
 		"portCells": layout.get("ports", {}).duplicate(true),
 		"collisionMaskId": StringName("generated:%s-collision" % blueprint),
 		"navigationId": StringName("generated:%s-navigation" % blueprint),
@@ -665,7 +666,7 @@ static func validate() -> PackedStringArray:
 		var dimensions: Vector2i = definition.get("dimensions", Vector2i.ZERO)
 		if dimensions != blueprint_layout(blueprint).get("dimensions", Vector2i.ZERO):
 			errors.append("%s dimensions do not match %s." % [room_id, blueprint])
-		if definition.get("cameraBounds", Rect2i()) != Rect2i(Vector2i.ZERO, dimensions * 48):
+		if definition.get("cameraBounds", Rect2i()) != FIELD_SCALE.camera_bounds_for_cells(dimensions):
 			errors.append("%s camera bounds do not match its resolved dimensions." % room_id)
 		if StringName(definition.get("collisionMaskId", &"")) == &"" or StringName(definition.get("navigationId", &"")) == &"":
 			errors.append("%s is missing collision or navigation records." % room_id)
@@ -714,7 +715,7 @@ static func _validate_manifest_test_rooms(errors: Array[String]) -> void:
 		errors.append("Manifest test room must define an authored scene path.")
 	if definition.get("dimensions", Vector2i.ZERO) != Vector2i(14, 10):
 		errors.append("Manifest test room dimensions must match S1.")
-	if definition.get("cameraBounds", Rect2i()) != Rect2i(0, 0, 672, 480):
+	if definition.get("cameraBounds", Rect2i()) != FIELD_SCALE.camera_bounds_for_cells(Vector2i(14, 10)):
 		errors.append("Manifest test room camera bounds must match its 48px cells.")
 	for port_id in [&"Nw", &"Ne"]:
 		var binding := port(&"TEST-01", port_id)

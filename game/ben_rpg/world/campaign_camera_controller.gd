@@ -5,6 +5,7 @@ extends Node
 ## legacy areas continue to use their compatibility adapter during migration.
 
 const ROOM_REGISTRY := preload("res://ben_rpg/world/campaign_room_registry.gd")
+const FIELD_SCALE := preload("res://ben_rpg/world/campaign_field_scale.gd")
 
 var active_room_id: StringName = &""
 var active_bounds := Rect2i()
@@ -31,6 +32,6 @@ func _on_active_room_changed(room_id: StringName, _legacy_area: StringName) -> v
 static func validate() -> PackedStringArray:
 	var errors: Array[String] = []
 	var bounds: Rect2i = ROOM_REGISTRY.room(&"TEST-01").get("cameraBounds", Rect2i()) as Rect2i
-	if bounds != Rect2i(0, 0, 672, 480):
+	if bounds != FIELD_SCALE.camera_bounds_for_cells(Vector2i(14, 10)):
 		errors.append("Manifest test room camera bounds are invalid.")
 	return PackedStringArray(errors)

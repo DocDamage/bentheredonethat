@@ -2,20 +2,20 @@ extends Node
 
 
 const ATLAS_PATHS := [
-	"res://assets/items/key.atlastex",
-	"res://assets/items/coin.atlastex",
-	"res://assets/items/bomb.atlastex",
-	"res://assets/items/wand_red.atlastex",
-	"res://assets/items/wand_blue.atlastex",
-	"res://assets/items/wand_green.atlastex",
-	"res://overworld/characters/generic.atlastex",
-	"res://overworld/characters/ghost.atlastex",
-	"res://overworld/characters/gobot.atlastex",
-	"res://overworld/characters/knight.atlastex",
-	"res://overworld/characters/monk.atlastex",
-	"res://overworld/characters/smith.atlastex",
-	"res://overworld/characters/thief.atlastex",
-	"res://overworld/characters/wizard.atlastex",
+	"res://assets/items/key.tres",
+	"res://assets/items/coin.tres",
+	"res://assets/items/bomb.tres",
+	"res://assets/items/wand_red.tres",
+	"res://assets/items/wand_blue.tres",
+	"res://assets/items/wand_green.tres",
+	"res://overworld/characters/generic.tres",
+	"res://overworld/characters/ghost.tres",
+	"res://overworld/characters/gobot.tres",
+	"res://overworld/characters/knight.tres",
+	"res://overworld/characters/monk.tres",
+	"res://overworld/characters/smith.tres",
+	"res://overworld/characters/thief.tres",
+	"res://overworld/characters/wizard.tres",
 ]
 
 

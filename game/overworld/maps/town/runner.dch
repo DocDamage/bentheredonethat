@@ -17,7 +17,7 @@
 &"portraits": {
 "Default": {
 "export_overrides": {
-"image": "\"res://overworld/characters/generic.atlastex\""
+"image": "\"res://overworld/characters/generic.tres\""
 },
 "image": "",
 "mirror": false,

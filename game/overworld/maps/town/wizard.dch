@@ -17,7 +17,7 @@
 &"portraits": {
 "Default": {
 "export_overrides": {
-"image": "\"res://overworld/characters/wizard.atlastex\""
+"image": "\"res://overworld/characters/wizard.tres\""
 },
 "image": "",
 "mirror": false,

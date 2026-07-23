@@ -17,7 +17,7 @@
 &"portraits": {
 "Default": {
 "export_overrides": {
-"image": "\"res://overworld/characters/smith.atlastex\""
+"image": "\"res://overworld/characters/smith.tres\""
 },
 "image": "",
 "mirror": false,

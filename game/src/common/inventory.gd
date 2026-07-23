@@ -10,12 +10,12 @@ enum ItemTypes { KEY, COIN, BOMB, RED_WAND, BLUE_WAND, GREEN_WAND }
 # can easily pick from items from a dropdown list, or something similar.
 ## Icons associated with the [member ItemTypes].
 const ICONS: = {
-	ItemTypes.KEY: preload("res://assets/items/key.atlastex"),
-	ItemTypes.COIN: preload("res://assets/items/coin.atlastex"),
-	ItemTypes.BOMB: preload("res://assets/items/bomb.atlastex"),
-	ItemTypes.RED_WAND: preload("res://assets/items/wand_red.atlastex"),
-	ItemTypes.BLUE_WAND: preload("res://assets/items/wand_blue.atlastex"),
-	ItemTypes.GREEN_WAND: preload("res://assets/items/wand_green.atlastex"),
+	ItemTypes.KEY: preload("res://assets/items/key.tres"),
+	ItemTypes.COIN: preload("res://assets/items/coin.tres"),
+	ItemTypes.BOMB: preload("res://assets/items/bomb.tres"),
+	ItemTypes.RED_WAND: preload("res://assets/items/wand_red.tres"),
+	ItemTypes.BLUE_WAND: preload("res://assets/items/wand_blue.tres"),
+	ItemTypes.GREEN_WAND: preload("res://assets/items/wand_green.tres"),
 }
 
 const INVENTORY_PATH: = "user://inventory.tres"
