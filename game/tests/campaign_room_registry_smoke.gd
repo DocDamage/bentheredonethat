@@ -31,6 +31,8 @@ func _ready() -> void:
 	assert(ROOM_REGISTRY.room(&"HM-06").get("collisionMaskId") == &"authored:hm06-portrait-gallery-collision")
 	assert(ROOM_REGISTRY.room(&"HM-07").get("collisionMaskId") == &"authored:hm07-borrowed-years-collision")
 	assert(ROOM_REGISTRY.room(&"HM-08").get("collisionMaskId") == &"authored:hm08-ballroom-antechamber-collision")
+	assert(ROOM_REGISTRY.room(&"HM-09").get("collisionMaskId") == &"authored:hm09-grand-ballroom-collision")
+	assert(ROOM_REGISTRY.room(&"HM-10").get("collisionMaskId") == &"authored:hm10-dead-conservatory-collision")
 	assert(ROOM_REGISTRY.room(&"HM-14").get("collisionMaskId") == &"authored:hm14-west-stair-collision")
 	assert(ROOM_REGISTRY.room(&"HM-15").get("collisionMaskId") == &"authored:hm15-mirror-link-collision")
 	assert(ROOM_REGISTRY.room(&"FR-08").get("encounterPolicy") == &"boss", "FR-08 must remain the Frosthold boss room.")

@@ -62,8 +62,8 @@ scene already has final collision or art approval.
 | HM-06 | C / L2 | 207 authored | 6 | HM-14, HM-15 |
 | HM-07 | C / M3 | 136 authored | 4 | HM-15, HM-08, HM-11 [latch] |
 | HM-08 | C / M4 | 121 baseline / 124 opened authored | 4 | HM-07, HM-09 [two hands], HM-13, HM-16 [shortcut] |
-| HM-09 | C / L1 | 352 | 6 | HM-08 |
-| HM-10 | O / M2 | 216 | 4 | HM-02, HM-15 |
+| HM-09 | C / L1 | 197 authored | 6 | HM-08 |
+| HM-10 | O / M2 | 114 authored | 4 | HM-02, HM-15 |
 | HM-11 | O / M3 | 240 | 4 | HM-05, HM-07 [latch], HM-12 [crypt key] |
 | HM-12 | O / L4 | 396 | 6 | HM-04 [13:13], HM-11 [crypt key] |
 | HM-13 | O / M1 | 192 | 4 | HM-14, HM-08 [attic latch] |
@@ -94,6 +94,10 @@ including a follower-safe side vestibule. HM-08 records the ballroom-lock and
 respite-clock preparation area plus its gated side vestibule (121 baseline /
 124 opened cells). The live fixture verifies both clock-hand rewards, the save
 anchor, and the boss-door release; visual/input/capture approval remains pending.
+HM-09 now has a 197-cell Clock Mirror arena with a dedicated approach and results
+floor; HM-10 has a 114-cell conservatory branch with stable north arrivals and
+return path. The live handoff fixture verifies boss victory/reward and the
+conservatory branch; visual/input/capture approval remains pending.
 The remaining rooms' cell values are generated open-interior counts, not audited
 useful-cell totals. They materially exceed the Section 9.4 S/M/L ranges in
 several rooms because final collision ownership is still a generated rectangle.

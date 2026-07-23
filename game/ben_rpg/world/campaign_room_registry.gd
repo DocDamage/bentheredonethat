@@ -735,6 +735,17 @@ static func room(room_id: StringName) -> Dictionary:
 			"scenePath": "res://ben_rpg/world/rooms/haunted_mansion_ballroom.tscn",
 			"worldOrigin": Vector2i(300, 0),
 			"enabledPortIds": [&"Nw"],
+			"navigationId": &"authored:hm09-grand-ballroom-navigation",
+			"collisionMaskId": &"authored:hm09-grand-ballroom-collision",
+			"navigationLayout": {
+				"id": &"hm09-grand-ballroom-v1",
+				"kind": &"authored",
+				"usefulCellRange": Vector2i(197, 197),
+				"walkableRects": [
+					{"origin": Vector2i(6, 1), "size": Vector2i(12, 4)}, # chandelier approach
+					{"origin": Vector2i(3, 4), "size": Vector2i(18, 9)}, # Clock Mirror arena and results floor
+				],
+			},
 			"visualProfileIds": [&"mansion_ballroom_chandelier", &"mansion_ballroom_door_frame", &"clock_mirror_battle_actor"],
 			"featureIds": [&"clock_mirror_arena", &"results_return_anchor", &"stabilized_ballroom_lighting"],
 			"bossEncounter": {"nodeName": "The444Appointment", "encounterId": &"mansion_archive_boss", "defeatedFlag": &"mansion_archive_boss_defeated", "cell": Vector2i(12, 9)},
@@ -744,6 +755,17 @@ static func room(room_id: StringName) -> Dictionary:
 			"scenePath": "res://ben_rpg/world/rooms/haunted_mansion_conservatory.tscn",
 			"worldOrigin": Vector2i(300, 0),
 			"enabledPortIds": [&"Nw", &"Ne"],
+			"navigationId": &"authored:hm10-dead-conservatory-navigation",
+			"collisionMaskId": &"authored:hm10-dead-conservatory-collision",
+			"navigationLayout": {
+				"id": &"hm10-dead-conservatory-v1",
+				"kind": &"authored",
+				"usefulCellRange": Vector2i(114, 114),
+				"walkableRects": [
+					{"origin": Vector2i(5, 1), "size": Vector2i(10, 4)}, # glass-house arrivals
+					{"origin": Vector2i(3, 4), "size": Vector2i(14, 6)}, # branch paths and shutter return
+				],
+			},
 			"visualProfileIds": [&"mansion_archive_wall_lit_tile", &"mansion_archive_wall_plain_tile", &"mansion_foyer_wall_tableau"],
 			"featureIds": [&"cursed_tree_elite", &"herb_cache", &"inside_shutter_shortcut", &"impossible_black_rose"],
 		}, true)
@@ -969,6 +991,12 @@ static func _validate_manifest_test_rooms(errors: Array[String]) -> void:
 	var hm08 := room(&"HM-08")
 	if StringName(hm08.get("navigationId", &"")) != &"authored:hm08-ballroom-antechamber-navigation" or StringName(hm08.get("collisionMaskId", &"")) != &"authored:hm08-ballroom-antechamber-collision":
 		errors.append("HM-08 must own its authored antechamber navigation and collision records.")
+	var hm09 := room(&"HM-09")
+	if StringName(hm09.get("navigationId", &"")) != &"authored:hm09-grand-ballroom-navigation" or StringName(hm09.get("collisionMaskId", &"")) != &"authored:hm09-grand-ballroom-collision":
+		errors.append("HM-09 must own its authored ballroom navigation and collision records.")
+	var hm10 := room(&"HM-10")
+	if StringName(hm10.get("navigationId", &"")) != &"authored:hm10-dead-conservatory-navigation" or StringName(hm10.get("collisionMaskId", &"")) != &"authored:hm10-dead-conservatory-collision":
+		errors.append("HM-10 must own its authored conservatory navigation and collision records.")
 	var hm14 := room(&"HM-14")
 	if StringName(hm14.get("navigationId", &"")) != &"authored:hm14-west-stair-navigation" or StringName(hm14.get("collisionMaskId", &"")) != &"authored:hm14-west-stair-collision":
 		errors.append("HM-14 must own its authored west-stair navigation and collision records.")
