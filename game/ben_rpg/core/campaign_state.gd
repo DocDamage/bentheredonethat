@@ -2329,16 +2329,21 @@ func register_runtime_save_point(save_point_id: StringName, cell: Vector2i) -> v
 
 
 func activated_save_point_near(cell: Vector2i, radius := 2) -> Dictionary:
+	var closest: Dictionary = {}
+	var closest_distance := radius + 1
 	for save_point_id in UNIVERSE_SAVE_POINTS:
 		var definition: Dictionary = UNIVERSE_SAVE_POINTS[save_point_id]
 		if not bool(story_flags.get(definition["flag"], false)):
 			continue
 		var anchor_cell: Vector2i = _runtime_save_point_cells.get(save_point_id, definition["cell"])
-		if abs(cell.x - anchor_cell.x) + abs(cell.y - anchor_cell.y) <= radius:
+		var distance: int = abs(cell.x - anchor_cell.x) + abs(cell.y - anchor_cell.y)
+		if distance <= radius and distance < closest_distance:
 			var result := definition.duplicate(true)
 			result["id"] = save_point_id
-			return result
-	return {}
+			result["cell"] = anchor_cell
+			closest = result
+			closest_distance = distance
+	return closest
 
 
 func revive_party_at_one() -> void:

@@ -67,7 +67,7 @@ func _apply_navigation(previous_room_id: StringName, room_id: StringName) -> voi
 	var blocked: Array[Vector2i] = []
 	if previous_room_id != &"":
 		_set_room_cells(previous_room_id, {}, cleared, blocked)
-	var enabled_ports := ROOM_REGISTRY.enabled_port_ids(room_id)
+	var enabled_ports := _streamable_port_ids(room_id)
 	var record := NAVIGATION_BUILDER.navigation_record(room_id, enabled_ports)
 	var walkable: Dictionary = record.get("walkable", {})
 	_set_room_cells(room_id, walkable, cleared, blocked)
@@ -93,7 +93,7 @@ func _install_port_transitions(room_id: StringName) -> void:
 		child.queue_free()
 	var definition := ROOM_REGISTRY.room(room_id)
 	var origin: Vector2i = definition.get("worldOrigin", Vector2i.ZERO)
-	var enabled_ports := ROOM_REGISTRY.enabled_port_ids(room_id)
+	var enabled_ports := _streamable_port_ids(room_id)
 	var port_cells: Dictionary = definition.get("portCells", {})
 	for port in ROOM_REGISTRY.ports(room_id):
 		var port_id := StringName(port.get("id", &""))
@@ -114,3 +114,12 @@ func _install_port_transitions(room_id: StringName) -> void:
 		transition.set("room_runtime", self)
 		transition.set("destination_room_id", destination_room_id)
 		add_child(transition)
+
+
+func _streamable_port_ids(room_id: StringName) -> Array[StringName]:
+	var result: Array[StringName] = []
+	for port_id in ROOM_REGISTRY.enabled_port_ids(room_id):
+		var destination_room_id := StringName(ROOM_REGISTRY.port(room_id, port_id).get("destination", &""))
+		if destination_room_id == &"FI-05" or ROOM_REGISTRY.is_authored_room(destination_room_id):
+			result.append(port_id)
+	return result

@@ -222,12 +222,30 @@ static func room(room_id: StringName) -> Dictionary:
 		definition.merge({
 			"scenePath": "res://ben_rpg/world/rooms/haunted_mansion_nursery.tscn",
 			"worldOrigin": Vector2i(300, 0),
-			"enabledPortIds": [&"Nw"],
+			"enabledPortIds": [&"Nw", &"Ne"],
 			"visualProfileIds": [&"mansion_nursery_bed", &"mansion_nursery_music_box", &"mansion_nursery_left_wall_panel", &"mansion_nursery_right_wall_panel"],
 			"featureIds": [&"doll_ambush", &"silver_hour_hand_socket", &"brass_minute_hand", &"toy_chest_cache", &"wooden_raptor"],
 			"chapterInteractions": [
 				{"nodeName": "NurseryMusicBox", "kind": &"nursery_music_box", "cell": Vector2i(12, 6)},
 				{"nodeName": "NurseryCache", "kind": &"nursery_cache", "cell": Vector2i(16, 8)},
+			],
+		}, true)
+	elif room_id == &"HM-08":
+		definition.merge({
+			"scenePath": "res://ben_rpg/world/rooms/haunted_mansion_ballroom_antechamber.tscn",
+			"worldOrigin": Vector2i(300, 0),
+			"enabledPortIds": [&"Nw", &"Ne"],
+			"portGates": {&"Ne": &"mansion_ballroom_open"},
+			"visualProfileIds": [&"mansion_ballroom_chandelier", &"mansion_ballroom_door_frame", &"mansion_foyer_clock"],
+			"featureIds": [&"two_hand_ballroom_lock", &"ballroom_preparation_area", &"hand_socket_display"],
+			"savePoint": {
+				"id": &"mansion_ballroom_antechamber",
+				"nodeName": "NurseryRespiteClock",
+				"anchorName": "nursery respite clock",
+				"cell": Vector2i(9, 8),
+			},
+			"chapterInteractions": [
+				{"nodeName": "BallroomGate", "kind": &"ballroom_gate", "cell": Vector2i(12, 3)},
 			],
 		}, true)
 	return definition
