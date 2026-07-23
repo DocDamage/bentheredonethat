@@ -166,7 +166,6 @@ func _draw() -> void:
 	draw_asterion_station()
 	draw_primeval_expanse()
 	draw_helios_arcology()
-	draw_frosthold_kingdom()
 	draw_moonpetal_court()
 
 

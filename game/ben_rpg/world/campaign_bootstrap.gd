@@ -150,6 +150,7 @@ const ASTERION_FOREGROUND_SCRIPT := preload("res://ben_rpg/world/campaign_asteri
 const MOONPETAL_FOREGROUND_SCRIPT := preload("res://ben_rpg/world/campaign_moonpetal_foreground.gd")
 const EMPYREAL_FOREGROUND_SCRIPT := preload("res://ben_rpg/world/campaign_empyreal_foreground.gd")
 const EMPYREAL_GROUND_SCRIPT := preload("res://ben_rpg/world/campaign_empyreal_ground.gd")
+const FROSTHOLD_GROUND_SCRIPT := preload("res://ben_rpg/world/campaign_frosthold_ground.gd")
 const FROSTHOLD_FOREGROUND_SCRIPT := preload("res://ben_rpg/world/campaign_frosthold_foreground.gd")
 const PRIMEVAL_FOREGROUND_SCRIPT := preload("res://ben_rpg/world/campaign_primeval_foreground.gd")
 const HELIOS_FOREGROUND_SCRIPT := preload("res://ben_rpg/world/campaign_helios_foreground.gd")
@@ -224,6 +225,7 @@ var _visual_profiles := VISUAL_PROFILE_REGISTRY.new()
 var _room_streamer: Node
 var _room_runtime: Node
 var _empyreal_ground
+var _frosthold_ground
 var _mansion_foreground
 var _town_foreground
 var _asterion_foreground
@@ -324,6 +326,9 @@ func _enter_tree() -> void:
 	_empyreal_ground = EMPYREAL_GROUND_SCRIPT.new()
 	_empyreal_ground.name = "EmpyrealGround"
 	ground_layer.add_child(_empyreal_ground)
+	_frosthold_ground = FROSTHOLD_GROUND_SCRIPT.new()
+	_frosthold_ground.name = "FrostholdGround"
+	ground_layer.add_child(_frosthold_ground)
 	_sandbox_objects = SANDBOX_OBJECTS_SCRIPT.new()
 	_sandbox_objects.name = "SandboxTownObjects"
 	low_decoration_layer.add_child(_sandbox_objects)
@@ -750,6 +755,8 @@ func _update_camera_limits(force := false) -> void:
 		_visual.set_active_area(StringName(area))
 	if _empyreal_ground:
 		_empyreal_ground.set_active_area(StringName(area))
+	if _frosthold_ground:
+		_frosthold_ground.set_active_area(StringName(area))
 	if _mansion_foreground:
 		_mansion_foreground.set_active_area(StringName(area))
 	if _town_foreground:
