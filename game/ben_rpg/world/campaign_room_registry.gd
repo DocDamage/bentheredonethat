@@ -372,6 +372,16 @@ static func room(room_id: StringName) -> Dictionary:
 			"worldOrigin": Vector2i(350, 0),
 			"enabledPortIds": [&"Nw", &"Ne", &"E1"],
 			"portGates": {&"E1": &"asterion_station_restored"},
+			"navigationId": &"authored:as01-docking-collar-navigation", "collisionMaskId": &"authored:as01-docking-collar-collision",
+			"navigationLayout": {
+				"id": &"as01-docking-collar-v1", "kind": &"authored", "usefulCellRange": Vector2i(247, 248),
+				"walkableRects": [
+					{"origin": Vector2i(6, 1), "size": Vector2i(12, 4)}, # pressure-door arrivals
+					{"origin": Vector2i(3, 4), "size": Vector2i(18, 10)}, # cargo-loader cover and dock floor
+					{"origin": Vector2i(20, 5), "size": Vector2i(3, 4)}, # restored tram-side apron
+					{"origin": Vector2i(6, 13), "size": Vector2i(12, 3)}, # safe return pad
+				],
+			},
 			"visualProfileIds": [&"asterion_dock_hull", &"asterion_dock_bulkhead", &"asterion_station_architecture"],
 			"featureIds": [&"dock_intro_battle", &"astronaut_meeting", &"pressure_door_staging", &"cargo_loader_cover", &"safe_return_pad"],
 		}, true)
@@ -380,6 +390,16 @@ static func room(room_id: StringName) -> Dictionary:
 			"scenePath": "res://ben_rpg/world/rooms/asterion_customs_cargo_intake.tscn",
 			"worldOrigin": Vector2i(350, 0),
 			"enabledPortIds": [&"Nw", &"Ne", &"E1"],
+			"navigationId": &"authored:as02-customs-intake-navigation", "collisionMaskId": &"authored:as02-customs-intake-collision",
+			"navigationLayout": {
+				"id": &"as02-customs-intake-v1", "kind": &"authored", "usefulCellRange": Vector2i(150, 150),
+				"walkableRects": [
+					{"origin": Vector2i(5, 1), "size": Vector2i(10, 4)}, # customs entry rails
+					{"origin": Vector2i(3, 4), "size": Vector2i(15, 7)}, # inspection-booth and cargo-belt lanes
+					{"origin": Vector2i(17, 3), "size": Vector2i(2, 4)}, # bonded-vault door apron
+					{"origin": Vector2i(5, 10), "size": Vector2i(10, 2)}, # shift-record return lane
+				],
+			},
 			"visualProfileIds": [&"asterion_station_architecture", &"asterion_dock_bulkhead"],
 			"featureIds": [&"freight_lanes", &"inspection_booths", &"shift_records", &"locked_customs_vault", &"cargo_belt_loop"],
 		}, true)
@@ -388,6 +408,16 @@ static func room(room_id: StringName) -> Dictionary:
 			"scenePath": "res://ben_rpg/world/rooms/asterion_mess_deck.tscn",
 			"worldOrigin": Vector2i(350, 0),
 			"enabledPortIds": [&"Nw", &"Ne", &"E1"],
+			"navigationId": &"authored:as03-mess-deck-navigation", "collisionMaskId": &"authored:as03-mess-deck-collision",
+			"navigationLayout": {
+				"id": &"as03-mess-deck-v1", "kind": &"authored", "usefulCellRange": Vector2i(169, 169),
+				"walkableRects": [
+					{"origin": Vector2i(6, 1), "size": Vector2i(11, 4)}, # mess-door arrivals
+					{"origin": Vector2i(3, 4), "size": Vector2i(17, 7)}, # tables, ration line, and emergency-light floor
+					{"origin": Vector2i(19, 3), "size": Vector2i(2, 4)}, # pressure-lock junction apron
+					{"origin": Vector2i(5, 10), "size": Vector2i(12, 2)}, # resident return aisle
+				],
+			},
 			"visualProfileIds": [&"asterion_mess_banner", &"asterion_station_architecture"],
 			"featureIds": [&"emergency_lighting", &"medical_hydro_logs", &"post_oxygen_residents"],
 		}, true)
@@ -406,6 +436,15 @@ static func room(room_id: StringName) -> Dictionary:
 			"worldOrigin": Vector2i(350, 0),
 			"enabledPortIds": [&"Nw", &"Ne"],
 			"portGates": {&"Ne": &"asterion_medical_ambush_cleared"},
+			"navigationId": &"authored:as04-medical-triage-navigation", "collisionMaskId": &"authored:as04-medical-triage-collision",
+			"navigationLayout": {
+				"id": &"as04-medical-triage-v1", "kind": &"authored", "usefulCellRange": Vector2i(148, 149),
+				"walkableRects": [
+					{"origin": Vector2i(5, 1), "size": Vector2i(9, 4)}, # triage-door arrivals
+					{"origin": Vector2i(3, 4), "size": Vector2i(13, 8)}, # scanner, biocircuit, and ambush floor
+					{"origin": Vector2i(5, 11), "size": Vector2i(9, 3)}, # save-beacon recovery bay
+				],
+			},
 			"visualProfileIds": [&"asterion_medical_station", &"asterion_medical_cabinet"],
 			"featureIds": [&"medical_robot_ambush", &"biocircuit_drawer", &"patrol_safe_interactions"],
 			"bossEncounter": {"nodeName": "MedicalRobotAmbush", "encounterId": &"asterion_medical_ambush", "defeatedFlag": &"asterion_medical_ambush_cleared", "cell": Vector2i(12, 8)},

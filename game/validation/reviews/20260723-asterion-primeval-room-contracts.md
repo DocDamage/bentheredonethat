@@ -79,6 +79,13 @@ navigation builder currently supplies an open interior rectangle. Each row
 needs final authored collision, walkable-cell, safe-arrival, and foreground
 audits before it can claim the Section 9.4 size class.
 
+The first Asterion collision-audit batch now replaces those generated interiors
+with authored docking/cargo/medical layouts: `AS-01` 247 closed / 248 restored,
+`AS-02` 150, `AS-03` 169, and `AS-04` 148 closed / 149 post-ambush useful cells.
+Their navigation and collision IDs
+are scene-owned manifest records; every remaining Asterion row remains a
+generated baseline until its own audit lands.
+
 ### Art, population, and state-capture requirements
 
 - The current `visualProfileIds` arrays in `CampaignRoomRegistry` are the only
@@ -109,8 +116,27 @@ audits before it can claim the Section 9.4 size class.
 - Keyboard/mouse, controller, save/reload, navigation-safe-arrival, and
   population-cohort evidence for every admitted active room.
 
+## Focused Asterion navigation evidence (first collision batch)
+
+```powershell
+.\tools\run_godot_isolated.ps1 -Scene @(
+  'tests/content_validator_smoke.tscn',
+  'tests/campaign_room_registry_smoke.tscn',
+  'tests/asterion_layout_smoke.tscn',
+  'tests/asterion_scenario_smoke.tscn'
+) -TimeoutSeconds 360
+```
+
+- Result: 4/4 passed across the two isolated runner batches.
+- Artifact roots: `test-artifacts/20260723-093904-e3473214` and
+  `test-artifacts/20260723-093919-b3829aae`.
+- Production-save sentinel: unchanged (`sentinel=True`).
+- The known shutdown-only 61 ObjectDB / 26 resource signature remained present;
+  this focused batch neither attributes nor accepts that release-level issue.
+
 ## Decision
 
 Rework required before acceptance: no distribution eligibility, contact-sheet
-approval, or user visual/input sign-off is recorded for either world. The
-manifest contracts are implementation evidence only.
+approval, or user visual/input sign-off is recorded for either world. The first
+four Asterion layouts are verified collision-contract evidence only; the
+remaining Asterion and all Primeval layouts still require their own audits.
