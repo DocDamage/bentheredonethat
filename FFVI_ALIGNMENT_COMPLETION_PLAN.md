@@ -1313,10 +1313,10 @@ The browser implementation is not the release target, but it is part of the repo
 
 ### 11.2 Clarify implementation ownership — P2
 
-- [ ] Keep `GODOT_PROJECT.md` explicit that `game/` is the release target.
-- [ ] Decide whether the browser prototype is maintained, archived, or converted into a promotional/demo build.
+- [x] Keep `GODOT_PROJECT.md` explicit that `game/` is the release target.
+- [x] Decide whether the browser prototype is maintained, archived, or converted into a promotional/demo build.
 - [ ] Avoid duplicating new campaign systems in both implementations without a clear purpose.
-- [ ] Separate browser-only asset validation from Godot release validation while keeping both green.
+- [x] Separate browser-only asset validation from Godot release validation while keeping both green.
 
 ---
 
