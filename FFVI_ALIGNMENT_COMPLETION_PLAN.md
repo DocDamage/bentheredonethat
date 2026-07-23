@@ -389,9 +389,9 @@ with named third-party credit requirements. Each pack still requires its own
 provenance decision; a neighboring CC0 file must never be treated as covering
 an unrelated pack.
 
-- [ ] Generate a deterministic expansion inventory grouped by pack, file type,
+- [x] Generate a deterministic expansion inventory grouped by pack, file type,
   dimensions, checksum, duplicate family, and likely world assignment.
-- [ ] Give all 149 `assets/Tilesets` packs an explicit disposition: primary
+- [x] Give all 149 `assets/Tilesets` packs an explicit disposition: primary
   world kit, secondary compatible kit, optional-address kit, duplicate, reserve,
   or rejected. No top-level pack may be silently omitted from the inventory.
 - [ ] Assign every shortlisted pack `distribution_confirmed`,
@@ -407,7 +407,7 @@ an unrelated pack.
 - [ ] Build per-world candidate contact sheets before map construction; approve
   palette, perspective, density, and semantic scale as a set rather than one
   prop at a time.
-- [ ] Add a validation rule that fails when release code references
+- [x] Add a validation rule that fails when release code references
   `assets/EXPANSION/`, `assets/Tilesets/`, or the long SakPix staging root
   directly instead of an admitted runtime derivative/profile.
 - [ ] Rebuild the curated catalog only from admitted files. The remaining
@@ -3027,3 +3027,8 @@ limit:
   campaign-owned profile coverage: 162 of 172 profile-required sources are
   profiled, while the 11 Dialogic dependency visuals remain visible as external
   dependencies rather than being hidden from the broader provenance audit.
+- The source-library inventory is reproducible from the current curator
+  workstation: all 149 Tilesets packs have an explicit disposition across the
+  core, optional, duplicate, reserve, and support classes. Release-code source
+  quarantine validation confirms that no release file points directly at the
+  ignored Tilesets, EXPANSION, or SakPix staging roots.
