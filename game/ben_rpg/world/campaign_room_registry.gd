@@ -180,7 +180,8 @@ static func room(room_id: StringName) -> Dictionary:
 		definition.merge({
 			"scenePath": "res://ben_rpg/world/rooms/haunted_mansion_archive.tscn",
 			"worldOrigin": Vector2i(300, 0),
-			"enabledPortIds": [&"Nw", &"E1"],
+			"enabledPortIds": [&"Nw", &"E1", &"E2"],
+			"portGates": {&"E2": &"mansion_ballroom_open"},
 			"visualProfileIds": [&"mansion_archive_shelving", &"mansion_archive_cabinet", &"mansion_foyer_clock"],
 			"featureIds": [&"servant_records", &"archive_retry_anchor"],
 			"savePoint": {
@@ -234,8 +235,8 @@ static func room(room_id: StringName) -> Dictionary:
 		definition.merge({
 			"scenePath": "res://ben_rpg/world/rooms/haunted_mansion_ballroom_antechamber.tscn",
 			"worldOrigin": Vector2i(300, 0),
-			"enabledPortIds": [&"Nw", &"Ne"],
-			"portGates": {&"Ne": &"mansion_ballroom_open"},
+			"enabledPortIds": [&"Nw", &"Ne", &"E2"],
+			"portGates": {&"Ne": &"mansion_ballroom_open", &"E2": &"mansion_ballroom_open"},
 			"visualProfileIds": [&"mansion_ballroom_chandelier", &"mansion_ballroom_door_frame", &"mansion_foyer_clock"],
 			"featureIds": [&"two_hand_ballroom_lock", &"ballroom_preparation_area", &"hand_socket_display"],
 			"savePoint": {
@@ -264,6 +265,14 @@ static func room(room_id: StringName) -> Dictionary:
 			"enabledPortIds": [&"Nw", &"Ne"],
 			"visualProfileIds": [&"mansion_archive_wall_lit_tile", &"mansion_archive_wall_plain_tile", &"mansion_foyer_wall_tableau"],
 			"featureIds": [&"cursed_tree_elite", &"herb_cache", &"inside_shutter_shortcut", &"impossible_black_rose"],
+		}, true)
+	elif room_id == &"HM-16":
+		definition.merge({
+			"scenePath": "res://ben_rpg/world/rooms/haunted_mansion_kitchen_lift.tscn",
+			"worldOrigin": Vector2i(300, 0),
+			"enabledPortIds": [&"Nw", &"Ne"],
+			"visualProfileIds": [&"mansion_archive_cabinet", &"mansion_archive_shelving", &"mansion_foyer_passage_door"],
+			"featureIds": [&"pantry_supplies", &"service_lift", &"stabilized_return_route"],
 		}, true)
 	return definition
 
