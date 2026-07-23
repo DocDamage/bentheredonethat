@@ -1008,12 +1008,9 @@ func _ensure_facility_service(plot_index: int, facility_name: String) -> void:
 func _restore_campaign_state() -> void:
 	for plot_index in CampaignState.built_facilities.keys():
 		_apply_facility(int(plot_index), CampaignState.built_facilities[plot_index])
-	_update_mansion_passage()
-	_update_mansion_ballroom_gate()
-	_update_asterion_control_gate()
-	_update_primeval_nest_gate()
-	_update_primeval_caldera_gate()
-	_update_primeval_canopy_shortcut()
+	_refresh_manifest_transition_group("HauntedMansionManifestTransitions", ROOM_REGISTRY.MANSION_ROOM_IDS)
+	_refresh_manifest_transition_group("AsterionStationManifestTransitions", ROOM_REGISTRY.ASTERION_ROOM_IDS)
+	_refresh_manifest_transition_group("PrimevalExpanseManifestTransitions", ROOM_REGISTRY.PRIMEVAL_ROOM_IDS)
 	_refresh_manifest_transition_group("HeliosArcologyManifestTransitions", ROOM_REGISTRY.HELIOS_ROOM_IDS)
 	_refresh_manifest_transition_group("FrostholdKingdomManifestTransitions", ROOM_REGISTRY.FROSTHOLD_ROOM_IDS)
 	_refresh_manifest_transition_group("MoonpetalCourtManifestTransitions", ROOM_REGISTRY.MOONPETAL_ROOM_IDS)
@@ -1282,12 +1279,7 @@ func _create_mansion_transitions(plot_index: int) -> void:
 	var plot: Rect2i = FACILITY_PLOTS[plot_index]
 	var town_door := FACILITY_NAVIGATION.door_cell(TOWN_ORIGIN, plot)
 	var town_return := FACILITY_NAVIGATION.return_cell(TOWN_ORIGIN, plot)
-	var entry_room := ROOM_REGISTRY.room(&"HM-01")
-	var entry_origin: Vector2i = entry_room.get("worldOrigin", MANSION_ORIGIN)
-	var entry_port: Vector2i = (entry_room.get("portCells", {}) as Dictionary).get(&"Nw", Vector2i.ZERO)
-	var entry_arrival := entry_origin + TRANSITION_ROUTER.safe_arrival_cell(&"HM-01", &"Nw")
-	world.add_child(_create_restricted_transition("HauntedMansionEntrance", town_door, entry_arrival, town_return, &"haunted_mansion"))
-	world.add_child(_create_transition("HauntedMansionExit", entry_origin + entry_port, town_return))
+	_create_manifest_facility_transitions(world, "HauntedMansion", town_door, town_return, &"HM-01", ROOM_REGISTRY.MANSION_ROOM_IDS, &"haunted_mansion")
 
 
 func _create_asterion_transitions(plot_index: int) -> void:
@@ -1297,21 +1289,7 @@ func _create_asterion_transitions(plot_index: int) -> void:
 	var plot: Rect2i = FACILITY_PLOTS[plot_index]
 	var town_door := FACILITY_NAVIGATION.door_cell(TOWN_ORIGIN, plot)
 	var town_return := FACILITY_NAVIGATION.return_cell(TOWN_ORIGIN, plot)
-	var entry_room := ROOM_REGISTRY.room(&"AS-01")
-	var entry_origin: Vector2i = entry_room.get("worldOrigin", STATION_ORIGIN)
-	var entry_port: Vector2i = (entry_room.get("portCells", {}) as Dictionary).get(&"Nw", Vector2i.ZERO)
-	var entry_arrival := entry_origin + TRANSITION_ROUTER.safe_arrival_cell(&"AS-01", &"Nw")
-	world.add_child(_create_transition("AsterionStationEntrance", town_door, entry_arrival))
-	world.add_child(_create_transition("AsterionStationExit", entry_origin + entry_port, town_return))
-	# These authored station rooms still use their established physical layout.
-	# Keep its links live while the complete 14-room graph remains a validated
-	# manifest contract rather than exposing unbuilt destinations.
-	world.add_child(_create_transition("StationDockToMess", STATION_DOCK_TO_MESS, STATION_MESS_FROM_DOCK))
-	world.add_child(_create_transition("StationMessToDock", STATION_MESS_RETURN, STATION_DOCK_FROM_MESS))
-	world.add_child(_create_transition("StationMessToHydro", STATION_MESS_TO_HYDRO, STATION_HYDRO_FROM_MESS))
-	world.add_child(_create_transition("StationHydroToMess", STATION_HYDRO_RETURN, STATION_MESS_FROM_HYDRO))
-	world.add_child(_create_transition("StationMessToMedical", STATION_MESS_TO_MEDICAL, STATION_MEDICAL_FROM_MESS))
-	world.add_child(_create_transition("StationMedicalToMess", STATION_MEDICAL_RETURN, STATION_MESS_FROM_MEDICAL))
+	_create_manifest_facility_transitions(world, "AsterionStation", town_door, town_return, &"AS-01", ROOM_REGISTRY.ASTERION_ROOM_IDS)
 	_spawn_astronaut()
 
 
@@ -1322,17 +1300,7 @@ func _create_primeval_transitions(plot_index: int) -> void:
 	var plot: Rect2i = FACILITY_PLOTS[plot_index]
 	var town_door := FACILITY_NAVIGATION.door_cell(TOWN_ORIGIN, plot)
 	var town_return := FACILITY_NAVIGATION.return_cell(TOWN_ORIGIN, plot)
-	var entry_room := ROOM_REGISTRY.room(&"PV-01")
-	var entry_origin: Vector2i = entry_room.get("worldOrigin", PRIMEVAL_ORIGIN)
-	var entry_port: Vector2i = (entry_room.get("portCells", {}) as Dictionary).get(&"Nw", Vector2i.ZERO)
-	world.add_child(_create_transition("PrimevalExpanseEntrance", town_door, entry_origin + TRANSITION_ROUTER.safe_arrival_cell(&"PV-01", &"Nw")))
-	world.add_child(_create_transition("PrimevalExpanseExit", entry_origin + entry_port, town_return))
-	# Preserve navigation through the five authored Primeval rooms until the
-	# remaining manifest rooms have their own approved scene implementations.
-	world.add_child(_create_transition("PrimevalGroveToVillage", PRIMEVAL_GROVE_TO_VILLAGE, PRIMEVAL_VILLAGE_FROM_GROVE))
-	world.add_child(_create_transition("PrimevalVillageToGrove", PRIMEVAL_VILLAGE_RETURN, PRIMEVAL_GROVE_FROM_VILLAGE))
-	world.add_child(_create_transition("PrimevalVillageToRuins", PRIMEVAL_VILLAGE_TO_RUINS, PRIMEVAL_RUINS_FROM_VILLAGE))
-	world.add_child(_create_transition("PrimevalRuinsToVillage", PRIMEVAL_RUINS_RETURN, PRIMEVAL_VILLAGE_FROM_RUINS))
+	_create_manifest_facility_transitions(world, "PrimevalExpanse", town_door, town_return, &"PV-01", ROOM_REGISTRY.PRIMEVAL_ROOM_IDS)
 
 
 func _create_helios_transitions(plot_index: int) -> void:
@@ -1379,11 +1347,15 @@ func _create_empyreal_transitions(plot_index: int) -> void:
 	_spawn_archangel()
 
 
-func _create_manifest_facility_transitions(world: Node2D, prefix: String, town_door: Vector2i, town_return: Vector2i, entry_room_id: StringName, room_ids: Array) -> void:
+func _create_manifest_facility_transitions(world: Node2D, prefix: String, town_door: Vector2i, town_return: Vector2i, entry_room_id: StringName, room_ids: Array, destination_id: StringName = &"") -> void:
 	var entry_definition := ROOM_REGISTRY.room(entry_room_id)
 	var entry_origin: Vector2i = entry_definition.get("worldOrigin", Vector2i.ZERO)
 	var entry_port: Vector2i = (entry_definition.get("portCells", {}) as Dictionary).get(&"Nw", Vector2i.ZERO)
-	world.add_child(_create_transition("%sEntrance" % prefix, town_door, entry_origin + TRANSITION_ROUTER.safe_arrival_cell(entry_room_id, &"Nw")))
+	var entry_arrival := entry_origin + TRANSITION_ROUTER.safe_arrival_cell(entry_room_id, &"Nw")
+	if destination_id == &"":
+		world.add_child(_create_transition("%sEntrance" % prefix, town_door, entry_arrival))
+	else:
+		world.add_child(_create_restricted_transition("%sEntrance" % prefix, town_door, entry_arrival, town_return, destination_id))
 	world.add_child(_create_transition("%sExit" % prefix, entry_origin + entry_port, town_return))
 	var container := Node2D.new()
 	container.name = "%sManifestTransitions" % prefix
@@ -2292,12 +2264,9 @@ func _spawn_empyreal_boss_marker(world: Node2D) -> void:
 
 
 func _on_campaign_state_changed() -> void:
-	_update_mansion_passage()
-	_update_mansion_ballroom_gate()
-	_update_asterion_control_gate()
-	_update_primeval_nest_gate()
-	_update_primeval_caldera_gate()
-	_update_primeval_canopy_shortcut()
+	_refresh_manifest_transition_group("HauntedMansionManifestTransitions", ROOM_REGISTRY.MANSION_ROOM_IDS)
+	_refresh_manifest_transition_group("AsterionStationManifestTransitions", ROOM_REGISTRY.ASTERION_ROOM_IDS)
+	_refresh_manifest_transition_group("PrimevalExpanseManifestTransitions", ROOM_REGISTRY.PRIMEVAL_ROOM_IDS)
 	_refresh_manifest_transition_group("HeliosArcologyManifestTransitions", ROOM_REGISTRY.HELIOS_ROOM_IDS)
 	_refresh_manifest_transition_group("FrostholdKingdomManifestTransitions", ROOM_REGISTRY.FROSTHOLD_ROOM_IDS)
 	_refresh_manifest_transition_group("MoonpetalCourtManifestTransitions", ROOM_REGISTRY.MOONPETAL_ROOM_IDS)
@@ -2342,128 +2311,6 @@ func _sync_boss_marker_visibility(area: String) -> void:
 
 func _area_matches_room(area: String, room_id: StringName, legacy_area: StringName = &"") -> bool:
 	return area == "manifest:%s" % room_id or (legacy_area != &"" and area == legacy_area)
-
-
-func _update_primeval_nest_gate() -> void:
-	_update_primeval_gate(
-		PRIMEVAL_VILLAGE_TO_NEST,
-		&"primeval_terminal_decoded",
-		"PrimevalVillageToNest",
-		PRIMEVAL_NEST_FROM_VILLAGE,
-		"PrimevalNestToVillage",
-		PRIMEVAL_NEST_RETURN,
-		PRIMEVAL_VILLAGE_FROM_NEST
-	)
-
-
-func _update_primeval_caldera_gate() -> void:
-	_update_primeval_gate(
-		PRIMEVAL_RUINS_TO_CALDERA,
-		&"primeval_caldera_open",
-		"PrimevalRuinsToCaldera",
-		PRIMEVAL_CALDERA_FROM_RUINS,
-		"PrimevalCalderaToRuins",
-		PRIMEVAL_CALDERA_RETURN,
-		PRIMEVAL_RUINS_FROM_CALDERA
-	)
-
-
-func _update_primeval_canopy_shortcut() -> void:
-	if not CampaignState.story_flags.get(&"primeval_terminal_decoded", false):
-		return
-	var world := get_node_or_null("Field/Map/CampaignWorld")
-	if not world or world.has_node("PrimevalGroveCanopyShortcut") or not CampaignState.story_flags.get(&"primeval_anchor_built", false):
-		return
-	world.add_child(_create_transition("PrimevalGroveCanopyShortcut", PRIMEVAL_GROVE_CANOPY_SHORTCUT, PRIMEVAL_NEST_CANOPY_SHORTCUT))
-	world.add_child(_create_transition("PrimevalNestCanopyShortcut", PRIMEVAL_NEST_CANOPY_SHORTCUT, PRIMEVAL_GROVE_CANOPY_SHORTCUT))
-
-
-func _update_primeval_gate(cell: Vector2i, flag: StringName, forward_name: String, forward_arrival: Vector2i, return_name: String, return_cell: Vector2i, return_arrival: Vector2i) -> void:
-	if not _navigation:
-		return
-	var is_open := bool(CampaignState.story_flags.get(flag, false))
-	var atlas_cell := Vector2i(2, 2) if is_open else Vector2i(1, 4)
-	_navigation.set_cell(cell, 0, atlas_cell, 0)
-	var cleared: Array[Vector2i] = []
-	var blocked: Array[Vector2i] = []
-	(cleared if is_open else blocked).append(cell)
-	_navigation.cells_changed.emit(cleared, blocked)
-	if not is_open:
-		return
-	var world := get_node_or_null("Field/Map/CampaignWorld")
-	if not world or world.has_node(forward_name) or not CampaignState.story_flags.get(&"primeval_anchor_built", false):
-		return
-	world.add_child(_create_transition(forward_name, cell, forward_arrival))
-	world.add_child(_create_transition(return_name, return_cell, return_arrival))
-
-
-func _update_asterion_control_gate() -> void:
-	if not _navigation:
-		return
-	var is_open := bool(CampaignState.story_flags.get(&"asterion_station_restored", false))
-	var atlas_cell := Vector2i(2, 2) if is_open else Vector2i(1, 4)
-	_navigation.set_cell(STATION_HYDRO_TO_CONTROL, 0, atlas_cell, 0)
-	var cleared: Array[Vector2i] = []
-	var blocked: Array[Vector2i] = []
-	(cleared if is_open else blocked).append(STATION_HYDRO_TO_CONTROL)
-	_navigation.cells_changed.emit(cleared, blocked)
-	if not is_open:
-		return
-	var world := get_node_or_null("Field/Map/CampaignWorld")
-	if not world or world.has_node("StationHydroToControl") or not CampaignState.story_flags.get(&"asterion_anchor_built", false):
-		return
-	world.add_child(_create_transition("StationHydroToControl", STATION_HYDRO_TO_CONTROL, STATION_CONTROL_FROM_HYDRO))
-	world.add_child(_create_transition("StationControlToHydro", STATION_CONTROL_RETURN, STATION_HYDRO_FROM_CONTROL))
-	# The restored maintenance lift is a regular service route rather than an
-	# invisible return trigger: both endpoints sit on painted, expanded floors.
-	world.add_child(_create_transition("StationDockServiceShortcut", STATION_DOCK_SERVICE_SHORTCUT, STATION_MEDICAL_SERVICE_SHORTCUT))
-	world.add_child(_create_transition("StationMedicalServiceShortcut", STATION_MEDICAL_SERVICE_SHORTCUT, STATION_DOCK_SERVICE_SHORTCUT))
-
-
-func _update_mansion_passage() -> void:
-	if not _navigation:
-		return
-	var is_open: bool = bool(CampaignState.story_flags.get(&"mansion_first_room_complete", false))
-	var atlas_cell: Vector2i = Vector2i(2, 2) if is_open else Vector2i(1, 4)
-	var gate_cell := MANSION_LEGACY_ADAPTER.passage_gate_cell()
-	_navigation.set_cell(gate_cell, 0, atlas_cell, 0)
-	var cleared: Array[Vector2i] = []
-	var blocked: Array[Vector2i] = []
-	(cleared if is_open else blocked).append(gate_cell)
-	_navigation.cells_changed.emit(cleared, blocked)
-	if not is_open:
-		return
-	var world := get_node_or_null("Field/Map/CampaignWorld")
-	if not world or world.has_node("MansionServantsPassage"):
-		return
-	_add_mansion_transitions(world, MANSION_LEGACY_ADAPTER.passage_transition_definitions())
-
-
-func _update_mansion_ballroom_gate() -> void:
-	if not _navigation:
-		return
-	var is_open := bool(CampaignState.story_flags.get(&"mansion_ballroom_open", false))
-	var atlas_cell := Vector2i(2, 2) if is_open else Vector2i(1, 4)
-	var gate_cell := MANSION_LEGACY_ADAPTER.ballroom_gate_cell()
-	_navigation.set_cell(gate_cell, 0, atlas_cell, 0)
-	var cleared: Array[Vector2i] = []
-	var blocked: Array[Vector2i] = []
-	(cleared if is_open else blocked).append(gate_cell)
-	_navigation.cells_changed.emit(cleared, blocked)
-	if not is_open:
-		return
-	var world := get_node_or_null("Field/Map/CampaignWorld")
-	if not world or world.has_node("MansionNurseryToBallroom"):
-		return
-	_add_mansion_transitions(world, MANSION_LEGACY_ADAPTER.ballroom_transition_definitions())
-
-
-func _add_mansion_transitions(world: Node, definitions: Array[Dictionary]) -> void:
-	for definition in definitions:
-		var transition_name: String = String(definition[&"name"])
-		var source_cell: Vector2i = definition[&"from"]
-		var arrival_cell: Vector2i = definition[&"to"]
-		world.add_child(_create_transition(transition_name, source_cell, arrival_cell))
 
 
 func _add_boundaries(blocked: Dictionary, origin: Vector2i, size: Vector2i) -> void:

@@ -14,22 +14,40 @@ func _ready() -> void:
 	var world := Node2D.new()
 	world.name = "CampaignWorld"
 	campaign.add_child(world)
-	campaign.call(&"_create_manifest_facility_transitions", world, "HeliosArcology", Vector2i(4, 4), Vector2i(2, 2), &"HE-01", REGISTRY.HELIOS_ROOM_IDS)
-	var entry := world.get_node_or_null("HeliosArcologyEntrance") as AreaTransition
-	var exit := world.get_node_or_null("HeliosArcologyExit") as AreaTransition
-	var container := world.get_node_or_null("HeliosArcologyManifestTransitions") as Node2D
-	assert(entry and exit and container)
-	var entry_definition := REGISTRY.room(&"HE-01")
-	assert(Gameboard.pixel_to_cell(entry.arrival_coordinates) == entry_definition["worldOrigin"] + ROUTER.safe_arrival_cell(&"HE-01", &"Nw"))
-	assert(Gameboard.pixel_to_cell(exit.position) == entry_definition["worldOrigin"] + entry_definition["portCells"][&"Nw"])
-	var expected_count := _enabled_internal_route_count(REGISTRY.HELIOS_ROOM_IDS)
-	assert(container.get_child_count() == expected_count)
-	for transition in container.get_children():
-		assert(transition is AreaTransition)
-	assert(container.get_node_or_null("HE-01_Ne"))
+	var universes := [
+		{"prefix": "HauntedMansion", "entry": &"HM-01", "rooms": REGISTRY.MANSION_ROOM_IDS, "restricted": &"haunted_mansion"},
+		{"prefix": "AsterionStation", "entry": &"AS-01", "rooms": REGISTRY.ASTERION_ROOM_IDS},
+		{"prefix": "PrimevalExpanse", "entry": &"PV-01", "rooms": REGISTRY.PRIMEVAL_ROOM_IDS},
+		{"prefix": "HeliosArcology", "entry": &"HE-01", "rooms": REGISTRY.HELIOS_ROOM_IDS},
+		{"prefix": "FrostholdKingdom", "entry": &"FR-01", "rooms": REGISTRY.FROSTHOLD_ROOM_IDS},
+		{"prefix": "MoonpetalCourt", "entry": &"MP-01", "rooms": REGISTRY.MOONPETAL_ROOM_IDS},
+		{"prefix": "EmpyrealCourt", "entry": &"EM-01", "rooms": REGISTRY.EMPYREAL_ROOM_IDS},
+	]
+	var total_routes := 0
+	for universe in universes:
+		var prefix := String(universe["prefix"])
+		var entry_room_id := StringName(universe["entry"])
+		var room_ids: Array = universe["rooms"]
+		var arguments := [world, prefix, Vector2i(4, 4), Vector2i(2, 2), entry_room_id, room_ids]
+		if universe.has("restricted"):
+			arguments.append(StringName(universe["restricted"]))
+		campaign.callv(&"_create_manifest_facility_transitions", arguments)
+		var entry := world.get_node_or_null("%sEntrance" % prefix) as AreaTransition
+		var exit := world.get_node_or_null("%sExit" % prefix) as AreaTransition
+		var container := world.get_node_or_null("%sManifestTransitions" % prefix) as Node2D
+		assert(entry and exit and container)
+		var entry_definition := REGISTRY.room(entry_room_id)
+		assert(Gameboard.pixel_to_cell(entry.arrival_coordinates) == entry_definition["worldOrigin"] + ROUTER.safe_arrival_cell(entry_room_id, &"Nw"))
+		assert(Gameboard.pixel_to_cell(exit.position) == entry_definition["worldOrigin"] + entry_definition["portCells"][&"Nw"])
+		var expected_count := _enabled_internal_route_count(room_ids)
+		assert(container.get_child_count() == expected_count)
+		for transition in container.get_children():
+			assert(transition is AreaTransition)
+		assert(container.get_node_or_null("%s_Ne" % entry_room_id))
+		total_routes += expected_count
 	campaign.free()
 	Gameboard.properties = previous_properties
-	print("CAMPAIGN_MANIFEST_TRANSITION_INSTALLER_SMOKE_OK universe=helios routes=%d gated=current_state" % expected_count)
+	print("CAMPAIGN_MANIFEST_TRANSITION_INSTALLER_SMOKE_OK universes=%d routes=%d gated=current_state" % [universes.size(), total_routes])
 	get_tree().quit()
 
 
