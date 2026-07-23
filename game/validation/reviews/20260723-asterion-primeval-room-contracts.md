@@ -37,8 +37,14 @@ IDs, and reciprocal arrivals.
   retains its grove-to-caldera route while optional loops remain bidirectional.
 - Migration anchors: `FI-06 -> AS-01` and `FI-07 -> PV-01`; streamed save IDs
   are `asterion_medical` (`AS-04`) and `primeval_relay` (`PV-07`).
-- Traversal targets: not yet specified or measured. This is intentionally a
-  preproduction blocker, not an assumed target.
+- Traversal targets are design contracts, not measured evidence: an Asterion
+  first visit from `AS-01` through medical, hydroponics, oxygen restore, and
+  `AS-08` should take 8-12 minutes; the restored `AS-01 -> AS-08` route should
+  take at most 4 minutes. A Primeval first visit from `PV-01` through the Cave
+  Computer decode, Relay reset, and `PV-08` should take 10-14 minutes; the
+  reset `PV-01 -> PV-08` route should take at most 5 minutes. Each world also
+  targets a 15-20 minute optional-loop return. These timings require native
+  keyboard and controller measurement before acceptance.
 - Provisional performance budget for both worlds: 960x540 logical canvas, 60
   FPS target, p95 <=16.7 ms, p99 <=33.3 ms, <=2 s room transition, <=1 GB peak
   memory. No declared minimum machine or measurements exist.
@@ -98,7 +104,7 @@ The final Asterion batch audits that service-side loop: `AS-09` 119, `AS-10`
 148 closed / 149 post-ambush, `AS-13` 143 closed / 145 restored, and `AS-14`
 71 closed / 72 restored useful cells.
 
-### Art, population, and state-capture requirements
+### Art, population, optional-content, and state-capture requirements
 
 - The current `visualProfileIds` arrays in `CampaignRoomRegistry` are the only
   runtime profile list. They do not admit the locked Space Station/Jurassic
@@ -107,11 +113,25 @@ The final Asterion batch audits that service-side loop: `AS-09` 119, `AS-10`
   packs to the checksum-pinned root `assets/Tilesets/license.txt` evidence and
   its optional-credit statement. All decisions remain `review_required` pending
   final derivative admission and licensing review.
-- Active population roster: none. Existing 2-6 anchor capacities are not a
-  SakPix roster, schedule, eight-direction binding, or route reservation.
+- Population contract: the generated 258-identity registry reserves 10
+  review-required identities for Asterion (`AS-01`, `AS-02`, `AS-03`, `AS-06`,
+  `AS-07`, `AS-08`, `AS-10` ×3, and `AS-11`) plus the Astronaut story actor;
+  it reserves 15 for Primeval (`PV-01`, `PV-03`, `PV-04` ×3, `PV-05`, `PV-06`,
+  `PV-08` ×2, `PV-09`, `PV-11`, `PV-12` ×3, and `PV-14`) plus the Caveman story
+  actor. These are target homes, not active spawns: all remain blocked on
+  profile admission, story-phase schedules, eight-direction binding, and
+  occupancy reservation review.
+- Optional-content contract: Asterion optional rooms are `AS-09` through
+  `AS-12`, with `AS-13` and `AS-14` as reciprocal service/pressure loops;
+  Primeval optional rooms are `PV-09` through `PV-12`, with `PV-13` and
+  `PV-14` as reciprocal river/lava bypasses. None may become a critical-path
+  dependency.
 - Required captures: every room at first visit, stabilized, and postgame;
   native/resolution matrix; keyboard/mouse and controller; every port, gate,
-  boss return, facility entry/return, and streamed save anchor.
+  boss return, facility entry/return, and streamed save anchor. The minimum
+  technical matrix is 42 Asterion frames and 42 Primeval frames (14 rooms ×
+  three states), with additional pre/post medical, oxygen, terminal-decode,
+  relay-reset, and boss-return fixtures where those states change a room.
 - Required saves: pre-medical and medical-anchor Asterion states; pre-relay,
   relay-anchor, and post-caldera Primeval states, plus each relevant optional
   gate state.

@@ -1692,7 +1692,7 @@ Complete these tasks before adding new campaign content:
    and `assets/EXPANSION`, including all 149 Tilesets dispositions, duplicate
    families, engine-demo exclusions, dimensions, checksums, license candidates,
    and the Section 9 world assignments.
-15. [ ] Record pack-level provenance decisions for the first migration pair and
+15. [x] Record pack-level provenance decisions for the first migration pair and
    preserve exact terms/credit evidence; do not infer that one CC0 file covers
    an unrelated neighboring pack.
 16. [ ] Produce native-scale environment and SakPix contact sheets for Mansion,
@@ -1705,7 +1705,7 @@ Complete these tasks before adding new campaign content:
 18. [x] Add a release-code check that rejects direct references to all three
    local source roots: `assets/Tilesets`, `assets/EXPANSION`, and the SakPix
    staging tree.
-19. [ ] Write the Mansion, Asterion, and Primeval work-package records against
+19. [x] Write the Mansion, Asterion, and Primeval work-package records against
    their locked room IDs, exact connection graph, useful-cell totals,
    traversal-time target, population roster, asset/profile list,
    optional-content list, performance budget, migration anchors, and required

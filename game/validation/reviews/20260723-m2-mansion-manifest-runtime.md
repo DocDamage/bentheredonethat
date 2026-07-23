@@ -126,10 +126,19 @@ before the locked size budget can be claimed.
   Its ignored `test-artifacts/vertical-slice-contact-sheets/` output is reviewer
   input only: it does not crop/admit source art or approve density, palette,
   perspective, character height, or foot anchors.
-- Active population roster: none. The current manifest has only anchor capacity
-  (2-6 anchors per room); the locked SakPix identities, story-phase schedules,
-  eight-direction profiles, and occupancy reservations have not been bound.
-- Required captures: each `HM-*` room at first visit, stabilized, and postgame;
+- Population contract: the generated 258-identity registry reserves 54
+  review-required identities for the Mansion, with canonical-home counts
+  `HM-01` 3, `HM-04` 3, `HM-06` 5, `HM-07` 2, `HM-08` 1, `HM-09` 2, `HM-10` 5,
+  `HM-11` 6, `HM-12` 12, `HM-13` 4, `HM-14` 3, `HM-15` 7, and `HM-16` 1.
+  This is the exact target roster, not active population: all identities remain
+  blocked on profile admission, story-phase schedules, eight-direction binding,
+  and occupancy reservations. The current manifest therefore has only 2-6
+  anchor capacities per room.
+- Optional-content contract: `HM-10` through `HM-13` are optional rooms;
+  `HM-14` through `HM-16` are reciprocal shortcut/loop connectors. Neither the
+  optional content nor its rewards may become a critical-path dependency.
+- Required captures: each `HM-*` room at first visit, stabilized, and postgame
+  (48 technical capture records);
   960x540 native plus required desktop sizes; keyboard/mouse and controller;
   all ports, save anchors, interactions, boss return, and FI-05 entry/return.
 - Required save fixtures: pre-4:44, Archive anchor, both hands installed,
