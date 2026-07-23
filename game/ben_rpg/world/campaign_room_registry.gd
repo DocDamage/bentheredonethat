@@ -198,6 +198,12 @@ static func room(room_id: StringName) -> Dictionary:
 		definition.merge({"scenePath": "res://ben_rpg/world/rooms/primeval_stone_signal_crossing.tscn", "worldOrigin": Vector2i(400, 0), "enabledPortIds": [&"Nw", &"Ne", &"E1"], "featureIds": [&"traffic_totem", &"meteor_warning", &"pulsing_signal_stones"], "primevalInteractions": [{"nodeName": "PrimevalTrafficTotem", "kind": &"traffic_totem", "cell": Vector2i(10, 6)}]}, true)
 	elif room_id == &"PV-03":
 		definition.merge({"scenePath": "res://ben_rpg/world/rooms/primeval_borough.tscn", "worldOrigin": Vector2i(400, 0), "enabledPortIds": [&"Nw", &"Ne", &"E1", &"E2", &"Se"], "portGates": {&"E1": &"primeval_terminal_decoded", &"Se": &"primeval_caldera_open"}, "featureIds": [&"caveman_meeting", &"population_hub", &"locked_relay_trail", &"green_traffic_state"]}, true)
+	elif room_id == &"PV-04":
+		definition.merge({"scenePath": "res://ben_rpg/world/rooms/primeval_canopy_causeway.tscn", "worldOrigin": Vector2i(400, 0), "enabledPortIds": [&"Nw", &"Ne", &"E1"], "featureIds": [&"elevated_branches", &"foreground_leaves", &"territorial_dinosaur", &"ruins_rope_bridge"]}, true)
+	elif room_id == &"PV-05":
+		definition.merge({"scenePath": "res://ben_rpg/world/rooms/primeval_jungle_ruins_court.tscn", "worldOrigin": Vector2i(400, 0), "enabledPortIds": [&"Nw", &"Ne", &"E1", &"E2"], "portGates": {&"E2": &"primeval_terminal_decoded"}, "featureIds": [&"signal_glyph_hub", &"ruin_formation", &"specialist_supply_hollow", &"ruin_return_gate"]}, true)
+	elif room_id == &"PV-06":
+		definition.merge({"scenePath": "res://ben_rpg/world/rooms/primeval_cave_computer_vault.tscn", "worldOrigin": Vector2i(400, 0), "enabledPortIds": [&"Nw"], "featureIds": [&"translator_requirement", &"cave_os", &"remote_relay_unlock", &"isolated_ancient_tech"], "primevalInteractions": [{"nodeName": "PrimevalCaveTerminal", "kind": &"cave_terminal", "cell": Vector2i(10, 7)}]}, true)
 	elif room_id == &"AS-01":
 		definition.merge({
 			"scenePath": "res://ben_rpg/world/rooms/asterion_docking_collar.tscn",
