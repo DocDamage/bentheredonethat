@@ -2970,3 +2970,9 @@ limit:
 - Empyreal `EM-01` through `EM-16` now have explicit authored collision/useful-
   cell layouts. Their visual, input, foreground, safe-arrival, population, and
   licensing acceptance evidence remains outstanding.
+- `CampaignCameraController` now receives active streamer changes in the live
+  campaign, translates manifest-local camera bounds into scaled global canvas
+  limits, and clears them when a legacy Mansion adapter becomes active. The
+  focused manifest, registry, field-scale, Frosthold, Moonpetal, and Empyreal
+  milestone suite passed; legacy camera composition remains a compatibility
+  adapter pending individual room acceptance.

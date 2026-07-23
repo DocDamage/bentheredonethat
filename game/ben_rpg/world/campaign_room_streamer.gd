@@ -63,6 +63,7 @@ func deactivate() -> void:
 	_active_root = null
 	_active_room_id = &""
 	_active_legacy_area = &""
+	active_room_changed.emit(&"", &"")
 
 
 func active_room_id() -> StringName:

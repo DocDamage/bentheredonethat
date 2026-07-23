@@ -162,6 +162,7 @@ const PRIMEVAL_FOREGROUND_SCRIPT := preload("res://ben_rpg/world/campaign_primev
 const HELIOS_FOREGROUND_SCRIPT := preload("res://ben_rpg/world/campaign_helios_foreground.gd")
 const MANSION_LEGACY_ADAPTER := preload("res://ben_rpg/world/campaign_mansion_legacy_adapter.gd")
 const ROOM_STREAMER_SCRIPT := preload("res://ben_rpg/world/campaign_room_streamer.gd")
+const CAMERA_CONTROLLER_SCRIPT := preload("res://ben_rpg/world/campaign_camera_controller.gd")
 const ROOM_REGISTRY := preload("res://ben_rpg/world/campaign_room_registry.gd")
 const RECRUIT_NAVIGATION := preload("res://ben_rpg/world/campaign_recruit_navigation.gd")
 const ROOM_MARKER_NAVIGATION := preload("res://ben_rpg/world/campaign_room_marker_navigation.gd")
@@ -222,6 +223,7 @@ var _navigation: GameboardLayer
 var _visual: CampaignMapVisual
 var _visual_profiles := VISUAL_PROFILE_REGISTRY.new()
 var _room_streamer: Node
+var _camera_controller: CampaignCameraController
 var _room_runtime: Node
 var _area_layer_controller
 var _empyreal_ground
@@ -299,6 +301,10 @@ func _enter_tree() -> void:
 	_room_streamer = ROOM_STREAMER_SCRIPT.new()
 	_room_streamer.name = "RoomStreamer"
 	world.add_child(_room_streamer)
+	_camera_controller = CAMERA_CONTROLLER_SCRIPT.new() as CampaignCameraController
+	_camera_controller.name = "CampaignCameraController"
+	_camera_controller.bind_streamer(_room_streamer)
+	world.add_child(_camera_controller)
 	# Keep the campaign's established public nodes reachable while beginning the
 	# renderer migration with real canvas layers.  Future map migrations can move
 	# interactions into these groups without changing the world root again.
@@ -742,8 +748,13 @@ func _update_camera_limits(force := false) -> void:
 	elif current_cell.x >= TOWN_ORIGIN.x:
 		area = "town"
 	if not force and area == _camera_area:
+		if manifest_room_id != &"" and _camera_controller:
+			_camera_controller.set_canvas_scale(global_scale)
+			_camera_controller.apply_to(Camera)
 		return
 	_camera_area = area
+	if _camera_controller:
+		_camera_controller.set_canvas_scale(global_scale)
 	if _room_streamer:
 		if manifest_room_id != &"":
 			_room_streamer.call(&"activate_room", manifest_room_id)
@@ -878,14 +889,15 @@ func _update_camera_limits(force := false) -> void:
 	# An 8x8 room is 384px tall. At the old 2x zoom it became 768px tall in a
 	# 540px window, permanently cropping the back wall and its authored props.
 	# 1.25x frames the complete 480px room while keeping native pixel art crisp.
-	Camera.zoom = Vector2.ONE if manifest_room_id != &"" else (Vector2(1.25, 1.25) if area.begins_with("station") or area.begins_with("primeval") or area.begins_with("helios") or area.begins_with("frosthold") or area.begins_with("moonpetal") or area.begins_with("empyreal") else (Vector2(2.0, 2.0) if area.begins_with("mansion") else Vector2.ONE))
-	# Main is deliberately scaled to preserve OpenRPG's 1920x1080 UI while
-	# presenting these 48px field tiles at one output pixel per source pixel.
-	# Camera2D limits use global canvas coordinates, so include that scale.
-	Camera.limit_left = int(origin.x * TILE * global_scale.x)
-	Camera.limit_top = int(origin.y * TILE * global_scale.y)
-	Camera.limit_right = int((origin.x + size.x) * TILE * global_scale.x)
-	Camera.limit_bottom = int((origin.y + size.y) * TILE * global_scale.y)
+	var manifest_camera_applied := manifest_room_id != &"" and _camera_controller and _camera_controller.apply_to(Camera)
+	if not manifest_camera_applied:
+		Camera.zoom = Vector2(1.25, 1.25) if area.begins_with("station") or area.begins_with("primeval") or area.begins_with("helios") or area.begins_with("frosthold") or area.begins_with("moonpetal") or area.begins_with("empyreal") else (Vector2(2.0, 2.0) if area.begins_with("mansion") else Vector2.ONE)
+		# Legacy locations retain the compatibility adapter until their room records
+		# own camera policy too. Manifest rooms use CampaignCameraController above.
+		Camera.limit_left = int(origin.x * TILE * global_scale.x)
+		Camera.limit_top = int(origin.y * TILE * global_scale.y)
+		Camera.limit_right = int((origin.x + size.x) * TILE * global_scale.x)
+		Camera.limit_bottom = int((origin.y + size.y) * TILE * global_scale.y)
 	Camera.position = gamepiece.global_position
 	Camera.reset_smoothing()
 
