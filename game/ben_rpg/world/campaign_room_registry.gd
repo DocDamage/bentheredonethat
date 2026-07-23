@@ -20,6 +20,12 @@ const PRIMEVAL_ROOM_IDS := [
 	&"PV-09", &"PV-10", &"PV-11", &"PV-12", &"PV-13", &"PV-14",
 ]
 const HELIOS_ROOM_IDS := [&"HE-01", &"HE-02", &"HE-03", &"HE-04", &"HE-05", &"HE-06", &"HE-07", &"HE-08", &"HE-09", &"HE-10", &"HE-11", &"HE-12", &"HE-13", &"HE-14"]
+const FROSTHOLD_ROOM_IDS := [&"FR-01", &"FR-02", &"FR-03", &"FR-04", &"FR-05", &"FR-06", &"FR-07", &"FR-08", &"FR-09", &"FR-10", &"FR-11", &"FR-12", &"FR-13", &"FR-14"]
+const MOONPETAL_ROOM_IDS := [&"MP-01", &"MP-02", &"MP-03", &"MP-04", &"MP-05", &"MP-06", &"MP-07", &"MP-08", &"MP-09", &"MP-10", &"MP-11", &"MP-12", &"MP-13", &"MP-14"]
+const EMPYREAL_ROOM_IDS := [
+	&"EM-01", &"EM-02", &"EM-03", &"EM-04", &"EM-05", &"EM-06", &"EM-07", &"EM-08",
+	&"EM-09", &"EM-10", &"EM-11", &"EM-12", &"EM-13", &"EM-14", &"EM-15", &"EM-16",
+]
 
 # Section 23.2 blueprint records. Coordinates are room-local movement cells;
 # the camera contract is derived from these dimensions at 48 world pixels per
@@ -96,6 +102,62 @@ static var PRIMEVAL_ROOMS := {
 }
 static var HELIOS_ROOMS := {
 	&"HE-01": _room(&"L1", &"zone", &"none", 6, [[&"Nw", &"FI-08"], [&"Ne", &"HE-02"], [&"E1", &"HE-14"]]), &"HE-02": _room(&"M2", &"zone", &"none", 4, [[&"Nw", &"HE-01"], [&"Ne", &"HE-03"], [&"E1", &"HE-10"]]), &"HE-03": _room(&"L3", &"zone", &"none", 6, [[&"Nw", &"HE-02"], [&"Ne", &"HE-11"], [&"E1", &"HE-12"], [&"E2", &"HE-13"]]), &"HE-04": _room(&"L4", &"zone", &"none", 6, [[&"Nw", &"HE-13"], [&"Ne", &"HE-05"], [&"E1", &"HE-09"]]), &"HE-05": _room(&"M1", &"zone", &"none", 4, [[&"Nw", &"HE-04"]]), &"HE-06": _room(&"L2", &"scripted_only", &"none", 6, [[&"Nw", &"HE-13"], [&"Ne", &"HE-07"]]), &"HE-07": _room(&"M3", &"zone", &"none", 4, [[&"Nw", &"HE-06"], [&"Ne", &"HE-08"], [&"E1", &"HE-10"], [&"E2", &"HE-12"], [&"Se", &"HE-14"]]), &"HE-08": _room(&"L4", &"boss", &"Tsw", 6, [[&"Nw", &"HE-07"]]), &"HE-09": _room(&"L1", &"zone", &"Tnw", 6, [[&"Nw", &"HE-04"], [&"Ne", &"HE-13"]]), &"HE-10": _room(&"M2", &"zone", &"Tne", 4, [[&"Nw", &"HE-02"], [&"Ne", &"HE-07"]]), &"HE-11": _room(&"L3", &"zone", &"Tse", 6, [[&"Nw", &"HE-03"]]), &"HE-12": _room(&"M4", &"zone", &"Tsw", 4, [[&"Nw", &"HE-03"], [&"Ne", &"HE-07"]]), &"HE-13": _room(&"M1", &"none", &"none", 4, [[&"Nw", &"HE-03"], [&"Ne", &"HE-04"], [&"E1", &"HE-06"], [&"E2", &"HE-09"]]), &"HE-14": _room(&"S2", &"none", &"none", 2, [[&"Nw", &"HE-01"], [&"Ne", &"HE-07"]]),
+}
+
+# Locked 102-room manifest entries. These records are deliberately not yet
+# scene-backed: they establish the validated graph contract without activating
+# unreviewed derivatives, collision, or population in the live campaign.
+static var FROSTHOLD_ROOMS := {
+	&"FR-01": _room(&"L1", &"zone", &"none", 6, [[&"Nw", &"FI-09"], [&"Ne", &"FR-02"], [&"E1", &"FR-13"]]),
+	&"FR-02": _room(&"M2", &"zone", &"none", 4, [[&"Nw", &"FR-01"], [&"Ne", &"FR-03"], [&"E1", &"FR-09"], [&"E2", &"FR-13"]]),
+	&"FR-03": _room(&"L3", &"zone", &"none", 6, [[&"Nw", &"FR-02"], [&"Ne", &"FR-04"], [&"E1", &"FR-09"], [&"E2", &"FR-14"]]),
+	&"FR-04": _room(&"L4", &"zone", &"none", 6, [[&"Nw", &"FR-03"], [&"Ne", &"FR-05"], [&"E1", &"FR-10"]]),
+	&"FR-05": _room(&"M1", &"scripted_only", &"none", 4, [[&"Nw", &"FR-04"], [&"Ne", &"FR-06"]]),
+	&"FR-06": _room(&"L2", &"scripted_only", &"none", 6, [[&"Nw", &"FR-05"], [&"Ne", &"FR-07"], [&"E1", &"FR-11"], [&"E2", &"FR-13"]]),
+	&"FR-07": _room(&"M3", &"scripted_only", &"none", 4, [[&"Nw", &"FR-06"], [&"Ne", &"FR-08"], [&"E1", &"FR-12"], [&"E2", &"FR-14"]]),
+	&"FR-08": _room(&"L4", &"boss", &"none", 6, [[&"Nw", &"FR-07"], [&"Ne", &"FR-14"]]),
+	&"FR-09": _room(&"L1", &"none", &"Tne", 6, [[&"Nw", &"FR-02"], [&"Ne", &"FR-03"]]),
+	&"FR-10": _room(&"L2", &"zone", &"Tnw", 6, [[&"Nw", &"FR-04"], [&"Ne", &"FR-11"]]),
+	&"FR-11": _room(&"M3", &"scripted_only", &"Tse", 4, [[&"Nw", &"FR-10"], [&"Ne", &"FR-06"]]),
+	&"FR-12": _room(&"M2", &"none", &"Tne", 4, [[&"Nw", &"FR-07"]]),
+	&"FR-13": _room(&"M1", &"zone", &"none", 4, [[&"Nw", &"FR-01"], [&"Ne", &"FR-02"], [&"E1", &"FR-06"]]),
+	&"FR-14": _room(&"S2", &"none", &"none", 2, [[&"Nw", &"FR-03"], [&"Ne", &"FR-07"], [&"E1", &"FR-08"]]),
+}
+
+static var MOONPETAL_ROOMS := {
+	&"MP-01": _room(&"L1", &"zone", &"none", 6, [[&"Nw", &"FI-10"], [&"Ne", &"MP-02"], [&"E1", &"MP-14"]]),
+	&"MP-02": _room(&"L2", &"zone", &"none", 6, [[&"Nw", &"MP-01"], [&"Ne", &"MP-03"], [&"E1", &"MP-09"], [&"E2", &"MP-12"]]),
+	&"MP-03": _room(&"M3", &"zone", &"none", 4, [[&"Nw", &"MP-02"], [&"Ne", &"MP-04"], [&"E1", &"MP-11"], [&"E2", &"MP-13"]]),
+	&"MP-04": _room(&"L4", &"zone", &"none", 6, [[&"Nw", &"MP-03"], [&"Ne", &"MP-05"], [&"E1", &"MP-10"]]),
+	&"MP-05": _room(&"M1", &"scripted_only", &"none", 4, [[&"Nw", &"MP-04"], [&"Ne", &"MP-06"]]),
+	&"MP-06": _room(&"L2", &"scripted_only", &"none", 6, [[&"Nw", &"MP-05"], [&"Ne", &"MP-07"], [&"E1", &"MP-13"]]),
+	&"MP-07": _room(&"M3", &"scripted_only", &"none", 4, [[&"Nw", &"MP-06"], [&"Ne", &"MP-08"], [&"E1", &"MP-14"]]),
+	&"MP-08": _room(&"L4", &"boss", &"none", 6, [[&"Nw", &"MP-07"]]),
+	&"MP-09": _room(&"M2", &"none", &"Tne", 4, [[&"Nw", &"MP-02"], [&"Ne", &"MP-13"]]),
+	&"MP-10": _room(&"L2", &"none", &"Tnw", 6, [[&"Nw", &"MP-04"], [&"Ne", &"MP-13"]]),
+	&"MP-11": _room(&"M1", &"none", &"Tse", 4, [[&"Nw", &"MP-03"], [&"Ne", &"MP-12"]]),
+	&"MP-12": _room(&"L2", &"none", &"none", 6, [[&"Nw", &"MP-02"], [&"Ne", &"MP-11"]]),
+	&"MP-13": _room(&"M3", &"zone", &"none", 4, [[&"Nw", &"MP-03"], [&"Ne", &"MP-06"], [&"E1", &"MP-09"], [&"E2", &"MP-10"]]),
+	&"MP-14": _room(&"S2", &"none", &"none", 2, [[&"Nw", &"MP-01"], [&"Ne", &"MP-07"]]),
+}
+
+static var EMPYREAL_ROOMS := {
+	&"EM-01": _room(&"L1", &"zone", &"none", 6, [[&"Nw", &"FI-11"], [&"Ne", &"EM-02"], [&"E1", &"EM-16"]]),
+	&"EM-02": _room(&"M2", &"zone", &"none", 4, [[&"Nw", &"EM-01"], [&"Ne", &"EM-03"], [&"E1", &"EM-10"]]),
+	&"EM-03": _room(&"L3", &"zone", &"none", 6, [[&"Nw", &"EM-02"], [&"Ne", &"EM-04"], [&"E1", &"EM-10"], [&"E2", &"EM-15"]]),
+	&"EM-04": _room(&"L4", &"zone", &"none", 6, [[&"Nw", &"EM-03"], [&"Ne", &"EM-05"], [&"E1", &"EM-11"], [&"E2", &"EM-13"]]),
+	&"EM-05": _room(&"M1", &"scripted_only", &"none", 4, [[&"Nw", &"EM-04"], [&"Ne", &"EM-06"]]),
+	&"EM-06": _room(&"L2", &"zone", &"none", 6, [[&"Nw", &"EM-05"], [&"Ne", &"EM-07"], [&"E1", &"EM-15"]]),
+	&"EM-07": _room(&"L3", &"scripted_only", &"none", 6, [[&"Nw", &"EM-06"], [&"Ne", &"EM-08"], [&"E1", &"EM-12"], [&"E2", &"EM-14"], [&"Se", &"EM-15"]]),
+	&"EM-08": _room(&"M2", &"scripted_only", &"none", 4, [[&"Nw", &"EM-07"], [&"Ne", &"EM-09"], [&"E1", &"EM-12"]]),
+	&"EM-09": _room(&"L4", &"boss", &"none", 6, [[&"Nw", &"EM-08"], [&"Ne", &"EM-16"]]),
+	&"EM-10": _room(&"M1", &"none", &"Tnw", 4, [[&"Nw", &"EM-02"], [&"Ne", &"EM-03"]]),
+	&"EM-11": _room(&"M2", &"none", &"Tne", 4, [[&"Nw", &"EM-04"], [&"Ne", &"EM-15"]]),
+	&"EM-12": _room(&"L2", &"zone", &"none", 6, [[&"Nw", &"EM-07"], [&"Ne", &"EM-08"]]),
+	&"EM-13": _room(&"M1", &"none", &"Tse", 4, [[&"Nw", &"EM-04"]]),
+	&"EM-14": _room(&"M2", &"none", &"none", 4, [[&"Nw", &"EM-07"]]),
+	&"EM-15": _room(&"M3", &"zone", &"none", 4, [[&"Nw", &"EM-03"], [&"Ne", &"EM-06"], [&"E1", &"EM-07"], [&"E2", &"EM-11"]]),
+	&"EM-16": _room(&"S2", &"none", &"none", 2, [[&"Nw", &"EM-01"], [&"Ne", &"EM-09"]]),
 }
 
 # This scene is deliberately a small, self-contained proof of the platform. It
@@ -190,11 +252,11 @@ static func _population_anchor_cells(dimensions: Vector2i, anchors: Array[String
 
 
 static func has_room(room_id: StringName) -> bool:
-	return MANSION_ROOMS.has(room_id) or ASTERION_ROOMS.has(room_id) or PRIMEVAL_ROOMS.has(room_id) or HELIOS_ROOMS.has(room_id) or MANIFEST_TEST_ROOMS.has(room_id)
+	return MANSION_ROOMS.has(room_id) or ASTERION_ROOMS.has(room_id) or PRIMEVAL_ROOMS.has(room_id) or HELIOS_ROOMS.has(room_id) or FROSTHOLD_ROOMS.has(room_id) or MOONPETAL_ROOMS.has(room_id) or EMPYREAL_ROOMS.has(room_id) or MANIFEST_TEST_ROOMS.has(room_id)
 
 
 static func room(room_id: StringName) -> Dictionary:
-	var source: Dictionary = MANSION_ROOMS if MANSION_ROOMS.has(room_id) else (ASTERION_ROOMS if ASTERION_ROOMS.has(room_id) else (PRIMEVAL_ROOMS if PRIMEVAL_ROOMS.has(room_id) else (HELIOS_ROOMS if HELIOS_ROOMS.has(room_id) else MANIFEST_TEST_ROOMS)))
+	var source: Dictionary = MANSION_ROOMS if MANSION_ROOMS.has(room_id) else (ASTERION_ROOMS if ASTERION_ROOMS.has(room_id) else (PRIMEVAL_ROOMS if PRIMEVAL_ROOMS.has(room_id) else (HELIOS_ROOMS if HELIOS_ROOMS.has(room_id) else (FROSTHOLD_ROOMS if FROSTHOLD_ROOMS.has(room_id) else (MOONPETAL_ROOMS if MOONPETAL_ROOMS.has(room_id) else (EMPYREAL_ROOMS if EMPYREAL_ROOMS.has(room_id) else MANIFEST_TEST_ROOMS))))))
 	var definition := (source.get(room_id, {}) as Dictionary).duplicate(true)
 	if room_id == &"HE-01": definition.merge({"scenePath":"res://ben_rpg/world/rooms/helios_afterlight_skybridge.tscn","worldOrigin":Vector2i(450,0),"enabledPortIds":[&"Nw",&"Ne",&"E1"]},true)
 	elif room_id == &"HE-02": definition.merge({"scenePath":"res://ben_rpg/world/rooms/helios_curfew_customs.tscn","worldOrigin":Vector2i(450,0),"enabledPortIds":[&"Nw",&"Ne",&"E1"]},true)
@@ -530,6 +592,12 @@ static func room_ids() -> Array[StringName]:
 		result.append(room_id)
 	for room_id in HELIOS_ROOM_IDS:
 		result.append(room_id)
+	for room_id in FROSTHOLD_ROOM_IDS:
+		result.append(room_id)
+	for room_id in MOONPETAL_ROOM_IDS:
+		result.append(room_id)
+	for room_id in EMPYREAL_ROOM_IDS:
+		result.append(room_id)
 	return result
 
 
@@ -620,9 +688,9 @@ static func validate() -> PackedStringArray:
 			port_ids[port_id] = true
 			if not (definition.get("portCells", {}) as Dictionary).has(port_id):
 				errors.append("%s.%s has no blueprint port cell." % [room_id, port_id])
-			if (destination.begins_with("HM-") or destination.begins_with("AS-") or destination.begins_with("PV-") or destination.begins_with("HE-")) and not has_room(destination):
+			if (destination.begins_with("HM-") or destination.begins_with("AS-") or destination.begins_with("PV-") or destination.begins_with("HE-") or destination.begins_with("FR-") or destination.begins_with("MP-") or destination.begins_with("EM-")) and not has_room(destination):
 				errors.append("%s.%s targets unknown room %s." % [room_id, port_id, destination])
-			elif not destination.begins_with("HM-") and not destination.begins_with("AS-") and not destination.begins_with("PV-") and not destination.begins_with("HE-") and destination not in [&"FI-05", &"FI-06", &"FI-07", &"FI-08"]:
+			elif not destination.begins_with("HM-") and not destination.begins_with("AS-") and not destination.begins_with("PV-") and not destination.begins_with("HE-") and not destination.begins_with("FR-") and not destination.begins_with("MP-") and not destination.begins_with("EM-") and destination not in [&"FI-05", &"FI-06", &"FI-07", &"FI-08", &"FI-09", &"FI-10", &"FI-11"]:
 				errors.append("%s.%s targets undeclared external room %s." % [room_id, port_id, destination])
 	if not _reachable(&"HM-01", &"HM-09"):
 		errors.append("Mansion critical path cannot reach HM-09 from HM-01.")
@@ -633,6 +701,9 @@ static func validate() -> PackedStringArray:
 	if _reachable_room_count(&"PV-01") != PRIMEVAL_ROOM_IDS.size():
 		errors.append("Primeval room graph is not connected from PV-01.")
 	if _reachable_room_count(&"HE-01") != HELIOS_ROOM_IDS.size(): errors.append("Helios room graph is not connected from HE-01.")
+	if _reachable_room_count(&"FR-01") != FROSTHOLD_ROOM_IDS.size(): errors.append("Frosthold room graph is not connected from FR-01.")
+	if _reachable_room_count(&"MP-01") != MOONPETAL_ROOM_IDS.size(): errors.append("Moonpetal room graph is not connected from MP-01.")
+	if _reachable_room_count(&"EM-01") != EMPYREAL_ROOM_IDS.size(): errors.append("Empyreal room graph is not connected from EM-01.")
 	_validate_manifest_test_rooms(errors)
 	return PackedStringArray(errors)
 
