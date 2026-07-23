@@ -26,6 +26,8 @@ func apply_interaction(save_after: bool = true) -> Array[String]:
 			events = _open_ballroom_gate()
 		&"chapel_alignment":
 			events = _align_chapel_glass()
+		&"attic_stair":
+			events = _lower_attic_stair()
 		_:
 			events = ["The Mansion declines to explain this particular impossibility."]
 	CampaignState.state_changed.emit()
@@ -130,3 +132,10 @@ func _align_chapel_glass() -> Array[String]:
 		"modifiers": [{"name": "of Warding", "stat": "spirit", "value": 4}], "kind": "gear", "source_pack": "Haunted Mansion",
 	})
 	return ["The thirteenth chime aligns the chapel glass. A ward charm and the undercroft's crypt key slide from the altar.", "Crypt Key obtained; the sealed undercroft entrance opens."]
+
+
+func _lower_attic_stair() -> Array[String]:
+	if CampaignState.story_flags.get(&"mansion_attic_latch_open", false): return ["The attic stair remains lowered over the Antechamber."]
+	CampaignState.story_flags[&"mansion_attic_latch_open"] = true
+	CampaignState.add_item(&"anchor_dust", 1, false)
+	return ["Ben lowers the attic stair and finds the Dollmaker's invoice tucked under its catch.", "The stair now gives the Antechamber a permanent return route."]

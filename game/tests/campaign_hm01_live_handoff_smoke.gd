@@ -22,6 +22,7 @@ const ANTECHAMBER_LIFT_SAFE_CELL := STAGING_ORIGIN + Vector2i(14, 10)
 const CHAPEL_SAFE_CELL := STAGING_ORIGIN + Vector2i(7, 3)
 const NURSERY_CHAPEL_SAFE_CELL := STAGING_ORIGIN + Vector2i(18, 4)
 const UNDERCROFT_SAFE_CELL := STAGING_ORIGIN + Vector2i(16, 3)
+const ATTIC_SAFE_CELL := STAGING_ORIGIN + Vector2i(6, 3)
 
 
 func _ready() -> void:
@@ -249,10 +250,22 @@ func _run() -> void:
 	var undercroft_root: Node2D = streamer.call(&"active_root") as Node2D
 	assert(undercroft_root.has_node("InteractionLayer/ManifestInteraction/Feature_temporal_field_note"))
 	assert(runtime.has_node("ManifestPort_HM-12_Ne"))
-	var visual := main.get_node("Field/Map/CampaignWorld/GroundLayer/Visuals")
-	var foreground := main.get_node("Field/Map/CampaignWorld/ForegroundLayer/MansionForeground")
-	assert(visual.active_area == &"manifest:HM-12" and foreground.active_area == &"manifest:HM-12")
-	print("CAMPAIGN_HM01_LIVE_HANDOFF_SMOKE_OK entry=FI-05 HM-critical-spine=true clock_mirror_boss=true optional_loops=HM10+HM16+HM11+HM12 navigation=true archive+respite_save=true features=room_owned legacy_renderer=hidden camera=manifest")
+	runtime.call(&"activate", &"HM-14")
+	main._place_player(BALCONY_SAFE_CELL)
+	await get_tree().process_frame
+	var attic_port: Node = runtime.get_node_or_null("ManifestPort_HM-14_E1")
+	assert(attic_port and Gameboard.pixel_to_cell(attic_port.arrival_coordinates) == ATTIC_SAFE_CELL)
+	attic_port.call(&"_on_blackout")
+	main._place_player(ATTIC_SAFE_CELL)
+	await get_tree().process_frame
+	assert(runtime.call(&"active_room_id") == &"HM-13")
+	var attic_root: Node2D = streamer.call(&"active_root") as Node2D
+	assert(attic_root.has_node("InteractionLayer/ManifestInteraction/Feature_dollmaker_invoice"))
+	var attic_stair: Node = attic_root.get_node_or_null("InteractionLayer/AtticStair")
+	assert(attic_stair)
+	attic_stair.call("apply_interaction", false)
+	assert(bool(CampaignState.story_flags.get(&"mansion_attic_latch_open", false)))
+	print("CAMPAIGN_HM01_LIVE_HANDOFF_SMOKE_OK entry=FI-05 HM-critical-spine=true clock_mirror_boss=true optional_loops=HM10+HM16+HM11+HM12+HM13 navigation=true archive+respite_save=true features=room_owned legacy_renderer=hidden camera=manifest")
 	main.queue_free()
 	await get_tree().process_frame
 	get_tree().quit()

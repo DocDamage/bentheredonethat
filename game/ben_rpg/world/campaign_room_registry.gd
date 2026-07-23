@@ -196,7 +196,7 @@ static func room(room_id: StringName) -> Dictionary:
 		definition.merge({
 			"scenePath": "res://ben_rpg/world/rooms/haunted_mansion_portrait_balcony.tscn",
 			"worldOrigin": Vector2i(300, 0),
-			"enabledPortIds": [&"Nw", &"Ne"],
+			"enabledPortIds": [&"Nw", &"Ne", &"E1"],
 			"visualProfileIds": [&"mansion_gallery_left_portrait", &"mansion_gallery_right_portrait", &"mansion_gallery_stage_curtain"],
 			"featureIds": [&"west_stair", &"portrait_balcony", &"gallery_return_banister"],
 		}, true)
@@ -292,6 +292,14 @@ static func room(room_id: StringName) -> Dictionary:
 			"enabledPortIds": [&"Nw", &"Ne"],
 			"visualProfileIds": [&"mansion_archive_wall_plain_tile", &"mansion_archive_wall_lit_tile", &"mansion_gallery_stage_curtain"],
 			"featureIds": [&"temporal_field_note", &"anchor_dust_payoff", &"infernal_elite", &"two_sided_exit"],
+		}, true)
+	elif room_id == &"HM-13":
+		definition.merge({
+			"scenePath": "res://ben_rpg/world/rooms/haunted_mansion_dollmaker_attic.tscn", "worldOrigin": Vector2i(300, 0),
+			"enabledPortIds": [&"Nw", &"Ne"], "portGates": {&"Ne": &"mansion_attic_latch_open"},
+			"visualProfileIds": [&"mansion_nursery_bed", &"mansion_archive_shelving", &"mansion_nursery_music_box"],
+			"featureIds": [&"vertical_clutter_maze", &"dollmaker_invoice", &"doll_resistant_charm", &"attic_stair"],
+			"chapterInteractions": [{"nodeName": "AtticStair", "kind": &"attic_stair", "cell": Vector2i(9, 8)}],
 		}, true)
 	return definition
 
