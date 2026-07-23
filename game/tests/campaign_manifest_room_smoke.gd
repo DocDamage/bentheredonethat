@@ -31,6 +31,8 @@ func _ready() -> void:
 	assert(room.has_node("InteractionLayer/SafeArrival_Ne"))
 	var navigation := NAVIGATION_BUILDER.navigation_record(&"TEST-01")
 	assert((navigation.get("walkable", {}) as Dictionary).has(route["arrivalCell"]))
+	assert(NAVIGATION_BUILDER._legal_follower_cells(route["arrivalCell"], navigation.get("walkable", {}) as Dictionary) >= 3)
+	assert(NAVIGATION_BUILDER._connected_component(route["arrivalCell"], navigation.get("walkable", {}) as Dictionary).has(Vector2i(7, 3)))
 	assert(camera_controller.get("active_room_id") == &"TEST-01")
 	assert(camera_controller.get("active_bounds") == Rect2i(0, 0, 672, 480))
 	streamer.call(&"deactivate")
