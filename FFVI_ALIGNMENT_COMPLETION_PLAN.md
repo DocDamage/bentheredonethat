@@ -2707,7 +2707,7 @@ black-box fixtures before changing ownership:
 - [x] A `CampaignState` contract fixture records the public calls and signals
   used by the bootstrap, menu, battle, facilities, quests, residents, and tests.
   Internal extraction may not require all callers to change in one patch.
-- [ ] A migrated-save fixture covers the current save version, every existing
+- [x] A migrated-save fixture covers the current save version, every existing
   universe gate, construction state, resident state, inventory/equipment,
   active quest, party/formation, ending, recall, and postgame state.
 - [ ] The pre-refactor capture and all-smoke baseline is retained so visual,
