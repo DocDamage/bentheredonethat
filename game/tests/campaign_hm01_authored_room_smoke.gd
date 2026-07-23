@@ -22,8 +22,8 @@ func _ready() -> void:
 	assert(StringName(navigation_layer.get_meta(&"collision_mask_id", &"")) == &"authored:hm01-rain-gate-collision")
 	var navigation := NAVIGATION_BUILDER.navigation_record(&"HM-01")
 	var walkable: Dictionary = navigation.get("walkable", {})
-	if walkable.size() != 105:
-		printerr("HM-01 authored useful-cell count was %d, expected 105." % walkable.size())
+	if walkable.size() != 100:
+		printerr("HM-01 authored useful-cell count was %d, expected 100." % walkable.size())
 		get_tree().quit(1)
 		return
 	assert(walkable.has(Vector2i(6, 3)) and walkable.has(Vector2i(12, 3)), "HM-01 safe arrivals must remain open around the facade.")
@@ -31,5 +31,5 @@ func _ready() -> void:
 	assert(walkable.has(Vector2i(4, 10)) and walkable.has(Vector2i(10, 12)), "HM-01 forecourt and return lip must remain traversable.")
 	streamer.call(&"deactivate")
 	assert(streamer.call(&"active_root") == null)
-	print("CAMPAIGN_HM01_AUTHORED_ROOM_SMOKE_OK scene=true profile=haunted_mansion_exterior origin=300,0 layers=7 navigation=authored cells=105 facade_collision=true unload=true")
+	print("CAMPAIGN_HM01_AUTHORED_ROOM_SMOKE_OK scene=true profile=haunted_mansion_exterior origin=300,0 layers=7 navigation=authored cells=100 facade_collision=true unload=true")
 	get_tree().quit()

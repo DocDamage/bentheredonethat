@@ -3002,3 +3002,10 @@ limit:
   direct callback adapter for focused contract fixtures. The HM-01 controller
   and click handoff now verifies a real collision transition into HM-02 at its
   safe arrival without crossing the separate facility-return port.
+- The full isolated Godot smoke matrix completed cleanly after the manifest
+  port handoff change: all 125 retained scene logs in
+  `test-artifacts/20260723-124703-6a6a6f3a` contain no test failure, assertion,
+  or parser error. The HM-01 authored navigation fixture now expects 100
+  useful cells after removal of the five-cell unsafe top-lintel route. Normal
+  Godot shutdown object/resource warnings remain a known baseline and are not
+  reported as test failures.
