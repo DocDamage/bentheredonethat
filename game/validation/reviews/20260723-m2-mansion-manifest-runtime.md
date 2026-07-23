@@ -56,8 +56,8 @@ scene already has final collision or art approval.
 | --- | --- | ---: | ---: | --- |
 | HM-01 | C / M1 | 105 authored | 4 | FI-05, HM-02 |
 | HM-02 | C / L2 | 215 closed / 216 opened authored | 6 | HM-01, HM-03, HM-04 [4:44], HM-10 |
-| HM-03 | C / M3 | 240 | 4 | HM-02 |
-| HM-04 | C / S1 | 96 | 2 | HM-02, HM-05, HM-12 [13:13] |
+| HM-03 | C / M3 | 134 authored | 4 | HM-02 |
+| HM-04 | C / S1 | 60 baseline / 62 closed / 63 opened authored | 2 | HM-02, HM-05, HM-12 [13:13] |
 | HM-05 | C / M1 | 192 | 4 | HM-04, HM-11, HM-14, HM-16 [shortcut] |
 | HM-06 | C / L2 | 384 | 6 | HM-14, HM-15 |
 | HM-07 | C / M3 | 240 | 4 | HM-15, HM-08, HM-11 [latch] |
@@ -73,16 +73,19 @@ scene already has final collision or art approval.
 
 HM-01 owns a first authored 105-cell rain-gate layout: facade collision, side
 routes, porch, wet-stone crossway, and forecourt are recorded in the manifest
-and consumed by `CampaignNavigationBuilder`. HM-02 now owns a 215-cell closed /
+and consumed by `CampaignNavigationBuilder`. HM-02 owns a 215-cell closed /
 216-cell 4:44-opened west-foyer layout: entry gallery, central clock hall,
-servants' wallpaper seam, and south lounge are explicit collision space. Both
-rooms' M/L-range counts are automatically verified but still need
-visual/input/capture acceptance. The remaining rooms' cell values are generated
-open-interior counts, not audited useful-cell totals. They materially exceed the
-Section 9.4 S/M/L ranges in several rooms because final collision ownership is
-still a generated rectangle. Therefore the matrix records a production blocker
-for every remaining room: an authored collision/navigation audit and measured
-useful-cell total are required before the locked size budget can be claimed.
+servants' wallpaper seam, and south lounge are explicit collision space. HM-03
+adds a 134-cell bookshelf-bounded study, while HM-04 adds a 60-cell baseline,
+62-cell entered pendulum passage (63 when its
+optional undercroft route opens). These rooms' M/L/S-range counts are
+automatically verified but still need visual/input/capture acceptance.
+The remaining rooms' cell values are generated open-interior counts, not audited
+useful-cell totals. They materially exceed the Section 9.4 S/M/L ranges in
+several rooms because final collision ownership is still a generated rectangle.
+Therefore the matrix records a production blocker for every remaining room: an
+authored collision/navigation audit and measured useful-cell total are required
+before the locked size budget can be claimed.
 
 ### Art, population, and state-capture requirements
 

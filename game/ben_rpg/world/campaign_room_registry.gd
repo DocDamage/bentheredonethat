@@ -551,6 +551,17 @@ static func room(room_id: StringName) -> Dictionary:
 			"scenePath": "res://ben_rpg/world/rooms/haunted_mansion_study.tscn",
 			"worldOrigin": Vector2i(300, 0),
 			"enabledPortIds": [&"Nw"],
+			"navigationId": &"authored:hm03-ledger-study-navigation",
+			"collisionMaskId": &"authored:hm03-ledger-study-collision",
+			"navigationLayout": {
+				"id": &"hm03-ledger-study-v1",
+				"kind": &"authored",
+				"usefulCellRange": Vector2i(134, 134),
+				"walkableRects": [
+					{"origin": Vector2i(5, 1), "size": Vector2i(13, 4)}, # entry gallery between tall shelves
+					{"origin": Vector2i(3, 4), "size": Vector2i(16, 6)}, # ledger floor and rotating-shelf sightline
+				],
+			},
 			"visualProfileIds": [&"mansion_archive_shelving", &"mansion_archive_cabinet"],
 			"featureIds": [&"false_book_row", &"household_ledger"],
 		}, true)
@@ -560,6 +571,18 @@ static func room(room_id: StringName) -> Dictionary:
 			"worldOrigin": Vector2i(300, 0),
 			"enabledPortIds": [&"Nw", &"Ne", &"E1"],
 			"portGates": {&"E1": &"mansion_temporal_secret_found"},
+			"navigationId": &"authored:hm04-clock-passage-navigation",
+			"collisionMaskId": &"authored:hm04-clock-passage-collision",
+			"navigationLayout": {
+				"id": &"hm04-clock-passage-v1",
+				"kind": &"authored",
+				"usefulCellRange": Vector2i(60, 63),
+				"walkableRects": [
+					{"origin": Vector2i(3, 1), "size": Vector2i(8, 3)}, # clock threshold
+					{"origin": Vector2i(2, 3), "size": Vector2i(10, 4)}, # pendulum timing corridor
+					{"origin": Vector2i(4, 7), "size": Vector2i(6, 1)}, # wall-alcove recovery strip
+				],
+			},
 			"visualProfileIds": [&"mansion_foyer_clock", &"mansion_foyer_passage_door"],
 			"featureIds": [&"pendulum_blade_timing", &"clock_444_gate"],
 		}, true)
@@ -857,6 +880,12 @@ static func _validate_manifest_test_rooms(errors: Array[String]) -> void:
 	var hm02 := room(&"HM-02")
 	if StringName(hm02.get("navigationId", &"")) != &"authored:hm02-west-foyer-navigation" or StringName(hm02.get("collisionMaskId", &"")) != &"authored:hm02-west-foyer-collision":
 		errors.append("HM-02 must own its authored west-foyer navigation and collision records.")
+	var hm03 := room(&"HM-03")
+	if StringName(hm03.get("navigationId", &"")) != &"authored:hm03-ledger-study-navigation" or StringName(hm03.get("collisionMaskId", &"")) != &"authored:hm03-ledger-study-collision":
+		errors.append("HM-03 must own its authored ledger-study navigation and collision records.")
+	var hm04 := room(&"HM-04")
+	if StringName(hm04.get("navigationId", &"")) != &"authored:hm04-clock-passage-navigation" or StringName(hm04.get("collisionMaskId", &"")) != &"authored:hm04-clock-passage-collision":
+		errors.append("HM-04 must own its authored clock-passage navigation and collision records.")
 
 
 static func _reachable(start: StringName, target: StringName) -> bool:
