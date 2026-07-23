@@ -42,6 +42,32 @@ def load_pack_decisions(root: Path) -> list[dict[str, Any]]:
     raw = json.loads(path.read_text(encoding="utf-8"))
     if raw.get("schemaVersion") != 1 or not isinstance(raw.get("decisions"), list):
         raise ValueError("pack provenance decisions must use schemaVersion 1 with a decisions list")
+    inventory_path = root / "game/validation/generated/source_library_inventory.json"
+    inventory = json.loads(inventory_path.read_text(encoding="utf-8"))
+    inventory_hashes: dict[tuple[str, str], str] = {}
+    for library in inventory.get("libraries", []):
+        if not isinstance(library, dict) or not isinstance(library.get("label"), str):
+            continue
+        for record in library.get("rootFiles", []):
+            if isinstance(record, dict) and isinstance(record.get("path"), str) and isinstance(record.get("sha256"), str):
+                inventory_hashes[(library["label"], record["path"])] = record["sha256"]
+
+    def verify_evidence(decision_id: str, kind: str, evidence: Any) -> None:
+        if not isinstance(evidence, list) or not evidence:
+            raise ValueError(f"pack provenance decision {decision_id} needs {kind} evidence")
+        for record in evidence:
+            if not isinstance(record, dict):
+                raise ValueError(f"pack provenance decision {decision_id} has invalid {kind} evidence")
+            if record.get("inventory") != "game/validation/generated/source_library_inventory.json":
+                raise ValueError(f"pack provenance decision {decision_id} must reference the tracked source inventory")
+            library = record.get("library")
+            evidence_path = record.get("path")
+            checksum = record.get("sha256")
+            if not isinstance(library, str) or not isinstance(evidence_path, str) or not isinstance(checksum, str):
+                raise ValueError(f"pack provenance decision {decision_id} has incomplete {kind} evidence")
+            if inventory_hashes.get((library, evidence_path)) != checksum:
+                raise ValueError(f"pack provenance decision {decision_id} has stale {kind} evidence for {library}/{evidence_path}")
+
     decisions: list[dict[str, Any]] = []
     seen: set[str] = set()
     for decision in raw["decisions"]:
@@ -51,6 +77,8 @@ def load_pack_decisions(root: Path) -> list[dict[str, Any]]:
         status = decision.get("decision")
         if not isinstance(decision_id, str) or not decision_id or decision_id in seen or status not in ELIGIBILITY_STATES:
             raise ValueError("pack provenance decisions need unique ids and known eligibility states")
+        verify_evidence(decision_id, "terms", decision.get("termsEvidence"))
+        verify_evidence(decision_id, "credit", decision.get("creditEvidence"))
         seen.add(decision_id)
         decisions.append(decision)
     return sorted(decisions, key=lambda decision: str(decision["id"]))

@@ -84,6 +84,10 @@ audits before it can claim the Section 9.4 size class.
 - The current `visualProfileIds` arrays in `CampaignRoomRegistry` are the only
   runtime profile list. They do not admit the locked Space Station/Jurassic
   source families or their supporting packs.
+- `pack_provenance_decisions.json` binds the named Asterion and Primeval Tilesets
+  packs to the checksum-pinned root `assets/Tilesets/license.txt` evidence and
+  its optional-credit statement. All decisions remain `review_required` pending
+  final derivative admission and licensing review.
 - Active population roster: none. Existing 2-6 anchor capacities are not a
   SakPix roster, schedule, eight-direction binding, or route reservation.
 - Required captures: every room at first visit, stabilized, and postgame;

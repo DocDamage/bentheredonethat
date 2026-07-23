@@ -117,8 +117,10 @@ before the locked size budget can be claimed.
   proposed Haunted Mansion, Crimson Gothic, or supporting source packs.
 - Pack-level decision record: `res://ben_rpg/visual_assets/pack_provenance_decisions.json`
   identifies the canonical Haunted Mansion set and its checksum-identical runtime
-  duplicate, but retains `review_required` because exact terms and credit evidence
-  have not been supplied. It is provenance evidence, not a distribution approval.
+  duplicate. Its terms and optional-credit record is bound to the checksum-pinned
+  `assets/Tilesets/license.txt` inventory record, but it retains `review_required`
+  until final runtime-derivative admission and licensing review. It is provenance
+  evidence, not a distribution approval.
 - Native-scale source-sheet and resident-review evidence is generated locally by
   `tools/build_vertical_slice_contact_sheets.py` from the exact M2 review config.
   Its ignored `test-artifacts/vertical-slice-contact-sheets/` output is reviewer

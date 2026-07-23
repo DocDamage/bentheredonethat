@@ -2490,22 +2490,46 @@
   "packProvenanceDecisions": [
     {
       "canonicalPack": "Space Station Interior Tileset",
-      "creditEvidence": [],
+      "creditEvidence": [
+        {
+          "inventory": "game/validation/generated/source_library_inventory.json",
+          "library": "Tilesets",
+          "path": "license.txt",
+          "requirement": "The recorded license states attribution is optional; retain this decision record even when no credit line is required.",
+          "sha256": "da5ca129716c7ee53d88425bc6e0ac4b616bd2ddda72c4a136c66ad66c11b156"
+        }
+      ],
       "decision": "review_required",
       "id": "asterion-sci-fi-spaceship-interior-v1",
-      "rationale": "Current runtime profiles use the legacy spaceship-interior subset; the planned canonical station kit has not yet been bound to exact terms/credit evidence.",
+      "rationale": "The exact root-license record is preserved for the current legacy runtime pack and planned station kit, but final runtime derivative admission and licensing review remain incomplete.",
       "runtimePack": "Sci-Fi Spaceship Interior Tileset Pack",
-      "termsEvidence": [],
+      "termsEvidence": [
+        {
+          "inventory": "game/validation/generated/source_library_inventory.json",
+          "library": "Tilesets",
+          "path": "license.txt",
+          "scope": "The recorded Tilesets-root CC0 record is bound to this named child pack only; it is not treated as evidence for adjacent source roots.",
+          "sha256": "da5ca129716c7ee53d88425bc6e0ac4b616bd2ddda72c4a136c66ad66c11b156"
+        }
+      ],
       "world": "Asterion"
     },
     {
       "canonicalPack": "Haunted Mansion",
-      "creditEvidence": [],
+      "creditEvidence": [
+        {
+          "inventory": "game/validation/generated/source_library_inventory.json",
+          "library": "Tilesets",
+          "path": "license.txt",
+          "requirement": "The recorded license states attribution is optional; retain this decision record even when no credit line is required.",
+          "sha256": "da5ca129716c7ee53d88425bc6e0ac4b616bd2ddda72c4a136c66ad66c11b156"
+        }
+      ],
       "decision": "review_required",
       "duplicateRelationship": "runtime files 1.png through 5.png match the canonical Haunted Mansion checksums",
       "id": "mansion-haunted-mansion-v1",
       "inventoryPackId": "Tilesets:Haunted Mansion",
-      "rationale": "Inventory reports no pack-local license candidate; canonical terms and attribution must be preserved before release admission.",
+      "rationale": "The exact root-license record is preserved for this named pack, but final runtime derivative admission and licensing review remain incomplete.",
       "runtimePack": "Haunted Mansion Pixel Art Tileset Pack",
       "sourceChecksums": [
         "acdcde19e54d70050d03f77c719e0e7d4285c68c54f7261863f3ce3e44f604cc",
@@ -2514,7 +2538,15 @@
         "fabb60e8d270cf106674b7669dda3e7fe75c8ae9072ff86a4d867a259ed6ea7b",
         "7f8c9fab086d0efe1cd7056926e4e19cfa32b144c9a8e4bfa54062c56a2816c2"
       ],
-      "termsEvidence": [],
+      "termsEvidence": [
+        {
+          "inventory": "game/validation/generated/source_library_inventory.json",
+          "library": "Tilesets",
+          "path": "license.txt",
+          "scope": "The recorded Tilesets-root CC0 record is bound to this named child pack only; it is not treated as evidence for adjacent source roots.",
+          "sha256": "da5ca129716c7ee53d88425bc6e0ac4b616bd2ddda72c4a136c66ad66c11b156"
+        }
+      ],
       "world": "Mansion"
     },
     {
@@ -2522,11 +2554,27 @@
         "Jurassic World Pixel Art Megapack",
         "Stone Age Modern Life Pixel Art Tileset Pack"
       ],
-      "creditEvidence": [],
+      "creditEvidence": [
+        {
+          "inventory": "game/validation/generated/source_library_inventory.json",
+          "library": "Tilesets",
+          "path": "license.txt",
+          "requirement": "The recorded license states attribution is optional; retain this decision record even when no credit line is required.",
+          "sha256": "da5ca129716c7ee53d88425bc6e0ac4b616bd2ddda72c4a136c66ad66c11b156"
+        }
+      ],
       "decision": "review_required",
       "id": "primeval-jurassic-and-stone-age-v1",
-      "rationale": "Runtime profiles draw from both packs; source-sheet decisions, terms, and any required credit remain a curator review rather than an inferred CC0 grant.",
-      "termsEvidence": [],
+      "rationale": "The exact root-license record is preserved for both named packs, but final runtime derivative admission and licensing review remain incomplete.",
+      "termsEvidence": [
+        {
+          "inventory": "game/validation/generated/source_library_inventory.json",
+          "library": "Tilesets",
+          "path": "license.txt",
+          "scope": "The recorded Tilesets-root CC0 record is bound to these named child packs only; it is not treated as evidence for adjacent source roots.",
+          "sha256": "da5ca129716c7ee53d88425bc6e0ac4b616bd2ddda72c4a136c66ad66c11b156"
+        }
+      ],
       "world": "Primeval"
     }
   ],

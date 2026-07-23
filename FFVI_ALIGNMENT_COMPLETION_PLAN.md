@@ -2947,3 +2947,8 @@ limit:
   at native scale and records source checksums. The resulting reviewer evidence
   remains `review_required`; it does not constitute asset admission or visual
   approval.
+- The first named Tilesets migration decisions now bind their terms and
+  optional-credit statement to the checksum-pinned root license inventory
+  record. The evidence is verified by the runtime provenance builder, but no
+  decision has been promoted beyond `review_required` without final derivative
+  admission and licensing review.
