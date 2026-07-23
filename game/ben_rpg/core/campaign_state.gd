@@ -19,6 +19,7 @@ const SAVE_REPOSITORY := preload("res://ben_rpg/core/save_repository.gd")
 const SAVE_MIGRATOR := preload("res://ben_rpg/core/save_migrator.gd")
 const QUEST_DIRECTOR := preload("res://ben_rpg/core/quest_director.gd")
 const ECONOMY_LEDGER := preload("res://ben_rpg/core/economy_ledger.gd")
+const WORLD_CATALOG := preload("res://ben_rpg/core/campaign_world_catalog.gd")
 const SANDBOX_OBJECT_CATALOG := preload("res://ben_rpg/world/sandbox_object_catalog.gd")
 const SANDBOX_TERRAIN_CATALOG := preload("res://ben_rpg/world/sandbox_terrain_catalog.gd")
 const SANDBOX_LAYOUT_SLOT_VERSION := 1
@@ -76,7 +77,7 @@ const FIELD_SPECIALIST_TASKS := {
 		"label": "Empyreal weight appeal",
 	},
 }
-const UNIVERSE_DEFINITIONS := {
+const LEGACY_UNIVERSE_DEFINITIONS := {
 	&"haunted_mansion": {
 		"name": "The House at 4:44",
 		"building": "Haunted Mansion",
@@ -149,13 +150,15 @@ const UNIVERSE_DEFINITIONS := {
 		"anchor_flag": &"empyreal_anchor_built",
 	},
 }
-const TOWN_STATE_OVERLAYS := {
+const LEGACY_TOWN_STATE_OVERLAYS := {
 	&"survey": {"name": "Survey", "description": "Fresh stakes, quiet roads, and enough room for a company to become a town.", "tint": Color(0.24, 0.15, 0.05, 0.035), "accent": Color(0.96, 0.76, 0.30, 0.52)},
 	&"founding": {"name": "Founding", "description": "The first civic block is lit; construction still has the stronger voice.", "tint": Color(0.08, 0.18, 0.07, 0.035), "accent": Color(0.58, 0.92, 0.42, 0.54)},
 	&"early_anchors": {"name": "Early Anchors", "description": "The town has begun importing impossible weather, visitors, and practical optimism.", "tint": Color(0.05, 0.15, 0.22, 0.055), "accent": Color(0.35, 0.88, 1.0, 0.58)},
 	&"multiversal": {"name": "Multiversal Town", "description": "Several stabilized worlds now leave visible traces in New Philadelphia's evening glow.", "tint": Color(0.16, 0.08, 0.24, 0.065), "accent": Color(0.82, 0.50, 1.0, 0.62)},
 	&"finale": {"name": "Finale and Postgame", "description": "All anchors are steady. The town's shared lights now answer one another across worlds.", "tint": Color(0.22, 0.16, 0.03, 0.075), "accent": Color(1.0, 0.84, 0.36, 0.70)},
 }
+const UNIVERSE_DEFINITIONS := WORLD_CATALOG.UNIVERSE_DEFINITIONS
+const TOWN_STATE_OVERLAYS := WORLD_CATALOG.TOWN_STATE_OVERLAYS
 # Every scenario anchor uses this single source of truth for saving, recovery,
 # retry metadata, and roster access. Cells are absolute gameboard cells so a
 # future room rearrangement cannot silently leave the menu checking an old prop.

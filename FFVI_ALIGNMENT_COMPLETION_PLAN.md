@@ -2718,6 +2718,12 @@ black-box fixtures before changing ownership:
 Keep `CampaignState` as a temporary compatibility facade, but stop adding large
 definition tables or unrelated domain operations to it. Extraction order:
 
+Status update (2026-07-23): `campaign_world_catalog.gd` now owns the runtime
+universe-anchor definitions and town-state overlays; `CampaignState` keeps
+compatibility aliases so callers and save IDs remain unchanged. The preceding
+in-file tables are explicitly retained as `LEGACY_*` comparison data only and
+must be deleted once the catalog cross-reference validator is expanded.
+
 1. Move `UNIVERSE_DEFINITIONS`, town overlays, universe save points, universe
    treasure caches, equipment/service/armory catalogs, facility definitions,
    inventions, expedition-tool contracts, facility upgrades, skill trees, and
