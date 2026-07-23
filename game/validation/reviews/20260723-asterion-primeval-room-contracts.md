@@ -162,10 +162,16 @@ remained unchanged (`sentinel=True`). `PV-01` has 247 closed / 248 decoded
 cells, `PV-02` has 150, `PV-03` has 296-299 across terminal/caldera states,
 and `PV-04` has 150 authored useful cells.
 
+The second Primeval collision batch passed at
+`test-artifacts/20260723-095659-a7730c4a` and
+`test-artifacts/20260723-095714-eba4df34`; its production-save sentinel also
+remained unchanged (`sentinel=True`). `PV-05` has 257 closed / 258 decoded,
+`PV-06` 144-145, `PV-07` 296-298, and `PV-08` 262-265 authored useful cells.
+
 ## Decision
 
 Rework required before acceptance: no distribution eligibility, contact-sheet
 approval, or user visual/input sign-off is recorded for either world. All 14
 Asterion layouts are verified collision-contract evidence only; `PV-01` through
-`PV-04` are likewise verified, while the remaining Primeval layouts still
+`PV-08` are likewise verified, while the remaining Primeval layouts still
 require their own audits.
