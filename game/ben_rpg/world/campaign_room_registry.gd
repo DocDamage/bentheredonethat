@@ -301,6 +301,15 @@ static func room(room_id: StringName) -> Dictionary:
 	elif room_id == &"MP-12": definition.merge({"scenePath":"res://ben_rpg/world/rooms/moonpetal_yokai_artisan_lane.tscn","worldOrigin":Vector2i(550,0),"enabledPortIds":[&"Nw",&"Ne"],"featureIds":[&"artisan_exchange"]},true)
 	elif room_id == &"MP-13": definition.merge({"scenePath":"res://ben_rpg/world/rooms/moonpetal_covered_bell_passage.tscn","worldOrigin":Vector2i(550,0),"enabledPortIds":[&"Nw",&"Ne",&"E1",&"E2"],"featureIds":[&"roof_occlusion"]},true)
 	elif room_id == &"MP-14": definition.merge({"scenePath":"res://ben_rpg/world/rooms/moonpetal_servants_moonbridge.tscn","worldOrigin":Vector2i(550,0),"enabledPortIds":[&"Nw",&"Ne"],"featureIds":[&"singular_reflection_bridge"]},true)
+	elif room_id == &"EM-01": definition.merge({"scenePath":"res://ben_rpg/world/rooms/empyreal_cloudstep_landing.tscn","worldOrigin":Vector2i(600,0),"enabledPortIds":[&"Nw",&"Ne",&"E1"]},true)
+	elif room_id == &"EM-02": definition.merge({"scenePath":"res://ben_rpg/world/rooms/empyreal_petitioners_rise.tscn","worldOrigin":Vector2i(600,0),"enabledPortIds":[&"Nw",&"Ne",&"E1"]},true)
+	elif room_id == &"EM-03": definition.merge({"scenePath":"res://ben_rpg/world/rooms/empyreal_garden_appeals.tscn","worldOrigin":Vector2i(600,0),"enabledPortIds":[&"Nw",&"Ne",&"E1",&"E2"]},true)
+	elif room_id == &"EM-04": definition.merge({"scenePath":"res://ben_rpg/world/rooms/empyreal_forum_measures.tscn","worldOrigin":Vector2i(600,0),"enabledPortIds":[&"Nw",&"Ne",&"E1",&"E2"]},true)
+	elif room_id == &"EM-05": definition.merge({"scenePath":"res://ben_rpg/world/rooms/empyreal_counterweight_lift_station.tscn","worldOrigin":Vector2i(600,0),"enabledPortIds":[&"Nw",&"Ne"],"featureIds":[&"aerie_seal"]},true)
+	elif room_id == &"EM-06": definition.merge({"scenePath":"res://ben_rpg/world/rooms/empyreal_reliquary_causeway.tscn","worldOrigin":Vector2i(600,0),"enabledPortIds":[&"Nw",&"Ne",&"E1"],"featureIds":[&"gravity_thresholds"]},true)
+	elif room_id == &"EM-07": definition.merge({"scenePath":"res://ben_rpg/world/rooms/empyreal_reliquary_aerie.tscn","worldOrigin":Vector2i(600,0),"enabledPortIds":[&"Nw",&"Ne",&"E1",&"E2",&"Se"],"featureIds":[&"repossession_ambush"]},true)
+	elif room_id == &"EM-08": definition.merge({"scenePath":"res://ben_rpg/world/rooms/empyreal_tribunal_descent.tscn","worldOrigin":Vector2i(600,0),"enabledPortIds":[&"Nw",&"Ne",&"E1"],"featureIds":[&"tribunal_seal"]},true)
+	elif room_id == &"EM-09": definition.merge({"scenePath":"res://ben_rpg/world/rooms/empyreal_seraph_tribunal.tscn","worldOrigin":Vector2i(600,0),"enabledPortIds":[&"Nw",&"Ne"],"featureIds":[&"high_comptroller_boss"]},true)
 	elif room_id == &"PV-01":
 		definition.merge({"scenePath": "res://ben_rpg/world/rooms/primeval_thunderfern_grove.tscn", "worldOrigin": Vector2i(400, 0), "enabledPortIds": [&"Nw", &"Ne", &"E1"], "portGates": {&"E1": &"primeval_terminal_decoded"}, "featureIds": [&"grove_intro_battle", &"looping_clearings", &"canopy_occlusion", &"tyrant_tracks"]}, true)
 	elif room_id == &"PV-02":
