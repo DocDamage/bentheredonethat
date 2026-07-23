@@ -120,6 +120,6 @@ func _streamable_port_ids(room_id: StringName) -> Array[StringName]:
 	var result: Array[StringName] = []
 	for port_id in ROOM_REGISTRY.enabled_port_ids(room_id):
 		var destination_room_id := StringName(ROOM_REGISTRY.port(room_id, port_id).get("destination", &""))
-		if destination_room_id in [&"FI-05", &"FI-06", &"FI-07"] or ROOM_REGISTRY.is_authored_room(destination_room_id):
+		if destination_room_id in [&"FI-05", &"FI-06", &"FI-07", &"FI-08"] or ROOM_REGISTRY.is_authored_room(destination_room_id):
 			result.append(port_id)
 	return result

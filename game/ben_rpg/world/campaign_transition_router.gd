@@ -52,7 +52,7 @@ static func validate() -> PackedStringArray:
 		for binding in ROOM_REGISTRY.ports(room_id):
 			var port_id := StringName(binding.get("id", &""))
 			var destination_room := StringName(binding.get("destination", &""))
-			if destination_room in [&"FI-05", &"FI-06", &"FI-07"]:
+			if destination_room in [&"FI-05", &"FI-06", &"FI-07", &"FI-08"]:
 				continue
 			var mansion_route := resolve(room_id, port_id)
 			if mansion_route.is_empty():
