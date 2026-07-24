@@ -1,0 +1,17 @@
+[gd_scene load_steps=5 format=3]
+[ext_resource type="Script" path="res://ben_rpg/world/campaign_new_philadelphia_district.gd" id="1"]
+[ext_resource type="Script" path="res://ben_rpg/world/campaign_new_philadelphia_district_ground.gd" id="2"]
+[ext_resource type="Script" path="res://ben_rpg/world/campaign_new_philadelphia_district_props.gd" id="3"]
+[ext_resource type="Script" path="res://ben_rpg/world/campaign_address_room_collision.gd" id="4"]
+[node name="NewPhiladelphiaResidentialBakerLane" type="Node2D"]
+script = ExtResource("1")
+room_id = &"NP-13"
+[node name="GroundLayer" type="Node2D" parent="."]
+z_index = -2
+script = ExtResource("2")
+[node name="NavigationAndCollision" type="Node2D" parent="."]
+script = ExtResource("4")
+[node name="YSortedActorsAndProps" type="Node2D" parent="."]
+y_sort_enabled = true
+script = ExtResource("3")
+[node name="InteractionLayer" type="Node2D" parent="."]
