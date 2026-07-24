@@ -25,6 +25,12 @@ RELEASE_SUFFIXES = {".gd", ".tscn", ".json", ".tres", ".res"}
 EXCLUDED_PARTS = {"tests", "validation", "editor"}
 
 
+def is_derivative_provenance_metadata(path: Path, game: Path) -> bool:
+    """Allow source paths only in non-runtime derivative provenance records."""
+    relative = path.relative_to(game)
+    return relative.parts[:3] == ("ben_rpg", "visual_assets", "derived") and relative.name.endswith(".metadata.json")
+
+
 def release_files(root: Path) -> list[Path]:
     game = root / "game"
     return sorted(
@@ -33,6 +39,7 @@ def release_files(root: Path) -> list[Path]:
         if path.is_file()
         and path.suffix.lower() in RELEASE_SUFFIXES
         and not any(part.casefold() in EXCLUDED_PARTS for part in path.relative_to(game).parts)
+        and not is_derivative_provenance_metadata(path, game)
     )
 
 

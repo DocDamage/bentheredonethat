@@ -36,6 +36,22 @@ class ReleaseSourceReferenceTests(unittest.TestCase):
             path.write_text('const ACTOR = "../assets/characters/Recruitable Characters/Abe_Lincoln/rotations/south.png"\n', encoding="utf-8")
             self.assertEqual(len(validator.violations(root)), 1)
 
+    def test_derived_metadata_can_record_its_source_provenance(self) -> None:
+        with tempfile.TemporaryDirectory() as temporary:
+            root = Path(temporary)
+            path = root / "game/ben_rpg/visual_assets/derived/ashfall_prop.metadata.json"
+            path.parent.mkdir(parents=True)
+            path.write_text('{"source": {"path": "assets/Tilesets/Ashlands Tileset/1x/source.png"}}\n', encoding="utf-8")
+            self.assertEqual(validator.violations(root), [])
+
+    def test_other_visual_json_cannot_point_to_staging(self) -> None:
+        with tempfile.TemporaryDirectory() as temporary:
+            root = Path(temporary)
+            path = root / "game/ben_rpg/visual_assets/visual_profiles.json"
+            path.parent.mkdir(parents=True)
+            path.write_text('{"runtimeTexture": "assets/Tilesets/Ashlands Tileset/1x/source.png"}\n', encoding="utf-8")
+            self.assertEqual(len(validator.violations(root)), 1)
+
 
 if __name__ == "__main__":
     unittest.main()

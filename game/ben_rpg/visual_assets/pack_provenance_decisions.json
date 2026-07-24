@@ -3,6 +3,45 @@
   "purpose": "pack-level migration provenance decisions; owner-confirmed distribution approval is recorded against exact terms and credit evidence",
   "decisions": [
     {
+      "id": "ashfall-ashlands-cinder-gate-v1",
+      "world": "Ashfall",
+      "canonicalPack": "Ashlands Tileset",
+      "runtimePack": "ashfall_cinder_gate_dead_tree",
+      "inventoryPackId": "Tilesets:Ashlands Tileset",
+      "sheetState": "DERIVATIVE_SOURCE",
+      "roomIds": [
+        "AF-01"
+      ],
+      "derivativeIds": [
+        "ashfall_cinder_gate_dead_tree"
+      ],
+      "sourceChecksums": [
+        "6d142ca29c9d0e659118db514c7c3a107e581b5efeb11a09b647c5885b953938"
+      ],
+      "termsEvidence": [
+        {
+          "inventory": "game/validation/generated/source_library_inventory.json",
+          "library": "Tilesets",
+          "path": "license.txt",
+          "sha256": "da5ca129716c7ee53d88425bc6e0ac4b616bd2ddda72c4a136c66ad66c11b156",
+          "scope": "The recorded Tilesets-root CC0 record is bound to the named Ashlands Tileset Cinder Gate derivative only; it is not treated as evidence for adjacent source roots."
+        }
+      ],
+      "creditEvidence": [
+        {
+          "inventory": "game/validation/generated/source_library_inventory.json",
+          "library": "Tilesets",
+          "path": "license.txt",
+          "sha256": "da5ca129716c7ee53d88425bc6e0ac4b616bd2ddda72c4a136c66ad66c11b156",
+          "requirement": "The recorded license states attribution is optional; retain this decision record even when no credit line is required."
+        }
+      ],
+      "decision": "distribution_confirmed",
+      "approvedBy": "product owner",
+      "approvalDate": "2026-07-23",
+      "rationale": "The owner confirmed that the supplied current licences cover distribution rights for this named source pack and its single Cinder Gate derivative."
+    },
+    {
       "id": "mansion-haunted-mansion-v1",
       "world": "Mansion",
       "canonicalPack": "Haunted Mansion",
