@@ -1,6 +1,7 @@
 extends Node
 
 const PROFILE_REGISTRY := preload("res://ben_rpg/world/campaign_visual_profile_registry.gd")
+const BATTLE_SCENE := preload("res://ben_rpg/combat/campaign_battle.tscn")
 const CASES := [
 	[&"mansion_foyer_intro", &"mansion_foyer_battle_backdrop"],
 	[&"mansion_gallery_ambush", &"mansion_gallery_battle_backdrop"],
@@ -35,18 +36,16 @@ func _ready() -> void:
 
 func _run() -> void:
 	CampaignState.reset_new_game()
-	CampaignState.hire_recruit(&"fighter")
+	CampaignState.recruit_status[&"fighter"] = &"reserve"
 	CampaignState.add_to_party(&"fighter")
-	var main: Node = (load("res://src/main.tscn") as PackedScene).instantiate()
-	main.get_node("Field").opening_cutscene = null
-	get_tree().root.add_child(main)
+	var battle := BATTLE_SCENE.instantiate() as CampaignBattle
+	battle.suppress_persistence = true
+	add_child(battle)
 	await _settle()
-	var battle := main.get_node_or_null("CampaignBattle") as CampaignBattle
 	var registry = PROFILE_REGISTRY.new()
 	if not battle:
 		_fail("The campaign battle controller was not available")
 		return
-	battle.suppress_persistence = true
 	var encounter_ids := CampaignCombatDatabase.encounter_ids()
 	for encounter_id in encounter_ids:
 		var encounter := CampaignCombatDatabase.encounter(encounter_id)
@@ -78,7 +77,7 @@ func _run() -> void:
 		battle._leave_battle(false)
 		await _settle(2)
 	print("BATTLE_BACKDROP_PROFILE_SMOKE_OK catalog=%d live_samples=%d manifest_texture+region=true" % [encounter_ids.size(), CASES.size()])
-	main.queue_free()
+	battle.queue_free()
 	await get_tree().process_frame
 	get_tree().quit(0)
 

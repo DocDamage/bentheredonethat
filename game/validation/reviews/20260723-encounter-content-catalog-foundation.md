@@ -15,12 +15,10 @@
 
 ## Verification
 
-- `encounter_catalog_smoke`, `content_validator_smoke`, and
-  `campaign_battle_ui_smoke` completed successfully in the isolated run at
-  `test-artifacts/20260723-232925-2bb723a8`.
-- `battle_backdrop_profile_smoke` was launched in that same run but remained
-  active beyond the runner window without emitting a pass or failure line. Its
-  retained log is diagnostic evidence only and does not count as a pass.
+- The complete catalog, content-validator, battle-UI, and backdrop suite
+  passed together at `test-artifacts/20260723-233417-f68a80d9`: 53 contracts
+  and 24 live backdrop samples. The backdrop fixture instantiates only the
+  battle scene, avoiding unrelated main-scene startup.
 
 ## Remaining work
 
