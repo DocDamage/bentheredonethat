@@ -32,6 +32,11 @@
   an AF-05-canonical visitor at `P3` only after the bunker defense clears.
   Their runtime profiles and actor scenes remain unadmitted, so this is roster
   ownership rather than a claim that residents are visible in the scene.
+- Added supplied Wasteland-survivor-kit derivatives for the exact `Icenter`
+  air-quality beacon and `Tnw` air-filter cache. Their record-owned props and
+  inert scene markers use the locked `(13,9)` and `(4,4)` cells respectively;
+  they deliberately do not yet execute gameplay or grant loot outside the
+  unavailable address runtime.
 - Added a profile-backed fallback for deterministic derived PNGs that have not
   received Godot import sidecars in an isolated project.
 - Produced a guarded windowed first-visit capture at
@@ -60,14 +65,19 @@
   population scheduler, and aggregate content validator passed together at
   `test-artifacts/20260724-002633-c3326e6d`. This proves roster ownership and
   deliberate runtime gating; it does not admit field actors.
+- The complete AF-01 feature visual milestone passed at
+  `test-artifacts/20260724-003920-17207ad2`: record, scene, population, and
+  aggregate-content checks passed alongside a guarded windowed capture. The
+  refreshed capture is a prototype visual check, not final acceptance.
 
 ## Still gated
 
 - AF-01 is not registered in the campaign graph or address gateway.
 - The arrival raid remains a non-runtime contract pending its actor, backdrop,
   balance, and runtime encounter integration; the survivor watch also awaits
-  field-profile/actor admission. No stabilized encounter/population capture
-  exists yet.
+  field-profile/actor admission. The beacon and cache markers are scene-owned
+  but intentionally inert until the address runtime exists. No stabilized
+  encounter/population capture exists yet.
 - Input/controller traversal, save/reload, final art composition, and reviewer
   acceptance remain required. The scene-owned perimeter collision foundation
   and landmark footprint are present, but they have not yet been exercised by

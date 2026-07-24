@@ -1978,6 +1978,28 @@
       "releaseVisualAcceptance": "prototype_only",
       "cropApproval": "approved",
       "goldenCapture": "game/validation/af01-cinder-gate-scene-first-visit.png"
+    },
+    {
+      "id": "ashfall_cinder_gate_air_beacon",
+      "kind": "prop",
+      "source": {"pack": "Wasteland survivor kit", "runtimeTexture": "game/ben_rpg/visual_assets/derived/ashfall_cinder_gate_air_beacon.png", "sourceChecksum": "4d5afe4e4a9ef9cb9566d7ff44e43d10f07c1c53263647cf90c66d55df8a32ec", "sourceDensity": 48, "region": [0, 0, 112, 144], "alphaBounds": [0, 0, 112, 144]},
+      "placement": {"footAnchor": [56, 142], "scaleClass": "prop", "collisionFootprint": "air_quality_beacon"},
+      "worldDrawSize": [56, 72],
+      "licenseReference": "game/ben_rpg/visual_assets/generated/runtime_asset_provenance.json",
+      "releaseVisualAcceptance": "prototype_only",
+      "cropApproval": "approved",
+      "goldenCapture": "game/validation/af01-cinder-gate-scene-first-visit.png"
+    },
+    {
+      "id": "ashfall_cinder_gate_filter_cache",
+      "kind": "prop",
+      "source": {"pack": "Wasteland survivor kit", "runtimeTexture": "game/ben_rpg/visual_assets/derived/ashfall_cinder_gate_filter_cache.png", "sourceChecksum": "e2317e0cabe28e6aff4781ec1b25f2967267b855692d117531c26d9fc6adcf68", "sourceDensity": 48, "region": [0, 0, 160, 144], "alphaBounds": [0, 0, 160, 144]},
+      "placement": {"footAnchor": [80, 142], "scaleClass": "prop", "collisionFootprint": "filter_cache"},
+      "worldDrawSize": [80, 72],
+      "licenseReference": "game/ben_rpg/visual_assets/generated/runtime_asset_provenance.json",
+      "releaseVisualAcceptance": "prototype_only",
+      "cropApproval": "approved",
+      "goldenCapture": "game/validation/af01-cinder-gate-scene-first-visit.png"
     }
   ]
 }

@@ -13,12 +13,16 @@
         "AF-01"
       ],
       "derivativeIds": [
+        "ashfall_cinder_gate_air_beacon",
         "ashfall_cinder_gate_barricade",
         "ashfall_cinder_gate_dead_tree",
+        "ashfall_cinder_gate_filter_cache",
         "ashfall_cinder_gate_ground"
       ],
       "sourceChecksums": [
+        "3760542af6506073bd3dc927126f545ec1db44f27e26e3e3ef3beefe0fb7b6f4",
         "6d142ca29c9d0e659118db514c7c3a107e581b5efeb11a09b647c5885b953938",
+        "f836b9638187790f1eec033e20d025bacf9bed56e35ffbb8a1cc5fd36f5a182b",
         "f45630241d7f010e823778a3d9af813969ee13345a330414abab7e6a93be5c04"
       ],
       "termsEvidence": [
@@ -27,7 +31,7 @@
           "library": "Tilesets",
           "path": "license.txt",
           "sha256": "da5ca129716c7ee53d88425bc6e0ac4b616bd2ddda72c4a136c66ad66c11b156",
-          "scope": "The recorded Tilesets-root CC0 record is bound to the named Ashlands Tileset AF-01 Cinder Gate derivatives only; it is not treated as evidence for adjacent source roots."
+          "scope": "The owner confirmed that the main supplied Tilesets license covers all supplied assets in this source library, including the Ashlands and Wasteland survivor-kit AF-01 derivatives."
         }
       ],
       "creditEvidence": [
@@ -42,7 +46,7 @@
       "decision": "distribution_confirmed",
       "approvedBy": "product owner",
       "approvalDate": "2026-07-23",
-      "rationale": "The owner confirmed that the supplied current licences cover distribution rights for this named source pack and its three AF-01 Cinder Gate derivatives."
+      "rationale": "The owner confirmed that the main supplied license covers all supplied source assets; this record binds the AF-01 Ashlands and Wasteland survivor-kit derivatives to that approval."
     },
     {
       "id": "mansion-haunted-mansion-v1",

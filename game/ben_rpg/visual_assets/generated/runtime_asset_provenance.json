@@ -194,6 +194,20 @@
       "localLicenseEvidence": [
         "game/LICENSE"
       ],
+      "path": "res://ben_rpg/visual_assets/derived/ashfall_cinder_gate_air_beacon.png",
+      "profileCoverage": "profiled",
+      "profileIds": [
+        "ashfall_cinder_gate_air_beacon"
+      ],
+      "sourceGroup": "ben_rpg/visual_assets",
+      "unprofiledClassification": ""
+    },
+    {
+      "distributionEligibility": "distribution_confirmed",
+      "licenseReviewStatus": "distribution_confirmed",
+      "localLicenseEvidence": [
+        "game/LICENSE"
+      ],
       "path": "res://ben_rpg/visual_assets/derived/ashfall_cinder_gate_barricade.png",
       "profileCoverage": "profiled",
       "profileIds": [
@@ -212,6 +226,20 @@
       "profileCoverage": "profiled",
       "profileIds": [
         "ashfall_cinder_gate_dead_tree"
+      ],
+      "sourceGroup": "ben_rpg/visual_assets",
+      "unprofiledClassification": ""
+    },
+    {
+      "distributionEligibility": "distribution_confirmed",
+      "licenseReviewStatus": "distribution_confirmed",
+      "localLicenseEvidence": [
+        "game/LICENSE"
+      ],
+      "path": "res://ben_rpg/visual_assets/derived/ashfall_cinder_gate_filter_cache.png",
+      "profileCoverage": "profiled",
+      "profileIds": [
+        "ashfall_cinder_gate_filter_cache"
       ],
       "sourceGroup": "ben_rpg/visual_assets",
       "unprofiledClassification": ""
@@ -2985,20 +3013,24 @@
       ],
       "decision": "distribution_confirmed",
       "derivativeIds": [
+        "ashfall_cinder_gate_air_beacon",
         "ashfall_cinder_gate_barricade",
         "ashfall_cinder_gate_dead_tree",
+        "ashfall_cinder_gate_filter_cache",
         "ashfall_cinder_gate_ground"
       ],
       "id": "ashfall-ashlands-cinder-gate-v1",
       "inventoryPackId": "Tilesets:Ashlands Tileset",
-      "rationale": "The owner confirmed that the supplied current licences cover distribution rights for this named source pack and its three AF-01 Cinder Gate derivatives.",
+      "rationale": "The owner confirmed that the main supplied license covers all supplied source assets; this record binds the AF-01 Ashlands and Wasteland survivor-kit derivatives to that approval.",
       "roomIds": [
         "AF-01"
       ],
       "runtimePack": "ashfall_cinder_gate_scene_derivatives",
       "sheetState": "DERIVATIVE_SOURCE",
       "sourceChecksums": [
+        "3760542af6506073bd3dc927126f545ec1db44f27e26e3e3ef3beefe0fb7b6f4",
         "6d142ca29c9d0e659118db514c7c3a107e581b5efeb11a09b647c5885b953938",
+        "f836b9638187790f1eec033e20d025bacf9bed56e35ffbb8a1cc5fd36f5a182b",
         "f45630241d7f010e823778a3d9af813969ee13345a330414abab7e6a93be5c04"
       ],
       "termsEvidence": [
@@ -3006,7 +3038,7 @@
           "inventory": "game/validation/generated/source_library_inventory.json",
           "library": "Tilesets",
           "path": "license.txt",
-          "scope": "The recorded Tilesets-root CC0 record is bound to the named Ashlands Tileset AF-01 Cinder Gate derivatives only; it is not treated as evidence for adjacent source roots.",
+          "scope": "The owner confirmed that the main supplied Tilesets license covers all supplied assets in this source library, including the Ashlands and Wasteland survivor-kit AF-01 derivatives.",
           "sha256": "da5ca129716c7ee53d88425bc6e0ac4b616bd2ddda72c4a136c66ad66c11b156"
         }
       ],
@@ -3111,20 +3143,20 @@
   "schemaVersion": 2,
   "scope": "static Godot raster references; not a reachability or license-grant proof",
   "summary": {
-    "assets": 189,
+    "assets": 191,
     "distributionEligibility": {
-      "distribution_confirmed": 189,
+      "distribution_confirmed": 191,
       "rejected": 0,
       "review_required": 0
     },
     "needsManualLicenseConfirmation": 0,
     "profileCoverage": {
       "external_dependency": 11,
-      "profiled": 178
+      "profiled": 180
     },
     "unprofiledByClassification": {
       "third_party_addon_ui": 11
     },
-    "withLocalLicenseEvidence": 189
+    "withLocalLicenseEvidence": 191
   }
 }

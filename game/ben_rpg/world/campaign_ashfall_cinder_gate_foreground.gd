@@ -22,7 +22,3 @@ func _draw() -> void:
 	for cell in _layout.get("foregroundCells", []):
 		var position: Vector2i = cell
 		draw_circle(Vector2(position * 48) + Vector2(24, 24), 18.0, Color(0.12, 0.09, 0.1, 0.58))
-	var beacon_cell: Vector2i = _layout.get("interactionCell", Vector2i.ZERO)
-	var beacon_center := Vector2(beacon_cell * 48) + Vector2(24, 24)
-	draw_circle(beacon_center, 13.0, Color("e7b158"))
-	draw_circle(beacon_center, 6.0, Color("fff1bf"))

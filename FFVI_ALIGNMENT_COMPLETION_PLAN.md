@@ -3132,12 +3132,14 @@ limit:
   scenes production content or satisfy their required address placement.
 - The exact 64-room required-address catalog and the Ashfall 12-room contract
   now exist outside the 102-room core subtotal. `AF-01` has a validated room
-  record, deterministic ground/dead-tree/barricade derivatives, a
+  record, deterministic ground/dead-tree/barricade/beacon/filter-cache derivatives, a
   source/provenance decision, authored scene layers, a first-visit prototype
   capture, and 102 native record-owned collision shapes (including the
   central 6×3 Cinder Gate barricade footprint). Its three locked ports now
   derive exact two-cell-inward safe arrivals and follower formations from the
-  L2 blueprint. Its runtime-gated survivor-watch contract binds Scrap Kid and
+  L2 blueprint. The center air-quality beacon and northwest filters now have
+  explicit scene-owned feature markers and supplied Wasteland-survivor art.
+  Its runtime-gated survivor-watch contract binds Scrap Kid and
   Dust Hunter to `P1`/`P2`, with Iron Sentinel retained as a later AF-05
   visitor at `P3`. It is deliberately not registered in the live streamer or
   core room registry: gateway, population field-profile/actor admission,

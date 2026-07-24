@@ -39,11 +39,30 @@ func configure(record_definition: Dictionary) -> void:
 	var foreground_layer := get_node_or_null("ForegroundLayer")
 	if foreground_layer and foreground_layer.has_method(&"configure"):
 		foreground_layer.call(&"configure", layout, navigation)
+	_install_feature_markers(layout)
 	queue_redraw()
 
 
 func room_record() -> Dictionary:
 	return _record.duplicate(true)
+
+
+func _install_feature_markers(layout: Dictionary) -> void:
+	var interaction_layer := get_node_or_null("InteractionLayer") as Node2D
+	if not interaction_layer:
+		return
+	for child in interaction_layer.get_children():
+		if String(child.name).begins_with("AddressFeature_"):
+			child.queue_free()
+	for feature in layout.get("featureContracts", []):
+		var marker := Node2D.new()
+		var feature_id := StringName(feature.get("id", &""))
+		marker.name = "AddressFeature_%s" % feature_id
+		marker.position = Vector2(feature.get("cell", Vector2i.ZERO) as Vector2i) * 48.0
+		marker.set_meta(&"feature_id", feature_id)
+		marker.set_meta(&"anchor", feature.get("anchor", &""))
+		marker.set_meta(&"runtime_gated", true)
+		interaction_layer.add_child(marker)
 
 
 func _draw() -> void:

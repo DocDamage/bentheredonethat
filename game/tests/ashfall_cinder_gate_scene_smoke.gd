@@ -20,6 +20,8 @@ func _ready() -> void:
 	var profiles := VISUAL_PROFILES.new()
 	assert(profiles.has(&"ashfall_cinder_gate_barricade"))
 	assert(profiles.texture(&"ashfall_cinder_gate_barricade") is Texture2D)
+	assert(profiles.has(&"ashfall_cinder_gate_air_beacon") and profiles.texture(&"ashfall_cinder_gate_air_beacon") is Texture2D)
+	assert(profiles.has(&"ashfall_cinder_gate_filter_cache") and profiles.texture(&"ashfall_cinder_gate_filter_cache") is Texture2D)
 	var navigation := room.get_node("NavigationAndCollision") as Node2D
 	assert(navigation.get_meta(&"navigation_id", &"") == &"af01-cinder-gate-navigation-v1")
 	assert(navigation.get_meta(&"collision_mask_id", &"") == &"af01-cinder-gate-boundary-collision-v1")
@@ -29,6 +31,10 @@ func _ready() -> void:
 	assert(bool(navigation.call(&"blocks_cell", Vector2i(0, 0))))
 	assert(bool(navigation.call(&"blocks_cell", Vector2i(10, 2))))
 	assert(not bool(navigation.call(&"blocks_cell", Vector2i(13, 9))))
+	var features := room.get_node("InteractionLayer").get_children().filter(func(child): return String(child.name).begins_with("AddressFeature_"))
+	assert(features.size() == 2)
+	assert(room.get_node("InteractionLayer/AddressFeature_air_quality_beacon").get_meta(&"anchor", &"") == &"Icenter")
+	assert(room.get_node("InteractionLayer/AddressFeature_air_filter_cache").get_meta(&"anchor", &"") == &"Tnw")
 	for body in navigation.get_children():
 		assert(body is StaticBody2D and body.get_child_count() == 1 and body.get_child(0) is CollisionShape2D)
 	print("ASHFALL_CINDER_GATE_SCENE_SMOKE_OK room=AF-01 collision_cells=102 landmark_barricade=true runtime_gated=true")

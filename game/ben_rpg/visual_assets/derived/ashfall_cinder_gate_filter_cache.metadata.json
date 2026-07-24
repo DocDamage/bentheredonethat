@@ -1,0 +1,30 @@
+{
+  "asset": "game/ben_rpg/visual_assets/derived/ashfall_cinder_gate_filter_cache.png",
+  "bindings": {
+    "profileIds": [],
+    "roomIds": [
+      "AF-01"
+    ],
+    "runtimeStatus": "prototype_scene_admission"
+  },
+  "derivedChecksum": "e2317e0cabe28e6aff4781ec1b25f2967267b855692d117531c26d9fc6adcf68",
+  "dimensions": [
+    160,
+    144
+  ],
+  "schemaVersion": 1,
+  "source": {
+    "checksum": "3760542af6506073bd3dc927126f545ec1db44f27e26e3e3ef3beefe0fb7b6f4",
+    "path": "assets/Tilesets/Wasteland survivor kit/16. Loot and survival props.png",
+    "region": [
+      1210,
+      180,
+      160,
+      144
+    ]
+  },
+  "transform": {
+    "description": "Exact medical-survival cache crop for AF-01's one-time filter reward; no colour, alpha, or scale changes.",
+    "id": "ashfall_cinder_gate_filter_cache_crop_v1"
+  }
+}

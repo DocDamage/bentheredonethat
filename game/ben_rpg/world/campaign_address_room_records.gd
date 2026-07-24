@@ -31,9 +31,15 @@ static var RECORDS := {
 				{"profileId": &"ashfall_cinder_gate_dead_tree", "drawPosition": Vector2i(0, 58), "collisionFootprint": &"boundary_only"},
 				{"profileId": &"ashfall_cinder_gate_dead_tree", "drawPosition": Vector2i(1056, 58), "collisionFootprint": &"boundary_only"},
 				{"profileId": &"ashfall_cinder_gate_barricade", "drawPosition": Vector2i(480, 72), "collisionFootprint": &"cinder_gate_barricade_6x3"},
+				{"profileId": &"ashfall_cinder_gate_air_beacon", "drawPosition": Vector2i(620, 409), "collisionFootprint": &"air_quality_beacon"},
+				{"profileId": &"ashfall_cinder_gate_filter_cache", "drawPosition": Vector2i(176, 169), "collisionFootprint": &"filter_cache"},
 			],
 			"interactionCell": Vector2i(13, 9),
 			"treasureCell": Vector2i(4, 4),
+			"featureContracts": [
+				{"id": &"air_quality_beacon", "anchor": &"Icenter", "cell": Vector2i(13, 9), "runtimeState": &"scene_marker_runtime_gated"},
+				{"id": &"air_filter_cache", "anchor": &"Tnw", "cell": Vector2i(4, 4), "runtimeState": &"scene_marker_runtime_gated"},
+			],
 			"populationAnchors": {&"P1": Vector2i(6, 6), &"P2": Vector2i(13, 6), &"P3": Vector2i(20, 6)},
 			"foregroundCells": [Vector2i(5, 3), Vector2i(21, 3)],
 			"captureState": &"first_visit_captured_stabilized_blocked",
@@ -138,12 +144,14 @@ static func validate() -> PackedStringArray:
 		for terrain_run in layout.get("terrainRuns", []):
 			if StringName(terrain_run.get("profileId", &"")) != &"ashfall_cinder_gate_ground" or terrain_run.get("origin", Vector2i.ZERO) != Vector2i.ZERO or terrain_run.get("size", Vector2i.ZERO) != dimensions:
 				errors.append("%s terrain record must cover the locked blueprint with the admitted ground profile." % room_id)
-		if (layout.get("terrainRuns", []) as Array).size() != 1 or (layout.get("propPlacements", []) as Array).size() != 3:
-			errors.append("%s must record its exact terrain run, two boundary trees, and Cinder Gate barricade." % room_id)
+		if (layout.get("terrainRuns", []) as Array).size() != 1 or (layout.get("propPlacements", []) as Array).size() != 5:
+			errors.append("%s must record its terrain, boundary trees, Cinder Gate barricade, beacon, and filter cache." % room_id)
 		if StringName(layout.get("captureState", &"")) != &"first_visit_captured_stabilized_blocked" or not FileAccess.file_exists(String(layout.get("firstVisitCapture", ""))) or String(layout.get("stabilizedCaptureBlocker", "")).is_empty():
 			errors.append("%s must retain its first-visit capture and explicit stabilized-state blocker." % room_id)
 		var dead_tree_count := 0
 		var barricade_count := 0
+		var beacon_count := 0
+		var filter_cache_count := 0
 		for placement in layout.get("propPlacements", []):
 			var profile_id := StringName(placement.get("profileId", &""))
 			var collision_footprint := StringName(placement.get("collisionFootprint", &""))
@@ -151,10 +159,14 @@ static func validate() -> PackedStringArray:
 				dead_tree_count += 1
 			elif profile_id == &"ashfall_cinder_gate_barricade" and collision_footprint == &"cinder_gate_barricade_6x3":
 				barricade_count += 1
+			elif profile_id == &"ashfall_cinder_gate_air_beacon" and collision_footprint == &"air_quality_beacon":
+				beacon_count += 1
+			elif profile_id == &"ashfall_cinder_gate_filter_cache" and collision_footprint == &"filter_cache":
+				filter_cache_count += 1
 			else:
 				errors.append("%s contains an unadmitted prop or collision footprint." % room_id)
-		if dead_tree_count != 2 or barricade_count != 1:
-			errors.append("%s must bind two boundary trees and one admitted Cinder Gate barricade." % room_id)
+		if dead_tree_count != 2 or barricade_count != 1 or beacon_count != 1 or filter_cache_count != 1:
+			errors.append("%s must bind two boundary trees, a barricade, beacon, and filter cache." % room_id)
 		var blueprint_port_cells: Dictionary = blueprint_layout.get("ports", {})
 		for raw_port_id in (catalog_room.get("ports", {}) as Dictionary).keys():
 			var port_id := StringName(raw_port_id)
@@ -178,6 +190,16 @@ static func validate() -> PackedStringArray:
 				errors.append("%s population anchor must be walkable." % room_id)
 		if not walkable.has(layout.get("interactionCell", Vector2i.ZERO)) or not walkable.has(layout.get("treasureCell", Vector2i.ZERO)):
 			errors.append("%s interaction and treasure cells must be walkable." % room_id)
+		var features: Array = layout.get("featureContracts", [])
+		if features.size() != 2:
+			errors.append("%s requires its exact beacon and filter-cache feature contracts." % room_id)
+		else:
+			var expected_features := {&"air_quality_beacon": {"anchor": &"Icenter", "cell": layout.get("interactionCell", Vector2i.ZERO)}, &"air_filter_cache": {"anchor": &"Tnw", "cell": layout.get("treasureCell", Vector2i.ZERO)}}
+			for feature in features:
+				var feature_id := StringName(feature.get("id", &""))
+				var expected_feature: Dictionary = expected_features.get(feature_id, {})
+				if expected_feature.is_empty() or StringName(feature.get("anchor", &"")) != StringName(expected_feature.get("anchor", &"")) or feature.get("cell", Vector2i.ZERO) != expected_feature.get("cell", Vector2i.ZERO) or StringName(feature.get("runtimeState", &"")) != &"scene_marker_runtime_gated":
+					errors.append("%s feature contract %s must retain its exact gated anchor and cell." % [room_id, feature_id])
 	return PackedStringArray(errors)
 
 

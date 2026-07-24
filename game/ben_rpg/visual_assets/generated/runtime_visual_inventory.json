@@ -204,6 +204,21 @@
       ]
     },
     {
+      "path": "res://ben_rpg/visual_assets/derived/ashfall_cinder_gate_air_beacon.png",
+      "profileCoverage": "profiled",
+      "profileIds": [
+        "ashfall_cinder_gate_air_beacon"
+      ],
+      "references": [
+        {
+          "file": "game/ben_rpg/visual_assets/visual_profiles.json",
+          "line": 1985,
+          "profileId": "ashfall_cinder_gate_air_beacon",
+          "resolution": "profile_runtime_texture"
+        }
+      ]
+    },
+    {
       "path": "res://ben_rpg/visual_assets/derived/ashfall_cinder_gate_barricade.png",
       "profileCoverage": "profiled",
       "profileIds": [
@@ -229,6 +244,21 @@
           "file": "game/ben_rpg/visual_assets/visual_profiles.json",
           "line": 1952,
           "profileId": "ashfall_cinder_gate_dead_tree",
+          "resolution": "profile_runtime_texture"
+        }
+      ]
+    },
+    {
+      "path": "res://ben_rpg/visual_assets/derived/ashfall_cinder_gate_filter_cache.png",
+      "profileCoverage": "profiled",
+      "profileIds": [
+        "ashfall_cinder_gate_filter_cache"
+      ],
+      "references": [
+        {
+          "file": "game/ben_rpg/visual_assets/visual_profiles.json",
+          "line": 1996,
+          "profileId": "ashfall_cinder_gate_filter_cache",
           "resolution": "profile_runtime_texture"
         }
       ]
@@ -4909,11 +4939,11 @@
   "schemaVersion": 2,
   "scope": "static Godot .gd/.tscn raster literals and approved profile runtime textures (tests, validation, and editor-only paths excluded)",
   "stats": {
-    "assets": 189,
-    "profileRequiredAssetSources": 178,
-    "profileRequiredProfiledAssetSources": 178,
+    "assets": 191,
+    "profileRequiredAssetSources": 180,
+    "profileRequiredProfiledAssetSources": 180,
     "profileRequiredUnprofiledAssetSources": 0,
-    "profiledAssetSources": 178,
+    "profiledAssetSources": 180,
     "thirdPartyDependencyVisualSources": 11,
     "unprofiledAssetSources": 11,
     "unprofiledByClassification": {
