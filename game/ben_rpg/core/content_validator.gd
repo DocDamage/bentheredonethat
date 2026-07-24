@@ -22,6 +22,7 @@ const CAMPAIGN_ENCOUNTER_RUNTIME := preload("res://ben_rpg/world/campaign_encoun
 const CAMPAIGN_FIELD_SCALE := preload("res://ben_rpg/world/campaign_field_scale.gd")
 const REQUIRED_ADDRESS_CATALOG := preload("res://ben_rpg/world/campaign_required_address_catalog.gd")
 const ADDRESS_ENCOUNTER_CATALOG := preload("res://ben_rpg/combat/campaign_address_encounter_catalog.gd")
+const ENCOUNTER_CATALOG := preload("res://ben_rpg/combat/campaign_encounter_catalog.gd")
 const ADDRESS_ROOM_RECORDS := preload("res://ben_rpg/world/campaign_address_room_records.gd")
 const CAMPAIGN_VISUAL_PROFILE_REGISTRY := preload("res://ben_rpg/world/campaign_visual_profile_registry.gd")
 
@@ -138,13 +139,16 @@ static func _validate_bestiary(errors: Array[String]) -> void:
 
 
 static func _validate_encounters(errors: Array[String]) -> void:
+	errors.append_array(ENCOUNTER_CATALOG.validate())
 	var seen := {}
-	for encounter_id in CampaignCombatDatabase.encounter_ids():
+	for encounter_id in ENCOUNTER_CATALOG.ids():
 		if seen.has(encounter_id):
 			errors.append("Encounter catalog contains duplicate '%s'." % encounter_id)
 			continue
 		seen[encounter_id] = true
-		var encounter := CampaignCombatDatabase.encounter(encounter_id)
+		var encounter := ENCOUNTER_CATALOG.definition(encounter_id)
+		if CampaignCombatDatabase.encounter(encounter_id) != encounter:
+			errors.append("Combat database facade diverges from encounter content %s." % encounter_id)
 		if String(encounter.get("name", "")).is_empty():
 			errors.append("Encounter '%s' is missing a name." % encounter_id)
 		if encounter.get("enemies", []).is_empty():

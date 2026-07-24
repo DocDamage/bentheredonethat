@@ -6,6 +6,7 @@ const SCI_FI_PACK := "res://game_assets/monsters/cp42-g31_sci_fi_entities/"
 const VILLAIN_PACK := "res://game_assets/monsters/cp44-j31_villains/"
 const YOKAI_PACK := "res://game_assets/monsters/cp41-a181_japanese_yokai_urban_legends/"
 const VISUAL_PROFILE_REGISTRY := preload("res://ben_rpg/world/campaign_visual_profile_registry.gd")
+const ENCOUNTER_CONTENT := preload("res://ben_rpg/combat/campaign_encounter_catalog.gd")
 const FALLBACK_PARTY_PROFILE := &"ben_battle_actor"
 const RAPTOR_BATTLE_PROFILE := &"velociraptor_battle_actor"
 const AUTHORED_BATTLE_ANIMATION_SOURCES := {
@@ -474,7 +475,7 @@ static func _attach_authored_battle_animation(actor: Dictionary, character_id: S
 		actor["battle_animations"] = _battle_animation_data(source)
 
 
-static func _encounter_catalog() -> Dictionary:
+static func _retired_encounter_catalog_snapshot() -> Dictionary:
 	var encounters := {
 		&"mansion_foyer_intro": {"name": "A Bad First Impression", "enemies": [&"schoolgirl_ghost", &"war_book"], "backdrop_profile": &"mansion_foyer_battle_backdrop", "scripted": true},
 		&"mansion_restless_books": {"name": "Restless Stacks", "enemies": [&"war_book", &"war_book"], "backdrop_profile": &"mansion_foyer_battle_backdrop"},
@@ -543,20 +544,21 @@ static func _encounter_catalog() -> Dictionary:
 	return encounters
 
 
+static func _encounter_catalog() -> Dictionary:
+	return ENCOUNTER_CONTENT.contracts()
+
+
 static func encounter_ids() -> Array[StringName]:
-	var ids: Array[StringName] = []
-	for encounter_id in _encounter_catalog().keys():
-		ids.append(StringName(encounter_id))
-	return ids
+	return ENCOUNTER_CONTENT.ids()
 
 
 static func has_encounter(encounter_id: StringName) -> bool:
-	return _encounter_catalog().has(encounter_id)
+	return ENCOUNTER_CONTENT.has(encounter_id)
 
 
 static func encounter(encounter_id: StringName) -> Dictionary:
-	var catalog := _encounter_catalog()
-	return catalog.get(encounter_id, catalog[&"mansion_restless_books"]).duplicate(true)
+	var definition := ENCOUNTER_CONTENT.definition(encounter_id)
+	return definition if not definition.is_empty() else ENCOUNTER_CONTENT.definition(&"mansion_restless_books")
 
 
 static func roll_loot(encounter_id: StringName, rng: RandomNumberGenerator) -> Array[Dictionary]:
