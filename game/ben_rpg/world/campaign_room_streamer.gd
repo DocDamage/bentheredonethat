@@ -52,6 +52,23 @@ func activate_room(room_id: StringName) -> void:
 		return
 	if root.has_method(&"configure"):
 		root.call(&"configure", room_id, definition)
+		_activate_root(room_id, &"", root)
+
+
+func activate_annex_room(room_id: StringName, definition: Dictionary) -> void:
+	if not bool(definition.get("runtimeEnabled", false)):
+		return
+	if room_id == _active_room_id and _active_legacy_area == &"":
+		return
+	var scene := load(String(definition.get("scenePath", ""))) as PackedScene
+	if not scene:
+		return
+	var root := scene.instantiate() as Node2D
+	if not root:
+		return
+	deactivate()
+	if root.has_method(&"configure"):
+		root.call(&"configure", definition.get("record", {}))
 	_activate_root(room_id, &"", root)
 
 

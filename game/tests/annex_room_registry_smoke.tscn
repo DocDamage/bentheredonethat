@@ -1,0 +1,4 @@
+[gd_scene load_steps=2 format=3]
+[ext_resource type="Script" path="res://tests/annex_room_registry_smoke.gd" id="1"]
+[node name="AnnexRoomRegistrySmoke" type="Node"]
+script = ExtResource("1")

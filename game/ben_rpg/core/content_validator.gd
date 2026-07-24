@@ -22,6 +22,7 @@ const CAMPAIGN_ENCOUNTER_RUNTIME := preload("res://ben_rpg/world/campaign_encoun
 const CAMPAIGN_FIELD_SCALE := preload("res://ben_rpg/world/campaign_field_scale.gd")
 const NEW_PHILADELPHIA_CATALOG := preload("res://ben_rpg/world/campaign_new_philadelphia_catalog.gd")
 const NEW_PHILADELPHIA_ROOM_RECORDS := preload("res://ben_rpg/world/campaign_new_philadelphia_room_records.gd")
+const ANNEX_ROOM_REGISTRY := preload("res://ben_rpg/world/campaign_annex_room_registry.gd")
 const REQUIRED_ADDRESS_CATALOG := preload("res://ben_rpg/world/campaign_required_address_catalog.gd")
 const ADDRESS_ENCOUNTER_CATALOG := preload("res://ben_rpg/combat/campaign_address_encounter_catalog.gd")
 const ENCOUNTER_CATALOG := preload("res://ben_rpg/combat/campaign_encounter_catalog.gd")
@@ -78,6 +79,8 @@ static func _validate_room_registry(errors: Array[String]) -> void:
 	for error in NEW_PHILADELPHIA_CATALOG.validate():
 		errors.append(error)
 	for error in NEW_PHILADELPHIA_ROOM_RECORDS.validate():
+		errors.append(error)
+	for error in ANNEX_ROOM_REGISTRY.validate():
 		errors.append(error)
 	for error in REQUIRED_ADDRESS_CATALOG.validate():
 		errors.append(error)

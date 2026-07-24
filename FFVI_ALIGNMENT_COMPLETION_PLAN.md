@@ -3167,6 +3167,13 @@ limit:
   the Charter-table marker, cultural pavilion art, population schedules,
   interaction, streaming, and `AF-01` / `WF-01` portals remain explicitly
   runtime-gated rather than being represented by a substitute shortcut.
+- A separate annex-room registry/runtime now owns the staged `NP-15↔AF-01`
+  reciprocal route without adding either room to the locked 102-room core
+  registry. Its focused evidence at `test-artifacts/20260724-021141-bf9aaeb2`
+  proves that review-gated rooms reject activation and that an explicitly
+  admitted fixture loads the NP-15 scene and its annex navigation cells. The
+  production route remains disabled pending the recorded visual/population
+  admissions; this is infrastructure evidence, not a claim of live traversal.
 - Battle lifecycle effects are separated from battle presentation, and the 53
   existing core encounter definitions now live in `CampaignEncounterCatalog`
   behind the preserved combat-database facade. The focused catalog/content/
