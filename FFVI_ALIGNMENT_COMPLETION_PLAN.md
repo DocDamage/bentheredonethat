@@ -3141,8 +3141,10 @@ limit:
   explicit scene-owned feature markers and supplied Wasteland-survivor art.
   Its runtime-gated survivor-watch contract binds Scrap Kid and
   Dust Hunter to `P1`/`P2`, with Iron Sentinel retained as a later AF-05
-  visitor at `P3`. It is deliberately not registered in the live streamer or
-  core room registry: gateway, population field-profile/actor admission,
+  visitor at `P3`. All three now have exact, checksum-pinned eight-direction
+  field derivatives and profile contracts, explicitly pending visual review.
+  It is deliberately not registered in the live streamer or core room
+  registry: gateway, field-actor scene admission,
   encounter actors/backdrop/balance, streamed-player traversal, stabilized
   state, and acceptance evidence remain outstanding.
 - Battle lifecycle effects are separated from battle presentation, and the 53

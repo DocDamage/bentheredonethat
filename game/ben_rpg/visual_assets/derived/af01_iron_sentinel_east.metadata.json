@@ -1,0 +1,31 @@
+{
+  "asset": "game/ben_rpg/visual_assets/derived/af01_iron_sentinel_east.png",
+  "bindings": {
+    "actorId": "af01_iron_sentinel_field_actor",
+    "direction": "east",
+    "roomIds": [
+      "AF-01"
+    ],
+    "runtimeStatus": "field_profile_admission"
+  },
+  "derivedChecksum": "bfee0c96ff1ff94916a9a84d7aadb49b49f1e62f88a278ecb653a3d5b72aeee6",
+  "dimensions": [
+    92,
+    92
+  ],
+  "schemaVersion": 1,
+  "source": {
+    "checksum": "bfee0c96ff1ff94916a9a84d7aadb49b49f1e62f88a278ecb653a3d5b72aeee6",
+    "path": "assets/characters/SakPix - 8-Direction Characters - ALL AS OF 7-3-26/☢️ WASTELAND LEGENDS/9._IRON_SENTINEL/rotations/east.png",
+    "region": [
+      0,
+      0,
+      92,
+      92
+    ]
+  },
+  "transform": {
+    "description": "Exact supplied rotation copy; no crop, colour, alpha, or scale transform.",
+    "id": "exact_source_copy_v1"
+  }
+}

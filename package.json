@@ -12,7 +12,7 @@
     "build:vertical-slice-contact-sheets": "python tools/build_vertical_slice_contact_sheets.py",
     "validate:visual-manifest": "python tools/build_godot_visual_manifest.py --check",
     "validate:town-library-facade": "python tools/build_town_library_facade.py --check",
-    "validate:ashfall-cinder-gate-derivatives": "python tools/build_ashfall_cinder_gate_derivative.py --check && python tools/build_ashfall_cinder_gate_ground_derivative.py --check && python tools/build_ashfall_cinder_gate_barricade_derivative.py --check && python tools/build_ashfall_cinder_gate_feature_derivatives.py --check",
+    "validate:ashfall-cinder-gate-derivatives": "python tools/build_ashfall_cinder_gate_derivative.py --check && python tools/build_ashfall_cinder_gate_ground_derivative.py --check && python tools/build_ashfall_cinder_gate_barricade_derivative.py --check && python tools/build_ashfall_cinder_gate_feature_derivatives.py --check && python tools/build_ashfall_field_actor_derivatives.py --check",
     "validate:visual-inventory": "python tools/build_godot_visual_inventory.py --check",
     "validate:visual-contact-sheet": "python tools/build_visual_profile_contact_sheet.py --check",
     "validate:vertical-slice-contact-sheets": "python tools/build_vertical_slice_contact_sheets.py --check",

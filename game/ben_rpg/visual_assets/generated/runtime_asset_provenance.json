@@ -194,6 +194,342 @@
       "localLicenseEvidence": [
         "game/LICENSE"
       ],
+      "path": "res://ben_rpg/visual_assets/derived/af01_dust_hunter_east.png",
+      "profileCoverage": "profiled",
+      "profileIds": [
+        "af01_dust_hunter_east"
+      ],
+      "sourceGroup": "ben_rpg/visual_assets",
+      "unprofiledClassification": ""
+    },
+    {
+      "distributionEligibility": "distribution_confirmed",
+      "licenseReviewStatus": "distribution_confirmed",
+      "localLicenseEvidence": [
+        "game/LICENSE"
+      ],
+      "path": "res://ben_rpg/visual_assets/derived/af01_dust_hunter_north-east.png",
+      "profileCoverage": "profiled",
+      "profileIds": [
+        "af01_dust_hunter_north-east"
+      ],
+      "sourceGroup": "ben_rpg/visual_assets",
+      "unprofiledClassification": ""
+    },
+    {
+      "distributionEligibility": "distribution_confirmed",
+      "licenseReviewStatus": "distribution_confirmed",
+      "localLicenseEvidence": [
+        "game/LICENSE"
+      ],
+      "path": "res://ben_rpg/visual_assets/derived/af01_dust_hunter_north-west.png",
+      "profileCoverage": "profiled",
+      "profileIds": [
+        "af01_dust_hunter_north-west"
+      ],
+      "sourceGroup": "ben_rpg/visual_assets",
+      "unprofiledClassification": ""
+    },
+    {
+      "distributionEligibility": "distribution_confirmed",
+      "licenseReviewStatus": "distribution_confirmed",
+      "localLicenseEvidence": [
+        "game/LICENSE"
+      ],
+      "path": "res://ben_rpg/visual_assets/derived/af01_dust_hunter_north.png",
+      "profileCoverage": "profiled",
+      "profileIds": [
+        "af01_dust_hunter_north"
+      ],
+      "sourceGroup": "ben_rpg/visual_assets",
+      "unprofiledClassification": ""
+    },
+    {
+      "distributionEligibility": "distribution_confirmed",
+      "licenseReviewStatus": "distribution_confirmed",
+      "localLicenseEvidence": [
+        "game/LICENSE"
+      ],
+      "path": "res://ben_rpg/visual_assets/derived/af01_dust_hunter_south-east.png",
+      "profileCoverage": "profiled",
+      "profileIds": [
+        "af01_dust_hunter_south-east"
+      ],
+      "sourceGroup": "ben_rpg/visual_assets",
+      "unprofiledClassification": ""
+    },
+    {
+      "distributionEligibility": "distribution_confirmed",
+      "licenseReviewStatus": "distribution_confirmed",
+      "localLicenseEvidence": [
+        "game/LICENSE"
+      ],
+      "path": "res://ben_rpg/visual_assets/derived/af01_dust_hunter_south-west.png",
+      "profileCoverage": "profiled",
+      "profileIds": [
+        "af01_dust_hunter_south-west"
+      ],
+      "sourceGroup": "ben_rpg/visual_assets",
+      "unprofiledClassification": ""
+    },
+    {
+      "distributionEligibility": "distribution_confirmed",
+      "licenseReviewStatus": "distribution_confirmed",
+      "localLicenseEvidence": [
+        "game/LICENSE"
+      ],
+      "path": "res://ben_rpg/visual_assets/derived/af01_dust_hunter_south.png",
+      "profileCoverage": "profiled",
+      "profileIds": [
+        "af01_dust_hunter_south"
+      ],
+      "sourceGroup": "ben_rpg/visual_assets",
+      "unprofiledClassification": ""
+    },
+    {
+      "distributionEligibility": "distribution_confirmed",
+      "licenseReviewStatus": "distribution_confirmed",
+      "localLicenseEvidence": [
+        "game/LICENSE"
+      ],
+      "path": "res://ben_rpg/visual_assets/derived/af01_dust_hunter_west.png",
+      "profileCoverage": "profiled",
+      "profileIds": [
+        "af01_dust_hunter_west"
+      ],
+      "sourceGroup": "ben_rpg/visual_assets",
+      "unprofiledClassification": ""
+    },
+    {
+      "distributionEligibility": "distribution_confirmed",
+      "licenseReviewStatus": "distribution_confirmed",
+      "localLicenseEvidence": [
+        "game/LICENSE"
+      ],
+      "path": "res://ben_rpg/visual_assets/derived/af01_iron_sentinel_east.png",
+      "profileCoverage": "profiled",
+      "profileIds": [
+        "af01_iron_sentinel_east"
+      ],
+      "sourceGroup": "ben_rpg/visual_assets",
+      "unprofiledClassification": ""
+    },
+    {
+      "distributionEligibility": "distribution_confirmed",
+      "licenseReviewStatus": "distribution_confirmed",
+      "localLicenseEvidence": [
+        "game/LICENSE"
+      ],
+      "path": "res://ben_rpg/visual_assets/derived/af01_iron_sentinel_north-east.png",
+      "profileCoverage": "profiled",
+      "profileIds": [
+        "af01_iron_sentinel_north-east"
+      ],
+      "sourceGroup": "ben_rpg/visual_assets",
+      "unprofiledClassification": ""
+    },
+    {
+      "distributionEligibility": "distribution_confirmed",
+      "licenseReviewStatus": "distribution_confirmed",
+      "localLicenseEvidence": [
+        "game/LICENSE"
+      ],
+      "path": "res://ben_rpg/visual_assets/derived/af01_iron_sentinel_north-west.png",
+      "profileCoverage": "profiled",
+      "profileIds": [
+        "af01_iron_sentinel_north-west"
+      ],
+      "sourceGroup": "ben_rpg/visual_assets",
+      "unprofiledClassification": ""
+    },
+    {
+      "distributionEligibility": "distribution_confirmed",
+      "licenseReviewStatus": "distribution_confirmed",
+      "localLicenseEvidence": [
+        "game/LICENSE"
+      ],
+      "path": "res://ben_rpg/visual_assets/derived/af01_iron_sentinel_north.png",
+      "profileCoverage": "profiled",
+      "profileIds": [
+        "af01_iron_sentinel_north"
+      ],
+      "sourceGroup": "ben_rpg/visual_assets",
+      "unprofiledClassification": ""
+    },
+    {
+      "distributionEligibility": "distribution_confirmed",
+      "licenseReviewStatus": "distribution_confirmed",
+      "localLicenseEvidence": [
+        "game/LICENSE"
+      ],
+      "path": "res://ben_rpg/visual_assets/derived/af01_iron_sentinel_south-east.png",
+      "profileCoverage": "profiled",
+      "profileIds": [
+        "af01_iron_sentinel_south-east"
+      ],
+      "sourceGroup": "ben_rpg/visual_assets",
+      "unprofiledClassification": ""
+    },
+    {
+      "distributionEligibility": "distribution_confirmed",
+      "licenseReviewStatus": "distribution_confirmed",
+      "localLicenseEvidence": [
+        "game/LICENSE"
+      ],
+      "path": "res://ben_rpg/visual_assets/derived/af01_iron_sentinel_south-west.png",
+      "profileCoverage": "profiled",
+      "profileIds": [
+        "af01_iron_sentinel_south-west"
+      ],
+      "sourceGroup": "ben_rpg/visual_assets",
+      "unprofiledClassification": ""
+    },
+    {
+      "distributionEligibility": "distribution_confirmed",
+      "licenseReviewStatus": "distribution_confirmed",
+      "localLicenseEvidence": [
+        "game/LICENSE"
+      ],
+      "path": "res://ben_rpg/visual_assets/derived/af01_iron_sentinel_south.png",
+      "profileCoverage": "profiled",
+      "profileIds": [
+        "af01_iron_sentinel_south"
+      ],
+      "sourceGroup": "ben_rpg/visual_assets",
+      "unprofiledClassification": ""
+    },
+    {
+      "distributionEligibility": "distribution_confirmed",
+      "licenseReviewStatus": "distribution_confirmed",
+      "localLicenseEvidence": [
+        "game/LICENSE"
+      ],
+      "path": "res://ben_rpg/visual_assets/derived/af01_iron_sentinel_west.png",
+      "profileCoverage": "profiled",
+      "profileIds": [
+        "af01_iron_sentinel_west"
+      ],
+      "sourceGroup": "ben_rpg/visual_assets",
+      "unprofiledClassification": ""
+    },
+    {
+      "distributionEligibility": "distribution_confirmed",
+      "licenseReviewStatus": "distribution_confirmed",
+      "localLicenseEvidence": [
+        "game/LICENSE"
+      ],
+      "path": "res://ben_rpg/visual_assets/derived/af01_scrap_kid_east.png",
+      "profileCoverage": "profiled",
+      "profileIds": [
+        "af01_scrap_kid_east"
+      ],
+      "sourceGroup": "ben_rpg/visual_assets",
+      "unprofiledClassification": ""
+    },
+    {
+      "distributionEligibility": "distribution_confirmed",
+      "licenseReviewStatus": "distribution_confirmed",
+      "localLicenseEvidence": [
+        "game/LICENSE"
+      ],
+      "path": "res://ben_rpg/visual_assets/derived/af01_scrap_kid_north-east.png",
+      "profileCoverage": "profiled",
+      "profileIds": [
+        "af01_scrap_kid_north-east"
+      ],
+      "sourceGroup": "ben_rpg/visual_assets",
+      "unprofiledClassification": ""
+    },
+    {
+      "distributionEligibility": "distribution_confirmed",
+      "licenseReviewStatus": "distribution_confirmed",
+      "localLicenseEvidence": [
+        "game/LICENSE"
+      ],
+      "path": "res://ben_rpg/visual_assets/derived/af01_scrap_kid_north-west.png",
+      "profileCoverage": "profiled",
+      "profileIds": [
+        "af01_scrap_kid_north-west"
+      ],
+      "sourceGroup": "ben_rpg/visual_assets",
+      "unprofiledClassification": ""
+    },
+    {
+      "distributionEligibility": "distribution_confirmed",
+      "licenseReviewStatus": "distribution_confirmed",
+      "localLicenseEvidence": [
+        "game/LICENSE"
+      ],
+      "path": "res://ben_rpg/visual_assets/derived/af01_scrap_kid_north.png",
+      "profileCoverage": "profiled",
+      "profileIds": [
+        "af01_scrap_kid_north"
+      ],
+      "sourceGroup": "ben_rpg/visual_assets",
+      "unprofiledClassification": ""
+    },
+    {
+      "distributionEligibility": "distribution_confirmed",
+      "licenseReviewStatus": "distribution_confirmed",
+      "localLicenseEvidence": [
+        "game/LICENSE"
+      ],
+      "path": "res://ben_rpg/visual_assets/derived/af01_scrap_kid_south-east.png",
+      "profileCoverage": "profiled",
+      "profileIds": [
+        "af01_scrap_kid_south-east"
+      ],
+      "sourceGroup": "ben_rpg/visual_assets",
+      "unprofiledClassification": ""
+    },
+    {
+      "distributionEligibility": "distribution_confirmed",
+      "licenseReviewStatus": "distribution_confirmed",
+      "localLicenseEvidence": [
+        "game/LICENSE"
+      ],
+      "path": "res://ben_rpg/visual_assets/derived/af01_scrap_kid_south-west.png",
+      "profileCoverage": "profiled",
+      "profileIds": [
+        "af01_scrap_kid_south-west"
+      ],
+      "sourceGroup": "ben_rpg/visual_assets",
+      "unprofiledClassification": ""
+    },
+    {
+      "distributionEligibility": "distribution_confirmed",
+      "licenseReviewStatus": "distribution_confirmed",
+      "localLicenseEvidence": [
+        "game/LICENSE"
+      ],
+      "path": "res://ben_rpg/visual_assets/derived/af01_scrap_kid_south.png",
+      "profileCoverage": "profiled",
+      "profileIds": [
+        "af01_scrap_kid_south"
+      ],
+      "sourceGroup": "ben_rpg/visual_assets",
+      "unprofiledClassification": ""
+    },
+    {
+      "distributionEligibility": "distribution_confirmed",
+      "licenseReviewStatus": "distribution_confirmed",
+      "localLicenseEvidence": [
+        "game/LICENSE"
+      ],
+      "path": "res://ben_rpg/visual_assets/derived/af01_scrap_kid_west.png",
+      "profileCoverage": "profiled",
+      "profileIds": [
+        "af01_scrap_kid_west"
+      ],
+      "sourceGroup": "ben_rpg/visual_assets",
+      "unprofiledClassification": ""
+    },
+    {
+      "distributionEligibility": "distribution_confirmed",
+      "licenseReviewStatus": "distribution_confirmed",
+      "localLicenseEvidence": [
+        "game/LICENSE"
+      ],
       "path": "res://ben_rpg/visual_assets/derived/ashfall_cinder_gate_air_beacon.png",
       "profileCoverage": "profiled",
       "profileIds": [
@@ -3143,20 +3479,20 @@
   "schemaVersion": 2,
   "scope": "static Godot raster references; not a reachability or license-grant proof",
   "summary": {
-    "assets": 191,
+    "assets": 215,
     "distributionEligibility": {
-      "distribution_confirmed": 191,
+      "distribution_confirmed": 215,
       "rejected": 0,
       "review_required": 0
     },
     "needsManualLicenseConfirmation": 0,
     "profileCoverage": {
       "external_dependency": 11,
-      "profiled": 180
+      "profiled": 204
     },
     "unprofiledByClassification": {
       "third_party_addon_ui": 11
     },
-    "withLocalLicenseEvidence": 191
+    "withLocalLicenseEvidence": 215
   }
 }

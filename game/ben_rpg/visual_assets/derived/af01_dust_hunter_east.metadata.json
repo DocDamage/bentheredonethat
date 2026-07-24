@@ -1,0 +1,31 @@
+{
+  "asset": "game/ben_rpg/visual_assets/derived/af01_dust_hunter_east.png",
+  "bindings": {
+    "actorId": "af01_dust_hunter_field_actor",
+    "direction": "east",
+    "roomIds": [
+      "AF-01"
+    ],
+    "runtimeStatus": "field_profile_admission"
+  },
+  "derivedChecksum": "75ad7d185e538f5187c65bb226ccbd79b27e5d72cf06419d7bbfc2f1af09d186",
+  "dimensions": [
+    92,
+    92
+  ],
+  "schemaVersion": 1,
+  "source": {
+    "checksum": "75ad7d185e538f5187c65bb226ccbd79b27e5d72cf06419d7bbfc2f1af09d186",
+    "path": "assets/characters/SakPix - 8-Direction Characters - ALL AS OF 7-3-26/☢️ WASTELAND LEGENDS/4._DUST_HUNTER/rotations/east.png",
+    "region": [
+      0,
+      0,
+      92,
+      92
+    ]
+  },
+  "transform": {
+    "description": "Exact supplied rotation copy; no crop, colour, alpha, or scale transform.",
+    "id": "exact_source_copy_v1"
+  }
+}

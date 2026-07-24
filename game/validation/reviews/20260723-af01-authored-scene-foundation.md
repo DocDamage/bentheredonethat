@@ -69,13 +69,19 @@
   `test-artifacts/20260724-003920-17207ad2`: record, scene, population, and
   aggregate-content checks passed alongside a guarded windowed capture. The
   refreshed capture is a prototype visual check, not final acceptance.
+- Added exact, checksum-pinned 92×92 eight-direction derivatives and
+  profile contracts for Scrap Kid, Dust Hunter, and the later Iron Sentinel
+  visitor. `CampaignAddressFieldActorCatalog` verifies all 24 profiles and
+  keeps all three actors runtime-gated pending a real address gateway and
+  actor-scene admission. The focused field-actor, population, and aggregate
+  content smoke scenes passed headlessly after a Godot import scan.
 
 ## Still gated
 
 - AF-01 is not registered in the campaign graph or address gateway.
 - The arrival raid remains a non-runtime contract pending its actor, backdrop,
-  balance, and runtime encounter integration; the survivor watch also awaits
-  field-profile/actor admission. The beacon and cache markers are scene-owned
+  balance, and runtime encounter integration; the survivor watch now has
+  profile contracts but still awaits actor-scene/gateway admission. The beacon and cache markers are scene-owned
   but intentionally inert until the address runtime exists. No stabilized
   encounter/population capture exists yet.
 - Input/controller traversal, save/reload, final art composition, and reviewer

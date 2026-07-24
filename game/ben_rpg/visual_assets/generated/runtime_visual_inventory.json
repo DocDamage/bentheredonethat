@@ -204,6 +204,366 @@
       ]
     },
     {
+      "path": "res://ben_rpg/visual_assets/derived/af01_dust_hunter_east.png",
+      "profileCoverage": "profiled",
+      "profileIds": [
+        "af01_dust_hunter_east"
+      ],
+      "references": [
+        {
+          "file": "game/ben_rpg/visual_assets/visual_profiles.json",
+          "line": 2095,
+          "profileId": "af01_dust_hunter_east",
+          "resolution": "profile_runtime_texture"
+        }
+      ]
+    },
+    {
+      "path": "res://ben_rpg/visual_assets/derived/af01_dust_hunter_north-east.png",
+      "profileCoverage": "profiled",
+      "profileIds": [
+        "af01_dust_hunter_north-east"
+      ],
+      "references": [
+        {
+          "file": "game/ben_rpg/visual_assets/visual_profiles.json",
+          "line": 2106,
+          "profileId": "af01_dust_hunter_north-east",
+          "resolution": "profile_runtime_texture"
+        }
+      ]
+    },
+    {
+      "path": "res://ben_rpg/visual_assets/derived/af01_dust_hunter_north-west.png",
+      "profileCoverage": "profiled",
+      "profileIds": [
+        "af01_dust_hunter_north-west"
+      ],
+      "references": [
+        {
+          "file": "game/ben_rpg/visual_assets/visual_profiles.json",
+          "line": 2117,
+          "profileId": "af01_dust_hunter_north-west",
+          "resolution": "profile_runtime_texture"
+        }
+      ]
+    },
+    {
+      "path": "res://ben_rpg/visual_assets/derived/af01_dust_hunter_north.png",
+      "profileCoverage": "profiled",
+      "profileIds": [
+        "af01_dust_hunter_north"
+      ],
+      "references": [
+        {
+          "file": "game/ben_rpg/visual_assets/visual_profiles.json",
+          "line": 2128,
+          "profileId": "af01_dust_hunter_north",
+          "resolution": "profile_runtime_texture"
+        }
+      ]
+    },
+    {
+      "path": "res://ben_rpg/visual_assets/derived/af01_dust_hunter_south-east.png",
+      "profileCoverage": "profiled",
+      "profileIds": [
+        "af01_dust_hunter_south-east"
+      ],
+      "references": [
+        {
+          "file": "game/ben_rpg/visual_assets/visual_profiles.json",
+          "line": 2139,
+          "profileId": "af01_dust_hunter_south-east",
+          "resolution": "profile_runtime_texture"
+        }
+      ]
+    },
+    {
+      "path": "res://ben_rpg/visual_assets/derived/af01_dust_hunter_south-west.png",
+      "profileCoverage": "profiled",
+      "profileIds": [
+        "af01_dust_hunter_south-west"
+      ],
+      "references": [
+        {
+          "file": "game/ben_rpg/visual_assets/visual_profiles.json",
+          "line": 2150,
+          "profileId": "af01_dust_hunter_south-west",
+          "resolution": "profile_runtime_texture"
+        }
+      ]
+    },
+    {
+      "path": "res://ben_rpg/visual_assets/derived/af01_dust_hunter_south.png",
+      "profileCoverage": "profiled",
+      "profileIds": [
+        "af01_dust_hunter_south"
+      ],
+      "references": [
+        {
+          "file": "game/ben_rpg/visual_assets/visual_profiles.json",
+          "line": 2161,
+          "profileId": "af01_dust_hunter_south",
+          "resolution": "profile_runtime_texture"
+        }
+      ]
+    },
+    {
+      "path": "res://ben_rpg/visual_assets/derived/af01_dust_hunter_west.png",
+      "profileCoverage": "profiled",
+      "profileIds": [
+        "af01_dust_hunter_west"
+      ],
+      "references": [
+        {
+          "file": "game/ben_rpg/visual_assets/visual_profiles.json",
+          "line": 2172,
+          "profileId": "af01_dust_hunter_west",
+          "resolution": "profile_runtime_texture"
+        }
+      ]
+    },
+    {
+      "path": "res://ben_rpg/visual_assets/derived/af01_iron_sentinel_east.png",
+      "profileCoverage": "profiled",
+      "profileIds": [
+        "af01_iron_sentinel_east"
+      ],
+      "references": [
+        {
+          "file": "game/ben_rpg/visual_assets/visual_profiles.json",
+          "line": 2183,
+          "profileId": "af01_iron_sentinel_east",
+          "resolution": "profile_runtime_texture"
+        }
+      ]
+    },
+    {
+      "path": "res://ben_rpg/visual_assets/derived/af01_iron_sentinel_north-east.png",
+      "profileCoverage": "profiled",
+      "profileIds": [
+        "af01_iron_sentinel_north-east"
+      ],
+      "references": [
+        {
+          "file": "game/ben_rpg/visual_assets/visual_profiles.json",
+          "line": 2194,
+          "profileId": "af01_iron_sentinel_north-east",
+          "resolution": "profile_runtime_texture"
+        }
+      ]
+    },
+    {
+      "path": "res://ben_rpg/visual_assets/derived/af01_iron_sentinel_north-west.png",
+      "profileCoverage": "profiled",
+      "profileIds": [
+        "af01_iron_sentinel_north-west"
+      ],
+      "references": [
+        {
+          "file": "game/ben_rpg/visual_assets/visual_profiles.json",
+          "line": 2205,
+          "profileId": "af01_iron_sentinel_north-west",
+          "resolution": "profile_runtime_texture"
+        }
+      ]
+    },
+    {
+      "path": "res://ben_rpg/visual_assets/derived/af01_iron_sentinel_north.png",
+      "profileCoverage": "profiled",
+      "profileIds": [
+        "af01_iron_sentinel_north"
+      ],
+      "references": [
+        {
+          "file": "game/ben_rpg/visual_assets/visual_profiles.json",
+          "line": 2216,
+          "profileId": "af01_iron_sentinel_north",
+          "resolution": "profile_runtime_texture"
+        }
+      ]
+    },
+    {
+      "path": "res://ben_rpg/visual_assets/derived/af01_iron_sentinel_south-east.png",
+      "profileCoverage": "profiled",
+      "profileIds": [
+        "af01_iron_sentinel_south-east"
+      ],
+      "references": [
+        {
+          "file": "game/ben_rpg/visual_assets/visual_profiles.json",
+          "line": 2227,
+          "profileId": "af01_iron_sentinel_south-east",
+          "resolution": "profile_runtime_texture"
+        }
+      ]
+    },
+    {
+      "path": "res://ben_rpg/visual_assets/derived/af01_iron_sentinel_south-west.png",
+      "profileCoverage": "profiled",
+      "profileIds": [
+        "af01_iron_sentinel_south-west"
+      ],
+      "references": [
+        {
+          "file": "game/ben_rpg/visual_assets/visual_profiles.json",
+          "line": 2238,
+          "profileId": "af01_iron_sentinel_south-west",
+          "resolution": "profile_runtime_texture"
+        }
+      ]
+    },
+    {
+      "path": "res://ben_rpg/visual_assets/derived/af01_iron_sentinel_south.png",
+      "profileCoverage": "profiled",
+      "profileIds": [
+        "af01_iron_sentinel_south"
+      ],
+      "references": [
+        {
+          "file": "game/ben_rpg/visual_assets/visual_profiles.json",
+          "line": 2249,
+          "profileId": "af01_iron_sentinel_south",
+          "resolution": "profile_runtime_texture"
+        }
+      ]
+    },
+    {
+      "path": "res://ben_rpg/visual_assets/derived/af01_iron_sentinel_west.png",
+      "profileCoverage": "profiled",
+      "profileIds": [
+        "af01_iron_sentinel_west"
+      ],
+      "references": [
+        {
+          "file": "game/ben_rpg/visual_assets/visual_profiles.json",
+          "line": 2260,
+          "profileId": "af01_iron_sentinel_west",
+          "resolution": "profile_runtime_texture"
+        }
+      ]
+    },
+    {
+      "path": "res://ben_rpg/visual_assets/derived/af01_scrap_kid_east.png",
+      "profileCoverage": "profiled",
+      "profileIds": [
+        "af01_scrap_kid_east"
+      ],
+      "references": [
+        {
+          "file": "game/ben_rpg/visual_assets/visual_profiles.json",
+          "line": 2007,
+          "profileId": "af01_scrap_kid_east",
+          "resolution": "profile_runtime_texture"
+        }
+      ]
+    },
+    {
+      "path": "res://ben_rpg/visual_assets/derived/af01_scrap_kid_north-east.png",
+      "profileCoverage": "profiled",
+      "profileIds": [
+        "af01_scrap_kid_north-east"
+      ],
+      "references": [
+        {
+          "file": "game/ben_rpg/visual_assets/visual_profiles.json",
+          "line": 2018,
+          "profileId": "af01_scrap_kid_north-east",
+          "resolution": "profile_runtime_texture"
+        }
+      ]
+    },
+    {
+      "path": "res://ben_rpg/visual_assets/derived/af01_scrap_kid_north-west.png",
+      "profileCoverage": "profiled",
+      "profileIds": [
+        "af01_scrap_kid_north-west"
+      ],
+      "references": [
+        {
+          "file": "game/ben_rpg/visual_assets/visual_profiles.json",
+          "line": 2029,
+          "profileId": "af01_scrap_kid_north-west",
+          "resolution": "profile_runtime_texture"
+        }
+      ]
+    },
+    {
+      "path": "res://ben_rpg/visual_assets/derived/af01_scrap_kid_north.png",
+      "profileCoverage": "profiled",
+      "profileIds": [
+        "af01_scrap_kid_north"
+      ],
+      "references": [
+        {
+          "file": "game/ben_rpg/visual_assets/visual_profiles.json",
+          "line": 2040,
+          "profileId": "af01_scrap_kid_north",
+          "resolution": "profile_runtime_texture"
+        }
+      ]
+    },
+    {
+      "path": "res://ben_rpg/visual_assets/derived/af01_scrap_kid_south-east.png",
+      "profileCoverage": "profiled",
+      "profileIds": [
+        "af01_scrap_kid_south-east"
+      ],
+      "references": [
+        {
+          "file": "game/ben_rpg/visual_assets/visual_profiles.json",
+          "line": 2051,
+          "profileId": "af01_scrap_kid_south-east",
+          "resolution": "profile_runtime_texture"
+        }
+      ]
+    },
+    {
+      "path": "res://ben_rpg/visual_assets/derived/af01_scrap_kid_south-west.png",
+      "profileCoverage": "profiled",
+      "profileIds": [
+        "af01_scrap_kid_south-west"
+      ],
+      "references": [
+        {
+          "file": "game/ben_rpg/visual_assets/visual_profiles.json",
+          "line": 2062,
+          "profileId": "af01_scrap_kid_south-west",
+          "resolution": "profile_runtime_texture"
+        }
+      ]
+    },
+    {
+      "path": "res://ben_rpg/visual_assets/derived/af01_scrap_kid_south.png",
+      "profileCoverage": "profiled",
+      "profileIds": [
+        "af01_scrap_kid_south"
+      ],
+      "references": [
+        {
+          "file": "game/ben_rpg/visual_assets/visual_profiles.json",
+          "line": 2073,
+          "profileId": "af01_scrap_kid_south",
+          "resolution": "profile_runtime_texture"
+        }
+      ]
+    },
+    {
+      "path": "res://ben_rpg/visual_assets/derived/af01_scrap_kid_west.png",
+      "profileCoverage": "profiled",
+      "profileIds": [
+        "af01_scrap_kid_west"
+      ],
+      "references": [
+        {
+          "file": "game/ben_rpg/visual_assets/visual_profiles.json",
+          "line": 2084,
+          "profileId": "af01_scrap_kid_west",
+          "resolution": "profile_runtime_texture"
+        }
+      ]
+    },
+    {
       "path": "res://ben_rpg/visual_assets/derived/ashfall_cinder_gate_air_beacon.png",
       "profileCoverage": "profiled",
       "profileIds": [
@@ -4939,11 +5299,11 @@
   "schemaVersion": 2,
   "scope": "static Godot .gd/.tscn raster literals and approved profile runtime textures (tests, validation, and editor-only paths excluded)",
   "stats": {
-    "assets": 191,
-    "profileRequiredAssetSources": 180,
-    "profileRequiredProfiledAssetSources": 180,
+    "assets": 215,
+    "profileRequiredAssetSources": 204,
+    "profileRequiredProfiledAssetSources": 204,
     "profileRequiredUnprofiledAssetSources": 0,
-    "profiledAssetSources": 180,
+    "profiledAssetSources": 204,
     "thirdPartyDependencyVisualSources": 11,
     "unprofiledAssetSources": 11,
     "unprofiledByClassification": {

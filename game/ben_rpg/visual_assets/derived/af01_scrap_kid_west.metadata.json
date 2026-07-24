@@ -1,0 +1,31 @@
+{
+  "asset": "game/ben_rpg/visual_assets/derived/af01_scrap_kid_west.png",
+  "bindings": {
+    "actorId": "af01_scrap_kid_field_actor",
+    "direction": "west",
+    "roomIds": [
+      "AF-01"
+    ],
+    "runtimeStatus": "field_profile_admission"
+  },
+  "derivedChecksum": "c351b96bbd8caba68551fc593e7e090183c9174717c9af73031e707dc40587a9",
+  "dimensions": [
+    92,
+    92
+  ],
+  "schemaVersion": 1,
+  "source": {
+    "checksum": "c351b96bbd8caba68551fc593e7e090183c9174717c9af73031e707dc40587a9",
+    "path": "assets/characters/SakPix - 8-Direction Characters - ALL AS OF 7-3-26/☢️ WASTELAND LEGENDS/1._SCRAP_KID_FREE/rotations/west.png",
+    "region": [
+      0,
+      0,
+      92,
+      92
+    ]
+  },
+  "transform": {
+    "description": "Exact supplied rotation copy; no crop, colour, alpha, or scale transform.",
+    "id": "exact_source_copy_v1"
+  }
+}
