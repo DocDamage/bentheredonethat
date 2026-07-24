@@ -85,9 +85,11 @@ from the human, platform, licensing, and performance sign-offs that remain.
   regression test, not the required multi-hour memory/frame-pacing soak.
 - `validation/campaign_performance_baseline.tscn` provides a windowed,
   machine-specific diagnostic for title-to-field, current-area activation,
-  battle entry/results/return, save/load, memory snapshots, and 120 frame
-  intervals. It has deliberately no thresholds and therefore is not evidence
-  that release performance targets have passed.
+  battle entry/results/return, save/load, memory snapshots, and 120-frame
+  interval samples in each sampled area, active battle, and the post-battle
+  field. Its July 23 RTX 3060 run remains `rework required`: town and battle
+  p99, plus post-battle p95/p99, miss the declared frame-pacing budgets. It is
+  diagnostic evidence, not proof that release performance targets have passed.
 - The Options screen persists battle timing/mode, fullscreen, controller,
   Master/Music/SFX audio, and accessibility preferences. Master/Music/SFX now
   apply to their real buses at startup and on change; reduced motion removes

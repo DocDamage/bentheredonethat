@@ -3116,10 +3116,10 @@ limit:
   release reference. The 11 retained unprofiled sources are Dialogic bundled
   dependency UI, separately tracked and still `review_required` for
   distribution.
-- The focus-aware windowed 960×540 campaign performance diagnostic has a
-  retained development-machine measurement at
-  `test-artifacts/20260723-190608-e86cc1bc` (i5-14600K / RTX 3060). Short-run
-  transition, save/load, memory, and p99 measurements meet provisional targets,
-  but focused-window p95 frame pacing is 19.743 ms, above the 16.7 ms target.
-  The diagnostic is therefore recorded as `rework required`, not as performance
+- The focus-aware windowed 960×540 campaign performance diagnostic now records
+  every sampled universe, active battle, and post-battle field state at
+  `test-artifacts/20260723-204223-3fbca075` (i5-14600K / RTX 3060). Short-run
+  transitions, save/load, and memory meet provisional targets, but town p99,
+  battle p99, and post-battle p95/p99 frame pacing miss their budgets. The
+  diagnostic is therefore recorded as `rework required`, not as performance
   acceptance.
