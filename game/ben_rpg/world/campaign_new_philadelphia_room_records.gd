@@ -9,7 +9,7 @@ const CATALOG := preload("res://ben_rpg/world/campaign_new_philadelphia_catalog.
 const ROOM_REGISTRY := preload("res://ben_rpg/world/campaign_room_registry.gd")
 const ADDRESS_RECORDS := preload("res://ben_rpg/world/campaign_address_room_records.gd")
 
-static var RECORDS := {&"NP-01": _franklin_laboratory_record(), &"NP-02": _invention_annex_record(), &"NP-03": _power_records_basement_record(), &"NP-15": _embassy_green_record()}
+static var RECORDS := {&"NP-01": _franklin_laboratory_record(), &"NP-02": _invention_annex_record(), &"NP-03": _power_records_basement_record(), &"NP-04": _founders_square_record(), &"NP-15": _embassy_green_record()}
 
 
 static func record(room_id: StringName) -> Dictionary:
@@ -18,7 +18,7 @@ static func record(room_id: StringName) -> Dictionary:
 
 static func validate() -> PackedStringArray:
 	var errors: Array[String] = []
-	for room_id in [&"NP-01", &"NP-02", &"NP-03", &"NP-15"]:
+	for room_id in [&"NP-01", &"NP-02", &"NP-03", &"NP-04", &"NP-15"]:
 		var definition := record(room_id)
 		var catalog_room := CATALOG.room(room_id)
 		var layout: Dictionary = definition.get("layout", {})
@@ -66,6 +66,9 @@ static func validate() -> PackedStringArray:
 		errors.append("NP-03 must retain its gated fault-line regulator marker.")
 	if (np03.get("navigation", {}) as Dictionary).get("walkableCells", []).size() != 219:
 		errors.append("NP-03 must reserve its five basement-equipment collision cells.")
+	var np04 := record(&"NP-04")
+	if (np04.get("layout", {}) as Dictionary).get("terrainProfileIds", []) != [&"sandbox_modern_grass", &"sandbox_modern_cobble"] or (np04.get("navigation", {}) as Dictionary).get("walkableCells", []).size() != 599:
+		errors.append("NP-04 must retain its approved hub terrain and one-cell monument reservation.")
 	var np15 := record(&"NP-15")
 	if (np15.get("layout", {}) as Dictionary).get("terrainProfileIds", []) != [&"sandbox_modern_grass", &"sandbox_modern_cobble"]:
 		errors.append("NP-15 must use only its approved initial town terrain profiles.")
@@ -148,6 +151,17 @@ static func _power_records_basement_record() -> Dictionary:
 		"layout": {"dimensions": dimensions, "terrainProfileIds": [&"laboratory_floor_tile", &"laboratory_wall_tile"], "propProfileIds": [&"laboratory_west_storage", &"laboratory_east_generator", &"laboratory_analysis_station", &"laboratory_center_storage", &"laboratory_east_reactor"], "featureContracts": [{"id": &"fault_line_regulator", "anchor": &"Icenter", "cell": Vector2i(9, 8), "runtimeState": &"visual_and_interaction_gated"}]},
 		"navigation": {"id": &"np03-power-records-navigation-v1", "collisionMaskId": &"np03-power-records-perimeter-and-equipment-v1", "dimensions": dimensions, "walkableCells": walkable, "blockedCells": blocked, "arrivalSafeCells": safe_cells},
 	}
+
+
+static func _founders_square_record() -> Dictionary:
+	var catalog_room := CATALOG.room(&"NP-04")
+	var blueprint: Dictionary = ROOM_REGISTRY.BLUEPRINTS.get(catalog_room.get("blueprint", &""), {})
+	var dimensions: Vector2i = blueprint.get("dimensions", Vector2i.ZERO)
+	var walkable := _walkable_cells(dimensions, blueprint.get("ports", {}), catalog_room.get("ports", {}))
+	walkable.erase(Vector2i(16, 11))
+	var safe_cells := {}
+	for port_id in catalog_room.get("ports", {}): safe_cells[port_id] = ADDRESS_RECORDS.expected_arrival_cell((blueprint.get("ports", {}) as Dictionary).get(port_id, Vector2i.ZERO), StringName(port_id))
+	return {"id": &"NP-04", "implementationState": &"scene_collision_authored_runtime_gated", "scenePath": "res://ben_rpg/world/rooms/new_philadelphia_founders_square.tscn", "layout": {"dimensions": dimensions, "terrainProfileIds": [&"sandbox_modern_grass", &"sandbox_modern_cobble"], "featureContracts": [{"id": &"founding_monument", "anchor": &"Icenter", "cell": Vector2i(16, 11), "runtimeState": &"visual_and_interaction_gated"}]}, "navigation": {"id": &"np04-founders-square-navigation-v1", "collisionMaskId": &"np04-founders-square-perimeter-and-monument-v1", "dimensions": dimensions, "walkableCells": walkable, "blockedCells": _blocked_cells(dimensions, walkable), "arrivalSafeCells": safe_cells}}
 
 
 static func _walkable_cells(dimensions: Vector2i, blueprint_ports: Dictionary, bound_ports: Dictionary) -> Array[Vector2i]:
