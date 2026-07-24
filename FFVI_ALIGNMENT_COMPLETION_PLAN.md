@@ -3196,6 +3196,14 @@ limit:
   evidence is `game/validation/np03-power-records-basement-scene-first-visit.png`
   from `test-artifacts/20260724-024254-ffc91e01`. All interaction, stream,
   and external-route behavior remains deliberately inactive.
+- `NP-04` Founders Square now has a runtime-gated H2 scene with its exact
+  `Nw`/`E1`/`E2`/`W2` safe arrivals, a complete perimeter-plus-monument
+  collision partition, and approved grass/cobble/monument rendering. Focused
+  content and scene validation passed at `test-artifacts/20260724-024729-63f9d1bb`;
+  the save-safe initial capture is retained at
+  `game/validation/np04-founders-square-scene-first-visit.png` from
+  `test-artifacts/20260724-024754-63b9d62f`. Residents, town-phase visuals,
+  quests, interactions, and streaming are still explicitly gated.
 - A separate annex-room registry/runtime now owns the staged `NP-15↔AF-01`
   reciprocal route without adding either room to the locked 102-room core
   registry. Its focused evidence at `test-artifacts/20260724-021141-bf9aaeb2`
