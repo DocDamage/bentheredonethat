@@ -3154,6 +3154,13 @@ limit:
   registry: gateway, field-actor scene admission,
   encounter actors/backdrop/balance, streamed-player traversal, stabilized
   state, and acceptance evidence remain outstanding.
+- The full `NP-01` through `NP-15` New Philadelphia graph and its 11 movable
+  lot footprints now have a separately validated, runtime-gated catalog. The
+  shared Section 23.2 blueprint matrix now also contains the locked `H2`,
+  `I1`, `I2`, and `I3` layouts used by the town/facility plan. This preserves
+  exact ports, anchors, camera bounds, lot doors, and the `NP-15→AF-01` /
+  `NP-15→WF-01` bindings without falsely claiming that the legacy construction
+  map is an authored fifteen-room hub or that either external portal is live.
 - Battle lifecycle effects are separated from battle presentation, and the 53
   existing core encounter definitions now live in `CampaignEncounterCatalog`
   behind the preserved combat-database facade. The focused catalog/content/
