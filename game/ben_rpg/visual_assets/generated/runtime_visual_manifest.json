@@ -5644,6 +5644,94 @@
       "cropApproval": "approved",
       "distributionEligibility": "distribution_confirmed",
       "fieldScaleStatus": "approved",
+      "goldenCapture": "game/validation/battle-full-company-rebuilt.png",
+      "id": "gandhi_battle_actor",
+      "kind": "battle_actor",
+      "licenseReference": "game/ben_rpg/visual_assets/generated/runtime_asset_provenance.json",
+      "placement": {
+        "collisionFootprint": "battle_actor",
+        "footAnchor": [
+          30,
+          59
+        ],
+        "scaleClass": "actor"
+      },
+      "releaseVisualAcceptance": "prototype_only",
+      "renderScale": 1.0,
+      "renderScaleY": 1.0,
+      "source": {
+        "alphaBounds": [
+          22,
+          15,
+          15,
+          30
+        ],
+        "pack": "Mahatma Gandhi",
+        "region": [
+          0,
+          0,
+          60,
+          60
+        ],
+        "runtimeTexture": "game/game_assets/characters/Recruitable Characters/Gandhi_Sprite/rotations/west.png",
+        "sha256": "d699f5260cf0e90b3b7884a80f4d31eb2a87c21ce191d2829c68fb240920d022",
+        "sourceChecksum": "d699f5260cf0e90b3b7884a80f4d31eb2a87c21ce191d2829c68fb240920d022",
+        "sourceDensity": 48
+      },
+      "surface": "battle",
+      "worldDrawSize": [
+        60,
+        60
+      ]
+    },
+    {
+      "cropApproval": "approved",
+      "distributionEligibility": "distribution_confirmed",
+      "fieldScaleStatus": "approved",
+      "goldenCapture": "game/validation/company-menu-equipment-live.png",
+      "id": "gandhi_company_portrait",
+      "kind": "portrait",
+      "licenseReference": "game/ben_rpg/visual_assets/generated/runtime_asset_provenance.json",
+      "placement": {
+        "collisionFootprint": "portrait",
+        "footAnchor": [
+          30,
+          59
+        ],
+        "scaleClass": "actor"
+      },
+      "releaseVisualAcceptance": "prototype_only",
+      "renderScale": 1.0,
+      "renderScaleY": 1.0,
+      "source": {
+        "alphaBounds": [
+          21,
+          15,
+          18,
+          30
+        ],
+        "pack": "Mahatma Gandhi",
+        "region": [
+          0,
+          0,
+          60,
+          60
+        ],
+        "runtimeTexture": "game/game_assets/characters/Recruitable Characters/Gandhi_Sprite/rotations/south.png",
+        "sha256": "d9dc5771146efdb472d8d016d4c2b6d7c1c9d63710513ac1391030cfd6e7cac4",
+        "sourceChecksum": "d9dc5771146efdb472d8d016d4c2b6d7c1c9d63710513ac1391030cfd6e7cac4",
+        "sourceDensity": 48
+      },
+      "surface": "portrait",
+      "worldDrawSize": [
+        60,
+        60
+      ]
+    },
+    {
+      "cropApproval": "approved",
+      "distributionEligibility": "distribution_confirmed",
+      "fieldScaleStatus": "approved",
       "goldenCapture": "game/validation/empyreal-reliquary-aerie.png",
       "id": "gravity_knight_battle_actor",
       "kind": "battle_actor",
@@ -8602,6 +8690,94 @@
       "worldDrawSize": [
         422,
         470
+      ]
+    },
+    {
+      "cropApproval": "approved",
+      "distributionEligibility": "distribution_confirmed",
+      "fieldScaleStatus": "approved",
+      "goldenCapture": "game/validation/battle-full-company-rebuilt.png",
+      "id": "lincoln_battle_actor",
+      "kind": "battle_actor",
+      "licenseReference": "game/ben_rpg/visual_assets/generated/runtime_asset_provenance.json",
+      "placement": {
+        "collisionFootprint": "battle_actor",
+        "footAnchor": [
+          30,
+          59
+        ],
+        "scaleClass": "actor"
+      },
+      "releaseVisualAcceptance": "prototype_only",
+      "renderScale": 1.0,
+      "renderScaleY": 1.0,
+      "source": {
+        "alphaBounds": [
+          21,
+          15,
+          17,
+          30
+        ],
+        "pack": "Abraham Lincoln",
+        "region": [
+          0,
+          0,
+          60,
+          60
+        ],
+        "runtimeTexture": "game/game_assets/characters/Recruitable Characters/Abe_Lincoln/rotations/west.png",
+        "sha256": "b1bb941b4c0ae4f5edea18fc71c829a4d6d89ed4d0534bf1477af0c5b88deba6",
+        "sourceChecksum": "b1bb941b4c0ae4f5edea18fc71c829a4d6d89ed4d0534bf1477af0c5b88deba6",
+        "sourceDensity": 48
+      },
+      "surface": "battle",
+      "worldDrawSize": [
+        60,
+        60
+      ]
+    },
+    {
+      "cropApproval": "approved",
+      "distributionEligibility": "distribution_confirmed",
+      "fieldScaleStatus": "approved",
+      "goldenCapture": "game/validation/company-menu-equipment-live.png",
+      "id": "lincoln_company_portrait",
+      "kind": "portrait",
+      "licenseReference": "game/ben_rpg/visual_assets/generated/runtime_asset_provenance.json",
+      "placement": {
+        "collisionFootprint": "portrait",
+        "footAnchor": [
+          30,
+          59
+        ],
+        "scaleClass": "actor"
+      },
+      "releaseVisualAcceptance": "prototype_only",
+      "renderScale": 1.0,
+      "renderScaleY": 1.0,
+      "source": {
+        "alphaBounds": [
+          21,
+          15,
+          18,
+          30
+        ],
+        "pack": "Abraham Lincoln",
+        "region": [
+          0,
+          0,
+          60,
+          60
+        ],
+        "runtimeTexture": "game/game_assets/characters/Recruitable Characters/Abe_Lincoln/rotations/south.png",
+        "sha256": "67fb305bb6e81e2069000b91846e0e66270e85722456eb349a2f58a61ab3ac8f",
+        "sourceChecksum": "67fb305bb6e81e2069000b91846e0e66270e85722456eb349a2f58a61ab3ac8f",
+        "sourceDensity": 48
+      },
+      "surface": "portrait",
+      "worldDrawSize": [
+        60,
+        60
       ]
     },
     {

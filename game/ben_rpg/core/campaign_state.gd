@@ -12,7 +12,7 @@ signal town_terrain_changed
 signal universe_anchored(plot_index: int, universe_id: StringName)
 signal encounter_pressure_changed(data: Dictionary)
 
-const SAVE_VERSION := 20
+const SAVE_VERSION := 21
 const DEFAULT_SAVE_PATH := "user://save_slot_1.json"
 const SANDBOX_SAVE_PATH := "user://sandbox_slot.json"
 const SAVE_REPOSITORY := preload("res://ben_rpg/core/save_repository.gd")
@@ -34,6 +34,7 @@ const SANDBOX_AUTHORED_OBJECTS := [
 	{"instance_id": "sandbox_tree_southeast", "catalog_id": &"ranch_sapling", "cell": Vector2i(63, 17), "role": &"town_tree"},
 ]
 const PARTY_LIMIT := 5
+const CORE_PROTAGONIST_IDS := [&"ben", &"lincoln", &"gandhi"]
 const FORMATION_ROW_LIMIT := 3
 const FORMATION_ROWS := [&"front", &"back"]
 const SCENARIO_PARTY_REQUIREMENTS := {&"haunted_mansion": [&"fighter"]}
@@ -156,6 +157,30 @@ var recruit_catalog: Dictionary = {
 		"work_specialties": [&"Invention", &"Research"],
 		"work_adjacent": [&"Diplomacy", &"Logistics", &"Medicine"],
 		"asset_pack": "Main Character/Ben_Franklin",
+	},
+	&"lincoln": {
+		"name": "Abraham Lincoln",
+		"battle_profile": &"lincoln_battle_actor", "portrait_profile": &"lincoln_company_portrait",
+		"specialty": "Protection, resolve, and civic leadership",
+		"adjacent_skills": ["Security", "Diplomacy", "Logistics"],
+		"work_specialties": [&"Security", &"Diplomacy"],
+		"work_adjacent": [&"Logistics", &"Research", &"Athletics"],
+		"asset_pack": "Recruitable Characters/Abe_Lincoln",
+		"field_animation_scene": "res://ben_rpg/characters/abe_lincoln_field_animation.tscn",
+		"combat_actions": [&"rally", &"defend", &"tonic", &"ether", &"smelling_salts", &"phoenix_tonic", &"escape"],
+		"combat_stats": {"max_hp": 205, "max_mp": 24, "attack": 27, "defense": 32, "magic": 15, "spirit": 26, "speed": 27, "hp_growth": 23, "mp_growth": 3, "attack_growth": 3, "defense_growth": 4, "magic_growth": 2, "spirit_growth": 3, "speed_growth": 1},
+	},
+	&"gandhi": {
+		"name": "Mahatma Gandhi",
+		"battle_profile": &"gandhi_battle_actor", "portrait_profile": &"gandhi_company_portrait",
+		"specialty": "Recovery, de-escalation, and nonlethal control",
+		"adjacent_skills": ["Medicine", "Diplomacy", "Research"],
+		"work_specialties": [&"Medicine", &"Diplomacy"],
+		"work_adjacent": [&"Research", &"Logistics", &"Occult"],
+		"asset_pack": "Recruitable Characters/Gandhi_Sprite",
+		"field_animation_scene": "res://ben_rpg/characters/gandhi_field_animation.tscn",
+		"combat_actions": [&"field_triage", &"defend", &"tonic", &"ether", &"smelling_salts", &"phoenix_tonic", &"escape"],
+		"combat_stats": {"max_hp": 164, "max_mp": 52, "attack": 14, "defense": 20, "magic": 31, "spirit": 35, "speed": 31, "hp_growth": 16, "mp_growth": 6, "attack_growth": 2, "defense_growth": 2, "magic_growth": 4, "spirit_growth": 4, "speed_growth": 2},
 	},
 	&"fighter": {
 		"name": "Fighter",
@@ -354,8 +379,8 @@ func reset_new_game() -> void:
 	encounter_pressure = {"active": false, "universe_id": &"", "steps": 0, "threshold": 1, "ward_steps": 0, "suppressed": false, "cooldown": 0}
 	loot_inventory.clear()
 	character_progress.clear()
-	party.assign([&"ben"])
-	party_formation = {&"ben": &"back"}
+	party.assign(CORE_PROTAGONIST_IDS)
+	party_formation = {&"ben": &"back", &"lincoln": &"front", &"gandhi": &"back"}
 	_reset_recruit_statuses()
 	facility_assignments.clear()
 	active_facility_jobs.clear()
@@ -816,7 +841,7 @@ func _reset_recruit_statuses() -> void:
 	recruit_status.clear()
 	for raw_recruit_id in recruit_catalog.keys():
 		var recruit_id := StringName(raw_recruit_id)
-		recruit_status[recruit_id] = &"party" if recruit_id == &"ben" else &"undiscovered"
+		recruit_status[recruit_id] = &"party" if recruit_id in CORE_PROTAGONIST_IDS else &"undiscovered"
 
 
 func ensure_character_progress(character_id: StringName, max_hp: int, max_mp: int) -> Dictionary:
@@ -3220,7 +3245,7 @@ func _deserialize(data: Dictionary, source_version_override := -1) -> void:
 	for raw_recruit_id in recruit_catalog.keys():
 		var recruit_id := StringName(raw_recruit_id)
 		if not recruit_status.has(recruit_id):
-			recruit_status[recruit_id] = &"party" if recruit_id == &"ben" else &"undiscovered"
+			recruit_status[recruit_id] = &"party" if recruit_id == &"ben" else (&"reserve" if recruit_id in CORE_PROTAGONIST_IDS else &"undiscovered")
 	facility_assignments.clear()
 	for facility_name in data.get("facility_assignments", {}).keys():
 		facility_assignments[String(facility_name)] = StringName(data.facility_assignments[facility_name])
@@ -3271,6 +3296,20 @@ func _deserialize(data: Dictionary, source_version_override := -1) -> void:
 	tracked_quest = StringName(data.get("tracked_quest", ""))
 	_ensure_default_progress()
 	_initialize_quest_states()
+	if not sandbox_mode:
+		_ensure_core_protagonist_availability()
+
+
+func _ensure_core_protagonist_availability() -> void:
+	# v21 establishes the opening trio as durable campaign identities. Existing
+	# saves retain their current formation, while any newly introduced protagonist
+	# is made available in reserve rather than silently displacing a full party.
+	for recruit_id in CORE_PROTAGONIST_IDS:
+		if recruit_id in party:
+			recruit_status[recruit_id] = &"party"
+		elif recruit_status.get(recruit_id, &"undiscovered") in [&"undiscovered", &"staffed"]:
+			_remove_assignment(recruit_id)
+			recruit_status[recruit_id] = &"reserve"
 
 
 func _migrate_legacy_universe_anchors() -> void:

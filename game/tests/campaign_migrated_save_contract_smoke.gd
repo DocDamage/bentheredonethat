@@ -67,7 +67,7 @@ func _ready() -> void:
 	assert(int(summary.get("version", 0)) == CampaignState.SAVE_VERSION)
 	DirAccess.remove_absolute(ProjectSettings.globalize_path(TEST_SAVE))
 	CampaignState.reset_new_game()
-	print("CAMPAIGN_MIGRATED_SAVE_CONTRACT_SMOKE_OK migration=v19_to_v20 gates=%d facilities=11 anchors=7 residents+inventory+equipment+party+quest+ending+recall=true" % all_gate_flags.size())
+	print("CAMPAIGN_MIGRATED_SAVE_CONTRACT_SMOKE_OK migration=v19_to_v21 gates=%d facilities=11 anchors=7 residents+inventory+equipment+party+quest+ending+recall=true" % all_gate_flags.size())
 	get_tree().quit()
 
 

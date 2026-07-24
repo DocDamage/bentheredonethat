@@ -3296,6 +3296,36 @@
       ]
     },
     {
+      "path": "res://game_assets/characters/Recruitable Characters/Abe_Lincoln/rotations/south.png",
+      "profileCoverage": "profiled",
+      "profileIds": [
+        "lincoln_company_portrait"
+      ],
+      "references": [
+        {
+          "file": "game/ben_rpg/visual_assets/visual_profiles.json",
+          "line": 1942,
+          "profileId": "lincoln_company_portrait",
+          "resolution": "profile_runtime_texture"
+        }
+      ]
+    },
+    {
+      "path": "res://game_assets/characters/Recruitable Characters/Abe_Lincoln/rotations/west.png",
+      "profileCoverage": "profiled",
+      "profileIds": [
+        "lincoln_battle_actor"
+      ],
+      "references": [
+        {
+          "file": "game/ben_rpg/visual_assets/visual_profiles.json",
+          "line": 1940,
+          "profileId": "lincoln_battle_actor",
+          "resolution": "profile_runtime_texture"
+        }
+      ]
+    },
+    {
       "path": "res://game_assets/characters/Recruitable Characters/Archangel Commander — Legendary Celestial Warrior Hero/rotations/west.png",
       "profileCoverage": "profiled",
       "profileIds": [
@@ -3336,6 +3366,36 @@
           "file": "game/ben_rpg/visual_assets/visual_profiles.json",
           "line": 1816,
           "profileId": "fighter_battle_actor",
+          "resolution": "profile_runtime_texture"
+        }
+      ]
+    },
+    {
+      "path": "res://game_assets/characters/Recruitable Characters/Gandhi_Sprite/rotations/south.png",
+      "profileCoverage": "profiled",
+      "profileIds": [
+        "gandhi_company_portrait"
+      ],
+      "references": [
+        {
+          "file": "game/ben_rpg/visual_assets/visual_profiles.json",
+          "line": 1943,
+          "profileId": "gandhi_company_portrait",
+          "resolution": "profile_runtime_texture"
+        }
+      ]
+    },
+    {
+      "path": "res://game_assets/characters/Recruitable Characters/Gandhi_Sprite/rotations/west.png",
+      "profileCoverage": "profiled",
+      "profileIds": [
+        "gandhi_battle_actor"
+      ],
+      "references": [
+        {
+          "file": "game/ben_rpg/visual_assets/visual_profiles.json",
+          "line": 1941,
+          "profileId": "gandhi_battle_actor",
           "resolution": "profile_runtime_texture"
         }
       ]
@@ -3454,7 +3514,7 @@
       "references": [
         {
           "file": "game/ben_rpg/core/campaign_state.gd",
-          "line": 259,
+          "line": 284,
           "resolution": "literal"
         },
         {
@@ -3474,7 +3534,7 @@
       "references": [
         {
           "file": "game/ben_rpg/core/campaign_state.gd",
-          "line": 241,
+          "line": 266,
           "resolution": "literal"
         },
         {
@@ -3494,7 +3554,7 @@
       "references": [
         {
           "file": "game/ben_rpg/core/campaign_state.gd",
-          "line": 223,
+          "line": 248,
           "resolution": "literal"
         },
         {
@@ -3514,7 +3574,7 @@
       "references": [
         {
           "file": "game/ben_rpg/core/campaign_state.gd",
-          "line": 205,
+          "line": 230,
           "resolution": "literal"
         },
         {
@@ -3534,7 +3594,7 @@
       "references": [
         {
           "file": "game/ben_rpg/visual_assets/visual_profiles.json",
-          "line": 1942,
+          "line": 1946,
           "profileId": "velociraptor_battle_actor",
           "resolution": "profile_runtime_texture"
         }
@@ -4804,11 +4864,11 @@
   "schemaVersion": 2,
   "scope": "static Godot .gd/.tscn raster literals and approved profile runtime textures (tests, validation, and editor-only paths excluded)",
   "stats": {
-    "assets": 182,
-    "profileRequiredAssetSources": 171,
-    "profileRequiredProfiledAssetSources": 171,
+    "assets": 186,
+    "profileRequiredAssetSources": 175,
+    "profileRequiredProfiledAssetSources": 175,
     "profileRequiredUnprofiledAssetSources": 0,
-    "profiledAssetSources": 171,
+    "profiledAssetSources": 175,
     "thirdPartyDependencyVisualSources": 11,
     "unprofiledAssetSources": 11,
     "unprofiledByClassification": {

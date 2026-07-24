@@ -5,7 +5,7 @@ extends RefCounted
 ## contract. Keeping the chain explicit makes future schema bumps auditable and
 ## prevents a load path from silently accepting a version with no migration.
 
-const CURRENT_VERSION := 20
+const CURRENT_VERSION := 21
 const FIRST_SUPPORTED_VERSION := 1
 const MANIFEST_SAVE_LOCATION_MIGRATOR := preload("res://ben_rpg/world/campaign_manifest_save_location_migrator.gd")
 
@@ -51,4 +51,8 @@ static func _apply_step(version: int, payload: Dictionary) -> Dictionary:
 			return payload
 		19:
 			return MANIFEST_SAVE_LOCATION_MIGRATOR.migrate(payload)
+		20:
+			# The typed state facade adds Lincoln and Gandhi to existing campaigns
+			# without replacing the player's active legacy formation.
+			return payload
 	return payload

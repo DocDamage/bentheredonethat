@@ -1716,6 +1716,50 @@
         "game_assets/characters/Recruitable Characters/neon viper - cyberpunk female/license.txt",
         "game_assets/characters/Recruitable Characters/💀 The Frost Lich King Emperor/license.txt"
       ],
+      "path": "res://game_assets/characters/Recruitable Characters/Abe_Lincoln/rotations/south.png",
+      "profileCoverage": "profiled",
+      "profileIds": [
+        "lincoln_company_portrait"
+      ],
+      "sourceGroup": "characters/Recruitable Characters",
+      "unprofiledClassification": ""
+    },
+    {
+      "distributionEligibility": "distribution_confirmed",
+      "licenseReviewStatus": "distribution_confirmed",
+      "localLicenseEvidence": [
+        "game_assets/characters/LICENSE",
+        "game_assets/characters/Recruitable Characters/Archangel Commander — Legendary Celestial Warrior Hero/license.txt",
+        "game_assets/characters/Recruitable Characters/Fighter/license.txt",
+        "game_assets/characters/Recruitable Characters/astronaut/license.txt",
+        "game_assets/characters/Recruitable Characters/caveman/license.txt",
+        "game_assets/characters/Recruitable Characters/crimson oni samurai/license.txt",
+        "game_assets/characters/Recruitable Characters/kitsune empress/license.txt",
+        "game_assets/characters/Recruitable Characters/neon viper - cyberpunk female/license.txt",
+        "game_assets/characters/Recruitable Characters/💀 The Frost Lich King Emperor/license.txt"
+      ],
+      "path": "res://game_assets/characters/Recruitable Characters/Abe_Lincoln/rotations/west.png",
+      "profileCoverage": "profiled",
+      "profileIds": [
+        "lincoln_battle_actor"
+      ],
+      "sourceGroup": "characters/Recruitable Characters",
+      "unprofiledClassification": ""
+    },
+    {
+      "distributionEligibility": "distribution_confirmed",
+      "licenseReviewStatus": "distribution_confirmed",
+      "localLicenseEvidence": [
+        "game_assets/characters/LICENSE",
+        "game_assets/characters/Recruitable Characters/Archangel Commander — Legendary Celestial Warrior Hero/license.txt",
+        "game_assets/characters/Recruitable Characters/Fighter/license.txt",
+        "game_assets/characters/Recruitable Characters/astronaut/license.txt",
+        "game_assets/characters/Recruitable Characters/caveman/license.txt",
+        "game_assets/characters/Recruitable Characters/crimson oni samurai/license.txt",
+        "game_assets/characters/Recruitable Characters/kitsune empress/license.txt",
+        "game_assets/characters/Recruitable Characters/neon viper - cyberpunk female/license.txt",
+        "game_assets/characters/Recruitable Characters/💀 The Frost Lich King Emperor/license.txt"
+      ],
       "path": "res://game_assets/characters/Recruitable Characters/Archangel Commander — Legendary Celestial Warrior Hero/rotations/west.png",
       "profileCoverage": "profiled",
       "profileIds": [
@@ -1764,6 +1808,50 @@
       "profileCoverage": "profiled",
       "profileIds": [
         "fighter_battle_actor"
+      ],
+      "sourceGroup": "characters/Recruitable Characters",
+      "unprofiledClassification": ""
+    },
+    {
+      "distributionEligibility": "distribution_confirmed",
+      "licenseReviewStatus": "distribution_confirmed",
+      "localLicenseEvidence": [
+        "game_assets/characters/LICENSE",
+        "game_assets/characters/Recruitable Characters/Archangel Commander — Legendary Celestial Warrior Hero/license.txt",
+        "game_assets/characters/Recruitable Characters/Fighter/license.txt",
+        "game_assets/characters/Recruitable Characters/astronaut/license.txt",
+        "game_assets/characters/Recruitable Characters/caveman/license.txt",
+        "game_assets/characters/Recruitable Characters/crimson oni samurai/license.txt",
+        "game_assets/characters/Recruitable Characters/kitsune empress/license.txt",
+        "game_assets/characters/Recruitable Characters/neon viper - cyberpunk female/license.txt",
+        "game_assets/characters/Recruitable Characters/💀 The Frost Lich King Emperor/license.txt"
+      ],
+      "path": "res://game_assets/characters/Recruitable Characters/Gandhi_Sprite/rotations/south.png",
+      "profileCoverage": "profiled",
+      "profileIds": [
+        "gandhi_company_portrait"
+      ],
+      "sourceGroup": "characters/Recruitable Characters",
+      "unprofiledClassification": ""
+    },
+    {
+      "distributionEligibility": "distribution_confirmed",
+      "licenseReviewStatus": "distribution_confirmed",
+      "localLicenseEvidence": [
+        "game_assets/characters/LICENSE",
+        "game_assets/characters/Recruitable Characters/Archangel Commander — Legendary Celestial Warrior Hero/license.txt",
+        "game_assets/characters/Recruitable Characters/Fighter/license.txt",
+        "game_assets/characters/Recruitable Characters/astronaut/license.txt",
+        "game_assets/characters/Recruitable Characters/caveman/license.txt",
+        "game_assets/characters/Recruitable Characters/crimson oni samurai/license.txt",
+        "game_assets/characters/Recruitable Characters/kitsune empress/license.txt",
+        "game_assets/characters/Recruitable Characters/neon viper - cyberpunk female/license.txt",
+        "game_assets/characters/Recruitable Characters/💀 The Frost Lich King Emperor/license.txt"
+      ],
+      "path": "res://game_assets/characters/Recruitable Characters/Gandhi_Sprite/rotations/west.png",
+      "profileCoverage": "profiled",
+      "profileIds": [
+        "gandhi_battle_actor"
       ],
       "sourceGroup": "characters/Recruitable Characters",
       "unprofiledClassification": ""
@@ -2939,20 +3027,20 @@
   "schemaVersion": 2,
   "scope": "static Godot raster references; not a reachability or license-grant proof",
   "summary": {
-    "assets": 182,
+    "assets": 186,
     "distributionEligibility": {
-      "distribution_confirmed": 182,
+      "distribution_confirmed": 186,
       "rejected": 0,
       "review_required": 0
     },
     "needsManualLicenseConfirmation": 0,
     "profileCoverage": {
       "external_dependency": 11,
-      "profiled": 171
+      "profiled": 175
     },
     "unprofiledByClassification": {
       "third_party_addon_ui": 11
     },
-    "withLocalLicenseEvidence": 182
+    "withLocalLicenseEvidence": 186
   }
 }

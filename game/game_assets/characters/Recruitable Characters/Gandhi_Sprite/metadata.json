@@ -1,0 +1,341 @@
+{
+  "group_id": null,
+  "states": [
+    {
+      "character": {
+        "id": "b29fc5f9-62b2-4641-a567-42d86cf301b7",
+        "name": "Gandhi Sprite",
+        "prompt": "Make a retro-style sprite of Gandhi with his glasses on. Brown skin. Has to look just like him. SNES or Sega Genesis Art Style.",
+        "size": {
+          "width": 60,
+          "height": 60
+        },
+        "template_id": "mannequin",
+        "directions": 8,
+        "view": "side",
+        "created_at": "2026-07-21T22:56:18.270959+00:00"
+      },
+      "folder": "Gandhi_Sprite",
+      "frames": {
+        "rotations": {
+          "south": "Gandhi_Sprite/rotations/south.png",
+          "south-east": "Gandhi_Sprite/rotations/south-east.png",
+          "east": "Gandhi_Sprite/rotations/east.png",
+          "north-east": "Gandhi_Sprite/rotations/north-east.png",
+          "north": "Gandhi_Sprite/rotations/north.png",
+          "north-west": "Gandhi_Sprite/rotations/north-west.png",
+          "west": "Gandhi_Sprite/rotations/west.png",
+          "south-west": "Gandhi_Sprite/rotations/south-west.png"
+        },
+        "animations": {
+          "Picking_Up": {
+            "south": [
+              "Gandhi_Sprite/animations/Picking_Up/south/frame_000.png",
+              "Gandhi_Sprite/animations/Picking_Up/south/frame_001.png",
+              "Gandhi_Sprite/animations/Picking_Up/south/frame_002.png",
+              "Gandhi_Sprite/animations/Picking_Up/south/frame_003.png",
+              "Gandhi_Sprite/animations/Picking_Up/south/frame_004.png"
+            ],
+            "west": [
+              "Gandhi_Sprite/animations/Picking_Up/west/frame_000.png",
+              "Gandhi_Sprite/animations/Picking_Up/west/frame_001.png",
+              "Gandhi_Sprite/animations/Picking_Up/west/frame_002.png",
+              "Gandhi_Sprite/animations/Picking_Up/west/frame_003.png",
+              "Gandhi_Sprite/animations/Picking_Up/west/frame_004.png"
+            ],
+            "east": [
+              "Gandhi_Sprite/animations/Picking_Up/east/frame_000.png",
+              "Gandhi_Sprite/animations/Picking_Up/east/frame_001.png",
+              "Gandhi_Sprite/animations/Picking_Up/east/frame_002.png",
+              "Gandhi_Sprite/animations/Picking_Up/east/frame_003.png",
+              "Gandhi_Sprite/animations/Picking_Up/east/frame_004.png"
+            ],
+            "north": [
+              "Gandhi_Sprite/animations/Picking_Up/north/frame_000.png",
+              "Gandhi_Sprite/animations/Picking_Up/north/frame_001.png",
+              "Gandhi_Sprite/animations/Picking_Up/north/frame_002.png",
+              "Gandhi_Sprite/animations/Picking_Up/north/frame_003.png",
+              "Gandhi_Sprite/animations/Picking_Up/north/frame_004.png"
+            ]
+          },
+          "Jumping": {
+            "east": [
+              "Gandhi_Sprite/animations/Jumping/east/frame_000.png",
+              "Gandhi_Sprite/animations/Jumping/east/frame_001.png",
+              "Gandhi_Sprite/animations/Jumping/east/frame_002.png",
+              "Gandhi_Sprite/animations/Jumping/east/frame_003.png",
+              "Gandhi_Sprite/animations/Jumping/east/frame_004.png",
+              "Gandhi_Sprite/animations/Jumping/east/frame_005.png",
+              "Gandhi_Sprite/animations/Jumping/east/frame_006.png",
+              "Gandhi_Sprite/animations/Jumping/east/frame_007.png"
+            ],
+            "south": [
+              "Gandhi_Sprite/animations/Jumping/south/frame_000.png",
+              "Gandhi_Sprite/animations/Jumping/south/frame_001.png",
+              "Gandhi_Sprite/animations/Jumping/south/frame_002.png",
+              "Gandhi_Sprite/animations/Jumping/south/frame_003.png",
+              "Gandhi_Sprite/animations/Jumping/south/frame_004.png",
+              "Gandhi_Sprite/animations/Jumping/south/frame_005.png",
+              "Gandhi_Sprite/animations/Jumping/south/frame_006.png",
+              "Gandhi_Sprite/animations/Jumping/south/frame_007.png"
+            ],
+            "north": [
+              "Gandhi_Sprite/animations/Jumping/north/frame_000.png",
+              "Gandhi_Sprite/animations/Jumping/north/frame_001.png",
+              "Gandhi_Sprite/animations/Jumping/north/frame_002.png",
+              "Gandhi_Sprite/animations/Jumping/north/frame_003.png",
+              "Gandhi_Sprite/animations/Jumping/north/frame_004.png",
+              "Gandhi_Sprite/animations/Jumping/north/frame_005.png",
+              "Gandhi_Sprite/animations/Jumping/north/frame_006.png",
+              "Gandhi_Sprite/animations/Jumping/north/frame_007.png"
+            ],
+            "west": [
+              "Gandhi_Sprite/animations/Jumping/west/frame_000.png",
+              "Gandhi_Sprite/animations/Jumping/west/frame_001.png",
+              "Gandhi_Sprite/animations/Jumping/west/frame_002.png",
+              "Gandhi_Sprite/animations/Jumping/west/frame_003.png",
+              "Gandhi_Sprite/animations/Jumping/west/frame_004.png",
+              "Gandhi_Sprite/animations/Jumping/west/frame_005.png",
+              "Gandhi_Sprite/animations/Jumping/west/frame_006.png",
+              "Gandhi_Sprite/animations/Jumping/west/frame_007.png"
+            ]
+          },
+          "Breathing_Idle": {
+            "west": [
+              "Gandhi_Sprite/animations/Breathing_Idle/west/frame_000.png",
+              "Gandhi_Sprite/animations/Breathing_Idle/west/frame_001.png",
+              "Gandhi_Sprite/animations/Breathing_Idle/west/frame_002.png",
+              "Gandhi_Sprite/animations/Breathing_Idle/west/frame_003.png"
+            ],
+            "north": [
+              "Gandhi_Sprite/animations/Breathing_Idle/north/frame_000.png",
+              "Gandhi_Sprite/animations/Breathing_Idle/north/frame_001.png",
+              "Gandhi_Sprite/animations/Breathing_Idle/north/frame_002.png",
+              "Gandhi_Sprite/animations/Breathing_Idle/north/frame_003.png"
+            ],
+            "east": [
+              "Gandhi_Sprite/animations/Breathing_Idle/east/frame_000.png",
+              "Gandhi_Sprite/animations/Breathing_Idle/east/frame_001.png",
+              "Gandhi_Sprite/animations/Breathing_Idle/east/frame_002.png",
+              "Gandhi_Sprite/animations/Breathing_Idle/east/frame_003.png"
+            ],
+            "south": [
+              "Gandhi_Sprite/animations/Breathing_Idle/south/frame_000.png",
+              "Gandhi_Sprite/animations/Breathing_Idle/south/frame_001.png",
+              "Gandhi_Sprite/animations/Breathing_Idle/south/frame_002.png",
+              "Gandhi_Sprite/animations/Breathing_Idle/south/frame_003.png"
+            ]
+          },
+          "Punch": {
+            "east": [
+              "Gandhi_Sprite/animations/Punch/east/frame_000.png",
+              "Gandhi_Sprite/animations/Punch/east/frame_001.png",
+              "Gandhi_Sprite/animations/Punch/east/frame_002.png",
+              "Gandhi_Sprite/animations/Punch/east/frame_003.png",
+              "Gandhi_Sprite/animations/Punch/east/frame_004.png",
+              "Gandhi_Sprite/animations/Punch/east/frame_005.png"
+            ],
+            "west": [
+              "Gandhi_Sprite/animations/Punch/west/frame_000.png",
+              "Gandhi_Sprite/animations/Punch/west/frame_001.png",
+              "Gandhi_Sprite/animations/Punch/west/frame_002.png",
+              "Gandhi_Sprite/animations/Punch/west/frame_003.png",
+              "Gandhi_Sprite/animations/Punch/west/frame_004.png",
+              "Gandhi_Sprite/animations/Punch/west/frame_005.png"
+            ],
+            "south": [
+              "Gandhi_Sprite/animations/Punch/south/frame_000.png",
+              "Gandhi_Sprite/animations/Punch/south/frame_001.png",
+              "Gandhi_Sprite/animations/Punch/south/frame_002.png",
+              "Gandhi_Sprite/animations/Punch/south/frame_003.png",
+              "Gandhi_Sprite/animations/Punch/south/frame_004.png",
+              "Gandhi_Sprite/animations/Punch/south/frame_005.png"
+            ],
+            "north": [
+              "Gandhi_Sprite/animations/Punch/north/frame_000.png",
+              "Gandhi_Sprite/animations/Punch/north/frame_001.png",
+              "Gandhi_Sprite/animations/Punch/north/frame_002.png",
+              "Gandhi_Sprite/animations/Punch/north/frame_003.png",
+              "Gandhi_Sprite/animations/Punch/north/frame_004.png",
+              "Gandhi_Sprite/animations/Punch/north/frame_005.png"
+            ]
+          },
+          "Running": {
+            "west": [
+              "Gandhi_Sprite/animations/Running/west/frame_000.png",
+              "Gandhi_Sprite/animations/Running/west/frame_001.png",
+              "Gandhi_Sprite/animations/Running/west/frame_002.png",
+              "Gandhi_Sprite/animations/Running/west/frame_003.png",
+              "Gandhi_Sprite/animations/Running/west/frame_004.png",
+              "Gandhi_Sprite/animations/Running/west/frame_005.png"
+            ],
+            "south": [
+              "Gandhi_Sprite/animations/Running/south/frame_000.png",
+              "Gandhi_Sprite/animations/Running/south/frame_001.png",
+              "Gandhi_Sprite/animations/Running/south/frame_002.png",
+              "Gandhi_Sprite/animations/Running/south/frame_003.png",
+              "Gandhi_Sprite/animations/Running/south/frame_004.png",
+              "Gandhi_Sprite/animations/Running/south/frame_005.png"
+            ],
+            "north": [
+              "Gandhi_Sprite/animations/Running/north/frame_000.png",
+              "Gandhi_Sprite/animations/Running/north/frame_001.png",
+              "Gandhi_Sprite/animations/Running/north/frame_002.png",
+              "Gandhi_Sprite/animations/Running/north/frame_003.png",
+              "Gandhi_Sprite/animations/Running/north/frame_004.png",
+              "Gandhi_Sprite/animations/Running/north/frame_005.png"
+            ],
+            "east": [
+              "Gandhi_Sprite/animations/Running/east/frame_000.png",
+              "Gandhi_Sprite/animations/Running/east/frame_001.png",
+              "Gandhi_Sprite/animations/Running/east/frame_002.png",
+              "Gandhi_Sprite/animations/Running/east/frame_003.png",
+              "Gandhi_Sprite/animations/Running/east/frame_004.png",
+              "Gandhi_Sprite/animations/Running/east/frame_005.png"
+            ]
+          },
+          "Taking_Damage_Hit": {
+            "south": [
+              "Gandhi_Sprite/animations/Taking_Damage_Hit/south/frame_000.png",
+              "Gandhi_Sprite/animations/Taking_Damage_Hit/south/frame_001.png",
+              "Gandhi_Sprite/animations/Taking_Damage_Hit/south/frame_002.png",
+              "Gandhi_Sprite/animations/Taking_Damage_Hit/south/frame_003.png",
+              "Gandhi_Sprite/animations/Taking_Damage_Hit/south/frame_004.png",
+              "Gandhi_Sprite/animations/Taking_Damage_Hit/south/frame_005.png",
+              "Gandhi_Sprite/animations/Taking_Damage_Hit/south/frame_006.png"
+            ],
+            "north": [
+              "Gandhi_Sprite/animations/Taking_Damage_Hit/north/frame_000.png",
+              "Gandhi_Sprite/animations/Taking_Damage_Hit/north/frame_001.png",
+              "Gandhi_Sprite/animations/Taking_Damage_Hit/north/frame_002.png",
+              "Gandhi_Sprite/animations/Taking_Damage_Hit/north/frame_003.png",
+              "Gandhi_Sprite/animations/Taking_Damage_Hit/north/frame_004.png",
+              "Gandhi_Sprite/animations/Taking_Damage_Hit/north/frame_005.png",
+              "Gandhi_Sprite/animations/Taking_Damage_Hit/north/frame_006.png"
+            ],
+            "east": [
+              "Gandhi_Sprite/animations/Taking_Damage_Hit/east/frame_000.png",
+              "Gandhi_Sprite/animations/Taking_Damage_Hit/east/frame_001.png",
+              "Gandhi_Sprite/animations/Taking_Damage_Hit/east/frame_002.png",
+              "Gandhi_Sprite/animations/Taking_Damage_Hit/east/frame_003.png",
+              "Gandhi_Sprite/animations/Taking_Damage_Hit/east/frame_004.png",
+              "Gandhi_Sprite/animations/Taking_Damage_Hit/east/frame_005.png",
+              "Gandhi_Sprite/animations/Taking_Damage_Hit/east/frame_006.png"
+            ],
+            "west": [
+              "Gandhi_Sprite/animations/Taking_Damage_Hit/west/frame_000.png",
+              "Gandhi_Sprite/animations/Taking_Damage_Hit/west/frame_001.png",
+              "Gandhi_Sprite/animations/Taking_Damage_Hit/west/frame_002.png",
+              "Gandhi_Sprite/animations/Taking_Damage_Hit/west/frame_003.png",
+              "Gandhi_Sprite/animations/Taking_Damage_Hit/west/frame_004.png",
+              "Gandhi_Sprite/animations/Taking_Damage_Hit/west/frame_005.png",
+              "Gandhi_Sprite/animations/Taking_Damage_Hit/west/frame_006.png"
+            ]
+          },
+          "Throw_Object": {
+            "east": [
+              "Gandhi_Sprite/animations/Throw_Object/east/frame_000.png",
+              "Gandhi_Sprite/animations/Throw_Object/east/frame_001.png",
+              "Gandhi_Sprite/animations/Throw_Object/east/frame_002.png",
+              "Gandhi_Sprite/animations/Throw_Object/east/frame_003.png",
+              "Gandhi_Sprite/animations/Throw_Object/east/frame_004.png",
+              "Gandhi_Sprite/animations/Throw_Object/east/frame_005.png",
+              "Gandhi_Sprite/animations/Throw_Object/east/frame_006.png"
+            ],
+            "north": [
+              "Gandhi_Sprite/animations/Throw_Object/north/frame_000.png",
+              "Gandhi_Sprite/animations/Throw_Object/north/frame_001.png",
+              "Gandhi_Sprite/animations/Throw_Object/north/frame_002.png",
+              "Gandhi_Sprite/animations/Throw_Object/north/frame_003.png",
+              "Gandhi_Sprite/animations/Throw_Object/north/frame_004.png",
+              "Gandhi_Sprite/animations/Throw_Object/north/frame_005.png",
+              "Gandhi_Sprite/animations/Throw_Object/north/frame_006.png"
+            ],
+            "west": [
+              "Gandhi_Sprite/animations/Throw_Object/west/frame_000.png",
+              "Gandhi_Sprite/animations/Throw_Object/west/frame_001.png",
+              "Gandhi_Sprite/animations/Throw_Object/west/frame_002.png",
+              "Gandhi_Sprite/animations/Throw_Object/west/frame_003.png",
+              "Gandhi_Sprite/animations/Throw_Object/west/frame_004.png",
+              "Gandhi_Sprite/animations/Throw_Object/west/frame_005.png",
+              "Gandhi_Sprite/animations/Throw_Object/west/frame_006.png"
+            ],
+            "south": [
+              "Gandhi_Sprite/animations/Throw_Object/south/frame_000.png",
+              "Gandhi_Sprite/animations/Throw_Object/south/frame_001.png",
+              "Gandhi_Sprite/animations/Throw_Object/south/frame_002.png",
+              "Gandhi_Sprite/animations/Throw_Object/south/frame_003.png",
+              "Gandhi_Sprite/animations/Throw_Object/south/frame_004.png",
+              "Gandhi_Sprite/animations/Throw_Object/south/frame_005.png",
+              "Gandhi_Sprite/animations/Throw_Object/south/frame_006.png"
+            ]
+          },
+          "Death": {
+            "east": [
+              "Gandhi_Sprite/animations/Death/east/frame_000.png",
+              "Gandhi_Sprite/animations/Death/east/frame_001.png",
+              "Gandhi_Sprite/animations/Death/east/frame_002.png",
+              "Gandhi_Sprite/animations/Death/east/frame_003.png",
+              "Gandhi_Sprite/animations/Death/east/frame_004.png",
+              "Gandhi_Sprite/animations/Death/east/frame_005.png",
+              "Gandhi_Sprite/animations/Death/east/frame_006.png",
+              "Gandhi_Sprite/animations/Death/east/frame_007.png",
+              "Gandhi_Sprite/animations/Death/east/frame_008.png",
+              "Gandhi_Sprite/animations/Death/east/frame_009.png",
+              "Gandhi_Sprite/animations/Death/east/frame_010.png",
+              "Gandhi_Sprite/animations/Death/east/frame_011.png",
+              "Gandhi_Sprite/animations/Death/east/frame_012.png"
+            ],
+            "north": [
+              "Gandhi_Sprite/animations/Death/north/frame_000.png",
+              "Gandhi_Sprite/animations/Death/north/frame_001.png",
+              "Gandhi_Sprite/animations/Death/north/frame_002.png",
+              "Gandhi_Sprite/animations/Death/north/frame_003.png",
+              "Gandhi_Sprite/animations/Death/north/frame_004.png",
+              "Gandhi_Sprite/animations/Death/north/frame_005.png",
+              "Gandhi_Sprite/animations/Death/north/frame_006.png",
+              "Gandhi_Sprite/animations/Death/north/frame_007.png",
+              "Gandhi_Sprite/animations/Death/north/frame_008.png",
+              "Gandhi_Sprite/animations/Death/north/frame_009.png",
+              "Gandhi_Sprite/animations/Death/north/frame_010.png",
+              "Gandhi_Sprite/animations/Death/north/frame_011.png",
+              "Gandhi_Sprite/animations/Death/north/frame_012.png"
+            ],
+            "west": [
+              "Gandhi_Sprite/animations/Death/west/frame_000.png",
+              "Gandhi_Sprite/animations/Death/west/frame_001.png",
+              "Gandhi_Sprite/animations/Death/west/frame_002.png",
+              "Gandhi_Sprite/animations/Death/west/frame_003.png",
+              "Gandhi_Sprite/animations/Death/west/frame_004.png",
+              "Gandhi_Sprite/animations/Death/west/frame_005.png",
+              "Gandhi_Sprite/animations/Death/west/frame_006.png",
+              "Gandhi_Sprite/animations/Death/west/frame_007.png",
+              "Gandhi_Sprite/animations/Death/west/frame_008.png",
+              "Gandhi_Sprite/animations/Death/west/frame_009.png",
+              "Gandhi_Sprite/animations/Death/west/frame_010.png",
+              "Gandhi_Sprite/animations/Death/west/frame_011.png",
+              "Gandhi_Sprite/animations/Death/west/frame_012.png"
+            ],
+            "south": [
+              "Gandhi_Sprite/animations/Death/south/frame_000.png",
+              "Gandhi_Sprite/animations/Death/south/frame_001.png",
+              "Gandhi_Sprite/animations/Death/south/frame_002.png",
+              "Gandhi_Sprite/animations/Death/south/frame_003.png",
+              "Gandhi_Sprite/animations/Death/south/frame_004.png",
+              "Gandhi_Sprite/animations/Death/south/frame_005.png",
+              "Gandhi_Sprite/animations/Death/south/frame_006.png",
+              "Gandhi_Sprite/animations/Death/south/frame_007.png",
+              "Gandhi_Sprite/animations/Death/south/frame_008.png",
+              "Gandhi_Sprite/animations/Death/south/frame_009.png",
+              "Gandhi_Sprite/animations/Death/south/frame_010.png",
+              "Gandhi_Sprite/animations/Death/south/frame_011.png",
+              "Gandhi_Sprite/animations/Death/south/frame_012.png"
+            ]
+          }
+        }
+      }
+    }
+  ],
+  "export_version": "3.1",
+  "export_date": "2026-07-23T13:03:37.759047"
+}
