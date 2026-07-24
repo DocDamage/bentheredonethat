@@ -14,11 +14,12 @@ func _run() -> void:
 	CampaignState.reset_new_game()
 	_assert_new_campaign_contract()
 	_assert_combat_contract()
+	_assert_progression_equipment_and_defeat_contract()
 	_assert_story_participation_contract()
 	_assert_legacy_save_contract()
 	DirAccess.remove_absolute(ProjectSettings.globalize_path(TEST_SAVE))
 	CampaignState.reset_new_game()
-	print("CORE_PROTAGONIST_TRIO_SMOKE_OK ids=ben_lincoln_gandhi opening_party=3 profiles=4 combat_roles=distinct migration=v20_to_v21")
+	print("CORE_PROTAGONIST_TRIO_SMOKE_OK ids=ben_lincoln_gandhi opening_party=3 formation+equipment+progression+revival=true profiles=4 combat_roles=distinct story=opening+ending migration=v20_to_v21")
 	get_tree().quit(0)
 
 
@@ -46,6 +47,33 @@ func _assert_combat_contract() -> void:
 	model.setup(&"mansion_restless_books", battle_party, CampaignState.character_progress, 1776)
 	for recruit_id in CORE_TRIO:
 		assert(not model.get_actor(recruit_id).is_empty(), "%s was lost from the trio battle formation." % recruit_id)
+
+
+func _assert_progression_equipment_and_defeat_contract() -> void:
+	assert(CampaignState.party_formation == {&"ben": &"back", &"lincoln": &"front", &"gandhi": &"back"}, "The opening trio needs an authored support/frontline formation.")
+	CampaignState.loot_inventory.append_array([
+		{"instance_id": "lincoln-charter-coat", "id": &"charter_coat", "slot": &"body", "kind": "gear", "required_affinities": [&"frontline"], "modifiers": [{"stat": "defense", "value": 4}]},
+		{"instance_id": "gandhi-mercy-charm", "id": &"mercy_charm", "slot": &"accessory", "kind": "gear", "required_affinities": [&"radiant"], "modifiers": [{"stat": "spirit", "value": 4}]},
+	])
+	assert(CampaignState.equip_loot(&"lincoln", "lincoln-charter-coat"), "Lincoln must support compatible protection equipment.")
+	assert(CampaignState.equip_loot(&"gandhi", "gandhi-mercy-charm"), "Gandhi must support compatible equipment.")
+	CampaignState.character_progress[&"lincoln"]["skill_points"] = 2
+	CampaignState.character_progress[&"gandhi"]["skill_points"] = 2
+	assert(CampaignState.learn_skill(&"lincoln", &"charter_guard") and CampaignState.learn_skill(&"lincoln", &"civic_resolve"), "Lincoln must retain a dedicated protection progression path.")
+	assert(CampaignState.learn_skill(&"gandhi", &"mercy_practice") and CampaignState.learn_skill(&"gandhi", &"field_medicine"), "Gandhi must retain a dedicated recovery progression path.")
+	CampaignState.apply_battle_victory(120, 0, [])
+	for recruit_id in CORE_TRIO:
+		assert(int(CampaignState.character_progress[recruit_id].get("exp", 0)) > 0, "%s must receive victory progression." % recruit_id)
+		var stats: Dictionary = CampaignState.recruit_catalog[recruit_id].get("combat_stats", {})
+		CampaignState.set_character_vitals(recruit_id, 0, 0, int(stats.get("max_hp", 140)), int(stats.get("max_mp", 36)))
+		CampaignState.add_item(&"phoenix_tonic", 1, false)
+		assert(bool(CampaignState.use_field_item(&"phoenix_tonic", recruit_id).get("used", false)), "%s must be revivable after a knockout." % recruit_id)
+		assert(int(CampaignState.character_progress[recruit_id].get("hp", 0)) > 0, "%s revival did not restore HP." % recruit_id)
+	assert(CampaignState.save_game(TEST_SAVE) == OK, "The trio's formation, equipment, and progress must save.")
+	CampaignState.reset_new_game()
+	assert(CampaignState.load_game(TEST_SAVE) == OK and CampaignState.party == CORE_TRIO, "The trio must restore after save/load.")
+	assert(CampaignState.character_progress[&"lincoln"].get("equipment", {}).get(&"body", "") == "lincoln-charter-coat", "Lincoln's equipment did not persist.")
+	assert(CampaignState.character_progress[&"gandhi"].get("equipment", {}).get(&"accessory", "") == "gandhi-mercy-charm", "Gandhi's equipment did not persist.")
 
 
 func _assert_story_participation_contract() -> void:

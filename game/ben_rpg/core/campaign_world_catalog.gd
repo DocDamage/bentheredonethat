@@ -95,6 +95,8 @@ const EQUIPMENT_SLOTS := [&"weapon", &"head", &"body", &"hands", &"accessory", &
 
 const EQUIPMENT_AFFINITIES := {
 	&"ben": [&"field", &"martial", &"technical", &"occult", &"frontline", &"scout", &"radiant"],
+	&"lincoln": [&"field", &"martial", &"frontline", &"radiant"],
+	&"gandhi": [&"field", &"occult", &"scout", &"radiant"],
 	&"fighter": [&"field", &"martial", &"frontline"],
 	&"astronaut": [&"field", &"technical", &"scout"],
 	&"caveman": [&"field", &"martial", &"frontline"],
@@ -379,6 +381,18 @@ const SKILL_TREES := {
 		{"id": &"voltaic_cage_training", "name": "Voltaic Cage", "cost": 1, "description": "Unlock a stronger all-target electrical invention.", "action": &"voltaic_cage", "requires": [&"efficient_capacitor"]},
 		{"id": &"field_engineering", "name": "Field Engineering", "cost": 1, "description": "+5 Spirit.", "bonuses": {&"spirit": 5}, "requires": []},
 		{"id": &"triage_protocol", "name": "Triage Protocol", "cost": 1, "description": "+10 maximum MP.", "bonuses": {&"max_mp": 10}, "requires": [&"field_engineering"]},
+	],
+	&"lincoln": [
+		{"id": &"charter_guard", "name": "Charter Guard", "cost": 1, "description": "+6 Defense while holding the line.", "bonuses": {&"defense": 6}, "requires": []},
+		{"id": &"civic_resolve", "name": "Civic Resolve", "cost": 1, "description": "+24 maximum HP when protecting the company.", "bonuses": {&"max_hp": 24}, "requires": [&"charter_guard"]},
+		{"id": &"public_address", "name": "Public Address", "cost": 1, "description": "+5 Spirit for formation-wide leadership.", "bonuses": {&"spirit": 5}, "requires": []},
+		{"id": &"steady_standard", "name": "Steady Standard", "cost": 1, "description": "+4 Speed after issuing a rally.", "bonuses": {&"speed": 4}, "requires": [&"public_address"]},
+	],
+	&"gandhi": [
+		{"id": &"mercy_practice", "name": "Mercy Practice", "cost": 1, "description": "+6 Spirit for recovery and de-escalation.", "bonuses": {&"spirit": 6}, "requires": []},
+		{"id": &"field_medicine", "name": "Field Medicine", "cost": 1, "description": "+12 maximum MP for sustained triage.", "bonuses": {&"max_mp": 12}, "requires": [&"mercy_practice"]},
+		{"id": &"patient_step", "name": "Patient Step", "cost": 1, "description": "+5 Speed while directing nonlethal control.", "bonuses": {&"speed": 5}, "requires": []},
+		{"id": &"quiet_courage", "name": "Quiet Courage", "cost": 1, "description": "+18 maximum HP when standing with the wounded.", "bonuses": {&"max_hp": 18}, "requires": [&"patient_step"]},
 	],
 	&"fighter": [
 		{"id": &"rally_training", "name": "Rally Training", "cost": 1, "description": "Unlock Rally for the entire formation.", "action": &"rally", "requires": []},
@@ -809,7 +823,7 @@ static func validate() -> PackedStringArray:
 		errors.append("World catalog must retain all universe save points.")
 	if UNIVERSE_TREASURE_CACHES.size() != 5 or not UNIVERSE_TREASURE_CACHES.has(&"primeval_ruins_plinth"):
 		errors.append("World catalog must retain all universe treasure caches.")
-	if EQUIPMENT_SLOTS.size() != 6 or EQUIPMENT_AFFINITIES.size() != 13:
+	if EQUIPMENT_SLOTS.size() != 6 or EQUIPMENT_AFFINITIES.size() != 15:
 		errors.append("World catalog must retain equipment slots and affinities.")
 	if SERVICE_ITEM_CATALOG.size() != 6 or SERVICE_STOCK.size() != 2 or ARMORY_STOCK.is_empty():
 		errors.append("World catalog must retain service and armory stock.")
@@ -817,6 +831,6 @@ static func validate() -> PackedStringArray:
 		errors.append("World catalog must retain facility and invention definitions.")
 	if EXPEDITION_TOOL_CONTRACTS.size() != 7 or FACILITY_UPGRADE_DEFINITIONS.is_empty():
 		errors.append("World catalog must retain expedition tools and facility upgrades.")
-	if SKILL_TREES.size() != 13 or QUEST_DEFINITIONS.is_empty():
+	if SKILL_TREES.size() != 15 or QUEST_DEFINITIONS.is_empty():
 		errors.append("World catalog must retain skills and quest definitions.")
 	return PackedStringArray(errors)
