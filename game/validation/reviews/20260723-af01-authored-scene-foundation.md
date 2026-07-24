@@ -26,6 +26,12 @@
   `(22,6)`, and `Sw` `(8,14)`. The room-record validator now derives each
   safe cell, three-cell opening, and follower positions from the L2 blueprint
   rather than accepting merely walkable coordinates.
+- Added the runtime-gated AF-01 survivor-watch population contract. It binds
+  Scrap Kid at `P1` and Dust Hunter at `P2` to their complete, canonical AF-01
+  registry identities after the arrival raid, while recording Iron Sentinel as
+  an AF-05-canonical visitor at `P3` only after the bunker defense clears.
+  Their runtime profiles and actor scenes remain unadmitted, so this is roster
+  ownership rather than a claim that residents are visible in the scene.
 - Added a profile-backed fallback for deterministic derived PNGs that have not
   received Godot import sidecars in an isolated project.
 - Produced a guarded windowed first-visit capture at
@@ -50,13 +56,18 @@
   perimeter plus 18 barricade), and profile-backed barricade texture passed at
   `test-artifacts/20260724-001632-8718bee8`; its refreshed guarded windowed
   capture passed at `test-artifacts/20260724-001646-60c70f07`.
+- The AF-01 population catalog, room-record linkage, collision scene, existing
+  population scheduler, and aggregate content validator passed together at
+  `test-artifacts/20260724-002633-c3326e6d`. This proves roster ownership and
+  deliberate runtime gating; it does not admit field actors.
 
 ## Still gated
 
 - AF-01 is not registered in the campaign graph or address gateway.
 - The arrival raid remains a non-runtime contract pending its actor, backdrop,
-  balance, and runtime encounter integration, so no stabilized
-  encounter/population capture exists yet.
+  balance, and runtime encounter integration; the survivor watch also awaits
+  field-profile/actor admission. No stabilized encounter/population capture
+  exists yet.
 - Input/controller traversal, save/reload, final art composition, and reviewer
   acceptance remain required. The scene-owned perimeter collision foundation
   and landmark footprint are present, but they have not yet been exercised by

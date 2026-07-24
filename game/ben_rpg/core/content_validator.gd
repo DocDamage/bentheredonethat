@@ -27,6 +27,7 @@ const ACTION_CATALOG := preload("res://ben_rpg/combat/campaign_action_catalog.gd
 const BESTIARY_CATALOG := preload("res://ben_rpg/combat/campaign_bestiary_catalog.gd")
 const ENCOUNTER_REWARD_CATALOG := preload("res://ben_rpg/combat/campaign_encounter_reward_catalog.gd")
 const ADDRESS_ROOM_RECORDS := preload("res://ben_rpg/world/campaign_address_room_records.gd")
+const ADDRESS_POPULATION_CATALOG := preload("res://ben_rpg/world/campaign_address_population_catalog.gd")
 const CAMPAIGN_VISUAL_PROFILE_REGISTRY := preload("res://ben_rpg/world/campaign_visual_profile_registry.gd")
 
 
@@ -76,6 +77,8 @@ static func _validate_room_registry(errors: Array[String]) -> void:
 	for error in ADDRESS_ENCOUNTER_CATALOG.validate():
 		errors.append(error)
 	for error in ADDRESS_ROOM_RECORDS.validate():
+		errors.append(error)
+	for error in ADDRESS_POPULATION_CATALOG.validate():
 		errors.append(error)
 	var visual_profiles := CAMPAIGN_VISUAL_PROFILE_REGISTRY.new()
 	for error in visual_profiles.validate():

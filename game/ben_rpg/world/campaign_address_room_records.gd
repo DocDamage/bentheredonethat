@@ -22,6 +22,7 @@ static var RECORDS := {
 		"id": &"AF-01",
 		"implementationState": &"scene_collision_authored_runtime_gated",
 		"scenePath": "res://ben_rpg/world/rooms/ashfall_cinder_gate.tscn",
+		"populationContractId": &"af01-survivor-watch-v1",
 		"layout": {
 			"id": &"af01-cinder-gate-layout-v1",
 			"dimensions": Vector2i(26, 18),
@@ -37,7 +38,7 @@ static var RECORDS := {
 			"foregroundCells": [Vector2i(5, 3), Vector2i(21, 3)],
 			"captureState": &"first_visit_captured_stabilized_blocked",
 			"firstVisitCapture": "res://validation/af01-cinder-gate-scene-first-visit.png",
-			"stabilizedCaptureBlocker": "The non-runtime arrival encounter actors/backdrop/balance, population state, and address gateway remain incomplete.",
+			"stabilizedCaptureBlocker": "The non-runtime arrival encounter actors/backdrop/balance, population field-profile/actor admission, and address gateway remain incomplete.",
 		},
 		"navigation": {
 			"id": &"af01-cinder-gate-navigation-v1",
@@ -113,6 +114,8 @@ static func validate() -> PackedStringArray:
 			errors.append("%s layout dimensions must match its locked blueprint." % room_id)
 		if StringName(record_definition.get("implementationState", &"")) != &"scene_collision_authored_runtime_gated" or not ResourceLoader.exists(String(record_definition.get("scenePath", ""))):
 			errors.append("%s needs its recorded collision-authored scene while remaining runtime-gated." % room_id)
+		if StringName(record_definition.get("populationContractId", &"")) != &"af01-survivor-watch-v1":
+			errors.append("%s needs its stable address-population contract id." % room_id)
 		if StringName(navigation.get("kind", &"")) != &"authored" or (navigation.get("walkableRects", []) as Array).is_empty():
 			errors.append("%s requires an authored navigation record." % room_id)
 		if StringName(navigation.get("collisionState", &"")) != &"native_perimeter_and_landmark_shapes_authored":

@@ -3137,8 +3137,10 @@ limit:
   capture, and 102 native record-owned collision shapes (including the
   central 6×3 Cinder Gate barricade footprint). Its three locked ports now
   derive exact two-cell-inward safe arrivals and follower formations from the
-  L2 blueprint. It is deliberately not
-  registered in the live streamer or core room registry: gateway, population,
+  L2 blueprint. Its runtime-gated survivor-watch contract binds Scrap Kid and
+  Dust Hunter to `P1`/`P2`, with Iron Sentinel retained as a later AF-05
+  visitor at `P3`. It is deliberately not registered in the live streamer or
+  core room registry: gateway, population field-profile/actor admission,
   encounter actors/backdrop/balance, streamed-player traversal, stabilized
   state, and acceptance evidence remain outstanding.
 - Battle lifecycle effects are separated from battle presentation, and the 53
