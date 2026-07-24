@@ -25,8 +25,8 @@ class RuntimeVisualInventoryTests(unittest.TestCase):
         )
         self.assertEqual(result["stats"]["profileRequiredUnprofiledAssetSources"], 0)
         self.assertEqual(result["stats"]["thirdPartyDependencyVisualSources"], 11)
-        self.assertEqual(result["stats"]["profileRequiredAssetSources"], 171)
-        self.assertEqual(result["stats"]["profileRequiredProfiledAssetSources"], 171)
+        self.assertEqual(result["stats"]["profileRequiredAssetSources"], 175)
+        self.assertEqual(result["stats"]["profileRequiredProfiledAssetSources"], 175)
 
     def test_legacy_compatibility_sources_resolve_through_profiles(self) -> None:
         root = Path(__file__).resolve().parents[2]
@@ -60,6 +60,8 @@ class RuntimeVisualInventoryTests(unittest.TestCase):
         }
         expected = {
             "ben_company_portrait", "fighter_company_portrait", "astronaut_company_portrait",
+            "lincoln_company_portrait", "gandhi_company_portrait",
+            "lincoln_battle_actor", "gandhi_battle_actor",
             "caveman_battle_actor", "crimson_oni_challenger_battle_actor", "rift_jackal_battle_actor",
             "mossback_surveyor_battle_actor", "cobalt_courier_battle_actor", "bulkhead_warden_battle_actor",
             "kitsune_empress_battle_actor", "neon_viper_battle_actor", "archangel_commander_battle_actor",
