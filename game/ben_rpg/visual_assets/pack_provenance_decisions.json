@@ -13,6 +13,7 @@
         "AF-01"
       ],
       "derivativeIds": [
+        "ashfall_cinder_gate_barricade",
         "ashfall_cinder_gate_dead_tree",
         "ashfall_cinder_gate_ground"
       ],
@@ -41,7 +42,7 @@
       "decision": "distribution_confirmed",
       "approvedBy": "product owner",
       "approvalDate": "2026-07-23",
-      "rationale": "The owner confirmed that the supplied current licences cover distribution rights for this named source pack and its two AF-01 Cinder Gate derivatives."
+      "rationale": "The owner confirmed that the supplied current licences cover distribution rights for this named source pack and its three AF-01 Cinder Gate derivatives."
     },
     {
       "id": "mansion-haunted-mansion-v1",

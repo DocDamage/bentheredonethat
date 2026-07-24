@@ -1967,6 +1967,17 @@
       "releaseVisualAcceptance": "prototype_only",
       "cropApproval": "approved",
       "goldenCapture": "game/validation/af01-cinder-gate-scene-first-visit.png"
+    },
+    {
+      "id": "ashfall_cinder_gate_barricade",
+      "kind": "prop",
+      "source": {"pack": "Ashlands Tileset", "runtimeTexture": "game/ben_rpg/visual_assets/derived/ashfall_cinder_gate_barricade.png", "sourceChecksum": "ba4cca14d60a230730247f94a76d47e97c4765a0362635237487bcef500a283e", "sourceDensity": 16, "region": [0, 0, 96, 48], "alphaBounds": [0, 0, 96, 48]},
+      "placement": {"footAnchor": [48, 47], "scaleClass": "landmark", "collisionFootprint": "cinder_gate_barricade_6x3"},
+      "worldDrawSize": [288, 144],
+      "licenseReference": "game/ben_rpg/visual_assets/generated/runtime_asset_provenance.json",
+      "releaseVisualAcceptance": "prototype_only",
+      "cropApproval": "approved",
+      "goldenCapture": "game/validation/af01-cinder-gate-scene-first-visit.png"
     }
   ]
 }

@@ -21,6 +21,7 @@ static var RECORDS := {
 			"propPlacements": [
 				{"profileId": &"ashfall_cinder_gate_dead_tree", "drawPosition": Vector2i(0, 58), "collisionFootprint": &"boundary_only"},
 				{"profileId": &"ashfall_cinder_gate_dead_tree", "drawPosition": Vector2i(1056, 58), "collisionFootprint": &"boundary_only"},
+				{"profileId": &"ashfall_cinder_gate_barricade", "drawPosition": Vector2i(480, 72), "collisionFootprint": &"cinder_gate_barricade_6x3"},
 			],
 			"interactionCell": Vector2i(13, 9),
 			"treasureCell": Vector2i(4, 4),
@@ -34,10 +35,10 @@ static var RECORDS := {
 			"id": &"af01-cinder-gate-navigation-v1",
 			"kind": &"authored",
 			"collisionMaskId": &"af01-cinder-gate-boundary-collision-v1",
-			"collisionState": &"native_perimeter_shapes_authored",
-			"usefulCellRange": Vector2i(384, 384),
-			"walkableRects": [{&"origin": Vector2i(1, 1), &"size": Vector2i(24, 16)}],
-			"blockedCells": _perimeter_cells(Vector2i(26, 18)),
+			"collisionState": &"native_perimeter_and_landmark_shapes_authored",
+			"usefulCellRange": Vector2i(366, 366),
+			"walkableRects": [{&"origin": Vector2i(1, 1), &"size": Vector2i(24, 1)}, {&"origin": Vector2i(1, 2), &"size": Vector2i(9, 3)}, {&"origin": Vector2i(16, 2), &"size": Vector2i(9, 3)}, {&"origin": Vector2i(1, 5), &"size": Vector2i(24, 12)}],
+			"blockedCells": _cinder_gate_blocked_cells(Vector2i(26, 18)),
 			"arrivalSafeCells": {&"Nw": Vector2i(8, 2), &"E1": Vector2i(23, 6), &"Sw": Vector2i(8, 15)},
 			"arrivalFollowerCells": {&"Nw": [Vector2i(7, 2), Vector2i(9, 2), Vector2i(8, 3)], &"E1": [Vector2i(22, 6), Vector2i(23, 5), Vector2i(23, 7)], &"Sw": [Vector2i(7, 15), Vector2i(9, 15), Vector2i(8, 14)]},
 			"npcRouteCells": {&"P1": [Vector2i(6, 6), Vector2i(7, 6)], &"P2": [Vector2i(13, 6), Vector2i(14, 6)], &"P3": [Vector2i(20, 6), Vector2i(19, 6)]},
@@ -55,6 +56,14 @@ static func _perimeter_cells(dimensions: Vector2i) -> Array[Vector2i]:
 	for y in range(1, dimensions.y - 1):
 		cells.append(Vector2i(0, y))
 		cells.append(Vector2i(dimensions.x - 1, y))
+	return cells
+
+
+static func _cinder_gate_blocked_cells(dimensions: Vector2i) -> Array[Vector2i]:
+	var cells := _perimeter_cells(dimensions)
+	for y in range(2, 5):
+		for x in range(10, 16):
+			cells.append(Vector2i(x, y))
 	return cells
 
 
@@ -81,8 +90,8 @@ static func validate() -> PackedStringArray:
 			errors.append("%s needs its recorded collision-authored scene while remaining runtime-gated." % room_id)
 		if StringName(navigation.get("kind", &"")) != &"authored" or (navigation.get("walkableRects", []) as Array).is_empty():
 			errors.append("%s requires an authored navigation record." % room_id)
-		if StringName(navigation.get("collisionState", &"")) != &"native_perimeter_shapes_authored":
-			errors.append("%s requires a native perimeter collision ownership record." % room_id)
+		if StringName(navigation.get("collisionState", &"")) != &"native_perimeter_and_landmark_shapes_authored":
+			errors.append("%s requires native perimeter and landmark collision ownership." % room_id)
 		var walkable: Dictionary = {}
 		for rectangle in navigation.get("walkableRects", []):
 			var origin: Vector2i = rectangle.get("origin", Vector2i.ZERO)
@@ -101,13 +110,23 @@ static func validate() -> PackedStringArray:
 		for terrain_run in layout.get("terrainRuns", []):
 			if StringName(terrain_run.get("profileId", &"")) != &"ashfall_cinder_gate_ground" or terrain_run.get("origin", Vector2i.ZERO) != Vector2i.ZERO or terrain_run.get("size", Vector2i.ZERO) != dimensions:
 				errors.append("%s terrain record must cover the locked blueprint with the admitted ground profile." % room_id)
-		if (layout.get("terrainRuns", []) as Array).size() != 1 or (layout.get("propPlacements", []) as Array).size() != 2:
-			errors.append("%s must record its exact terrain run and two boundary dead-tree placements." % room_id)
+		if (layout.get("terrainRuns", []) as Array).size() != 1 or (layout.get("propPlacements", []) as Array).size() != 3:
+			errors.append("%s must record its exact terrain run, two boundary trees, and Cinder Gate barricade." % room_id)
 		if StringName(layout.get("captureState", &"")) != &"first_visit_captured_stabilized_blocked" or not FileAccess.file_exists(String(layout.get("firstVisitCapture", ""))) or String(layout.get("stabilizedCaptureBlocker", "")).is_empty():
 			errors.append("%s must retain its first-visit capture and explicit stabilized-state blocker." % room_id)
+		var dead_tree_count := 0
+		var barricade_count := 0
 		for placement in layout.get("propPlacements", []):
-			if StringName(placement.get("profileId", &"")) != &"ashfall_cinder_gate_dead_tree" or StringName(placement.get("collisionFootprint", &"")) != &"boundary_only":
-				errors.append("%s prop placement must use the admitted boundary dead-tree profile." % room_id)
+			var profile_id := StringName(placement.get("profileId", &""))
+			var collision_footprint := StringName(placement.get("collisionFootprint", &""))
+			if profile_id == &"ashfall_cinder_gate_dead_tree" and collision_footprint == &"boundary_only":
+				dead_tree_count += 1
+			elif profile_id == &"ashfall_cinder_gate_barricade" and collision_footprint == &"cinder_gate_barricade_6x3":
+				barricade_count += 1
+			else:
+				errors.append("%s contains an unadmitted prop or collision footprint." % room_id)
+		if dead_tree_count != 2 or barricade_count != 1:
+			errors.append("%s must bind two boundary trees and one admitted Cinder Gate barricade." % room_id)
 		for port_id in (catalog_room.get("ports", {}) as Dictionary).keys():
 			var safe_cell: Vector2i = (navigation.get("arrivalSafeCells", {}) as Dictionary).get(port_id, Vector2i.ZERO)
 			if not walkable.has(safe_cell):

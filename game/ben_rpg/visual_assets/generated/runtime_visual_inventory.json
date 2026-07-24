@@ -204,6 +204,21 @@
       ]
     },
     {
+      "path": "res://ben_rpg/visual_assets/derived/ashfall_cinder_gate_barricade.png",
+      "profileCoverage": "profiled",
+      "profileIds": [
+        "ashfall_cinder_gate_barricade"
+      ],
+      "references": [
+        {
+          "file": "game/ben_rpg/visual_assets/visual_profiles.json",
+          "line": 1974,
+          "profileId": "ashfall_cinder_gate_barricade",
+          "resolution": "profile_runtime_texture"
+        }
+      ]
+    },
+    {
       "path": "res://ben_rpg/visual_assets/derived/ashfall_cinder_gate_dead_tree.png",
       "profileCoverage": "profiled",
       "profileIds": [
@@ -3818,53 +3833,53 @@
       ],
       "references": [
         {
-          "file": "game/ben_rpg/combat/campaign_combat_database.gd",
-          "line": 618,
+          "file": "game/ben_rpg/combat/campaign_encounter_reward_catalog.gd",
+          "line": 78,
           "resolution": "literal"
         },
         {
-          "file": "game/ben_rpg/combat/campaign_combat_database.gd",
-          "line": 644,
+          "file": "game/ben_rpg/combat/campaign_encounter_reward_catalog.gd",
+          "line": 104,
           "resolution": "literal"
         },
         {
-          "file": "game/ben_rpg/combat/campaign_combat_database.gd",
-          "line": 665,
+          "file": "game/ben_rpg/combat/campaign_encounter_reward_catalog.gd",
+          "line": 125,
           "resolution": "literal"
         },
         {
-          "file": "game/ben_rpg/combat/campaign_combat_database.gd",
-          "line": 701,
+          "file": "game/ben_rpg/combat/campaign_encounter_reward_catalog.gd",
+          "line": 161,
           "resolution": "literal"
         },
         {
-          "file": "game/ben_rpg/combat/campaign_combat_database.gd",
-          "line": 737,
+          "file": "game/ben_rpg/combat/campaign_encounter_reward_catalog.gd",
+          "line": 197,
           "resolution": "literal"
         },
         {
-          "file": "game/ben_rpg/combat/campaign_combat_database.gd",
-          "line": 763,
+          "file": "game/ben_rpg/combat/campaign_encounter_reward_catalog.gd",
+          "line": 223,
           "resolution": "literal"
         },
         {
-          "file": "game/ben_rpg/combat/campaign_combat_database.gd",
-          "line": 773,
+          "file": "game/ben_rpg/combat/campaign_encounter_reward_catalog.gd",
+          "line": 233,
           "resolution": "literal"
         },
         {
-          "file": "game/ben_rpg/combat/campaign_combat_database.gd",
-          "line": 805,
+          "file": "game/ben_rpg/combat/campaign_encounter_reward_catalog.gd",
+          "line": 265,
           "resolution": "literal"
         },
         {
-          "file": "game/ben_rpg/combat/campaign_combat_database.gd",
-          "line": 815,
+          "file": "game/ben_rpg/combat/campaign_encounter_reward_catalog.gd",
+          "line": 275,
           "resolution": "literal"
         },
         {
-          "file": "game/ben_rpg/combat/campaign_combat_database.gd",
-          "line": 876,
+          "file": "game/ben_rpg/combat/campaign_encounter_reward_catalog.gd",
+          "line": 336,
           "resolution": "literal"
         },
         {
@@ -3908,38 +3923,38 @@
       ],
       "references": [
         {
-          "file": "game/ben_rpg/combat/campaign_combat_database.gd",
-          "line": 568,
+          "file": "game/ben_rpg/combat/campaign_encounter_reward_catalog.gd",
+          "line": 28,
           "resolution": "literal"
         },
         {
-          "file": "game/ben_rpg/combat/campaign_combat_database.gd",
-          "line": 578,
+          "file": "game/ben_rpg/combat/campaign_encounter_reward_catalog.gd",
+          "line": 38,
           "resolution": "literal"
         },
         {
-          "file": "game/ben_rpg/combat/campaign_combat_database.gd",
-          "line": 620,
+          "file": "game/ben_rpg/combat/campaign_encounter_reward_catalog.gd",
+          "line": 80,
           "resolution": "literal"
         },
         {
-          "file": "game/ben_rpg/combat/campaign_combat_database.gd",
-          "line": 654,
+          "file": "game/ben_rpg/combat/campaign_encounter_reward_catalog.gd",
+          "line": 114,
           "resolution": "literal"
         },
         {
-          "file": "game/ben_rpg/combat/campaign_combat_database.gd",
-          "line": 727,
+          "file": "game/ben_rpg/combat/campaign_encounter_reward_catalog.gd",
+          "line": 187,
           "resolution": "literal"
         },
         {
-          "file": "game/ben_rpg/combat/campaign_combat_database.gd",
-          "line": 852,
+          "file": "game/ben_rpg/combat/campaign_encounter_reward_catalog.gd",
+          "line": 312,
           "resolution": "literal"
         },
         {
-          "file": "game/ben_rpg/combat/campaign_combat_database.gd",
-          "line": 879,
+          "file": "game/ben_rpg/combat/campaign_encounter_reward_catalog.gd",
+          "line": 339,
           "resolution": "literal"
         },
         {
@@ -3983,8 +3998,8 @@
       ],
       "references": [
         {
-          "file": "game/ben_rpg/combat/campaign_combat_database.gd",
-          "line": 691,
+          "file": "game/ben_rpg/combat/campaign_encounter_reward_catalog.gd",
+          "line": 151,
           "resolution": "literal"
         },
         {
@@ -4003,38 +4018,38 @@
       ],
       "references": [
         {
-          "file": "game/ben_rpg/combat/campaign_combat_database.gd",
-          "line": 619,
+          "file": "game/ben_rpg/combat/campaign_encounter_reward_catalog.gd",
+          "line": 79,
           "resolution": "literal"
         },
         {
-          "file": "game/ben_rpg/combat/campaign_combat_database.gd",
-          "line": 666,
+          "file": "game/ben_rpg/combat/campaign_encounter_reward_catalog.gd",
+          "line": 126,
           "resolution": "literal"
         },
         {
-          "file": "game/ben_rpg/combat/campaign_combat_database.gd",
-          "line": 702,
+          "file": "game/ben_rpg/combat/campaign_encounter_reward_catalog.gd",
+          "line": 162,
           "resolution": "literal"
         },
         {
-          "file": "game/ben_rpg/combat/campaign_combat_database.gd",
-          "line": 738,
+          "file": "game/ben_rpg/combat/campaign_encounter_reward_catalog.gd",
+          "line": 198,
           "resolution": "literal"
         },
         {
-          "file": "game/ben_rpg/combat/campaign_combat_database.gd",
-          "line": 774,
+          "file": "game/ben_rpg/combat/campaign_encounter_reward_catalog.gd",
+          "line": 234,
           "resolution": "literal"
         },
         {
-          "file": "game/ben_rpg/combat/campaign_combat_database.gd",
-          "line": 816,
+          "file": "game/ben_rpg/combat/campaign_encounter_reward_catalog.gd",
+          "line": 276,
           "resolution": "literal"
         },
         {
-          "file": "game/ben_rpg/combat/campaign_combat_database.gd",
-          "line": 878,
+          "file": "game/ben_rpg/combat/campaign_encounter_reward_catalog.gd",
+          "line": 338,
           "resolution": "literal"
         },
         {
@@ -4053,13 +4068,13 @@
       ],
       "references": [
         {
-          "file": "game/ben_rpg/combat/campaign_combat_database.gd",
-          "line": 818,
+          "file": "game/ben_rpg/combat/campaign_encounter_reward_catalog.gd",
+          "line": 278,
           "resolution": "literal"
         },
         {
-          "file": "game/ben_rpg/combat/campaign_combat_database.gd",
-          "line": 880,
+          "file": "game/ben_rpg/combat/campaign_encounter_reward_catalog.gd",
+          "line": 340,
           "resolution": "literal"
         },
         {
@@ -4078,43 +4093,43 @@
       ],
       "references": [
         {
-          "file": "game/ben_rpg/combat/campaign_combat_database.gd",
-          "line": 588,
+          "file": "game/ben_rpg/combat/campaign_encounter_reward_catalog.gd",
+          "line": 48,
           "resolution": "literal"
         },
         {
-          "file": "game/ben_rpg/combat/campaign_combat_database.gd",
-          "line": 598,
+          "file": "game/ben_rpg/combat/campaign_encounter_reward_catalog.gd",
+          "line": 58,
           "resolution": "literal"
         },
         {
-          "file": "game/ben_rpg/combat/campaign_combat_database.gd",
-          "line": 608,
+          "file": "game/ben_rpg/combat/campaign_encounter_reward_catalog.gd",
+          "line": 68,
           "resolution": "literal"
         },
         {
-          "file": "game/ben_rpg/combat/campaign_combat_database.gd",
-          "line": 667,
+          "file": "game/ben_rpg/combat/campaign_encounter_reward_catalog.gd",
+          "line": 127,
           "resolution": "literal"
         },
         {
-          "file": "game/ben_rpg/combat/campaign_combat_database.gd",
-          "line": 703,
+          "file": "game/ben_rpg/combat/campaign_encounter_reward_catalog.gd",
+          "line": 163,
           "resolution": "literal"
         },
         {
-          "file": "game/ben_rpg/combat/campaign_combat_database.gd",
-          "line": 775,
+          "file": "game/ben_rpg/combat/campaign_encounter_reward_catalog.gd",
+          "line": 235,
           "resolution": "literal"
         },
         {
-          "file": "game/ben_rpg/combat/campaign_combat_database.gd",
-          "line": 819,
+          "file": "game/ben_rpg/combat/campaign_encounter_reward_catalog.gd",
+          "line": 279,
           "resolution": "literal"
         },
         {
-          "file": "game/ben_rpg/combat/campaign_combat_database.gd",
-          "line": 881,
+          "file": "game/ben_rpg/combat/campaign_encounter_reward_catalog.gd",
+          "line": 341,
           "resolution": "literal"
         },
         {
@@ -4158,18 +4173,18 @@
       ],
       "references": [
         {
-          "file": "game/ben_rpg/combat/campaign_combat_database.gd",
-          "line": 739,
+          "file": "game/ben_rpg/combat/campaign_encounter_reward_catalog.gd",
+          "line": 199,
           "resolution": "literal"
         },
         {
-          "file": "game/ben_rpg/combat/campaign_combat_database.gd",
-          "line": 817,
+          "file": "game/ben_rpg/combat/campaign_encounter_reward_catalog.gd",
+          "line": 277,
           "resolution": "literal"
         },
         {
-          "file": "game/ben_rpg/combat/campaign_combat_database.gd",
-          "line": 877,
+          "file": "game/ben_rpg/combat/campaign_encounter_reward_catalog.gd",
+          "line": 337,
           "resolution": "literal"
         },
         {
@@ -4894,11 +4909,11 @@
   "schemaVersion": 2,
   "scope": "static Godot .gd/.tscn raster literals and approved profile runtime textures (tests, validation, and editor-only paths excluded)",
   "stats": {
-    "assets": 188,
-    "profileRequiredAssetSources": 177,
-    "profileRequiredProfiledAssetSources": 177,
+    "assets": 189,
+    "profileRequiredAssetSources": 178,
+    "profileRequiredProfiledAssetSources": 178,
     "profileRequiredUnprofiledAssetSources": 0,
-    "profiledAssetSources": 177,
+    "profiledAssetSources": 178,
     "thirdPartyDependencyVisualSources": 11,
     "unprofiledAssetSources": 11,
     "unprofiledByClassification": {

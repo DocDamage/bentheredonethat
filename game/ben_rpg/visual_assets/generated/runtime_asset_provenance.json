@@ -194,6 +194,20 @@
       "localLicenseEvidence": [
         "game/LICENSE"
       ],
+      "path": "res://ben_rpg/visual_assets/derived/ashfall_cinder_gate_barricade.png",
+      "profileCoverage": "profiled",
+      "profileIds": [
+        "ashfall_cinder_gate_barricade"
+      ],
+      "sourceGroup": "ben_rpg/visual_assets",
+      "unprofiledClassification": ""
+    },
+    {
+      "distributionEligibility": "distribution_confirmed",
+      "licenseReviewStatus": "distribution_confirmed",
+      "localLicenseEvidence": [
+        "game/LICENSE"
+      ],
       "path": "res://ben_rpg/visual_assets/derived/ashfall_cinder_gate_dead_tree.png",
       "profileCoverage": "profiled",
       "profileIds": [
@@ -2971,12 +2985,13 @@
       ],
       "decision": "distribution_confirmed",
       "derivativeIds": [
+        "ashfall_cinder_gate_barricade",
         "ashfall_cinder_gate_dead_tree",
         "ashfall_cinder_gate_ground"
       ],
       "id": "ashfall-ashlands-cinder-gate-v1",
       "inventoryPackId": "Tilesets:Ashlands Tileset",
-      "rationale": "The owner confirmed that the supplied current licences cover distribution rights for this named source pack and its two AF-01 Cinder Gate derivatives.",
+      "rationale": "The owner confirmed that the supplied current licences cover distribution rights for this named source pack and its three AF-01 Cinder Gate derivatives.",
       "roomIds": [
         "AF-01"
       ],
@@ -3096,20 +3111,20 @@
   "schemaVersion": 2,
   "scope": "static Godot raster references; not a reachability or license-grant proof",
   "summary": {
-    "assets": 188,
+    "assets": 189,
     "distributionEligibility": {
-      "distribution_confirmed": 188,
+      "distribution_confirmed": 189,
       "rejected": 0,
       "review_required": 0
     },
     "needsManualLicenseConfirmation": 0,
     "profileCoverage": {
       "external_dependency": 11,
-      "profiled": 177
+      "profiled": 178
     },
     "unprofiledByClassification": {
       "third_party_addon_ui": 11
     },
-    "withLocalLicenseEvidence": 188
+    "withLocalLicenseEvidence": 189
   }
 }

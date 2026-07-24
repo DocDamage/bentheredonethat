@@ -15,6 +15,12 @@
   `CollisionShape2D`. The AF-01 scene configures this node directly from its
   navigation record; it does not duplicate ports, encounter policy, or story
   state.
+- Added a checksum-pinned `ashfall_cinder_gate_barricade` derivative from the
+  already admitted Ashlands sheet. The new 96×48 source crop is rendered at
+  288×144 world pixels as AF-01's central Cinder Gate landmark; its explicit
+  6×3-cell footprint adds 18 native collision bodies and leaves a connected
+  366-cell interior route. The profile remains `prototype_only` pending visual
+  review.
 - Added a profile-backed fallback for deterministic derived PNGs that have not
   received Godot import sidecars in an isolated project.
 - Produced a guarded windowed first-visit capture at
@@ -35,6 +41,10 @@
   `test-artifacts/20260724-000225-8e7c246d`. The scene test verifies all 84
   native bodies, their one-shape ownership, and the interior/perimeter cell
   boundary.
+- The landmark composition, 102 record-owned native collision bodies (84
+  perimeter plus 18 barricade), and profile-backed barricade texture passed at
+  `test-artifacts/20260724-001632-8718bee8`; its refreshed guarded windowed
+  capture passed at `test-artifacts/20260724-001646-60c70f07`.
 
 ## Still gated
 
@@ -44,4 +54,5 @@
   encounter/population capture exists yet.
 - Input/controller traversal, save/reload, final art composition, and reviewer
   acceptance remain required. The scene-owned perimeter collision foundation
-  is present, but it has not yet been exercised by a live streamed player.
+  and landmark footprint are present, but they have not yet been exercised by
+  a live streamed player.

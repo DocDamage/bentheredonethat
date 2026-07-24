@@ -141,6 +141,50 @@
       "distributionEligibility": "distribution_confirmed",
       "fieldScaleStatus": "approved",
       "goldenCapture": "game/validation/af01-cinder-gate-scene-first-visit.png",
+      "id": "ashfall_cinder_gate_barricade",
+      "kind": "prop",
+      "licenseReference": "game/ben_rpg/visual_assets/generated/runtime_asset_provenance.json",
+      "placement": {
+        "collisionFootprint": "cinder_gate_barricade_6x3",
+        "footAnchor": [
+          48,
+          47
+        ],
+        "scaleClass": "landmark"
+      },
+      "releaseVisualAcceptance": "prototype_only",
+      "renderScale": 3.0,
+      "renderScaleY": 3.0,
+      "source": {
+        "alphaBounds": [
+          0,
+          0,
+          96,
+          48
+        ],
+        "pack": "Ashlands Tileset",
+        "region": [
+          0,
+          0,
+          96,
+          48
+        ],
+        "runtimeTexture": "game/ben_rpg/visual_assets/derived/ashfall_cinder_gate_barricade.png",
+        "sha256": "ba4cca14d60a230730247f94a76d47e97c4765a0362635237487bcef500a283e",
+        "sourceChecksum": "ba4cca14d60a230730247f94a76d47e97c4765a0362635237487bcef500a283e",
+        "sourceDensity": 16
+      },
+      "surface": "field",
+      "worldDrawSize": [
+        288,
+        144
+      ]
+    },
+    {
+      "cropApproval": "approved",
+      "distributionEligibility": "distribution_confirmed",
+      "fieldScaleStatus": "approved",
+      "goldenCapture": "game/validation/af01-cinder-gate-scene-first-visit.png",
       "id": "ashfall_cinder_gate_dead_tree",
       "kind": "prop",
       "licenseReference": "game/ben_rpg/visual_assets/generated/runtime_asset_provenance.json",
