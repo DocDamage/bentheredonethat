@@ -24,6 +24,8 @@ from dataclasses import dataclass
 from pathlib import Path, PurePosixPath
 from typing import Any, Iterable
 
+from curated_asset_catalog_policy import is_quarantined_source_path
+
 try:
     from PIL import Image
 except ImportError:  # pragma: no cover - handled in main
@@ -43,17 +45,6 @@ IGNORED_DIRS = frozenset(
 # terms, so they remain quarantined until a reviewed admission package exists.
 # Other folders under Recruitable Characters are already catalogued and must
 # stay in the denominator.
-QUARANTINED_SOURCE_PREFIXES = frozenset({
-    ("assets", "expansion"),
-    ("assets", "characters", "recruitable characters", "abe_lincoln"),
-    ("assets", "characters", "recruitable characters", "cthulhu"),
-    ("assets", "characters", "recruitable characters", "dark_mage_64x64_pack"),
-    ("assets", "characters", "recruitable characters", "draculafinal"),
-    ("assets", "characters", "recruitable characters", "frankenstein_s_monster"),
-    ("assets", "characters", "recruitable characters", "gandhi_sprite"),
-    ("assets", "characters", "recruitable characters", "fighter", "animations"),
-    ("assets", "characters", "recruitable characters", "fighter", "rotations"),
-})
 ASSIGNMENT = re.compile(r"window\s*\.\s*CURATED_ART_ASSET_CATALOG\s*=\s*")
 AERO_PATH = "assets/characters/quirky npcs/fullcolor/aeronaut.png"
 AERO_RECT = (7, 6, 27, 59)
@@ -100,7 +91,7 @@ class Validator:
         if parts[0].casefold() in IGNORED_DIRS or parts[0].startswith("."):
             return True
         normalized = tuple(part.casefold() for part in parts)
-        if any(normalized[:len(prefix)] == prefix for prefix in QUARANTINED_SOURCE_PREFIXES):
+        if is_quarantined_source_path(PurePosixPath(*normalized)):
             return True
         return any(part.casefold() in IGNORED_DIRS for part in parts[:-1])
 

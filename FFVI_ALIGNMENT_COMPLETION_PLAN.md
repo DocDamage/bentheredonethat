@@ -3187,3 +3187,8 @@ limit:
   browser/tool checks also passed. AF-01 still is not streamable: the address
   gateway, player traversal, field-actor scene admission, stabilized capture,
   and acceptance evidence remain deliberately open.
+- The curated-source catalog generator and validator now share one explicit
+  admission policy. Rebuilding after the local `Space Extra` sync admitted its
+  693 reviewed PNGs without accidentally pulling quarantined expansion/recruit
+  staging trees into the denominator; aggregate asset validation passes at
+  21,711 covered rasters.

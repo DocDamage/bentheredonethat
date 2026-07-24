@@ -22,6 +22,8 @@ from collections import Counter, defaultdict
 from pathlib import Path, PurePosixPath, PureWindowsPath
 from typing import Any, Iterable
 
+from curated_asset_catalog_policy import is_quarantined_source_path
+
 try:
     from PIL import Image, ImageFilter, UnidentifiedImageError
 except ImportError as exc:  # pragma: no cover - exercised by CLI users
@@ -1223,7 +1225,11 @@ def build_catalog(args: argparse.Namespace) -> dict[str, Any]:
     if not asset_root.is_dir():
         raise RuntimeError(f"Expected curated asset library at {asset_root}")
     archives = inventory_archives(root, args.extract_archives, args.archive_extract_dir, args.seven_zip, asset_root)
-    raster_paths = [path for path in walk_files(root, RASTER_EXTENSIONS) if path.is_relative_to(asset_root)]
+    raster_paths = [
+        path for path in walk_files(root, RASTER_EXTENSIONS)
+        if path.is_relative_to(asset_root)
+        and not is_quarantined_source_path(posix_relative(path, root))
+    ]
     ignored_diagnostics = [
         posix_relative(path, root) for path in raster_paths
         if path.parent.resolve() == root and path.name.startswith("_")
