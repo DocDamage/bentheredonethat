@@ -13,14 +13,15 @@ func _ready() -> void:
 	# registering a test-only layer with the global Gameboard lifecycle.
 	add_child(streamer); add_child(runtime)
 	runtime.configure(streamer, navigation)
-	assert(not runtime.activate(&"NP-15"), "Review-gated annex room must not activate.")
-	REGISTRY.DEFINITIONS[&"NP-15"]["runtimeEnabled"] = true
 	assert(runtime.activate(&"NP-15"))
 	assert(streamer.active_room_id() == &"NP-15" and runtime.active_room_id() == &"NP-15")
 	assert(navigation.get_cell_atlas_coords(Vector2i(360, 0)) == Vector2i(1, 4))
 	assert(navigation.get_cell_atlas_coords(Vector2i(361, 1)) == Vector2i(2, 2))
-	REGISTRY.DEFINITIONS[&"NP-15"]["runtimeEnabled"] = false
+	assert(runtime.activate(&"AF-01"))
+	assert(streamer.active_room_id() == &"AF-01" and runtime.active_room_id() == &"AF-01")
+	assert(navigation.get_cell_atlas_coords(Vector2i(400, 0)) == Vector2i(1, 4))
+	assert(navigation.get_cell_atlas_coords(Vector2i(412, 9)) == Vector2i(2, 2))
 	streamer.deactivate()
 	navigation.free()
-	print("ANNEX_ROOM_RUNTIME_SMOKE_OK gated=true stream=NP15 navigation=annex_origin")
+	print("ANNEX_ROOM_RUNTIME_SMOKE_OK admitted=true stream=NP15_AF01 navigation=annex_origins")
 	get_tree().quit()

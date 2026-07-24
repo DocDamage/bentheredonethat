@@ -16,7 +16,7 @@
         ],
         "scaleClass": "actor"
       },
-      "releaseVisualAcceptance": "prototype_only",
+      "releaseVisualAcceptance": "final_approved",
       "renderScale": 1.0,
       "renderScaleY": 1.0,
       "source": {
@@ -60,7 +60,7 @@
         ],
         "scaleClass": "actor"
       },
-      "releaseVisualAcceptance": "prototype_only",
+      "releaseVisualAcceptance": "final_approved",
       "renderScale": 1.0,
       "renderScaleY": 1.0,
       "source": {
@@ -104,7 +104,7 @@
         ],
         "scaleClass": "actor"
       },
-      "releaseVisualAcceptance": "prototype_only",
+      "releaseVisualAcceptance": "final_approved",
       "renderScale": 1.0,
       "renderScaleY": 1.0,
       "source": {
@@ -148,7 +148,7 @@
         ],
         "scaleClass": "actor"
       },
-      "releaseVisualAcceptance": "prototype_only",
+      "releaseVisualAcceptance": "final_approved",
       "renderScale": 1.0,
       "renderScaleY": 1.0,
       "source": {
@@ -192,7 +192,7 @@
         ],
         "scaleClass": "actor"
       },
-      "releaseVisualAcceptance": "prototype_only",
+      "releaseVisualAcceptance": "final_approved",
       "renderScale": 1.0,
       "renderScaleY": 1.0,
       "source": {
@@ -236,7 +236,7 @@
         ],
         "scaleClass": "actor"
       },
-      "releaseVisualAcceptance": "prototype_only",
+      "releaseVisualAcceptance": "final_approved",
       "renderScale": 1.0,
       "renderScaleY": 1.0,
       "source": {
@@ -280,7 +280,7 @@
         ],
         "scaleClass": "actor"
       },
-      "releaseVisualAcceptance": "prototype_only",
+      "releaseVisualAcceptance": "final_approved",
       "renderScale": 1.0,
       "renderScaleY": 1.0,
       "source": {
@@ -324,7 +324,7 @@
         ],
         "scaleClass": "actor"
       },
-      "releaseVisualAcceptance": "prototype_only",
+      "releaseVisualAcceptance": "final_approved",
       "renderScale": 1.0,
       "renderScaleY": 1.0,
       "source": {
@@ -368,7 +368,7 @@
         ],
         "scaleClass": "actor"
       },
-      "releaseVisualAcceptance": "prototype_only",
+      "releaseVisualAcceptance": "final_approved",
       "renderScale": 1.0,
       "renderScaleY": 1.0,
       "source": {
@@ -412,7 +412,7 @@
         ],
         "scaleClass": "actor"
       },
-      "releaseVisualAcceptance": "prototype_only",
+      "releaseVisualAcceptance": "final_approved",
       "renderScale": 1.0,
       "renderScaleY": 1.0,
       "source": {
@@ -456,7 +456,7 @@
         ],
         "scaleClass": "actor"
       },
-      "releaseVisualAcceptance": "prototype_only",
+      "releaseVisualAcceptance": "final_approved",
       "renderScale": 1.0,
       "renderScaleY": 1.0,
       "source": {
@@ -500,7 +500,7 @@
         ],
         "scaleClass": "actor"
       },
-      "releaseVisualAcceptance": "prototype_only",
+      "releaseVisualAcceptance": "final_approved",
       "renderScale": 1.0,
       "renderScaleY": 1.0,
       "source": {
@@ -544,7 +544,7 @@
         ],
         "scaleClass": "actor"
       },
-      "releaseVisualAcceptance": "prototype_only",
+      "releaseVisualAcceptance": "final_approved",
       "renderScale": 1.0,
       "renderScaleY": 1.0,
       "source": {
@@ -588,7 +588,7 @@
         ],
         "scaleClass": "actor"
       },
-      "releaseVisualAcceptance": "prototype_only",
+      "releaseVisualAcceptance": "final_approved",
       "renderScale": 1.0,
       "renderScaleY": 1.0,
       "source": {
@@ -632,7 +632,7 @@
         ],
         "scaleClass": "actor"
       },
-      "releaseVisualAcceptance": "prototype_only",
+      "releaseVisualAcceptance": "final_approved",
       "renderScale": 1.0,
       "renderScaleY": 1.0,
       "source": {
@@ -676,7 +676,7 @@
         ],
         "scaleClass": "actor"
       },
-      "releaseVisualAcceptance": "prototype_only",
+      "releaseVisualAcceptance": "final_approved",
       "renderScale": 1.0,
       "renderScaleY": 1.0,
       "source": {
@@ -720,7 +720,7 @@
         ],
         "scaleClass": "actor"
       },
-      "releaseVisualAcceptance": "prototype_only",
+      "releaseVisualAcceptance": "final_approved",
       "renderScale": 1.0,
       "renderScaleY": 1.0,
       "source": {
@@ -764,7 +764,7 @@
         ],
         "scaleClass": "actor"
       },
-      "releaseVisualAcceptance": "prototype_only",
+      "releaseVisualAcceptance": "final_approved",
       "renderScale": 1.0,
       "renderScaleY": 1.0,
       "source": {
@@ -808,7 +808,7 @@
         ],
         "scaleClass": "actor"
       },
-      "releaseVisualAcceptance": "prototype_only",
+      "releaseVisualAcceptance": "final_approved",
       "renderScale": 1.0,
       "renderScaleY": 1.0,
       "source": {
@@ -852,7 +852,7 @@
         ],
         "scaleClass": "actor"
       },
-      "releaseVisualAcceptance": "prototype_only",
+      "releaseVisualAcceptance": "final_approved",
       "renderScale": 1.0,
       "renderScaleY": 1.0,
       "source": {
@@ -896,7 +896,7 @@
         ],
         "scaleClass": "actor"
       },
-      "releaseVisualAcceptance": "prototype_only",
+      "releaseVisualAcceptance": "final_approved",
       "renderScale": 1.0,
       "renderScaleY": 1.0,
       "source": {
@@ -940,7 +940,7 @@
         ],
         "scaleClass": "actor"
       },
-      "releaseVisualAcceptance": "prototype_only",
+      "releaseVisualAcceptance": "final_approved",
       "renderScale": 1.0,
       "renderScaleY": 1.0,
       "source": {
@@ -984,7 +984,7 @@
         ],
         "scaleClass": "actor"
       },
-      "releaseVisualAcceptance": "prototype_only",
+      "releaseVisualAcceptance": "final_approved",
       "renderScale": 1.0,
       "renderScaleY": 1.0,
       "source": {
@@ -1028,7 +1028,7 @@
         ],
         "scaleClass": "actor"
       },
-      "releaseVisualAcceptance": "prototype_only",
+      "releaseVisualAcceptance": "final_approved",
       "renderScale": 1.0,
       "renderScaleY": 1.0,
       "source": {

@@ -34,8 +34,8 @@ static func validate() -> PackedStringArray:
 	if DEFINITIONS.size() != 2: errors.append("Annex gateway must contain exactly NP-15 and AF-01.")
 	for room_id in [&"NP-15", &"AF-01"]:
 		var definition := room(room_id)
-		if definition.is_empty() or String(definition.get("scenePath", "")).is_empty() or bool(definition.get("runtimeEnabled", true)):
-			errors.append("%s must retain its gated authored annex definition." % room_id)
+		if definition.is_empty() or String(definition.get("scenePath", "")).is_empty() or not bool(definition.get("runtimeEnabled", false)):
+			errors.append("%s must retain its approved annex definition." % room_id)
 	for binding in [[&"NP-15", &"E2", &"AF-01"], [&"AF-01", &"Nw", &"NP-15"]]:
 		var resolved := route(binding[0], binding[1])
 		if StringName(resolved.get("destinationRoom", &"")) != binding[2] or resolved.get("arrivalCell", Vector2i.ZERO) == Vector2i.ZERO:
@@ -46,7 +46,7 @@ static func _new_philadelphia_definition() -> Dictionary:
 	var catalog := NP_CATALOG.room(&"NP-15")
 	var record := NP_RECORDS.record(&"NP-15")
 	var blueprint: Dictionary = ROOM_REGISTRY.BLUEPRINTS.get(catalog.get("blueprint", &""), {})
-	return {"id": &"NP-15", "worldOrigin": Vector2i(360, 0), "dimensions": (record.get("layout", {}) as Dictionary).get("dimensions", Vector2i.ZERO), "ports": catalog.get("ports", {}), "portCells": blueprint.get("ports", {}), "scenePath": record.get("scenePath", ""), "record": record, "navigation": record.get("navigation", {}), "runtimeEnabled": false}
+	return {"id": &"NP-15", "worldOrigin": Vector2i(360, 0), "dimensions": (record.get("layout", {}) as Dictionary).get("dimensions", Vector2i.ZERO), "ports": catalog.get("ports", {}), "portCells": blueprint.get("ports", {}), "scenePath": record.get("scenePath", ""), "record": record, "navigation": record.get("navigation", {}), "runtimeEnabled": true}
 
 static func _ashfall_definition() -> Dictionary:
 	var catalog := ADDRESS_CATALOG.room(&"AF-01")
@@ -61,7 +61,7 @@ static func _ashfall_definition() -> Dictionary:
 				walkable_cells.append(Vector2i(x, y))
 	navigation["walkableCells"] = walkable_cells
 	var blueprint: Dictionary = ROOM_REGISTRY.BLUEPRINTS.get(catalog.get("blueprint", &""), {})
-	return {"id": &"AF-01", "worldOrigin": Vector2i(400, 0), "dimensions": (record.get("layout", {}) as Dictionary).get("dimensions", Vector2i.ZERO), "ports": catalog.get("ports", {}), "portCells": blueprint.get("ports", {}), "scenePath": record.get("scenePath", ""), "record": record, "navigation": navigation, "runtimeEnabled": false}
+	return {"id": &"AF-01", "worldOrigin": Vector2i(400, 0), "dimensions": (record.get("layout", {}) as Dictionary).get("dimensions", Vector2i.ZERO), "ports": catalog.get("ports", {}), "portCells": blueprint.get("ports", {}), "scenePath": record.get("scenePath", ""), "record": record, "navigation": navigation, "runtimeEnabled": true}
 
 static func _reciprocal_port(room_id: StringName, source_id: StringName) -> StringName:
 	for port_id in (room(room_id).get("ports", {}) as Dictionary):

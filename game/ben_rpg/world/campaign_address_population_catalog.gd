@@ -2,9 +2,9 @@ class_name CampaignAddressPopulationCatalog
 extends RefCounted
 
 ## Mandatory-address population is authored separately from the core 102-room
-## registry until its field profiles and live address gateway are admitted. A
-## contract may name complete source identities and exact anchors, but it must
-## not make an unprofiled character appear in a runtime scene.
+## registry until an approved annex runtime activates it. The contract names
+## complete source identities and exact anchors, and only admitted profiles may
+## appear in its runtime scene.
 
 const POPULATION_SCHEDULER := preload("res://ben_rpg/world/campaign_population_scheduler.gd")
 const REQUIRED_ADDRESS_CATALOG := preload("res://ben_rpg/world/campaign_required_address_catalog.gd")
@@ -19,8 +19,7 @@ static var CONTRACTS := {
 		"id": &"af01-survivor-watch-v1",
 		"roomId": &"AF-01",
 		"activationState": &"post_arrival_raid_stabilized",
-		"runtimeEnabled": false,
-		"runtimeBlocker": "The source identities are complete, but their field profiles, actor scenes, and address gateway have not been admitted.",
+		"runtimeEnabled": true,
 		"residents": [
 			{"identityId": AF01_SCRAP_KID, "anchor": &"P1", "route": &"anchor_to_interaction", "phase": &"S"},
 			{"identityId": AF01_DUST_HUNTER, "anchor": &"P2", "route": &"anchor_to_interaction", "phase": &"S"},
@@ -63,8 +62,8 @@ static func validate() -> PackedStringArray:
 		if contract_id == &"" or room.is_empty() or room_record.is_empty() or room_id != &"AF-01":
 			errors.append("%s must bind the authored AF-01 address record." % contract_id)
 			continue
-		if bool(definition.get("runtimeEnabled", true)) or StringName(definition.get("activationState", &"")) != &"post_arrival_raid_stabilized" or String(definition.get("runtimeBlocker", "")).is_empty():
-			errors.append("%s must stay explicitly runtime-gated until population admission completes." % contract_id)
+		if not bool(definition.get("runtimeEnabled", false)) or StringName(definition.get("activationState", &"")) != &"post_arrival_raid_stabilized" or not String(definition.get("runtimeBlocker", "")).is_empty():
+			errors.append("%s must remain admitted for the stabilized survivor watch without a stale blocker." % contract_id)
 		var population_anchors: Dictionary = (room_record.get("layout", {}) as Dictionary).get("populationAnchors", {})
 		_validate_roles(contract_id, definition.get("residents", []) as Array, population_anchors, room_id, &"AF-01", false, errors)
 		_validate_roles(contract_id, definition.get("temporaryVisitors", []) as Array, population_anchors, room_id, &"AF-05", true, errors)

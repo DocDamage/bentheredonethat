@@ -2,7 +2,7 @@ class_name CampaignAnnexRoomRuntime
 extends Node2D
 
 ## Parallel runtime for approved annex rooms. It intentionally does not alter
-## CampaignRoomRegistry's core-room count or activate a review-gated scene.
+## CampaignRoomRegistry's core-room count.
 
 const REGISTRY := preload("res://ben_rpg/world/campaign_annex_room_registry.gd")
 var _streamer: Node

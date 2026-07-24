@@ -63,6 +63,7 @@ func _sync_field_actors(layout: Dictionary) -> void:
 		return
 	for child in actor_layer.get_children():
 		if String(child.name).begins_with("AddressActor_"):
+			actor_layer.remove_child(child)
 			child.queue_free()
 	var population_contract := POPULATION_CATALOG.contract(StringName(_record.get("populationContractId", &"")))
 	var raid_cleared := bool(CampaignState.story_flags.get(&"ashfall_cinder_gate_arrival_raid_cleared", false))

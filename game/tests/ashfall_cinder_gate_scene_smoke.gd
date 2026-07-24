@@ -42,8 +42,15 @@ func _ready() -> void:
 	CampaignState.story_flags[&"ashfall_cinder_gate_arrival_raid_cleared"] = true
 	CampaignState.state_changed.emit()
 	await get_tree().process_frame
-	assert(room.get_meta(&"population_state", &"") == &"review_gated")
-	assert(room.get_node("YSortedActorsAndProps").get_children().filter(func(child): return String(child.name).begins_with("AddressActor_")).is_empty())
+	assert(room.get_meta(&"population_state", &"") == &"stabilized_population")
+	var actors := room.get_node("YSortedActorsAndProps").get_children().filter(func(child): return String(child.name).begins_with("AddressActor_"))
+	assert(actors.size() == 2, "Expected two stabilized AF-01 residents, got %d." % actors.size())
+	assert(room.get_node("YSortedActorsAndProps/AddressActor_af01_scrap_kid_field_actor").get_meta(&"profile_id", &"") == &"af01_scrap_kid_south")
+	CampaignState.story_flags[&"af05_defense_line_cleared"] = true
+	CampaignState.state_changed.emit()
+	await get_tree().process_frame
+	actors = room.get_node("YSortedActorsAndProps").get_children().filter(func(child): return String(child.name).begins_with("AddressActor_"))
+	assert(actors.size() == 3, "Expected Iron Sentinel after AF-05 clears, got %d AF-01 field actors." % actors.size())
 	CampaignState.reset_new_game()
-	print("ASHFALL_CINDER_GATE_SCENE_SMOKE_OK room=AF-01 collision_cells=102 stabilized_preview=review_gated runtime_gated=true")
+	print("ASHFALL_CINDER_GATE_SCENE_SMOKE_OK room=AF-01 collision_cells=102 stabilized_population=2 visitor_condition=1 core_gateway_gated=true")
 	get_tree().quit(0)
