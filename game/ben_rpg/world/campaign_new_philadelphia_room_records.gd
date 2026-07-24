@@ -9,7 +9,7 @@ const CATALOG := preload("res://ben_rpg/world/campaign_new_philadelphia_catalog.
 const ROOM_REGISTRY := preload("res://ben_rpg/world/campaign_room_registry.gd")
 const ADDRESS_RECORDS := preload("res://ben_rpg/world/campaign_address_room_records.gd")
 
-static var RECORDS := {&"NP-01": _franklin_laboratory_record(), &"NP-02": _invention_annex_record(), &"NP-03": _power_records_basement_record(), &"NP-04": _founders_square_record(), &"NP-15": _embassy_green_record()}
+static var RECORDS := {&"NP-01": _franklin_laboratory_record(), &"NP-02": _invention_annex_record(), &"NP-03": _power_records_basement_record(), &"NP-04": _founders_square_record(), &"NP-05": _old_town_market_record(), &"NP-06": _civic_workshop_row_record(), &"NP-07": _anchor_promenade_record(), &"NP-15": _embassy_green_record()}
 
 
 static func record(room_id: StringName) -> Dictionary:
@@ -18,7 +18,7 @@ static func record(room_id: StringName) -> Dictionary:
 
 static func validate() -> PackedStringArray:
 	var errors: Array[String] = []
-	for room_id in [&"NP-01", &"NP-02", &"NP-03", &"NP-04", &"NP-15"]:
+	for room_id in [&"NP-01", &"NP-02", &"NP-03", &"NP-04", &"NP-05", &"NP-06", &"NP-07", &"NP-15"]:
 		var definition := record(room_id)
 		var catalog_room := CATALOG.room(room_id)
 		var layout: Dictionary = definition.get("layout", {})
@@ -69,6 +69,15 @@ static func validate() -> PackedStringArray:
 	var np04 := record(&"NP-04")
 	if (np04.get("layout", {}) as Dictionary).get("terrainProfileIds", []) != [&"sandbox_modern_grass", &"sandbox_modern_cobble"] or (np04.get("navigation", {}) as Dictionary).get("walkableCells", []).size() != 599:
 		errors.append("NP-04 must retain its approved hub terrain and one-cell monument reservation.")
+	var np05 := record(&"NP-05")
+	if (np05.get("layout", {}) as Dictionary).get("lotIds", []) != [&"LOT-01", &"LOT-02"] or (np05.get("navigation", {}) as Dictionary).get("walkableCells", []).size() != 351:
+		errors.append("NP-05 must retain both market lots and its two facade reservations.")
+	var np06 := record(&"NP-06")
+	if (np06.get("layout", {}) as Dictionary).get("lotIds", []) != [&"LOT-03", &"LOT-04"] or (np06.get("navigation", {}) as Dictionary).get("walkableCells", []).size() != 383:
+		errors.append("NP-06 must retain both workshop lots and its repair-board circulation.")
+	var np07 := record(&"NP-07")
+	if (np07.get("layout", {}) as Dictionary).get("lotIds", []) != [&"LOT-05", &"LOT-06"] or (np07.get("navigation", {}) as Dictionary).get("walkableCells", []).size() != 499:
+		errors.append("NP-07 must retain both promenade lots and its anchor-map reservation.")
 	var np15 := record(&"NP-15")
 	if (np15.get("layout", {}) as Dictionary).get("terrainProfileIds", []) != [&"sandbox_modern_grass", &"sandbox_modern_cobble"]:
 		errors.append("NP-15 must use only its approved initial town terrain profiles.")
@@ -162,6 +171,29 @@ static func _founders_square_record() -> Dictionary:
 	var safe_cells := {}
 	for port_id in catalog_room.get("ports", {}): safe_cells[port_id] = ADDRESS_RECORDS.expected_arrival_cell((blueprint.get("ports", {}) as Dictionary).get(port_id, Vector2i.ZERO), StringName(port_id))
 	return {"id": &"NP-04", "implementationState": &"scene_collision_authored_runtime_gated", "scenePath": "res://ben_rpg/world/rooms/new_philadelphia_founders_square.tscn", "layout": {"dimensions": dimensions, "terrainProfileIds": [&"sandbox_modern_grass", &"sandbox_modern_cobble"], "featureContracts": [{"id": &"founding_monument", "anchor": &"Icenter", "cell": Vector2i(16, 11), "runtimeState": &"visual_and_interaction_gated"}]}, "navigation": {"id": &"np04-founders-square-navigation-v1", "collisionMaskId": &"np04-founders-square-perimeter-and-monument-v1", "dimensions": dimensions, "walkableCells": walkable, "blockedCells": _blocked_cells(dimensions, walkable), "arrivalSafeCells": safe_cells}}
+
+
+static func _old_town_market_record() -> Dictionary:
+	return _district_record(&"NP-05", "res://ben_rpg/world/rooms/new_philadelphia_old_town_market.tscn", [&"sandbox_modern_grass", &"sandbox_modern_cobble", &"sandbox_modern_dirt"], [&"town_cafe_facade", &"town_ranch_tree_small"], [&"LOT-01", &"LOT-02"], [], [Vector2i(5, 6), Vector2i(6, 6), Vector2i(7, 6), Vector2i(8, 6), Vector2i(5, 7), Vector2i(6, 7), Vector2i(7, 7), Vector2i(8, 7), Vector2i(5, 8), Vector2i(6, 8), Vector2i(7, 8), Vector2i(8, 8), Vector2i(5, 9), Vector2i(6, 9), Vector2i(7, 9), Vector2i(8, 9), Vector2i(18, 6), Vector2i(19, 6), Vector2i(20, 6), Vector2i(21, 6), Vector2i(18, 7), Vector2i(19, 7), Vector2i(20, 7), Vector2i(21, 7), Vector2i(18, 8), Vector2i(19, 8), Vector2i(20, 8), Vector2i(21, 8), Vector2i(18, 9), Vector2i(19, 9), Vector2i(20, 9), Vector2i(21, 9), Vector2i(13, 9)])
+
+
+static func _civic_workshop_row_record() -> Dictionary:
+	return _district_record(&"NP-06", "res://ben_rpg/world/rooms/new_philadelphia_civic_workshop_row.tscn", [&"sandbox_modern_grass", &"sandbox_modern_cobble", &"sandbox_modern_dirt"], [&"town_armory_facade", &"town_ranch_tree_small"], [&"LOT-03", &"LOT-04"], [{"id": &"public_repair_board", "anchor": &"Icenter", "cell": Vector2i(14, 9), "runtimeState": &"visual_and_interaction_gated"}], [Vector2i(5, 6), Vector2i(6, 6), Vector2i(7, 6), Vector2i(8, 6), Vector2i(5, 7), Vector2i(6, 7), Vector2i(7, 7), Vector2i(8, 7), Vector2i(5, 8), Vector2i(6, 8), Vector2i(7, 8), Vector2i(8, 8), Vector2i(5, 9), Vector2i(6, 9), Vector2i(7, 9), Vector2i(8, 9), Vector2i(20, 6), Vector2i(21, 6), Vector2i(22, 6), Vector2i(23, 6), Vector2i(20, 7), Vector2i(21, 7), Vector2i(22, 7), Vector2i(23, 7), Vector2i(20, 8), Vector2i(21, 8), Vector2i(22, 8), Vector2i(23, 8), Vector2i(20, 9), Vector2i(21, 9), Vector2i(22, 9), Vector2i(23, 9), Vector2i(14, 9)])
+
+
+static func _anchor_promenade_record() -> Dictionary:
+	return _district_record(&"NP-07", "res://ben_rpg/world/rooms/new_philadelphia_anchor_promenade.tscn", [&"sandbox_modern_grass", &"sandbox_modern_cobble"], [&"town_ranch_tree_small", &"town_ranch_tree_tall"], [&"LOT-05", &"LOT-06"], [{"id": &"anchor_status_map", "anchor": &"Icenter", "cell": Vector2i(15, 10), "runtimeState": &"visual_and_interaction_gated"}], [Vector2i(5, 5), Vector2i(24, 5), Vector2i(5, 15), Vector2i(24, 15), Vector2i(15, 10)])
+
+
+static func _district_record(room_id: StringName, scene_path: String, terrain_profile_ids: Array, prop_profile_ids: Array, lot_ids: Array, feature_contracts: Array, reservations: Array[Vector2i]) -> Dictionary:
+	var catalog_room := CATALOG.room(room_id)
+	var blueprint: Dictionary = ROOM_REGISTRY.BLUEPRINTS.get(catalog_room.get("blueprint", &""), {})
+	var dimensions: Vector2i = blueprint.get("dimensions", Vector2i.ZERO)
+	var walkable := _walkable_cells(dimensions, blueprint.get("ports", {}), catalog_room.get("ports", {}))
+	for cell in reservations: walkable.erase(cell)
+	var safe_cells := {}
+	for port_id in catalog_room.get("ports", {}): safe_cells[port_id] = ADDRESS_RECORDS.expected_arrival_cell((blueprint.get("ports", {}) as Dictionary).get(port_id, Vector2i.ZERO), StringName(port_id))
+	return {"id": room_id, "implementationState": &"scene_collision_authored_runtime_gated", "scenePath": scene_path, "layout": {"dimensions": dimensions, "terrainProfileIds": terrain_profile_ids, "propProfileIds": prop_profile_ids, "lotIds": lot_ids, "featureContracts": feature_contracts}, "navigation": {"id": StringName("%s-navigation-v1" % String(room_id).to_lower()), "collisionMaskId": StringName("%s-perimeter-and-reservations-v1" % String(room_id).to_lower()), "dimensions": dimensions, "walkableCells": walkable, "blockedCells": _blocked_cells(dimensions, walkable), "arrivalSafeCells": safe_cells}}
 
 
 static func _walkable_cells(dimensions: Vector2i, blueprint_ports: Dictionary, bound_ports: Dictionary) -> Array[Vector2i]:
