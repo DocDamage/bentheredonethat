@@ -14,6 +14,16 @@ const AUTHORED_BATTLE_ANIMATION_SOURCES := {
 		"battle_animation_sequences": {&"idle": {"folder": "Fight_Stance_Idle/west", "frames": 8}, &"attack": {"folder": "Lead_Jab/west", "frames": 3}, &"power": {"folder": "Throw_Object/west", "frames": 7}, &"hit": {"folder": "Taking_Punch/west", "frames": 6}, &"victory": {"folder": "Angry_Stomp/west", "frames": 9}, &"death": {"folder": "Falling_Back_Death/west", "frames": 7}},
 		"battle_action_sequences": {&"cane_tap": &"attack", &"static_discharge": &"power", &"voltaic_cage": &"power", &"field_triage": &"power"},
 	},
+	&"lincoln": {
+		"battle_animation_root": "res://game_assets/characters/Recruitable Characters/Abe_Lincoln/animations", "battle_animation_fps": 12.0,
+		"battle_animation_sequences": {&"idle": {"folder": "Fight_Stance_Idle/west", "frames": 8}, &"attack": {"folder": "Punch/west", "frames": 6}, &"power": {"folder": "Jumping/west", "frames": 8}, &"hit": {"folder": "Hit_Taking_Punch/west", "frames": 6}, &"victory": {"folder": "Running/west", "frames": 8}, &"death": {"folder": "Death/west", "frames": 13}},
+		"battle_action_sequences": {&"attack": &"attack", &"rally": &"power"},
+	},
+	&"gandhi": {
+		"battle_animation_root": "res://game_assets/characters/Recruitable Characters/Gandhi_Sprite/animations", "battle_animation_fps": 12.0,
+		"battle_animation_sequences": {&"idle": {"folder": "Breathing_Idle/west", "frames": 4}, &"attack": {"folder": "Punch/west", "frames": 6}, &"power": {"folder": "Throw_Object/west", "frames": 7}, &"hit": {"folder": "Taking_Damage_Hit/west", "frames": 7}, &"victory": {"folder": "Picking_Up/west", "frames": 5}, &"death": {"folder": "Death/west", "frames": 13}},
+		"battle_action_sequences": {&"attack": &"attack", &"field_triage": &"power"},
+	},
 	&"fighter": {
 		"battle_animation_root": "res://game_assets/characters/Recruitable Characters/Fighter/Fighter/animations", "battle_animation_fps": 12.0,
 		"battle_animation_sequences": {&"idle": {"folder": "Fight_Stance_Idle/west", "frames": 8}, &"attack": {"folder": "Cross_Punch/west", "frames": 6}, &"power": {"folder": "Flying_Kick/west", "frames": 6}, &"hit": {"folder": "Taking_Punch/west", "frames": 6}, &"victory": {"folder": "Various_Angry_Animations/west", "frames": 9}, &"death": {"folder": "K.O._Knockout/west", "frames": 8}},

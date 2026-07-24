@@ -1,7 +1,7 @@
 extends Node
 
 const CHARACTER_IDS := [
-	&"ben", &"fighter", &"astronaut", &"caveman", &"crimson_oni", &"rift_jackal", &"mossback_surveyor",
+	&"ben", &"lincoln", &"gandhi", &"fighter", &"astronaut", &"caveman", &"crimson_oni", &"rift_jackal", &"mossback_surveyor",
 	&"cobalt_courier", &"bulkhead_warden", &"kitsune_empress", &"neon_viper", &"archangel_commander", &"frost_lich_emperor", &"velociraptor",
 ]
 
@@ -49,7 +49,7 @@ func _run() -> void:
 		_fail("The reusable battle animation control did not loop the victory state")
 		return
 
-	print("PARTY_BATTLE_ANIMATION_SMOKE_OK actors=14 source_frames=individual states=idle+attack+power+hit+victory+death runtime=reusable")
+	print("PARTY_BATTLE_ANIMATION_SMOKE_OK actors=16 source_frames=individual states=idle+attack+power+hit+victory+death runtime=reusable")
 	get_tree().quit(0)
 
 

@@ -2,7 +2,8 @@
 
 - State: Implemented; automated verification complete.
 - Commits: `685b9980` (`feat: establish Franklin Lincoln Gandhi opening trio`),
-  `3a82b0c6`, `b94ffcde`, `8f11a457`, and `23a5e7d5` (trio contract and
+  `3a82b0c6`, `b94ffcde`, `8f11a457`, `23a5e7d5`, `b1f56469`, and
+  `dc7a131d` (trio contract, story participation, progression, and
   compatibility-fixture coverage).
 - Build: Godot 4.7.1 stable; save schema v21.
 - Scope: Benjamin Franklin, Abraham Lincoln (`lincoln`), and Mahatma Gandhi
@@ -26,6 +27,13 @@
   alone. Their exact isolated replacement run at
   `test-artifacts/20260723-215554-297c44a0` passed all three with the sentinel
   unchanged. No production code changed between those artifacts.
+- Trio progression/ending slice: `test-artifacts/20260723-220556-597590eb`;
+  core trio, content validator, campaign menu, equipment loadout, and ending
+  scenes passed with `sentinel=True`.
+- Individual battle-animation slice: `test-artifacts/20260723-220847-a6bc7dab`;
+  Lincoln and Gandhi's supplied idle, attack, power, hit, victory, and death
+  frame sequences passed alongside trio and battle UI contracts with
+  `sentinel=True`.
 
 ## Required review evidence
 
