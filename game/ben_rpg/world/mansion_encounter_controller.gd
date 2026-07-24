@@ -56,6 +56,10 @@ func _apply_victory(encounter_id: StringName) -> void:
 			CampaignState.story_flags[&"mansion_archive_boss_defeated"] = true
 			CampaignState.story_flags[&"haunted_mansion_scenario_complete"] = true
 			CampaignState.story_flags[&"first_universe_stabilized"] = true
+			# The stabilized ballroom becomes the required first stop of the
+			# Mansion-to-Ashfall horror route.  CampaignBootstrap listens for this
+			# state change and places its two story witnesses there.
+			CampaignState.state_changed.emit()
 		&"mansion_rift_jackal_trial":
 			CampaignState.story_flags[&"rift_jackal_trial_complete"] = true
 			CampaignState.story_flags[&"rift_jackal_recruit_unlocked"] = true

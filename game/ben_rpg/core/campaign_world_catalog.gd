@@ -542,6 +542,16 @@ const QUEST_DEFINITIONS := {
 		],
 		"rewards": {"duckets": 75, "items": {&"ether": 1}},
 	},
+	&"the_ashes_remember": {
+		"title": "The Ashes Remember", "category": &"main", "giver": "Dracula and Frankenstein's Monster", "icon": "dfgui_icon-clock.png",
+		"description": "The Mansion's surviving witnesses have identified the next tear: Ashfall, a burned address where the house's missing history is still being rewritten. Their route is mandatory Franklin & Company business, not an exhibition trial.",
+		"requires_flags": [&"horror_arc_mansion_briefed"],
+		"steps": [
+			{"text": "Hear Dracula and Frankenstein's Monster's account in the stabilized Mansion ballroom.", "condition": {"type": &"story_flag", "id": &"horror_arc_mansion_briefed"}},
+			{"text": "Follow the mandatory horror route into the Ashfall address.", "condition": {"type": &"story_flag", "id": &"ashfall_address_entered"}},
+		],
+		"rewards": {"duckets": 0, "items": {}},
+	},
 	&"a_second_door": {
 		"title": "A Second Door", "category": &"main", "giver": "Benjamin Franklin", "icon": "dfgui_icon-wand.png",
 		"description": "The stabilized Mansion revealed another address on the fault line. Build a town Observatory and choose Asterion Station as its anchored universe.",
@@ -808,6 +818,30 @@ const QUEST_DEFINITIONS := {
 	},
 }
 
+# These are campaign obligations, deliberately separate from RECRUIT_CATALOG
+# and optional content.  A stage can be introduced before its destination is
+# authored, but must never be represented as a trial, postgame, or menu unlock.
+const REQUIRED_NAMED_CHARACTER_ARCS := {
+	&"mansion_ashfall_horror": {
+		"characters": [&"dracula", &"frankenstein_monster"],
+		"stages": [
+			{"destination": &"haunted_mansion", "required_flag": &"horror_arc_mansion_briefed"},
+			{"destination": &"ashfall", "required_flag": &"ashfall_address_entered"},
+		],
+	},
+	&"pelagic_depths": {
+		"characters": [&"cthulhu"],
+		"stages": [{"destination": &"pelagic", "required_flag": &"pelagic_depths_entered"}],
+	},
+	&"ashfall_empyreal_magic": {
+		"characters": [&"dark_mage"],
+		"stages": [
+			{"destination": &"ashfall", "required_flag": &"ashfall_magic_conflict_started"},
+			{"destination": &"empyreal", "required_flag": &"empyreal_magic_conflict_resolved"},
+		],
+	},
+}
+
 static func validate() -> PackedStringArray:
 	var errors: Array[String] = []
 	if UNIVERSE_DEFINITIONS.size() != 7:
@@ -833,4 +867,10 @@ static func validate() -> PackedStringArray:
 		errors.append("World catalog must retain expedition tools and facility upgrades.")
 	if SKILL_TREES.size() != 15 or QUEST_DEFINITIONS.is_empty():
 		errors.append("World catalog must retain skills and quest definitions.")
+	if REQUIRED_NAMED_CHARACTER_ARCS.size() != 3:
+		errors.append("World catalog must retain the three required named-character main arcs.")
+	for arc_id in REQUIRED_NAMED_CHARACTER_ARCS:
+		var arc: Dictionary = REQUIRED_NAMED_CHARACTER_ARCS[arc_id]
+		if (arc.get("characters", []) as Array).is_empty() or (arc.get("stages", []) as Array).is_empty():
+			errors.append("Named-character arc %s needs characters and mandatory stages." % arc_id)
 	return PackedStringArray(errors)

@@ -193,6 +193,8 @@ const MOSSBACK_SURVEYOR_GAMEPIECE := preload("res://ben_rpg/characters/mossback_
 const COBALT_COURIER_GAMEPIECE := preload("res://ben_rpg/characters/cobalt_courier_gamepiece.tscn")
 const BULKHEAD_WARDEN_GAMEPIECE := preload("res://ben_rpg/characters/bulkhead_warden_gamepiece.tscn")
 const ARCHANGEL_GAMEPIECE := preload("res://ben_rpg/characters/archangel_gamepiece.tscn")
+const DRACULA_HORROR_ARC_GAMEPIECE := preload("res://ben_rpg/characters/dracula_horror_arc_gamepiece.tscn")
+const FRANKENSTEIN_HORROR_ARC_GAMEPIECE := preload("res://ben_rpg/characters/frankenstein_horror_arc_gamepiece.tscn")
 const CAMPAIGN_MENU := preload("res://ben_rpg/ui/campaign_menu.tscn")
 const CAMPAIGN_TITLE_SCREEN := preload("res://ben_rpg/ui/campaign_title_screen.tscn")
 const CAMPAIGN_ENDING_OVERLAY := preload("res://ben_rpg/ui/campaign_ending_overlay.gd")
@@ -1163,6 +1165,7 @@ func _on_recruit_status_changed(recruit_id: StringName, status: StringName) -> v
 
 
 func _spawn_available_recruits() -> void:
+	_spawn_mansion_horror_witnesses()
 	var status: StringName = CampaignState.recruit_status.get(&"fighter", &"undiscovered")
 	if status not in [&"undiscovered", &"party"]:
 		_spawn_fighter()
@@ -1216,6 +1219,24 @@ func _spawn_fighter() -> void:
 	fighter.name = "RecruitableFighter"
 	fighter.position = Gameboard.cell_to_pixel(local_spawn)
 	world.add_child(fighter)
+
+
+func _spawn_mansion_horror_witnesses() -> void:
+	var world := get_node_or_null("Field/Map/CampaignWorld")
+	if not world or not CampaignState.story_flags.get(&"mansion_archive_boss_defeated", false):
+		return
+	var ballroom: Dictionary = ROOM_REGISTRY.room(&"HM-09")
+	var origin: Vector2i = ballroom.get("worldOrigin", Vector2i.ZERO)
+	if not CampaignState.story_flags.get(&"dracula_mansion_met", false) and not world.has_node("MansionDraculaWitness"):
+		var dracula := DRACULA_HORROR_ARC_GAMEPIECE.instantiate() as Gamepiece
+		dracula.name = "MansionDraculaWitness"
+		dracula.position = Gameboard.cell_to_pixel(origin + Vector2i(8, 8))
+		world.add_child(dracula)
+	if not CampaignState.story_flags.get(&"frankenstein_mansion_met", false) and not world.has_node("MansionFrankensteinWitness"):
+		var frankenstein := FRANKENSTEIN_HORROR_ARC_GAMEPIECE.instantiate() as Gamepiece
+		frankenstein.name = "MansionFrankensteinWitness"
+		frankenstein.position = Gameboard.cell_to_pixel(origin + Vector2i(16, 8))
+		world.add_child(frankenstein)
 
 
 func _create_manifest_facility_portal(plot_index: int, facility_name: String) -> void:
@@ -2113,6 +2134,7 @@ func _on_campaign_state_changed() -> void:
 	if _visual:
 		_visual.queue_redraw()
 	_sync_sandbox_authored_entities()
+	_spawn_mansion_horror_witnesses()
 	_spawn_crimson_oni()
 	_spawn_rift_jackal()
 	_spawn_mossback_surveyor()
