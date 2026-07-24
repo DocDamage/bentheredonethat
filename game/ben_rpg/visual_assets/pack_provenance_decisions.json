@@ -6,17 +6,19 @@
       "id": "ashfall-ashlands-cinder-gate-v1",
       "world": "Ashfall",
       "canonicalPack": "Ashlands Tileset",
-      "runtimePack": "ashfall_cinder_gate_dead_tree",
+      "runtimePack": "ashfall_cinder_gate_scene_derivatives",
       "inventoryPackId": "Tilesets:Ashlands Tileset",
       "sheetState": "DERIVATIVE_SOURCE",
       "roomIds": [
         "AF-01"
       ],
       "derivativeIds": [
-        "ashfall_cinder_gate_dead_tree"
+        "ashfall_cinder_gate_dead_tree",
+        "ashfall_cinder_gate_ground"
       ],
       "sourceChecksums": [
-        "6d142ca29c9d0e659118db514c7c3a107e581b5efeb11a09b647c5885b953938"
+        "6d142ca29c9d0e659118db514c7c3a107e581b5efeb11a09b647c5885b953938",
+        "f45630241d7f010e823778a3d9af813969ee13345a330414abab7e6a93be5c04"
       ],
       "termsEvidence": [
         {
@@ -24,7 +26,7 @@
           "library": "Tilesets",
           "path": "license.txt",
           "sha256": "da5ca129716c7ee53d88425bc6e0ac4b616bd2ddda72c4a136c66ad66c11b156",
-          "scope": "The recorded Tilesets-root CC0 record is bound to the named Ashlands Tileset Cinder Gate derivative only; it is not treated as evidence for adjacent source roots."
+          "scope": "The recorded Tilesets-root CC0 record is bound to the named Ashlands Tileset AF-01 Cinder Gate derivatives only; it is not treated as evidence for adjacent source roots."
         }
       ],
       "creditEvidence": [
@@ -39,7 +41,7 @@
       "decision": "distribution_confirmed",
       "approvedBy": "product owner",
       "approvalDate": "2026-07-23",
-      "rationale": "The owner confirmed that the supplied current licences cover distribution rights for this named source pack and its single Cinder Gate derivative."
+      "rationale": "The owner confirmed that the supplied current licences cover distribution rights for this named source pack and its two AF-01 Cinder Gate derivatives."
     },
     {
       "id": "mansion-haunted-mansion-v1",

@@ -208,6 +208,20 @@
       "localLicenseEvidence": [
         "game/LICENSE"
       ],
+      "path": "res://ben_rpg/visual_assets/derived/ashfall_cinder_gate_ground.png",
+      "profileCoverage": "profiled",
+      "profileIds": [
+        "ashfall_cinder_gate_ground"
+      ],
+      "sourceGroup": "ben_rpg/visual_assets",
+      "unprofiledClassification": ""
+    },
+    {
+      "distributionEligibility": "distribution_confirmed",
+      "licenseReviewStatus": "distribution_confirmed",
+      "localLicenseEvidence": [
+        "game/LICENSE"
+      ],
       "path": "res://ben_rpg/visual_assets/derived/frosthold_blue_torch.png",
       "profileCoverage": "profiled",
       "profileIds": [
@@ -2957,25 +2971,27 @@
       ],
       "decision": "distribution_confirmed",
       "derivativeIds": [
-        "ashfall_cinder_gate_dead_tree"
+        "ashfall_cinder_gate_dead_tree",
+        "ashfall_cinder_gate_ground"
       ],
       "id": "ashfall-ashlands-cinder-gate-v1",
       "inventoryPackId": "Tilesets:Ashlands Tileset",
-      "rationale": "The owner confirmed that the supplied current licences cover distribution rights for this named source pack and its single Cinder Gate derivative.",
+      "rationale": "The owner confirmed that the supplied current licences cover distribution rights for this named source pack and its two AF-01 Cinder Gate derivatives.",
       "roomIds": [
         "AF-01"
       ],
-      "runtimePack": "ashfall_cinder_gate_dead_tree",
+      "runtimePack": "ashfall_cinder_gate_scene_derivatives",
       "sheetState": "DERIVATIVE_SOURCE",
       "sourceChecksums": [
-        "6d142ca29c9d0e659118db514c7c3a107e581b5efeb11a09b647c5885b953938"
+        "6d142ca29c9d0e659118db514c7c3a107e581b5efeb11a09b647c5885b953938",
+        "f45630241d7f010e823778a3d9af813969ee13345a330414abab7e6a93be5c04"
       ],
       "termsEvidence": [
         {
           "inventory": "game/validation/generated/source_library_inventory.json",
           "library": "Tilesets",
           "path": "license.txt",
-          "scope": "The recorded Tilesets-root CC0 record is bound to the named Ashlands Tileset Cinder Gate derivative only; it is not treated as evidence for adjacent source roots.",
+          "scope": "The recorded Tilesets-root CC0 record is bound to the named Ashlands Tileset AF-01 Cinder Gate derivatives only; it is not treated as evidence for adjacent source roots.",
           "sha256": "da5ca129716c7ee53d88425bc6e0ac4b616bd2ddda72c4a136c66ad66c11b156"
         }
       ],
@@ -3080,20 +3096,20 @@
   "schemaVersion": 2,
   "scope": "static Godot raster references; not a reachability or license-grant proof",
   "summary": {
-    "assets": 187,
+    "assets": 188,
     "distributionEligibility": {
-      "distribution_confirmed": 187,
+      "distribution_confirmed": 188,
       "rejected": 0,
       "review_required": 0
     },
     "needsManualLicenseConfirmation": 0,
     "profileCoverage": {
       "external_dependency": 11,
-      "profiled": 176
+      "profiled": 177
     },
     "unprofiledByClassification": {
       "third_party_addon_ui": 11
     },
-    "withLocalLicenseEvidence": 187
+    "withLocalLicenseEvidence": 188
   }
 }

@@ -25,8 +25,8 @@ class RuntimeVisualInventoryTests(unittest.TestCase):
         )
         self.assertEqual(result["stats"]["profileRequiredUnprofiledAssetSources"], 0)
         self.assertEqual(result["stats"]["thirdPartyDependencyVisualSources"], 11)
-        self.assertEqual(result["stats"]["profileRequiredAssetSources"], 176)
-        self.assertEqual(result["stats"]["profileRequiredProfiledAssetSources"], 176)
+        self.assertEqual(result["stats"]["profileRequiredAssetSources"], 177)
+        self.assertEqual(result["stats"]["profileRequiredProfiledAssetSources"], 177)
 
     def test_legacy_compatibility_sources_resolve_through_profiles(self) -> None:
         root = Path(__file__).resolve().parents[2]
@@ -48,6 +48,10 @@ class RuntimeVisualInventoryTests(unittest.TestCase):
             inventory.unprofiled_classification("res://combat/battlers/bear/bear.png"),
             "legacy_compatibility_visual",
         )
+
+    def test_validation_capture_paths_do_not_enter_the_runtime_inventory(self) -> None:
+        self.assertFalse(inventory.is_release_raster("res://validation/af01-cinder-gate-scene-first-visit.png"))
+        self.assertFalse(inventory.is_release_raster("res://tests/fixture-preview.png"))
 
     def test_company_fallbacks_resolve_through_registered_profile_ids(self) -> None:
         root = Path(__file__).resolve().parents[2]

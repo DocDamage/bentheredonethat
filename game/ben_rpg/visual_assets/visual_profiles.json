@@ -1955,7 +1955,18 @@
       "licenseReference": "game/ben_rpg/visual_assets/generated/runtime_asset_provenance.json",
       "releaseVisualAcceptance": "prototype_only",
       "cropApproval": "approved",
-      "goldenCapture": "game/validation/af01-cinder-gate-prototype.png"
+      "goldenCapture": "game/validation/af01-cinder-gate-scene-first-visit.png"
+    },
+    {
+      "id": "ashfall_cinder_gate_ground",
+      "kind": "terrain",
+      "source": {"pack": "Ashlands Tileset", "runtimeTexture": "game/ben_rpg/visual_assets/derived/ashfall_cinder_gate_ground.png", "sourceChecksum": "c65b64be23b7a1fd86f8bba9f74167b34ed658d6391fc3dc1babf9182b1907c5", "sourceDensity": 16, "region": [0, 0, 16, 16], "alphaBounds": [0, 0, 16, 16]},
+      "placement": {"footAnchor": [8, 15], "scaleClass": "tile", "collisionFootprint": "walkable_ash_ground"},
+      "worldDrawSize": [48, 48],
+      "licenseReference": "game/ben_rpg/visual_assets/generated/runtime_asset_provenance.json",
+      "releaseVisualAcceptance": "prototype_only",
+      "cropApproval": "approved",
+      "goldenCapture": "game/validation/af01-cinder-gate-scene-first-visit.png"
     }
   ]
 }

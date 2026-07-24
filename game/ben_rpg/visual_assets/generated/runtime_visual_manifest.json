@@ -140,7 +140,7 @@
       "cropApproval": "approved",
       "distributionEligibility": "distribution_confirmed",
       "fieldScaleStatus": "approved",
-      "goldenCapture": "game/validation/af01-cinder-gate-prototype.png",
+      "goldenCapture": "game/validation/af01-cinder-gate-scene-first-visit.png",
       "id": "ashfall_cinder_gate_dead_tree",
       "kind": "prop",
       "licenseReference": "game/ben_rpg/visual_assets/generated/runtime_asset_provenance.json",
@@ -178,6 +178,50 @@
       "worldDrawSize": [
         192,
         312
+      ]
+    },
+    {
+      "cropApproval": "approved",
+      "distributionEligibility": "distribution_confirmed",
+      "fieldScaleStatus": "approved",
+      "goldenCapture": "game/validation/af01-cinder-gate-scene-first-visit.png",
+      "id": "ashfall_cinder_gate_ground",
+      "kind": "terrain",
+      "licenseReference": "game/ben_rpg/visual_assets/generated/runtime_asset_provenance.json",
+      "placement": {
+        "collisionFootprint": "walkable_ash_ground",
+        "footAnchor": [
+          8,
+          15
+        ],
+        "scaleClass": "tile"
+      },
+      "releaseVisualAcceptance": "prototype_only",
+      "renderScale": 3.0,
+      "renderScaleY": 3.0,
+      "source": {
+        "alphaBounds": [
+          0,
+          0,
+          16,
+          16
+        ],
+        "pack": "Ashlands Tileset",
+        "region": [
+          0,
+          0,
+          16,
+          16
+        ],
+        "runtimeTexture": "game/ben_rpg/visual_assets/derived/ashfall_cinder_gate_ground.png",
+        "sha256": "c65b64be23b7a1fd86f8bba9f74167b34ed658d6391fc3dc1babf9182b1907c5",
+        "sourceChecksum": "c65b64be23b7a1fd86f8bba9f74167b34ed658d6391fc3dc1babf9182b1907c5",
+        "sourceDensity": 16
+      },
+      "surface": "field",
+      "worldDrawSize": [
+        48,
+        48
       ]
     },
     {

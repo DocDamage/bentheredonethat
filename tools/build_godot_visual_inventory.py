@@ -43,9 +43,9 @@ def is_raster(value: str) -> bool:
 
 
 def is_release_raster(value: str) -> bool:
-    """Exclude static editor and example references stripped from release builds."""
+    """Exclude static validation/editor/example references from release assets."""
     parts = {part.casefold() for part in Path(value.removeprefix("res://")).parts}
-    if "editor" in parts or "example assets" in parts:
+    if "validation" in parts or "tests" in parts or "editor" in parts or "example assets" in parts:
         return False
     return is_raster(value)
 

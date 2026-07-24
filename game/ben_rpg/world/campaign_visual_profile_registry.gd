@@ -72,10 +72,20 @@ func texture_path(profile_id: StringName) -> String:
 
 func texture(profile_id: StringName) -> Texture2D:
 	var path := texture_path(profile_id)
-	if path.is_empty() or not ResourceLoader.exists(path):
-		push_error("Visual profile %s resolves to a missing texture: %s" % [profile_id, path])
+	if path.is_empty():
+		push_error("Visual profile %s has no runtime texture path." % profile_id)
 		return null
-	return load(path) as Texture2D
+	if ResourceLoader.exists(path):
+		return load(path) as Texture2D
+	# Deterministic derived PNGs can be present before Godot has generated an
+	# import sidecar in an isolated validation project. The profile remains the
+	# only asset authority; this fallback merely turns its existing file into an
+	# in-memory nearest-neighbor texture.
+	var image: Image = Image.load_from_file(ProjectSettings.globalize_path(path))
+	if image:
+		return ImageTexture.create_from_image(image)
+	push_error("Visual profile %s resolves to a missing texture: %s" % [profile_id, path])
+	return null
 
 
 func world_draw_size(profile_id: StringName) -> Vector2:

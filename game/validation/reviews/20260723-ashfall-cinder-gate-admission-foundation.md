@@ -10,15 +10,15 @@
 
 ## Delivered scope
 
-- Added one checksum-pinned source decision for the Ashlands sheet
-  tf_B_ashlands_1.png. The decision is limited to the AF-01 Cinder Gate
-  derivative and retains the recorded optional-attribution evidence.
-- Added a deterministic builder and metadata record for the 64×104 dead-tree
-  crop. Rebuilding verifies the source checksum, exact crop rectangle, output
-  checksum, and the AF-01 binding.
-- The source is classified as DERIVATIVE_SOURCE; the output remains an
-  admission foundation and has no profile, streamed scene, or runtime
-  reference yet.
+- Added a checksum-pinned source decision for the two Ashlands source sheets
+  used by the AF-01 Cinder Gate derivatives. The decision remains limited to
+  that one address room and retains the recorded optional-attribution evidence.
+- Added deterministic builders and metadata records for the 64×104 dead-tree
+  crop and the repeatable 16×16 ash-ground cell. Rebuilding verifies each
+  source checksum, exact crop rectangle, output checksum, and AF-01 binding.
+- The source is classified as DERIVATIVE_SOURCE. Both outputs are now
+  prototype-only profiles in the non-streamed AF-01 scene; neither is final
+  visually accepted.
 - Narrowed the release-source-root validator so only derivative provenance
   metadata may record a local source-library path. Runtime scenes, scripts, and
   other JSON records remain prohibited from pointing at staging roots.
@@ -33,7 +33,6 @@
 
 ## Required follow-through
 
-- AF-01 still needs its full room/layout/navigation records, authored scene,
-  native first-visit and stabilized captures, population and encounter work,
-  and reviewer acceptance before this derivative can receive a runtime visual
-  profile or make Ashfall streamable.
+- AF-01 still needs collision audit, stabilized native capture, population and
+  encounter work, address-gateway integration, and reviewer acceptance before
+  Ashfall becomes streamable.

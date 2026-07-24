@@ -1,0 +1,30 @@
+{
+  "asset": "game/ben_rpg/visual_assets/derived/ashfall_cinder_gate_ground.png",
+  "bindings": {
+    "profileIds": [],
+    "roomIds": [
+      "AF-01"
+    ],
+    "runtimeStatus": "prototype_scene_admission"
+  },
+  "derivedChecksum": "c65b64be23b7a1fd86f8bba9f74167b34ed658d6391fc3dc1babf9182b1907c5",
+  "dimensions": [
+    16,
+    16
+  ],
+  "schemaVersion": 1,
+  "source": {
+    "checksum": "f45630241d7f010e823778a3d9af813969ee13345a330414abab7e6a93be5c04",
+    "path": "assets/Tilesets/Ashlands Tileset/1x/tf_A1_ashlands_1.png",
+    "region": [
+      0,
+      64,
+      16,
+      16
+    ]
+  },
+  "transform": {
+    "description": "Exact repeatable ash-ground cell for AF-01; no colour, alpha, or scale changes.",
+    "id": "ashfall_cinder_gate_ground_crop_v1"
+  }
+}
