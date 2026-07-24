@@ -31,7 +31,7 @@ static func validate() -> PackedStringArray:
 	var dimensions: Vector2i = blueprint.get("dimensions", Vector2i.ZERO)
 	if layout.get("dimensions", Vector2i.ZERO) != dimensions or navigation.get("dimensions", Vector2i.ZERO) != dimensions:
 		errors.append("NP-15 dimensions must resolve from H1.")
-	if layout.get("terrainProfileIds", []) != [&"town_grass_tile", &"town_road_tile"]:
+	if layout.get("terrainProfileIds", []) != [&"sandbox_modern_grass", &"sandbox_modern_cobble"]:
 		errors.append("NP-15 must use only its approved initial town terrain profiles.")
 	if layout.get("featureContracts", []) != [{"id": &"charter_table", "anchor": &"Icenter", "cell": Vector2i(15, 10), "runtimeState": &"visual_and_interaction_gated"}]:
 		errors.append("NP-15 must retain its gated Charter table marker.")
@@ -63,7 +63,7 @@ static func _embassy_green_record() -> Dictionary:
 		safe_cells[port_id] = ADDRESS_RECORDS.expected_arrival_cell((blueprint.get("ports", {}) as Dictionary).get(port_id, Vector2i.ZERO), StringName(port_id))
 	return {
 		"id": &"NP-15", "implementationState": &"scene_collision_authored_runtime_gated", "scenePath": "res://ben_rpg/world/rooms/new_philadelphia_embassy_green.tscn",
-		"layout": {"dimensions": dimensions, "terrainProfileIds": [&"town_grass_tile", &"town_road_tile"], "boundaryProfileIds": [&"town_ranch_tree_small", &"town_ranch_tree_tall"], "featureContracts": [{"id": &"charter_table", "anchor": &"Icenter", "cell": Vector2i(15, 10), "runtimeState": &"visual_and_interaction_gated"}]},
+		"layout": {"dimensions": dimensions, "terrainProfileIds": [&"sandbox_modern_grass", &"sandbox_modern_cobble"], "boundaryProfileIds": [&"town_ranch_tree_small", &"town_ranch_tree_tall"], "featureContracts": [{"id": &"charter_table", "anchor": &"Icenter", "cell": Vector2i(15, 10), "runtimeState": &"visual_and_interaction_gated"}]},
 		"navigation": {"id": &"np15-embassy-green-navigation-v1", "collisionMaskId": &"np15-embassy-green-perimeter-v1", "dimensions": dimensions, "walkableCells": walkable, "blockedCells": blocked, "arrivalSafeCells": safe_cells},
 	}
 

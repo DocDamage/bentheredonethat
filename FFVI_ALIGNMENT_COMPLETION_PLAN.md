@@ -3162,11 +3162,14 @@ limit:
   `NP-15→WF-01` bindings without falsely claiming that the legacy construction
   map is an authored fifteen-room hub or that either external portal is live.
 - `NP-15` now also has an isolated, scene-owned H1 collision/navigation slice
-  at `test-artifacts/20260724-020641-10bc07d9`. Its approved initial visual
-  baseline is intentionally limited to town grass, road, and boundary trees;
-  the Charter-table marker, cultural pavilion art, population schedules,
-  interaction, streaming, and `AF-01` / `WF-01` portals remain explicitly
-  runtime-gated rather than being represented by a substitute shortcut.
+  at `test-artifacts/20260724-020641-10bc07d9`. Its initial review baseline
+  uses already approved Modern World grass/cobble and Ranch boundary-tree
+  profiles; windowed evidence is retained at
+  `game/validation/np15-embassy-green-scene-first-visit.png` and
+  `test-artifacts/20260724-022500-ccab023d`. The Charter-table marker,
+  cultural pavilion art, population schedules, interaction, streaming, and
+  `AF-01` / `WF-01` portals remain explicitly runtime-gated rather than being
+  represented by a substitute shortcut.
 - A separate annex-room registry/runtime now owns the staged `NP-15↔AF-01`
   reciprocal route without adding either room to the locked 102-room core
   registry. Its focused evidence at `test-artifacts/20260724-021141-bf9aaeb2`
