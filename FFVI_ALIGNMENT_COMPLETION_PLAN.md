@@ -3161,6 +3161,12 @@ limit:
   exact ports, anchors, camera bounds, lot doors, and the `NP-15→AF-01` /
   `NP-15→WF-01` bindings without falsely claiming that the legacy construction
   map is an authored fifteen-room hub or that either external portal is live.
+- `NP-15` now also has an isolated, scene-owned H1 collision/navigation slice
+  at `test-artifacts/20260724-020641-10bc07d9`. Its approved initial visual
+  baseline is intentionally limited to town grass, road, and boundary trees;
+  the Charter-table marker, cultural pavilion art, population schedules,
+  interaction, streaming, and `AF-01` / `WF-01` portals remain explicitly
+  runtime-gated rather than being represented by a substitute shortcut.
 - Battle lifecycle effects are separated from battle presentation, and the 53
   existing core encounter definitions now live in `CampaignEncounterCatalog`
   behind the preserved combat-database facade. The focused catalog/content/
