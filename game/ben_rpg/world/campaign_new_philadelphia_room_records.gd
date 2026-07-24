@@ -9,7 +9,7 @@ const CATALOG := preload("res://ben_rpg/world/campaign_new_philadelphia_catalog.
 const ROOM_REGISTRY := preload("res://ben_rpg/world/campaign_room_registry.gd")
 const ADDRESS_RECORDS := preload("res://ben_rpg/world/campaign_address_room_records.gd")
 
-static var RECORDS := {&"NP-01": _franklin_laboratory_record(), &"NP-15": _embassy_green_record()}
+static var RECORDS := {&"NP-01": _franklin_laboratory_record(), &"NP-02": _invention_annex_record(), &"NP-15": _embassy_green_record()}
 
 
 static func record(room_id: StringName) -> Dictionary:
@@ -18,7 +18,7 @@ static func record(room_id: StringName) -> Dictionary:
 
 static func validate() -> PackedStringArray:
 	var errors: Array[String] = []
-	for room_id in [&"NP-01", &"NP-15"]:
+	for room_id in [&"NP-01", &"NP-02", &"NP-15"]:
 		var definition := record(room_id)
 		var catalog_room := CATALOG.room(room_id)
 		var layout: Dictionary = definition.get("layout", {})
@@ -52,6 +52,13 @@ static func validate() -> PackedStringArray:
 		errors.append("NP-01 must retain its gated Franklin workbench marker.")
 	if (np01.get("navigation", {}) as Dictionary).get("walkableCells", []).size() != 499:
 		errors.append("NP-01 must reserve its five laboratory-equipment collision cells.")
+	var np02 := record(&"NP-02")
+	if (np02.get("layout", {}) as Dictionary).get("terrainProfileIds", []) != [&"laboratory_floor_tile", &"laboratory_wall_tile"]:
+		errors.append("NP-02 must use only its approved laboratory floor and wall profiles.")
+	if (np02.get("layout", {}) as Dictionary).get("featureContracts", []) != [{"id": &"invention_bench", "anchor": &"Icenter", "cell": Vector2i(12, 8), "runtimeState": &"visual_and_interaction_gated"}]:
+		errors.append("NP-02 must retain its gated invention-bench marker.")
+	if (np02.get("navigation", {}) as Dictionary).get("walkableCells", []).size() != 303:
+		errors.append("NP-02 must reserve its five annex-equipment collision cells.")
 	var np15 := record(&"NP-15")
 	if (np15.get("layout", {}) as Dictionary).get("terrainProfileIds", []) != [&"sandbox_modern_grass", &"sandbox_modern_cobble"]:
 		errors.append("NP-15 must use only its approved initial town terrain profiles.")
@@ -95,6 +102,25 @@ static func _franklin_laboratory_record() -> Dictionary:
 		"id": &"NP-01", "implementationState": &"scene_collision_authored_runtime_gated", "scenePath": "res://ben_rpg/world/rooms/new_philadelphia_franklin_laboratory.tscn",
 		"layout": {"dimensions": dimensions, "terrainProfileIds": [&"laboratory_floor_tile", &"laboratory_wall_tile"], "propProfileIds": [&"laboratory_analysis_station", &"laboratory_east_calibrator", &"laboratory_west_storage", &"laboratory_center_storage", &"laboratory_east_fabricator"], "featureContracts": [{"id": &"franklin_workbench", "anchor": &"Icenter", "cell": Vector2i(15, 10), "runtimeState": &"visual_and_interaction_gated"}]},
 		"navigation": {"id": &"np01-franklin-laboratory-navigation-v1", "collisionMaskId": &"np01-franklin-laboratory-perimeter-and-equipment-v1", "dimensions": dimensions, "walkableCells": walkable, "blockedCells": blocked, "arrivalSafeCells": safe_cells},
+	}
+
+
+static func _invention_annex_record() -> Dictionary:
+	var catalog_room := CATALOG.room(&"NP-02")
+	var blueprint: Dictionary = ROOM_REGISTRY.BLUEPRINTS.get(catalog_room.get("blueprint", &""), {})
+	var dimensions: Vector2i = blueprint.get("dimensions", Vector2i.ZERO)
+	var equipment_cells := [Vector2i(4, 6), Vector2i(20, 6), Vector2i(4, 11), Vector2i(20, 11), Vector2i(12, 8)]
+	var walkable := _walkable_cells(dimensions, blueprint.get("ports", {}), catalog_room.get("ports", {}))
+	for cell in equipment_cells:
+		walkable.erase(cell)
+	var blocked := _blocked_cells(dimensions, walkable)
+	var safe_cells := {}
+	for port_id in catalog_room.get("ports", {}):
+		safe_cells[port_id] = ADDRESS_RECORDS.expected_arrival_cell((blueprint.get("ports", {}) as Dictionary).get(port_id, Vector2i.ZERO), StringName(port_id))
+	return {
+		"id": &"NP-02", "implementationState": &"scene_collision_authored_runtime_gated", "scenePath": "res://ben_rpg/world/rooms/new_philadelphia_invention_annex.tscn",
+		"layout": {"dimensions": dimensions, "terrainProfileIds": [&"laboratory_floor_tile", &"laboratory_wall_tile"], "propProfileIds": [&"laboratory_west_terminal", &"laboratory_east_reactor", &"laboratory_east_generator", &"laboratory_center_storage", &"laboratory_east_fabricator"], "featureContracts": [{"id": &"invention_bench", "anchor": &"Icenter", "cell": Vector2i(12, 8), "runtimeState": &"visual_and_interaction_gated"}]},
+		"navigation": {"id": &"np02-invention-annex-navigation-v1", "collisionMaskId": &"np02-invention-annex-perimeter-and-equipment-v1", "dimensions": dimensions, "walkableCells": walkable, "blockedCells": blocked, "arrivalSafeCells": safe_cells},
 	}
 
 

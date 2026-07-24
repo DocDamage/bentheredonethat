@@ -3180,6 +3180,15 @@ limit:
   This is a reviewable foundation only: population, interaction, streaming,
   district traversal, and replacement of the legacy founding workflow remain
   explicitly gated.
+- `NP-02` Invention Annex now has its own runtime-gated I3 scene, complete
+  collision partition, exact `Nw`/`Ne` safe arrivals, and a gated invention
+  bench with approved laboratory terminal/reactor/generator/storage/fabricator
+  rendering. The combined seven-scene evidence passed at
+  `test-artifacts/20260724-023356-1196a8e9`; the save-safe first-visit capture
+  is retained at `game/validation/np02-invention-annex-scene-first-visit.png`
+  from `test-artifacts/20260724-023416-60a33213`. It remains review-only:
+  recipe/materials behavior, interaction, streaming, traversal, and legacy
+  founding-workflow replacement are not implied by this foundation.
 - A separate annex-room registry/runtime now owns the staged `NP-15↔AF-01`
   reciprocal route without adding either room to the locked 102-room core
   registry. Its focused evidence at `test-artifacts/20260724-021141-bf9aaeb2`
