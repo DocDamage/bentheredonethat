@@ -3514,7 +3514,7 @@
       "references": [
         {
           "file": "game/ben_rpg/core/campaign_state.gd",
-          "line": 285,
+          "line": 286,
           "resolution": "literal"
         },
         {
@@ -3534,7 +3534,7 @@
       "references": [
         {
           "file": "game/ben_rpg/core/campaign_state.gd",
-          "line": 267,
+          "line": 268,
           "resolution": "literal"
         },
         {
@@ -3554,7 +3554,7 @@
       "references": [
         {
           "file": "game/ben_rpg/core/campaign_state.gd",
-          "line": 249,
+          "line": 250,
           "resolution": "literal"
         },
         {
@@ -3574,7 +3574,7 @@
       "references": [
         {
           "file": "game/ben_rpg/core/campaign_state.gd",
-          "line": 231,
+          "line": 232,
           "resolution": "literal"
         },
         {
@@ -3609,7 +3609,7 @@
       "references": [
         {
           "file": "game/ben_rpg/core/campaign_world_catalog.gd",
-          "line": 147,
+          "line": 149,
           "resolution": "literal"
         },
         {
@@ -3629,7 +3629,7 @@
       "references": [
         {
           "file": "game/ben_rpg/core/campaign_world_catalog.gd",
-          "line": 152,
+          "line": 154,
           "resolution": "literal"
         },
         {
@@ -3649,7 +3649,7 @@
       "references": [
         {
           "file": "game/ben_rpg/core/campaign_world_catalog.gd",
-          "line": 142,
+          "line": 144,
           "resolution": "literal"
         },
         {
@@ -3669,7 +3669,7 @@
       "references": [
         {
           "file": "game/ben_rpg/core/campaign_world_catalog.gd",
-          "line": 179,
+          "line": 181,
           "resolution": "literal"
         },
         {
@@ -3689,7 +3689,7 @@
       "references": [
         {
           "file": "game/ben_rpg/core/campaign_world_catalog.gd",
-          "line": 215,
+          "line": 217,
           "resolution": "literal"
         },
         {
@@ -3709,7 +3709,7 @@
       "references": [
         {
           "file": "game/ben_rpg/core/campaign_world_catalog.gd",
-          "line": 191,
+          "line": 193,
           "resolution": "literal"
         },
         {
@@ -3729,7 +3729,7 @@
       "references": [
         {
           "file": "game/ben_rpg/core/campaign_world_catalog.gd",
-          "line": 233,
+          "line": 235,
           "resolution": "literal"
         },
         {
@@ -3749,7 +3749,7 @@
       "references": [
         {
           "file": "game/ben_rpg/core/campaign_world_catalog.gd",
-          "line": 203,
+          "line": 205,
           "resolution": "literal"
         },
         {
@@ -3769,7 +3769,7 @@
       "references": [
         {
           "file": "game/ben_rpg/core/campaign_world_catalog.gd",
-          "line": 245,
+          "line": 247,
           "resolution": "literal"
         },
         {
@@ -3839,7 +3839,7 @@
         },
         {
           "file": "game/ben_rpg/core/campaign_world_catalog.gd",
-          "line": 137,
+          "line": 139,
           "resolution": "literal"
         },
         {
@@ -3859,7 +3859,7 @@
       "references": [
         {
           "file": "game/ben_rpg/core/campaign_world_catalog.gd",
-          "line": 167,
+          "line": 169,
           "resolution": "literal"
         },
         {
@@ -3914,22 +3914,22 @@
         },
         {
           "file": "game/ben_rpg/core/campaign_world_catalog.gd",
-          "line": 157,
+          "line": 159,
           "resolution": "literal"
         },
         {
           "file": "game/ben_rpg/core/campaign_world_catalog.gd",
-          "line": 185,
+          "line": 187,
           "resolution": "literal"
         },
         {
           "file": "game/ben_rpg/core/campaign_world_catalog.gd",
-          "line": 221,
+          "line": 223,
           "resolution": "literal"
         },
         {
           "file": "game/ben_rpg/core/campaign_world_catalog.gd",
-          "line": 227,
+          "line": 229,
           "resolution": "literal"
         },
         {
@@ -4089,22 +4089,22 @@
         },
         {
           "file": "game/ben_rpg/core/campaign_world_catalog.gd",
-          "line": 162,
+          "line": 164,
           "resolution": "literal"
         },
         {
           "file": "game/ben_rpg/core/campaign_world_catalog.gd",
-          "line": 173,
+          "line": 175,
           "resolution": "literal"
         },
         {
           "file": "game/ben_rpg/core/campaign_world_catalog.gd",
-          "line": 209,
+          "line": 211,
           "resolution": "literal"
         },
         {
           "file": "game/ben_rpg/core/campaign_world_catalog.gd",
-          "line": 239,
+          "line": 241,
           "resolution": "literal"
         },
         {
@@ -4144,7 +4144,7 @@
         },
         {
           "file": "game/ben_rpg/core/campaign_world_catalog.gd",
-          "line": 197,
+          "line": 199,
           "resolution": "literal"
         },
         {

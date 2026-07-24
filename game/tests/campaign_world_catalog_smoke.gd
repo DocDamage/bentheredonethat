@@ -25,6 +25,8 @@ func _ready() -> void:
 	assert((CATALOG.REQUIRED_NAMED_CHARACTER_ARCS[&"mansion_ashfall_horror"].get("characters", []) as Array).has(&"dracula"))
 	assert((CATALOG.REQUIRED_NAMED_CHARACTER_ARCS[&"pelagic_depths"].get("characters", []) as Array).has(&"cthulhu"))
 	assert((CATALOG.REQUIRED_NAMED_CHARACTER_ARCS[&"ashfall_empyreal_magic"].get("characters", []) as Array).has(&"dark_mage"))
+	assert(CampaignState.REQUIRED_ADDRESS_DEFINITIONS == CATALOG.REQUIRED_ADDRESS_DEFINITIONS)
+	assert(CampaignState.REQUIRED_ADDRESS_DEFINITIONS.size() == 6)
 	assert(StringName(CampaignState.universe_definition(&"haunted_mansion").get("destination", &"")) == &"haunted_mansion")
 	assert(CampaignState.town_state_overlay().has("tint"))
 	print("CAMPAIGN_WORLD_CATALOG_SMOKE_OK universes=7 overlays=5 immutable_catalogs=true compatibility_aliases=true")

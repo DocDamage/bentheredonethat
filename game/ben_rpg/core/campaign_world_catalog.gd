@@ -1,6 +1,8 @@
 class_name CampaignWorldCatalog
 extends RefCounted
 
+const REQUIRED_ADDRESS_CATALOG := preload("res://ben_rpg/world/campaign_required_address_catalog.gd")
+
 ## Immutable world-selection and town-presentation content.  CampaignState
 ## keeps compatibility aliases while mutable anchors and story flags remain in
 ## its serialized runtime domain.
@@ -842,6 +844,8 @@ const REQUIRED_NAMED_CHARACTER_ARCS := {
 	},
 }
 
+static var REQUIRED_ADDRESS_DEFINITIONS := REQUIRED_ADDRESS_CATALOG.ADDRESS_DEFINITIONS
+
 static func validate() -> PackedStringArray:
 	var errors: Array[String] = []
 	if UNIVERSE_DEFINITIONS.size() != 7:
@@ -873,4 +877,5 @@ static func validate() -> PackedStringArray:
 		var arc: Dictionary = REQUIRED_NAMED_CHARACTER_ARCS[arc_id]
 		if (arc.get("characters", []) as Array).is_empty() or (arc.get("stages", []) as Array).is_empty():
 			errors.append("Named-character arc %s needs characters and mandatory stages." % arc_id)
+	errors.append_array(REQUIRED_ADDRESS_CATALOG.validate())
 	return PackedStringArray(errors)

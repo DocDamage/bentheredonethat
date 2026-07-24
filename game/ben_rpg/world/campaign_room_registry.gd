@@ -58,6 +58,7 @@ const BLUEPRINTS := {
 	&"L2": {"dimensions": Vector2i(26, 18), "ports": {&"Nw": Vector2i(8, 1), &"Ne": Vector2i(17, 1), &"E1": Vector2i(24, 6), &"E2": Vector2i(24, 12), &"Se": Vector2i(17, 16), &"Sw": Vector2i(8, 16), &"W2": Vector2i(1, 12), &"W1": Vector2i(1, 6)}},
 	&"L3": {"dimensions": Vector2i(28, 18), "ports": {&"Nw": Vector2i(9, 1), &"Ne": Vector2i(18, 1), &"E1": Vector2i(26, 6), &"E2": Vector2i(26, 12), &"Se": Vector2i(18, 16), &"Sw": Vector2i(9, 16), &"W2": Vector2i(1, 12), &"W1": Vector2i(1, 6)}},
 	&"L4": {"dimensions": Vector2i(24, 20), "ports": {&"Nw": Vector2i(8, 1), &"Ne": Vector2i(16, 1), &"E1": Vector2i(22, 6), &"E2": Vector2i(22, 13), &"Se": Vector2i(16, 18), &"Sw": Vector2i(8, 18), &"W2": Vector2i(1, 13), &"W1": Vector2i(1, 6)}},
+	&"H1": {"dimensions": Vector2i(30, 20), "ports": {&"Nw": Vector2i(10, 1), &"Ne": Vector2i(20, 1), &"E1": Vector2i(28, 6), &"E2": Vector2i(28, 13), &"Se": Vector2i(20, 18), &"Sw": Vector2i(10, 18), &"W2": Vector2i(1, 13), &"W1": Vector2i(1, 6)}},
 }
 
 static var MANSION_ROOMS := {
