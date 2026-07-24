@@ -8,7 +8,9 @@
   orchestration responsibilities.
 - Added CampaignAddressEncounterCatalog. Its first contract is the mandatory
   AF-01 Cinder Gate arrival raid, bound by stable ID through the required
-  address catalog and the global content validator.
+  address catalog and the global content validator. The catalog now covers all
+  nine Ashfall rooms whose Section 23.5 policy is zone, scripted-only, or boss;
+  the three explicitly encounter-free rooms have no contract.
 - The address contract is explicitly non-runtime and marked
   blocked_pending_combat_database_refactor. It has no live enemy actor,
   backdrop, balance, or routing claim.
@@ -25,6 +27,9 @@
   test-artifacts/20260723-224824-efde0a46.
 - campaign_battle_ui_smoke passed at
   test-artifacts/20260723-224851-0ea5d5b8.
+- The expanded nine-contract address catalog passed at
+  test-artifacts/20260723-225158-5f756964; content validation passed again at
+  test-artifacts/20260723-225207-1352224b.
 
 ## Remaining refactor work
 

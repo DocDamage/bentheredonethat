@@ -8,6 +8,13 @@ extends RefCounted
 const ROOM_REGISTRY := preload("res://ben_rpg/world/campaign_room_registry.gd")
 const ADDRESS_ORDER := [&"ashfall", &"pelagic", &"steamforge", &"frontier", &"warfront", &"liminal"]
 const EXTERNAL_TARGETS := [&"NP-03", &"NP-09", &"NP-12", &"NP-15"]
+const ENCOUNTER_IDS_BY_ROOM := {
+	&"AF-01": &"ashfall_cinder_gate_arrival_raid", &"AF-03": &"ashfall_green_ruins_patrol",
+	&"AF-04": &"ashfall_polluted_causeway_hazards", &"AF-05": &"ashfall_bunker_defense_line",
+	&"AF-06": &"ashfall_continuity_defenses", &"AF-07": &"ashfall_furnace_pact",
+	&"AF-08": &"ashfall_supermarket_scavengers", &"AF-10": &"ashfall_school_memory_echo",
+	&"AF-12": &"ashfall_bone_service_patrol",
+}
 
 static var ADDRESS_DEFINITIONS := {
 	&"ashfall": _address(&"AF", "Ashfall Address", 12, [&"horror_arc_mansion_briefed"], &"ashfall_address_resolved", {&"duckets": 220, &"items": {&"reclamation_core": 1}}, [7, 3, 2], [
@@ -86,6 +93,7 @@ static func _address(prefix: StringName, title: String, room_count: int, unlock_
 		for binding in row[3]:
 			var parts := String(binding).split(":", false, 1)
 			port_map[StringName(parts[0])] = StringName(parts[1])
-		var encounter_id := StringName(row[4]) if row.size() > 4 else &""
-		rooms.append({"id": StringName("%s-%02d" % [prefix, index + 1]), "title": row[0], "class": row[1], "blueprint": row[2], "ports": port_map, "encounterId": encounter_id})
+		var room_id := StringName("%s-%02d" % [prefix, index + 1])
+		var encounter_id := StringName(row[4]) if row.size() > 4 else StringName(ENCOUNTER_IDS_BY_ROOM.get(room_id, &""))
+		rooms.append({"id": room_id, "title": row[0], "class": row[1], "blueprint": row[2], "ports": port_map, "encounterId": encounter_id})
 	return {"prefix": prefix, "title": title, "roomCount": room_count, "unlockFlags": unlock_flags, "resolutionFlag": resolution_flag, "rewards": rewards, "classBudget": class_budget, "runtimeEnabled": false, "rooms": rooms}
