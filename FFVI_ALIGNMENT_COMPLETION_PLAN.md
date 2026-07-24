@@ -3144,6 +3144,11 @@ limit:
   `test-artifacts/20260723-233417-f68a80d9`; the broad browser check passed
   separately. The retained raw database snapshot remains a parity baseline to
   remove in a later ownership-only refactor.
+- The 84 current combat actions now likewise live in `CampaignActionCatalog`
+  behind the preserved database facade. The action/encounter/address/content/
+  battle/backdrop suite passed at `test-artifacts/20260723-234403-69de5079`
+  with the isolated production-save sentinel unchanged; enemy/bestiary and
+  reward content remain the next combat ownership move.
 - Ashfall's nine non-`none` encounter contracts are validated address content
   records but remain `runtimeEnabled: false`. They cannot enter the battle
   catalog until approved actor profiles, battle backdrops, balance/reward

@@ -7,6 +7,7 @@ const VILLAIN_PACK := "res://game_assets/monsters/cp44-j31_villains/"
 const YOKAI_PACK := "res://game_assets/monsters/cp41-a181_japanese_yokai_urban_legends/"
 const VISUAL_PROFILE_REGISTRY := preload("res://ben_rpg/world/campaign_visual_profile_registry.gd")
 const ENCOUNTER_CONTENT := preload("res://ben_rpg/combat/campaign_encounter_catalog.gd")
+const ACTION_CONTENT := preload("res://ben_rpg/combat/campaign_action_catalog.gd")
 const FALLBACK_PARTY_PROFILE := &"ben_battle_actor"
 const RAPTOR_BATTLE_PROFILE := &"velociraptor_battle_actor"
 const AUTHORED_BATTLE_ANIMATION_SOURCES := {
@@ -112,6 +113,10 @@ const FIRST_VISIT_AVAILABLE_ELEMENTS_BY_REGION := {
 
 
 static func _action_catalog() -> Dictionary:
+	return ACTION_CONTENT.DEFINITIONS.duplicate(true)
+
+
+static func _retired_action_catalog_snapshot() -> Dictionary:
 	var actions := {
 		&"attack": {"name": "Attack", "kind": "physical", "power": 13, "target": "enemy", "critical_rate": 0.1, "description": "Strike one enemy. Physical attacks can critically hit."},
 		&"cane_tap": {"name": "Cane Tap", "kind": "physical", "power": 7, "target": "enemy", "description": "Ben contributes a technically adequate blow."},
@@ -202,41 +207,11 @@ static func _action_catalog() -> Dictionary:
 
 
 static func action(action_id: StringName) -> Dictionary:
-	var definition: Dictionary = _action_catalog().get(action_id, {}).duplicate(true)
-	if definition.is_empty():
-		return {}
-	definition["id"] = action_id
-	var target := StringName(definition.get("target", &""))
-	match target:
-		&"enemy":
-			definition["relation"] = &"hostile"
-			definition["selector"] = &"single"
-		&"all_enemies":
-			definition["relation"] = &"hostile"
-			definition["selector"] = &"all"
-		&"ally":
-			definition["relation"] = &"ally"
-			definition["selector"] = &"single"
-		&"all_allies":
-			definition["relation"] = &"ally"
-			definition["selector"] = &"all"
-		&"ko_ally":
-			definition["relation"] = &"ally"
-			definition["selector"] = &"ko_single"
-		&"self":
-			definition["relation"] = &"self"
-			definition["selector"] = &"self"
-		_:
-			return {}
-	definition["effects"] = [{"kind": StringName(definition.get("kind", &"")), "power": int(definition.get("power", 0))}]
-	return definition
+	return ACTION_CONTENT.definition(action_id)
 
 
 static func action_ids() -> Array[StringName]:
-	var ids: Array[StringName] = []
-	for action_id in _action_catalog().keys():
-		ids.append(StringName(action_id))
-	return ids
+	return ACTION_CONTENT.ids()
 
 
 static func party_actor(character_id: StringName, progress: Dictionary) -> Dictionary:

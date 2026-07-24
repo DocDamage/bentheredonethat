@@ -23,6 +23,7 @@ const CAMPAIGN_FIELD_SCALE := preload("res://ben_rpg/world/campaign_field_scale.
 const REQUIRED_ADDRESS_CATALOG := preload("res://ben_rpg/world/campaign_required_address_catalog.gd")
 const ADDRESS_ENCOUNTER_CATALOG := preload("res://ben_rpg/combat/campaign_address_encounter_catalog.gd")
 const ENCOUNTER_CATALOG := preload("res://ben_rpg/combat/campaign_encounter_catalog.gd")
+const ACTION_CATALOG := preload("res://ben_rpg/combat/campaign_action_catalog.gd")
 const ADDRESS_ROOM_RECORDS := preload("res://ben_rpg/world/campaign_address_room_records.gd")
 const CAMPAIGN_VISUAL_PROFILE_REGISTRY := preload("res://ben_rpg/world/campaign_visual_profile_registry.gd")
 
@@ -80,11 +81,14 @@ static func _validate_room_registry(errors: Array[String]) -> void:
 
 
 static func _validate_actions(errors: Array[String]) -> void:
+	errors.append_array(ACTION_CATALOG.validate())
 	var action_ids := CampaignCombatDatabase.action_ids()
 	if action_ids.is_empty():
 		errors.append("Combat action catalog is empty.")
 	for action_id in action_ids:
 		var action := CampaignCombatDatabase.action(action_id)
+		if action != ACTION_CATALOG.definition(action_id):
+			errors.append("Combat database facade diverges from action content %s." % action_id)
 		if action.is_empty():
 			errors.append("Action '%s' has an invalid targeting contract." % action_id)
 			continue
