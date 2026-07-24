@@ -3133,10 +3133,11 @@ limit:
 - The exact 64-room required-address catalog and the Ashfall 12-room contract
   now exist outside the 102-room core subtotal. `AF-01` has a validated room
   record, deterministic ground/dead-tree derivatives, a source/provenance
-  decision, authored scene layers, and a first-visit prototype capture. It is
-  deliberately not registered in the live streamer or core room registry:
-  collision, gateway, population, encounter, stabilized-state, and acceptance
-  evidence remain outstanding.
+  decision, authored scene layers, a first-visit prototype capture, and 84
+  native record-owned perimeter collision shapes. It is deliberately not
+  registered in the live streamer or core room registry: gateway, population,
+  encounter actors/backdrop/balance, streamed-player traversal, stabilized
+  state, and acceptance evidence remain outstanding.
 - Battle lifecycle effects are separated from battle presentation, and the 53
   existing core encounter definitions now live in `CampaignEncounterCatalog`
   behind the preserved combat-database facade. The focused catalog/content/

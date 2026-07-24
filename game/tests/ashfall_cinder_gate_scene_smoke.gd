@@ -19,5 +19,12 @@ func _ready() -> void:
 	var navigation := room.get_node("NavigationAndCollision") as Node2D
 	assert(navigation.get_meta(&"navigation_id", &"") == &"af01-cinder-gate-navigation-v1")
 	assert(navigation.get_meta(&"collision_mask_id", &"") == &"af01-cinder-gate-boundary-collision-v1")
-	print("ASHFALL_CINDER_GATE_SCENE_SMOKE_OK room=AF-01 runtime_gated=true")
+	assert(navigation.has_method(&"blocked_cell_count") and navigation.has_method(&"blocks_cell"))
+	assert(navigation.call(&"blocked_cell_count") == 84)
+	assert(navigation.get_child_count() == 84)
+	assert(bool(navigation.call(&"blocks_cell", Vector2i(0, 0))))
+	assert(not bool(navigation.call(&"blocks_cell", Vector2i(13, 9))))
+	for body in navigation.get_children():
+		assert(body is StaticBody2D and body.get_child_count() == 1 and body.get_child(0) is CollisionShape2D)
+	print("ASHFALL_CINDER_GATE_SCENE_SMOKE_OK room=AF-01 collision_cells=84 runtime_gated=true")
 	get_tree().quit(0)

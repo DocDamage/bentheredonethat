@@ -28,6 +28,8 @@ func configure(record_definition: Dictionary) -> void:
 		navigation_layer.set_meta(&"navigation_id", navigation.get("id", &""))
 		navigation_layer.set_meta(&"collision_mask_id", navigation.get("collisionMaskId", &""))
 		navigation_layer.set_meta(&"navigation_layout", navigation)
+		if navigation_layer.has_method(&"configure"):
+			navigation_layer.call(&"configure", navigation)
 	var ground_layer := get_node_or_null("GroundLayer")
 	if ground_layer and ground_layer.has_method(&"configure"):
 		ground_layer.call(&"configure", layout)

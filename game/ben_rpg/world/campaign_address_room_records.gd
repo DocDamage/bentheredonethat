@@ -2,8 +2,9 @@ class_name CampaignAddressRoomRecords
 extends RefCounted
 
 ## Section 23.14 room records begin with AF-01. Its scene is deliberately
-## non-runtime until the address gateway, collision audit, battle record, and
-## visual acceptance gates are all complete.
+## non-runtime until the address gateway, encounter, population, and visual
+## acceptance gates are all complete. Native perimeter collision is now owned
+## by the scene from this same navigation record.
 
 const ADDRESS_CATALOG := preload("res://ben_rpg/world/campaign_required_address_catalog.gd")
 const ROOM_REGISTRY := preload("res://ben_rpg/world/campaign_room_registry.gd")
@@ -11,7 +12,7 @@ const ROOM_REGISTRY := preload("res://ben_rpg/world/campaign_room_registry.gd")
 static var RECORDS := {
 	&"AF-01": {
 		"id": &"AF-01",
-		"implementationState": &"scene_authored_runtime_gated",
+		"implementationState": &"scene_collision_authored_runtime_gated",
 		"scenePath": "res://ben_rpg/world/rooms/ashfall_cinder_gate.tscn",
 		"layout": {
 			"id": &"af01-cinder-gate-layout-v1",
@@ -27,12 +28,13 @@ static var RECORDS := {
 			"foregroundCells": [Vector2i(5, 3), Vector2i(21, 3)],
 			"captureState": &"first_visit_captured_stabilized_blocked",
 			"firstVisitCapture": "res://validation/af01-cinder-gate-scene-first-visit.png",
-			"stabilizedCaptureBlocker": "The non-runtime arrival encounter, population state, and address gateway are still blocked pending the combat database refactor.",
+			"stabilizedCaptureBlocker": "The non-runtime arrival encounter actors/backdrop/balance, population state, and address gateway remain incomplete.",
 		},
 		"navigation": {
 			"id": &"af01-cinder-gate-navigation-v1",
 			"kind": &"authored",
 			"collisionMaskId": &"af01-cinder-gate-boundary-collision-v1",
+			"collisionState": &"native_perimeter_shapes_authored",
 			"usefulCellRange": Vector2i(384, 384),
 			"walkableRects": [{&"origin": Vector2i(1, 1), &"size": Vector2i(24, 16)}],
 			"blockedCells": _perimeter_cells(Vector2i(26, 18)),
@@ -75,10 +77,12 @@ static func validate() -> PackedStringArray:
 		var expected_dimensions: Vector2i = (ROOM_REGISTRY.BLUEPRINTS.get(blueprint, {}) as Dictionary).get("dimensions", Vector2i.ZERO)
 		if layout.get("dimensions", Vector2i.ZERO) != expected_dimensions:
 			errors.append("%s layout dimensions must match its locked blueprint." % room_id)
-		if StringName(record_definition.get("implementationState", &"")) != &"scene_authored_runtime_gated" or not ResourceLoader.exists(String(record_definition.get("scenePath", ""))):
-			errors.append("%s needs its recorded authored scene while remaining runtime-gated." % room_id)
+		if StringName(record_definition.get("implementationState", &"")) != &"scene_collision_authored_runtime_gated" or not ResourceLoader.exists(String(record_definition.get("scenePath", ""))):
+			errors.append("%s needs its recorded collision-authored scene while remaining runtime-gated." % room_id)
 		if StringName(navigation.get("kind", &"")) != &"authored" or (navigation.get("walkableRects", []) as Array).is_empty():
 			errors.append("%s requires an authored navigation record." % room_id)
+		if StringName(navigation.get("collisionState", &"")) != &"native_perimeter_shapes_authored":
+			errors.append("%s requires a native perimeter collision ownership record." % room_id)
 		var walkable: Dictionary = {}
 		for rectangle in navigation.get("walkableRects", []):
 			var origin: Vector2i = rectangle.get("origin", Vector2i.ZERO)
