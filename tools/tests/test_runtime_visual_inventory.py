@@ -25,8 +25,8 @@ class RuntimeVisualInventoryTests(unittest.TestCase):
         )
         self.assertEqual(result["stats"]["profileRequiredUnprofiledAssetSources"], 0)
         self.assertEqual(result["stats"]["thirdPartyDependencyVisualSources"], 11)
-        self.assertEqual(result["stats"]["profileRequiredAssetSources"], 175)
-        self.assertEqual(result["stats"]["profileRequiredProfiledAssetSources"], 175)
+        self.assertEqual(result["stats"]["profileRequiredAssetSources"], 176)
+        self.assertEqual(result["stats"]["profileRequiredProfiledAssetSources"], 176)
 
     def test_legacy_compatibility_sources_resolve_through_profiles(self) -> None:
         root = Path(__file__).resolve().parents[2]
