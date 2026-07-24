@@ -21,6 +21,11 @@
   6×3-cell footprint adds 18 native collision bodies and leaves a connected
   366-cell interior route. The profile remains `prototype_only` pending visual
   review.
+- Corrected each bound AF-01 arrival to the locked two-cell-inward blueprint
+  location and recorded its exact follower formation: `Nw` `(8,3)`, `E1`
+  `(22,6)`, and `Sw` `(8,14)`. The room-record validator now derives each
+  safe cell, three-cell opening, and follower positions from the L2 blueprint
+  rather than accepting merely walkable coordinates.
 - Added a profile-backed fallback for deterministic derived PNGs that have not
   received Godot import sidecars in an isolated project.
 - Produced a guarded windowed first-visit capture at

@@ -3135,7 +3135,9 @@ limit:
   record, deterministic ground/dead-tree/barricade derivatives, a
   source/provenance decision, authored scene layers, a first-visit prototype
   capture, and 102 native record-owned collision shapes (including the
-  central 6×3 Cinder Gate barricade footprint). It is deliberately not
+  central 6×3 Cinder Gate barricade footprint). Its three locked ports now
+  derive exact two-cell-inward safe arrivals and follower formations from the
+  L2 blueprint. It is deliberately not
   registered in the live streamer or core room registry: gateway, population,
   encounter actors/backdrop/balance, streamed-player traversal, stabilized
   state, and acceptance evidence remain outstanding.

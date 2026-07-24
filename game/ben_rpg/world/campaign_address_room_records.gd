@@ -9,6 +9,14 @@ extends RefCounted
 const ADDRESS_CATALOG := preload("res://ben_rpg/world/campaign_required_address_catalog.gd")
 const ROOM_REGISTRY := preload("res://ben_rpg/world/campaign_room_registry.gd")
 
+## Address ports share the locked Section 23.2 convention: an arrival is two
+## cells inward, with two perpendicular follower cells and one trailing cell.
+## This stays here until the address graph can enter CampaignRoomRegistry.
+const PORT_INWARD_DIRECTIONS := {
+	&"Nw": Vector2i.DOWN, &"Ne": Vector2i.DOWN, &"E1": Vector2i.LEFT, &"E2": Vector2i.LEFT,
+	&"Se": Vector2i.UP, &"Sw": Vector2i.UP, &"W2": Vector2i.RIGHT, &"W1": Vector2i.RIGHT,
+}
+
 static var RECORDS := {
 	&"AF-01": {
 		"id": &"AF-01",
@@ -39,8 +47,8 @@ static var RECORDS := {
 			"usefulCellRange": Vector2i(366, 366),
 			"walkableRects": [{&"origin": Vector2i(1, 1), &"size": Vector2i(24, 1)}, {&"origin": Vector2i(1, 2), &"size": Vector2i(9, 3)}, {&"origin": Vector2i(16, 2), &"size": Vector2i(9, 3)}, {&"origin": Vector2i(1, 5), &"size": Vector2i(24, 12)}],
 			"blockedCells": _cinder_gate_blocked_cells(Vector2i(26, 18)),
-			"arrivalSafeCells": {&"Nw": Vector2i(8, 2), &"E1": Vector2i(23, 6), &"Sw": Vector2i(8, 15)},
-			"arrivalFollowerCells": {&"Nw": [Vector2i(7, 2), Vector2i(9, 2), Vector2i(8, 3)], &"E1": [Vector2i(22, 6), Vector2i(23, 5), Vector2i(23, 7)], &"Sw": [Vector2i(7, 15), Vector2i(9, 15), Vector2i(8, 14)]},
+			"arrivalSafeCells": {&"Nw": Vector2i(8, 3), &"E1": Vector2i(22, 6), &"Sw": Vector2i(8, 14)},
+			"arrivalFollowerCells": {&"Nw": [Vector2i(7, 3), Vector2i(9, 3), Vector2i(8, 4)], &"E1": [Vector2i(22, 5), Vector2i(22, 7), Vector2i(21, 6)], &"Sw": [Vector2i(9, 14), Vector2i(7, 14), Vector2i(8, 13)]},
 			"npcRouteCells": {&"P1": [Vector2i(6, 6), Vector2i(7, 6)], &"P2": [Vector2i(13, 6), Vector2i(14, 6)], &"P3": [Vector2i(20, 6), Vector2i(19, 6)]},
 			"blockedDescription": "The perimeter, ash barriers, and foreground dead trees are collision-solid outside the authored interior route.",
 		},
@@ -67,6 +75,22 @@ static func _cinder_gate_blocked_cells(dimensions: Vector2i) -> Array[Vector2i]:
 	return cells
 
 
+static func expected_arrival_cell(port_cell: Vector2i, port_id: StringName) -> Vector2i:
+	return port_cell + (PORT_INWARD_DIRECTIONS.get(port_id, Vector2i.ZERO) as Vector2i) * 2
+
+
+static func expected_arrival_follower_cells(arrival_cell: Vector2i, port_id: StringName) -> Array[Vector2i]:
+	var inward: Vector2i = PORT_INWARD_DIRECTIONS.get(port_id, Vector2i.ZERO)
+	var perpendicular := Vector2i(-inward.y, inward.x)
+	return [arrival_cell + perpendicular, arrival_cell - perpendicular, arrival_cell + inward]
+
+
+static func _port_opening_cells(port_cell: Vector2i, port_id: StringName) -> Array[Vector2i]:
+	var inward: Vector2i = PORT_INWARD_DIRECTIONS.get(port_id, Vector2i.ZERO)
+	var perpendicular := Vector2i(-inward.y, inward.x)
+	return [port_cell - perpendicular, port_cell, port_cell + perpendicular]
+
+
 static func record(room_id: StringName) -> Dictionary:
 	return (RECORDS.get(room_id, {}) as Dictionary).duplicate(true)
 
@@ -83,7 +107,8 @@ static func validate() -> PackedStringArray:
 			errors.append("%s must bind an existing required-address room." % room_id)
 			continue
 		var blueprint := StringName(catalog_room.get("blueprint", &""))
-		var expected_dimensions: Vector2i = (ROOM_REGISTRY.BLUEPRINTS.get(blueprint, {}) as Dictionary).get("dimensions", Vector2i.ZERO)
+		var blueprint_layout: Dictionary = ROOM_REGISTRY.BLUEPRINTS.get(blueprint, {}) as Dictionary
+		var expected_dimensions: Vector2i = blueprint_layout.get("dimensions", Vector2i.ZERO)
 		if layout.get("dimensions", Vector2i.ZERO) != expected_dimensions:
 			errors.append("%s layout dimensions must match its locked blueprint." % room_id)
 		if StringName(record_definition.get("implementationState", &"")) != &"scene_collision_authored_runtime_gated" or not ResourceLoader.exists(String(record_definition.get("scenePath", ""))):
@@ -127,13 +152,24 @@ static func validate() -> PackedStringArray:
 				errors.append("%s contains an unadmitted prop or collision footprint." % room_id)
 		if dead_tree_count != 2 or barricade_count != 1:
 			errors.append("%s must bind two boundary trees and one admitted Cinder Gate barricade." % room_id)
-		for port_id in (catalog_room.get("ports", {}) as Dictionary).keys():
+		var blueprint_port_cells: Dictionary = blueprint_layout.get("ports", {})
+		for raw_port_id in (catalog_room.get("ports", {}) as Dictionary).keys():
+			var port_id := StringName(raw_port_id)
+			var port_cell: Vector2i = blueprint_port_cells.get(port_id, Vector2i.ZERO)
+			if port_cell == Vector2i.ZERO or not PORT_INWARD_DIRECTIONS.has(port_id):
+				errors.append("%s.%s must resolve to a locked blueprint port." % [room_id, port_id])
+				continue
+			for opening_cell in _port_opening_cells(port_cell, port_id):
+				if not walkable.has(opening_cell):
+					errors.append("%s.%s must retain a three-cell walkable port opening." % [room_id, port_id])
+					break
 			var safe_cell: Vector2i = (navigation.get("arrivalSafeCells", {}) as Dictionary).get(port_id, Vector2i.ZERO)
-			if not walkable.has(safe_cell):
-				errors.append("%s.%s arrival-safe cell must be walkable." % [room_id, port_id])
+			if safe_cell != expected_arrival_cell(port_cell, port_id) or not walkable.has(safe_cell):
+				errors.append("%s.%s arrival-safe cell must be the locked two-cell-inward walkable cell." % [room_id, port_id])
 			var followers: Array = (navigation.get("arrivalFollowerCells", {}) as Dictionary).get(port_id, [])
-			if followers.size() < 3 or followers.any(func(cell): return not walkable.has(cell)):
-				errors.append("%s.%s requires three walkable follower cells." % [room_id, port_id])
+			var expected_followers := expected_arrival_follower_cells(safe_cell, port_id)
+			if followers != expected_followers or followers.any(func(cell): return not walkable.has(cell)):
+				errors.append("%s.%s requires its exact three-cell follower formation." % [room_id, port_id])
 		for anchor_cell in (layout.get("populationAnchors", {}) as Dictionary).values():
 			if not walkable.has(anchor_cell):
 				errors.append("%s population anchor must be walkable." % room_id)
