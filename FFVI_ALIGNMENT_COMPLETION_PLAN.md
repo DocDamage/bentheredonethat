@@ -3177,3 +3177,13 @@ limit:
   catalog until approved actor profiles, battle backdrops, balance/reward
   records, and runtime-room ownership exist. This is an intentional safety
   boundary rather than a claim that Ashfall combat is playable.
+- AF-01's Cinder Gate arrival raid is now the first exception to that
+  preproduction boundary: it has a checksum-pinned Cinder Gate battle backdrop,
+  a profile-backed raider, content-owned actions/enemy/encounter/reward records,
+  and a victory flag that unlocks the room's stabilized-state contract. The
+  focused action, bestiary, encounter, reward, address, profile, field-scene,
+  and live-battle milestone passed in the isolated artifact root
+  `test-artifacts/20260724-010504-66e13469`; runtime asset validation and the
+  browser/tool checks also passed. AF-01 still is not streamable: the address
+  gateway, player traversal, field-actor scene admission, stabilized capture,
+  and acceptance evidence remain deliberately open.

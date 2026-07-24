@@ -44,6 +44,7 @@ static var DEFINITIONS := {
 		&"fallen_notary": {"name": "Fallen Miracle Notary", "hp": 455, "attack": 34, "defense": 35, "magic": 61, "spirit": 48, "speed": 36, "sprite_profile": &"fallen_notary_battle_actor", "actions": [&"gravity_writ", &"daylight_lance"], "elements": {&"radiant": 0.45, &"lightning": 1.25}, "exp": 196, "duckets": 81},
 		&"gravity_knight": {"name": "Elemental Lien Knight", "hp": 690, "attack": 60, "defense": 54, "magic": 45, "spirit": 44, "speed": 28, "sprite_profile": &"gravity_knight_battle_actor", "actions": [&"storm_decree", &"gravity_writ"], "elements": {&"lightning": 1.2}, "exp": 238, "duckets": 96},
 		&"high_comptroller": {"name": "High Comptroller of Gravity", "hp": 3560, "attack": 64, "defense": 55, "magic": 70, "spirit": 54, "speed": 43, "sprite_profile": &"high_comptroller_battle_actor", "actions": [&"foreclosure_of_flight", &"storm_decree", &"gravity_writ"], "elements": {&"lightning": 1.2}, "status_resist": {&"poisoned": 1.0, &"slow": 0.72, &"shocked": 0.58}, "exp": 860, "duckets": 370},
+		&"ashfall_raider": {"name": "Cinder Gate Raider", "hp": 215, "attack": 32, "defense": 20, "magic": 12, "spirit": 18, "speed": 27, "sprite_profile": &"ashfall_raider_battle_actor", "actions": [&"scavenger_shot", &"cinder_blast"], "elements": {&"lightning": 1.25}, "status_resist": {&"poisoned": 0.85, &"slow": 0.8, &"shocked": 0.7}, "exp": 68, "duckets": 24},
 	}
 
 

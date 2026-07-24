@@ -21,6 +21,9 @@ const FIXED_REWARD_ENCOUNTERS := [
 
 static func roll_loot(encounter_id: StringName, rng: RandomNumberGenerator) -> Array[Dictionary]:
 	var results: Array[Dictionary] = []
+	if encounter_id == &"ashfall_cinder_gate_arrival_raid":
+		results.append({"id": &"tonic", "display_name": "Cinder-Wrapped Tonic", "quantity": 1, "kind": "consumable", "source_pack": "Ashfall Cinder Gate derivatives"})
+		return results
 	if encounter_id == &"mansion_rift_jackal_trial":
 		results.append({
 			"instance_id": "mansion-threshold-collar", "id": &"threshold_collar", "base_name": "Threshold Collar",

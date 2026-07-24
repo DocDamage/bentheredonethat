@@ -89,6 +89,8 @@ static var DEFINITIONS := {
 	&"gravity_writ": {"name": "Writ of Excess Weight", "kind": "damage_delay", "power": 29, "delay": 30, "target": "enemy", "element": &"radiant", "status": &"slow", "status_chance": 0.48, "description": "A celestial writ increases one target's legal and physical burden."},
 	&"storm_decree": {"name": "Storm Decree", "kind": "magic", "power": 31, "target": "all_enemies", "element": &"lightning", "status": &"shocked", "status_chance": 0.38, "description": "Enforcement thunder strikes the whole formation."},
 	&"foreclosure_of_flight": {"name": "Foreclosure of Flight", "kind": "damage_delay", "power": 30, "delay": 36, "target": "all_enemies", "element": &"radiant", "status": &"slow", "status_chance": 0.56, "description": "The Comptroller repossesses momentum from the entire party."},
+	&"cinder_blast": {"name": "Cinder Blast", "kind": "physical", "power": 18, "target": "all_enemies", "status": &"slow", "status_chance": 0.22, "description": "A raider ruptures a stolen charge across the entire formation and may Slow it."},
+	&"scavenger_shot": {"name": "Scavenger Shot", "kind": "physical", "power": 23, "target": "enemy", "critical_rate": 0.12, "description": "A precise shot from a weapon repaired one time too many."},
 }
 
 

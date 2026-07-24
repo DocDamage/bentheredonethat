@@ -2002,6 +2002,28 @@
       "goldenCapture": "game/validation/af01-cinder-gate-scene-first-visit.png"
     },
     {
+      "id": "ashfall_cinder_gate_battle_backdrop",
+      "kind": "battle_backdrop",
+      "source": {"pack": "Ashfall Cinder Gate derivatives", "runtimeTexture": "game/ben_rpg/visual_assets/derived/ashfall_cinder_gate_battle_backdrop.png", "sourceChecksum": "a08bd5a8f3a48ec74cddd310f197fe2c021674eb72c85cc40b926fc2487d12d5", "sourceDensity": 48, "region": [0, 0, 384, 360], "alphaBounds": [0, 0, 384, 360]},
+      "placement": {"footAnchor": [192, 359], "scaleClass": "tile", "collisionFootprint": "battle_backdrop"},
+      "worldDrawSize": [384, 360],
+      "licenseReference": "game/ben_rpg/visual_assets/generated/runtime_asset_provenance.json",
+      "releaseVisualAcceptance": "prototype_only",
+      "cropApproval": "approved",
+      "goldenCapture": "game/validation/af01-cinder-gate-scene-first-visit.png"
+    },
+    {
+      "id": "ashfall_raider_battle_actor",
+      "kind": "battle_actor",
+      "source": {"pack": "Villains", "runtimeTexture": "game/game_assets/monsters/cp44-j31_villains/CP_J46_BombGangster.png", "sourceChecksum": "2ae96a17abdcf89bbd760fa34b12d2c91b310ac2d1ea022aed7d9e0f20dcbab7", "sourceDensity": 48, "region": [0, 0, 164, 174], "alphaBounds": [0, 0, 164, 174]},
+      "placement": {"footAnchor": [82, 173], "scaleClass": "actor", "collisionFootprint": "battle_actor"},
+      "worldDrawSize": [164, 174],
+      "licenseReference": "game/ben_rpg/visual_assets/generated/runtime_asset_provenance.json",
+      "releaseVisualAcceptance": "prototype_only",
+      "cropApproval": "approved",
+      "goldenCapture": "game/validation/af01-cinder-gate-scene-first-visit.png"
+    },
+    {
       "id": "af01_scrap_kid_east",
       "kind": "actor",
       "source": {"pack": "SakPix Wasteland Legends", "runtimeTexture": "game/ben_rpg/visual_assets/derived/af01_scrap_kid_east.png", "sourceChecksum": "55c7eac7d6f552cc8363dcb803115608078f6952dcc7c02a42e35851a00890bd", "sourceDensity": 92, "region": [0, 0, 92, 92], "alphaBounds": [0, 0, 92, 92]},

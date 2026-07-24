@@ -14,7 +14,7 @@ func _run() -> void:
 	CampaignState.build_facility(2, "Clinic")
 	CampaignState.hire_recruit(&"fighter")
 	CampaignState.add_to_party(&"fighter")
-	if CampaignCombatDatabase.bestiary_ids().size() != 38:
+	if CampaignCombatDatabase.bestiary_ids().size() != 39:
 		_fail("The bestiary does not enumerate every authored combat species")
 		return
 	if not CampaignState.discovered_bestiary_ids().is_empty():
@@ -44,6 +44,18 @@ func _run() -> void:
 		return
 	if ghost_record.get("drops", []).is_empty() or book_record.get("drops", []).is_empty():
 		_fail("Observed battle spoils were not attached to the encounter's species records")
+		return
+	battle._leave_battle(true)
+	if not battle.begin(&"ashfall_cinder_gate_arrival_raid", 1777):
+		_fail("The admitted Cinder Gate arrival raid would not start")
+		return
+	var raider_record := CampaignState.bestiary_record(&"ashfall_raider")
+	if int(raider_record.get("seen", 0)) != 2:
+		_fail("The arrival raid did not record both visible Cinder Gate Raiders")
+		return
+	battle.debug_force_victory()
+	if not bool(CampaignState.story_flags.get(&"ashfall_cinder_gate_arrival_raid_cleared", false)):
+		_fail("The admitted arrival raid did not persist its stabilized-state flag")
 		return
 	battle._leave_battle(true)
 
@@ -78,12 +90,12 @@ func _run() -> void:
 		_fail("The controller-ready menu did not render its bestiary tab, supplied portrait, and species catalog")
 		return
 	var summary := CampaignState.library_record_summary()
-	if int(summary.get("bestiary_seen", 0)) != 2 or int(summary.get("monsters_defeated", 0)) != 2:
+	if int(summary.get("bestiary_seen", 0)) != 3 or int(summary.get("monsters_defeated", 0)) != 4:
 		_fail("The Library record summary did not include bestiary completion")
 		return
 
 	DirAccess.remove_absolute(ProjectSettings.globalize_path(TEST_SAVE))
-	print("BESTIARY_SMOKE_OK species=38 discovery=battle_begin defeats=victory intel=stats+actions+elements drops=observed ui=supplied_art+controller save=v18")
+	print("BESTIARY_SMOKE_OK species=39 discovery=battle_begin defeats=victory ashfall_arrival=admitted+stateful intel=stats+actions+elements drops=observed ui=supplied_art+controller save=v18")
 	main.queue_free()
 	await get_tree().process_frame
 	get_tree().quit(0)

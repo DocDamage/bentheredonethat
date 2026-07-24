@@ -17,5 +17,6 @@ func _ready() -> void:
 		assert(int(actor.get("experience", -1)) == int(definition.get("exp", -1)))
 		assert(actor.get("actions", []) == definition.get("actions", []))
 	assert(CATALOG.definition(&"clock_mirror_boss").get("sprite_profile", &"") == &"clock_mirror_battle_actor")
+	assert(CATALOG.definition(&"ashfall_raider").get("sprite_profile", &"") == &"ashfall_raider_battle_actor")
 	print("BESTIARY_CATALOG_SMOKE_OK source=content_actor=database enemies=%d" % CATALOG.ids().size())
 	get_tree().quit(0)

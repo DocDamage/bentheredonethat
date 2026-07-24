@@ -60,6 +60,7 @@ static var CORE_CONTRACTS := {
 	&"empyreal_aerie_ambush": {"name": "Wing Repossession Detail", "enemies": [&"gravity_knight", &"wind_bailiff"], "backdrop_profile": &"empyreal_aerie_battle_backdrop", "scripted": true},
 	&"empyreal_aerie_patrol": {"name": "Reliquary Asset Seizure", "enemies": [&"fallen_notary", &"gravity_knight"], "backdrop_profile": &"empyreal_upper_aerie_battle_backdrop"},
 	&"empyreal_high_comptroller": {"name": "The Final Gravity Hearing", "enemies": [&"high_comptroller"], "backdrop_profile": &"empyreal_tribunal_battle_backdrop", "scripted": true, "boss": true},
+	&"ashfall_cinder_gate_arrival_raid": {"name": "Cinder Gate Arrival Raid", "enemies": [&"ashfall_raider", &"ashfall_raider"], "backdrop_profile": &"ashfall_cinder_gate_battle_backdrop", "scripted": true},
 }
 
 

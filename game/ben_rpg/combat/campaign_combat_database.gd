@@ -82,7 +82,7 @@ const BESTIARY_ORDER := [
 	&"helios_mech", &"helios_assassin", &"helios_security", &"helios_gunner", &"civic_sun", &"cobalt_courier_challenger",
 	&"frost_collector", &"frost_necromancer", &"ice_colossus", &"whiteout_auditor",
 	&"memory_inspector", &"fox_attendant", &"vow_spider", &"magistrate_enma", &"crimson_oni_challenger",
-	&"wind_bailiff", &"storm_repossessor", &"fallen_notary", &"gravity_knight", &"high_comptroller",
+	&"wind_bailiff", &"storm_repossessor", &"fallen_notary", &"gravity_knight", &"high_comptroller", &"ashfall_raider",
 ]
 const BESTIARY_REGIONS := {
 	&"schoolgirl_ghost": "Haunted Mansion", &"war_book": "Haunted Mansion", &"clock_mirror": "Haunted Mansion",
@@ -98,7 +98,7 @@ const BESTIARY_REGIONS := {
 	&"memory_inspector": "Moonpetal Court", &"fox_attendant": "Moonpetal Court", &"vow_spider": "Moonpetal Court",
 	&"magistrate_enma": "Moonpetal Court", &"crimson_oni_challenger": "Moonpetal Court",
 	&"wind_bailiff": "Empyreal Court", &"storm_repossessor": "Empyreal Court",
-	&"fallen_notary": "Empyreal Court", &"gravity_knight": "Empyreal Court", &"high_comptroller": "Empyreal Court",
+	&"fallen_notary": "Empyreal Court", &"gravity_knight": "Empyreal Court", &"high_comptroller": "Empyreal Court", &"ashfall_raider": "Ashfall Address",
 }
 const BESTIARY_BOSSES := [
 	&"clock_mirror_boss", &"rift_jackal_challenger", &"mother_computer", &"bulkhead_warden_challenger", &"commute_tyrant", &"mossback_surveyor_challenger", &"civic_sun",
@@ -110,7 +110,7 @@ const BESTIARY_RECRUITABLES := [&"rift_jackal_challenger", &"bulkhead_warden_cha
 # later recruit, a skill purchase, or a particular anchor choice.
 const FIRST_VISIT_AVAILABLE_ELEMENTS_BY_REGION := {
 	"Haunted Mansion": [&"lightning"], "Asterion Station": [&"lightning"], "Primeval Expanse": [&"lightning"],
-	"Helios Arcology": [&"lightning"], "Frosthold Kingdom": [&"lightning"], "Moonpetal Court": [&"lightning"], "Empyreal Court": [&"lightning"],
+	"Helios Arcology": [&"lightning"], "Frosthold Kingdom": [&"lightning"], "Moonpetal Court": [&"lightning"], "Empyreal Court": [&"lightning"], "Ashfall Address": [&"lightning"],
 }
 
 

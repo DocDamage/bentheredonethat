@@ -1285,6 +1285,50 @@
       "distributionEligibility": "distribution_confirmed",
       "fieldScaleStatus": "approved",
       "goldenCapture": "game/validation/af01-cinder-gate-scene-first-visit.png",
+      "id": "ashfall_cinder_gate_battle_backdrop",
+      "kind": "battle_backdrop",
+      "licenseReference": "game/ben_rpg/visual_assets/generated/runtime_asset_provenance.json",
+      "placement": {
+        "collisionFootprint": "battle_backdrop",
+        "footAnchor": [
+          192,
+          359
+        ],
+        "scaleClass": "tile"
+      },
+      "releaseVisualAcceptance": "prototype_only",
+      "renderScale": 1.0,
+      "renderScaleY": 1.0,
+      "source": {
+        "alphaBounds": [
+          0,
+          0,
+          384,
+          360
+        ],
+        "pack": "Ashfall Cinder Gate derivatives",
+        "region": [
+          0,
+          0,
+          384,
+          360
+        ],
+        "runtimeTexture": "game/ben_rpg/visual_assets/derived/ashfall_cinder_gate_battle_backdrop.png",
+        "sha256": "a08bd5a8f3a48ec74cddd310f197fe2c021674eb72c85cc40b926fc2487d12d5",
+        "sourceChecksum": "a08bd5a8f3a48ec74cddd310f197fe2c021674eb72c85cc40b926fc2487d12d5",
+        "sourceDensity": 48
+      },
+      "surface": "battle",
+      "worldDrawSize": [
+        384,
+        360
+      ]
+    },
+    {
+      "cropApproval": "approved",
+      "distributionEligibility": "distribution_confirmed",
+      "fieldScaleStatus": "approved",
+      "goldenCapture": "game/validation/af01-cinder-gate-scene-first-visit.png",
       "id": "ashfall_cinder_gate_dead_tree",
       "kind": "prop",
       "licenseReference": "game/ben_rpg/visual_assets/generated/runtime_asset_provenance.json",
@@ -1410,6 +1454,50 @@
       "worldDrawSize": [
         48,
         48
+      ]
+    },
+    {
+      "cropApproval": "approved",
+      "distributionEligibility": "distribution_confirmed",
+      "fieldScaleStatus": "approved",
+      "goldenCapture": "game/validation/af01-cinder-gate-scene-first-visit.png",
+      "id": "ashfall_raider_battle_actor",
+      "kind": "battle_actor",
+      "licenseReference": "game/ben_rpg/visual_assets/generated/runtime_asset_provenance.json",
+      "placement": {
+        "collisionFootprint": "battle_actor",
+        "footAnchor": [
+          82,
+          173
+        ],
+        "scaleClass": "actor"
+      },
+      "releaseVisualAcceptance": "prototype_only",
+      "renderScale": 1.0,
+      "renderScaleY": 1.0,
+      "source": {
+        "alphaBounds": [
+          0,
+          0,
+          164,
+          174
+        ],
+        "pack": "Villains",
+        "region": [
+          0,
+          0,
+          164,
+          174
+        ],
+        "runtimeTexture": "game/game_assets/monsters/cp44-j31_villains/CP_J46_BombGangster.png",
+        "sha256": "2ae96a17abdcf89bbd760fa34b12d2c91b310ac2d1ea022aed7d9e0f20dcbab7",
+        "sourceChecksum": "2ae96a17abdcf89bbd760fa34b12d2c91b310ac2d1ea022aed7d9e0f20dcbab7",
+        "sourceDensity": 48
+      },
+      "surface": "battle",
+      "worldDrawSize": [
+        164,
+        174
       ]
     },
     {

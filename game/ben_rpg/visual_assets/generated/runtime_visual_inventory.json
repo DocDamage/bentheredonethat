@@ -212,7 +212,7 @@
       "references": [
         {
           "file": "game/ben_rpg/visual_assets/visual_profiles.json",
-          "line": 2095,
+          "line": 2117,
           "profileId": "af01_dust_hunter_east",
           "resolution": "profile_runtime_texture"
         }
@@ -227,7 +227,7 @@
       "references": [
         {
           "file": "game/ben_rpg/visual_assets/visual_profiles.json",
-          "line": 2106,
+          "line": 2128,
           "profileId": "af01_dust_hunter_north-east",
           "resolution": "profile_runtime_texture"
         }
@@ -242,7 +242,7 @@
       "references": [
         {
           "file": "game/ben_rpg/visual_assets/visual_profiles.json",
-          "line": 2117,
+          "line": 2139,
           "profileId": "af01_dust_hunter_north-west",
           "resolution": "profile_runtime_texture"
         }
@@ -257,7 +257,7 @@
       "references": [
         {
           "file": "game/ben_rpg/visual_assets/visual_profiles.json",
-          "line": 2128,
+          "line": 2150,
           "profileId": "af01_dust_hunter_north",
           "resolution": "profile_runtime_texture"
         }
@@ -272,7 +272,7 @@
       "references": [
         {
           "file": "game/ben_rpg/visual_assets/visual_profiles.json",
-          "line": 2139,
+          "line": 2161,
           "profileId": "af01_dust_hunter_south-east",
           "resolution": "profile_runtime_texture"
         }
@@ -287,7 +287,7 @@
       "references": [
         {
           "file": "game/ben_rpg/visual_assets/visual_profiles.json",
-          "line": 2150,
+          "line": 2172,
           "profileId": "af01_dust_hunter_south-west",
           "resolution": "profile_runtime_texture"
         }
@@ -302,7 +302,7 @@
       "references": [
         {
           "file": "game/ben_rpg/visual_assets/visual_profiles.json",
-          "line": 2161,
+          "line": 2183,
           "profileId": "af01_dust_hunter_south",
           "resolution": "profile_runtime_texture"
         }
@@ -317,7 +317,7 @@
       "references": [
         {
           "file": "game/ben_rpg/visual_assets/visual_profiles.json",
-          "line": 2172,
+          "line": 2194,
           "profileId": "af01_dust_hunter_west",
           "resolution": "profile_runtime_texture"
         }
@@ -332,7 +332,7 @@
       "references": [
         {
           "file": "game/ben_rpg/visual_assets/visual_profiles.json",
-          "line": 2183,
+          "line": 2205,
           "profileId": "af01_iron_sentinel_east",
           "resolution": "profile_runtime_texture"
         }
@@ -347,7 +347,7 @@
       "references": [
         {
           "file": "game/ben_rpg/visual_assets/visual_profiles.json",
-          "line": 2194,
+          "line": 2216,
           "profileId": "af01_iron_sentinel_north-east",
           "resolution": "profile_runtime_texture"
         }
@@ -362,7 +362,7 @@
       "references": [
         {
           "file": "game/ben_rpg/visual_assets/visual_profiles.json",
-          "line": 2205,
+          "line": 2227,
           "profileId": "af01_iron_sentinel_north-west",
           "resolution": "profile_runtime_texture"
         }
@@ -377,7 +377,7 @@
       "references": [
         {
           "file": "game/ben_rpg/visual_assets/visual_profiles.json",
-          "line": 2216,
+          "line": 2238,
           "profileId": "af01_iron_sentinel_north",
           "resolution": "profile_runtime_texture"
         }
@@ -392,7 +392,7 @@
       "references": [
         {
           "file": "game/ben_rpg/visual_assets/visual_profiles.json",
-          "line": 2227,
+          "line": 2249,
           "profileId": "af01_iron_sentinel_south-east",
           "resolution": "profile_runtime_texture"
         }
@@ -407,7 +407,7 @@
       "references": [
         {
           "file": "game/ben_rpg/visual_assets/visual_profiles.json",
-          "line": 2238,
+          "line": 2260,
           "profileId": "af01_iron_sentinel_south-west",
           "resolution": "profile_runtime_texture"
         }
@@ -422,7 +422,7 @@
       "references": [
         {
           "file": "game/ben_rpg/visual_assets/visual_profiles.json",
-          "line": 2249,
+          "line": 2271,
           "profileId": "af01_iron_sentinel_south",
           "resolution": "profile_runtime_texture"
         }
@@ -437,7 +437,7 @@
       "references": [
         {
           "file": "game/ben_rpg/visual_assets/visual_profiles.json",
-          "line": 2260,
+          "line": 2282,
           "profileId": "af01_iron_sentinel_west",
           "resolution": "profile_runtime_texture"
         }
@@ -452,7 +452,7 @@
       "references": [
         {
           "file": "game/ben_rpg/visual_assets/visual_profiles.json",
-          "line": 2007,
+          "line": 2029,
           "profileId": "af01_scrap_kid_east",
           "resolution": "profile_runtime_texture"
         }
@@ -467,7 +467,7 @@
       "references": [
         {
           "file": "game/ben_rpg/visual_assets/visual_profiles.json",
-          "line": 2018,
+          "line": 2040,
           "profileId": "af01_scrap_kid_north-east",
           "resolution": "profile_runtime_texture"
         }
@@ -482,7 +482,7 @@
       "references": [
         {
           "file": "game/ben_rpg/visual_assets/visual_profiles.json",
-          "line": 2029,
+          "line": 2051,
           "profileId": "af01_scrap_kid_north-west",
           "resolution": "profile_runtime_texture"
         }
@@ -497,7 +497,7 @@
       "references": [
         {
           "file": "game/ben_rpg/visual_assets/visual_profiles.json",
-          "line": 2040,
+          "line": 2062,
           "profileId": "af01_scrap_kid_north",
           "resolution": "profile_runtime_texture"
         }
@@ -512,7 +512,7 @@
       "references": [
         {
           "file": "game/ben_rpg/visual_assets/visual_profiles.json",
-          "line": 2051,
+          "line": 2073,
           "profileId": "af01_scrap_kid_south-east",
           "resolution": "profile_runtime_texture"
         }
@@ -527,7 +527,7 @@
       "references": [
         {
           "file": "game/ben_rpg/visual_assets/visual_profiles.json",
-          "line": 2062,
+          "line": 2084,
           "profileId": "af01_scrap_kid_south-west",
           "resolution": "profile_runtime_texture"
         }
@@ -542,7 +542,7 @@
       "references": [
         {
           "file": "game/ben_rpg/visual_assets/visual_profiles.json",
-          "line": 2073,
+          "line": 2095,
           "profileId": "af01_scrap_kid_south",
           "resolution": "profile_runtime_texture"
         }
@@ -557,7 +557,7 @@
       "references": [
         {
           "file": "game/ben_rpg/visual_assets/visual_profiles.json",
-          "line": 2084,
+          "line": 2106,
           "profileId": "af01_scrap_kid_west",
           "resolution": "profile_runtime_texture"
         }
@@ -589,6 +589,21 @@
           "file": "game/ben_rpg/visual_assets/visual_profiles.json",
           "line": 1974,
           "profileId": "ashfall_cinder_gate_barricade",
+          "resolution": "profile_runtime_texture"
+        }
+      ]
+    },
+    {
+      "path": "res://ben_rpg/visual_assets/derived/ashfall_cinder_gate_battle_backdrop.png",
+      "profileCoverage": "profiled",
+      "profileIds": [
+        "ashfall_cinder_gate_battle_backdrop"
+      ],
+      "references": [
+        {
+          "file": "game/ben_rpg/visual_assets/visual_profiles.json",
+          "line": 2007,
+          "profileId": "ashfall_cinder_gate_battle_backdrop",
           "resolution": "profile_runtime_texture"
         }
       ]
@@ -4224,52 +4239,52 @@
       "references": [
         {
           "file": "game/ben_rpg/combat/campaign_encounter_reward_catalog.gd",
-          "line": 78,
+          "line": 81,
           "resolution": "literal"
         },
         {
           "file": "game/ben_rpg/combat/campaign_encounter_reward_catalog.gd",
-          "line": 104,
+          "line": 107,
           "resolution": "literal"
         },
         {
           "file": "game/ben_rpg/combat/campaign_encounter_reward_catalog.gd",
-          "line": 125,
+          "line": 128,
           "resolution": "literal"
         },
         {
           "file": "game/ben_rpg/combat/campaign_encounter_reward_catalog.gd",
-          "line": 161,
+          "line": 164,
           "resolution": "literal"
         },
         {
           "file": "game/ben_rpg/combat/campaign_encounter_reward_catalog.gd",
-          "line": 197,
+          "line": 200,
           "resolution": "literal"
         },
         {
           "file": "game/ben_rpg/combat/campaign_encounter_reward_catalog.gd",
-          "line": 223,
+          "line": 226,
           "resolution": "literal"
         },
         {
           "file": "game/ben_rpg/combat/campaign_encounter_reward_catalog.gd",
-          "line": 233,
+          "line": 236,
           "resolution": "literal"
         },
         {
           "file": "game/ben_rpg/combat/campaign_encounter_reward_catalog.gd",
-          "line": 265,
+          "line": 268,
           "resolution": "literal"
         },
         {
           "file": "game/ben_rpg/combat/campaign_encounter_reward_catalog.gd",
-          "line": 275,
+          "line": 278,
           "resolution": "literal"
         },
         {
           "file": "game/ben_rpg/combat/campaign_encounter_reward_catalog.gd",
-          "line": 336,
+          "line": 339,
           "resolution": "literal"
         },
         {
@@ -4314,37 +4329,37 @@
       "references": [
         {
           "file": "game/ben_rpg/combat/campaign_encounter_reward_catalog.gd",
-          "line": 28,
+          "line": 31,
           "resolution": "literal"
         },
         {
           "file": "game/ben_rpg/combat/campaign_encounter_reward_catalog.gd",
-          "line": 38,
+          "line": 41,
           "resolution": "literal"
         },
         {
           "file": "game/ben_rpg/combat/campaign_encounter_reward_catalog.gd",
-          "line": 80,
+          "line": 83,
           "resolution": "literal"
         },
         {
           "file": "game/ben_rpg/combat/campaign_encounter_reward_catalog.gd",
-          "line": 114,
+          "line": 117,
           "resolution": "literal"
         },
         {
           "file": "game/ben_rpg/combat/campaign_encounter_reward_catalog.gd",
-          "line": 187,
+          "line": 190,
           "resolution": "literal"
         },
         {
           "file": "game/ben_rpg/combat/campaign_encounter_reward_catalog.gd",
-          "line": 312,
+          "line": 315,
           "resolution": "literal"
         },
         {
           "file": "game/ben_rpg/combat/campaign_encounter_reward_catalog.gd",
-          "line": 339,
+          "line": 342,
           "resolution": "literal"
         },
         {
@@ -4389,7 +4404,7 @@
       "references": [
         {
           "file": "game/ben_rpg/combat/campaign_encounter_reward_catalog.gd",
-          "line": 151,
+          "line": 154,
           "resolution": "literal"
         },
         {
@@ -4409,37 +4424,37 @@
       "references": [
         {
           "file": "game/ben_rpg/combat/campaign_encounter_reward_catalog.gd",
-          "line": 79,
+          "line": 82,
           "resolution": "literal"
         },
         {
           "file": "game/ben_rpg/combat/campaign_encounter_reward_catalog.gd",
-          "line": 126,
+          "line": 129,
           "resolution": "literal"
         },
         {
           "file": "game/ben_rpg/combat/campaign_encounter_reward_catalog.gd",
-          "line": 162,
+          "line": 165,
           "resolution": "literal"
         },
         {
           "file": "game/ben_rpg/combat/campaign_encounter_reward_catalog.gd",
-          "line": 198,
+          "line": 201,
           "resolution": "literal"
         },
         {
           "file": "game/ben_rpg/combat/campaign_encounter_reward_catalog.gd",
-          "line": 234,
+          "line": 237,
           "resolution": "literal"
         },
         {
           "file": "game/ben_rpg/combat/campaign_encounter_reward_catalog.gd",
-          "line": 276,
+          "line": 279,
           "resolution": "literal"
         },
         {
           "file": "game/ben_rpg/combat/campaign_encounter_reward_catalog.gd",
-          "line": 338,
+          "line": 341,
           "resolution": "literal"
         },
         {
@@ -4459,12 +4474,12 @@
       "references": [
         {
           "file": "game/ben_rpg/combat/campaign_encounter_reward_catalog.gd",
-          "line": 278,
+          "line": 281,
           "resolution": "literal"
         },
         {
           "file": "game/ben_rpg/combat/campaign_encounter_reward_catalog.gd",
-          "line": 340,
+          "line": 343,
           "resolution": "literal"
         },
         {
@@ -4484,42 +4499,42 @@
       "references": [
         {
           "file": "game/ben_rpg/combat/campaign_encounter_reward_catalog.gd",
-          "line": 48,
+          "line": 51,
           "resolution": "literal"
         },
         {
           "file": "game/ben_rpg/combat/campaign_encounter_reward_catalog.gd",
-          "line": 58,
+          "line": 61,
           "resolution": "literal"
         },
         {
           "file": "game/ben_rpg/combat/campaign_encounter_reward_catalog.gd",
-          "line": 68,
+          "line": 71,
           "resolution": "literal"
         },
         {
           "file": "game/ben_rpg/combat/campaign_encounter_reward_catalog.gd",
-          "line": 127,
+          "line": 130,
           "resolution": "literal"
         },
         {
           "file": "game/ben_rpg/combat/campaign_encounter_reward_catalog.gd",
-          "line": 163,
+          "line": 166,
           "resolution": "literal"
         },
         {
           "file": "game/ben_rpg/combat/campaign_encounter_reward_catalog.gd",
-          "line": 235,
+          "line": 238,
           "resolution": "literal"
         },
         {
           "file": "game/ben_rpg/combat/campaign_encounter_reward_catalog.gd",
-          "line": 279,
+          "line": 282,
           "resolution": "literal"
         },
         {
           "file": "game/ben_rpg/combat/campaign_encounter_reward_catalog.gd",
-          "line": 341,
+          "line": 344,
           "resolution": "literal"
         },
         {
@@ -4564,17 +4579,17 @@
       "references": [
         {
           "file": "game/ben_rpg/combat/campaign_encounter_reward_catalog.gd",
-          "line": 199,
+          "line": 202,
           "resolution": "literal"
         },
         {
           "file": "game/ben_rpg/combat/campaign_encounter_reward_catalog.gd",
-          "line": 277,
+          "line": 280,
           "resolution": "literal"
         },
         {
           "file": "game/ben_rpg/combat/campaign_encounter_reward_catalog.gd",
-          "line": 337,
+          "line": 340,
           "resolution": "literal"
         },
         {
@@ -4871,6 +4886,21 @@
           "file": "game/ben_rpg/visual_assets/visual_profiles.json",
           "line": 1776,
           "profileId": "gravity_knight_battle_actor",
+          "resolution": "profile_runtime_texture"
+        }
+      ]
+    },
+    {
+      "path": "res://game_assets/monsters/cp44-j31_villains/CP_J46_BombGangster.png",
+      "profileCoverage": "profiled",
+      "profileIds": [
+        "ashfall_raider_battle_actor"
+      ],
+      "references": [
+        {
+          "file": "game/ben_rpg/visual_assets/visual_profiles.json",
+          "line": 2018,
+          "profileId": "ashfall_raider_battle_actor",
           "resolution": "profile_runtime_texture"
         }
       ]
@@ -5299,11 +5329,11 @@
   "schemaVersion": 2,
   "scope": "static Godot .gd/.tscn raster literals and approved profile runtime textures (tests, validation, and editor-only paths excluded)",
   "stats": {
-    "assets": 215,
-    "profileRequiredAssetSources": 204,
-    "profileRequiredProfiledAssetSources": 204,
+    "assets": 217,
+    "profileRequiredAssetSources": 206,
+    "profileRequiredProfiledAssetSources": 206,
     "profileRequiredUnprofiledAssetSources": 0,
-    "profiledAssetSources": 204,
+    "profiledAssetSources": 206,
     "thirdPartyDependencyVisualSources": 11,
     "unprofiledAssetSources": 11,
     "unprofiledByClassification": {

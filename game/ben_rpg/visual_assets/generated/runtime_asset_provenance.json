@@ -558,6 +558,20 @@
       "localLicenseEvidence": [
         "game/LICENSE"
       ],
+      "path": "res://ben_rpg/visual_assets/derived/ashfall_cinder_gate_battle_backdrop.png",
+      "profileCoverage": "profiled",
+      "profileIds": [
+        "ashfall_cinder_gate_battle_backdrop"
+      ],
+      "sourceGroup": "ben_rpg/visual_assets",
+      "unprofiledClassification": ""
+    },
+    {
+      "distributionEligibility": "distribution_confirmed",
+      "licenseReviewStatus": "distribution_confirmed",
+      "localLicenseEvidence": [
+        "game/LICENSE"
+      ],
       "path": "res://ben_rpg/visual_assets/derived/ashfall_cinder_gate_dead_tree.png",
       "profileCoverage": "profiled",
       "profileIds": [
@@ -2997,6 +3011,20 @@
       "localLicenseEvidence": [
         "game_assets/monsters/LICENSE"
       ],
+      "path": "res://game_assets/monsters/cp44-j31_villains/CP_J46_BombGangster.png",
+      "profileCoverage": "profiled",
+      "profileIds": [
+        "ashfall_raider_battle_actor"
+      ],
+      "sourceGroup": "monsters/cp44-j31_villains",
+      "unprofiledClassification": ""
+    },
+    {
+      "distributionEligibility": "distribution_confirmed",
+      "licenseReviewStatus": "distribution_confirmed",
+      "localLicenseEvidence": [
+        "game_assets/monsters/LICENSE"
+      ],
       "path": "res://game_assets/monsters/cp44-j31_villains/CP_J49_FallenNobleMage.png",
       "profileCoverage": "profiled",
       "profileIds": [
@@ -3479,20 +3507,20 @@
   "schemaVersion": 2,
   "scope": "static Godot raster references; not a reachability or license-grant proof",
   "summary": {
-    "assets": 215,
+    "assets": 217,
     "distributionEligibility": {
-      "distribution_confirmed": 215,
+      "distribution_confirmed": 217,
       "rejected": 0,
       "review_required": 0
     },
     "needsManualLicenseConfirmation": 0,
     "profileCoverage": {
       "external_dependency": 11,
-      "profiled": 204
+      "profiled": 206
     },
     "unprofiledByClassification": {
       "third_party_addon_ui": 11
     },
-    "withLocalLicenseEvidence": 215
+    "withLocalLicenseEvidence": 217
   }
 }

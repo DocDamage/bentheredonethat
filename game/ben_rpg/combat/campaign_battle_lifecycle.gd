@@ -19,6 +19,8 @@ static func apply_victory(encounter_id: StringName, enemy_types: Array[StringNam
 	var levels := CampaignState.apply_battle_victory(int(reward.get("experience", 0)), int(reward.get("duckets", 0)), reward.get("loot", []))
 	if encounter_id == &"mansion_foyer_intro":
 		CampaignState.story_flags[&"mansion_foyer_cleared"] = true
+	if encounter_id == &"ashfall_cinder_gate_arrival_raid":
+		CampaignState.story_flags[&"ashfall_cinder_gate_arrival_raid_cleared"] = true
 	return levels
 
 

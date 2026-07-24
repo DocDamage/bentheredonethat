@@ -10,12 +10,14 @@ func _ready() -> void:
 	var encounter := CATALOG.contract(&"ashfall_cinder_gate_arrival_raid")
 	assert(not encounter.is_empty())
 	assert(encounter.get("roomId", &"") == &"AF-01")
-	assert(not bool(encounter.get("runtimeEnabled", true)))
-	assert(encounter.get("battleDefinitionState", &"") == &"blocked_pending_combat_database_refactor")
+	assert(bool(encounter.get("runtimeEnabled", false)))
+	assert(encounter.get("battleDefinitionState", &"") == &"admitted_battle_content")
+	assert(encounter.get("battleEncounterId", &"") == &"ashfall_cinder_gate_arrival_raid")
 	assert(ADDRESS_CATALOG.room(&"AF-01").get("encounterId", &"") == &"ashfall_cinder_gate_arrival_raid")
 	assert(CATALOG.CONTRACTS.size() == 9, "Every non-none Ashfall policy needs a stable encounter contract.")
 	assert(ADDRESS_CATALOG.room(&"AF-07").get("encounterId", &"") == &"ashfall_furnace_pact")
-	for definition in CATALOG.CONTRACTS.values():
-		assert(not bool(definition.get("runtimeEnabled", true)))
-	print("ADDRESS_ENCOUNTER_CATALOG_SMOKE_OK contracts=9 address=Ashfall runtime_gated=true")
+	for encounter_id in CATALOG.CONTRACTS:
+		if encounter_id != &"ashfall_cinder_gate_arrival_raid":
+			assert(not bool(CATALOG.CONTRACTS[encounter_id].get("runtimeEnabled", true)))
+	print("ADDRESS_ENCOUNTER_CATALOG_SMOKE_OK contracts=9 address=Ashfall af01_battle_admitted=true")
 	get_tree().quit(0)

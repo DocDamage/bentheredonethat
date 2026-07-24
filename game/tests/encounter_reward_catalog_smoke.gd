@@ -17,6 +17,7 @@ func _ready() -> void:
 		var rng := RandomNumberGenerator.new()
 		rng.seed = 20260723
 		assert(not DATABASE.roll_loot(encounter_id, rng).is_empty(), "%s must retain its introductory reward." % encounter_id)
+	assert(not DATABASE.roll_loot(&"ashfall_cinder_gate_arrival_raid", RandomNumberGenerator.new()).is_empty())
 	var fallback_drops := DATABASE.roll_loot(&"unknown_encounter", RandomNumberGenerator.new())
 	for drop in fallback_drops:
 		assert(StringName(drop.get("id", &"")) != &"" and String(drop.get("kind", "")).is_empty() == false)

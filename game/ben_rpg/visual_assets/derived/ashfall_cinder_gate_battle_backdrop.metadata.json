@@ -1,0 +1,35 @@
+{
+  "asset": "game/ben_rpg/visual_assets/derived/ashfall_cinder_gate_battle_backdrop.png",
+  "bindings": {
+    "encounterIds": [
+      "ashfall_cinder_gate_arrival_raid"
+    ],
+    "profileIds": [
+      "ashfall_cinder_gate_battle_backdrop"
+    ],
+    "roomIds": [
+      "AF-01"
+    ],
+    "runtimeStatus": "combat_content_foundation"
+  },
+  "derivedChecksum": "a08bd5a8f3a48ec74cddd310f197fe2c021674eb72c85cc40b926fc2487d12d5",
+  "dimensions": [
+    384,
+    360
+  ],
+  "schemaVersion": 1,
+  "sources": [
+    {
+      "checksum": "c65b64be23b7a1fd86f8bba9f74167b34ed658d6391fc3dc1babf9182b1907c5",
+      "path": "game/ben_rpg/visual_assets/derived/ashfall_cinder_gate_ground.png"
+    },
+    {
+      "checksum": "ba4cca14d60a230730247f94a76d47e97c4765a0362635237487bcef500a283e",
+      "path": "game/ben_rpg/visual_assets/derived/ashfall_cinder_gate_barricade.png"
+    }
+  ],
+  "transform": {
+    "description": "Nearest-neighbor 384x360 battle vista tiled from admitted ash ground with the admitted Cinder Gate barricade.",
+    "id": "ashfall_cinder_gate_battle_backdrop_v1"
+  }
+}
