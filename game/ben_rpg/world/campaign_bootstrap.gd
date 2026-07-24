@@ -264,6 +264,8 @@ var _sandbox_objects
 var _sandbox_editor
 var _resident_manager
 var _party_followers: PartyFollowerTrain
+var _last_camera_cell := Gameboard.INVALID_CELL
+var _last_runtime_room_id: StringName = &""
 
 
 func _enter_tree() -> void:
@@ -668,12 +670,23 @@ func _update_camera_limits(force := false) -> void:
 	if not gamepiece:
 		return
 	var current_cell := Gameboard.pixel_to_cell(gamepiece.position)
+	var runtime_room_id := StringName(_room_runtime.call(&"active_room_id")) if _room_runtime else &""
+	# Camera bounds and area activation are cell-based. Reclassifying the same
+	# cell every rendered frame repeated room lookup, camera application, and
+	# several area-bound checks even while the player was stationary. A streamed
+	# port can change the active room during its blackout before the next visual
+	# position settles, so that state remains part of the cache key. Keep the
+	# force path for save restore, tests, and explicit lifecycle transitions.
+	if not force and current_cell == _last_camera_cell and runtime_room_id == _last_runtime_room_id:
+		return
+	_last_camera_cell = current_cell
 	var area := "lab"
 	var manifest_room_id := StringName(_room_runtime.call(&"room_at_cell", current_cell)) if _room_runtime else &""
 	if manifest_room_id == &"":
 		manifest_room_id = ROOM_REGISTRY.room_id_at_world_cell(current_cell)
 		if manifest_room_id != &"" and _room_runtime:
 			_room_runtime.call(&"activate", manifest_room_id)
+	_last_runtime_room_id = StringName(_room_runtime.call(&"active_room_id")) if _room_runtime else &""
 	if manifest_room_id != &"":
 		area = "manifest:%s" % manifest_room_id
 	elif Rect2i(EMPYREAL_ORIGIN, EMPYREAL_SIZE).has_point(current_cell):

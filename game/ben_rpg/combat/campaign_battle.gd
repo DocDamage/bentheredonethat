@@ -34,6 +34,7 @@ var _results_panel: PanelContainer
 var _results_content: VBoxContainer
 var _actor_nodes := {}
 var _status_nodes := {}
+var _status_display_state := {}
 var _ready_players: Array[StringName] = []
 var _pending_ai: Array[StringName] = []
 var _command_actor: StringName = &""
@@ -291,6 +292,7 @@ func _build_actor_stage() -> void:
 		child.queue_free()
 	_actor_nodes.clear()
 	_status_nodes.clear()
+	_status_display_state.clear()
 	var front: Array[Dictionary] = []
 	var back: Array[Dictionary] = []
 	var enemies: Array[Dictionary] = []
@@ -500,18 +502,44 @@ func _update_status_display() -> void:
 		var row: HBoxContainer = _status_nodes.get(actor["id"])
 		if not row:
 			continue
-		row.get_node("HP").text = "HP %d/%d" % [actor["hp"], actor["max_hp"]]
-		row.get_node("MP").text = "MP %d" % actor["mp"]
-		row.get_node("Status").text = model.status_summary(StringName(actor["id"]))
-		row.get_node("Ready").text = "READY" if actor["id"] == _command_actor else ""
-		row.get_node("ATB").value = actor["atb"]
-		row.modulate = Color(0.48, 0.48, 0.52) if not actor["alive"] else Color.WHITE
+		var actor_id: StringName = actor["id"]
+		var display_state: Dictionary = _status_display_state.get(actor_id, {})
+		var hp_text := "HP %d/%d" % [actor["hp"], actor["max_hp"]]
+		var mp_text := "MP %d" % actor["mp"]
+		var status_text := model.status_summary(actor_id)
+		var is_ready: bool = actor_id == _command_actor
+		# The gauge is 110px wide, so updating it at one-percent steps preserves
+		# every visible increment while avoiding a full control update every frame.
+		var atb_value := roundf(float(actor["atb"]))
+		var is_alive: bool = actor["alive"]
+		if display_state.get("hp", "") != hp_text:
+			row.get_node("HP").text = hp_text
+			display_state["hp"] = hp_text
+		if display_state.get("mp", "") != mp_text:
+			row.get_node("MP").text = mp_text
+			display_state["mp"] = mp_text
+		if display_state.get("status", "") != status_text:
+			row.get_node("Status").text = status_text
+			display_state["status"] = status_text
+		if display_state.get("ready", false) != is_ready:
+			row.get_node("Ready").text = "READY" if is_ready else ""
+			display_state["ready"] = is_ready
+		if display_state.get("atb", -1.0) != atb_value:
+			row.get_node("ATB").value = atb_value
+			display_state["atb"] = atb_value
+		if display_state.get("alive", null) != is_alive:
+			row.modulate = Color.WHITE if is_alive else Color(0.48, 0.48, 0.52)
+			display_state["alive"] = is_alive
 		var visual: Control = _actor_nodes.get(actor["id"])
 		if visual:
-			visual.modulate = Color(0.32, 0.32, 0.38, 0.65) if not actor["alive"] else Color.WHITE
-			var is_ready: bool = actor["id"] == _command_actor
-			visual.get_node("ReadyFrame").visible = is_ready
-			visual.get_node("ReadyLabel").visible = is_ready
+			if display_state.get("visual_alive", null) != is_alive:
+				visual.modulate = Color.WHITE if is_alive else Color(0.32, 0.32, 0.38, 0.65)
+				display_state["visual_alive"] = is_alive
+			if display_state.get("visual_ready", false) != is_ready:
+				visual.get_node("ReadyFrame").visible = is_ready
+				visual.get_node("ReadyLabel").visible = is_ready
+				display_state["visual_ready"] = is_ready
+		_status_display_state[actor_id] = display_state
 
 
 func _show_commands(actor_id: StringName) -> void:

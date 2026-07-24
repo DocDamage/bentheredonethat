@@ -3123,6 +3123,13 @@ limit:
   battle p99, and post-battle p95/p99 frame pacing miss their budgets. The
   diagnostic is therefore recorded as `rework required`, not as performance
   acceptance.
+- The first steady-state performance rework is recorded at
+  `test-artifacts/20260724-014408-5cdf1789`. It reduces town p99 from
+  `39.598 ms` to `18.169 ms`, battle p99 from `42.618 ms` to `17.641 ms`, and
+  post-battle field p99 from `75.994 ms` to `17.282 ms`, while preserving the
+  focused field/battle and streamed-room handoff contracts. The provisional
+  `p95 <= 16.7 ms` threshold is still narrowly missed, so this is measured
+  rework evidence only; it does not accept performance or revise the budget.
 - The core Benjamin Franklin, Abraham Lincoln, and Mahatma Gandhi opening
   party/formation contract is now explicit in save schema v21 and shared
   recruit metadata. The mandatory named-character arc catalog records Dracula
