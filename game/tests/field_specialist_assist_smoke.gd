@@ -85,6 +85,7 @@ func _run() -> void:
 		return
 
 	CampaignState.reset_new_game()
+	_use_ben_only_fixture()
 	CampaignState.discover_recruit(&"mossback_surveyor")
 	CampaignState.hire_recruit(&"mossback_surveyor")
 	if bool(CampaignState.field_specialist_result(&"primeval_relay_survey").get("available", false)):
@@ -97,6 +98,7 @@ func _run() -> void:
 		return
 
 	CampaignState.reset_new_game()
+	_use_ben_only_fixture()
 	_add_recruit(&"fighter")
 	var skill_result := CampaignState.field_specialist_result(&"helios_transit_override")
 	if StringName(skill_result.get("recruit_id", &"")) != &"fighter" or StringName(skill_result.get("match_kind", &"")) != &"specialty":
@@ -112,6 +114,16 @@ func _add_recruit(recruit_id: StringName) -> void:
 	CampaignState.discover_recruit(recruit_id)
 	CampaignState.hire_recruit(recruit_id)
 	CampaignState.add_to_party(recruit_id)
+
+
+func _use_ben_only_fixture() -> void:
+	# These assertions isolate active-party specialist eligibility. The authored
+	# opening roster is a trio, so make the historical Ben-only fixture explicit.
+	CampaignState.party.assign([&"ben"])
+	CampaignState.party_formation = {&"ben": &"back"}
+	CampaignState.recruit_status[&"ben"] = &"party"
+	CampaignState.recruit_status[&"lincoln"] = &"reserve"
+	CampaignState.recruit_status[&"gandhi"] = &"reserve"
 
 
 func _assert_assisted(events: Array[String], progress_flag: StringName, assist_flag: StringName) -> bool:
