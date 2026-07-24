@@ -4,10 +4,11 @@
   "approvedBy": "product owner",
   "approvalDate": "2026-07-23",
   "approvalScope": "Native-scale review sheets and current visual profiles approved by the owner. Profiles with unresolved scale contracts remain explicitly pending.",
-  "reviewedProfileSetSha256": "a3867696e6768f74fb927dffffe4dcf5c0671fa8b13dba5dcb93ca20285287ad",
+  "reviewedProfileSetSha256": "aac6d22048e763f09bd37aa3b16da7a67872f669addbcbc7baeb4333b3e1ac1c",
   "approvedProfileCount": 356,
   "approvedProfileSetSha256": "afe85d3ba50bc47a1101b803c582753d0703e0d58e409bbf4e40c6b01c45deae",
   "pendingProfileIds": [
+    "ashfall_cinder_gate_dead_tree",
     "frosthold_gate_ruin",
     "frosthold_gate_torch_right",
     "frosthold_hall_rune_left",

@@ -140,6 +140,50 @@
       "cropApproval": "approved",
       "distributionEligibility": "distribution_confirmed",
       "fieldScaleStatus": "approved",
+      "goldenCapture": "game/validation/af01-cinder-gate-prototype.png",
+      "id": "ashfall_cinder_gate_dead_tree",
+      "kind": "prop",
+      "licenseReference": "game/ben_rpg/visual_assets/generated/runtime_asset_provenance.json",
+      "placement": {
+        "collisionFootprint": "dead_tree_trunk",
+        "footAnchor": [
+          32,
+          103
+        ],
+        "scaleClass": "prop"
+      },
+      "releaseVisualAcceptance": "prototype_only",
+      "renderScale": 3.0,
+      "renderScaleY": 3.0,
+      "source": {
+        "alphaBounds": [
+          0,
+          0,
+          64,
+          104
+        ],
+        "pack": "Ashlands Tileset",
+        "region": [
+          0,
+          0,
+          64,
+          104
+        ],
+        "runtimeTexture": "game/ben_rpg/visual_assets/derived/ashfall_cinder_gate_dead_tree.png",
+        "sha256": "49d52d2e4377c86e56634ac918c155f4d17c2f038d0b50bc110e00e10738536d",
+        "sourceChecksum": "49d52d2e4377c86e56634ac918c155f4d17c2f038d0b50bc110e00e10738536d",
+        "sourceDensity": 16
+      },
+      "surface": "field",
+      "worldDrawSize": [
+        192,
+        312
+      ]
+    },
+    {
+      "cropApproval": "approved",
+      "distributionEligibility": "distribution_confirmed",
+      "fieldScaleStatus": "approved",
       "goldenCapture": "game/validation/asterion-boss-battle-live.png",
       "id": "asterion_command_battle_backdrop",
       "kind": "battle_backdrop",

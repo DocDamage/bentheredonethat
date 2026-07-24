@@ -194,6 +194,20 @@
       "localLicenseEvidence": [
         "game/LICENSE"
       ],
+      "path": "res://ben_rpg/visual_assets/derived/ashfall_cinder_gate_dead_tree.png",
+      "profileCoverage": "profiled",
+      "profileIds": [
+        "ashfall_cinder_gate_dead_tree"
+      ],
+      "sourceGroup": "ben_rpg/visual_assets",
+      "unprofiledClassification": ""
+    },
+    {
+      "distributionEligibility": "distribution_confirmed",
+      "licenseReviewStatus": "distribution_confirmed",
+      "localLicenseEvidence": [
+        "game/LICENSE"
+      ],
       "path": "res://ben_rpg/visual_assets/derived/frosthold_blue_torch.png",
       "profileCoverage": "profiled",
       "profileIds": [
@@ -3066,20 +3080,20 @@
   "schemaVersion": 2,
   "scope": "static Godot raster references; not a reachability or license-grant proof",
   "summary": {
-    "assets": 186,
+    "assets": 187,
     "distributionEligibility": {
-      "distribution_confirmed": 186,
+      "distribution_confirmed": 187,
       "rejected": 0,
       "review_required": 0
     },
     "needsManualLicenseConfirmation": 0,
     "profileCoverage": {
       "external_dependency": 11,
-      "profiled": 175
+      "profiled": 176
     },
     "unprofiledByClassification": {
       "third_party_addon_ui": 11
     },
-    "withLocalLicenseEvidence": 186
+    "withLocalLicenseEvidence": 187
   }
 }

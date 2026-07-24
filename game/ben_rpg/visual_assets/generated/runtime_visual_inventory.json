@@ -204,6 +204,21 @@
       ]
     },
     {
+      "path": "res://ben_rpg/visual_assets/derived/ashfall_cinder_gate_dead_tree.png",
+      "profileCoverage": "profiled",
+      "profileIds": [
+        "ashfall_cinder_gate_dead_tree"
+      ],
+      "references": [
+        {
+          "file": "game/ben_rpg/visual_assets/visual_profiles.json",
+          "line": 1952,
+          "profileId": "ashfall_cinder_gate_dead_tree",
+          "resolution": "profile_runtime_texture"
+        }
+      ]
+    },
+    {
       "path": "res://ben_rpg/visual_assets/derived/frosthold_blue_torch.png",
       "profileCoverage": "profiled",
       "profileIds": [
@@ -4864,11 +4879,11 @@
   "schemaVersion": 2,
   "scope": "static Godot .gd/.tscn raster literals and approved profile runtime textures (tests, validation, and editor-only paths excluded)",
   "stats": {
-    "assets": 186,
-    "profileRequiredAssetSources": 175,
-    "profileRequiredProfiledAssetSources": 175,
+    "assets": 187,
+    "profileRequiredAssetSources": 176,
+    "profileRequiredProfiledAssetSources": 176,
     "profileRequiredUnprofiledAssetSources": 0,
-    "profiledAssetSources": 175,
+    "profiledAssetSources": 176,
     "thirdPartyDependencyVisualSources": 11,
     "unprofiledAssetSources": 11,
     "unprofiledByClassification": {

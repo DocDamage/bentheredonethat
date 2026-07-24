@@ -1945,6 +1945,17 @@
       "id": "velociraptor_battle_actor", "kind": "battle_actor",
       "source": {"pack": "Velociraptor", "runtimeTexture": "game/game_assets/characters/Velociraptor/Tiny_Velociraptor/rotations/west.png", "sourceChecksum": "00ed31def1046f82e494079abc546a14bff80e372cfd5962db77b7d1c3bcead1", "sourceDensity": 48, "region": [0, 0, 60, 60], "alphaBounds": [0, 0, 60, 60]},
       "placement": {"footAnchor": [30, 59], "scaleClass": "actor", "collisionFootprint": "battle_actor"}, "worldDrawSize": [60, 60], "licenseReference": "game/ben_rpg/visual_assets/generated/runtime_asset_provenance.json", "cropApproval": "approved", "goldenCapture": "game/validation/battle-full-company-rebuilt.png"
+    },
+    {
+      "id": "ashfall_cinder_gate_dead_tree",
+      "kind": "prop",
+      "source": {"pack": "Ashlands Tileset", "runtimeTexture": "game/ben_rpg/visual_assets/derived/ashfall_cinder_gate_dead_tree.png", "sourceChecksum": "49d52d2e4377c86e56634ac918c155f4d17c2f038d0b50bc110e00e10738536d", "sourceDensity": 16, "region": [0, 0, 64, 104], "alphaBounds": [0, 0, 64, 104]},
+      "placement": {"footAnchor": [32, 103], "scaleClass": "prop", "collisionFootprint": "dead_tree_trunk"},
+      "worldDrawSize": [192, 312],
+      "licenseReference": "game/ben_rpg/visual_assets/generated/runtime_asset_provenance.json",
+      "releaseVisualAcceptance": "prototype_only",
+      "cropApproval": "approved",
+      "goldenCapture": "game/validation/af01-cinder-gate-prototype.png"
     }
   ]
 }
