@@ -56,6 +56,7 @@ func _run() -> void:
 		_fail("The campaign field visual layer was not available")
 		return
 	var transition_timings: Dictionary = {}
+	var area_frame_intervals: Dictionary = {}
 	for stop in AREA_STOPS:
 		var cell: Vector2i = stop[0]
 		var expected_area: StringName = stop[1]
@@ -66,7 +67,9 @@ func _run() -> void:
 			_fail("Expected %s after activation, received %s" % [expected_area, visual.active_area])
 			return
 		transition_timings[String(expected_area)] = _elapsed_ms(transition_start)
+		area_frame_intervals[String(expected_area)] = await _frame_interval_metrics()
 	metrics["area_activation_ms"] = transition_timings
+	metrics["area_frame_interval_ms"] = area_frame_intervals
 
 	var battle := main.get_node_or_null("CampaignBattle") as CampaignBattle
 	if not battle:
@@ -82,6 +85,7 @@ func _run() -> void:
 		_fail("The benchmark battle did not remain active")
 		return
 	metrics["battle_enter_ms"] = _elapsed_ms(battle_start)
+	metrics["battle_frame_interval_ms"] = await _frame_interval_metrics()
 
 	var result_start := Time.get_ticks_usec()
 	battle.debug_force_victory()
