@@ -3170,6 +3170,16 @@ limit:
   cultural pavilion art, population schedules, interaction, streaming, and
   `AF-01` / `WF-01` portals remain explicitly runtime-gated rather than being
   represented by a substitute shortcut.
+- `NP-01` Franklin Laboratory Main Floor now has its own runtime-gated H1
+  scene, profile-backed floor/wall and station rendering, complete collision
+  partition, exact `Ne`/`Se` safe arrivals, and a gated Franklin-workbench
+  feature contract. The focused six-scene validation batch passed at
+  `test-artifacts/20260724-023029-844a131a`; its initial visual evidence is
+  `game/validation/np01-franklin-laboratory-scene-first-visit.png` from the
+  save-safe windowed artifact `test-artifacts/20260724-023049-3088aa17`.
+  This is a reviewable foundation only: population, interaction, streaming,
+  district traversal, and replacement of the legacy founding workflow remain
+  explicitly gated.
 - A separate annex-room registry/runtime now owns the staged `NP-15↔AF-01`
   reciprocal route without adding either room to the locked 102-room core
   registry. Its focused evidence at `test-artifacts/20260724-021141-bf9aaeb2`
