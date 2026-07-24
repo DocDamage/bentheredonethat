@@ -24,7 +24,10 @@ from dataclasses import dataclass
 from pathlib import Path, PurePosixPath
 from typing import Any, Iterable
 
-from curated_asset_catalog_policy import is_quarantined_source_path
+try:
+    from tools.curated_asset_catalog_policy import is_quarantined_source_path
+except ModuleNotFoundError:  # Direct CLI execution adds tools/ rather than root.
+    from curated_asset_catalog_policy import is_quarantined_source_path
 
 try:
     from PIL import Image

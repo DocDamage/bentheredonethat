@@ -5,6 +5,7 @@ const VISUAL_PROFILES := preload("res://ben_rpg/world/campaign_visual_profile_re
 
 
 func _ready() -> void:
+	CampaignState.reset_new_game()
 	var record := RECORDS.record(&"AF-01")
 	var scene := load(String(record.get("scenePath", ""))) as PackedScene
 	assert(scene, "AF-01 authored scene must load from its room record.")
@@ -14,6 +15,7 @@ func _ready() -> void:
 	await get_tree().process_frame
 	assert(room.get_meta(&"room_id", &"") == &"AF-01")
 	assert(bool(room.get_meta(&"runtime_gated", false)))
+	assert(room.get_meta(&"population_state", &"") == &"arrival_raid_pending")
 	assert(room.has_node("GroundLayer") and room.has_node("NavigationAndCollision") and room.has_node("ForegroundLayer"))
 	assert(room.get_node("GroundLayer").has_method(&"configure"))
 	assert(room.get_node("YSortedActorsAndProps").has_method(&"configure"))
@@ -37,5 +39,11 @@ func _ready() -> void:
 	assert(room.get_node("InteractionLayer/AddressFeature_air_filter_cache").get_meta(&"anchor", &"") == &"Tnw")
 	for body in navigation.get_children():
 		assert(body is StaticBody2D and body.get_child_count() == 1 and body.get_child(0) is CollisionShape2D)
-	print("ASHFALL_CINDER_GATE_SCENE_SMOKE_OK room=AF-01 collision_cells=102 landmark_barricade=true runtime_gated=true")
+	CampaignState.story_flags[&"ashfall_cinder_gate_arrival_raid_cleared"] = true
+	CampaignState.state_changed.emit()
+	await get_tree().process_frame
+	assert(room.get_meta(&"population_state", &"") == &"review_gated")
+	assert(room.get_node("YSortedActorsAndProps").get_children().filter(func(child): return String(child.name).begins_with("AddressActor_")).is_empty())
+	CampaignState.reset_new_game()
+	print("ASHFALL_CINDER_GATE_SCENE_SMOKE_OK room=AF-01 collision_cells=102 stabilized_preview=review_gated runtime_gated=true")
 	get_tree().quit(0)

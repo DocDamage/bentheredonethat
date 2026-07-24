@@ -3198,3 +3198,10 @@ limit:
   production-save sentinel unchanged. It is explicitly review-only because
   all 24 field-direction profiles remain `prototype_only`; no streamer,
   player-traversal, or production-state claim follows from that capture.
+- AF-01's scene now owns a profile-backed survivor actor runtime that is ready
+  to realize the catalog's exact anchors and directional profiles after visual
+  approval. Before the arrival raid it exposes no residents; after the raid it
+  explicitly remains `review_gated`, so the deferred product-owner decision
+  cannot be bypassed by scene code. The actor/content/room suite passed in
+  `test-artifacts/20260724-013701-a1b9fc17` with the production-save sentinel
+  unchanged.
