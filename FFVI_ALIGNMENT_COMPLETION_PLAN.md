@@ -3189,6 +3189,13 @@ limit:
   from `test-artifacts/20260724-023416-60a33213`. It remains review-only:
   recipe/materials behavior, interaction, streaming, traversal, and legacy
   founding-workflow replacement are not implied by this foundation.
+- `NP-03` Power and Records Basement now has a runtime-gated M4 scene with
+  exact `Nw`/`E1`/`E2` safe arrivals, a complete perimeter/equipment collision
+  partition, and a gated fault-line regulator. The combined eight-scene suite
+  passed at `test-artifacts/20260724-024211-bc77dc9d`; its save-safe visual
+  evidence is `game/validation/np03-power-records-basement-scene-first-visit.png`
+  from `test-artifacts/20260724-024254-ffc91e01`. All interaction, stream,
+  and external-route behavior remains deliberately inactive.
 - A separate annex-room registry/runtime now owns the staged `NP-15↔AF-01`
   reciprocal route without adding either room to the locked 102-room core
   registry. Its focused evidence at `test-artifacts/20260724-021141-bf9aaeb2`
