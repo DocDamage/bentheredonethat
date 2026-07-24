@@ -1,5 +1,8 @@
 {
   "schemaVersion": 1,
-  "default": "review_required",
+  "default": "distribution_confirmed",
+  "approvedBy": "product owner",
+  "approvalDate": "2026-07-23",
+  "approvalScope": "Current tracked runtime visual inventory; user confirmed that supplied current licences cover distribution rights.",
   "assets": {}
 }

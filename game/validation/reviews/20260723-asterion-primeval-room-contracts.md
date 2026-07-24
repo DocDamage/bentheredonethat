@@ -111,16 +111,16 @@ The final Asterion batch audits that service-side loop: `AS-09` 119, `AS-10`
   source families or their supporting packs.
 - `pack_provenance_decisions.json` binds the named Asterion and Primeval Tilesets
   packs to the checksum-pinned root `assets/Tilesets/license.txt` evidence and
-  its optional-credit statement. All decisions remain `review_required` pending
-  final derivative admission and licensing review.
+  its optional-credit statement. The product owner confirmed current
+  distribution rights on July 23, 2026; new sources still require an evidence
+  update before admission.
 - Population contract: the generated 258-identity registry reserves 10
-  review-required identities for Asterion (`AS-01`, `AS-02`, `AS-03`, `AS-06`,
+  distribution-confirmed identities for Asterion (`AS-01`, `AS-02`, `AS-03`, `AS-06`,
   `AS-07`, `AS-08`, `AS-10` ×3, and `AS-11`) plus the Astronaut story actor;
   it reserves 15 for Primeval (`PV-01`, `PV-03`, `PV-04` ×3, `PV-05`, `PV-06`,
   `PV-08` ×2, `PV-09`, `PV-11`, `PV-12` ×3, and `PV-14`) plus the Caveman story
-  actor. These are target homes, not active spawns: all remain blocked on
-  profile admission, story-phase schedules, eight-direction binding, and
-  occupancy reservation review.
+  actor. These are target homes, not active spawns: all still need runtime
+  profile binding, story-phase schedules, and occupancy reservation review.
 - Optional-content contract: Asterion optional rooms are `AS-09` through
   `AS-12`, with `AS-13` and `AS-14` as reciprocal service/pressure loops;
   Primeval optional rooms are `PV-09` through `PV-12`, with `PV-13` and

@@ -1,0 +1,7 @@
+{
+  "schemaVersion": 1,
+  "status": "distribution_confirmed",
+  "approvedBy": "product owner",
+  "approvalDate": "2026-07-23",
+  "approvalScope": "The owner confirmed that the supplied current licences cover the SakPix population source collection. Runtime profile binding and scene placement remain separate implementation work."
+}

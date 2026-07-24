@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "purpose": "pack-level migration provenance decisions; review_required is not a release grant",
+  "purpose": "pack-level migration provenance decisions; owner-confirmed distribution approval is recorded against exact terms and credit evidence",
   "decisions": [
     {
       "id": "mansion-haunted-mansion-v1",
@@ -34,8 +34,10 @@
           "requirement": "The recorded license states attribution is optional; retain this decision record even when no credit line is required."
         }
       ],
-      "decision": "review_required",
-      "rationale": "The exact root-license record is preserved for this named pack, but final runtime derivative admission and licensing review remain incomplete."
+      "decision": "distribution_confirmed",
+      "approvedBy": "product owner",
+      "approvalDate": "2026-07-23",
+      "rationale": "The owner confirmed that the supplied current licences cover distribution rights for this named pack and its runtime derivatives."
     },
     {
       "id": "asterion-sci-fi-spaceship-interior-v1",
@@ -60,8 +62,10 @@
           "requirement": "The recorded license states attribution is optional; retain this decision record even when no credit line is required."
         }
       ],
-      "decision": "review_required",
-      "rationale": "The exact root-license record is preserved for the current legacy runtime pack and planned station kit, but final runtime derivative admission and licensing review remain incomplete."
+      "decision": "distribution_confirmed",
+      "approvedBy": "product owner",
+      "approvalDate": "2026-07-23",
+      "rationale": "The owner confirmed that the supplied current licences cover distribution rights for the station pack and its runtime derivatives."
     },
     {
       "id": "primeval-jurassic-and-stone-age-v1",
@@ -85,8 +89,10 @@
           "requirement": "The recorded license states attribution is optional; retain this decision record even when no credit line is required."
         }
       ],
-      "decision": "review_required",
-      "rationale": "The exact root-license record is preserved for both named packs, but final runtime derivative admission and licensing review remain incomplete."
+      "decision": "distribution_confirmed",
+      "approvedBy": "product owner",
+      "approvalDate": "2026-07-23",
+      "rationale": "The owner confirmed that the supplied current licences cover distribution rights for both named packs and their runtime derivatives."
     }
   ]
 }

@@ -118,21 +118,21 @@ before the locked size budget can be claimed.
 - Pack-level decision record: `res://ben_rpg/visual_assets/pack_provenance_decisions.json`
   identifies the canonical Haunted Mansion set and its checksum-identical runtime
   duplicate. Its terms and optional-credit record is bound to the checksum-pinned
-  `assets/Tilesets/license.txt` inventory record, but it retains `review_required`
-  until final runtime-derivative admission and licensing review. It is provenance
-  evidence, not a distribution approval.
+  `assets/Tilesets/license.txt` inventory record. The product owner confirmed
+  current distribution rights on July 23, 2026; this is a current-inventory
+  admission decision and does not approve future sources without new evidence.
 - Native-scale source-sheet and resident-review evidence is generated locally by
   `tools/build_vertical_slice_contact_sheets.py` from the exact M2 review config.
   Its ignored `test-artifacts/vertical-slice-contact-sheets/` output is reviewer
   input only: it does not crop/admit source art or approve density, palette,
   perspective, character height, or foot anchors.
 - Population contract: the generated 258-identity registry reserves 54
-  review-required identities for the Mansion, with canonical-home counts
+  distribution-confirmed identities for the Mansion, with canonical-home counts
   `HM-01` 3, `HM-04` 3, `HM-06` 5, `HM-07` 2, `HM-08` 1, `HM-09` 2, `HM-10` 5,
   `HM-11` 6, `HM-12` 12, `HM-13` 4, `HM-14` 3, `HM-15` 7, and `HM-16` 1.
-  This is the exact target roster, not active population: all identities remain
-  blocked on profile admission, story-phase schedules, eight-direction binding,
-  and occupancy reservations. The current manifest therefore has only 2-6
+  This is the exact target roster, not active population: identities still need
+  runtime profile binding, story-phase schedules, and occupancy reservations.
+  The current manifest therefore has only 2-6
   anchor capacities per room.
 - Optional-content contract: `HM-10` through `HM-13` are optional rooms;
   `HM-14` through `HM-16` are reciprocal shortcut/loop connectors. Neither the

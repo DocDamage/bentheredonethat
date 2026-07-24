@@ -27,6 +27,7 @@ PLANNED_IDENTITY_COUNT = 258
 PHASE_PATTERN = re.compile(r"`?([FSP])(!?)(?:-([A-Z]))?@P([1-6])`?")
 TABLE_START = "### 23.12 Complete SakPix canonical-home and story-phase registry"
 TABLE_END = "#### Secondary visitor and relocation schedules"
+PROVENANCE_STATES = {"distribution_confirmed", "review_required"}
 
 
 def stable_id(collection: str, folder: str) -> str:
@@ -66,7 +67,16 @@ def source_rotations(source_root: Path, collection: str, folder: str) -> list[st
     return sorted(path.stem for path in rotations.glob("*.png"))
 
 
-def identity_record(assignment: dict[str, str], rotations: list[str] | None) -> dict[str, Any]:
+def provenance_status(root: Path) -> str:
+    path = root / "game/ben_rpg/population/provenance_decision.json"
+    raw = json.loads(path.read_text(encoding="utf-8"))
+    status = raw.get("status")
+    if raw.get("schemaVersion") != 1 or status not in PROVENANCE_STATES:
+        raise ValueError("population provenance decision must use schemaVersion 1 and a known status")
+    return status
+
+
+def identity_record(assignment: dict[str, str], rotations: list[str] | None, admitted_status: str) -> dict[str, Any]:
     match = PHASE_PATTERN.search(assignment["schedule"])
     if rotations is None:
         rotation_state = "unverified"
@@ -81,7 +91,7 @@ def identity_record(assignment: dict[str, str], rotations: list[str] | None) -> 
         "sourceRotationState": rotation_state,
         "availableRotations": available,
         "runtimeProfileId": None,
-        "provenanceStatus": "review_required",
+        "provenanceStatus": admitted_status,
     }
     if match is None:
         raise ValueError(f"eligible identity {record['id']} has no active schedule in the population plan")
@@ -98,8 +108,9 @@ def identity_record(assignment: dict[str, str], rotations: list[str] | None) -> 
 
 def build(root: Path, source_root: Path | None = None) -> dict[str, Any]:
     assignments = parse_assignments(root / "FFVI_ALIGNMENT_COMPLETION_PLAN.md")
+    admitted_status = provenance_status(root)
     records = [
-        identity_record(item, source_rotations(source_root, item["collection"], item["folder"]) if source_root else None)
+        identity_record(item, source_rotations(source_root, item["collection"], item["folder"]) if source_root else None, admitted_status)
         for item in assignments
     ]
     if source_root:
@@ -166,10 +177,11 @@ def validate(raw: dict[str, Any], source_verified: bool | None = None) -> None:
             if phase not in {"F", "S", "P"} or schedule.get("anchor") not in {f"P{index}" for index in range(1, 7)}:
                 raise ValueError(f"{identity_id} has an invalid active schedule")
             occupancy[(item["canonicalHome"], phase, schedule.get("cohort"))] += 1
-        if item.get("runtimeProfileId") is not None:
-            raise ValueError(f"{identity_id} cannot bind a runtime profile before asset admission")
-        if item.get("provenanceStatus") != "review_required":
-            raise ValueError(f"{identity_id} must remain review_required before provenance admission")
+        provenance = item.get("provenanceStatus")
+        if provenance not in PROVENANCE_STATES:
+            raise ValueError(f"{identity_id} has an invalid provenance status")
+        if item.get("runtimeProfileId") is not None and provenance != "distribution_confirmed":
+            raise ValueError(f"{identity_id} cannot bind a runtime profile before provenance admission")
     if source_verified:
         if (complete, unverified) != (PLANNED_IDENTITY_COUNT, 0):
             raise ValueError(

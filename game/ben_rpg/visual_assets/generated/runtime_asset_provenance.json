@@ -1,8 +1,8 @@
 {
   "assets": [
     {
-      "distributionEligibility": "review_required",
-      "licenseReviewStatus": "review_required",
+      "distributionEligibility": "distribution_confirmed",
+      "licenseReviewStatus": "distribution_confirmed",
       "localLicenseEvidence": [
         "game/LICENSE"
       ],
@@ -13,8 +13,8 @@
       "unprofiledClassification": "third_party_addon_ui"
     },
     {
-      "distributionEligibility": "review_required",
-      "licenseReviewStatus": "review_required",
+      "distributionEligibility": "distribution_confirmed",
+      "licenseReviewStatus": "distribution_confirmed",
       "localLicenseEvidence": [
         "game/LICENSE"
       ],
@@ -25,8 +25,8 @@
       "unprofiledClassification": "third_party_addon_ui"
     },
     {
-      "distributionEligibility": "review_required",
-      "licenseReviewStatus": "review_required",
+      "distributionEligibility": "distribution_confirmed",
+      "licenseReviewStatus": "distribution_confirmed",
       "localLicenseEvidence": [
         "game/LICENSE"
       ],
@@ -37,8 +37,8 @@
       "unprofiledClassification": "third_party_addon_ui"
     },
     {
-      "distributionEligibility": "review_required",
-      "licenseReviewStatus": "review_required",
+      "distributionEligibility": "distribution_confirmed",
+      "licenseReviewStatus": "distribution_confirmed",
       "localLicenseEvidence": [
         "game/LICENSE"
       ],
@@ -49,8 +49,8 @@
       "unprofiledClassification": "third_party_addon_ui"
     },
     {
-      "distributionEligibility": "review_required",
-      "licenseReviewStatus": "review_required",
+      "distributionEligibility": "distribution_confirmed",
+      "licenseReviewStatus": "distribution_confirmed",
       "localLicenseEvidence": [
         "game/LICENSE"
       ],
@@ -61,8 +61,8 @@
       "unprofiledClassification": "third_party_addon_ui"
     },
     {
-      "distributionEligibility": "review_required",
-      "licenseReviewStatus": "review_required",
+      "distributionEligibility": "distribution_confirmed",
+      "licenseReviewStatus": "distribution_confirmed",
       "localLicenseEvidence": [
         "game/LICENSE"
       ],
@@ -73,8 +73,8 @@
       "unprofiledClassification": "third_party_addon_ui"
     },
     {
-      "distributionEligibility": "review_required",
-      "licenseReviewStatus": "review_required",
+      "distributionEligibility": "distribution_confirmed",
+      "licenseReviewStatus": "distribution_confirmed",
       "localLicenseEvidence": [
         "game/LICENSE"
       ],
@@ -85,8 +85,8 @@
       "unprofiledClassification": "third_party_addon_ui"
     },
     {
-      "distributionEligibility": "review_required",
-      "licenseReviewStatus": "review_required",
+      "distributionEligibility": "distribution_confirmed",
+      "licenseReviewStatus": "distribution_confirmed",
       "localLicenseEvidence": [
         "game/LICENSE"
       ],
@@ -97,8 +97,8 @@
       "unprofiledClassification": "third_party_addon_ui"
     },
     {
-      "distributionEligibility": "review_required",
-      "licenseReviewStatus": "review_required",
+      "distributionEligibility": "distribution_confirmed",
+      "licenseReviewStatus": "distribution_confirmed",
       "localLicenseEvidence": [
         "game/LICENSE"
       ],
@@ -109,8 +109,8 @@
       "unprofiledClassification": "third_party_addon_ui"
     },
     {
-      "distributionEligibility": "review_required",
-      "licenseReviewStatus": "review_required",
+      "distributionEligibility": "distribution_confirmed",
+      "licenseReviewStatus": "distribution_confirmed",
       "localLicenseEvidence": [
         "game/LICENSE"
       ],
@@ -121,8 +121,8 @@
       "unprofiledClassification": "third_party_addon_ui"
     },
     {
-      "distributionEligibility": "review_required",
-      "licenseReviewStatus": "review_required",
+      "distributionEligibility": "distribution_confirmed",
+      "licenseReviewStatus": "distribution_confirmed",
       "localLicenseEvidence": [
         "game/LICENSE"
       ],
@@ -133,8 +133,8 @@
       "unprofiledClassification": "third_party_addon_ui"
     },
     {
-      "distributionEligibility": "review_required",
-      "licenseReviewStatus": "review_required",
+      "distributionEligibility": "distribution_confirmed",
+      "licenseReviewStatus": "distribution_confirmed",
       "localLicenseEvidence": [
         "game/LICENSE"
       ],
@@ -147,8 +147,8 @@
       "unprofiledClassification": ""
     },
     {
-      "distributionEligibility": "review_required",
-      "licenseReviewStatus": "review_required",
+      "distributionEligibility": "distribution_confirmed",
+      "licenseReviewStatus": "distribution_confirmed",
       "localLicenseEvidence": [
         "game/LICENSE"
       ],
@@ -161,8 +161,8 @@
       "unprofiledClassification": ""
     },
     {
-      "distributionEligibility": "review_required",
-      "licenseReviewStatus": "review_required",
+      "distributionEligibility": "distribution_confirmed",
+      "licenseReviewStatus": "distribution_confirmed",
       "localLicenseEvidence": [
         "game/LICENSE"
       ],
@@ -175,8 +175,8 @@
       "unprofiledClassification": ""
     },
     {
-      "distributionEligibility": "review_required",
-      "licenseReviewStatus": "review_required",
+      "distributionEligibility": "distribution_confirmed",
+      "licenseReviewStatus": "distribution_confirmed",
       "localLicenseEvidence": [
         "game/LICENSE"
       ],
@@ -189,8 +189,8 @@
       "unprofiledClassification": ""
     },
     {
-      "distributionEligibility": "review_required",
-      "licenseReviewStatus": "review_required",
+      "distributionEligibility": "distribution_confirmed",
+      "licenseReviewStatus": "distribution_confirmed",
       "localLicenseEvidence": [
         "game/LICENSE"
       ],
@@ -203,8 +203,8 @@
       "unprofiledClassification": ""
     },
     {
-      "distributionEligibility": "review_required",
-      "licenseReviewStatus": "review_required",
+      "distributionEligibility": "distribution_confirmed",
+      "licenseReviewStatus": "distribution_confirmed",
       "localLicenseEvidence": [
         "game/LICENSE"
       ],
@@ -217,8 +217,8 @@
       "unprofiledClassification": ""
     },
     {
-      "distributionEligibility": "review_required",
-      "licenseReviewStatus": "review_required",
+      "distributionEligibility": "distribution_confirmed",
+      "licenseReviewStatus": "distribution_confirmed",
       "localLicenseEvidence": [
         "game/LICENSE"
       ],
@@ -231,8 +231,8 @@
       "unprofiledClassification": ""
     },
     {
-      "distributionEligibility": "review_required",
-      "licenseReviewStatus": "review_required",
+      "distributionEligibility": "distribution_confirmed",
+      "licenseReviewStatus": "distribution_confirmed",
       "localLicenseEvidence": [
         "game/LICENSE"
       ],
@@ -245,8 +245,8 @@
       "unprofiledClassification": ""
     },
     {
-      "distributionEligibility": "review_required",
-      "licenseReviewStatus": "review_required",
+      "distributionEligibility": "distribution_confirmed",
+      "licenseReviewStatus": "distribution_confirmed",
       "localLicenseEvidence": [
         "game/LICENSE"
       ],
@@ -259,8 +259,8 @@
       "unprofiledClassification": ""
     },
     {
-      "distributionEligibility": "review_required",
-      "licenseReviewStatus": "review_required",
+      "distributionEligibility": "distribution_confirmed",
+      "licenseReviewStatus": "distribution_confirmed",
       "localLicenseEvidence": [
         "game/LICENSE"
       ],
@@ -273,8 +273,8 @@
       "unprofiledClassification": ""
     },
     {
-      "distributionEligibility": "review_required",
-      "licenseReviewStatus": "review_required",
+      "distributionEligibility": "distribution_confirmed",
+      "licenseReviewStatus": "distribution_confirmed",
       "localLicenseEvidence": [
         "game/LICENSE"
       ],
@@ -287,8 +287,8 @@
       "unprofiledClassification": ""
     },
     {
-      "distributionEligibility": "review_required",
-      "licenseReviewStatus": "review_required",
+      "distributionEligibility": "distribution_confirmed",
+      "licenseReviewStatus": "distribution_confirmed",
       "localLicenseEvidence": [
         "game_assets/Tilesets/LICENSE"
       ],
@@ -306,8 +306,8 @@
       "unprofiledClassification": ""
     },
     {
-      "distributionEligibility": "review_required",
-      "licenseReviewStatus": "review_required",
+      "distributionEligibility": "distribution_confirmed",
+      "licenseReviewStatus": "distribution_confirmed",
       "localLicenseEvidence": [
         "game_assets/Tilesets/LICENSE"
       ],
@@ -320,8 +320,8 @@
       "unprofiledClassification": ""
     },
     {
-      "distributionEligibility": "review_required",
-      "licenseReviewStatus": "review_required",
+      "distributionEligibility": "distribution_confirmed",
+      "licenseReviewStatus": "distribution_confirmed",
       "localLicenseEvidence": [
         "game_assets/Tilesets/LICENSE"
       ],
@@ -334,8 +334,8 @@
       "unprofiledClassification": ""
     },
     {
-      "distributionEligibility": "review_required",
-      "licenseReviewStatus": "review_required",
+      "distributionEligibility": "distribution_confirmed",
+      "licenseReviewStatus": "distribution_confirmed",
       "localLicenseEvidence": [
         "game_assets/Tilesets/LICENSE"
       ],
@@ -348,8 +348,8 @@
       "unprofiledClassification": ""
     },
     {
-      "distributionEligibility": "review_required",
-      "licenseReviewStatus": "review_required",
+      "distributionEligibility": "distribution_confirmed",
+      "licenseReviewStatus": "distribution_confirmed",
       "localLicenseEvidence": [
         "game_assets/Tilesets/LICENSE"
       ],
@@ -362,8 +362,8 @@
       "unprofiledClassification": ""
     },
     {
-      "distributionEligibility": "review_required",
-      "licenseReviewStatus": "review_required",
+      "distributionEligibility": "distribution_confirmed",
+      "licenseReviewStatus": "distribution_confirmed",
       "localLicenseEvidence": [
         "game_assets/Tilesets/LICENSE"
       ],
@@ -376,8 +376,8 @@
       "unprofiledClassification": ""
     },
     {
-      "distributionEligibility": "review_required",
-      "licenseReviewStatus": "review_required",
+      "distributionEligibility": "distribution_confirmed",
+      "licenseReviewStatus": "distribution_confirmed",
       "localLicenseEvidence": [
         "game_assets/Tilesets/LICENSE"
       ],
@@ -390,8 +390,8 @@
       "unprofiledClassification": ""
     },
     {
-      "distributionEligibility": "review_required",
-      "licenseReviewStatus": "review_required",
+      "distributionEligibility": "distribution_confirmed",
+      "licenseReviewStatus": "distribution_confirmed",
       "localLicenseEvidence": [
         "game_assets/Tilesets/LICENSE"
       ],
@@ -404,8 +404,8 @@
       "unprofiledClassification": ""
     },
     {
-      "distributionEligibility": "review_required",
-      "licenseReviewStatus": "review_required",
+      "distributionEligibility": "distribution_confirmed",
+      "licenseReviewStatus": "distribution_confirmed",
       "localLicenseEvidence": [
         "game_assets/Tilesets/LICENSE"
       ],
@@ -418,8 +418,8 @@
       "unprofiledClassification": ""
     },
     {
-      "distributionEligibility": "review_required",
-      "licenseReviewStatus": "review_required",
+      "distributionEligibility": "distribution_confirmed",
+      "licenseReviewStatus": "distribution_confirmed",
       "localLicenseEvidence": [
         "game_assets/Tilesets/LICENSE"
       ],
@@ -432,8 +432,8 @@
       "unprofiledClassification": ""
     },
     {
-      "distributionEligibility": "review_required",
-      "licenseReviewStatus": "review_required",
+      "distributionEligibility": "distribution_confirmed",
+      "licenseReviewStatus": "distribution_confirmed",
       "localLicenseEvidence": [
         "game_assets/Tilesets/LICENSE"
       ],
@@ -446,8 +446,8 @@
       "unprofiledClassification": ""
     },
     {
-      "distributionEligibility": "review_required",
-      "licenseReviewStatus": "review_required",
+      "distributionEligibility": "distribution_confirmed",
+      "licenseReviewStatus": "distribution_confirmed",
       "localLicenseEvidence": [
         "game_assets/Tilesets/LICENSE"
       ],
@@ -460,8 +460,8 @@
       "unprofiledClassification": ""
     },
     {
-      "distributionEligibility": "review_required",
-      "licenseReviewStatus": "review_required",
+      "distributionEligibility": "distribution_confirmed",
+      "licenseReviewStatus": "distribution_confirmed",
       "localLicenseEvidence": [
         "game_assets/Tilesets/LICENSE"
       ],
@@ -474,8 +474,8 @@
       "unprofiledClassification": ""
     },
     {
-      "distributionEligibility": "review_required",
-      "licenseReviewStatus": "review_required",
+      "distributionEligibility": "distribution_confirmed",
+      "licenseReviewStatus": "distribution_confirmed",
       "localLicenseEvidence": [
         "game_assets/Tilesets/LICENSE"
       ],
@@ -488,8 +488,8 @@
       "unprofiledClassification": ""
     },
     {
-      "distributionEligibility": "review_required",
-      "licenseReviewStatus": "review_required",
+      "distributionEligibility": "distribution_confirmed",
+      "licenseReviewStatus": "distribution_confirmed",
       "localLicenseEvidence": [
         "game_assets/Tilesets/LICENSE"
       ],
@@ -502,8 +502,8 @@
       "unprofiledClassification": ""
     },
     {
-      "distributionEligibility": "review_required",
-      "licenseReviewStatus": "review_required",
+      "distributionEligibility": "distribution_confirmed",
+      "licenseReviewStatus": "distribution_confirmed",
       "localLicenseEvidence": [
         "game_assets/Tilesets/LICENSE"
       ],
@@ -516,8 +516,8 @@
       "unprofiledClassification": ""
     },
     {
-      "distributionEligibility": "review_required",
-      "licenseReviewStatus": "review_required",
+      "distributionEligibility": "distribution_confirmed",
+      "licenseReviewStatus": "distribution_confirmed",
       "localLicenseEvidence": [
         "game_assets/Tilesets/LICENSE"
       ],
@@ -530,8 +530,8 @@
       "unprofiledClassification": ""
     },
     {
-      "distributionEligibility": "review_required",
-      "licenseReviewStatus": "review_required",
+      "distributionEligibility": "distribution_confirmed",
+      "licenseReviewStatus": "distribution_confirmed",
       "localLicenseEvidence": [
         "game_assets/Tilesets/LICENSE"
       ],
@@ -544,8 +544,8 @@
       "unprofiledClassification": ""
     },
     {
-      "distributionEligibility": "review_required",
-      "licenseReviewStatus": "review_required",
+      "distributionEligibility": "distribution_confirmed",
+      "licenseReviewStatus": "distribution_confirmed",
       "localLicenseEvidence": [
         "game_assets/Tilesets/LICENSE"
       ],
@@ -558,8 +558,8 @@
       "unprofiledClassification": ""
     },
     {
-      "distributionEligibility": "review_required",
-      "licenseReviewStatus": "review_required",
+      "distributionEligibility": "distribution_confirmed",
+      "licenseReviewStatus": "distribution_confirmed",
       "localLicenseEvidence": [
         "game_assets/Tilesets/LICENSE"
       ],
@@ -572,8 +572,8 @@
       "unprofiledClassification": ""
     },
     {
-      "distributionEligibility": "review_required",
-      "licenseReviewStatus": "review_required",
+      "distributionEligibility": "distribution_confirmed",
+      "licenseReviewStatus": "distribution_confirmed",
       "localLicenseEvidence": [
         "game_assets/Tilesets/LICENSE"
       ],
@@ -586,8 +586,8 @@
       "unprofiledClassification": ""
     },
     {
-      "distributionEligibility": "review_required",
-      "licenseReviewStatus": "review_required",
+      "distributionEligibility": "distribution_confirmed",
+      "licenseReviewStatus": "distribution_confirmed",
       "localLicenseEvidence": [
         "game_assets/Tilesets/LICENSE"
       ],
@@ -600,8 +600,8 @@
       "unprofiledClassification": ""
     },
     {
-      "distributionEligibility": "review_required",
-      "licenseReviewStatus": "review_required",
+      "distributionEligibility": "distribution_confirmed",
+      "licenseReviewStatus": "distribution_confirmed",
       "localLicenseEvidence": [
         "game_assets/Tilesets/LICENSE"
       ],
@@ -614,8 +614,8 @@
       "unprofiledClassification": ""
     },
     {
-      "distributionEligibility": "review_required",
-      "licenseReviewStatus": "review_required",
+      "distributionEligibility": "distribution_confirmed",
+      "licenseReviewStatus": "distribution_confirmed",
       "localLicenseEvidence": [
         "game_assets/Tilesets/LICENSE"
       ],
@@ -628,8 +628,8 @@
       "unprofiledClassification": ""
     },
     {
-      "distributionEligibility": "review_required",
-      "licenseReviewStatus": "review_required",
+      "distributionEligibility": "distribution_confirmed",
+      "licenseReviewStatus": "distribution_confirmed",
       "localLicenseEvidence": [
         "game_assets/Tilesets/LICENSE"
       ],
@@ -642,8 +642,8 @@
       "unprofiledClassification": ""
     },
     {
-      "distributionEligibility": "review_required",
-      "licenseReviewStatus": "review_required",
+      "distributionEligibility": "distribution_confirmed",
+      "licenseReviewStatus": "distribution_confirmed",
       "localLicenseEvidence": [
         "game_assets/Tilesets/LICENSE"
       ],
@@ -656,8 +656,8 @@
       "unprofiledClassification": ""
     },
     {
-      "distributionEligibility": "review_required",
-      "licenseReviewStatus": "review_required",
+      "distributionEligibility": "distribution_confirmed",
+      "licenseReviewStatus": "distribution_confirmed",
       "localLicenseEvidence": [
         "game_assets/Tilesets/LICENSE"
       ],
@@ -675,8 +675,8 @@
       "unprofiledClassification": ""
     },
     {
-      "distributionEligibility": "review_required",
-      "licenseReviewStatus": "review_required",
+      "distributionEligibility": "distribution_confirmed",
+      "licenseReviewStatus": "distribution_confirmed",
       "localLicenseEvidence": [
         "game_assets/Tilesets/LICENSE"
       ],
@@ -690,8 +690,8 @@
       "unprofiledClassification": ""
     },
     {
-      "distributionEligibility": "review_required",
-      "licenseReviewStatus": "review_required",
+      "distributionEligibility": "distribution_confirmed",
+      "licenseReviewStatus": "distribution_confirmed",
       "localLicenseEvidence": [
         "game_assets/Tilesets/LICENSE"
       ],
@@ -707,8 +707,8 @@
       "unprofiledClassification": ""
     },
     {
-      "distributionEligibility": "review_required",
-      "licenseReviewStatus": "review_required",
+      "distributionEligibility": "distribution_confirmed",
+      "licenseReviewStatus": "distribution_confirmed",
       "localLicenseEvidence": [
         "game_assets/Tilesets/LICENSE"
       ],
@@ -721,8 +721,8 @@
       "unprofiledClassification": ""
     },
     {
-      "distributionEligibility": "review_required",
-      "licenseReviewStatus": "review_required",
+      "distributionEligibility": "distribution_confirmed",
+      "licenseReviewStatus": "distribution_confirmed",
       "localLicenseEvidence": [
         "game_assets/Tilesets/LICENSE"
       ],
@@ -735,8 +735,8 @@
       "unprofiledClassification": ""
     },
     {
-      "distributionEligibility": "review_required",
-      "licenseReviewStatus": "review_required",
+      "distributionEligibility": "distribution_confirmed",
+      "licenseReviewStatus": "distribution_confirmed",
       "localLicenseEvidence": [
         "game_assets/Tilesets/LICENSE"
       ],
@@ -757,8 +757,8 @@
       "unprofiledClassification": ""
     },
     {
-      "distributionEligibility": "review_required",
-      "licenseReviewStatus": "review_required",
+      "distributionEligibility": "distribution_confirmed",
+      "licenseReviewStatus": "distribution_confirmed",
       "localLicenseEvidence": [
         "game_assets/Tilesets/LICENSE"
       ],
@@ -772,8 +772,8 @@
       "unprofiledClassification": ""
     },
     {
-      "distributionEligibility": "review_required",
-      "licenseReviewStatus": "review_required",
+      "distributionEligibility": "distribution_confirmed",
+      "licenseReviewStatus": "distribution_confirmed",
       "localLicenseEvidence": [
         "game_assets/Tilesets/LICENSE"
       ],
@@ -787,8 +787,8 @@
       "unprofiledClassification": ""
     },
     {
-      "distributionEligibility": "review_required",
-      "licenseReviewStatus": "review_required",
+      "distributionEligibility": "distribution_confirmed",
+      "licenseReviewStatus": "distribution_confirmed",
       "localLicenseEvidence": [
         "game_assets/Tilesets/LICENSE"
       ],
@@ -802,8 +802,8 @@
       "unprofiledClassification": ""
     },
     {
-      "distributionEligibility": "review_required",
-      "licenseReviewStatus": "review_required",
+      "distributionEligibility": "distribution_confirmed",
+      "licenseReviewStatus": "distribution_confirmed",
       "localLicenseEvidence": [
         "game_assets/Tilesets/LICENSE"
       ],
@@ -819,8 +819,8 @@
       "unprofiledClassification": ""
     },
     {
-      "distributionEligibility": "review_required",
-      "licenseReviewStatus": "review_required",
+      "distributionEligibility": "distribution_confirmed",
+      "licenseReviewStatus": "distribution_confirmed",
       "localLicenseEvidence": [
         "game_assets/Tilesets/LICENSE"
       ],
@@ -835,8 +835,8 @@
       "unprofiledClassification": ""
     },
     {
-      "distributionEligibility": "review_required",
-      "licenseReviewStatus": "review_required",
+      "distributionEligibility": "distribution_confirmed",
+      "licenseReviewStatus": "distribution_confirmed",
       "localLicenseEvidence": [
         "game_assets/Tilesets/LICENSE"
       ],
@@ -853,8 +853,8 @@
       "unprofiledClassification": ""
     },
     {
-      "distributionEligibility": "review_required",
-      "licenseReviewStatus": "review_required",
+      "distributionEligibility": "distribution_confirmed",
+      "licenseReviewStatus": "distribution_confirmed",
       "localLicenseEvidence": [
         "game_assets/Tilesets/LICENSE"
       ],
@@ -869,8 +869,8 @@
       "unprofiledClassification": ""
     },
     {
-      "distributionEligibility": "review_required",
-      "licenseReviewStatus": "review_required",
+      "distributionEligibility": "distribution_confirmed",
+      "licenseReviewStatus": "distribution_confirmed",
       "localLicenseEvidence": [
         "game_assets/Tilesets/LICENSE"
       ],
@@ -884,8 +884,8 @@
       "unprofiledClassification": ""
     },
     {
-      "distributionEligibility": "review_required",
-      "licenseReviewStatus": "review_required",
+      "distributionEligibility": "distribution_confirmed",
+      "licenseReviewStatus": "distribution_confirmed",
       "localLicenseEvidence": [
         "game_assets/Tilesets/LICENSE"
       ],
@@ -899,8 +899,8 @@
       "unprofiledClassification": ""
     },
     {
-      "distributionEligibility": "review_required",
-      "licenseReviewStatus": "review_required",
+      "distributionEligibility": "distribution_confirmed",
+      "licenseReviewStatus": "distribution_confirmed",
       "localLicenseEvidence": [
         "game_assets/Tilesets/LICENSE"
       ],
@@ -914,8 +914,8 @@
       "unprofiledClassification": ""
     },
     {
-      "distributionEligibility": "review_required",
-      "licenseReviewStatus": "review_required",
+      "distributionEligibility": "distribution_confirmed",
+      "licenseReviewStatus": "distribution_confirmed",
       "localLicenseEvidence": [
         "game_assets/Tilesets/LICENSE"
       ],
@@ -955,8 +955,8 @@
       "unprofiledClassification": ""
     },
     {
-      "distributionEligibility": "review_required",
-      "licenseReviewStatus": "review_required",
+      "distributionEligibility": "distribution_confirmed",
+      "licenseReviewStatus": "distribution_confirmed",
       "localLicenseEvidence": [
         "game_assets/Tilesets/LICENSE"
       ],
@@ -987,8 +987,8 @@
       "unprofiledClassification": ""
     },
     {
-      "distributionEligibility": "review_required",
-      "licenseReviewStatus": "review_required",
+      "distributionEligibility": "distribution_confirmed",
+      "licenseReviewStatus": "distribution_confirmed",
       "localLicenseEvidence": [
         "game_assets/Tilesets/LICENSE"
       ],
@@ -1011,8 +1011,8 @@
       "unprofiledClassification": ""
     },
     {
-      "distributionEligibility": "review_required",
-      "licenseReviewStatus": "review_required",
+      "distributionEligibility": "distribution_confirmed",
+      "licenseReviewStatus": "distribution_confirmed",
       "localLicenseEvidence": [
         "game_assets/Tilesets/LICENSE"
       ],
@@ -1027,8 +1027,8 @@
       "unprofiledClassification": ""
     },
     {
-      "distributionEligibility": "review_required",
-      "licenseReviewStatus": "review_required",
+      "distributionEligibility": "distribution_confirmed",
+      "licenseReviewStatus": "distribution_confirmed",
       "localLicenseEvidence": [
         "game_assets/Tilesets/LICENSE"
       ],
@@ -1049,8 +1049,8 @@
       "unprofiledClassification": ""
     },
     {
-      "distributionEligibility": "review_required",
-      "licenseReviewStatus": "review_required",
+      "distributionEligibility": "distribution_confirmed",
+      "licenseReviewStatus": "distribution_confirmed",
       "localLicenseEvidence": [
         "game_assets/Tilesets/LICENSE"
       ],
@@ -1066,8 +1066,8 @@
       "unprofiledClassification": ""
     },
     {
-      "distributionEligibility": "review_required",
-      "licenseReviewStatus": "review_required",
+      "distributionEligibility": "distribution_confirmed",
+      "licenseReviewStatus": "distribution_confirmed",
       "localLicenseEvidence": [
         "game_assets/Tilesets/LICENSE"
       ],
@@ -1085,8 +1085,8 @@
       "unprofiledClassification": ""
     },
     {
-      "distributionEligibility": "review_required",
-      "licenseReviewStatus": "review_required",
+      "distributionEligibility": "distribution_confirmed",
+      "licenseReviewStatus": "distribution_confirmed",
       "localLicenseEvidence": [
         "game_assets/Tilesets/LICENSE"
       ],
@@ -1099,8 +1099,8 @@
       "unprofiledClassification": ""
     },
     {
-      "distributionEligibility": "review_required",
-      "licenseReviewStatus": "review_required",
+      "distributionEligibility": "distribution_confirmed",
+      "licenseReviewStatus": "distribution_confirmed",
       "localLicenseEvidence": [
         "game_assets/Tilesets/LICENSE"
       ],
@@ -1118,8 +1118,8 @@
       "unprofiledClassification": ""
     },
     {
-      "distributionEligibility": "review_required",
-      "licenseReviewStatus": "review_required",
+      "distributionEligibility": "distribution_confirmed",
+      "licenseReviewStatus": "distribution_confirmed",
       "localLicenseEvidence": [
         "game_assets/Tilesets/LICENSE"
       ],
@@ -1133,8 +1133,8 @@
       "unprofiledClassification": ""
     },
     {
-      "distributionEligibility": "review_required",
-      "licenseReviewStatus": "review_required",
+      "distributionEligibility": "distribution_confirmed",
+      "licenseReviewStatus": "distribution_confirmed",
       "localLicenseEvidence": [
         "game_assets/Tilesets/LICENSE"
       ],
@@ -1157,8 +1157,8 @@
       "unprofiledClassification": ""
     },
     {
-      "distributionEligibility": "review_required",
-      "licenseReviewStatus": "review_required",
+      "distributionEligibility": "distribution_confirmed",
+      "licenseReviewStatus": "distribution_confirmed",
       "localLicenseEvidence": [
         "game_assets/Tilesets/LICENSE"
       ],
@@ -1173,8 +1173,8 @@
       "unprofiledClassification": ""
     },
     {
-      "distributionEligibility": "review_required",
-      "licenseReviewStatus": "review_required",
+      "distributionEligibility": "distribution_confirmed",
+      "licenseReviewStatus": "distribution_confirmed",
       "localLicenseEvidence": [
         "game_assets/Tilesets/LICENSE"
       ],
@@ -1190,8 +1190,8 @@
       "unprofiledClassification": ""
     },
     {
-      "distributionEligibility": "review_required",
-      "licenseReviewStatus": "review_required",
+      "distributionEligibility": "distribution_confirmed",
+      "licenseReviewStatus": "distribution_confirmed",
       "localLicenseEvidence": [
         "game_assets/Tilesets/LICENSE"
       ],
@@ -1206,8 +1206,8 @@
       "unprofiledClassification": ""
     },
     {
-      "distributionEligibility": "review_required",
-      "licenseReviewStatus": "review_required",
+      "distributionEligibility": "distribution_confirmed",
+      "licenseReviewStatus": "distribution_confirmed",
       "localLicenseEvidence": [
         "game_assets/Tilesets/LICENSE"
       ],
@@ -1226,8 +1226,8 @@
       "unprofiledClassification": ""
     },
     {
-      "distributionEligibility": "review_required",
-      "licenseReviewStatus": "review_required",
+      "distributionEligibility": "distribution_confirmed",
+      "licenseReviewStatus": "distribution_confirmed",
       "localLicenseEvidence": [
         "game_assets/Tilesets/LICENSE",
         "game_assets/Tilesets/Ranch Stuff/Super_retro_world_water_animation/LICENCE.txt",
@@ -1242,8 +1242,8 @@
       "unprofiledClassification": ""
     },
     {
-      "distributionEligibility": "review_required",
-      "licenseReviewStatus": "review_required",
+      "distributionEligibility": "distribution_confirmed",
+      "licenseReviewStatus": "distribution_confirmed",
       "localLicenseEvidence": [
         "game_assets/Tilesets/LICENSE",
         "game_assets/Tilesets/Ranch Stuff/Super_retro_world_water_animation/LICENCE.txt",
@@ -1258,8 +1258,8 @@
       "unprofiledClassification": ""
     },
     {
-      "distributionEligibility": "review_required",
-      "licenseReviewStatus": "review_required",
+      "distributionEligibility": "distribution_confirmed",
+      "licenseReviewStatus": "distribution_confirmed",
       "localLicenseEvidence": [
         "game_assets/Tilesets/LICENSE",
         "game_assets/Tilesets/Ranch Stuff/Super_retro_world_water_animation/LICENCE.txt",
@@ -1274,8 +1274,8 @@
       "unprofiledClassification": ""
     },
     {
-      "distributionEligibility": "review_required",
-      "licenseReviewStatus": "review_required",
+      "distributionEligibility": "distribution_confirmed",
+      "licenseReviewStatus": "distribution_confirmed",
       "localLicenseEvidence": [
         "game_assets/Tilesets/LICENSE",
         "game_assets/Tilesets/Ranch Stuff/Super_retro_world_water_animation/LICENCE.txt",
@@ -1290,8 +1290,8 @@
       "unprofiledClassification": ""
     },
     {
-      "distributionEligibility": "review_required",
-      "licenseReviewStatus": "review_required",
+      "distributionEligibility": "distribution_confirmed",
+      "licenseReviewStatus": "distribution_confirmed",
       "localLicenseEvidence": [
         "game_assets/Tilesets/LICENSE",
         "game_assets/Tilesets/Ranch Stuff/Super_retro_world_water_animation/LICENCE.txt",
@@ -1306,8 +1306,8 @@
       "unprofiledClassification": ""
     },
     {
-      "distributionEligibility": "review_required",
-      "licenseReviewStatus": "review_required",
+      "distributionEligibility": "distribution_confirmed",
+      "licenseReviewStatus": "distribution_confirmed",
       "localLicenseEvidence": [
         "game_assets/Tilesets/LICENSE",
         "game_assets/Tilesets/Ranch Stuff/Super_retro_world_water_animation/LICENCE.txt",
@@ -1325,8 +1325,8 @@
       "unprofiledClassification": ""
     },
     {
-      "distributionEligibility": "review_required",
-      "licenseReviewStatus": "review_required",
+      "distributionEligibility": "distribution_confirmed",
+      "licenseReviewStatus": "distribution_confirmed",
       "localLicenseEvidence": [
         "game_assets/Tilesets/LICENSE",
         "game_assets/Tilesets/Ranch Stuff/Super_retro_world_water_animation/LICENCE.txt",
@@ -1341,8 +1341,8 @@
       "unprofiledClassification": ""
     },
     {
-      "distributionEligibility": "review_required",
-      "licenseReviewStatus": "review_required",
+      "distributionEligibility": "distribution_confirmed",
+      "licenseReviewStatus": "distribution_confirmed",
       "localLicenseEvidence": [
         "game_assets/Tilesets/LICENSE",
         "game_assets/Tilesets/Ranch Stuff/Super_retro_world_water_animation/LICENCE.txt",
@@ -1360,8 +1360,8 @@
       "unprofiledClassification": ""
     },
     {
-      "distributionEligibility": "review_required",
-      "licenseReviewStatus": "review_required",
+      "distributionEligibility": "distribution_confirmed",
+      "licenseReviewStatus": "distribution_confirmed",
       "localLicenseEvidence": [
         "game_assets/Tilesets/LICENSE",
         "game_assets/Tilesets/Ranch Stuff/Super_retro_world_water_animation/LICENCE.txt",
@@ -1376,8 +1376,8 @@
       "unprofiledClassification": ""
     },
     {
-      "distributionEligibility": "review_required",
-      "licenseReviewStatus": "review_required",
+      "distributionEligibility": "distribution_confirmed",
+      "licenseReviewStatus": "distribution_confirmed",
       "localLicenseEvidence": [
         "game_assets/Tilesets/LICENSE"
       ],
@@ -1393,8 +1393,8 @@
       "unprofiledClassification": ""
     },
     {
-      "distributionEligibility": "review_required",
-      "licenseReviewStatus": "review_required",
+      "distributionEligibility": "distribution_confirmed",
+      "licenseReviewStatus": "distribution_confirmed",
       "localLicenseEvidence": [
         "game_assets/Tilesets/LICENSE"
       ],
@@ -1411,8 +1411,8 @@
       "unprofiledClassification": ""
     },
     {
-      "distributionEligibility": "review_required",
-      "licenseReviewStatus": "review_required",
+      "distributionEligibility": "distribution_confirmed",
+      "licenseReviewStatus": "distribution_confirmed",
       "localLicenseEvidence": [
         "game_assets/Tilesets/LICENSE"
       ],
@@ -1426,8 +1426,8 @@
       "unprofiledClassification": ""
     },
     {
-      "distributionEligibility": "review_required",
-      "licenseReviewStatus": "review_required",
+      "distributionEligibility": "distribution_confirmed",
+      "licenseReviewStatus": "distribution_confirmed",
       "localLicenseEvidence": [
         "game_assets/Tilesets/LICENSE"
       ],
@@ -1441,8 +1441,8 @@
       "unprofiledClassification": ""
     },
     {
-      "distributionEligibility": "review_required",
-      "licenseReviewStatus": "review_required",
+      "distributionEligibility": "distribution_confirmed",
+      "licenseReviewStatus": "distribution_confirmed",
       "localLicenseEvidence": [
         "game_assets/Tilesets/LICENSE"
       ],
@@ -1457,8 +1457,8 @@
       "unprofiledClassification": ""
     },
     {
-      "distributionEligibility": "review_required",
-      "licenseReviewStatus": "review_required",
+      "distributionEligibility": "distribution_confirmed",
+      "licenseReviewStatus": "distribution_confirmed",
       "localLicenseEvidence": [
         "game_assets/Tilesets/LICENSE"
       ],
@@ -1471,8 +1471,8 @@
       "unprofiledClassification": ""
     },
     {
-      "distributionEligibility": "review_required",
-      "licenseReviewStatus": "review_required",
+      "distributionEligibility": "distribution_confirmed",
+      "licenseReviewStatus": "distribution_confirmed",
       "localLicenseEvidence": [
         "game_assets/Tilesets/LICENSE"
       ],
@@ -1485,8 +1485,8 @@
       "unprofiledClassification": ""
     },
     {
-      "distributionEligibility": "review_required",
-      "licenseReviewStatus": "review_required",
+      "distributionEligibility": "distribution_confirmed",
+      "licenseReviewStatus": "distribution_confirmed",
       "localLicenseEvidence": [
         "game_assets/Tilesets/LICENSE"
       ],
@@ -1501,8 +1501,8 @@
       "unprofiledClassification": ""
     },
     {
-      "distributionEligibility": "review_required",
-      "licenseReviewStatus": "review_required",
+      "distributionEligibility": "distribution_confirmed",
+      "licenseReviewStatus": "distribution_confirmed",
       "localLicenseEvidence": [
         "game_assets/Tilesets/LICENSE"
       ],
@@ -1528,8 +1528,8 @@
       "unprofiledClassification": ""
     },
     {
-      "distributionEligibility": "review_required",
-      "licenseReviewStatus": "review_required",
+      "distributionEligibility": "distribution_confirmed",
+      "licenseReviewStatus": "distribution_confirmed",
       "localLicenseEvidence": [
         "game_assets/Tilesets/LICENSE"
       ],
@@ -1548,8 +1548,8 @@
       "unprofiledClassification": ""
     },
     {
-      "distributionEligibility": "review_required",
-      "licenseReviewStatus": "review_required",
+      "distributionEligibility": "distribution_confirmed",
+      "licenseReviewStatus": "distribution_confirmed",
       "localLicenseEvidence": [
         "game_assets/Tilesets/LICENSE"
       ],
@@ -1569,8 +1569,8 @@
       "unprofiledClassification": ""
     },
     {
-      "distributionEligibility": "review_required",
-      "licenseReviewStatus": "review_required",
+      "distributionEligibility": "distribution_confirmed",
+      "licenseReviewStatus": "distribution_confirmed",
       "localLicenseEvidence": [
         "game_assets/Tilesets/LICENSE"
       ],
@@ -1588,8 +1588,8 @@
       "unprofiledClassification": ""
     },
     {
-      "distributionEligibility": "review_required",
-      "licenseReviewStatus": "review_required",
+      "distributionEligibility": "distribution_confirmed",
+      "licenseReviewStatus": "distribution_confirmed",
       "localLicenseEvidence": [
         "game_assets/Tilesets/LICENSE"
       ],
@@ -1606,8 +1606,8 @@
       "unprofiledClassification": ""
     },
     {
-      "distributionEligibility": "review_required",
-      "licenseReviewStatus": "review_required",
+      "distributionEligibility": "distribution_confirmed",
+      "licenseReviewStatus": "distribution_confirmed",
       "localLicenseEvidence": [
         "game_assets/Tilesets/LICENSE"
       ],
@@ -1623,8 +1623,8 @@
       "unprofiledClassification": ""
     },
     {
-      "distributionEligibility": "review_required",
-      "licenseReviewStatus": "review_required",
+      "distributionEligibility": "distribution_confirmed",
+      "licenseReviewStatus": "distribution_confirmed",
       "localLicenseEvidence": [
         "game_assets/Tilesets/LICENSE"
       ],
@@ -1643,8 +1643,8 @@
       "unprofiledClassification": ""
     },
     {
-      "distributionEligibility": "review_required",
-      "licenseReviewStatus": "review_required",
+      "distributionEligibility": "distribution_confirmed",
+      "licenseReviewStatus": "distribution_confirmed",
       "localLicenseEvidence": [
         "game_assets/Tilesets/LICENSE"
       ],
@@ -1657,8 +1657,8 @@
       "unprofiledClassification": ""
     },
     {
-      "distributionEligibility": "review_required",
-      "licenseReviewStatus": "review_required",
+      "distributionEligibility": "distribution_confirmed",
+      "licenseReviewStatus": "distribution_confirmed",
       "localLicenseEvidence": [
         "game_assets/Tilesets/LICENSE"
       ],
@@ -1673,8 +1673,8 @@
       "unprofiledClassification": ""
     },
     {
-      "distributionEligibility": "review_required",
-      "licenseReviewStatus": "review_required",
+      "distributionEligibility": "distribution_confirmed",
+      "licenseReviewStatus": "distribution_confirmed",
       "localLicenseEvidence": [
         "game_assets/characters/LICENSE",
         "game_assets/characters/Main Character/license.txt"
@@ -1688,8 +1688,8 @@
       "unprofiledClassification": ""
     },
     {
-      "distributionEligibility": "review_required",
-      "licenseReviewStatus": "review_required",
+      "distributionEligibility": "distribution_confirmed",
+      "licenseReviewStatus": "distribution_confirmed",
       "localLicenseEvidence": [
         "game_assets/characters/LICENSE",
         "game_assets/characters/Main Character/license.txt"
@@ -1703,8 +1703,8 @@
       "unprofiledClassification": ""
     },
     {
-      "distributionEligibility": "review_required",
-      "licenseReviewStatus": "review_required",
+      "distributionEligibility": "distribution_confirmed",
+      "licenseReviewStatus": "distribution_confirmed",
       "localLicenseEvidence": [
         "game_assets/characters/LICENSE",
         "game_assets/characters/Recruitable Characters/Archangel Commander — Legendary Celestial Warrior Hero/license.txt",
@@ -1725,8 +1725,8 @@
       "unprofiledClassification": ""
     },
     {
-      "distributionEligibility": "review_required",
-      "licenseReviewStatus": "review_required",
+      "distributionEligibility": "distribution_confirmed",
+      "licenseReviewStatus": "distribution_confirmed",
       "localLicenseEvidence": [
         "game_assets/characters/LICENSE",
         "game_assets/characters/Recruitable Characters/Archangel Commander — Legendary Celestial Warrior Hero/license.txt",
@@ -1747,8 +1747,8 @@
       "unprofiledClassification": ""
     },
     {
-      "distributionEligibility": "review_required",
-      "licenseReviewStatus": "review_required",
+      "distributionEligibility": "distribution_confirmed",
+      "licenseReviewStatus": "distribution_confirmed",
       "localLicenseEvidence": [
         "game_assets/characters/LICENSE",
         "game_assets/characters/Recruitable Characters/Archangel Commander — Legendary Celestial Warrior Hero/license.txt",
@@ -1769,8 +1769,8 @@
       "unprofiledClassification": ""
     },
     {
-      "distributionEligibility": "review_required",
-      "licenseReviewStatus": "review_required",
+      "distributionEligibility": "distribution_confirmed",
+      "licenseReviewStatus": "distribution_confirmed",
       "localLicenseEvidence": [
         "game_assets/characters/LICENSE",
         "game_assets/characters/Recruitable Characters/Archangel Commander — Legendary Celestial Warrior Hero/license.txt",
@@ -1791,8 +1791,8 @@
       "unprofiledClassification": ""
     },
     {
-      "distributionEligibility": "review_required",
-      "licenseReviewStatus": "review_required",
+      "distributionEligibility": "distribution_confirmed",
+      "licenseReviewStatus": "distribution_confirmed",
       "localLicenseEvidence": [
         "game_assets/characters/LICENSE",
         "game_assets/characters/Recruitable Characters/Archangel Commander — Legendary Celestial Warrior Hero/license.txt",
@@ -1813,8 +1813,8 @@
       "unprofiledClassification": ""
     },
     {
-      "distributionEligibility": "review_required",
-      "licenseReviewStatus": "review_required",
+      "distributionEligibility": "distribution_confirmed",
+      "licenseReviewStatus": "distribution_confirmed",
       "localLicenseEvidence": [
         "game_assets/characters/LICENSE",
         "game_assets/characters/Recruitable Characters/Archangel Commander — Legendary Celestial Warrior Hero/license.txt",
@@ -1835,8 +1835,8 @@
       "unprofiledClassification": ""
     },
     {
-      "distributionEligibility": "review_required",
-      "licenseReviewStatus": "review_required",
+      "distributionEligibility": "distribution_confirmed",
+      "licenseReviewStatus": "distribution_confirmed",
       "localLicenseEvidence": [
         "game_assets/characters/LICENSE",
         "game_assets/characters/Recruitable Characters/Archangel Commander — Legendary Celestial Warrior Hero/license.txt",
@@ -1857,8 +1857,8 @@
       "unprofiledClassification": ""
     },
     {
-      "distributionEligibility": "review_required",
-      "licenseReviewStatus": "review_required",
+      "distributionEligibility": "distribution_confirmed",
+      "licenseReviewStatus": "distribution_confirmed",
       "localLicenseEvidence": [
         "game_assets/characters/LICENSE",
         "game_assets/characters/Recruitable Characters/Archangel Commander — Legendary Celestial Warrior Hero/license.txt",
@@ -1879,8 +1879,8 @@
       "unprofiledClassification": ""
     },
     {
-      "distributionEligibility": "review_required",
-      "licenseReviewStatus": "review_required",
+      "distributionEligibility": "distribution_confirmed",
+      "licenseReviewStatus": "distribution_confirmed",
       "localLicenseEvidence": [
         "game_assets/characters/LICENSE",
         "game_assets/characters/Recruitable Characters/Archangel Commander — Legendary Celestial Warrior Hero/license.txt",
@@ -1901,8 +1901,8 @@
       "unprofiledClassification": ""
     },
     {
-      "distributionEligibility": "review_required",
-      "licenseReviewStatus": "review_required",
+      "distributionEligibility": "distribution_confirmed",
+      "licenseReviewStatus": "distribution_confirmed",
       "localLicenseEvidence": [
         "game_assets/characters/LICENSE",
         "game_assets/characters/Recruitable Characters/Archangel Commander — Legendary Celestial Warrior Hero/license.txt",
@@ -1923,8 +1923,8 @@
       "unprofiledClassification": ""
     },
     {
-      "distributionEligibility": "review_required",
-      "licenseReviewStatus": "review_required",
+      "distributionEligibility": "distribution_confirmed",
+      "licenseReviewStatus": "distribution_confirmed",
       "localLicenseEvidence": [
         "game_assets/characters/LICENSE"
       ],
@@ -1937,8 +1937,8 @@
       "unprofiledClassification": ""
     },
     {
-      "distributionEligibility": "review_required",
-      "licenseReviewStatus": "review_required",
+      "distributionEligibility": "distribution_confirmed",
+      "licenseReviewStatus": "distribution_confirmed",
       "localLicenseEvidence": [
         "game_assets/characters/LICENSE"
       ],
@@ -1951,8 +1951,8 @@
       "unprofiledClassification": ""
     },
     {
-      "distributionEligibility": "review_required",
-      "licenseReviewStatus": "review_required",
+      "distributionEligibility": "distribution_confirmed",
+      "licenseReviewStatus": "distribution_confirmed",
       "localLicenseEvidence": [
         "game_assets/characters/LICENSE"
       ],
@@ -1965,8 +1965,8 @@
       "unprofiledClassification": ""
     },
     {
-      "distributionEligibility": "review_required",
-      "licenseReviewStatus": "review_required",
+      "distributionEligibility": "distribution_confirmed",
+      "licenseReviewStatus": "distribution_confirmed",
       "localLicenseEvidence": [
         "game_assets/characters/LICENSE"
       ],
@@ -1979,8 +1979,8 @@
       "unprofiledClassification": ""
     },
     {
-      "distributionEligibility": "review_required",
-      "licenseReviewStatus": "review_required",
+      "distributionEligibility": "distribution_confirmed",
+      "licenseReviewStatus": "distribution_confirmed",
       "localLicenseEvidence": [
         "game_assets/characters/LICENSE",
         "game_assets/characters/Velociraptor/license.txt"
@@ -1994,8 +1994,8 @@
       "unprofiledClassification": ""
     },
     {
-      "distributionEligibility": "review_required",
-      "licenseReviewStatus": "review_required",
+      "distributionEligibility": "distribution_confirmed",
+      "licenseReviewStatus": "distribution_confirmed",
       "localLicenseEvidence": [
         "game_assets/items/LICENSE"
       ],
@@ -2008,8 +2008,8 @@
       "unprofiledClassification": ""
     },
     {
-      "distributionEligibility": "review_required",
-      "licenseReviewStatus": "review_required",
+      "distributionEligibility": "distribution_confirmed",
+      "licenseReviewStatus": "distribution_confirmed",
       "localLicenseEvidence": [
         "game_assets/items/LICENSE"
       ],
@@ -2022,8 +2022,8 @@
       "unprofiledClassification": ""
     },
     {
-      "distributionEligibility": "review_required",
-      "licenseReviewStatus": "review_required",
+      "distributionEligibility": "distribution_confirmed",
+      "licenseReviewStatus": "distribution_confirmed",
       "localLicenseEvidence": [
         "game_assets/items/LICENSE"
       ],
@@ -2036,8 +2036,8 @@
       "unprofiledClassification": ""
     },
     {
-      "distributionEligibility": "review_required",
-      "licenseReviewStatus": "review_required",
+      "distributionEligibility": "distribution_confirmed",
+      "licenseReviewStatus": "distribution_confirmed",
       "localLicenseEvidence": [
         "game_assets/items/LICENSE"
       ],
@@ -2050,8 +2050,8 @@
       "unprofiledClassification": ""
     },
     {
-      "distributionEligibility": "review_required",
-      "licenseReviewStatus": "review_required",
+      "distributionEligibility": "distribution_confirmed",
+      "licenseReviewStatus": "distribution_confirmed",
       "localLicenseEvidence": [
         "game_assets/items/LICENSE"
       ],
@@ -2064,8 +2064,8 @@
       "unprofiledClassification": ""
     },
     {
-      "distributionEligibility": "review_required",
-      "licenseReviewStatus": "review_required",
+      "distributionEligibility": "distribution_confirmed",
+      "licenseReviewStatus": "distribution_confirmed",
       "localLicenseEvidence": [
         "game_assets/items/LICENSE"
       ],
@@ -2078,8 +2078,8 @@
       "unprofiledClassification": ""
     },
     {
-      "distributionEligibility": "review_required",
-      "licenseReviewStatus": "review_required",
+      "distributionEligibility": "distribution_confirmed",
+      "licenseReviewStatus": "distribution_confirmed",
       "localLicenseEvidence": [
         "game_assets/items/LICENSE"
       ],
@@ -2092,8 +2092,8 @@
       "unprofiledClassification": ""
     },
     {
-      "distributionEligibility": "review_required",
-      "licenseReviewStatus": "review_required",
+      "distributionEligibility": "distribution_confirmed",
+      "licenseReviewStatus": "distribution_confirmed",
       "localLicenseEvidence": [
         "game_assets/items/LICENSE"
       ],
@@ -2106,8 +2106,8 @@
       "unprofiledClassification": ""
     },
     {
-      "distributionEligibility": "review_required",
-      "licenseReviewStatus": "review_required",
+      "distributionEligibility": "distribution_confirmed",
+      "licenseReviewStatus": "distribution_confirmed",
       "localLicenseEvidence": [
         "game_assets/items/LICENSE"
       ],
@@ -2120,8 +2120,8 @@
       "unprofiledClassification": ""
     },
     {
-      "distributionEligibility": "review_required",
-      "licenseReviewStatus": "review_required",
+      "distributionEligibility": "distribution_confirmed",
+      "licenseReviewStatus": "distribution_confirmed",
       "localLicenseEvidence": [
         "game_assets/items/LICENSE"
       ],
@@ -2134,8 +2134,8 @@
       "unprofiledClassification": ""
     },
     {
-      "distributionEligibility": "review_required",
-      "licenseReviewStatus": "review_required",
+      "distributionEligibility": "distribution_confirmed",
+      "licenseReviewStatus": "distribution_confirmed",
       "localLicenseEvidence": [
         "game_assets/items/LICENSE"
       ],
@@ -2148,8 +2148,8 @@
       "unprofiledClassification": ""
     },
     {
-      "distributionEligibility": "review_required",
-      "licenseReviewStatus": "review_required",
+      "distributionEligibility": "distribution_confirmed",
+      "licenseReviewStatus": "distribution_confirmed",
       "localLicenseEvidence": [
         "game_assets/items/LICENSE"
       ],
@@ -2162,8 +2162,8 @@
       "unprofiledClassification": ""
     },
     {
-      "distributionEligibility": "review_required",
-      "licenseReviewStatus": "review_required",
+      "distributionEligibility": "distribution_confirmed",
+      "licenseReviewStatus": "distribution_confirmed",
       "localLicenseEvidence": [
         "game_assets/items/LICENSE"
       ],
@@ -2176,8 +2176,8 @@
       "unprofiledClassification": ""
     },
     {
-      "distributionEligibility": "review_required",
-      "licenseReviewStatus": "review_required",
+      "distributionEligibility": "distribution_confirmed",
+      "licenseReviewStatus": "distribution_confirmed",
       "localLicenseEvidence": [
         "game_assets/items/LICENSE"
       ],
@@ -2190,8 +2190,8 @@
       "unprofiledClassification": ""
     },
     {
-      "distributionEligibility": "review_required",
-      "licenseReviewStatus": "review_required",
+      "distributionEligibility": "distribution_confirmed",
+      "licenseReviewStatus": "distribution_confirmed",
       "localLicenseEvidence": [
         "game_assets/items/LICENSE"
       ],
@@ -2204,8 +2204,8 @@
       "unprofiledClassification": ""
     },
     {
-      "distributionEligibility": "review_required",
-      "licenseReviewStatus": "review_required",
+      "distributionEligibility": "distribution_confirmed",
+      "licenseReviewStatus": "distribution_confirmed",
       "localLicenseEvidence": [
         "game_assets/items/LICENSE"
       ],
@@ -2218,8 +2218,8 @@
       "unprofiledClassification": ""
     },
     {
-      "distributionEligibility": "review_required",
-      "licenseReviewStatus": "review_required",
+      "distributionEligibility": "distribution_confirmed",
+      "licenseReviewStatus": "distribution_confirmed",
       "localLicenseEvidence": [
         "game_assets/items/LICENSE"
       ],
@@ -2232,8 +2232,8 @@
       "unprofiledClassification": ""
     },
     {
-      "distributionEligibility": "review_required",
-      "licenseReviewStatus": "review_required",
+      "distributionEligibility": "distribution_confirmed",
+      "licenseReviewStatus": "distribution_confirmed",
       "localLicenseEvidence": [
         "game_assets/monsters/LICENSE"
       ],
@@ -2246,8 +2246,8 @@
       "unprofiledClassification": ""
     },
     {
-      "distributionEligibility": "review_required",
-      "licenseReviewStatus": "review_required",
+      "distributionEligibility": "distribution_confirmed",
+      "licenseReviewStatus": "distribution_confirmed",
       "localLicenseEvidence": [
         "game_assets/monsters/LICENSE"
       ],
@@ -2260,8 +2260,8 @@
       "unprofiledClassification": ""
     },
     {
-      "distributionEligibility": "review_required",
-      "licenseReviewStatus": "review_required",
+      "distributionEligibility": "distribution_confirmed",
+      "licenseReviewStatus": "distribution_confirmed",
       "localLicenseEvidence": [
         "game_assets/monsters/LICENSE"
       ],
@@ -2274,8 +2274,8 @@
       "unprofiledClassification": ""
     },
     {
-      "distributionEligibility": "review_required",
-      "licenseReviewStatus": "review_required",
+      "distributionEligibility": "distribution_confirmed",
+      "licenseReviewStatus": "distribution_confirmed",
       "localLicenseEvidence": [
         "game_assets/monsters/LICENSE"
       ],
@@ -2288,8 +2288,8 @@
       "unprofiledClassification": ""
     },
     {
-      "distributionEligibility": "review_required",
-      "licenseReviewStatus": "review_required",
+      "distributionEligibility": "distribution_confirmed",
+      "licenseReviewStatus": "distribution_confirmed",
       "localLicenseEvidence": [
         "game_assets/monsters/LICENSE"
       ],
@@ -2302,8 +2302,8 @@
       "unprofiledClassification": ""
     },
     {
-      "distributionEligibility": "review_required",
-      "licenseReviewStatus": "review_required",
+      "distributionEligibility": "distribution_confirmed",
+      "licenseReviewStatus": "distribution_confirmed",
       "localLicenseEvidence": [
         "game_assets/monsters/LICENSE"
       ],
@@ -2316,8 +2316,8 @@
       "unprofiledClassification": ""
     },
     {
-      "distributionEligibility": "review_required",
-      "licenseReviewStatus": "review_required",
+      "distributionEligibility": "distribution_confirmed",
+      "licenseReviewStatus": "distribution_confirmed",
       "localLicenseEvidence": [
         "game_assets/monsters/LICENSE"
       ],
@@ -2330,8 +2330,8 @@
       "unprofiledClassification": ""
     },
     {
-      "distributionEligibility": "review_required",
-      "licenseReviewStatus": "review_required",
+      "distributionEligibility": "distribution_confirmed",
+      "licenseReviewStatus": "distribution_confirmed",
       "localLicenseEvidence": [
         "game_assets/monsters/LICENSE"
       ],
@@ -2344,8 +2344,8 @@
       "unprofiledClassification": ""
     },
     {
-      "distributionEligibility": "review_required",
-      "licenseReviewStatus": "review_required",
+      "distributionEligibility": "distribution_confirmed",
+      "licenseReviewStatus": "distribution_confirmed",
       "localLicenseEvidence": [
         "game_assets/monsters/LICENSE"
       ],
@@ -2358,8 +2358,8 @@
       "unprofiledClassification": ""
     },
     {
-      "distributionEligibility": "review_required",
-      "licenseReviewStatus": "review_required",
+      "distributionEligibility": "distribution_confirmed",
+      "licenseReviewStatus": "distribution_confirmed",
       "localLicenseEvidence": [
         "game_assets/monsters/LICENSE"
       ],
@@ -2372,8 +2372,8 @@
       "unprofiledClassification": ""
     },
     {
-      "distributionEligibility": "review_required",
-      "licenseReviewStatus": "review_required",
+      "distributionEligibility": "distribution_confirmed",
+      "licenseReviewStatus": "distribution_confirmed",
       "localLicenseEvidence": [
         "game_assets/monsters/LICENSE"
       ],
@@ -2386,8 +2386,8 @@
       "unprofiledClassification": ""
     },
     {
-      "distributionEligibility": "review_required",
-      "licenseReviewStatus": "review_required",
+      "distributionEligibility": "distribution_confirmed",
+      "licenseReviewStatus": "distribution_confirmed",
       "localLicenseEvidence": [
         "game_assets/monsters/LICENSE"
       ],
@@ -2400,8 +2400,8 @@
       "unprofiledClassification": ""
     },
     {
-      "distributionEligibility": "review_required",
-      "licenseReviewStatus": "review_required",
+      "distributionEligibility": "distribution_confirmed",
+      "licenseReviewStatus": "distribution_confirmed",
       "localLicenseEvidence": [
         "game_assets/monsters/LICENSE"
       ],
@@ -2414,8 +2414,8 @@
       "unprofiledClassification": ""
     },
     {
-      "distributionEligibility": "review_required",
-      "licenseReviewStatus": "review_required",
+      "distributionEligibility": "distribution_confirmed",
+      "licenseReviewStatus": "distribution_confirmed",
       "localLicenseEvidence": [
         "game_assets/monsters/LICENSE"
       ],
@@ -2428,8 +2428,8 @@
       "unprofiledClassification": ""
     },
     {
-      "distributionEligibility": "review_required",
-      "licenseReviewStatus": "review_required",
+      "distributionEligibility": "distribution_confirmed",
+      "licenseReviewStatus": "distribution_confirmed",
       "localLicenseEvidence": [
         "game_assets/monsters/LICENSE"
       ],
@@ -2442,8 +2442,8 @@
       "unprofiledClassification": ""
     },
     {
-      "distributionEligibility": "review_required",
-      "licenseReviewStatus": "review_required",
+      "distributionEligibility": "distribution_confirmed",
+      "licenseReviewStatus": "distribution_confirmed",
       "localLicenseEvidence": [
         "game_assets/monsters/LICENSE"
       ],
@@ -2456,8 +2456,8 @@
       "unprofiledClassification": ""
     },
     {
-      "distributionEligibility": "review_required",
-      "licenseReviewStatus": "review_required",
+      "distributionEligibility": "distribution_confirmed",
+      "licenseReviewStatus": "distribution_confirmed",
       "localLicenseEvidence": [
         "game_assets/monsters/LICENSE"
       ],
@@ -2470,8 +2470,8 @@
       "unprofiledClassification": ""
     },
     {
-      "distributionEligibility": "review_required",
-      "licenseReviewStatus": "review_required",
+      "distributionEligibility": "distribution_confirmed",
+      "licenseReviewStatus": "distribution_confirmed",
       "localLicenseEvidence": [
         "game_assets/monsters/LICENSE"
       ],
@@ -2484,8 +2484,8 @@
       "unprofiledClassification": ""
     },
     {
-      "distributionEligibility": "review_required",
-      "licenseReviewStatus": "review_required",
+      "distributionEligibility": "distribution_confirmed",
+      "licenseReviewStatus": "distribution_confirmed",
       "localLicenseEvidence": [
         "game_assets/monsters/LICENSE"
       ],
@@ -2498,8 +2498,8 @@
       "unprofiledClassification": ""
     },
     {
-      "distributionEligibility": "review_required",
-      "licenseReviewStatus": "review_required",
+      "distributionEligibility": "distribution_confirmed",
+      "licenseReviewStatus": "distribution_confirmed",
       "localLicenseEvidence": [
         "game_assets/monsters/LICENSE"
       ],
@@ -2512,8 +2512,8 @@
       "unprofiledClassification": ""
     },
     {
-      "distributionEligibility": "review_required",
-      "licenseReviewStatus": "review_required",
+      "distributionEligibility": "distribution_confirmed",
+      "licenseReviewStatus": "distribution_confirmed",
       "localLicenseEvidence": [
         "game_assets/monsters/LICENSE"
       ],
@@ -2526,8 +2526,8 @@
       "unprofiledClassification": ""
     },
     {
-      "distributionEligibility": "review_required",
-      "licenseReviewStatus": "review_required",
+      "distributionEligibility": "distribution_confirmed",
+      "licenseReviewStatus": "distribution_confirmed",
       "localLicenseEvidence": [
         "game_assets/monsters/LICENSE"
       ],
@@ -2540,8 +2540,8 @@
       "unprofiledClassification": ""
     },
     {
-      "distributionEligibility": "review_required",
-      "licenseReviewStatus": "review_required",
+      "distributionEligibility": "distribution_confirmed",
+      "licenseReviewStatus": "distribution_confirmed",
       "localLicenseEvidence": [
         "game_assets/monsters/LICENSE"
       ],
@@ -2554,8 +2554,8 @@
       "unprofiledClassification": ""
     },
     {
-      "distributionEligibility": "review_required",
-      "licenseReviewStatus": "review_required",
+      "distributionEligibility": "distribution_confirmed",
+      "licenseReviewStatus": "distribution_confirmed",
       "localLicenseEvidence": [
         "game_assets/monsters/LICENSE",
         "game_assets/monsters/cp45-f91_horror_and_nightmares/license.txt"
@@ -2569,8 +2569,8 @@
       "unprofiledClassification": ""
     },
     {
-      "distributionEligibility": "review_required",
-      "licenseReviewStatus": "review_required",
+      "distributionEligibility": "distribution_confirmed",
+      "licenseReviewStatus": "distribution_confirmed",
       "localLicenseEvidence": [
         "game_assets/monsters/LICENSE",
         "game_assets/monsters/cp45-f91_horror_and_nightmares/license.txt"
@@ -2584,8 +2584,8 @@
       "unprofiledClassification": ""
     },
     {
-      "distributionEligibility": "review_required",
-      "licenseReviewStatus": "review_required",
+      "distributionEligibility": "distribution_confirmed",
+      "licenseReviewStatus": "distribution_confirmed",
       "localLicenseEvidence": [
         "game_assets/monsters/LICENSE",
         "game_assets/monsters/cp45-f91_horror_and_nightmares/license.txt"
@@ -2599,8 +2599,8 @@
       "unprofiledClassification": ""
     },
     {
-      "distributionEligibility": "review_required",
-      "licenseReviewStatus": "review_required",
+      "distributionEligibility": "distribution_confirmed",
+      "licenseReviewStatus": "distribution_confirmed",
       "localLicenseEvidence": [
         "game_assets/monsters/LICENSE",
         "game_assets/monsters/cp45-f91_horror_and_nightmares/license.txt"
@@ -2614,8 +2614,8 @@
       "unprofiledClassification": ""
     },
     {
-      "distributionEligibility": "review_required",
-      "licenseReviewStatus": "review_required",
+      "distributionEligibility": "distribution_confirmed",
+      "licenseReviewStatus": "distribution_confirmed",
       "localLicenseEvidence": [
         "game_assets/monsters/LICENSE",
         "game_assets/monsters/cp45-f91_horror_and_nightmares/license.txt"
@@ -2629,8 +2629,8 @@
       "unprofiledClassification": ""
     },
     {
-      "distributionEligibility": "review_required",
-      "licenseReviewStatus": "review_required",
+      "distributionEligibility": "distribution_confirmed",
+      "licenseReviewStatus": "distribution_confirmed",
       "localLicenseEvidence": [
         "game/LICENSE"
       ],
@@ -2643,8 +2643,8 @@
       "unprofiledClassification": ""
     },
     {
-      "distributionEligibility": "review_required",
-      "licenseReviewStatus": "review_required",
+      "distributionEligibility": "distribution_confirmed",
+      "licenseReviewStatus": "distribution_confirmed",
       "localLicenseEvidence": [
         "game/LICENSE"
       ],
@@ -2657,8 +2657,8 @@
       "unprofiledClassification": ""
     },
     {
-      "distributionEligibility": "review_required",
-      "licenseReviewStatus": "review_required",
+      "distributionEligibility": "distribution_confirmed",
+      "licenseReviewStatus": "distribution_confirmed",
       "localLicenseEvidence": [
         "game/LICENSE"
       ],
@@ -2671,8 +2671,8 @@
       "unprofiledClassification": ""
     },
     {
-      "distributionEligibility": "review_required",
-      "licenseReviewStatus": "review_required",
+      "distributionEligibility": "distribution_confirmed",
+      "licenseReviewStatus": "distribution_confirmed",
       "localLicenseEvidence": [
         "game/LICENSE"
       ],
@@ -2685,8 +2685,8 @@
       "unprofiledClassification": ""
     },
     {
-      "distributionEligibility": "review_required",
-      "licenseReviewStatus": "review_required",
+      "distributionEligibility": "distribution_confirmed",
+      "licenseReviewStatus": "distribution_confirmed",
       "localLicenseEvidence": [
         "game/LICENSE"
       ],
@@ -2699,8 +2699,8 @@
       "unprofiledClassification": ""
     },
     {
-      "distributionEligibility": "review_required",
-      "licenseReviewStatus": "review_required",
+      "distributionEligibility": "distribution_confirmed",
+      "licenseReviewStatus": "distribution_confirmed",
       "localLicenseEvidence": [
         "game/LICENSE"
       ],
@@ -2713,8 +2713,8 @@
       "unprofiledClassification": ""
     },
     {
-      "distributionEligibility": "review_required",
-      "licenseReviewStatus": "review_required",
+      "distributionEligibility": "distribution_confirmed",
+      "licenseReviewStatus": "distribution_confirmed",
       "localLicenseEvidence": [
         "game/LICENSE"
       ],
@@ -2727,8 +2727,8 @@
       "unprofiledClassification": ""
     },
     {
-      "distributionEligibility": "review_required",
-      "licenseReviewStatus": "review_required",
+      "distributionEligibility": "distribution_confirmed",
+      "licenseReviewStatus": "distribution_confirmed",
       "localLicenseEvidence": [
         "game/LICENSE"
       ],
@@ -2741,8 +2741,8 @@
       "unprofiledClassification": ""
     },
     {
-      "distributionEligibility": "review_required",
-      "licenseReviewStatus": "review_required",
+      "distributionEligibility": "distribution_confirmed",
+      "licenseReviewStatus": "distribution_confirmed",
       "localLicenseEvidence": [
         "game/LICENSE"
       ],
@@ -2755,8 +2755,8 @@
       "unprofiledClassification": ""
     },
     {
-      "distributionEligibility": "review_required",
-      "licenseReviewStatus": "review_required",
+      "distributionEligibility": "distribution_confirmed",
+      "licenseReviewStatus": "distribution_confirmed",
       "localLicenseEvidence": [
         "game/LICENSE"
       ],
@@ -2769,8 +2769,8 @@
       "unprofiledClassification": ""
     },
     {
-      "distributionEligibility": "review_required",
-      "licenseReviewStatus": "review_required",
+      "distributionEligibility": "distribution_confirmed",
+      "licenseReviewStatus": "distribution_confirmed",
       "localLicenseEvidence": [
         "game/LICENSE"
       ],
@@ -2783,8 +2783,8 @@
       "unprofiledClassification": ""
     },
     {
-      "distributionEligibility": "review_required",
-      "licenseReviewStatus": "review_required",
+      "distributionEligibility": "distribution_confirmed",
+      "licenseReviewStatus": "distribution_confirmed",
       "localLicenseEvidence": [
         "game/LICENSE"
       ],
@@ -2797,8 +2797,8 @@
       "unprofiledClassification": ""
     },
     {
-      "distributionEligibility": "review_required",
-      "licenseReviewStatus": "review_required",
+      "distributionEligibility": "distribution_confirmed",
+      "licenseReviewStatus": "distribution_confirmed",
       "localLicenseEvidence": [
         "game/LICENSE"
       ],
@@ -2811,8 +2811,8 @@
       "unprofiledClassification": ""
     },
     {
-      "distributionEligibility": "review_required",
-      "licenseReviewStatus": "review_required",
+      "distributionEligibility": "distribution_confirmed",
+      "licenseReviewStatus": "distribution_confirmed",
       "localLicenseEvidence": [
         "game/LICENSE"
       ],
@@ -2825,8 +2825,8 @@
       "unprofiledClassification": ""
     },
     {
-      "distributionEligibility": "review_required",
-      "licenseReviewStatus": "review_required",
+      "distributionEligibility": "distribution_confirmed",
+      "licenseReviewStatus": "distribution_confirmed",
       "localLicenseEvidence": [
         "game/LICENSE"
       ],
@@ -2841,6 +2841,8 @@
   ],
   "packProvenanceDecisions": [
     {
+      "approvalDate": "2026-07-23",
+      "approvedBy": "product owner",
       "canonicalPack": "Space Station Interior Tileset",
       "creditEvidence": [
         {
@@ -2851,9 +2853,9 @@
           "sha256": "da5ca129716c7ee53d88425bc6e0ac4b616bd2ddda72c4a136c66ad66c11b156"
         }
       ],
-      "decision": "review_required",
+      "decision": "distribution_confirmed",
       "id": "asterion-sci-fi-spaceship-interior-v1",
-      "rationale": "The exact root-license record is preserved for the current legacy runtime pack and planned station kit, but final runtime derivative admission and licensing review remain incomplete.",
+      "rationale": "The owner confirmed that the supplied current licences cover distribution rights for the station pack and its runtime derivatives.",
       "runtimePack": "Sci-Fi Spaceship Interior Tileset Pack",
       "termsEvidence": [
         {
@@ -2867,6 +2869,8 @@
       "world": "Asterion"
     },
     {
+      "approvalDate": "2026-07-23",
+      "approvedBy": "product owner",
       "canonicalPack": "Haunted Mansion",
       "creditEvidence": [
         {
@@ -2877,11 +2881,11 @@
           "sha256": "da5ca129716c7ee53d88425bc6e0ac4b616bd2ddda72c4a136c66ad66c11b156"
         }
       ],
-      "decision": "review_required",
+      "decision": "distribution_confirmed",
       "duplicateRelationship": "runtime files 1.png through 5.png match the canonical Haunted Mansion checksums",
       "id": "mansion-haunted-mansion-v1",
       "inventoryPackId": "Tilesets:Haunted Mansion",
-      "rationale": "The exact root-license record is preserved for this named pack, but final runtime derivative admission and licensing review remain incomplete.",
+      "rationale": "The owner confirmed that the supplied current licences cover distribution rights for this named pack and its runtime derivatives.",
       "runtimePack": "Haunted Mansion Pixel Art Tileset Pack",
       "sourceChecksums": [
         "acdcde19e54d70050d03f77c719e0e7d4285c68c54f7261863f3ce3e44f604cc",
@@ -2902,6 +2906,8 @@
       "world": "Mansion"
     },
     {
+      "approvalDate": "2026-07-23",
+      "approvedBy": "product owner",
       "canonicalPacks": [
         "Jurassic World Pixel Art Megapack",
         "Stone Age Modern Life Pixel Art Tileset Pack"
@@ -2915,9 +2921,9 @@
           "sha256": "da5ca129716c7ee53d88425bc6e0ac4b616bd2ddda72c4a136c66ad66c11b156"
         }
       ],
-      "decision": "review_required",
+      "decision": "distribution_confirmed",
       "id": "primeval-jurassic-and-stone-age-v1",
-      "rationale": "The exact root-license record is preserved for both named packs, but final runtime derivative admission and licensing review remain incomplete.",
+      "rationale": "The owner confirmed that the supplied current licences cover distribution rights for both named packs and their runtime derivatives.",
       "termsEvidence": [
         {
           "inventory": "game/validation/generated/source_library_inventory.json",
@@ -2935,9 +2941,9 @@
   "summary": {
     "assets": 182,
     "distributionEligibility": {
-      "distribution_confirmed": 0,
+      "distribution_confirmed": 182,
       "rejected": 0,
-      "review_required": 182
+      "review_required": 0
     },
     "needsManualLicenseConfirmation": 0,
     "profileCoverage": {

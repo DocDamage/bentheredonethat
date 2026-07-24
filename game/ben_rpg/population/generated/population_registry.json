@@ -14,7 +14,7 @@
       "canonicalHome": "PL-04",
       "id": "sakpix:ATLANTIS ROYAL GUARD, Lost Kingdom Warriors Collection/1._Atlantis_Recruit_FREE_CHARACTER",
       "planSchedule": "F@P1`; P1↔Icenter schedule; Pelagic guard, priest, hunter, or royal resident",
-      "provenanceStatus": "review_required",
+      "provenanceStatus": "distribution_confirmed",
       "runtimeProfileId": null,
       "schedule": {
         "anchor": "P1",
@@ -42,7 +42,7 @@
       "canonicalHome": "PL-06",
       "id": "sakpix:ATLANTIS ROYAL GUARD, Lost Kingdom Warriors Collection/10._Crystal_Guardian",
       "planSchedule": "S@P2`; P2↔Icenter schedule; Pelagic guard, priest, hunter, or royal resident",
-      "provenanceStatus": "review_required",
+      "provenanceStatus": "distribution_confirmed",
       "runtimeProfileId": null,
       "schedule": {
         "anchor": "P2",
@@ -70,7 +70,7 @@
       "canonicalHome": "PL-03",
       "id": "sakpix:ATLANTIS ROYAL GUARD, Lost Kingdom Warriors Collection/11._Stormcaller_Champion",
       "planSchedule": "F@P1`; P1↔Icenter schedule; Pelagic guard, priest, hunter, or royal resident",
-      "provenanceStatus": "review_required",
+      "provenanceStatus": "distribution_confirmed",
       "runtimeProfileId": null,
       "schedule": {
         "anchor": "P1",
@@ -98,7 +98,7 @@
       "canonicalHome": "PL-07",
       "id": "sakpix:ATLANTIS ROYAL GUARD, Lost Kingdom Warriors Collection/2._Crystal_Blade_Princess",
       "planSchedule": "S@P1`; P1↔Icenter schedule; Pelagic guard, priest, hunter, or royal resident",
-      "provenanceStatus": "review_required",
+      "provenanceStatus": "distribution_confirmed",
       "runtimeProfileId": null,
       "schedule": {
         "anchor": "P1",
@@ -126,7 +126,7 @@
       "canonicalHome": "PL-06",
       "id": "sakpix:ATLANTIS ROYAL GUARD, Lost Kingdom Warriors Collection/3._Tide_Priestess",
       "planSchedule": "S@P1`; P1↔Icenter schedule; Pelagic guard, priest, hunter, or royal resident",
-      "provenanceStatus": "review_required",
+      "provenanceStatus": "distribution_confirmed",
       "runtimeProfileId": null,
       "schedule": {
         "anchor": "P1",
@@ -154,7 +154,7 @@
       "canonicalHome": "PL-05",
       "id": "sakpix:ATLANTIS ROYAL GUARD, Lost Kingdom Warriors Collection/4._Coral_Huntress",
       "planSchedule": "S@P1`; P1↔Icenter schedule; Pelagic guard, priest, hunter, or royal resident",
-      "provenanceStatus": "review_required",
+      "provenanceStatus": "distribution_confirmed",
       "runtimeProfileId": null,
       "schedule": {
         "anchor": "P1",
@@ -182,7 +182,7 @@
       "canonicalHome": "PL-05",
       "id": "sakpix:ATLANTIS ROYAL GUARD, Lost Kingdom Warriors Collection/5._Pearl_Sentinel",
       "planSchedule": "S@P2`; P2↔Icenter schedule; Pelagic guard, priest, hunter, or royal resident",
-      "provenanceStatus": "review_required",
+      "provenanceStatus": "distribution_confirmed",
       "runtimeProfileId": null,
       "schedule": {
         "anchor": "P2",
@@ -210,7 +210,7 @@
       "canonicalHome": "PL-05",
       "id": "sakpix:ATLANTIS ROYAL GUARD, Lost Kingdom Warriors Collection/6._Abyss_Dancer",
       "planSchedule": "S@P3`; P3↔Icenter schedule; Pelagic guard, priest, hunter, or royal resident",
-      "provenanceStatus": "review_required",
+      "provenanceStatus": "distribution_confirmed",
       "runtimeProfileId": null,
       "schedule": {
         "anchor": "P3",
@@ -238,7 +238,7 @@
       "canonicalHome": "PL-06",
       "id": "sakpix:ATLANTIS ROYAL GUARD, Lost Kingdom Warriors Collection/7._Royal_Trident_Knight",
       "planSchedule": "F@P1`; P1↔Icenter schedule; Pelagic guard, priest, hunter, or royal resident",
-      "provenanceStatus": "review_required",
+      "provenanceStatus": "distribution_confirmed",
       "runtimeProfileId": null,
       "schedule": {
         "anchor": "P1",
@@ -266,7 +266,7 @@
       "canonicalHome": "PL-06",
       "id": "sakpix:ATLANTIS ROYAL GUARD, Lost Kingdom Warriors Collection/8._Ocean_Vanguard",
       "planSchedule": "F@P2`; P2↔Icenter schedule; Pelagic guard, priest, hunter, or royal resident",
-      "provenanceStatus": "review_required",
+      "provenanceStatus": "distribution_confirmed",
       "runtimeProfileId": null,
       "schedule": {
         "anchor": "P2",
@@ -294,7 +294,7 @@
       "canonicalHome": "PL-07",
       "id": "sakpix:ATLANTIS ROYAL GUARD, Lost Kingdom Warriors Collection/9._Sea_Dragon_Hunter",
       "planSchedule": "S@P2`; P2↔Icenter schedule; Pelagic guard, priest, hunter, or royal resident",
-      "provenanceStatus": "review_required",
+      "provenanceStatus": "distribution_confirmed",
       "runtimeProfileId": null,
       "schedule": {
         "anchor": "P2",
@@ -322,7 +322,7 @@
       "canonicalHome": "NP-02",
       "id": "sakpix:Arcane Magic & Witchcraft Characters Pack/1._Arcane_Grand_Wizard_Male",
       "planSchedule": "P@P1`; P1↔Icenter schedule; Arcane specialist, delegate, or antagonist",
-      "provenanceStatus": "review_required",
+      "provenanceStatus": "distribution_confirmed",
       "runtimeProfileId": null,
       "schedule": {
         "anchor": "P1",
@@ -350,7 +350,7 @@
       "canonicalHome": "EM-07",
       "id": "sakpix:Arcane Magic & Witchcraft Characters Pack/10._Arcane_Spellblade_Male",
       "planSchedule": "S@P1`; P1↔Icenter schedule; Arcane specialist, delegate, or antagonist",
-      "provenanceStatus": "review_required",
+      "provenanceStatus": "distribution_confirmed",
       "runtimeProfileId": null,
       "schedule": {
         "anchor": "P1",
@@ -378,7 +378,7 @@
       "canonicalHome": "HM-11",
       "id": "sakpix:Arcane Magic & Witchcraft Characters Pack/11._Crimson_Magic_Queen_Female",
       "planSchedule": "S@P1`; P1↔Icenter schedule; Arcane specialist, delegate, or antagonist",
-      "provenanceStatus": "review_required",
+      "provenanceStatus": "distribution_confirmed",
       "runtimeProfileId": null,
       "schedule": {
         "anchor": "P1",
@@ -406,7 +406,7 @@
       "canonicalHome": "EM-10",
       "id": "sakpix:Arcane Magic & Witchcraft Characters Pack/2._Celestial_Witch_Female",
       "planSchedule": "S@P1`; P1↔Icenter schedule; Arcane specialist, delegate, or antagonist",
-      "provenanceStatus": "review_required",
+      "provenanceStatus": "distribution_confirmed",
       "runtimeProfileId": null,
       "schedule": {
         "anchor": "P1",
@@ -434,7 +434,7 @@
       "canonicalHome": "AF-07",
       "id": "sakpix:Arcane Magic & Witchcraft Characters Pack/3._Fire_Battlemage_Male",
       "planSchedule": "F!-A@P2`; bounded hostile route; Arcane specialist, delegate, or antagonist",
-      "provenanceStatus": "review_required",
+      "provenanceStatus": "distribution_confirmed",
       "runtimeProfileId": null,
       "schedule": {
         "anchor": "P2",
@@ -462,7 +462,7 @@
       "canonicalHome": "HM-15",
       "id": "sakpix:Arcane Magic & Witchcraft Characters Pack/4._Shadow_Sorceress_Female",
       "planSchedule": "F!@P1`; bounded hostile route; Arcane specialist, delegate, or antagonist",
-      "provenanceStatus": "review_required",
+      "provenanceStatus": "distribution_confirmed",
       "runtimeProfileId": null,
       "schedule": {
         "anchor": "P1",
@@ -490,7 +490,7 @@
       "canonicalHome": "EM-09",
       "id": "sakpix:Arcane Magic & Witchcraft Characters Pack/5._Holy_Archmage_Male",
       "planSchedule": "S@P1`; P1↔Icenter schedule; Arcane specialist, delegate, or antagonist",
-      "provenanceStatus": "review_required",
+      "provenanceStatus": "distribution_confirmed",
       "runtimeProfileId": null,
       "schedule": {
         "anchor": "P1",
@@ -518,7 +518,7 @@
       "canonicalHome": "FR-10",
       "id": "sakpix:Arcane Magic & Witchcraft Characters Pack/6._Frost_Enchantress_Female",
       "planSchedule": "S@P1`; P1↔Icenter schedule; Arcane specialist, delegate, or antagonist",
-      "provenanceStatus": "review_required",
+      "provenanceStatus": "distribution_confirmed",
       "runtimeProfileId": null,
       "schedule": {
         "anchor": "P1",
@@ -546,7 +546,7 @@
       "canonicalHome": "AF-07",
       "id": "sakpix:Arcane Magic & Witchcraft Characters Pack/7._Necromancer_King_Male",
       "planSchedule": "F!-A@P3`; bounded hostile route; Arcane specialist, delegate, or antagonist",
-      "provenanceStatus": "review_required",
+      "provenanceStatus": "distribution_confirmed",
       "runtimeProfileId": null,
       "schedule": {
         "anchor": "P3",
@@ -574,7 +574,7 @@
       "canonicalHome": "HM-12",
       "id": "sakpix:Arcane Magic & Witchcraft Characters Pack/8._Necromancer_King_2_Male",
       "planSchedule": "F!-A@P1`; bounded hostile route; Arcane specialist, delegate, or antagonist",
-      "provenanceStatus": "review_required",
+      "provenanceStatus": "distribution_confirmed",
       "runtimeProfileId": null,
       "schedule": {
         "anchor": "P1",
@@ -602,7 +602,7 @@
       "canonicalHome": "MP-09",
       "id": "sakpix:Arcane Magic & Witchcraft Characters Pack/9._Nature_Priestess_Female",
       "planSchedule": "S@P1`; P1↔Icenter schedule; Arcane specialist, delegate, or antagonist",
-      "provenanceStatus": "review_required",
+      "provenanceStatus": "distribution_confirmed",
       "runtimeProfileId": null,
       "schedule": {
         "anchor": "P1",
@@ -630,7 +630,7 @@
       "canonicalHome": "PV-01",
       "id": "sakpix:Beastfolk Legends — Fantasy Animal Warriors Characters Pack/1._WOLF_RANGER_MALE",
       "planSchedule": "S@P1`; P1↔Icenter schedule; Associated resident, ranger, artisan, or visitor",
-      "provenanceStatus": "review_required",
+      "provenanceStatus": "distribution_confirmed",
       "runtimeProfileId": null,
       "schedule": {
         "anchor": "P1",
@@ -658,7 +658,7 @@
       "canonicalHome": "FR-10",
       "id": "sakpix:Beastfolk Legends — Fantasy Animal Warriors Characters Pack/10._SNOW_LEOPARD_HUNTRESS_FEMALE",
       "planSchedule": "S@P2`; P2↔Icenter schedule; Associated resident, ranger, artisan, or visitor",
-      "provenanceStatus": "review_required",
+      "provenanceStatus": "distribution_confirmed",
       "runtimeProfileId": null,
       "schedule": {
         "anchor": "P2",
@@ -686,7 +686,7 @@
       "canonicalHome": "PV-03",
       "id": "sakpix:Beastfolk Legends — Fantasy Animal Warriors Characters Pack/2._LION_PALADIN_MALE",
       "planSchedule": "S@P1`; P1↔Icenter schedule; Associated resident, ranger, artisan, or visitor",
-      "provenanceStatus": "review_required",
+      "provenanceStatus": "distribution_confirmed",
       "runtimeProfileId": null,
       "schedule": {
         "anchor": "P1",
@@ -714,7 +714,7 @@
       "canonicalHome": "PV-04",
       "id": "sakpix:Beastfolk Legends — Fantasy Animal Warriors Characters Pack/3._BEAR_BERSERKER_MALE",
       "planSchedule": "F@P1`; P1↔Icenter schedule; Associated resident, ranger, artisan, or visitor",
-      "provenanceStatus": "review_required",
+      "provenanceStatus": "distribution_confirmed",
       "runtimeProfileId": null,
       "schedule": {
         "anchor": "P1",
@@ -742,7 +742,7 @@
       "canonicalHome": "MP-12",
       "id": "sakpix:Beastfolk Legends — Fantasy Animal Warriors Characters Pack/4._FOX_SHADOWBLADE_MALE",
       "planSchedule": "S@P1`; P1↔Icenter schedule; Associated resident, ranger, artisan, or visitor",
-      "provenanceStatus": "review_required",
+      "provenanceStatus": "distribution_confirmed",
       "runtimeProfileId": null,
       "schedule": {
         "anchor": "P1",
@@ -770,7 +770,7 @@
       "canonicalHome": "MP-12",
       "id": "sakpix:Beastfolk Legends — Fantasy Animal Warriors Characters Pack/5._TIGER_SAMURAI_MALE",
       "planSchedule": "S@P2`; P2↔Icenter schedule; Associated resident, ranger, artisan, or visitor",
-      "provenanceStatus": "review_required",
+      "provenanceStatus": "distribution_confirmed",
       "runtimeProfileId": null,
       "schedule": {
         "anchor": "P2",
@@ -798,7 +798,7 @@
       "canonicalHome": "MP-10",
       "id": "sakpix:Beastfolk Legends — Fantasy Animal Warriors Characters Pack/6._CAT_ASSASSIN_FEMALE",
       "planSchedule": "S@P1`; P1↔Icenter schedule; Associated resident, ranger, artisan, or visitor",
-      "provenanceStatus": "review_required",
+      "provenanceStatus": "distribution_confirmed",
       "runtimeProfileId": null,
       "schedule": {
         "anchor": "P1",
@@ -826,7 +826,7 @@
       "canonicalHome": "PV-05",
       "id": "sakpix:Beastfolk Legends — Fantasy Animal Warriors Characters Pack/7._DEER_DRUID_FEMALE",
       "planSchedule": "S@P1`; P1↔Icenter schedule; Associated resident, ranger, artisan, or visitor",
-      "provenanceStatus": "review_required",
+      "provenanceStatus": "distribution_confirmed",
       "runtimeProfileId": null,
       "schedule": {
         "anchor": "P1",
@@ -854,7 +854,7 @@
       "canonicalHome": "PV-06",
       "id": "sakpix:Beastfolk Legends — Fantasy Animal Warriors Characters Pack/8._OWL_SORCERESS_FEMALE",
       "planSchedule": "S@P1`; P1↔Icenter schedule; Associated resident, ranger, artisan, or visitor",
-      "provenanceStatus": "review_required",
+      "provenanceStatus": "distribution_confirmed",
       "runtimeProfileId": null,
       "schedule": {
         "anchor": "P1",
@@ -882,7 +882,7 @@
       "canonicalHome": "MP-09",
       "id": "sakpix:Beastfolk Legends — Fantasy Animal Warriors Characters Pack/9._RABBIT_ELEMENTAL_MAGE_FEMALE",
       "planSchedule": "S@P2`; P2↔Icenter schedule; Associated resident, ranger, artisan, or visitor",
-      "provenanceStatus": "review_required",
+      "provenanceStatus": "distribution_confirmed",
       "runtimeProfileId": null,
       "schedule": {
         "anchor": "P2",
@@ -910,7 +910,7 @@
       "canonicalHome": "NP-13",
       "id": "sakpix:Cozy Village NPC Collection Vol.1/1._Village_Kid_FREE",
       "planSchedule": "F@P1`; P1↔Icenter schedule; New Philadelphia founding resident",
-      "provenanceStatus": "review_required",
+      "provenanceStatus": "distribution_confirmed",
       "runtimeProfileId": null,
       "schedule": {
         "anchor": "P1",
@@ -938,7 +938,7 @@
       "canonicalHome": "NP-04",
       "id": "sakpix:Cozy Village NPC Collection Vol.1/10._Village_Elder",
       "planSchedule": "F@P1`; P1↔Icenter schedule; New Philadelphia founding resident",
-      "provenanceStatus": "review_required",
+      "provenanceStatus": "distribution_confirmed",
       "runtimeProfileId": null,
       "schedule": {
         "anchor": "P1",
@@ -966,7 +966,7 @@
       "canonicalHome": "FI-03",
       "id": "sakpix:Cozy Village NPC Collection Vol.1/11._Shepherd_Girl",
       "planSchedule": "F@P1`; P1↔Icenter schedule; New Philadelphia founding resident",
-      "provenanceStatus": "review_required",
+      "provenanceStatus": "distribution_confirmed",
       "runtimeProfileId": null,
       "schedule": {
         "anchor": "P1",
@@ -994,7 +994,7 @@
       "canonicalHome": "NP-08",
       "id": "sakpix:Cozy Village NPC Collection Vol.1/2._Village_Farmer",
       "planSchedule": "F@P1`; P1↔Icenter schedule; New Philadelphia founding resident",
-      "provenanceStatus": "review_required",
+      "provenanceStatus": "distribution_confirmed",
       "runtimeProfileId": null,
       "schedule": {
         "anchor": "P1",
@@ -1022,7 +1022,7 @@
       "canonicalHome": "FI-01",
       "id": "sakpix:Cozy Village NPC Collection Vol.1/3._Caf_Owner",
       "planSchedule": "F@P1`; P1↔Icenter schedule; New Philadelphia founding resident",
-      "provenanceStatus": "review_required",
+      "provenanceStatus": "distribution_confirmed",
       "runtimeProfileId": null,
       "schedule": {
         "anchor": "P1",
@@ -1050,7 +1050,7 @@
       "canonicalHome": "NP-13",
       "id": "sakpix:Cozy Village NPC Collection Vol.1/4._Village_Baker",
       "planSchedule": "F@P2`; P2↔Icenter schedule; New Philadelphia founding resident",
-      "provenanceStatus": "review_required",
+      "provenanceStatus": "distribution_confirmed",
       "runtimeProfileId": null,
       "schedule": {
         "anchor": "P2",
@@ -1078,7 +1078,7 @@
       "canonicalHome": "NP-10",
       "id": "sakpix:Cozy Village NPC Collection Vol.1/5._Flower_Gardener",
       "planSchedule": "F@P1`; P1↔Icenter schedule; New Philadelphia founding resident",
-      "provenanceStatus": "review_required",
+      "provenanceStatus": "distribution_confirmed",
       "runtimeProfileId": null,
       "schedule": {
         "anchor": "P1",
@@ -1106,7 +1106,7 @@
       "canonicalHome": "NP-09",
       "id": "sakpix:Cozy Village NPC Collection Vol.1/6._Fisherman",
       "planSchedule": "F@P1`; P1↔Icenter schedule; New Philadelphia founding resident",
-      "provenanceStatus": "review_required",
+      "provenanceStatus": "distribution_confirmed",
       "runtimeProfileId": null,
       "schedule": {
         "anchor": "P1",
@@ -1134,7 +1134,7 @@
       "canonicalHome": "FI-04",
       "id": "sakpix:Cozy Village NPC Collection Vol.1/7._Village_Blacksmith",
       "planSchedule": "F@P1`; P1↔Icenter schedule; New Philadelphia founding resident",
-      "provenanceStatus": "review_required",
+      "provenanceStatus": "distribution_confirmed",
       "runtimeProfileId": null,
       "schedule": {
         "anchor": "P1",
@@ -1162,7 +1162,7 @@
       "canonicalHome": "NP-05",
       "id": "sakpix:Cozy Village NPC Collection Vol.1/8._Traveling_Merchant",
       "planSchedule": "F@P1`; P1↔Icenter schedule; New Philadelphia founding resident",
-      "provenanceStatus": "review_required",
+      "provenanceStatus": "distribution_confirmed",
       "runtimeProfileId": null,
       "schedule": {
         "anchor": "P1",
@@ -1190,7 +1190,7 @@
       "canonicalHome": "FI-02",
       "id": "sakpix:Cozy Village NPC Collection Vol.1/9._Librarian",
       "planSchedule": "F@P1`; P1↔Icenter schedule; New Philadelphia founding resident",
-      "provenanceStatus": "review_required",
+      "provenanceStatus": "distribution_confirmed",
       "runtimeProfileId": null,
       "schedule": {
         "anchor": "P1",
@@ -1218,7 +1218,7 @@
       "canonicalHome": "HM-01",
       "id": "sakpix:Crimson Vampire Hunters Pack/1._Crimson_Vampire_Hunter_Male",
       "planSchedule": "S@P1`; P1↔Icenter schedule; Mansion hunter, witness, or undercroft threat",
-      "provenanceStatus": "review_required",
+      "provenanceStatus": "distribution_confirmed",
       "runtimeProfileId": null,
       "schedule": {
         "anchor": "P1",
@@ -1246,7 +1246,7 @@
       "canonicalHome": "HM-11",
       "id": "sakpix:Crimson Vampire Hunters Pack/10._Raven_Blood_Priestess_Female",
       "planSchedule": "S@P3`; P3↔Icenter schedule; Mansion hunter, witness, or undercroft threat",
-      "provenanceStatus": "review_required",
+      "provenanceStatus": "distribution_confirmed",
       "runtimeProfileId": null,
       "schedule": {
         "anchor": "P3",
@@ -1274,7 +1274,7 @@
       "canonicalHome": "HM-11",
       "id": "sakpix:Crimson Vampire Hunters Pack/2._Holy_Exorcist_Nun_Female",
       "planSchedule": "S@P2`; P2↔Icenter schedule; Mansion hunter, witness, or undercroft threat",
-      "provenanceStatus": "review_required",
+      "provenanceStatus": "distribution_confirmed",
       "runtimeProfileId": null,
       "schedule": {
         "anchor": "P2",
@@ -1302,7 +1302,7 @@
       "canonicalHome": "HM-14",
       "id": "sakpix:Crimson Vampire Hunters Pack/3._Bloodborne_Hunter_Male",
       "planSchedule": "S@P1`; P1↔Icenter schedule; Mansion hunter, witness, or undercroft threat",
-      "provenanceStatus": "review_required",
+      "provenanceStatus": "distribution_confirmed",
       "runtimeProfileId": null,
       "schedule": {
         "anchor": "P1",
@@ -1330,7 +1330,7 @@
       "canonicalHome": "HM-06",
       "id": "sakpix:Crimson Vampire Hunters Pack/4._Vampire_Slayer_Duchess_Female",
       "planSchedule": "S@P1`; P1↔Icenter schedule; Mansion hunter, witness, or undercroft threat",
-      "provenanceStatus": "review_required",
+      "provenanceStatus": "distribution_confirmed",
       "runtimeProfileId": null,
       "schedule": {
         "anchor": "P1",
@@ -1358,7 +1358,7 @@
       "canonicalHome": "HM-10",
       "id": "sakpix:Crimson Vampire Hunters Pack/5._Cursed_Crossbow_Hunter_Male",
       "planSchedule": "S@P1`; P1↔Icenter schedule; Mansion hunter, witness, or undercroft threat",
-      "provenanceStatus": "review_required",
+      "provenanceStatus": "distribution_confirmed",
       "runtimeProfileId": null,
       "schedule": {
         "anchor": "P1",
@@ -1386,7 +1386,7 @@
       "canonicalHome": "HM-15",
       "id": "sakpix:Crimson Vampire Hunters Pack/6._Moonlight_Vampire_Huntress_Female",
       "planSchedule": "S@P1`; P1↔Icenter schedule; Mansion hunter, witness, or undercroft threat",
-      "provenanceStatus": "review_required",
+      "provenanceStatus": "distribution_confirmed",
       "runtimeProfileId": null,
       "schedule": {
         "anchor": "P1",
@@ -1414,7 +1414,7 @@
       "canonicalHome": "HM-12",
       "id": "sakpix:Crimson Vampire Hunters Pack/7._Black_Coffin_Executioner_Male",
       "planSchedule": "F!-A@P2`; bounded hostile route; Mansion hunter, witness, or undercroft threat",
-      "provenanceStatus": "review_required",
+      "provenanceStatus": "distribution_confirmed",
       "runtimeProfileId": null,
       "schedule": {
         "anchor": "P2",
@@ -1442,7 +1442,7 @@
       "canonicalHome": "HM-13",
       "id": "sakpix:Crimson Vampire Hunters Pack/8._Crimson_Witch_Hunter_Female",
       "planSchedule": "S@P1`; P1↔Icenter schedule; Mansion hunter, witness, or undercroft threat",
-      "provenanceStatus": "review_required",
+      "provenanceStatus": "distribution_confirmed",
       "runtimeProfileId": null,
       "schedule": {
         "anchor": "P1",
@@ -1470,7 +1470,7 @@
       "canonicalHome": "HM-08",
       "id": "sakpix:Crimson Vampire Hunters Pack/9._Holy_Knight_of_Dawn_Male",
       "planSchedule": "S@P1`; P1↔Icenter schedule; Mansion hunter, witness, or undercroft threat",
-      "provenanceStatus": "review_required",
+      "provenanceStatus": "distribution_confirmed",
       "runtimeProfileId": null,
       "schedule": {
         "anchor": "P1",
@@ -1498,7 +1498,7 @@
       "canonicalHome": "HE-03",
       "id": "sakpix:Cyberpunk Neon Fantasy Characters Pack/1._Cyberpunk_Street_Samurai_Male",
       "planSchedule": "S@P1`; P1↔Icenter schedule; Helios resident, resistance member, or enforcer",
-      "provenanceStatus": "review_required",
+      "provenanceStatus": "distribution_confirmed",
       "runtimeProfileId": null,
       "schedule": {
         "anchor": "P1",
@@ -1526,7 +1526,7 @@
       "canonicalHome": "HE-13",
       "id": "sakpix:Cyberpunk Neon Fantasy Characters Pack/10._Neon_Street_Racer_Female",
       "planSchedule": "S@P1`; P1↔Icenter schedule; Helios resident, resistance member, or enforcer",
-      "provenanceStatus": "review_required",
+      "provenanceStatus": "distribution_confirmed",
       "runtimeProfileId": null,
       "schedule": {
         "anchor": "P1",
@@ -1554,7 +1554,7 @@
       "canonicalHome": "HE-12",
       "id": "sakpix:Cyberpunk Neon Fantasy Characters Pack/2._Neon_Hacker_Girl_Female",
       "planSchedule": "S@P1`; P1↔Icenter schedule; Helios resident, resistance member, or enforcer",
-      "provenanceStatus": "review_required",
+      "provenanceStatus": "distribution_confirmed",
       "runtimeProfileId": null,
       "schedule": {
         "anchor": "P1",
@@ -1582,7 +1582,7 @@
       "canonicalHome": "HE-09",
       "id": "sakpix:Cyberpunk Neon Fantasy Characters Pack/3._Cyber_Mercenary_Male",
       "planSchedule": "F!@P1`; bounded hostile route; Helios resident, resistance member, or enforcer",
-      "provenanceStatus": "review_required",
+      "provenanceStatus": "distribution_confirmed",
       "runtimeProfileId": null,
       "schedule": {
         "anchor": "P1",
@@ -1610,7 +1610,7 @@
       "canonicalHome": "HE-10",
       "id": "sakpix:Cyberpunk Neon Fantasy Characters Pack/4._Neon_Blade_Assassin_Female",
       "planSchedule": "F!@P1`; bounded hostile route; Helios resident, resistance member, or enforcer",
-      "provenanceStatus": "review_required",
+      "provenanceStatus": "distribution_confirmed",
       "runtimeProfileId": null,
       "schedule": {
         "anchor": "P1",
@@ -1638,7 +1638,7 @@
       "canonicalHome": "HE-07",
       "id": "sakpix:Cyberpunk Neon Fantasy Characters Pack/5._Techno_Guardian_Male",
       "planSchedule": "F!@P1`; bounded hostile route; Helios resident, resistance member, or enforcer",
-      "provenanceStatus": "review_required",
+      "provenanceStatus": "distribution_confirmed",
       "runtimeProfileId": null,
       "schedule": {
         "anchor": "P1",
@@ -1666,7 +1666,7 @@
       "canonicalHome": "HE-01",
       "id": "sakpix:Cyberpunk Neon Fantasy Characters Pack/6._Neon_Valkyrie_Female",
       "planSchedule": "S@P1`; P1↔Icenter schedule; Helios resident, resistance member, or enforcer",
-      "provenanceStatus": "review_required",
+      "provenanceStatus": "distribution_confirmed",
       "runtimeProfileId": null,
       "schedule": {
         "anchor": "P1",
@@ -1694,7 +1694,7 @@
       "canonicalHome": "HE-04",
       "id": "sakpix:Cyberpunk Neon Fantasy Characters Pack/7._Cyber_Ronin_Male",
       "planSchedule": "S@P1`; P1↔Icenter schedule; Helios resident, resistance member, or enforcer",
-      "provenanceStatus": "review_required",
+      "provenanceStatus": "distribution_confirmed",
       "runtimeProfileId": null,
       "schedule": {
         "anchor": "P1",
@@ -1722,7 +1722,7 @@
       "canonicalHome": "HE-12",
       "id": "sakpix:Cyberpunk Neon Fantasy Characters Pack/8._Hologram_Mage_Female",
       "planSchedule": "S@P2`; P2↔Icenter schedule; Helios resident, resistance member, or enforcer",
-      "provenanceStatus": "review_required",
+      "provenanceStatus": "distribution_confirmed",
       "runtimeProfileId": null,
       "schedule": {
         "anchor": "P2",
@@ -1750,7 +1750,7 @@
       "canonicalHome": "HE-02",
       "id": "sakpix:Cyberpunk Neon Fantasy Characters Pack/9._Cyber_Enforcer_Male",
       "planSchedule": "F!@P1`; bounded hostile route; Helios resident, resistance member, or enforcer",
-      "provenanceStatus": "review_required",
+      "provenanceStatus": "distribution_confirmed",
       "runtimeProfileId": null,
       "schedule": {
         "anchor": "P1",
@@ -1778,7 +1778,7 @@
       "canonicalHome": "PV-12",
       "id": "sakpix:DRAGONBORN CHAMPIONS — LEGENDARY DRAGON KINGDOM HEROES/1._Young_Dragon_Squire_FREE",
       "planSchedule": "S@P1`; P1↔Icenter schedule; Primeval dragon resident or Empyreal envoy",
-      "provenanceStatus": "review_required",
+      "provenanceStatus": "distribution_confirmed",
       "runtimeProfileId": null,
       "schedule": {
         "anchor": "P1",
@@ -1806,7 +1806,7 @@
       "canonicalHome": "EM-10",
       "id": "sakpix:DRAGONBORN CHAMPIONS — LEGENDARY DRAGON KINGDOM HEROES/10._Storm_Dragon_Warden",
       "planSchedule": "S@P2`; P2↔Icenter schedule; Primeval dragon resident or Empyreal envoy",
-      "provenanceStatus": "review_required",
+      "provenanceStatus": "distribution_confirmed",
       "runtimeProfileId": null,
       "schedule": {
         "anchor": "P2",
@@ -1834,7 +1834,7 @@
       "canonicalHome": "EM-13",
       "id": "sakpix:DRAGONBORN CHAMPIONS — LEGENDARY DRAGON KINGDOM HEROES/11._Dragon_Queen",
       "planSchedule": "S@P3`; P3↔Icenter schedule; Primeval dragon resident or Empyreal envoy",
-      "provenanceStatus": "review_required",
+      "provenanceStatus": "distribution_confirmed",
       "runtimeProfileId": null,
       "schedule": {
         "anchor": "P3",
@@ -1862,7 +1862,7 @@
       "canonicalHome": "EM-13",
       "id": "sakpix:DRAGONBORN CHAMPIONS — LEGENDARY DRAGON KINGDOM HEROES/2._Dragon_Emperor",
       "planSchedule": "S@P1`; P1↔Icenter schedule; Primeval dragon resident or Empyreal envoy",
-      "provenanceStatus": "review_required",
+      "provenanceStatus": "distribution_confirmed",
       "runtimeProfileId": null,
       "schedule": {
         "anchor": "P1",
@@ -1890,7 +1890,7 @@
       "canonicalHome": "EM-13",
       "id": "sakpix:DRAGONBORN CHAMPIONS — LEGENDARY DRAGON KINGDOM HEROES/3._Dragon_Paladin",
       "planSchedule": "S@P2`; P2↔Icenter schedule; Primeval dragon resident or Empyreal envoy",
-      "provenanceStatus": "review_required",
+      "provenanceStatus": "distribution_confirmed",
       "runtimeProfileId": null,
       "schedule": {
         "anchor": "P2",
@@ -1918,7 +1918,7 @@
       "canonicalHome": "PV-08",
       "id": "sakpix:DRAGONBORN CHAMPIONS — LEGENDARY DRAGON KINGDOM HEROES/4._Dragon_Berserker",
       "planSchedule": "F!@P1`; bounded hostile route; Primeval dragon resident or Empyreal envoy",
-      "provenanceStatus": "review_required",
+      "provenanceStatus": "distribution_confirmed",
       "runtimeProfileId": null,
       "schedule": {
         "anchor": "P1",
@@ -1946,7 +1946,7 @@
       "canonicalHome": "PV-12",
       "id": "sakpix:DRAGONBORN CHAMPIONS — LEGENDARY DRAGON KINGDOM HEROES/5._Dragon_Flame_Mage",
       "planSchedule": "S@P2`; P2↔Icenter schedule; Primeval dragon resident or Empyreal envoy",
-      "provenanceStatus": "review_required",
+      "provenanceStatus": "distribution_confirmed",
       "runtimeProfileId": null,
       "schedule": {
         "anchor": "P2",
@@ -1974,7 +1974,7 @@
       "canonicalHome": "PV-12",
       "id": "sakpix:DRAGONBORN CHAMPIONS — LEGENDARY DRAGON KINGDOM HEROES/6._Dragon_Huntress",
       "planSchedule": "S@P3`; P3↔Icenter schedule; Primeval dragon resident or Empyreal envoy",
-      "provenanceStatus": "review_required",
+      "provenanceStatus": "distribution_confirmed",
       "runtimeProfileId": null,
       "schedule": {
         "anchor": "P3",
@@ -2002,7 +2002,7 @@
       "canonicalHome": "PV-14",
       "id": "sakpix:DRAGONBORN CHAMPIONS — LEGENDARY DRAGON KINGDOM HEROES/7._Dragon_Assassin",
       "planSchedule": "F!@P1`; bounded hostile route; Primeval dragon resident or Empyreal envoy",
-      "provenanceStatus": "review_required",
+      "provenanceStatus": "distribution_confirmed",
       "runtimeProfileId": null,
       "schedule": {
         "anchor": "P1",
@@ -2030,7 +2030,7 @@
       "canonicalHome": "PV-11",
       "id": "sakpix:DRAGONBORN CHAMPIONS — LEGENDARY DRAGON KINGDOM HEROES/8._Dragon_Priestess",
       "planSchedule": "S@P1`; P1↔Icenter schedule; Primeval dragon resident or Empyreal envoy",
-      "provenanceStatus": "review_required",
+      "provenanceStatus": "distribution_confirmed",
       "runtimeProfileId": null,
       "schedule": {
         "anchor": "P1",
@@ -2058,7 +2058,7 @@
       "canonicalHome": "PV-08",
       "id": "sakpix:DRAGONBORN CHAMPIONS — LEGENDARY DRAGON KINGDOM HEROES/9._Dragon_Guardian",
       "planSchedule": "S@P1`; P1↔Icenter schedule; Primeval dragon resident or Empyreal envoy",
-      "provenanceStatus": "review_required",
+      "provenanceStatus": "distribution_confirmed",
       "runtimeProfileId": null,
       "schedule": {
         "anchor": "P1",
@@ -2086,7 +2086,7 @@
       "canonicalHome": "HM-12",
       "id": "sakpix:Dark Fantasy Dungeon Heroes Pack/1._CURSED_CRYPT_KNIGHT_MALE",
       "planSchedule": "F!-A@P3`; bounded hostile route; Mansion captive, explorer, or hostile field actor",
-      "provenanceStatus": "review_required",
+      "provenanceStatus": "distribution_confirmed",
       "runtimeProfileId": null,
       "schedule": {
         "anchor": "P3",
@@ -2114,7 +2114,7 @@
       "canonicalHome": "HM-06",
       "id": "sakpix:Dark Fantasy Dungeon Heroes Pack/10._MOONLESS_SPELLWEAVER_FEMALE",
       "planSchedule": "S@P2`; P2↔Icenter schedule; Mansion captive, explorer, or hostile field actor",
-      "provenanceStatus": "review_required",
+      "provenanceStatus": "distribution_confirmed",
       "runtimeProfileId": null,
       "schedule": {
         "anchor": "P2",
@@ -2142,7 +2142,7 @@
       "canonicalHome": "HM-04",
       "id": "sakpix:Dark Fantasy Dungeon Heroes Pack/2._ASHEN_TORCHBEARER_MALE",
       "planSchedule": "F@P1`; P1↔Icenter schedule; Mansion captive, explorer, or hostile field actor",
-      "provenanceStatus": "review_required",
+      "provenanceStatus": "distribution_confirmed",
       "runtimeProfileId": null,
       "schedule": {
         "anchor": "P1",
@@ -2170,7 +2170,7 @@
       "canonicalHome": "HM-12",
       "id": "sakpix:Dark Fantasy Dungeon Heroes Pack/3._BLOODRUNE_EXECUTIONER_MALE",
       "planSchedule": "F!-A@P4`; bounded hostile route; Mansion captive, explorer, or hostile field actor",
-      "provenanceStatus": "review_required",
+      "provenanceStatus": "distribution_confirmed",
       "runtimeProfileId": null,
       "schedule": {
         "anchor": "P4",
@@ -2198,7 +2198,7 @@
       "canonicalHome": "HM-15",
       "id": "sakpix:Dark Fantasy Dungeon Heroes Pack/4._SHADOW_DUNGEON_ASSASSIN_MALE",
       "planSchedule": "F!@P2`; bounded hostile route; Mansion captive, explorer, or hostile field actor",
-      "provenanceStatus": "review_required",
+      "provenanceStatus": "distribution_confirmed",
       "runtimeProfileId": null,
       "schedule": {
         "anchor": "P2",
@@ -2226,7 +2226,7 @@
       "canonicalHome": "HM-12",
       "id": "sakpix:Dark Fantasy Dungeon Heroes Pack/5._ABYSSAL_NECROMANCER_MALE",
       "planSchedule": "F!-A@P5`; bounded hostile route; Mansion captive, explorer, or hostile field actor",
-      "provenanceStatus": "review_required",
+      "provenanceStatus": "distribution_confirmed",
       "runtimeProfileId": null,
       "schedule": {
         "anchor": "P5",
@@ -2254,7 +2254,7 @@
       "canonicalHome": "HM-11",
       "id": "sakpix:Dark Fantasy Dungeon Heroes Pack/6._CRIMSON_CATHEDRAL_PRIESTESS_FEMALE",
       "planSchedule": "S@P4`; P4↔Icenter schedule; Mansion captive, explorer, or hostile field actor",
-      "provenanceStatus": "review_required",
+      "provenanceStatus": "distribution_confirmed",
       "runtimeProfileId": null,
       "schedule": {
         "anchor": "P4",
@@ -2282,7 +2282,7 @@
       "canonicalHome": "HM-10",
       "id": "sakpix:Dark Fantasy Dungeon Heroes Pack/7._NIGHTSHADE_HUNTRESS_FEMALE",
       "planSchedule": "F!@P1`; bounded hostile route; Mansion captive, explorer, or hostile field actor",
-      "provenanceStatus": "review_required",
+      "provenanceStatus": "distribution_confirmed",
       "runtimeProfileId": null,
       "schedule": {
         "anchor": "P1",
@@ -2310,7 +2310,7 @@
       "canonicalHome": "HM-13",
       "id": "sakpix:Dark Fantasy Dungeon Heroes Pack/8._FORBIDDEN_ALCHEMIST_FEMALE",
       "planSchedule": "S@P2`; P2↔Icenter schedule; Mansion captive, explorer, or hostile field actor",
-      "provenanceStatus": "review_required",
+      "provenanceStatus": "distribution_confirmed",
       "runtimeProfileId": null,
       "schedule": {
         "anchor": "P2",
@@ -2338,7 +2338,7 @@
       "canonicalHome": "HM-12",
       "id": "sakpix:Dark Fantasy Dungeon Heroes Pack/9._RELIC_VALKYRIE_OF_THE_ABYSS_FEMALE",
       "planSchedule": "F@P1`; P1↔Icenter schedule; Mansion captive, explorer, or hostile field actor",
-      "provenanceStatus": "review_required",
+      "provenanceStatus": "distribution_confirmed",
       "runtimeProfileId": null,
       "schedule": {
         "anchor": "P1",
@@ -2366,7 +2366,7 @@
       "canonicalHome": "HM-15",
       "id": "sakpix:Dark Gothic Fantasy Characters Pack/dark_corrupted_female_knight_pixel",
       "planSchedule": "F!@P3`; bounded hostile route; Mansion apparition or stabilized gothic resident",
-      "provenanceStatus": "review_required",
+      "provenanceStatus": "distribution_confirmed",
       "runtimeProfileId": null,
       "schedule": {
         "anchor": "P3",
@@ -2394,7 +2394,7 @@
       "canonicalHome": "HM-01",
       "id": "sakpix:Dark Gothic Fantasy Characters Pack/dark_fantasy_gothic_knight_pixel",
       "planSchedule": "S@P2`; P2↔Icenter schedule; Mansion apparition or stabilized gothic resident",
-      "provenanceStatus": "review_required",
+      "provenanceStatus": "distribution_confirmed",
       "runtimeProfileId": null,
       "schedule": {
         "anchor": "P2",
@@ -2422,7 +2422,7 @@
       "canonicalHome": "HM-06",
       "id": "sakpix:Dark Gothic Fantasy Characters Pack/dark_queen_pixel_art_gothic",
       "planSchedule": "F!@P1`; bounded hostile route; Mansion apparition or stabilized gothic resident",
-      "provenanceStatus": "review_required",
+      "provenanceStatus": "distribution_confirmed",
       "runtimeProfileId": null,
       "schedule": {
         "anchor": "P1",
@@ -2450,7 +2450,7 @@
       "canonicalHome": "HM-12",
       "id": "sakpix:Dark Gothic Fantasy Characters Pack/masterpiece_pixel_art_gothic_armored",
       "planSchedule": "F!-A@P6`; bounded hostile route; Mansion apparition or stabilized gothic resident",
-      "provenanceStatus": "review_required",
+      "provenanceStatus": "distribution_confirmed",
       "runtimeProfileId": null,
       "schedule": {
         "anchor": "P6",
@@ -2478,7 +2478,7 @@
       "canonicalHome": "HM-13",
       "id": "sakpix:Dark Gothic Fantasy Characters Pack/masterpiece_pixel_art_gothic_female",
       "planSchedule": "S@P3`; P3↔Icenter schedule; Mansion apparition or stabilized gothic resident",
-      "provenanceStatus": "review_required",
+      "provenanceStatus": "distribution_confirmed",
       "runtimeProfileId": null,
       "schedule": {
         "anchor": "P3",
@@ -2506,7 +2506,7 @@
       "canonicalHome": "HM-12",
       "id": "sakpix:Dark Gothic Fantasy Characters Pack/pixel_art_demonic_gothic_warrior",
       "planSchedule": "F!-B@P1`; bounded hostile route; Mansion apparition or stabilized gothic resident",
-      "provenanceStatus": "review_required",
+      "provenanceStatus": "distribution_confirmed",
       "runtimeProfileId": null,
       "schedule": {
         "anchor": "P1",
@@ -2534,7 +2534,7 @@
       "canonicalHome": "HM-10",
       "id": "sakpix:Dark Gothic Fantasy Characters Pack/pixel_art_gothic_assassin_girl",
       "planSchedule": "F!@P2`; bounded hostile route; Mansion apparition or stabilized gothic resident",
-      "provenanceStatus": "review_required",
+      "provenanceStatus": "distribution_confirmed",
       "runtimeProfileId": null,
       "schedule": {
         "anchor": "P2",
@@ -2562,7 +2562,7 @@
       "canonicalHome": "HM-06",
       "id": "sakpix:Dark Gothic Fantasy Characters Pack/pixel_art_gothic_valkyrie_dark",
       "planSchedule": "F!@P2`; bounded hostile route; Mansion apparition or stabilized gothic resident",
-      "provenanceStatus": "review_required",
+      "provenanceStatus": "distribution_confirmed",
       "runtimeProfileId": null,
       "schedule": {
         "anchor": "P2",
@@ -2590,7 +2590,7 @@
       "canonicalHome": "HM-14",
       "id": "sakpix:Dark Gothic Fantasy Characters Pack/pixel_art_gothic_warrior_girl",
       "planSchedule": "S@P2`; P2↔Icenter schedule; Mansion apparition or stabilized gothic resident",
-      "provenanceStatus": "review_required",
+      "provenanceStatus": "distribution_confirmed",
       "runtimeProfileId": null,
       "schedule": {
         "anchor": "P2",
@@ -2618,7 +2618,7 @@
       "canonicalHome": "HM-15",
       "id": "sakpix:Dark Gothic Fantasy Characters Pack/pixel_art_gothic_witch_dark",
       "planSchedule": "F!@P4`; bounded hostile route; Mansion apparition or stabilized gothic resident",
-      "provenanceStatus": "review_required",
+      "provenanceStatus": "distribution_confirmed",
       "runtimeProfileId": null,
       "schedule": {
         "anchor": "P4",
@@ -2646,7 +2646,7 @@
       "canonicalHome": "MP-01",
       "id": "sakpix:Eternal Samurai & Yokai Warriors Pack/1._Samurai_Warlord_Male",
       "planSchedule": "S@P1`; P1↔Icenter schedule; Moonpetal guard, artisan, witness, or court resident",
-      "provenanceStatus": "review_required",
+      "provenanceStatus": "distribution_confirmed",
       "runtimeProfileId": null,
       "schedule": {
         "anchor": "P1",
@@ -2674,7 +2674,7 @@
       "canonicalHome": "MP-05",
       "id": "sakpix:Eternal Samurai & Yokai Warriors Pack/10._Spirit_Yokai_Priestess_Female",
       "planSchedule": "S@P1`; P1↔Icenter schedule; Moonpetal guard, artisan, witness, or court resident",
-      "provenanceStatus": "review_required",
+      "provenanceStatus": "distribution_confirmed",
       "runtimeProfileId": null,
       "schedule": {
         "anchor": "P1",
@@ -2702,7 +2702,7 @@
       "canonicalHome": "MP-03",
       "id": "sakpix:Eternal Samurai & Yokai Warriors Pack/2._Shrine_Maiden_Warrior_Female",
       "planSchedule": "S@P1`; P1↔Icenter schedule; Moonpetal guard, artisan, witness, or court resident",
-      "provenanceStatus": "review_required",
+      "provenanceStatus": "distribution_confirmed",
       "runtimeProfileId": null,
       "schedule": {
         "anchor": "P1",
@@ -2730,7 +2730,7 @@
       "canonicalHome": "MP-06",
       "id": "sakpix:Eternal Samurai & Yokai Warriors Pack/3._Ronin_Blade_Master_Male",
       "planSchedule": "F@P1`; P1↔Icenter schedule; Moonpetal guard, artisan, witness, or court resident",
-      "provenanceStatus": "review_required",
+      "provenanceStatus": "distribution_confirmed",
       "runtimeProfileId": null,
       "schedule": {
         "anchor": "P1",
@@ -2758,7 +2758,7 @@
       "canonicalHome": "MP-10",
       "id": "sakpix:Eternal Samurai & Yokai Warriors Pack/4._Kitsune_Assassin_Female",
       "planSchedule": "F!@P1`; bounded hostile route; Moonpetal guard, artisan, witness, or court resident",
-      "provenanceStatus": "review_required",
+      "provenanceStatus": "distribution_confirmed",
       "runtimeProfileId": null,
       "schedule": {
         "anchor": "P1",
@@ -2786,7 +2786,7 @@
       "canonicalHome": "MP-07",
       "id": "sakpix:Eternal Samurai & Yokai Warriors Pack/5._Imperial_Shogun_Male",
       "planSchedule": "S@P1`; P1↔Icenter schedule; Moonpetal guard, artisan, witness, or court resident",
-      "provenanceStatus": "review_required",
+      "provenanceStatus": "distribution_confirmed",
       "runtimeProfileId": null,
       "schedule": {
         "anchor": "P1",
@@ -2814,7 +2814,7 @@
       "canonicalHome": "MP-13",
       "id": "sakpix:Eternal Samurai & Yokai Warriors Pack/6._Moonlight_Samurai_Female",
       "planSchedule": "S@P1`; P1↔Icenter schedule; Moonpetal guard, artisan, witness, or court resident",
-      "provenanceStatus": "review_required",
+      "provenanceStatus": "distribution_confirmed",
       "runtimeProfileId": null,
       "schedule": {
         "anchor": "P1",
@@ -2842,7 +2842,7 @@
       "canonicalHome": "MP-12",
       "id": "sakpix:Eternal Samurai & Yokai Warriors Pack/7._Oni_Hunter_Male",
       "planSchedule": "S@P3`; P3↔Icenter schedule; Moonpetal guard, artisan, witness, or court resident",
-      "provenanceStatus": "review_required",
+      "provenanceStatus": "distribution_confirmed",
       "runtimeProfileId": null,
       "schedule": {
         "anchor": "P3",
@@ -2870,7 +2870,7 @@
       "canonicalHome": "MP-03",
       "id": "sakpix:Eternal Samurai & Yokai Warriors Pack/8._Sakura_Blade_Dancer_Female",
       "planSchedule": "S@P2`; P2↔Icenter schedule; Moonpetal guard, artisan, witness, or court resident",
-      "provenanceStatus": "review_required",
+      "provenanceStatus": "distribution_confirmed",
       "runtimeProfileId": null,
       "schedule": {
         "anchor": "P2",
@@ -2898,7 +2898,7 @@
       "canonicalHome": "MP-12",
       "id": "sakpix:Eternal Samurai & Yokai Warriors Pack/9._Dragon_Clan_Samurai_Male",
       "planSchedule": "S@P4`; P4↔Icenter schedule; Moonpetal guard, artisan, witness, or court resident",
-      "provenanceStatus": "review_required",
+      "provenanceStatus": "distribution_confirmed",
       "runtimeProfileId": null,
       "schedule": {
         "anchor": "P4",
@@ -2926,7 +2926,7 @@
       "canonicalHome": "FT-01",
       "id": "sakpix:FRONTIER LEGENDS-Wild West Heroes Collection/1._DUSTY_KID_FREE",
       "planSchedule": "F@P1`; P1↔Icenter schedule; Frontier resident, outlaw, or law officer",
-      "provenanceStatus": "review_required",
+      "provenanceStatus": "distribution_confirmed",
       "runtimeProfileId": null,
       "schedule": {
         "anchor": "P1",
@@ -2954,7 +2954,7 @@
       "canonicalHome": "FT-02",
       "id": "sakpix:FRONTIER LEGENDS-Wild West Heroes Collection/10._IRON_MARSHAL",
       "planSchedule": "S@P2`; P2↔Icenter schedule; Frontier resident, outlaw, or law officer",
-      "provenanceStatus": "review_required",
+      "provenanceStatus": "distribution_confirmed",
       "runtimeProfileId": null,
       "schedule": {
         "anchor": "P2",
@@ -2982,7 +2982,7 @@
       "canonicalHome": "FT-06",
       "id": "sakpix:FRONTIER LEGENDS-Wild West Heroes Collection/11._TEXAS_KING",
       "planSchedule": "F!@P1`; bounded hostile route; Frontier resident, outlaw, or law officer",
-      "provenanceStatus": "review_required",
+      "provenanceStatus": "distribution_confirmed",
       "runtimeProfileId": null,
       "schedule": {
         "anchor": "P1",
@@ -3010,7 +3010,7 @@
       "canonicalHome": "FT-02",
       "id": "sakpix:FRONTIER LEGENDS-Wild West Heroes Collection/2._SHERIFF_BLACKWOOD",
       "planSchedule": "S@P1`; P1↔Icenter schedule; Frontier resident, outlaw, or law officer",
-      "provenanceStatus": "review_required",
+      "provenanceStatus": "distribution_confirmed",
       "runtimeProfileId": null,
       "schedule": {
         "anchor": "P1",
@@ -3038,7 +3038,7 @@
       "canonicalHome": "FT-04",
       "id": "sakpix:FRONTIER LEGENDS-Wild West Heroes Collection/3._DEADSHOT_JAKE",
       "planSchedule": "F!@P1`; bounded hostile route; Frontier resident, outlaw, or law officer",
-      "provenanceStatus": "review_required",
+      "provenanceStatus": "distribution_confirmed",
       "runtimeProfileId": null,
       "schedule": {
         "anchor": "P1",
@@ -3066,7 +3066,7 @@
       "canonicalHome": "FT-03",
       "id": "sakpix:FRONTIER LEGENDS-Wild West Heroes Collection/4._PRAIRIE_RANGER",
       "planSchedule": "S@P1`; P1↔Icenter schedule; Frontier resident, outlaw, or law officer",
-      "provenanceStatus": "review_required",
+      "provenanceStatus": "distribution_confirmed",
       "runtimeProfileId": null,
       "schedule": {
         "anchor": "P1",
@@ -3094,7 +3094,7 @@
       "canonicalHome": "FT-08",
       "id": "sakpix:FRONTIER LEGENDS-Wild West Heroes Collection/5._GOLD_PROSPECTOR",
       "planSchedule": "S@P1`; P1↔Icenter schedule; Frontier resident, outlaw, or law officer",
-      "provenanceStatus": "review_required",
+      "provenanceStatus": "distribution_confirmed",
       "runtimeProfileId": null,
       "schedule": {
         "anchor": "P1",
@@ -3122,7 +3122,7 @@
       "canonicalHome": "FT-07",
       "id": "sakpix:FRONTIER LEGENDS-Wild West Heroes Collection/6._ROSE_McGRAW",
       "planSchedule": "S@P1`; P1↔Icenter schedule; Frontier resident, outlaw, or law officer",
-      "provenanceStatus": "review_required",
+      "provenanceStatus": "distribution_confirmed",
       "runtimeProfileId": null,
       "schedule": {
         "anchor": "P1",
@@ -3150,7 +3150,7 @@
       "canonicalHome": "FT-03",
       "id": "sakpix:FRONTIER LEGENDS-Wild West Heroes Collection/8._BISON_HUNTER",
       "planSchedule": "S@P2`; P2↔Icenter schedule; Frontier resident, outlaw, or law officer",
-      "provenanceStatus": "review_required",
+      "provenanceStatus": "distribution_confirmed",
       "runtimeProfileId": null,
       "schedule": {
         "anchor": "P2",
@@ -3178,7 +3178,7 @@
       "canonicalHome": "FT-04",
       "id": "sakpix:FRONTIER LEGENDS-Wild West Heroes Collection/9._OUTLAW_QUEEN",
       "planSchedule": "F!@P2`; bounded hostile route; Frontier resident, outlaw, or law officer",
-      "provenanceStatus": "review_required",
+      "provenanceStatus": "distribution_confirmed",
       "runtimeProfileId": null,
       "schedule": {
         "anchor": "P2",
@@ -3206,7 +3206,7 @@
       "canonicalHome": "FR-01",
       "id": "sakpix:Frozen Kingdom Fantasy Characters Pack/1._Frozen_Kingdom_Ice_Knight_Male",
       "planSchedule": "S@P1`; P1↔Icenter schedule; Frosthold citizen, court member, or hostile collector",
-      "provenanceStatus": "review_required",
+      "provenanceStatus": "distribution_confirmed",
       "runtimeProfileId": null,
       "schedule": {
         "anchor": "P1",
@@ -3234,7 +3234,7 @@
       "canonicalHome": "FR-09",
       "id": "sakpix:Frozen Kingdom Fantasy Characters Pack/10._Ice_Blade_Warrior_Female",
       "planSchedule": "S@P1`; P1↔Icenter schedule; Frosthold citizen, court member, or hostile collector",
-      "provenanceStatus": "review_required",
+      "provenanceStatus": "distribution_confirmed",
       "runtimeProfileId": null,
       "schedule": {
         "anchor": "P1",
@@ -3262,7 +3262,7 @@
       "canonicalHome": "FR-04",
       "id": "sakpix:Frozen Kingdom Fantasy Characters Pack/2._Frozen_Valkyrie_Female",
       "planSchedule": "S@P1`; P1↔Icenter schedule; Frosthold citizen, court member, or hostile collector",
-      "provenanceStatus": "review_required",
+      "provenanceStatus": "distribution_confirmed",
       "runtimeProfileId": null,
       "schedule": {
         "anchor": "P1",
@@ -3290,7 +3290,7 @@
       "canonicalHome": "FR-10",
       "id": "sakpix:Frozen Kingdom Fantasy Characters Pack/3._Frost_Assassin_Male",
       "planSchedule": "F!@P1`; bounded hostile route; Frosthold citizen, court member, or hostile collector",
-      "provenanceStatus": "review_required",
+      "provenanceStatus": "distribution_confirmed",
       "runtimeProfileId": null,
       "schedule": {
         "anchor": "P1",
@@ -3318,7 +3318,7 @@
       "canonicalHome": "FR-08",
       "id": "sakpix:Frozen Kingdom Fantasy Characters Pack/4._Ice_Witch_Queen_Female",
       "planSchedule": "S@P1`; P1↔Icenter schedule; Frosthold citizen, court member, or hostile collector",
-      "provenanceStatus": "review_required",
+      "provenanceStatus": "distribution_confirmed",
       "runtimeProfileId": null,
       "schedule": {
         "anchor": "P1",
@@ -3346,7 +3346,7 @@
       "canonicalHome": "FR-06",
       "id": "sakpix:Frozen Kingdom Fantasy Characters Pack/5._Glacier_Paladin_Male",
       "planSchedule": "S@P1`; P1↔Icenter schedule; Frosthold citizen, court member, or hostile collector",
-      "provenanceStatus": "review_required",
+      "provenanceStatus": "distribution_confirmed",
       "runtimeProfileId": null,
       "schedule": {
         "anchor": "P1",
@@ -3374,7 +3374,7 @@
       "canonicalHome": "FR-10",
       "id": "sakpix:Frozen Kingdom Fantasy Characters Pack/6._Snow_Huntress_Female",
       "planSchedule": "S@P3`; P3↔Icenter schedule; Frosthold citizen, court member, or hostile collector",
-      "provenanceStatus": "review_required",
+      "provenanceStatus": "distribution_confirmed",
       "runtimeProfileId": null,
       "schedule": {
         "anchor": "P3",
@@ -3402,7 +3402,7 @@
       "canonicalHome": "FR-13",
       "id": "sakpix:Frozen Kingdom Fantasy Characters Pack/7._Frozen_Berserker_Male",
       "planSchedule": "S@P1`; P1↔Icenter schedule; Frosthold citizen, court member, or hostile collector",
-      "provenanceStatus": "review_required",
+      "provenanceStatus": "distribution_confirmed",
       "runtimeProfileId": null,
       "schedule": {
         "anchor": "P1",
@@ -3430,7 +3430,7 @@
       "canonicalHome": "FR-11",
       "id": "sakpix:Frozen Kingdom Fantasy Characters Pack/8._Crystal_Priestess_Female",
       "planSchedule": "S@P1`; P1↔Icenter schedule; Frosthold citizen, court member, or hostile collector",
-      "provenanceStatus": "review_required",
+      "provenanceStatus": "distribution_confirmed",
       "runtimeProfileId": null,
       "schedule": {
         "anchor": "P1",
@@ -3458,7 +3458,7 @@
       "canonicalHome": "FR-12",
       "id": "sakpix:Frozen Kingdom Fantasy Characters Pack/9._Frost_Prince_Male",
       "planSchedule": "S@P1`; P1↔Icenter schedule; Frosthold citizen, court member, or hostile collector",
-      "provenanceStatus": "review_required",
+      "provenanceStatus": "distribution_confirmed",
       "runtimeProfileId": null,
       "schedule": {
         "anchor": "P1",
@@ -3486,7 +3486,7 @@
       "canonicalHome": "EM-01",
       "id": "sakpix:HEROIC LEGENDS — ULTIMATE SUPER HEROES COLLECTION/1._Nova_Sentinel",
       "planSchedule": "S@P1`; P1↔Icenter schedule; Empyreal delegate or associated civic champion",
-      "provenanceStatus": "review_required",
+      "provenanceStatus": "distribution_confirmed",
       "runtimeProfileId": null,
       "schedule": {
         "anchor": "P1",
@@ -3514,7 +3514,7 @@
       "canonicalHome": "EM-13",
       "id": "sakpix:HEROIC LEGENDS — ULTIMATE SUPER HEROES COLLECTION/10._Cosmic_Ranger",
       "planSchedule": "S@P4`; P4↔Icenter schedule; Empyreal delegate or associated civic champion",
-      "provenanceStatus": "review_required",
+      "provenanceStatus": "distribution_confirmed",
       "runtimeProfileId": null,
       "schedule": {
         "anchor": "P4",
@@ -3542,7 +3542,7 @@
       "canonicalHome": "HE-08",
       "id": "sakpix:HEROIC LEGENDS — ULTIMATE SUPER HEROES COLLECTION/2._Inferno_Blaze",
       "planSchedule": "S@P1`; P1↔Icenter schedule; Empyreal delegate or associated civic champion",
-      "provenanceStatus": "review_required",
+      "provenanceStatus": "distribution_confirmed",
       "runtimeProfileId": null,
       "schedule": {
         "anchor": "P1",
@@ -3570,7 +3570,7 @@
       "canonicalHome": "EM-10",
       "id": "sakpix:HEROIC LEGENDS — ULTIMATE SUPER HEROES COLLECTION/3._Thunder_Volt",
       "planSchedule": "S@P3`; P3↔Icenter schedule; Empyreal delegate or associated civic champion",
-      "provenanceStatus": "review_required",
+      "provenanceStatus": "distribution_confirmed",
       "runtimeProfileId": null,
       "schedule": {
         "anchor": "P3",
@@ -3598,7 +3598,7 @@
       "canonicalHome": "FR-12",
       "id": "sakpix:HEROIC LEGENDS — ULTIMATE SUPER HEROES COLLECTION/4._Frost_Guardian",
       "planSchedule": "S@P2`; P2↔Icenter schedule; Empyreal delegate or associated civic champion",
-      "provenanceStatus": "review_required",
+      "provenanceStatus": "distribution_confirmed",
       "runtimeProfileId": null,
       "schedule": {
         "anchor": "P2",
@@ -3626,7 +3626,7 @@
       "canonicalHome": "EM-03",
       "id": "sakpix:HEROIC LEGENDS — ULTIMATE SUPER HEROES COLLECTION/5._Emerald_Titan",
       "planSchedule": "S@P1`; P1↔Icenter schedule; Empyreal delegate or associated civic champion",
-      "provenanceStatus": "review_required",
+      "provenanceStatus": "distribution_confirmed",
       "runtimeProfileId": null,
       "schedule": {
         "anchor": "P1",
@@ -3654,7 +3654,7 @@
       "canonicalHome": "EM-15",
       "id": "sakpix:HEROIC LEGENDS — ULTIMATE SUPER HEROES COLLECTION/6._Shadow_Phantom",
       "planSchedule": "F!@P1`; bounded hostile route; Empyreal delegate or associated civic champion",
-      "provenanceStatus": "review_required",
+      "provenanceStatus": "distribution_confirmed",
       "runtimeProfileId": null,
       "schedule": {
         "anchor": "P1",
@@ -3682,7 +3682,7 @@
       "canonicalHome": "EM-10",
       "id": "sakpix:HEROIC LEGENDS — ULTIMATE SUPER HEROES COLLECTION/7._Cyclone_Wing",
       "planSchedule": "S@P4`; P4↔Icenter schedule; Empyreal delegate or associated civic champion",
-      "provenanceStatus": "review_required",
+      "provenanceStatus": "distribution_confirmed",
       "runtimeProfileId": null,
       "schedule": {
         "anchor": "P4",
@@ -3710,7 +3710,7 @@
       "canonicalHome": "EM-09",
       "id": "sakpix:HEROIC LEGENDS — ULTIMATE SUPER HEROES COLLECTION/8._Solar_Knight",
       "planSchedule": "S@P2`; P2↔Icenter schedule; Empyreal delegate or associated civic champion",
-      "provenanceStatus": "review_required",
+      "provenanceStatus": "distribution_confirmed",
       "runtimeProfileId": null,
       "schedule": {
         "anchor": "P2",
@@ -3738,7 +3738,7 @@
       "canonicalHome": "EM-05",
       "id": "sakpix:HEROIC LEGENDS — ULTIMATE SUPER HEROES COLLECTION/9._Quantum_Mind",
       "planSchedule": "S@P1`; P1↔Icenter schedule; Empyreal delegate or associated civic champion",
-      "provenanceStatus": "review_required",
+      "provenanceStatus": "distribution_confirmed",
       "runtimeProfileId": null,
       "schedule": {
         "anchor": "P1",
@@ -3766,7 +3766,7 @@
       "canonicalHome": "FI-04",
       "id": "sakpix:Kingdom Citizens — Fantasy Townfolk & NPC Collection/1._Village_Blacksmith",
       "planSchedule": "F@P2`; P2↔Icenter schedule; New Philadelphia worker, merchant, scholar, or delegate",
-      "provenanceStatus": "review_required",
+      "provenanceStatus": "distribution_confirmed",
       "runtimeProfileId": null,
       "schedule": {
         "anchor": "P2",
@@ -3794,7 +3794,7 @@
       "canonicalHome": "FI-02",
       "id": "sakpix:Kingdom Citizens — Fantasy Townfolk & NPC Collection/10._Guild_Receptionist",
       "planSchedule": "F@P3`; P3↔Icenter schedule; New Philadelphia worker, merchant, scholar, or delegate",
-      "provenanceStatus": "review_required",
+      "provenanceStatus": "distribution_confirmed",
       "runtimeProfileId": null,
       "schedule": {
         "anchor": "P3",
@@ -3822,7 +3822,7 @@
       "canonicalHome": "NP-05",
       "id": "sakpix:Kingdom Citizens — Fantasy Townfolk & NPC Collection/2._Traveling_Merchant",
       "planSchedule": "F@P2`; P2↔Icenter schedule; New Philadelphia worker, merchant, scholar, or delegate",
-      "provenanceStatus": "review_required",
+      "provenanceStatus": "distribution_confirmed",
       "runtimeProfileId": null,
       "schedule": {
         "anchor": "P2",
@@ -3850,7 +3850,7 @@
       "canonicalHome": "FI-01",
       "id": "sakpix:Kingdom Citizens — Fantasy Townfolk & NPC Collection/3._Tavern_Keeper",
       "planSchedule": "F@P2`; P2↔Icenter schedule; New Philadelphia worker, merchant, scholar, or delegate",
-      "provenanceStatus": "review_required",
+      "provenanceStatus": "distribution_confirmed",
       "runtimeProfileId": null,
       "schedule": {
         "anchor": "P2",
@@ -3878,7 +3878,7 @@
       "canonicalHome": "NP-04",
       "id": "sakpix:Kingdom Citizens — Fantasy Townfolk & NPC Collection/4._Royal_Guard",
       "planSchedule": "F@P2`; P2↔Icenter schedule; New Philadelphia worker, merchant, scholar, or delegate",
-      "provenanceStatus": "review_required",
+      "provenanceStatus": "distribution_confirmed",
       "runtimeProfileId": null,
       "schedule": {
         "anchor": "P2",
@@ -3906,7 +3906,7 @@
       "canonicalHome": "FI-02",
       "id": "sakpix:Kingdom Citizens — Fantasy Townfolk & NPC Collection/5._Elder_Scholar",
       "planSchedule": "F@P2`; P2↔Icenter schedule; New Philadelphia worker, merchant, scholar, or delegate",
-      "provenanceStatus": "review_required",
+      "provenanceStatus": "distribution_confirmed",
       "runtimeProfileId": null,
       "schedule": {
         "anchor": "P2",
@@ -3934,7 +3934,7 @@
       "canonicalHome": "FI-01",
       "id": "sakpix:Kingdom Citizens — Fantasy Townfolk & NPC Collection/6._Village_Baker",
       "planSchedule": "F@P3`; P3↔Icenter schedule; New Philadelphia worker, merchant, scholar, or delegate",
-      "provenanceStatus": "review_required",
+      "provenanceStatus": "distribution_confirmed",
       "runtimeProfileId": null,
       "schedule": {
         "anchor": "P3",
@@ -3962,7 +3962,7 @@
       "canonicalHome": "FI-03",
       "id": "sakpix:Kingdom Citizens — Fantasy Townfolk & NPC Collection/7._Herbalist",
       "planSchedule": "F@P2`; P2↔Icenter schedule; New Philadelphia worker, merchant, scholar, or delegate",
-      "provenanceStatus": "review_required",
+      "provenanceStatus": "distribution_confirmed",
       "runtimeProfileId": null,
       "schedule": {
         "anchor": "P2",
@@ -3990,7 +3990,7 @@
       "canonicalHome": "FI-01",
       "id": "sakpix:Kingdom Citizens — Fantasy Townfolk & NPC Collection/8._Tavern_Waitress",
       "planSchedule": "F@P4`; P4↔Icenter schedule; New Philadelphia worker, merchant, scholar, or delegate",
-      "provenanceStatus": "review_required",
+      "provenanceStatus": "distribution_confirmed",
       "runtimeProfileId": null,
       "schedule": {
         "anchor": "P4",
@@ -4018,7 +4018,7 @@
       "canonicalHome": "NP-15",
       "id": "sakpix:Kingdom Citizens — Fantasy Townfolk & NPC Collection/9._Noble_Lady",
       "planSchedule": "S@P1`; P1↔Icenter schedule; New Philadelphia worker, merchant, scholar, or delegate",
-      "provenanceStatus": "review_required",
+      "provenanceStatus": "distribution_confirmed",
       "runtimeProfileId": null,
       "schedule": {
         "anchor": "P1",
@@ -4046,7 +4046,7 @@
       "canonicalHome": "AF-07",
       "id": "sakpix:Legendary Infernal Kingdom Champions/1._DEMON_EMPEROR",
       "planSchedule": "F!-A@P4`; bounded hostile route; Ashfall infernal faction actor",
-      "provenanceStatus": "review_required",
+      "provenanceStatus": "distribution_confirmed",
       "runtimeProfileId": null,
       "schedule": {
         "anchor": "P4",
@@ -4074,7 +4074,7 @@
       "canonicalHome": "AF-12",
       "id": "sakpix:Legendary Infernal Kingdom Champions/10._DOOM_VANGUARD",
       "planSchedule": "F!@P2`; bounded hostile route; Ashfall infernal faction actor",
-      "provenanceStatus": "review_required",
+      "provenanceStatus": "distribution_confirmed",
       "runtimeProfileId": null,
       "schedule": {
         "anchor": "P2",
@@ -4102,7 +4102,7 @@
       "canonicalHome": "AF-05",
       "id": "sakpix:Legendary Infernal Kingdom Champions/11._Infernal_Prince_Free_Character",
       "planSchedule": "S@P2`; P2↔Icenter schedule; Ashfall infernal faction actor",
-      "provenanceStatus": "review_required",
+      "provenanceStatus": "distribution_confirmed",
       "runtimeProfileId": null,
       "schedule": {
         "anchor": "P2",
@@ -4130,7 +4130,7 @@
       "canonicalHome": "AF-07",
       "id": "sakpix:Legendary Infernal Kingdom Champions/2._INFERNAL_WARLORD",
       "planSchedule": "F!-A@P5`; bounded hostile route; Ashfall infernal faction actor",
-      "provenanceStatus": "review_required",
+      "provenanceStatus": "distribution_confirmed",
       "runtimeProfileId": null,
       "schedule": {
         "anchor": "P5",
@@ -4158,7 +4158,7 @@
       "canonicalHome": "AF-09",
       "id": "sakpix:Legendary Infernal Kingdom Champions/3._SUCCUBUS_QUEEN",
       "planSchedule": "F!@P1`; bounded hostile route; Ashfall infernal faction actor",
-      "provenanceStatus": "review_required",
+      "provenanceStatus": "distribution_confirmed",
       "runtimeProfileId": null,
       "schedule": {
         "anchor": "P1",
@@ -4186,7 +4186,7 @@
       "canonicalHome": "AF-06",
       "id": "sakpix:Legendary Infernal Kingdom Champions/4._BLOOD_PRIEST",
       "planSchedule": "F!@P1`; bounded hostile route; Ashfall infernal faction actor",
-      "provenanceStatus": "review_required",
+      "provenanceStatus": "distribution_confirmed",
       "runtimeProfileId": null,
       "schedule": {
         "anchor": "P1",
@@ -4214,7 +4214,7 @@
       "canonicalHome": "AF-05",
       "id": "sakpix:Legendary Infernal Kingdom Champions/5._HELL_KNIGHT",
       "planSchedule": "F!@P1`; bounded hostile route; Ashfall infernal faction actor",
-      "provenanceStatus": "review_required",
+      "provenanceStatus": "distribution_confirmed",
       "runtimeProfileId": null,
       "schedule": {
         "anchor": "P1",
@@ -4242,7 +4242,7 @@
       "canonicalHome": "AF-07",
       "id": "sakpix:Legendary Infernal Kingdom Champions/6._FLAME_SORCERER",
       "planSchedule": "F!-A@P6`; bounded hostile route; Ashfall infernal faction actor",
-      "provenanceStatus": "review_required",
+      "provenanceStatus": "distribution_confirmed",
       "runtimeProfileId": null,
       "schedule": {
         "anchor": "P6",
@@ -4270,7 +4270,7 @@
       "canonicalHome": "AF-12",
       "id": "sakpix:Legendary Infernal Kingdom Champions/7._ABYSSAL_ASSASSIN",
       "planSchedule": "F!@P1`; bounded hostile route; Ashfall infernal faction actor",
-      "provenanceStatus": "review_required",
+      "provenanceStatus": "distribution_confirmed",
       "runtimeProfileId": null,
       "schedule": {
         "anchor": "P1",
@@ -4298,7 +4298,7 @@
       "canonicalHome": "AF-10",
       "id": "sakpix:Legendary Infernal Kingdom Champions/8._BONE_CHAMPION",
       "planSchedule": "F!@P1`; bounded hostile route; Ashfall infernal faction actor",
-      "provenanceStatus": "review_required",
+      "provenanceStatus": "distribution_confirmed",
       "runtimeProfileId": null,
       "schedule": {
         "anchor": "P1",
@@ -4326,7 +4326,7 @@
       "canonicalHome": "AF-07",
       "id": "sakpix:Legendary Infernal Kingdom Champions/9._INFERNAL_DRAGON_TAMER",
       "planSchedule": "F!-B@P1`; bounded hostile route; Ashfall infernal faction actor",
-      "provenanceStatus": "review_required",
+      "provenanceStatus": "distribution_confirmed",
       "runtimeProfileId": null,
       "schedule": {
         "anchor": "P1",
@@ -4354,7 +4354,7 @@
       "canonicalHome": "HM-07",
       "id": "sakpix:NIGHTMARE SLASHERS Horror Killers Collection/1._LOST_BOY_FREE",
       "planSchedule": "F@P1`; P1↔Icenter schedule; Mansion nightmare apparition",
-      "provenanceStatus": "review_required",
+      "provenanceStatus": "distribution_confirmed",
       "runtimeProfileId": null,
       "schedule": {
         "anchor": "P1",
@@ -4382,7 +4382,7 @@
       "canonicalHome": "HM-13",
       "id": "sakpix:NIGHTMARE SLASHERS Horror Killers Collection/10._NOCTURNA",
       "planSchedule": "F!@P1`; bounded hostile route; Mansion nightmare apparition",
-      "provenanceStatus": "review_required",
+      "provenanceStatus": "distribution_confirmed",
       "runtimeProfileId": null,
       "schedule": {
         "anchor": "P1",
@@ -4410,7 +4410,7 @@
       "canonicalHome": "HM-09",
       "id": "sakpix:NIGHTMARE SLASHERS Horror Killers Collection/11._THE_SILENT_JUDGE",
       "planSchedule": "F!@P2`; bounded hostile route; Mansion nightmare apparition",
-      "provenanceStatus": "review_required",
+      "provenanceStatus": "distribution_confirmed",
       "runtimeProfileId": null,
       "schedule": {
         "anchor": "P2",
@@ -4438,7 +4438,7 @@
       "canonicalHome": "HM-10",
       "id": "sakpix:NIGHTMARE SLASHERS Horror Killers Collection/2._THE_HARVESTER",
       "planSchedule": "F!@P3`; bounded hostile route; Mansion nightmare apparition",
-      "provenanceStatus": "review_required",
+      "provenanceStatus": "distribution_confirmed",
       "runtimeProfileId": null,
       "schedule": {
         "anchor": "P3",
@@ -4466,7 +4466,7 @@
       "canonicalHome": "HM-09",
       "id": "sakpix:NIGHTMARE SLASHERS Horror Killers Collection/3._CRIMSON_BRIDE",
       "planSchedule": "F!@P1`; bounded hostile route; Mansion nightmare apparition",
-      "provenanceStatus": "review_required",
+      "provenanceStatus": "distribution_confirmed",
       "runtimeProfileId": null,
       "schedule": {
         "anchor": "P1",
@@ -4494,7 +4494,7 @@
       "canonicalHome": "HM-07",
       "id": "sakpix:NIGHTMARE SLASHERS Horror Killers Collection/4._PORCELAIN_DOLL",
       "planSchedule": "F!@P1`; bounded hostile route; Mansion nightmare apparition",
-      "provenanceStatus": "review_required",
+      "provenanceStatus": "distribution_confirmed",
       "runtimeProfileId": null,
       "schedule": {
         "anchor": "P1",
@@ -4522,7 +4522,7 @@
       "canonicalHome": "HM-16",
       "id": "sakpix:NIGHTMARE SLASHERS Horror Killers Collection/5._IRON_BUTCHER",
       "planSchedule": "F!@P1`; bounded hostile route; Mansion nightmare apparition",
-      "provenanceStatus": "review_required",
+      "provenanceStatus": "distribution_confirmed",
       "runtimeProfileId": null,
       "schedule": {
         "anchor": "P1",
@@ -4550,7 +4550,7 @@
       "canonicalHome": "HM-04",
       "id": "sakpix:NIGHTMARE SLASHERS Horror Killers Collection/6._CANDLE_WITCH",
       "planSchedule": "F!@P1`; bounded hostile route; Mansion nightmare apparition",
-      "provenanceStatus": "review_required",
+      "provenanceStatus": "distribution_confirmed",
       "runtimeProfileId": null,
       "schedule": {
         "anchor": "P1",
@@ -4578,7 +4578,7 @@
       "canonicalHome": "HM-10",
       "id": "sakpix:NIGHTMARE SLASHERS Horror Killers Collection/7._ASHEN_WOODSMAN",
       "planSchedule": "F!@P4`; bounded hostile route; Mansion nightmare apparition",
-      "provenanceStatus": "review_required",
+      "provenanceStatus": "distribution_confirmed",
       "runtimeProfileId": null,
       "schedule": {
         "anchor": "P4",
@@ -4606,7 +4606,7 @@
       "canonicalHome": "HM-15",
       "id": "sakpix:NIGHTMARE SLASHERS Horror Killers Collection/8._MOONSTALKER",
       "planSchedule": "F!@P5`; bounded hostile route; Mansion nightmare apparition",
-      "provenanceStatus": "review_required",
+      "provenanceStatus": "distribution_confirmed",
       "runtimeProfileId": null,
       "schedule": {
         "anchor": "P5",
@@ -4634,7 +4634,7 @@
       "canonicalHome": "HM-01",
       "id": "sakpix:NIGHTMARE SLASHERS Horror Killers Collection/9._GRAVE_KEEPER",
       "planSchedule": "F!@P1`; bounded hostile route; Mansion nightmare apparition",
-      "provenanceStatus": "review_required",
+      "provenanceStatus": "distribution_confirmed",
       "runtimeProfileId": null,
       "schedule": {
         "anchor": "P1",
@@ -4662,7 +4662,7 @@
       "canonicalHome": "PV-04",
       "id": "sakpix:Premium Enchanted Forest Pixel Art Characters for Fantasy RPGs, Roguelikes & Magical Adventures/11._Vineblade_Dancer",
       "planSchedule": "S@P2`; P2↔Icenter schedule; Primeval or Moonpetal nature resident",
-      "provenanceStatus": "review_required",
+      "provenanceStatus": "distribution_confirmed",
       "runtimeProfileId": null,
       "schedule": {
         "anchor": "P2",
@@ -4690,7 +4690,7 @@
       "canonicalHome": "MP-11",
       "id": "sakpix:Premium Enchanted Forest Pixel Art Characters for Fantasy RPGs, Roguelikes & Magical Adventures/13._Nature_Oracle",
       "planSchedule": "S@P1`; P1↔Icenter schedule; Primeval or Moonpetal nature resident",
-      "provenanceStatus": "review_required",
+      "provenanceStatus": "distribution_confirmed",
       "runtimeProfileId": null,
       "schedule": {
         "anchor": "P1",
@@ -4718,7 +4718,7 @@
       "canonicalHome": "MP-10",
       "id": "sakpix:Premium Enchanted Forest Pixel Art Characters for Fantasy RPGs, Roguelikes & Magical Adventures/3._Moonleaf_Assassin",
       "planSchedule": "S@P2`; P2↔Icenter schedule; Primeval or Moonpetal nature resident",
-      "provenanceStatus": "review_required",
+      "provenanceStatus": "distribution_confirmed",
       "runtimeProfileId": null,
       "schedule": {
         "anchor": "P2",
@@ -4746,7 +4746,7 @@
       "canonicalHome": "PV-04",
       "id": "sakpix:Premium Enchanted Forest Pixel Art Characters for Fantasy RPGs, Roguelikes & Magical Adventures/6._Thornblade_Knight",
       "planSchedule": "S@P1`; P1↔Icenter schedule; Primeval or Moonpetal nature resident",
-      "provenanceStatus": "review_required",
+      "provenanceStatus": "distribution_confirmed",
       "runtimeProfileId": null,
       "schedule": {
         "anchor": "P1",
@@ -4774,7 +4774,7 @@
       "canonicalHome": "MP-02",
       "id": "sakpix:Premium Enchanted Forest Pixel Art Characters for Fantasy RPGs, Roguelikes & Magical Adventures/8._Blossom_Priestess",
       "planSchedule": "S@P1`; P1↔Icenter schedule; Primeval or Moonpetal nature resident",
-      "provenanceStatus": "review_required",
+      "provenanceStatus": "distribution_confirmed",
       "runtimeProfileId": null,
       "schedule": {
         "anchor": "P1",
@@ -4802,7 +4802,7 @@
       "canonicalHome": "PV-09",
       "id": "sakpix:Premium Enchanted Forest Pixel Art Characters for Fantasy RPGs, Roguelikes & Magical Adventures/9._Butterfly_Witch",
       "planSchedule": "S@P1`; P1↔Icenter schedule; Primeval or Moonpetal nature resident",
-      "provenanceStatus": "review_required",
+      "provenanceStatus": "distribution_confirmed",
       "runtimeProfileId": null,
       "schedule": {
         "anchor": "P1",
@@ -4830,7 +4830,7 @@
       "canonicalHome": "HM-04",
       "id": "sakpix:Psychological Horror Dungeon Characters Pack/1._THE_CHAINED_EXECUTIONER_MALE",
       "planSchedule": "F!@P2`; bounded hostile route; Mansion psychological apparition or captive",
-      "provenanceStatus": "review_required",
+      "provenanceStatus": "distribution_confirmed",
       "runtimeProfileId": null,
       "schedule": {
         "anchor": "P2",
@@ -4858,7 +4858,7 @@
       "canonicalHome": "HM-06",
       "id": "sakpix:Psychological Horror Dungeon Characters Pack/10._THE_BLOOD_ORACLE_FEMALE",
       "planSchedule": "F!@P3`; bounded hostile route; Mansion psychological apparition or captive",
-      "provenanceStatus": "review_required",
+      "provenanceStatus": "distribution_confirmed",
       "runtimeProfileId": null,
       "schedule": {
         "anchor": "P3",
@@ -4886,7 +4886,7 @@
       "canonicalHome": "HM-11",
       "id": "sakpix:Psychological Horror Dungeon Characters Pack/2._THE_CANDLE_PRIESTESS_FEMALE",
       "planSchedule": "F!@P1`; bounded hostile route; Mansion psychological apparition or captive",
-      "provenanceStatus": "review_required",
+      "provenanceStatus": "distribution_confirmed",
       "runtimeProfileId": null,
       "schedule": {
         "anchor": "P1",
@@ -4914,7 +4914,7 @@
       "canonicalHome": "HM-12",
       "id": "sakpix:Psychological Horror Dungeon Characters Pack/3._THE_BONE_SURGEON_MALE",
       "planSchedule": "F!-B@P2`; bounded hostile route; Mansion psychological apparition or captive",
-      "provenanceStatus": "review_required",
+      "provenanceStatus": "distribution_confirmed",
       "runtimeProfileId": null,
       "schedule": {
         "anchor": "P2",
@@ -4942,7 +4942,7 @@
       "canonicalHome": "HM-11",
       "id": "sakpix:Psychological Horror Dungeon Characters Pack/4._THE_WEEPING_NUN_FEMALE",
       "planSchedule": "F!@P2`; bounded hostile route; Mansion psychological apparition or captive",
-      "provenanceStatus": "review_required",
+      "provenanceStatus": "distribution_confirmed",
       "runtimeProfileId": null,
       "schedule": {
         "anchor": "P2",
@@ -4970,7 +4970,7 @@
       "canonicalHome": "HM-12",
       "id": "sakpix:Psychological Horror Dungeon Characters Pack/5._THE_DUNGEON_JAILER_MALE",
       "planSchedule": "F!-B@P3`; bounded hostile route; Mansion psychological apparition or captive",
-      "provenanceStatus": "review_required",
+      "provenanceStatus": "distribution_confirmed",
       "runtimeProfileId": null,
       "schedule": {
         "anchor": "P3",
@@ -4998,7 +4998,7 @@
       "canonicalHome": "HM-12",
       "id": "sakpix:Psychological Horror Dungeon Characters Pack/6._THE_SPIDER_CULTIST_FEMALE",
       "planSchedule": "F!-B@P4`; bounded hostile route; Mansion psychological apparition or captive",
-      "provenanceStatus": "review_required",
+      "provenanceStatus": "distribution_confirmed",
       "runtimeProfileId": null,
       "schedule": {
         "anchor": "P4",
@@ -5026,7 +5026,7 @@
       "canonicalHome": "HM-14",
       "id": "sakpix:Psychological Horror Dungeon Characters Pack/7._THE_ASHEN_KNIGHT_MALE",
       "planSchedule": "F!@P1`; bounded hostile route; Mansion psychological apparition or captive",
-      "provenanceStatus": "review_required",
+      "provenanceStatus": "distribution_confirmed",
       "runtimeProfileId": null,
       "schedule": {
         "anchor": "P1",
@@ -5054,7 +5054,7 @@
       "canonicalHome": "HM-15",
       "id": "sakpix:Psychological Horror Dungeon Characters Pack/8._THE_MIRROR_WITCH_FEMALE",
       "planSchedule": "F!@P6`; bounded hostile route; Mansion psychological apparition or captive",
-      "provenanceStatus": "review_required",
+      "provenanceStatus": "distribution_confirmed",
       "runtimeProfileId": null,
       "schedule": {
         "anchor": "P6",
@@ -5082,7 +5082,7 @@
       "canonicalHome": "HM-12",
       "id": "sakpix:Psychological Horror Dungeon Characters Pack/9._THE_MAD_PRISONER_MALE",
       "planSchedule": "F@P2`; P2↔Icenter schedule; Mansion psychological apparition or captive",
-      "provenanceStatus": "review_required",
+      "provenanceStatus": "distribution_confirmed",
       "runtimeProfileId": null,
       "schedule": {
         "anchor": "P2",
@@ -5110,7 +5110,7 @@
       "canonicalHome": "HE-11",
       "id": "sakpix:RING LEGENDS — World Boxing Heroes Collection/BRONX_BULL",
       "planSchedule": "S-A@P1`; P1↔Icenter schedule; Helios recreation-stack boxing athlete",
-      "provenanceStatus": "review_required",
+      "provenanceStatus": "distribution_confirmed",
       "runtimeProfileId": null,
       "schedule": {
         "anchor": "P1",
@@ -5138,7 +5138,7 @@
       "canonicalHome": "HE-11",
       "id": "sakpix:RING LEGENDS — World Boxing Heroes Collection/CHAMPION_TITAN",
       "planSchedule": "S-A@P2`; P2↔Icenter schedule; Helios recreation-stack boxing athlete",
-      "provenanceStatus": "review_required",
+      "provenanceStatus": "distribution_confirmed",
       "runtimeProfileId": null,
       "schedule": {
         "anchor": "P2",
@@ -5166,7 +5166,7 @@
       "canonicalHome": "HE-11",
       "id": "sakpix:RING LEGENDS — World Boxing Heroes Collection/CRIMSON_HAMMER",
       "planSchedule": "S-A@P3`; P3↔Icenter schedule; Helios recreation-stack boxing athlete",
-      "provenanceStatus": "review_required",
+      "provenanceStatus": "distribution_confirmed",
       "runtimeProfileId": null,
       "schedule": {
         "anchor": "P3",
@@ -5194,7 +5194,7 @@
       "canonicalHome": "HE-11",
       "id": "sakpix:RING LEGENDS — World Boxing Heroes Collection/EL_TORNADO",
       "planSchedule": "S-A@P4`; P4↔Icenter schedule; Helios recreation-stack boxing athlete",
-      "provenanceStatus": "review_required",
+      "provenanceStatus": "distribution_confirmed",
       "runtimeProfileId": null,
       "schedule": {
         "anchor": "P4",
@@ -5222,7 +5222,7 @@
       "canonicalHome": "HE-11",
       "id": "sakpix:RING LEGENDS — World Boxing Heroes Collection/IRON_FIST",
       "planSchedule": "S-A@P5`; P5↔Icenter schedule; Helios recreation-stack boxing athlete",
-      "provenanceStatus": "review_required",
+      "provenanceStatus": "distribution_confirmed",
       "runtimeProfileId": null,
       "schedule": {
         "anchor": "P5",
@@ -5250,7 +5250,7 @@
       "canonicalHome": "HE-11",
       "id": "sakpix:RING LEGENDS — World Boxing Heroes Collection/KING_JAB",
       "planSchedule": "S-A@P6`; P6↔Icenter schedule; Helios recreation-stack boxing athlete",
-      "provenanceStatus": "review_required",
+      "provenanceStatus": "distribution_confirmed",
       "runtimeProfileId": null,
       "schedule": {
         "anchor": "P6",
@@ -5278,7 +5278,7 @@
       "canonicalHome": "HE-11",
       "id": "sakpix:RING LEGENDS — World Boxing Heroes Collection/LIGHTNING_LEE",
       "planSchedule": "S-B@P1`; P1↔Icenter schedule; Helios recreation-stack boxing athlete",
-      "provenanceStatus": "review_required",
+      "provenanceStatus": "distribution_confirmed",
       "runtimeProfileId": null,
       "schedule": {
         "anchor": "P1",
@@ -5306,7 +5306,7 @@
       "canonicalHome": "HE-11",
       "id": "sakpix:RING LEGENDS — World Boxing Heroes Collection/PHANTOM_JAB",
       "planSchedule": "S-B@P2`; P2↔Icenter schedule; Helios recreation-stack boxing athlete",
-      "provenanceStatus": "review_required",
+      "provenanceStatus": "distribution_confirmed",
       "runtimeProfileId": null,
       "schedule": {
         "anchor": "P2",
@@ -5334,7 +5334,7 @@
       "canonicalHome": "HE-11",
       "id": "sakpix:RING LEGENDS — World Boxing Heroes Collection/ROOKIE_ROCKY_FREE_CHARACTER",
       "planSchedule": "S-B@P3`; P3↔Icenter schedule; Helios recreation-stack boxing athlete",
-      "provenanceStatus": "review_required",
+      "provenanceStatus": "distribution_confirmed",
       "runtimeProfileId": null,
       "schedule": {
         "anchor": "P3",
@@ -5362,7 +5362,7 @@
       "canonicalHome": "HE-11",
       "id": "sakpix:RING LEGENDS — World Boxing Heroes Collection/SILVER_WOLF",
       "planSchedule": "S-B@P4`; P4↔Icenter schedule; Helios recreation-stack boxing athlete",
-      "provenanceStatus": "review_required",
+      "provenanceStatus": "distribution_confirmed",
       "runtimeProfileId": null,
       "schedule": {
         "anchor": "P4",
@@ -5390,7 +5390,7 @@
       "canonicalHome": "HE-11",
       "id": "sakpix:RING LEGENDS — World Boxing Heroes Collection/STORM_BREAKER",
       "planSchedule": "S-B@P5`; P5↔Icenter schedule; Helios recreation-stack boxing athlete",
-      "provenanceStatus": "review_required",
+      "provenanceStatus": "distribution_confirmed",
       "runtimeProfileId": null,
       "schedule": {
         "anchor": "P5",
@@ -5418,7 +5418,7 @@
       "canonicalHome": "AS-01",
       "id": "sakpix:SCI-FI LEGENDS — FUTURISTIC CHARACTERS PACK/1._Galactic_Vanguard_Male",
       "planSchedule": "S@P1`; P1↔Icenter schedule; Asterion crew, specialist, or security actor",
-      "provenanceStatus": "review_required",
+      "provenanceStatus": "distribution_confirmed",
       "runtimeProfileId": null,
       "schedule": {
         "anchor": "P1",
@@ -5446,7 +5446,7 @@
       "canonicalHome": "AS-10",
       "id": "sakpix:SCI-FI LEGENDS — FUTURISTIC CHARACTERS PACK/10._Astral_Blade_Dancer_Female",
       "planSchedule": "S@P2`; P2↔Icenter schedule; Asterion crew, specialist, or security actor",
-      "provenanceStatus": "review_required",
+      "provenanceStatus": "distribution_confirmed",
       "runtimeProfileId": null,
       "schedule": {
         "anchor": "P2",
@@ -5474,7 +5474,7 @@
       "canonicalHome": "AS-03",
       "id": "sakpix:SCI-FI LEGENDS — FUTURISTIC CHARACTERS PACK/2._Void_Ranger_Male",
       "planSchedule": "S@P1`; P1↔Icenter schedule; Asterion crew, specialist, or security actor",
-      "provenanceStatus": "review_required",
+      "provenanceStatus": "distribution_confirmed",
       "runtimeProfileId": null,
       "schedule": {
         "anchor": "P1",
@@ -5502,7 +5502,7 @@
       "canonicalHome": "AS-06",
       "id": "sakpix:SCI-FI LEGENDS — FUTURISTIC CHARACTERS PACK/3._Quantum_Engineer_Male",
       "planSchedule": "S@P1`; P1↔Icenter schedule; Asterion crew, specialist, or security actor",
-      "provenanceStatus": "review_required",
+      "provenanceStatus": "distribution_confirmed",
       "runtimeProfileId": null,
       "schedule": {
         "anchor": "P1",
@@ -5530,7 +5530,7 @@
       "canonicalHome": "AS-02",
       "id": "sakpix:SCI-FI LEGENDS — FUTURISTIC CHARACTERS PACK/4._Starborn_Mercenary_Male",
       "planSchedule": "F!@P1`; bounded hostile route; Asterion crew, specialist, or security actor",
-      "provenanceStatus": "review_required",
+      "provenanceStatus": "distribution_confirmed",
       "runtimeProfileId": null,
       "schedule": {
         "anchor": "P1",
@@ -5558,7 +5558,7 @@
       "canonicalHome": "AS-07",
       "id": "sakpix:SCI-FI LEGENDS — FUTURISTIC CHARACTERS PACK/5._Solar_Templar_Male",
       "planSchedule": "S@P1`; P1↔Icenter schedule; Asterion crew, specialist, or security actor",
-      "provenanceStatus": "review_required",
+      "provenanceStatus": "distribution_confirmed",
       "runtimeProfileId": null,
       "schedule": {
         "anchor": "P1",
@@ -5586,7 +5586,7 @@
       "canonicalHome": "AS-08",
       "id": "sakpix:SCI-FI LEGENDS — FUTURISTIC CHARACTERS PACK/6._Nova_Valkyrie_Female",
       "planSchedule": "S@P1`; P1↔Icenter schedule; Asterion crew, specialist, or security actor",
-      "provenanceStatus": "review_required",
+      "provenanceStatus": "distribution_confirmed",
       "runtimeProfileId": null,
       "schedule": {
         "anchor": "P1",
@@ -5614,7 +5614,7 @@
       "canonicalHome": "AS-10",
       "id": "sakpix:SCI-FI LEGENDS — FUTURISTIC CHARACTERS PACK/7._Stellar_Oracle_Female",
       "planSchedule": "S@P1`; P1↔Icenter schedule; Asterion crew, specialist, or security actor",
-      "provenanceStatus": "review_required",
+      "provenanceStatus": "distribution_confirmed",
       "runtimeProfileId": null,
       "schedule": {
         "anchor": "P1",
@@ -5642,7 +5642,7 @@
       "canonicalHome": "AS-10",
       "id": "sakpix:SCI-FI LEGENDS — FUTURISTIC CHARACTERS PACK/8._Eclipse_Sniper_Female",
       "planSchedule": "F@P1`; P1↔Icenter schedule; Asterion crew, specialist, or security actor",
-      "provenanceStatus": "review_required",
+      "provenanceStatus": "distribution_confirmed",
       "runtimeProfileId": null,
       "schedule": {
         "anchor": "P1",
@@ -5670,7 +5670,7 @@
       "canonicalHome": "AS-11",
       "id": "sakpix:SCI-FI LEGENDS — FUTURISTIC CHARACTERS PACK/9._Nebula_Mechanic_Female",
       "planSchedule": "S@P1`; P1↔Icenter schedule; Asterion crew, specialist, or security actor",
-      "provenanceStatus": "review_required",
+      "provenanceStatus": "distribution_confirmed",
       "runtimeProfileId": null,
       "schedule": {
         "anchor": "P1",
@@ -5698,7 +5698,7 @@
       "canonicalHome": "SF-07",
       "id": "sakpix:STEAMPUNK EMPIRE — CLOCKWORK HEROES COLLECTION/1._IRON_BARON_Male",
       "planSchedule": "F!@P1`; bounded hostile route; Steamforge citizen, engineer, or ruling actor",
-      "provenanceStatus": "review_required",
+      "provenanceStatus": "distribution_confirmed",
       "runtimeProfileId": null,
       "schedule": {
         "anchor": "P1",
@@ -5726,7 +5726,7 @@
       "canonicalHome": "SF-01",
       "id": "sakpix:STEAMPUNK EMPIRE — CLOCKWORK HEROES COLLECTION/10._Sky_Navigator",
       "planSchedule": "S@P2`; P2↔Icenter schedule; Steamforge citizen, engineer, or ruling actor",
-      "provenanceStatus": "review_required",
+      "provenanceStatus": "distribution_confirmed",
       "runtimeProfileId": null,
       "schedule": {
         "anchor": "P2",
@@ -5754,7 +5754,7 @@
       "canonicalHome": "SF-04",
       "id": "sakpix:STEAMPUNK EMPIRE — CLOCKWORK HEROES COLLECTION/2._STEAM_KNIGHT_Male",
       "planSchedule": "S@P1`; P1↔Icenter schedule; Steamforge citizen, engineer, or ruling actor",
-      "provenanceStatus": "review_required",
+      "provenanceStatus": "distribution_confirmed",
       "runtimeProfileId": null,
       "schedule": {
         "anchor": "P1",
@@ -5782,7 +5782,7 @@
       "canonicalHome": "SF-03",
       "id": "sakpix:STEAMPUNK EMPIRE — CLOCKWORK HEROES COLLECTION/3._CLOCKWORK_ENGINEER_Male",
       "planSchedule": "S@P1`; P1↔Icenter schedule; Steamforge citizen, engineer, or ruling actor",
-      "provenanceStatus": "review_required",
+      "provenanceStatus": "distribution_confirmed",
       "runtimeProfileId": null,
       "schedule": {
         "anchor": "P1",
@@ -5810,7 +5810,7 @@
       "canonicalHome": "SF-01",
       "id": "sakpix:STEAMPUNK EMPIRE — CLOCKWORK HEROES COLLECTION/4._AIRSHIP_CAPTAIN_Male",
       "planSchedule": "S@P1`; P1↔Icenter schedule; Steamforge citizen, engineer, or ruling actor",
-      "provenanceStatus": "review_required",
+      "provenanceStatus": "distribution_confirmed",
       "runtimeProfileId": null,
       "schedule": {
         "anchor": "P1",
@@ -5838,7 +5838,7 @@
       "canonicalHome": "SF-04",
       "id": "sakpix:STEAMPUNK EMPIRE — CLOCKWORK HEROES COLLECTION/5._TESLA_GUNNER_Male",
       "planSchedule": "F@P1`; P1↔Icenter schedule; Steamforge citizen, engineer, or ruling actor",
-      "provenanceStatus": "review_required",
+      "provenanceStatus": "distribution_confirmed",
       "runtimeProfileId": null,
       "schedule": {
         "anchor": "P1",
@@ -5866,7 +5866,7 @@
       "canonicalHome": "SF-10",
       "id": "sakpix:STEAMPUNK EMPIRE — CLOCKWORK HEROES COLLECTION/6._STEAM_DUCHESS_Female",
       "planSchedule": "S@P1`; P1↔Icenter schedule; Steamforge citizen, engineer, or ruling actor",
-      "provenanceStatus": "review_required",
+      "provenanceStatus": "distribution_confirmed",
       "runtimeProfileId": null,
       "schedule": {
         "anchor": "P1",
@@ -5894,7 +5894,7 @@
       "canonicalHome": "SF-08",
       "id": "sakpix:STEAMPUNK EMPIRE — CLOCKWORK HEROES COLLECTION/7._CLOCKWORK_HUNTRESS_Female",
       "planSchedule": "S@P1`; P1↔Icenter schedule; Steamforge citizen, engineer, or ruling actor",
-      "provenanceStatus": "review_required",
+      "provenanceStatus": "distribution_confirmed",
       "runtimeProfileId": null,
       "schedule": {
         "anchor": "P1",
@@ -5922,7 +5922,7 @@
       "canonicalHome": "SF-09",
       "id": "sakpix:STEAMPUNK EMPIRE — CLOCKWORK HEROES COLLECTION/8._GEARBLADE_ASSASSIN",
       "planSchedule": "S@P1`; P1↔Icenter schedule; Steamforge citizen, engineer, or ruling actor",
-      "provenanceStatus": "review_required",
+      "provenanceStatus": "distribution_confirmed",
       "runtimeProfileId": null,
       "schedule": {
         "anchor": "P1",
@@ -5950,7 +5950,7 @@
       "canonicalHome": "SF-06",
       "id": "sakpix:STEAMPUNK EMPIRE — CLOCKWORK HEROES COLLECTION/9._ARC_REACTOR_MAGE",
       "planSchedule": "S@P1`; P1↔Icenter schedule; Steamforge citizen, engineer, or ruling actor",
-      "provenanceStatus": "review_required",
+      "provenanceStatus": "distribution_confirmed",
       "runtimeProfileId": null,
       "schedule": {
         "anchor": "P1",
@@ -5978,7 +5978,7 @@
       "canonicalHome": "SF-06",
       "id": "sakpix:STEAMPUNK EMPIRE — CLOCKWORK HEROES COLLECTION/Young_Apprentice_Engineer_Free_Character",
       "planSchedule": "S@P2`; P2↔Icenter schedule; Steamforge citizen, engineer, or ruling actor",
-      "provenanceStatus": "review_required",
+      "provenanceStatus": "distribution_confirmed",
       "runtimeProfileId": null,
       "schedule": {
         "anchor": "P2",
@@ -6006,7 +6006,7 @@
       "canonicalHome": "HE-11",
       "id": "sakpix:WORLD CHAMPIONSHIP HEROES Football Stars Collection/1._Rookie_Striker_FREE",
       "planSchedule": "S-B@P6`; P6↔Icenter schedule; Helios recreation-stack football athlete",
-      "provenanceStatus": "review_required",
+      "provenanceStatus": "distribution_confirmed",
       "runtimeProfileId": null,
       "schedule": {
         "anchor": "P6",
@@ -6034,7 +6034,7 @@
       "canonicalHome": "HE-11",
       "id": "sakpix:WORLD CHAMPIONSHIP HEROES Football Stars Collection/10._Free_Kick_Specialist",
       "planSchedule": "S-D@P3`; P3↔Icenter schedule; Helios recreation-stack football athlete",
-      "provenanceStatus": "review_required",
+      "provenanceStatus": "distribution_confirmed",
       "runtimeProfileId": null,
       "schedule": {
         "anchor": "P3",
@@ -6062,7 +6062,7 @@
       "canonicalHome": "HE-11",
       "id": "sakpix:WORLD CHAMPIONSHIP HEROES Football Stars Collection/11._Championship_MVP",
       "planSchedule": "S-D@P4`; P4↔Icenter schedule; Helios recreation-stack football athlete",
-      "provenanceStatus": "review_required",
+      "provenanceStatus": "distribution_confirmed",
       "runtimeProfileId": null,
       "schedule": {
         "anchor": "P4",
@@ -6090,7 +6090,7 @@
       "canonicalHome": "HE-11",
       "id": "sakpix:WORLD CHAMPIONSHIP HEROES Football Stars Collection/2._Golden_Captain",
       "planSchedule": "S-C@P1`; P1↔Icenter schedule; Helios recreation-stack football athlete",
-      "provenanceStatus": "review_required",
+      "provenanceStatus": "distribution_confirmed",
       "runtimeProfileId": null,
       "schedule": {
         "anchor": "P1",
@@ -6118,7 +6118,7 @@
       "canonicalHome": "HE-11",
       "id": "sakpix:WORLD CHAMPIONSHIP HEROES Football Stars Collection/3._Speed_Winger",
       "planSchedule": "S-C@P2`; P2↔Icenter schedule; Helios recreation-stack football athlete",
-      "provenanceStatus": "review_required",
+      "provenanceStatus": "distribution_confirmed",
       "runtimeProfileId": null,
       "schedule": {
         "anchor": "P2",
@@ -6146,7 +6146,7 @@
       "canonicalHome": "HE-11",
       "id": "sakpix:WORLD CHAMPIONSHIP HEROES Football Stars Collection/4._Master_Playmaker",
       "planSchedule": "S-C@P3`; P3↔Icenter schedule; Helios recreation-stack football athlete",
-      "provenanceStatus": "review_required",
+      "provenanceStatus": "distribution_confirmed",
       "runtimeProfileId": null,
       "schedule": {
         "anchor": "P3",
@@ -6174,7 +6174,7 @@
       "canonicalHome": "HE-11",
       "id": "sakpix:WORLD CHAMPIONSHIP HEROES Football Stars Collection/5._Iron_Goalkeeper",
       "planSchedule": "S-C@P4`; P4↔Icenter schedule; Helios recreation-stack football athlete",
-      "provenanceStatus": "review_required",
+      "provenanceStatus": "distribution_confirmed",
       "runtimeProfileId": null,
       "schedule": {
         "anchor": "P4",
@@ -6202,7 +6202,7 @@
       "canonicalHome": "HE-11",
       "id": "sakpix:WORLD CHAMPIONSHIP HEROES Football Stars Collection/6._Defensive_Wall",
       "planSchedule": "S-C@P5`; P5↔Icenter schedule; Helios recreation-stack football athlete",
-      "provenanceStatus": "review_required",
+      "provenanceStatus": "distribution_confirmed",
       "runtimeProfileId": null,
       "schedule": {
         "anchor": "P5",
@@ -6230,7 +6230,7 @@
       "canonicalHome": "HE-11",
       "id": "sakpix:WORLD CHAMPIONSHIP HEROES Football Stars Collection/7._Bicycle_Kick_Champion",
       "planSchedule": "S-C@P6`; P6↔Icenter schedule; Helios recreation-stack football athlete",
-      "provenanceStatus": "review_required",
+      "provenanceStatus": "distribution_confirmed",
       "runtimeProfileId": null,
       "schedule": {
         "anchor": "P6",
@@ -6258,7 +6258,7 @@
       "canonicalHome": "HE-11",
       "id": "sakpix:WORLD CHAMPIONSHIP HEROES Football Stars Collection/8._International_Superstar",
       "planSchedule": "S-D@P1`; P1↔Icenter schedule; Helios recreation-stack football athlete",
-      "provenanceStatus": "review_required",
+      "provenanceStatus": "distribution_confirmed",
       "runtimeProfileId": null,
       "schedule": {
         "anchor": "P1",
@@ -6286,7 +6286,7 @@
       "canonicalHome": "HE-11",
       "id": "sakpix:WORLD CHAMPIONSHIP HEROES Football Stars Collection/9._Power_Forward",
       "planSchedule": "S-D@P2`; P2↔Icenter schedule; Helios recreation-stack football athlete",
-      "provenanceStatus": "review_required",
+      "provenanceStatus": "distribution_confirmed",
       "runtimeProfileId": null,
       "schedule": {
         "anchor": "P2",
@@ -6314,7 +6314,7 @@
       "canonicalHome": "WF-02",
       "id": "sakpix:Warfront Elite Squad- Modern Military Operators Collection/1._SQUAD_LEADER",
       "planSchedule": "F@P1`; P1↔Icenter schedule; Warfront operator or evacuation specialist",
-      "provenanceStatus": "review_required",
+      "provenanceStatus": "distribution_confirmed",
       "runtimeProfileId": null,
       "schedule": {
         "anchor": "P1",
@@ -6342,7 +6342,7 @@
       "canonicalHome": "WF-05",
       "id": "sakpix:Warfront Elite Squad- Modern Military Operators Collection/10._URBAN_ASSAULT_SPECIALIST",
       "planSchedule": "F@P1`; P1↔Icenter schedule; Warfront operator or evacuation specialist",
-      "provenanceStatus": "review_required",
+      "provenanceStatus": "distribution_confirmed",
       "runtimeProfileId": null,
       "schedule": {
         "anchor": "P1",
@@ -6370,7 +6370,7 @@
       "canonicalHome": "WF-01",
       "id": "sakpix:Warfront Elite Squad- Modern Military Operators Collection/11._FREE_CHARACTER_ROOKIE_RECRUIT",
       "planSchedule": "F@P1`; P1↔Icenter schedule; Warfront operator or evacuation specialist",
-      "provenanceStatus": "review_required",
+      "provenanceStatus": "distribution_confirmed",
       "runtimeProfileId": null,
       "schedule": {
         "anchor": "P1",
@@ -6398,7 +6398,7 @@
       "canonicalHome": "WF-09",
       "id": "sakpix:Warfront Elite Squad- Modern Military Operators Collection/2._HEAVY_GUNNER",
       "planSchedule": "S@P1`; P1↔Icenter schedule; Warfront operator or evacuation specialist",
-      "provenanceStatus": "review_required",
+      "provenanceStatus": "distribution_confirmed",
       "runtimeProfileId": null,
       "schedule": {
         "anchor": "P1",
@@ -6426,7 +6426,7 @@
       "canonicalHome": "WF-04",
       "id": "sakpix:Warfront Elite Squad- Modern Military Operators Collection/3._RECON_SCOUT",
       "planSchedule": "F@P1`; P1↔Icenter schedule; Warfront operator or evacuation specialist",
-      "provenanceStatus": "review_required",
+      "provenanceStatus": "distribution_confirmed",
       "runtimeProfileId": null,
       "schedule": {
         "anchor": "P1",
@@ -6454,7 +6454,7 @@
       "canonicalHome": "WF-05",
       "id": "sakpix:Warfront Elite Squad- Modern Military Operators Collection/4._COMBAT_MEDIC",
       "planSchedule": "S@P1`; P1↔Icenter schedule; Warfront operator or evacuation specialist",
-      "provenanceStatus": "review_required",
+      "provenanceStatus": "distribution_confirmed",
       "runtimeProfileId": null,
       "schedule": {
         "anchor": "P1",
@@ -6482,7 +6482,7 @@
       "canonicalHome": "WF-08",
       "id": "sakpix:Warfront Elite Squad- Modern Military Operators Collection/5._DEMOLITIONS_EXPERT",
       "planSchedule": "F@P1`; P1↔Icenter schedule; Warfront operator or evacuation specialist",
-      "provenanceStatus": "review_required",
+      "provenanceStatus": "distribution_confirmed",
       "runtimeProfileId": null,
       "schedule": {
         "anchor": "P1",
@@ -6510,7 +6510,7 @@
       "canonicalHome": "WF-03",
       "id": "sakpix:Warfront Elite Squad- Modern Military Operators Collection/6._FEMALE_SQUAD_COMMANDER",
       "planSchedule": "S@P1`; P1↔Icenter schedule; Warfront operator or evacuation specialist",
-      "provenanceStatus": "review_required",
+      "provenanceStatus": "distribution_confirmed",
       "runtimeProfileId": null,
       "schedule": {
         "anchor": "P1",
@@ -6538,7 +6538,7 @@
       "canonicalHome": "WF-04",
       "id": "sakpix:Warfront Elite Squad- Modern Military Operators Collection/7._SNIPER_SPECIALIST",
       "planSchedule": "F@P2`; P2↔Icenter schedule; Warfront operator or evacuation specialist",
-      "provenanceStatus": "review_required",
+      "provenanceStatus": "distribution_confirmed",
       "runtimeProfileId": null,
       "schedule": {
         "anchor": "P2",
@@ -6566,7 +6566,7 @@
       "canonicalHome": "WF-03",
       "id": "sakpix:Warfront Elite Squad- Modern Military Operators Collection/8._COMMUNICATIONS_OFFICER",
       "planSchedule": "S@P2`; P2↔Icenter schedule; Warfront operator or evacuation specialist",
-      "provenanceStatus": "review_required",
+      "provenanceStatus": "distribution_confirmed",
       "runtimeProfileId": null,
       "schedule": {
         "anchor": "P2",
@@ -6594,7 +6594,7 @@
       "canonicalHome": "WF-05",
       "id": "sakpix:Warfront Elite Squad- Modern Military Operators Collection/9._COMBAT_ENGINEER",
       "planSchedule": "S@P2`; P2↔Icenter schedule; Warfront operator or evacuation specialist",
-      "provenanceStatus": "review_required",
+      "provenanceStatus": "distribution_confirmed",
       "runtimeProfileId": null,
       "schedule": {
         "anchor": "P2",
@@ -6622,7 +6622,7 @@
       "canonicalHome": "AF-01",
       "id": "sakpix:☢️ WASTELAND LEGENDS/1._SCRAP_KID_FREE",
       "planSchedule": "S@P1`; P1↔Icenter schedule; Ashfall survivor, raider, or civic actor",
-      "provenanceStatus": "review_required",
+      "provenanceStatus": "distribution_confirmed",
       "runtimeProfileId": null,
       "schedule": {
         "anchor": "P1",
@@ -6650,7 +6650,7 @@
       "canonicalHome": "AF-04",
       "id": "sakpix:☢️ WASTELAND LEGENDS/10._SAND_VIPER",
       "planSchedule": "F!@P2`; bounded hostile route; Ashfall survivor, raider, or civic actor",
-      "provenanceStatus": "review_required",
+      "provenanceStatus": "distribution_confirmed",
       "runtimeProfileId": null,
       "schedule": {
         "anchor": "P2",
@@ -6678,7 +6678,7 @@
       "canonicalHome": "AF-07",
       "id": "sakpix:☢️ WASTELAND LEGENDS/11._WASTELAND_EMPEROR",
       "planSchedule": "F!-A@P1`; bounded hostile route; Ashfall survivor, raider, or civic actor",
-      "provenanceStatus": "review_required",
+      "provenanceStatus": "distribution_confirmed",
       "runtimeProfileId": null,
       "schedule": {
         "anchor": "P1",
@@ -6706,7 +6706,7 @@
       "canonicalHome": "AF-02",
       "id": "sakpix:☢️ WASTELAND LEGENDS/2._ROAD_KING",
       "planSchedule": "S@P1`; P1↔Icenter schedule; Ashfall survivor, raider, or civic actor",
-      "provenanceStatus": "review_required",
+      "provenanceStatus": "distribution_confirmed",
       "runtimeProfileId": null,
       "schedule": {
         "anchor": "P1",
@@ -6734,7 +6734,7 @@
       "canonicalHome": "AF-02",
       "id": "sakpix:☢️ WASTELAND LEGENDS/3._JUNKER_MECHANIC",
       "planSchedule": "S@P2`; P2↔Icenter schedule; Ashfall survivor, raider, or civic actor",
-      "provenanceStatus": "review_required",
+      "provenanceStatus": "distribution_confirmed",
       "runtimeProfileId": null,
       "schedule": {
         "anchor": "P2",
@@ -6762,7 +6762,7 @@
       "canonicalHome": "AF-01",
       "id": "sakpix:☢️ WASTELAND LEGENDS/4._DUST_HUNTER",
       "planSchedule": "S@P2`; P2↔Icenter schedule; Ashfall survivor, raider, or civic actor",
-      "provenanceStatus": "review_required",
+      "provenanceStatus": "distribution_confirmed",
       "runtimeProfileId": null,
       "schedule": {
         "anchor": "P2",
@@ -6790,7 +6790,7 @@
       "canonicalHome": "AF-04",
       "id": "sakpix:☢️ WASTELAND LEGENDS/5._BONE_REAPER",
       "planSchedule": "F!@P1`; bounded hostile route; Ashfall survivor, raider, or civic actor",
-      "provenanceStatus": "review_required",
+      "provenanceStatus": "distribution_confirmed",
       "runtimeProfileId": null,
       "schedule": {
         "anchor": "P1",
@@ -6818,7 +6818,7 @@
       "canonicalHome": "AF-02",
       "id": "sakpix:☢️ WASTELAND LEGENDS/6._DESERT_GUNNER",
       "planSchedule": "S@P3`; P3↔Icenter schedule; Ashfall survivor, raider, or civic actor",
-      "provenanceStatus": "review_required",
+      "provenanceStatus": "distribution_confirmed",
       "runtimeProfileId": null,
       "schedule": {
         "anchor": "P3",
@@ -6846,7 +6846,7 @@
       "canonicalHome": "AF-11",
       "id": "sakpix:☢️ WASTELAND LEGENDS/7._THUNDER_RIDER",
       "planSchedule": "S@P1`; P1↔Icenter schedule; Ashfall survivor, raider, or civic actor",
-      "provenanceStatus": "review_required",
+      "provenanceStatus": "distribution_confirmed",
       "runtimeProfileId": null,
       "schedule": {
         "anchor": "P1",
@@ -6874,7 +6874,7 @@
       "canonicalHome": "AF-03",
       "id": "sakpix:☢️ WASTELAND LEGENDS/8._TOXIC_SHAMAN",
       "planSchedule": "S@P1`; P1↔Icenter schedule; Ashfall survivor, raider, or civic actor",
-      "provenanceStatus": "review_required",
+      "provenanceStatus": "distribution_confirmed",
       "runtimeProfileId": null,
       "schedule": {
         "anchor": "P1",
@@ -6902,7 +6902,7 @@
       "canonicalHome": "AF-05",
       "id": "sakpix:☢️ WASTELAND LEGENDS/9._IRON_SENTINEL",
       "planSchedule": "S@P1`; P1↔Icenter schedule; Ashfall survivor, raider, or civic actor",
-      "provenanceStatus": "review_required",
+      "provenanceStatus": "distribution_confirmed",
       "runtimeProfileId": null,
       "schedule": {
         "anchor": "P1",
@@ -6930,7 +6930,7 @@
       "canonicalHome": "PL-01",
       "id": "sakpix:🌴 SUMMER BEACH GIRLS/1._Lifeguard_Captain",
       "planSchedule": "S@P1`; P1↔Icenter schedule; Pelagic surface resident or visitor",
-      "provenanceStatus": "review_required",
+      "provenanceStatus": "distribution_confirmed",
       "runtimeProfileId": null,
       "schedule": {
         "anchor": "P1",
@@ -6958,7 +6958,7 @@
       "canonicalHome": "PL-02",
       "id": "sakpix:🌴 SUMMER BEACH GIRLS/10._Resort_Adventurer",
       "planSchedule": "S@P3`; P3↔Icenter schedule; Pelagic surface resident or visitor",
-      "provenanceStatus": "review_required",
+      "provenanceStatus": "distribution_confirmed",
       "runtimeProfileId": null,
       "schedule": {
         "anchor": "P3",
@@ -6986,7 +6986,7 @@
       "canonicalHome": "PL-01",
       "id": "sakpix:🌴 SUMMER BEACH GIRLS/11._FREE_CHARACTER_Coconut_Girl",
       "planSchedule": "S@P4`; P4↔Icenter schedule; Pelagic surface resident or visitor",
-      "provenanceStatus": "review_required",
+      "provenanceStatus": "distribution_confirmed",
       "runtimeProfileId": null,
       "schedule": {
         "anchor": "P4",
@@ -7014,7 +7014,7 @@
       "canonicalHome": "PL-01",
       "id": "sakpix:🌴 SUMMER BEACH GIRLS/2._Tropical_Surfer",
       "planSchedule": "S@P2`; P2↔Icenter schedule; Pelagic surface resident or visitor",
-      "provenanceStatus": "review_required",
+      "provenanceStatus": "distribution_confirmed",
       "runtimeProfileId": null,
       "schedule": {
         "anchor": "P2",
@@ -7042,7 +7042,7 @@
       "canonicalHome": "PL-08",
       "id": "sakpix:🌴 SUMMER BEACH GIRLS/3._Volleyball_Champion",
       "planSchedule": "S@P1`; P1↔Icenter schedule; Pelagic surface resident or visitor",
-      "provenanceStatus": "review_required",
+      "provenanceStatus": "distribution_confirmed",
       "runtimeProfileId": null,
       "schedule": {
         "anchor": "P1",
@@ -7070,7 +7070,7 @@
       "canonicalHome": "PL-08",
       "id": "sakpix:🌴 SUMMER BEACH GIRLS/4._Island_Dancer",
       "planSchedule": "S@P2`; P2↔Icenter schedule; Pelagic surface resident or visitor",
-      "provenanceStatus": "review_required",
+      "provenanceStatus": "distribution_confirmed",
       "runtimeProfileId": null,
       "schedule": {
         "anchor": "P2",
@@ -7098,7 +7098,7 @@
       "canonicalHome": "PL-01",
       "id": "sakpix:🌴 SUMMER BEACH GIRLS/5._Seashell_Collector",
       "planSchedule": "S@P3`; P3↔Icenter schedule; Pelagic surface resident or visitor",
-      "provenanceStatus": "review_required",
+      "provenanceStatus": "distribution_confirmed",
       "runtimeProfileId": null,
       "schedule": {
         "anchor": "P3",
@@ -7126,7 +7126,7 @@
       "canonicalHome": "PL-02",
       "id": "sakpix:🌴 SUMMER BEACH GIRLS/6._Beach_Bar_Hostess",
       "planSchedule": "S@P1`; P1↔Icenter schedule; Pelagic surface resident or visitor",
-      "provenanceStatus": "review_required",
+      "provenanceStatus": "distribution_confirmed",
       "runtimeProfileId": null,
       "schedule": {
         "anchor": "P1",
@@ -7154,7 +7154,7 @@
       "canonicalHome": "PL-11",
       "id": "sakpix:🌴 SUMMER BEACH GIRLS/7._Jet_Ski_Champion",
       "planSchedule": "S@P1`; P1↔Icenter schedule; Pelagic surface resident or visitor",
-      "provenanceStatus": "review_required",
+      "provenanceStatus": "distribution_confirmed",
       "runtimeProfileId": null,
       "schedule": {
         "anchor": "P1",
@@ -7182,7 +7182,7 @@
       "canonicalHome": "PL-08",
       "id": "sakpix:🌴 SUMMER BEACH GIRLS/8._Travel_Influencer",
       "planSchedule": "S@P3`; P3↔Icenter schedule; Pelagic surface resident or visitor",
-      "provenanceStatus": "review_required",
+      "provenanceStatus": "distribution_confirmed",
       "runtimeProfileId": null,
       "schedule": {
         "anchor": "P3",
@@ -7210,7 +7210,7 @@
       "canonicalHome": "PL-02",
       "id": "sakpix:🌴 SUMMER BEACH GIRLS/9._Coastal_Fisherwoman",
       "planSchedule": "S@P2`; P2↔Icenter schedule; Pelagic surface resident or visitor",
-      "provenanceStatus": "review_required",
+      "provenanceStatus": "distribution_confirmed",
       "runtimeProfileId": null,
       "schedule": {
         "anchor": "P2",

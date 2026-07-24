@@ -53,6 +53,30 @@ def sha256(path: Path) -> str:
     return digest.hexdigest()
 
 
+def ids_sha256(ids: list[str]) -> str:
+    return hashlib.sha256(("\n".join(sorted(ids)) + "\n").encode("utf-8")).hexdigest()
+
+
+def load_profile_review_decision(root: Path, profile_ids: list[str]) -> set[str] | None:
+    path = root / "game/ben_rpg/visual_assets/profile_review_decisions.json"
+    if not path.is_file():
+        return None
+    raw = json.loads(path.read_text(encoding="utf-8"))
+    if raw.get("schemaVersion") != 1 or raw.get("decision") != "final_approved":
+        fail("profile review decision must record schemaVersion 1 final_approved approval")
+    pending = raw.get("pendingProfileIds")
+    if not isinstance(pending, list) or not all(isinstance(profile_id, str) for profile_id in pending):
+        fail("profile review decision pendingProfileIds must be string ids")
+    if len(set(pending)) != len(pending) or not set(pending).issubset(set(profile_ids)):
+        fail("profile review decision names an invalid or duplicate pending profile")
+    if raw.get("reviewedProfileSetSha256") != ids_sha256(profile_ids):
+        fail("profile review decision does not match the current profile set")
+    approved = sorted(set(profile_ids) - set(pending))
+    if raw.get("approvedProfileCount") != len(approved) or raw.get("approvedProfileSetSha256") != ids_sha256(approved):
+        fail("profile review decision does not match the approved profile set")
+    return set(approved)
+
+
 def inferred_surface(kind: str) -> str:
     if "portrait" in kind:
         return "portrait"
@@ -76,6 +100,9 @@ def validate(root: Path, raw: dict[str, Any]) -> dict[str, Any]:
     profiles = raw.get("profiles")
     if not isinstance(profiles, list) or not profiles:
         fail("profiles must be a non-empty list")
+    if not all(isinstance(profile, dict) and isinstance(profile.get("id"), str) for profile in profiles):
+        fail("profiles must have object records with string ids before review resolution")
+    final_approved_ids = load_profile_review_decision(root, [str(profile["id"]) for profile in profiles])
     seen: set[str] = set()
     provenance_path = root / "game/ben_rpg/visual_assets/generated/runtime_asset_provenance.json"
     provenance = json.loads(provenance_path.read_text(encoding="utf-8"))
@@ -109,7 +136,10 @@ def validate(root: Path, raw: dict[str, Any]) -> dict[str, Any]:
             fail(f"{profile_id} has no distribution eligibility record for {runtime_path}")
         if eligibility == "rejected":
             fail(f"{profile_id} cannot use rejected source {runtime_path}")
-        release_visual_acceptance = profile.get("releaseVisualAcceptance", "prototype_only")
+        if final_approved_ids is None:
+            release_visual_acceptance = profile.get("releaseVisualAcceptance", "prototype_only")
+        else:
+            release_visual_acceptance = "final_approved" if profile_id in final_approved_ids else "prototype_only"
         if release_visual_acceptance not in RELEASE_VISUAL_ACCEPTANCE_STATES:
             fail(f"{profile_id}.releaseVisualAcceptance must be prototype_only or final_approved")
         if release_visual_acceptance == "final_approved" and eligibility != "distribution_confirmed":

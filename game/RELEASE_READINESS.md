@@ -128,16 +128,17 @@ from the human, platform, licensing, and performance sign-offs that remain.
 - `runtime_asset_provenance.json` is generated from the static runtime visual
   inventory and checked by `npm run validate:assets`. Its companion
   `distribution_eligibility.json` assigns every tracked runtime source one of
-  `distribution_confirmed`, `review_required`, or `rejected`; all 182 currently
-  remain `review_required` pending terms, attribution, and redistribution
-  confirmation. The visual-manifest generator rejects a profile sourced from a
-  rejected asset. This is a review ledger, not a claim of distribution rights.
-- The runtime visual registry currently contains 377 review-required profiles
-  covering all 171 profile-required static source textures. The remaining 11
-  static sources are Dialogic bundled addon UI SVGs, which remain visible as
-  third-party dependencies rather than campaign-profile gaps. The coverage
-  includes the active Town, Primeval, Frosthold, Moonpetal, Empyreal, Mansion,
-  and Asterion battle materials. The
+  `distribution_confirmed`, `review_required`, or `rejected`; the product owner
+  confirmed distribution rights for all 182 current runtime sources against the
+  supplied licences on July 23, 2026. The visual-manifest generator rejects a
+  profile sourced from a rejected asset. This is a current-inventory decision;
+  newly introduced assets require their own evidence update.
+- The runtime visual registry contains 356 final-approved profiles and 21
+  explicitly pending scale-contract profiles. All 171 profile-required static
+  source textures are covered. The remaining 11 static sources are Dialogic
+  bundled addon UI SVGs, which remain visible as third-party dependencies rather
+  than campaign-profile gaps. The coverage includes the active Town, Primeval,
+  Frosthold, Moonpetal, Empyreal, Mansion, and Asterion battle materials. The
   battle profile smoke verifies all 53 catalog entries have approved backdrop
   profiles and renders 24 representative texture/region pairs; `CampaignBattle`
   rejects any encounter without an approved backdrop profile. All 38 catalog
@@ -153,10 +154,20 @@ from the human, platform, licensing, and performance sign-offs that remain.
   profiles. Interaction emotes, the universe treasure marker, all 20 sandbox
   terrain brushes, and the live Ranch/Modern/Haunted/Laboratory sandbox props
   resolve through approved profiles in the live map and editor previews as
-  well. This is profile-coverage evidence only; final visual and distribution
-  acceptance remain release-review work.
+  well. Final approval is intentionally withheld from the 21 named profiles
+  with nonstandard field-scale or legacy-scale contracts.
 
 ## Release blockers
+
+## Provisional supported-machine baseline
+
+The product owner’s direction is broad modern-PC support, with an RTX 3060
+development GPU. Until lower-spec measurements are captured, the provisional
+minimum support profile is Windows 10/11 x64, a four-core CPU, 8 GB system
+memory, a DirectX 11-capable GPU with 2 GB VRAM, 2 GB free storage, and a
+1280×720 display. This is a declared planning baseline, not a claim that the
+current RTX 3060 measurement proves performance on every machine in that range.
+The 60 FPS and frame-pacing targets remain unchanged.
 
 - [ ] Choose supported export platforms, storefronts, minimum hardware, and
   signing/notarization requirements. The tracked Windows x86_64 desktop preset
@@ -166,10 +177,11 @@ from the human, platform, licensing, and performance sign-offs that remain.
   editor. Push the prepared smoke workflow and record its first clean remote
   pass. The local 4.7.1 x86_64 templates and baseline export are verified.
 - [ ] Set the approved shipping version and final Windows publisher/signing metadata.
-- [ ] Complete distribution review for all 182 static runtime visual sources
-  currently marked `review_required`, then extend the ledger to audio, fonts,
-  addons, and dynamically resolved assets; consolidate required notices into
-  shipped credits.
+- [x] Record product-owner distribution approval for the current 182 static
+  runtime visual sources and their supplied licence evidence.
+- [ ] Extend the provenance ledger to audio, fonts, addons, dynamically
+  resolved assets, and newly introduced runtime sources; consolidate required
+  notices into shipped credits.
 - [ ] Archive two fresh-save end-to-end playthroughs and one migrated-save run,
   including recall, defeat/retry, partial-puzzle reload, and backup recovery.
 - [ ] Perform complete keyboard/mouse and modern-controller playthroughs at all

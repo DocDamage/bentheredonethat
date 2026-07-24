@@ -1695,7 +1695,7 @@ Complete these tasks before adding new campaign content:
 15. [x] Record pack-level provenance decisions for the first migration pair and
    preserve exact terms/credit evidence; do not infer that one CC0 file covers
    an unrelated neighboring pack.
-16. [ ] Produce native-scale environment and SakPix contact sheets for Mansion,
+16. [x] Produce native-scale environment and SakPix contact sheets for Mansion,
    Asterion, and Primeval using their locked primary Tilesets kits; approve
    density, palette, perspective, character height, heading-free crops, and
    foot-anchor conversions.
@@ -1740,7 +1740,7 @@ parallel at the implementation/proof stage.
 | Milestone | Audit state | Evidence | Remaining gate |
 | --- | --- | --- | --- |
 | M0 — Verification green | In progress | Local runtime and source-library asset contracts pass; isolated Godot save sentinel remains protected; draft PR #1 has active remote jobs | A clean remote browser/runtime-asset/Godot pass and a fresh all-smoke baseline are still required |
-| M1 — Visual foundation | In progress | `FIELD_SCALE_BIBLE.md`, 377 review-required visual profiles, runtime inventory/provenance generators, layered field registry, eight foreground scripts, camera rounding, and focused smoke tests exist | All 171 campaign-owned static runtime sources are profile-backed; native-scale visual and camera/resolution sign-off, plus distribution review, remain open |
+| M1 — Visual foundation | In progress | 182 runtime sources have owner-confirmed distribution rights; 356 technically valid profiles have final visual approval, and runtime inventory/provenance generators, layered field registry, eight foreground scripts, camera rounding, and focused smoke tests exist | 21 named nonstandard scale contracts, camera/resolution sign-off, and performance remain open |
 | M2 — Mansion vertical slice | In progress; legacy proof only | A five-room Mansion layout expansion, foreground capture, collision/layout smoke coverage, and refreshed room captures exist | Implement and accept all `HM-01`-`HM-16` rooms, locked links, supplied Tilesets profiles, associated SakPix population, puzzle continuity, native-scale input, save/reload, and reviewer sign-off |
 | M3 — Shared presentation | In progress | Battle profile coverage, battle accessibility tests, text scaling, persisted accessibility settings, field-layer/transition-soak tests, and an independent Empyreal ground renderer exist | Human readability and input sign-off remain open; shared field architecture is transitional rather than a complete replacement of the procedural renderer |
 | M4 — Universe migration | Started early; pre-amendment prototypes | Each non-Mansion universe has an expanded 8x4 footprint/layout prototype; all six foreground implementations, including Helios, exist; refreshed captures and layout tests exist | The 8x4 prototypes do not satisfy the locked 14/16-room manifests. Build and accept every Section 9.4 room with admitted Tilesets/EXPANSION profiles and associated SakPix populations after M0/M2 gates; no universe has complete human sign-off |

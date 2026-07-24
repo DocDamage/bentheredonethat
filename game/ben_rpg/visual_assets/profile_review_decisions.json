@@ -1,0 +1,33 @@
+{
+  "schemaVersion": 1,
+  "decision": "final_approved",
+  "approvedBy": "product owner",
+  "approvalDate": "2026-07-23",
+  "approvalScope": "Native-scale review sheets and current visual profiles approved by the owner. Profiles with unresolved scale contracts remain explicitly pending.",
+  "reviewedProfileSetSha256": "f61455a9c2b28d50565ae9e5eca5d65e5085212582a5b49987c9d8409522b48a",
+  "approvedProfileCount": 356,
+  "approvedProfileSetSha256": "afe85d3ba50bc47a1101b803c582753d0703e0d58e409bbf4e40c6b01c45deae",
+  "pendingProfileIds": [
+    "frosthold_gate_ruin",
+    "frosthold_gate_torch_right",
+    "frosthold_hall_rune_left",
+    "frosthold_hall_side_arch",
+    "frosthold_hall_torch_left",
+    "frosthold_market_stall",
+    "frosthold_market_stall_right",
+    "frosthold_throne_left_column",
+    "mansion_foyer_passage_door",
+    "moonpetal_court_tree_canopy_right",
+    "moonpetal_gate_lantern",
+    "moonpetal_gate_lantern_right",
+    "moonpetal_palace_garden_left",
+    "moonpetal_palace_garden_right",
+    "primeval_anchor_totem",
+    "primeval_caldera_forecourt",
+    "primeval_grove_canopy_mid_left",
+    "primeval_grove_fern_left",
+    "primeval_relay_nest",
+    "primeval_ruins_left_rubble",
+    "primeval_ruins_right_wall"
+  ]
+}
