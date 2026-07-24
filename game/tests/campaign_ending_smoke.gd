@@ -20,6 +20,11 @@ func _run() -> void:
 	var overlay := ENDING_OVERLAY.new()
 	get_tree().root.add_child(overlay)
 	await get_tree().process_frame
+	var pages := overlay._ending_pages()
+	var trilogy_text := ""
+	for page in pages:
+		trilogy_text += String(page.get("body", ""))
+	assert("Lincoln" in trilogy_text and "Gandhi" in trilogy_text, "Lincoln and Gandhi must make authored decisions in the ending sequence.")
 	overlay.present()
 	assert(overlay.visible and overlay.page_count() == 4, "The ending must present a four-page authored epilogue and credits sequence.")
 	for _page in range(4):

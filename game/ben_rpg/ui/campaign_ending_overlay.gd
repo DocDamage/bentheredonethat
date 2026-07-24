@@ -53,17 +53,17 @@ func _ending_pages() -> Array[Dictionary]:
 	return [
 		{
 			"title": "THE SKY IS NOT FOR SALE",
-			"body": "The High Comptroller's final lien dissolves above Empyreal Court. Ben refuses to replace one authority with another: every universe keeps its own people, its own weather, and the right to decide what a door is for.\n\nThe Archangel Commander lowers their weapon—not in surrender, but in relief. The Tribunal's gravity is now public infrastructure, maintained by consent instead of decree.",
+			"body": "The High Comptroller's final lien dissolves above Empyreal Court. Ben refuses to replace one authority with another: every universe keeps its own people, its own weather, and the right to decide what a door is for.\n\nLincoln writes the Tribunal's new charter in plain language: no world may be governed without a voice at the table. Gandhi secures its first clause of mercy: no frightened citizen can be made collateral for someone else's stability.\n\nThe Archangel Commander lowers their weapon—not in surrender, but in relief. The Tribunal's gravity is now public infrastructure, maintained by consent instead of decree.",
 			"button": "READ THE CONSEQUENCES",
 		},
 		{
 			"title": "NEW PHILADELPHIA ANSWERS",
-			"body": "Back home, the fault-line lamps stop flickering like warnings and begin shining like invitations. Recruits, residents, and visitors share the plaza without anyone needing to pay a toll to stand upright.\n\n%s\n\nFranklin & Company remains a company, but it is no longer a rescue operation. It is a promise to leave every door better than it was found." % civic_choice,
+			"body": "Back home, the fault-line lamps stop flickering like warnings and begin shining like invitations. Recruits, residents, and visitors share the plaza without anyone needing to pay a toll to stand upright.\n\n%s\n\nLincoln turns the expedition rules into civic promises. Gandhi opens the Clinic's night watch to every visitor, whether or not they have a world left to return to. Franklin & Company remains a company, but it is no longer a rescue operation. It is a promise to leave every door better than it was found." % civic_choice,
 			"button": "VIEW CREDITS",
 		},
 		{
 			"title": "FRANKLIN & COMPANY",
-			"body": "BENJAMIN FRANKLIN — inventor, negotiator, and habitual breaker of impossible contracts\n\nTHE FIGHTER, ASTRONAUT, CAVEMAN, NEON VIPER, KITSUNE EMPRESS, FROST LICH EMPEROR, ARCHANGEL COMMANDER — the company that made every argument louder, kinder, and considerably stranger\n\nNEW PHILADELPHIA — a town built one practical kindness at a time\n\nTHANK YOU FOR PLAYING BEN THERE, DONE THAT.",
+			"body": "BENJAMIN FRANKLIN — inventor, negotiator, and habitual breaker of impossible contracts\nABRAHAM LINCOLN — protector, civic leader, and keeper of the charter\nMAHATMA GANDHI — healer, de-escalator, and guardian of mercy\n\nTHE FIGHTER, ASTRONAUT, CAVEMAN, NEON VIPER, KITSUNE EMPRESS, FROST LICH EMPEROR, ARCHANGEL COMMANDER — the company that made every argument louder, kinder, and considerably stranger\n\nNEW PHILADELPHIA — a town built one practical kindness at a time\n\nTHANK YOU FOR PLAYING BEN THERE, DONE THAT.",
 			"button": "OPEN THE POSTGAME",
 		},
 		{

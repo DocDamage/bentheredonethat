@@ -14,6 +14,7 @@ func _run() -> void:
 	CampaignState.reset_new_game()
 	_assert_new_campaign_contract()
 	_assert_combat_contract()
+	_assert_story_participation_contract()
 	_assert_legacy_save_contract()
 	DirAccess.remove_absolute(ProjectSettings.globalize_path(TEST_SAVE))
 	CampaignState.reset_new_game()
@@ -45,6 +46,11 @@ func _assert_combat_contract() -> void:
 	model.setup(&"mansion_restless_books", battle_party, CampaignState.character_progress, 1776)
 	for recruit_id in CORE_TRIO:
 		assert(not model.get_actor(recruit_id).is_empty(), "%s was lost from the trio battle formation." % recruit_id)
+
+
+func _assert_story_participation_contract() -> void:
+	var opening_text := FileAccess.get_file_as_string("res://overworld/maps/opening_cutscene.dtl")
+	assert("LINCOLN:" in opening_text and "GANDHI:" in opening_text, "Lincoln and Gandhi must participate in the authored opening dialogue.")
 
 
 func _assert_legacy_save_contract() -> void:
