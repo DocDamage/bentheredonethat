@@ -3192,3 +3192,9 @@ limit:
   693 reviewed PNGs without accidentally pulling quarantined expansion/recruit
   staging trees into the denominator; aggregate asset validation passes at
   21,711 covered rasters.
+- AF-01 now has isolated stabilized-state visual evidence at
+  `game/validation/af01-cinder-gate-scene-stabilized.png`: the post-raid
+  Scrap Kid and Dust Hunter staging at `P1`/`P2` was captured with the
+  production-save sentinel unchanged. It is explicitly review-only because
+  all 24 field-direction profiles remain `prototype_only`; no streamer,
+  player-traversal, or production-state claim follows from that capture.

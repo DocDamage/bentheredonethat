@@ -14,3 +14,16 @@
 This is not AF-01 acceptance or address runtime admission. The authored room
 remains outside the live streamer until its gateway, field actors, player port
 traversal, stabilized capture, input, and reviewer gates are complete.
+
+## Stabilized survivor-watch review evidence
+
+- `game/validation/af01-cinder-gate-scene-stabilized.png` is a deterministic
+  isolated-window capture of the post-raid state. It places Scrap Kid and Dust
+  Hunter at their locked `P1`/`P2` anchors using the exact south-facing
+  profile-derived textures; Iron Sentinel remains absent until the separate
+  `AF-05` condition is satisfied.
+- Capture validation: `test-artifacts/20260724-013226-f1f0de45` completed with
+  the production-save sentinel unchanged.
+- This evidence is intentionally review-only. The 24 AF-01 field profiles
+  remain `prototype_only` until a reviewer promotes or replaces them; the
+  capture must not be used to claim streamer or player-traversal admission.
