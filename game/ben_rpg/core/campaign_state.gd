@@ -22,6 +22,7 @@ const ECONOMY_LEDGER := preload("res://ben_rpg/core/economy_ledger.gd")
 const WORLD_CATALOG := preload("res://ben_rpg/core/campaign_world_catalog.gd")
 const SANDBOX_OBJECT_CATALOG := preload("res://ben_rpg/world/sandbox_object_catalog.gd")
 const SANDBOX_TERRAIN_CATALOG := preload("res://ben_rpg/world/sandbox_terrain_catalog.gd")
+const NEW_PHILADELPHIA_CATALOG := preload("res://ben_rpg/world/campaign_new_philadelphia_catalog.gd")
 const SANDBOX_LAYOUT_SLOT_VERSION := 1
 const SANDBOX_LAYOUT_SLOT_COUNT := 3
 const SANDBOX_LAYOUT_SLOT_PATH := "user://sandbox_layout_slot_%d.json"
@@ -119,6 +120,7 @@ var town_objects: Array[Dictionary] = []
 var next_town_object_id := 1
 var duckets := 0
 var built_facilities: Dictionary = {}
+var new_philadelphia_lot_placements: Dictionary = {}
 var universe_anchors: Dictionary = {}
 var story_flags: Dictionary = {}
 var bestiary_records: Dictionary = {}
@@ -373,6 +375,7 @@ func reset_new_game() -> void:
 	_play_session_running = false
 	duckets = 0
 	built_facilities.clear()
+	new_philadelphia_lot_placements.clear()
 	universe_anchors.clear()
 	story_flags.clear()
 	bestiary_records.clear()
@@ -3124,7 +3127,7 @@ func _serialize() -> Dictionary:
 		"town_time_minutes": town_time_minutes, "resident_states": resident_states,
 		"town_terrain": town_terrain,
 		"town_objects": town_objects, "next_town_object_id": next_town_object_id,
-		"built_facilities": built_facilities, "universe_anchors": universe_anchors, "story_flags": story_flags,
+		"built_facilities": built_facilities, "new_philadelphia_lot_placements": new_philadelphia_lot_placements, "universe_anchors": universe_anchors, "story_flags": story_flags,
 		"bestiary_records": bestiary_records, "inventory": inventory, "encounter_ward_steps": encounter_ward_steps, "encounter_director_states": encounter_director_states,
 		"loot_inventory": loot_inventory, "character_progress": character_progress,
 		"party": Array(party), "party_formation": party_formation, "recruit_status": recruit_status, "facility_assignments": facility_assignments,
@@ -3178,6 +3181,12 @@ func _deserialize(data: Dictionary, source_version_override := -1) -> void:
 	duckets = int(data.get("duckets", 0))
 	economy_transactions = ECONOMY_LEDGER.normalize_entries(data.get("economy_transactions", []))
 	built_facilities = _integer_key_dictionary(data.get("built_facilities", {}))
+	new_philadelphia_lot_placements.clear()
+	for raw_lot_id in data.get("new_philadelphia_lot_placements", {}).keys():
+		var lot_id := StringName(raw_lot_id)
+		var facility_interior_id := StringName(data.new_philadelphia_lot_placements[raw_lot_id])
+		if not NEW_PHILADELPHIA_CATALOG.lot(lot_id).is_empty() and facility_interior_id != &"":
+			new_philadelphia_lot_placements[lot_id] = facility_interior_id
 	universe_anchors = _integer_key_dictionary(data.get("universe_anchors", {}))
 	for plot_index in universe_anchors.keys():
 		universe_anchors[plot_index] = StringName(universe_anchors[plot_index])
