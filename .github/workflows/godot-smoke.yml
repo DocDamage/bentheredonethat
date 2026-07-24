@@ -59,7 +59,23 @@ jobs:
       - name: Check out source
         uses: actions/checkout@v4
         with:
-          lfs: true
+          # Restore LFS explicitly below. On hosted Windows, checkout's
+          # implicit LFS fetch can leave pointer files in the worktree even
+          # when its object download succeeds.
+          lfs: false
+
+      - name: Materialize runtime LFS assets
+        shell: pwsh
+        run: |
+          git lfs pull
+          $pointers = Get-ChildItem -LiteralPath 'game/game_assets' -Recurse -File |
+            Where-Object {
+              $_.Length -lt 200 -and
+              ((Get-Content -LiteralPath $_.FullName -Raw -ErrorAction SilentlyContinue) -like 'version https://git-lfs.github.com/spec/v1*')
+            }
+          if ($pointers) {
+            throw "Git LFS pointers remain in the runtime tree: $($pointers.FullName -join '; ')"
+          }
 
       - name: Download Godot 4.7.1
         shell: pwsh
