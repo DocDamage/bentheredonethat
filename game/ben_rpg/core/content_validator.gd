@@ -24,6 +24,7 @@ const REQUIRED_ADDRESS_CATALOG := preload("res://ben_rpg/world/campaign_required
 const ADDRESS_ENCOUNTER_CATALOG := preload("res://ben_rpg/combat/campaign_address_encounter_catalog.gd")
 const ENCOUNTER_CATALOG := preload("res://ben_rpg/combat/campaign_encounter_catalog.gd")
 const ACTION_CATALOG := preload("res://ben_rpg/combat/campaign_action_catalog.gd")
+const BESTIARY_CATALOG := preload("res://ben_rpg/combat/campaign_bestiary_catalog.gd")
 const ADDRESS_ROOM_RECORDS := preload("res://ben_rpg/world/campaign_address_room_records.gd")
 const CAMPAIGN_VISUAL_PROFILE_REGISTRY := preload("res://ben_rpg/world/campaign_visual_profile_registry.gd")
 
@@ -118,12 +119,16 @@ static func _validate_actions(errors: Array[String]) -> void:
 
 
 static func _validate_bestiary(errors: Array[String]) -> void:
+	errors.append_array(BESTIARY_CATALOG.validate())
 	var seen := {}
 	for enemy_id in CampaignCombatDatabase.BESTIARY_ORDER:
 		if seen.has(enemy_id):
 			errors.append("Bestiary contains duplicate enemy '%s'." % enemy_id)
 			continue
 		seen[enemy_id] = true
+		if not BESTIARY_CATALOG.has(enemy_id):
+			errors.append("Bestiary enemy '%s' is missing from the content catalog." % enemy_id)
+			continue
 		var enemy := CampaignCombatDatabase.enemy_actor(enemy_id, 0)
 		if String(enemy.get("display_name", "")).is_empty() or String(enemy.get("display_name", "")) == "Unknown Horror":
 			errors.append("Bestiary enemy '%s' has no catalog entry." % enemy_id)
@@ -140,6 +145,9 @@ static func _validate_bestiary(errors: Array[String]) -> void:
 				errors.append("Enemy '%s' references missing action '%s'." % [enemy_id, action_id])
 			elif StringName(action.get("relation", &"")) != &"hostile":
 				errors.append("Enemy '%s' action '%s' does not target opponents." % [enemy_id, action_id])
+	for enemy_id in BESTIARY_CATALOG.ids():
+		if enemy_id not in seen:
+			errors.append("Bestiary content '%s' is not listed in the campaign bestiary order." % enemy_id)
 
 
 static func _validate_encounters(errors: Array[String]) -> void:

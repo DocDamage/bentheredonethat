@@ -23,7 +23,7 @@
 
 ## Remaining work
 
-- Extract the active enemy/bestiary definitions and reward tables from
+- Extract the active encounter reward/loot tables from
   `CampaignCombatDatabase`; no address enemy or action is admitted by this
   change.
 - Remove the retained action and encounter snapshots only after their staged

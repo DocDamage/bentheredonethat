@@ -3149,6 +3149,12 @@ limit:
   battle/backdrop suite passed at `test-artifacts/20260723-234403-69de5079`
   with the isolated production-save sentinel unchanged; enemy/bestiary and
   reward content remain the next combat ownership move.
+- The 38 core-enemy definitions now live in `CampaignBestiaryCatalog`, while
+  the database retains only runtime actor construction and approved-profile
+  resolution. The seven-scene combat/content milestone passed at
+  `test-artifacts/20260723-234810-9413c0e4` with the isolated production-save
+  sentinel unchanged. Encounter rewards/loot remain the last active data
+  ownership move before mandatory-address combat production can begin.
 - Ashfall's nine non-`none` encounter contracts are validated address content
   records but remain `runtimeEnabled: false`. They cannot enter the battle
   catalog until approved actor profiles, battle backdrops, balance/reward
