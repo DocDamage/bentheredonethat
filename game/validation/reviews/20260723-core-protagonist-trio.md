@@ -1,7 +1,9 @@
 # CP-01 — Opening protagonist trio
 
-- State: Implemented; automated verification in progress.
-- Commit: `685b9980` (`feat: establish Franklin Lincoln Gandhi opening trio`).
+- State: Implemented; automated verification complete.
+- Commits: `685b9980` (`feat: establish Franklin Lincoln Gandhi opening trio`),
+  `3a82b0c6`, `b94ffcde`, `8f11a457`, and `23a5e7d5` (trio contract and
+  compatibility-fixture coverage).
 - Build: Godot 4.7.1 stable; save schema v21.
 - Scope: Benjamin Franklin, Abraham Lincoln (`lincoln`), and Mahatma Gandhi
   (`gandhi`) begin a new campaign as the active three-person company. Lincoln
@@ -18,8 +20,12 @@
 - Browser/unit and clean runtime-asset gate: `npm run check` and
   `npm run validate:runtime-assets` passed after the inventory denominator was
   updated from 171 to 175 profiled campaign sources.
-- Full isolated matrix: retained run
-  `test-artifacts/20260723-210226-39238d0e` is the required completion gate.
+- Full isolated matrix: `test-artifacts/20260723-213112-2547e56d` executed all
+  134 scenes with the production-save sentinel unchanged. 131 scenes passed;
+  its only three failures were legacy test fixtures that assumed Ben began
+  alone. Their exact isolated replacement run at
+  `test-artifacts/20260723-215554-297c44a0` passed all three with the sentinel
+  unchanged. No production code changed between those artifacts.
 
 ## Required review evidence
 
