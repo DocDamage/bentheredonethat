@@ -9,7 +9,7 @@ const CATALOG := preload("res://ben_rpg/world/campaign_new_philadelphia_catalog.
 const ROOM_REGISTRY := preload("res://ben_rpg/world/campaign_room_registry.gd")
 const ADDRESS_RECORDS := preload("res://ben_rpg/world/campaign_address_room_records.gd")
 
-static var RECORDS := {&"NP-01": _franklin_laboratory_record(), &"NP-02": _invention_annex_record(), &"NP-03": _power_records_basement_record(), &"NP-04": _founders_square_record(), &"NP-05": _old_town_market_record(), &"NP-06": _civic_workshop_row_record(), &"NP-07": _anchor_promenade_record(), &"NP-15": _embassy_green_record()}
+static var RECORDS := {&"NP-01": _franklin_laboratory_record(), &"NP-02": _invention_annex_record(), &"NP-03": _power_records_basement_record(), &"NP-04": _founders_square_record(), &"NP-05": _old_town_market_record(), &"NP-06": _civic_workshop_row_record(), &"NP-07": _anchor_promenade_record(), &"NP-08": _farm_spring_terraces_record(), &"NP-09": _riverside_harbor_walk_record(), &"NP-10": _clinic_gardens_record(), &"NP-15": _embassy_green_record()}
 
 
 static func record(room_id: StringName) -> Dictionary:
@@ -18,7 +18,7 @@ static func record(room_id: StringName) -> Dictionary:
 
 static func validate() -> PackedStringArray:
 	var errors: Array[String] = []
-	for room_id in [&"NP-01", &"NP-02", &"NP-03", &"NP-04", &"NP-05", &"NP-06", &"NP-07", &"NP-15"]:
+	for room_id in [&"NP-01", &"NP-02", &"NP-03", &"NP-04", &"NP-05", &"NP-06", &"NP-07", &"NP-08", &"NP-09", &"NP-10", &"NP-15"]:
 		var definition := record(room_id)
 		var catalog_room := CATALOG.room(room_id)
 		var layout: Dictionary = definition.get("layout", {})
@@ -78,6 +78,15 @@ static func validate() -> PackedStringArray:
 	var np07 := record(&"NP-07")
 	if (np07.get("layout", {}) as Dictionary).get("lotIds", []) != [&"LOT-05", &"LOT-06"] or (np07.get("navigation", {}) as Dictionary).get("walkableCells", []).size() != 499:
 		errors.append("NP-07 must retain both promenade lots and its anchor-map reservation.")
+	var np08 := record(&"NP-08")
+	if (np08.get("layout", {}) as Dictionary).get("lotIds", []) != [&"LOT-07"] or (np08.get("navigation", {}) as Dictionary).get("walkableCells", []).size() != 415:
+		errors.append("NP-08 must retain its farm lot and irrigation-pump reservation.")
+	var np09 := record(&"NP-09")
+	if not (np09.get("layout", {}) as Dictionary).get("lotIds", []).is_empty() or (np09.get("navigation", {}) as Dictionary).get("walkableCells", []).size() != 383:
+		errors.append("NP-09 must retain its no-lot harbor loop and ferry-board reservation.")
+	var np10 := record(&"NP-10")
+	if (np10.get("layout", {}) as Dictionary).get("lotIds", []) != [&"LOT-08"] or (np10.get("navigation", {}) as Dictionary).get("walkableCells", []).size() != 335:
+		errors.append("NP-10 must retain its clinic lot, facade, and recovery-fountain circulation.")
 	var np15 := record(&"NP-15")
 	if (np15.get("layout", {}) as Dictionary).get("terrainProfileIds", []) != [&"sandbox_modern_grass", &"sandbox_modern_cobble"]:
 		errors.append("NP-15 must use only its approved initial town terrain profiles.")
@@ -183,6 +192,18 @@ static func _civic_workshop_row_record() -> Dictionary:
 
 static func _anchor_promenade_record() -> Dictionary:
 	return _district_record(&"NP-07", "res://ben_rpg/world/rooms/new_philadelphia_anchor_promenade.tscn", [&"sandbox_modern_grass", &"sandbox_modern_cobble"], [&"town_ranch_tree_small", &"town_ranch_tree_tall"], [&"LOT-05", &"LOT-06"], [{"id": &"anchor_status_map", "anchor": &"Icenter", "cell": Vector2i(15, 10), "runtimeState": &"visual_and_interaction_gated"}], [Vector2i(5, 5), Vector2i(24, 5), Vector2i(5, 15), Vector2i(24, 15), Vector2i(15, 10)])
+
+
+static func _farm_spring_terraces_record() -> Dictionary:
+	return _district_record(&"NP-08", "res://ben_rpg/world/rooms/new_philadelphia_farm_spring_terraces.tscn", [&"sandbox_ranch_meadow", &"sandbox_ranch_dirt", &"sandbox_ranch_farmland"], [&"sandbox_ranch_corn", &"sandbox_ranch_pumpkin", &"town_ranch_tree_small"], [&"LOT-07"], [{"id": &"irrigation_pump", "anchor": &"Icenter", "cell": Vector2i(14, 9), "runtimeState": &"visual_and_interaction_gated"}], [Vector2i(14, 9)])
+
+
+static func _riverside_harbor_walk_record() -> Dictionary:
+	return _district_record(&"NP-09", "res://ben_rpg/world/rooms/new_philadelphia_riverside_harbor_walk.tscn", [&"sandbox_modern_grass", &"sandbox_modern_cobble", &"sandbox_ranch_water"], [&"town_ranch_tree_small", &"town_ranch_tree_tall"], [], [{"id": &"ferry_board", "anchor": &"Icenter", "cell": Vector2i(13, 9), "runtimeState": &"visual_and_interaction_gated"}], [Vector2i(13, 9)])
+
+
+static func _clinic_gardens_record() -> Dictionary:
+	return _district_record(&"NP-10", "res://ben_rpg/world/rooms/new_philadelphia_clinic_gardens.tscn", [&"sandbox_modern_grass", &"sandbox_modern_cobble", &"sandbox_modern_dirt"], [&"town_clinic_facade", &"town_ranch_tree_small"], [&"LOT-08"], [{"id": &"public_recovery_fountain", "anchor": &"Icenter", "cell": Vector2i(12, 9), "runtimeState": &"visual_and_interaction_gated"}], [Vector2i(5, 6), Vector2i(6, 6), Vector2i(7, 6), Vector2i(8, 6), Vector2i(5, 7), Vector2i(6, 7), Vector2i(7, 7), Vector2i(8, 7), Vector2i(5, 8), Vector2i(6, 8), Vector2i(7, 8), Vector2i(8, 8), Vector2i(5, 9), Vector2i(6, 9), Vector2i(7, 9), Vector2i(8, 9), Vector2i(12, 9)])
 
 
 static func _district_record(room_id: StringName, scene_path: String, terrain_profile_ids: Array, prop_profile_ids: Array, lot_ids: Array, feature_contracts: Array, reservations: Array[Vector2i]) -> Dictionary:
