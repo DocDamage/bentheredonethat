@@ -3123,3 +3123,29 @@ limit:
   battle p99, and post-battle p95/p99 frame pacing miss their budgets. The
   diagnostic is therefore recorded as `rework required`, not as performance
   acceptance.
+- The core Benjamin Franklin, Abraham Lincoln, and Mahatma Gandhi opening
+  party/formation contract is now explicit in save schema v21 and shared
+  recruit metadata. The mandatory named-character arc catalog records Dracula
+  and Frankenstein in the Mansion/Ashfall sequence, Cthulhu in Pelagic, and
+  Dark Mage in the Ashfall-to-Empyreal sequence. This is a data and
+  characterization foundation; it does not make the untracked optional trial
+  scenes production content or satisfy their required address placement.
+- The exact 64-room required-address catalog and the Ashfall 12-room contract
+  now exist outside the 102-room core subtotal. `AF-01` has a validated room
+  record, deterministic ground/dead-tree derivatives, a source/provenance
+  decision, authored scene layers, and a first-visit prototype capture. It is
+  deliberately not registered in the live streamer or core room registry:
+  collision, gateway, population, encounter, stabilized-state, and acceptance
+  evidence remain outstanding.
+- Battle lifecycle effects are separated from battle presentation, and the 53
+  existing core encounter definitions now live in `CampaignEncounterCatalog`
+  behind the preserved combat-database facade. The focused catalog/content/
+  battle/backdrop milestone passed at
+  `test-artifacts/20260723-233417-f68a80d9`; the broad browser check passed
+  separately. The retained raw database snapshot remains a parity baseline to
+  remove in a later ownership-only refactor.
+- Ashfall's nine non-`none` encounter contracts are validated address content
+  records but remain `runtimeEnabled: false`. They cannot enter the battle
+  catalog until approved actor profiles, battle backdrops, balance/reward
+  records, and runtime-room ownership exist. This is an intentional safety
+  boundary rather than a claim that Ashfall combat is playable.
