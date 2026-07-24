@@ -21,6 +21,7 @@ const CAMPAIGN_POPULATION_SCHEDULER := preload("res://ben_rpg/world/campaign_pop
 const CAMPAIGN_ENCOUNTER_RUNTIME := preload("res://ben_rpg/world/campaign_encounter_runtime.gd")
 const CAMPAIGN_FIELD_SCALE := preload("res://ben_rpg/world/campaign_field_scale.gd")
 const REQUIRED_ADDRESS_CATALOG := preload("res://ben_rpg/world/campaign_required_address_catalog.gd")
+const ADDRESS_ENCOUNTER_CATALOG := preload("res://ben_rpg/combat/campaign_address_encounter_catalog.gd")
 const CAMPAIGN_VISUAL_PROFILE_REGISTRY := preload("res://ben_rpg/world/campaign_visual_profile_registry.gd")
 
 
@@ -66,6 +67,8 @@ static func _validate_room_registry(errors: Array[String]) -> void:
 	for error in CAMPAIGN_FIELD_SCALE.validate():
 		errors.append(error)
 	for error in REQUIRED_ADDRESS_CATALOG.validate():
+		errors.append(error)
+	for error in ADDRESS_ENCOUNTER_CATALOG.validate():
 		errors.append(error)
 	var visual_profiles := CAMPAIGN_VISUAL_PROFILE_REGISTRY.new()
 	for error in visual_profiles.validate():

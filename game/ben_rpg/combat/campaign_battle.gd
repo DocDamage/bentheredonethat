@@ -10,6 +10,7 @@ const UI_PARTY_HUD := UI_ROOT + "/dfgui_partyhud.png"
 const UI_BUTTON := UI_ROOT + "/dfgui_button-empty.png"
 const PRESENTATION := preload("res://ben_rpg/combat/battle_presentation_catalog.gd")
 const ACTOR_ANIMATION := preload("res://ben_rpg/combat/campaign_battle_actor_animation.gd")
+const BATTLE_LIFECYCLE := preload("res://ben_rpg/combat/campaign_battle_lifecycle.gd")
 const VISUAL_PROFILE_REGISTRY := preload("res://ben_rpg/world/campaign_visual_profile_registry.gd")
 
 var active := false
@@ -78,9 +79,9 @@ func begin(encounter_id: StringName, seed: int = 0) -> bool:
 	_leave_applied_instance_id = -1
 	_autosave_pending_instance_id = -1
 	active = true
-	CampaignState.clear_encounter_pressure()
+	BATTLE_LIFECYCLE.clear_encounter_pressure()
 	model.setup(encounter_id, CampaignState.party, CampaignState.character_progress, seed)
-	CampaignState.record_bestiary_sighting(encounter_id, _enemy_types_in_battle())
+	BATTLE_LIFECYCLE.record_encounter_sighting(encounter_id, _enemy_types_in_battle())
 	var backdrop_profile := StringName(model.encounter_data.get("backdrop_profile", &""))
 	if not _apply_backdrop_profile(backdrop_profile):
 		push_error("Encounter %s has no approved battle backdrop profile" % encounter_id)
@@ -791,10 +792,7 @@ func _show_victory() -> void:
 			_play_actor_loop(StringName(actor["id"]), &"victory")
 		elif actor["team"] == "enemy":
 			_play_actor_hold(StringName(actor["id"]), &"death")
-	CampaignState.record_bestiary_victory(model.encounter_id, _enemy_types_in_battle(), reward["loot"])
-	var levels := CampaignState.apply_battle_victory(reward["experience"], reward["duckets"], reward["loot"])
-	if model.encounter_id == &"mansion_foyer_intro":
-		CampaignState.story_flags[&"mansion_foyer_cleared"] = true
+	var levels := BATTLE_LIFECYCLE.apply_victory(model.encounter_id, _enemy_types_in_battle(), reward)
 	if not suppress_persistence:
 		_autosave_pending_instance_id = _battle_instance_id
 	_clear_children(_results_content)
@@ -848,12 +846,12 @@ func _show_defeat() -> void:
 
 
 func _retry_last_save() -> void:
-	CampaignState.load_game()
+	BATTLE_LIFECYCLE.retry_last_save()
 	_leave_battle(false)
 
 
 func _return_to_town() -> void:
-	CampaignState.revive_party_at_one()
+	BATTLE_LIFECYCLE.return_party_to_town()
 	return_to_town_requested.emit()
 	_leave_battle(false)
 
@@ -873,7 +871,7 @@ func _leave_battle(victory: bool) -> void:
 	battle_finished.emit(victory, finished_id)
 	if victory and _autosave_pending_instance_id == _battle_instance_id:
 		_autosave_pending_instance_id = -1
-		var autosave_result := CampaignState.save_game()
+		var autosave_result := BATTLE_LIFECYCLE.commit_victory_autosave()
 		victory_autosave_committed.emit(finished_id, autosave_result)
 
 
