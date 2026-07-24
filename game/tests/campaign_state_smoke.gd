@@ -32,7 +32,7 @@ func _ready() -> void:
 	if CampaignState.facility_assignments.get("Cafe") != "fighter":
 		_fail("Facility staffing did not survive save/load")
 		return
-	if not CampaignState.add_to_party(&"fighter") or CampaignState.party != [&"ben", &"fighter"]:
+	if not CampaignState.add_to_party(&"fighter") or CampaignState.party != [&"ben", &"lincoln", &"gandhi", &"fighter"]:
 		_fail("Staffed recruit could not be returned to the party")
 		return
 

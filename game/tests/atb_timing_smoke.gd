@@ -3,8 +3,6 @@ extends Node
 
 func _ready() -> void:
 	CampaignState.reset_new_game()
-	CampaignState.recruit_status[&"fighter"] = &"reserve"
-	assert(CampaignState.add_to_party(&"fighter"), "Fighter should join the timing test party")
 	_test_battle_speed()
 	_test_wait_mode()
 	print("ATB_TIMING_SMOKE_OK speed=0.5_to_2.0 wait=enemy_pause active=continues")
@@ -13,7 +11,8 @@ func _ready() -> void:
 
 func _new_model() -> AtbBattleModel:
 	var model := AtbBattleModel.new()
-	model.setup(&"mansion_foyer_intro", CampaignState.party, CampaignState.character_progress, 1776)
+	var fixture_party: Array[StringName] = [&"ben", &"fighter"]
+	model.setup(&"mansion_foyer_intro", fixture_party, CampaignState.character_progress, 1776)
 	for actor in model.actors:
 		actor["atb"] = 0.0
 	return model

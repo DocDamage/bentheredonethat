@@ -9,7 +9,7 @@ func _ready() -> void:
 	CampaignState.reset_new_game()
 	CampaignState.recruit_status[&"fighter"] = &"reserve"
 	CampaignState.add_to_party(&"fighter")
-	for recruit_id in [&"scout", &"medic", &"scholar"]:
+	for recruit_id in [&"scout"]:
 		CampaignState.recruit_catalog[recruit_id] = {"name": String(recruit_id).capitalize(), "specialty": "Formation test", "work_specialties": [], "work_adjacent": []}
 		CampaignState.recruit_status[recruit_id] = &"reserve"
 		CampaignState.ensure_character_progress(recruit_id, 140, 30)

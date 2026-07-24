@@ -3,10 +3,9 @@ extends Node
 
 func _ready() -> void:
 	CampaignState.reset_new_game()
-	CampaignState.recruit_status[&"fighter"] = &"reserve"
-	assert(CampaignState.add_to_party(&"fighter"), "Fighter should join the battle party")
 	var model := AtbBattleModel.new()
-	model.setup(&"mansion_foyer_intro", CampaignState.party, CampaignState.character_progress, 1776)
+	var fixture_party: Array[StringName] = [&"ben", &"fighter"]
+	model.setup(&"mansion_foyer_intro", fixture_party, CampaignState.character_progress, 1776)
 	assert(model.actors.size() == 5, "Expected Ben, Fighter, pet, and two enemies")
 	for actor in model.actors:
 		actor["atb"] = 0.0

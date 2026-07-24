@@ -6,6 +6,7 @@ const RESTRICTED_TRANSITION := preload("res://ben_rpg/world/restricted_area_tran
 
 func _ready() -> void:
 	CampaignState.reset_new_game()
+	_use_two_person_fixture()
 	CampaignState.build_facility(0, "Cafe")
 	CampaignState.build_facility(1, "Library")
 	CampaignState.build_facility(2, "Clinic")
@@ -102,3 +103,13 @@ func _fail(message: String) -> void:
 	printerr("ROSTER_FORMATION_SMOKE_FAILED: " + message)
 	DirAccess.remove_absolute(ProjectSettings.globalize_path(TEST_SAVE))
 	get_tree().quit(1)
+
+
+func _use_two_person_fixture() -> void:
+	# Retain the historical five-slot formation fixture while the campaign itself
+	# opens with Ben, Lincoln, and Gandhi.
+	CampaignState.party.assign([&"ben"])
+	CampaignState.party_formation = {&"ben": &"back"}
+	CampaignState.recruit_status[&"ben"] = &"party"
+	CampaignState.recruit_status[&"lincoln"] = &"reserve"
+	CampaignState.recruit_status[&"gandhi"] = &"reserve"

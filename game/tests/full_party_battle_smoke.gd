@@ -9,6 +9,7 @@ func _ready() -> void:
 
 func _run() -> void:
 	CampaignState.reset_new_game()
+	_use_two_person_fixture()
 	CampaignState.recruit_status[&"fighter"] = &"reserve"
 	CampaignState.add_to_party(&"fighter")
 	_add_recruit(&"caveman_test", "Caveman", "Recruitable Characters/caveman/Caveman")
@@ -67,6 +68,16 @@ func _add_recruit(recruit_id: StringName, display_name: String, asset_pack: Stri
 	CampaignState.recruit_status[recruit_id] = &"reserve"
 	CampaignState.ensure_character_progress(recruit_id, 155, 24)
 	CampaignState.add_to_party(recruit_id)
+
+
+func _use_two_person_fixture() -> void:
+	# This smoke test needs three synthetic recruits to exercise distinct catalog sprites.
+	# Keep that fixture explicit now that the authored opening party is a trio.
+	CampaignState.party.assign([&"ben"])
+	CampaignState.party_formation = {&"ben": &"back"}
+	CampaignState.recruit_status[&"ben"] = &"party"
+	CampaignState.recruit_status[&"lincoln"] = &"reserve"
+	CampaignState.recruit_status[&"gandhi"] = &"reserve"
 
 
 func _fail(message: String) -> void:

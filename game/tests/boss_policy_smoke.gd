@@ -3,14 +3,13 @@ extends Node
 
 func _ready() -> void:
 	CampaignState.reset_new_game()
-	CampaignState.recruit_status[&"fighter"] = &"reserve"
-	assert(CampaignState.add_to_party(&"fighter"), "The Fighter should join the Mansion boss fixture")
 	CampaignState.story_flags[&"mansion_first_room_complete"] = true
 	CampaignState.duckets = 25
 	CampaignState.add_item(&"anchor_shard", 1, false)
 	assert(CampaignState.craft_invention(&"temporal_tuning_fork"), "The Mansion clock reward should craft a reusable time invention")
 	var model := AtbBattleModel.new()
-	model.setup(&"mansion_archive_boss", CampaignState.party, CampaignState.character_progress, 444)
+	var fixture_party: Array[StringName] = [&"ben", &"fighter"]
+	model.setup(&"mansion_archive_boss", fixture_party, CampaignState.character_progress, 444)
 	var boss: Dictionary = model.living("enemy")[0]
 	var ben := model.get_actor(&"ben")
 	var fighter := model.get_actor(&"fighter")
