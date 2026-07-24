@@ -10,6 +10,7 @@ func _ready() -> void:
 func _run() -> void:
 	DirAccess.remove_absolute(ProjectSettings.globalize_path(TEST_SAVE))
 	CampaignState.reset_new_game()
+	_use_ben_only_fixture()
 	for recruit_id in [&"fighter", &"astronaut", &"neon_viper", &"mossback_surveyor"]:
 		CampaignState.discover_recruit(recruit_id)
 		CampaignState.hire_recruit(recruit_id)
@@ -126,3 +127,13 @@ func _run() -> void:
 func _fail(message: String) -> void:
 	printerr("PARTY_FIELD_FOLLOWERS_SMOKE_FAILED: " + message)
 	get_tree().quit(1)
+
+
+func _use_ben_only_fixture() -> void:
+	# Keep four follower slots available for this train-behavior fixture now that
+	# the authored opening party has three core protagonists.
+	CampaignState.party.assign([&"ben"])
+	CampaignState.party_formation = {&"ben": &"back"}
+	CampaignState.recruit_status[&"ben"] = &"party"
+	CampaignState.recruit_status[&"lincoln"] = &"reserve"
+	CampaignState.recruit_status[&"gandhi"] = &"reserve"

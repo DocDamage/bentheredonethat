@@ -67,7 +67,7 @@ func _run() -> void:
 		_fail("Clinic treatment did not fully restore the party for the displayed cost")
 		return
 	var records := CampaignState.library_record_summary()
-	if int(records.get("quests_discovered", 0)) <= 0 or int(records.get("recruits", 0)) != 1:
+	if int(records.get("quests_discovered", 0)) <= 0 or int(records.get("recruits", 0)) != 3:
 		_fail("The Library could not summarize persistent company records")
 		return
 
