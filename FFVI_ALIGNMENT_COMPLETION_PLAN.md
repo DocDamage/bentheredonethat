@@ -3155,6 +3155,13 @@ limit:
   `test-artifacts/20260723-234810-9413c0e4` with the isolated production-save
   sentinel unchanged. Encounter rewards/loot remain the last active data
   ownership move before mandatory-address combat production can begin.
+- Existing encounter reward/loot production now lives in
+  `CampaignEncounterRewardCatalog` behind the database facade. The complete
+  eight-scene combat-content milestone passed at
+  `test-artifacts/20260723-235511-5dc5d4d4` with the isolated production-save
+  sentinel unchanged, and `npm run check` passed. The active core combat
+  definitions, bestiary, actions, and rewards are now validated content
+  records; retained snapshots await a later ownership-only removal decision.
 - Ashfall's nine non-`none` encounter contracts are validated address content
   records but remain `runtimeEnabled: false`. They cannot enter the battle
   catalog until approved actor profiles, battle backdrops, balance/reward

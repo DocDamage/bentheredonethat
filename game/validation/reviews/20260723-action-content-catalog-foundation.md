@@ -23,9 +23,9 @@
 
 ## Remaining work
 
-- Extract the active encounter reward/loot tables from
-  `CampaignCombatDatabase`; no address enemy or action is admitted by this
-  change.
+- The bestiary and reward extraction follow-up is recorded separately in the
+  matching 20260723 evidence records; no address enemy or action is admitted
+  by this change.
 - Remove the retained action and encounter snapshots only after their staged
   parity baselines are no longer required.
 - Ashfall stays non-runtime until actor/backdrop admission, balancing,

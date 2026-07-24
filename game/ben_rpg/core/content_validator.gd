@@ -25,6 +25,7 @@ const ADDRESS_ENCOUNTER_CATALOG := preload("res://ben_rpg/combat/campaign_addres
 const ENCOUNTER_CATALOG := preload("res://ben_rpg/combat/campaign_encounter_catalog.gd")
 const ACTION_CATALOG := preload("res://ben_rpg/combat/campaign_action_catalog.gd")
 const BESTIARY_CATALOG := preload("res://ben_rpg/combat/campaign_bestiary_catalog.gd")
+const ENCOUNTER_REWARD_CATALOG := preload("res://ben_rpg/combat/campaign_encounter_reward_catalog.gd")
 const ADDRESS_ROOM_RECORDS := preload("res://ben_rpg/world/campaign_address_room_records.gd")
 const CAMPAIGN_VISUAL_PROFILE_REGISTRY := preload("res://ben_rpg/world/campaign_visual_profile_registry.gd")
 
@@ -152,6 +153,10 @@ static func _validate_bestiary(errors: Array[String]) -> void:
 
 static func _validate_encounters(errors: Array[String]) -> void:
 	errors.append_array(ENCOUNTER_CATALOG.validate())
+	errors.append_array(ENCOUNTER_REWARD_CATALOG.validate())
+	for encounter_id in ENCOUNTER_REWARD_CATALOG.FIXED_REWARD_ENCOUNTERS:
+		if not ENCOUNTER_CATALOG.has(encounter_id):
+			errors.append("Reward content references missing encounter '%s'." % encounter_id)
 	var seen := {}
 	for encounter_id in ENCOUNTER_CATALOG.ids():
 		if seen.has(encounter_id):

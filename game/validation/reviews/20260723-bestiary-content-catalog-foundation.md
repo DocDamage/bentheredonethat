@@ -23,7 +23,7 @@
 
 ## Remaining work
 
-- Extract encounter reward/loot content from `CampaignCombatDatabase` and
-  validate it as content records.
+- Encounter reward/loot content now has a separate active catalog and evidence
+  record; the remaining work is address-specific balance/reward admission.
 - No Ashfall enemy, backdrop, balance/reward record, or runtime room is
   admitted by this work; all address encounters remain disabled.
