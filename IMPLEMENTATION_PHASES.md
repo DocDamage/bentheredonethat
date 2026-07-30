@@ -43,7 +43,7 @@ A phase closes only when every exit gate is recorded against an exact commit.
 | 4. Core universe production | All 102 core-universe rooms accepted | 20% | Verified automated; human acceptance pending |
 | 5. Mandatory address production | All 64 address rooms accepted | 20% | Verified automated; human acceptance pending |
 | 6. Population, progression, and side content | Full roster and campaign integration | 5% | Verified automated; human acceptance pending |
-| 7. Content lock and release candidate | Measured, licensed, signed, shippable build | 10% | Not started as a release phase |
+| 7. Content lock and release candidate | Measured, licensed, signed, shippable build | 10% | Implemented and verified automated; human release acceptance pending |
 
 Weights are progress-reporting weights, not schedule estimates. Progress is
 earned only when a phase deliverable reaches its stated gate.
