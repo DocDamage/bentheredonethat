@@ -6,6 +6,11 @@ const RUNTIME := preload("res://ben_rpg/world/campaign_annex_room_runtime.gd")
 
 func _ready() -> void:
 	assert(REGISTRY.validate().is_empty())
+	var previous_properties = Gameboard.properties
+	var properties := GameboardProperties.new()
+	properties.cell_size = Vector2i(48, 48)
+	properties.extents = Rect2i(0, 0, 1000, 1000)
+	Gameboard.properties = properties
 	var streamer := STREAMER.new()
 	var navigation := GameboardLayer.new()
 	var runtime := RUNTIME.new()
@@ -23,5 +28,6 @@ func _ready() -> void:
 	assert(navigation.get_cell_atlas_coords(Vector2i(662, 9)) == Vector2i(2, 2))
 	streamer.deactivate()
 	navigation.free()
-	print("ANNEX_ROOM_RUNTIME_SMOKE_OK admitted=true stream=phase3+AF01 navigation=shared_staging_origin")
+	Gameboard.properties = previous_properties
+	print("ANNEX_ROOM_RUNTIME_SMOKE_OK admitted=true stream=phase3+phase5 navigation=shared_staging_origin")
 	get_tree().quit()

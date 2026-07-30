@@ -27,7 +27,7 @@ static func room_ids() -> Array[StringName]:
 	var result: Array[StringName] = []
 	for room_id in NP_CATALOG.ROOM_ORDER: result.append(room_id)
 	for room_id in FACILITIES.ROOM_ORDER: result.append(room_id)
-	result.append(&"AF-01")
+	for room_id in ADDRESS_CATALOG.room_ids(): result.append(room_id)
 	return result
 
 
@@ -90,8 +90,8 @@ static func lot_route_for_facility(facility_room_id: StringName) -> Dictionary:
 
 static func validate() -> PackedStringArray:
 	var errors: Array[String] = []
-	if DEFINITIONS.size() != 27:
-		errors.append("Phase 3 annex registry must contain 15 hub rooms, 11 facilities, and AF-01.")
+	if DEFINITIONS.size() != 90:
+		errors.append("Annex registry must contain 15 hub rooms, 11 facilities, and all 64 address rooms.")
 	errors.append_array(NP_POPULATION.validate())
 	for room_id in NP_CATALOG.ROOM_ORDER + FACILITIES.ROOM_ORDER:
 		var definition := room(room_id)
@@ -109,6 +109,12 @@ static func validate() -> PackedStringArray:
 		var portal_target := StringName(definition.get("portalTarget", &""))
 		if portal_target != &"" and route(facility_id, &"Ne").is_empty():
 			errors.append("%s cannot reach its core-universe entry room." % facility_id)
+	for room_id in ADDRESS_CATALOG.room_ids():
+		var definition := room(room_id)
+		if definition.is_empty() or not bool(definition.get("runtimeEnabled", false)) or String(definition.get("scenePath", "")).is_empty():
+			errors.append("%s must be admitted to the Phase 5 runtime." % room_id)
+		for port_id in (definition.get("ports", {}) as Dictionary):
+			if route(room_id, StringName(port_id)).is_empty(): errors.append("Address route %s.%s lacks a reciprocal safe arrival." % [room_id, port_id])
 	var af_route := route(&"NP-15", &"E2")
 	if StringName(af_route.get("destinationRoom", &"")) != &"AF-01":
 		errors.append("NP-15 must retain its gated reciprocal AF-01 route.")
@@ -144,18 +150,12 @@ static func _build_definitions() -> Dictionary:
 		facility["navigation"] = _facility_navigation(facility)
 		facility["record"] = facility.duplicate(true)
 		result[room_id] = facility
-	var address_catalog := ADDRESS_CATALOG.room(&"AF-01")
-	var address_record := ADDRESS_RECORDS.record(&"AF-01")
-	var navigation: Dictionary = address_record.get("navigation", {}).duplicate(true)
-	var walkable_cells: Array[Vector2i] = []
-	for rectangle in navigation.get("walkableRects", []):
-		var origin: Vector2i = rectangle.get("origin", Vector2i.ZERO)
-		var size: Vector2i = rectangle.get("size", Vector2i.ZERO)
-		for y in range(origin.y, origin.y + size.y):
-			for x in range(origin.x, origin.x + size.x): walkable_cells.append(Vector2i(x, y))
-	navigation["walkableCells"] = walkable_cells
-	var address_blueprint: Dictionary = ROOM_REGISTRY.BLUEPRINTS.get(address_catalog.get("blueprint", &""), {})
-	result[&"AF-01"] = {"id": &"AF-01", "worldOrigin": STAGING_ORIGIN, "dimensions": (address_record.get("layout", {}) as Dictionary).get("dimensions", Vector2i.ZERO), "cameraBounds": FIELD_SCALE.camera_bounds_for_cells((address_record.get("layout", {}) as Dictionary).get("dimensions", Vector2i.ZERO)), "ports": address_catalog.get("ports", {}), "portCells": address_blueprint.get("ports", {}), "scenePath": address_record.get("scenePath", ""), "record": address_record, "navigation": navigation, "runtimeEnabled": true}
+	for room_id in ADDRESS_CATALOG.room_ids():
+		var address_catalog := ADDRESS_CATALOG.room(room_id)
+		var address_record := ADDRESS_RECORDS.record(room_id)
+		var dimensions: Vector2i = (address_record.get("layout", {}) as Dictionary).get("dimensions", Vector2i.ZERO)
+		var address_blueprint: Dictionary = ROOM_REGISTRY.BLUEPRINTS.get(address_catalog.get("blueprint", &""), {})
+		result[room_id] = {"id": room_id, "worldOrigin": STAGING_ORIGIN, "dimensions": dimensions, "cameraBounds": FIELD_SCALE.camera_bounds_for_cells(dimensions), "ports": address_catalog.get("ports", {}), "portCells": address_blueprint.get("ports", {}), "scenePath": address_record.get("scenePath", ""), "record": address_record, "navigation": address_record.get("navigation", {}), "runtimeEnabled": true, "implementationState": &"implemented"}
 	return result
 
 

@@ -12,7 +12,11 @@ func _run() -> void:
 	CampaignState.SAVE_REPOSITORY.cleanup(TEST_SAVE)
 	CampaignState.reset_new_game()
 	CampaignState.story_flags[&"empyreal_scenario_complete"] = true
-	assert(CampaignState.commit_campaign_ending_result(), "Empyreal victory should commit one authored ending transaction.")
+	assert(not CampaignState.commit_campaign_ending_result(), "Empyreal victory must wait for the six mandatory address resolutions.")
+	for address_id in CampaignState.ADDRESS_PROGRESSION.CATALOG.ADDRESS_ORDER:
+		var definition := CampaignState.ADDRESS_PROGRESSION.CATALOG.address(address_id)
+		CampaignState.story_flags[StringName(definition.get("resolutionFlag", &""))] = true
+	assert(CampaignState.commit_campaign_ending_result(), "Empyreal victory and six address resolutions should commit one authored ending transaction.")
 	assert(not CampaignState.commit_campaign_ending_result(), "The ending transaction must be idempotent.")
 	var ending := CampaignState.campaign_ending_state()
 	assert(bool(ending.get("needs_presentation", false)), "A saved final-boss victory should resume at the epilogue until the credits are seen.")
@@ -49,5 +53,5 @@ func _run() -> void:
 	ending = CampaignState.campaign_ending_state()
 	assert(bool(ending.get("postgame_unlocked", false)) and bool(ending.get("final_save_marked", false)) and not bool(ending.get("needs_presentation", false)), "A loaded postgame save should remain in free roam without replaying credits.")
 	CampaignState.SAVE_REPOSITORY.cleanup(TEST_SAVE)
-	print("CAMPAIGN_ENDING_SMOKE_OK ending=authored credits=true final_save=true free_roam=true rematch_rewards=false")
+	print("CAMPAIGN_ENDING_SMOKE_OK ending=authored addresses=6 credits=true final_save=true free_roam=true rematch_rewards=false")
 	get_tree().quit(0)

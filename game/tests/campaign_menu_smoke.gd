@@ -112,6 +112,9 @@ func _run() -> void:
 		_fail("Options controls did not save battle-speed or reduce-motion preferences")
 		return
 	CampaignState.story_flags[&"empyreal_scenario_complete"] = true
+	for address_id in CampaignState.ADDRESS_PROGRESSION.CATALOG.ADDRESS_ORDER:
+		var address_definition := CampaignState.ADDRESS_PROGRESSION.CATALOG.address(address_id)
+		CampaignState.story_flags[StringName(address_definition.get("resolutionFlag", &""))] = true
 	if not CampaignState.commit_campaign_ending_result() or not CampaignState.complete_campaign_ending(town_cell):
 		_fail("Postgame menu setup could not commit the ending state")
 		return

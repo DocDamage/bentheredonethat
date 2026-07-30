@@ -8,6 +8,6 @@ func _ready() -> void:
 	assert(REGISTRY.route(&"AF-01", &"Nw").get("arrivalCell", Vector2i.ZERO) == Vector2i(26, 13))
 	assert((REGISTRY.room(&"NP-15").get("ports", {}) as Dictionary).get(&"Se", &"") == &"WF-01")
 	assert((REGISTRY.room(&"NP-15").get("portGates", {}) as Dictionary).get(&"Se", &"") == &"warfront_ledger_received")
-	assert(REGISTRY.room_ids().size() == 27)
-	print("ANNEX_ROOM_REGISTRY_SMOKE_OK rooms=27 phase3=26 route=NP15_AF01 runtime_admitted=true")
+	assert(REGISTRY.room_ids().size() == 90)
+	print("ANNEX_ROOM_REGISTRY_SMOKE_OK rooms=90 phase3=26 phase5=64 routes=reciprocal runtime_admitted=true")
 	get_tree().quit()

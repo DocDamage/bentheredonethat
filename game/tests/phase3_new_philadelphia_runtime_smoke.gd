@@ -16,7 +16,7 @@ func _run() -> void:
 	assert(POPULATION.validate().is_empty())
 	assert(FACILITIES.validate().is_empty())
 	assert(ANNEX.validate().is_empty())
-	assert(ANNEX.room_ids().size() == 27)
+	assert(ANNEX.room_ids().size() == 90)
 	for room_id in NP.ROOM_ORDER + FACILITIES.ROOM_ORDER:
 		assert(ANNEX.is_runtime_admitted(room_id))
 		assert(ResourceLoader.exists(String(ANNEX.room(room_id).get("scenePath", ""))))

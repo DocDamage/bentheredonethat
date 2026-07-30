@@ -24,6 +24,7 @@ const SANDBOX_OBJECT_CATALOG := preload("res://ben_rpg/world/sandbox_object_cata
 const SANDBOX_TERRAIN_CATALOG := preload("res://ben_rpg/world/sandbox_terrain_catalog.gd")
 const NEW_PHILADELPHIA_CATALOG := preload("res://ben_rpg/world/campaign_new_philadelphia_catalog.gd")
 const FACILITY_CATALOG := preload("res://ben_rpg/world/campaign_facility_catalog.gd")
+const ADDRESS_PROGRESSION := preload("res://ben_rpg/core/campaign_address_progression.gd")
 const SANDBOX_LAYOUT_SLOT_VERSION := 1
 const SANDBOX_LAYOUT_SLOT_COUNT := 3
 const SANDBOX_LAYOUT_SLOT_PATH := "user://sandbox_layout_slot_%d.json"
@@ -411,15 +412,17 @@ func reset_new_game() -> void:
 
 func campaign_ending_state() -> Dictionary:
 	var scenario_complete := bool(story_flags.get(&"empyreal_scenario_complete", false))
+	var addresses_resolved := ADDRESS_PROGRESSION.all_resolved(self)
 	var result_committed := bool(story_flags.get(&"ending_result_committed", false))
 	var credits_seen := bool(story_flags.get(&"ending_credits_seen", false))
 	var postgame_unlocked := bool(story_flags.get(&"postgame_unlocked", false))
 	return {
-		"eligible": scenario_complete,
+		"eligible": scenario_complete and addresses_resolved,
+		"addresses_resolved": addresses_resolved,
 		"result_committed": result_committed,
 		"credits_seen": credits_seen,
 		"postgame_unlocked": postgame_unlocked,
-		"needs_presentation": scenario_complete and result_committed and not credits_seen,
+		"needs_presentation": scenario_complete and addresses_resolved and result_committed and not credits_seen,
 		"final_save_marked": bool(story_flags.get(&"ending_final_save_marker", false)),
 	}
 
@@ -428,7 +431,7 @@ func commit_campaign_ending_result() -> bool:
 	# The High Comptroller can only pay out its authored conclusion once. This
 	# marker is deliberately separate from the credits acknowledgement so a save
 	# made after the battle but before the player reads the epilogue resumes it.
-	if not bool(story_flags.get(&"empyreal_scenario_complete", false)):
+	if not bool(story_flags.get(&"empyreal_scenario_complete", false)) or not ADDRESS_PROGRESSION.all_resolved(self):
 		return false
 	if bool(story_flags.get(&"ending_result_committed", false)):
 		return false

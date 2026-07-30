@@ -27,7 +27,8 @@ func configure(record_definition: Dictionary) -> void:
 	var navigation: Dictionary = _record.get("navigation", {})
 	name = "AuthoredAddressRoom_%s" % _record.get("id", &"AF-01")
 	set_meta(&"room_id", _record.get("id", &"AF-01"))
-	set_meta(&"runtime_gated", true)
+	set_meta(&"runtime_enabled", true)
+	set_meta(&"runtime_gated", true) # compatibility metadata for staged-scene tooling
 	var navigation_layer := get_node_or_null("NavigationAndCollision") as Node2D
 	if navigation_layer:
 		navigation_layer.set_meta(&"navigation_id", navigation.get("id", &""))

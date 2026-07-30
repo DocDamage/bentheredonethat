@@ -6,6 +6,8 @@ extends RefCounted
 ## database facade while mandatory-address records can depend on this stable
 ## content authority directly.
 
+const ADDRESS_CONTENT_PATH := "res://ben_rpg/combat/campaign_address_encounter_catalog.gd"
+
 static var CORE_CONTRACTS := {
 	&"mansion_foyer_intro": {"name": "A Bad First Impression", "enemies": [&"schoolgirl_ghost", &"war_book"], "backdrop_profile": &"mansion_foyer_battle_backdrop", "scripted": true},
 	&"mansion_restless_books": {"name": "Restless Stacks", "enemies": [&"war_book", &"war_book"], "backdrop_profile": &"mansion_foyer_battle_backdrop"},
@@ -68,12 +70,17 @@ static func ids() -> Array[StringName]:
 	var ids: Array[StringName] = []
 	for encounter_id in CORE_CONTRACTS.keys():
 		ids.append(StringName(encounter_id))
+	var address_content = load(ADDRESS_CONTENT_PATH)
+	for encounter_id in address_content.CONTRACTS.keys():
+		if encounter_id not in ids: ids.append(StringName(encounter_id))
 	ids.sort()
 	return ids
 
 
 static func has(encounter_id: StringName) -> bool:
-	return CORE_CONTRACTS.has(encounter_id)
+	if CORE_CONTRACTS.has(encounter_id): return true
+	var address_content = load(ADDRESS_CONTENT_PATH)
+	return address_content.CONTRACTS.has(encounter_id)
 
 
 static func contracts() -> Dictionary:
@@ -81,7 +88,9 @@ static func contracts() -> Dictionary:
 
 
 static func definition(encounter_id: StringName) -> Dictionary:
-	return (CORE_CONTRACTS.get(encounter_id, {}) as Dictionary).duplicate(true)
+	if CORE_CONTRACTS.has(encounter_id): return (CORE_CONTRACTS.get(encounter_id, {}) as Dictionary).duplicate(true)
+	var address_content = load(ADDRESS_CONTENT_PATH)
+	return address_content.battle_definition(encounter_id)
 
 
 static func validate() -> PackedStringArray:

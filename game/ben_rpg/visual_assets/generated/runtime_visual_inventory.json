@@ -3964,7 +3964,7 @@
       "references": [
         {
           "file": "game/ben_rpg/core/campaign_state.gd",
-          "line": 289,
+          "line": 290,
           "resolution": "literal"
         },
         {
@@ -3984,7 +3984,7 @@
       "references": [
         {
           "file": "game/ben_rpg/core/campaign_state.gd",
-          "line": 271,
+          "line": 272,
           "resolution": "literal"
         },
         {
@@ -4004,7 +4004,7 @@
       "references": [
         {
           "file": "game/ben_rpg/core/campaign_state.gd",
-          "line": 253,
+          "line": 254,
           "resolution": "literal"
         },
         {
@@ -4024,7 +4024,7 @@
       "references": [
         {
           "file": "game/ben_rpg/core/campaign_state.gd",
-          "line": 235,
+          "line": 236,
           "resolution": "literal"
         },
         {

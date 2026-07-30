@@ -108,7 +108,11 @@ func _assert_save_and_ending_boundaries() -> void:
 		assert(CampaignState.party == expected_party, "%s save changed the active party" % boss_room)
 		assert(bool(CampaignState.story_flags.get(universe["complete"] as StringName, false)))
 	assert(CampaignState.stabilized_universe_count() == 6)
-	assert(CampaignState.commit_campaign_ending_result(), "Empyreal completion did not reach the provisional ending handoff")
+	assert(not CampaignState.commit_campaign_ending_result(), "Empyreal ending must wait for all mandatory addresses")
+	for address_id in CampaignState.ADDRESS_PROGRESSION.CATALOG.ADDRESS_ORDER:
+		var definition := CampaignState.ADDRESS_PROGRESSION.CATALOG.address(address_id)
+		CampaignState.story_flags[StringName(definition.get("resolutionFlag", &""))] = true
+	assert(CampaignState.commit_campaign_ending_result(), "Empyreal completion and six addresses did not reach the ending handoff")
 	assert(not CampaignState.commit_campaign_ending_result(), "The provisional ending transaction is not idempotent")
 	assert(bool(CampaignState.campaign_ending_state().get("needs_presentation", false)))
 	for character_id in CampaignState.CORE_PROTAGONIST_IDS:

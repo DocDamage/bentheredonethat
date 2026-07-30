@@ -1,9 +1,8 @@
 class_name CampaignRequiredAddressCatalog
 extends RefCounted
 
-## Locked Section 23.5-23.10 room contracts.  These data records deliberately
-## do not enter CampaignRoomRegistry yet: no address may stream before its
-## source admission, room scenes, collision, and population audits are done.
+## Locked Section 23.5-23.10 room contracts. Phase 5 admits these chapters
+## through CampaignAnnexRoomRegistry after their complete production gate.
 
 const ROOM_REGISTRY := preload("res://ben_rpg/world/campaign_room_registry.gd")
 const ADDRESS_ORDER := [&"ashfall", &"pelagic", &"steamforge", &"frontier", &"warfront", &"liminal"]
@@ -50,6 +49,22 @@ static func room(room_id: StringName) -> Dictionary:
 	return {}
 
 
+static func address_for_room(room_id: StringName) -> StringName:
+	for address_id in ADDRESS_ORDER:
+		for record in (ADDRESS_DEFINITIONS[address_id].get("rooms", []) as Array):
+			if StringName(record.get("id", &"")) == room_id:
+				return address_id
+	return &""
+
+
+static func room_ids() -> Array[StringName]:
+	var result: Array[StringName] = []
+	for address_id in ADDRESS_ORDER:
+		for record in (ADDRESS_DEFINITIONS[address_id].get("rooms", []) as Array):
+			result.append(StringName(record.get("id", &"")))
+	return result
+
+
 static func validate() -> PackedStringArray:
 	var errors: Array[String] = []
 	if ADDRESS_DEFINITIONS.size() != 6:
@@ -80,8 +95,8 @@ static func validate() -> PackedStringArray:
 					errors.append("%s links outside its address: %s." % [room_id, target])
 		if counts[&"C"] != int(expected[0]) or counts[&"O"] != int(expected[1]) or counts[&"X"] != int(expected[2]):
 			errors.append("%s class budget differs from the locked matrix." % address_id)
-		if StringName(definition.get("resolutionFlag", &"")) == &"" or bool(definition.get("runtimeEnabled", true)):
-			errors.append("%s must remain admission-gated with a resolution flag." % address_id)
+		if StringName(definition.get("resolutionFlag", &"")) == &"" or not bool(definition.get("runtimeEnabled", false)):
+			errors.append("%s must be production-admitted with a resolution flag." % address_id)
 	return PackedStringArray(errors)
 
 
@@ -95,5 +110,7 @@ static func _address(prefix: StringName, title: String, room_count: int, unlock_
 			port_map[StringName(parts[0])] = StringName(parts[1])
 		var room_id := StringName("%s-%02d" % [prefix, index + 1])
 		var encounter_id := StringName(row[4]) if row.size() > 4 else StringName(ENCOUNTER_IDS_BY_ROOM.get(room_id, &""))
+		if encounter_id == &"" and StringName(row[1]) == &"C":
+			encounter_id = StringName("%s_%02d_%s" % [String(prefix).to_lower(), index + 1, "boss" if index == int(class_budget[0]) - 1 else "encounter"])
 		rooms.append({"id": room_id, "title": row[0], "class": row[1], "blueprint": row[2], "ports": port_map, "encounterId": encounter_id})
-	return {"prefix": prefix, "title": title, "roomCount": room_count, "unlockFlags": unlock_flags, "resolutionFlag": resolution_flag, "rewards": rewards, "classBudget": class_budget, "runtimeEnabled": false, "rooms": rooms}
+	return {"prefix": prefix, "title": title, "roomCount": room_count, "unlockFlags": unlock_flags, "resolutionFlag": resolution_flag, "rewards": rewards, "classBudget": class_budget, "runtimeEnabled": true, "rooms": rooms}

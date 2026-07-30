@@ -83,8 +83,14 @@ func _run() -> void:
 	if not CampaignState.story_flags.get(&"empyreal_scenario_complete", false):
 		_fail("The High Comptroller's defeat did not stabilize Empyreal Court")
 		return
-	if not bool(CampaignState.campaign_ending_state().get("result_committed", false)):
-		_fail("The High Comptroller did not commit the one-time ending transaction")
+	if bool(CampaignState.campaign_ending_state().get("result_committed", false)):
+		_fail("The High Comptroller bypassed the mandatory-address ending gate")
+		return
+	for address_id in CampaignState.ADDRESS_PROGRESSION.CATALOG.ADDRESS_ORDER:
+		var address_definition := CampaignState.ADDRESS_PROGRESSION.CATALOG.address(address_id)
+		CampaignState.story_flags[StringName(address_definition.get("resolutionFlag", &""))] = true
+	if not CampaignState.commit_campaign_ending_result():
+		_fail("The completed addresses did not release the one-time ending transaction")
 		return
 	archangel.apply_interaction(false)
 	if CampaignState.recruit_status.get(&"archangel_commander") not in [&"party", &"reserve"]:
@@ -100,7 +106,7 @@ func _run() -> void:
 		_fail("Empyreal save metadata was mislabeled")
 		return
 
-	print("EMPYREAL_SCENARIO_SMOKE_OK rooms=5 movement=true layout=floating_terraces puzzle=galvanic_counterweight battles=ATB recruit=archangel loot=epic_aegis")
+	print("EMPYREAL_SCENARIO_SMOKE_OK rooms=5 movement=true layout=floating_terraces puzzle=galvanic_counterweight battles=ATB recruit=archangel loot=epic_aegis ending_gate=addresses")
 	main.queue_free()
 	await get_tree().process_frame
 	get_tree().quit(0)
