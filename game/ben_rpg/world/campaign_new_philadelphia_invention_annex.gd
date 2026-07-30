@@ -15,7 +15,9 @@ func configure(record_definition: Dictionary) -> void:
 	_record = record_definition.duplicate(true)
 	name = "AuthoredNewPhiladelphiaRoom_NP-02"
 	set_meta(&"room_id", &"NP-02")
+	set_meta(&"runtime_enabled", true)
 	set_meta(&"runtime_gated", true)
+	set_meta(&"implementation_state", &"implemented")
 	var collision_layer := get_node_or_null("NavigationAndCollision")
 	if collision_layer and collision_layer.has_method(&"configure"):
 		collision_layer.call(&"configure", _record.get("navigation", {}))

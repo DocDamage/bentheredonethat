@@ -3,6 +3,7 @@ extends Node
 
 const MANIFEST_ENTRY_CELL := Vector2i(306, 3)
 const MANIFEST_EXIT_CELL := Vector2i(306, 1)
+const FACILITY_EXIT_CELL := Vector2i(656, 12)
 
 func _ready() -> void:
 	_run.call_deferred()
@@ -51,11 +52,23 @@ func _run() -> void:
 
 	FieldEvents.cell_selected.emit(MANIFEST_EXIT_CELL)
 	await get_tree().create_timer(1.5).timeout
-	if GamepieceRegistry.get_cell(Player.gamepiece) != Vector2i(64, 17):
-		_fail("Haunted Mansion exit did not return to the safe town side")
+	if main.get_node("Field/Map/CampaignWorld/RoomStreamer").active_room_id() != &"FI-05":
+		_fail("Haunted Mansion exit did not enter the stable FI-05 Anchor Hall")
+		return
+	var facility_path: Array = Gameboard.pathfinder.get_path_to_cell(GamepieceRegistry.get_cell(Player.gamepiece), FACILITY_EXIT_CELL)
+	if facility_path.is_empty():
+		var navigation := main.get_node("Field/Map/CampaignWorld/NavigationAndCollision/CampaignNavigation")
+		_fail("FI-05 did not install a walkable route from its portal to its lot exit (start=%s start_atlas=%s exit_atlas=%s)" % [GamepieceRegistry.get_cell(Player.gamepiece), navigation.get_cell_atlas_coords(GamepieceRegistry.get_cell(Player.gamepiece)), navigation.get_cell_atlas_coords(FACILITY_EXIT_CELL)])
+		return
+	FieldEvents.cell_selected.emit(FACILITY_EXIT_CELL)
+	await get_tree().create_timer(8.0).timeout
+	var np07 := preload("res://ben_rpg/world/campaign_annex_room_registry.gd").room(&"NP-07")
+	var expected_return: Vector2i = (np07.get("worldOrigin", Vector2i.ZERO) as Vector2i) + Vector2i(7, 10)
+	if GamepieceRegistry.get_cell(Player.gamepiece) != expected_return:
+		_fail("FI-05 did not return through its saved LOT-05 exterior (actual=%s expected=%s active=%s)" % [GamepieceRegistry.get_cell(Player.gamepiece), expected_return, main.get_node("Field/Map/CampaignWorld/RoomStreamer").active_room_id()])
 		return
 
-	print("HAUNTED_MANSION_ANCHOR_SMOKE_OK build=plot5 enter=(306,3) return=(64,17) runtime=manifest")
+	print("HAUNTED_MANSION_ANCHOR_SMOKE_OK build=plot5 enter=(306,3) return=FI05>LOT05 runtime=manifest+phase3")
 	main.queue_free()
 	await get_tree().process_frame
 	get_tree().quit(0)

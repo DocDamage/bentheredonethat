@@ -6,7 +6,7 @@ const UI_PARTY_HUD := UI_ROOT + "/dfgui_partyhud.png"
 const CATALOG := preload("res://ben_rpg/world/sandbox_object_catalog.gd")
 const TERRAIN_CATALOG := preload("res://ben_rpg/world/sandbox_terrain_catalog.gd")
 const SANDBOX_VISUAL_RESOLVER := preload("res://ben_rpg/world/sandbox_visual_resolver.gd")
-const HISTORY_LIMIT := 100
+const HISTORY_MODEL := preload("res://ben_rpg/world/sandbox_editor_history.gd")
 
 var campaign: Node
 var renderer
@@ -26,8 +26,9 @@ var _mode_label: Label
 var _preview: TextureRect
 var _help_label: Label
 var _last_painted_cell := Gameboard.INVALID_CELL
-var _undo_stack: Array[Dictionary] = []
-var _redo_stack: Array[Dictionary] = []
+var _history := HISTORY_MODEL.new()
+var _undo_stack: Array[Dictionary] = _history.undo_stack # compatibility inspection surface
+var _redo_stack: Array[Dictionary] = _history.redo_stack
 var _clipboard: Dictionary = {}
 var _box_selection_start := Gameboard.INVALID_CELL
 var _multi_move_origin := Gameboard.INVALID_CELL
@@ -483,33 +484,26 @@ func _record_history(before: Dictionary) -> void:
 	var after := _layout_snapshot()
 	if after == before:
 		return
-	_undo_stack.append({"before": before, "after": after})
-	if _undo_stack.size() > HISTORY_LIMIT:
-		_undo_stack.pop_front()
-	_redo_stack.clear()
+	_history.record(before, after)
 
 
 func _undo_sandbox_edit() -> void:
-	if _undo_stack.is_empty():
+	var before := _history.take_undo()
+	if before.is_empty():
 		_mode_label.text = "NOTHING TO UNDO — THE SANDBOX HISTORY IS CLEAR"
 		return
-	var command: Dictionary = _undo_stack.pop_back()
-	var before: Dictionary = command.get("before", {})
 	if not CampaignState.restore_sandbox_layout(before):
 		return
-	_redo_stack.append(command)
 	_after_history_restore("UNDID EDIT")
 
 
 func _redo_sandbox_edit() -> void:
-	if _redo_stack.is_empty():
+	var after := _history.take_redo()
+	if after.is_empty():
 		_mode_label.text = "NOTHING TO REDO — MAKE A NEW EDIT TO START A NEW BRANCH"
 		return
-	var command: Dictionary = _redo_stack.pop_back()
-	var after: Dictionary = command.get("after", {})
 	if not CampaignState.restore_sandbox_layout(after):
 		return
-	_undo_stack.append(command)
 	_after_history_restore("REDID EDIT")
 
 
@@ -521,7 +515,8 @@ func _after_history_restore(message: String) -> void:
 	_clear_object_selection()
 	_sync_renderer()
 	_refresh_hud()
-	_mode_label.text = "%s   •   UNDO %d   •   REDO %d" % [message, _undo_stack.size(), _redo_stack.size()]
+	var counts := _history.counts()
+	_mode_label.text = "%s   •   UNDO %d   •   REDO %d" % [message, counts.x, counts.y]
 
 
 func _copy_selected_object() -> void:

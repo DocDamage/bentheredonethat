@@ -1,9 +1,7 @@
 class_name CampaignNewPhiladelphiaRoomRecords
 extends RefCounted
 
-## First scene/collision admission slice for the New Philadelphia hub. It
-## intentionally keeps NP-15 runtime-gated until its cultural pavilion/table
-## art, population schedules, and stream gateway have their own review.
+## Production scene/collision records for the Phase 3 New Philadelphia hub.
 
 const CATALOG := preload("res://ben_rpg/world/campaign_new_philadelphia_catalog.gd")
 const ROOM_REGISTRY := preload("res://ben_rpg/world/campaign_room_registry.gd")
@@ -23,8 +21,8 @@ static func validate() -> PackedStringArray:
 		var catalog_room := CATALOG.room(room_id)
 		var layout: Dictionary = definition.get("layout", {})
 		var navigation: Dictionary = definition.get("navigation", {})
-		if definition.is_empty() or catalog_room.is_empty() or StringName(definition.get("implementationState", &"")) != &"scene_collision_authored_runtime_gated":
-			errors.append("%s must retain a separately gated scene/collision record." % room_id)
+		if definition.is_empty() or catalog_room.is_empty() or StringName(definition.get("implementationState", &"")) != &"implemented":
+			errors.append("%s must retain an implemented scene/collision record." % room_id)
 			continue
 		if not ResourceLoader.exists(String(definition.get("scenePath", ""))):
 			errors.append("%s scene path is missing." % room_id)
@@ -112,7 +110,7 @@ static func _embassy_green_record() -> Dictionary:
 	for port_id in ports:
 		safe_cells[port_id] = ADDRESS_RECORDS.expected_arrival_cell((blueprint.get("ports", {}) as Dictionary).get(port_id, Vector2i.ZERO), StringName(port_id))
 	return {
-		"id": &"NP-15", "implementationState": &"scene_collision_authored_runtime_gated", "scenePath": "res://ben_rpg/world/rooms/new_philadelphia_embassy_green.tscn",
+		"id": &"NP-15", "implementationState": &"implemented", "scenePath": "res://ben_rpg/world/rooms/new_philadelphia_embassy_green.tscn",
 		"layout": {"dimensions": dimensions, "terrainProfileIds": [&"sandbox_modern_grass", &"sandbox_modern_cobble"], "boundaryProfileIds": [&"town_ranch_tree_small", &"town_ranch_tree_tall"], "featureContracts": [{"id": &"charter_table", "anchor": &"Icenter", "cell": Vector2i(15, 10), "runtimeState": &"visual_and_interaction_gated"}]},
 		"navigation": {"id": &"np15-embassy-green-navigation-v1", "collisionMaskId": &"np15-embassy-green-perimeter-v1", "dimensions": dimensions, "walkableCells": walkable, "blockedCells": blocked, "arrivalSafeCells": safe_cells},
 	}
@@ -131,7 +129,7 @@ static func _franklin_laboratory_record() -> Dictionary:
 	for port_id in catalog_room.get("ports", {}):
 		safe_cells[port_id] = ADDRESS_RECORDS.expected_arrival_cell((blueprint.get("ports", {}) as Dictionary).get(port_id, Vector2i.ZERO), StringName(port_id))
 	return {
-		"id": &"NP-01", "implementationState": &"scene_collision_authored_runtime_gated", "scenePath": "res://ben_rpg/world/rooms/new_philadelphia_franklin_laboratory.tscn",
+		"id": &"NP-01", "implementationState": &"implemented", "scenePath": "res://ben_rpg/world/rooms/new_philadelphia_franklin_laboratory.tscn",
 		"layout": {"dimensions": dimensions, "terrainProfileIds": [&"laboratory_floor_tile", &"laboratory_wall_tile"], "propProfileIds": [&"laboratory_analysis_station", &"laboratory_east_calibrator", &"laboratory_west_storage", &"laboratory_center_storage", &"laboratory_east_fabricator"], "featureContracts": [{"id": &"franklin_workbench", "anchor": &"Icenter", "cell": Vector2i(15, 10), "runtimeState": &"visual_and_interaction_gated"}]},
 		"navigation": {"id": &"np01-franklin-laboratory-navigation-v1", "collisionMaskId": &"np01-franklin-laboratory-perimeter-and-equipment-v1", "dimensions": dimensions, "walkableCells": walkable, "blockedCells": blocked, "arrivalSafeCells": safe_cells},
 	}
@@ -150,7 +148,7 @@ static func _invention_annex_record() -> Dictionary:
 	for port_id in catalog_room.get("ports", {}):
 		safe_cells[port_id] = ADDRESS_RECORDS.expected_arrival_cell((blueprint.get("ports", {}) as Dictionary).get(port_id, Vector2i.ZERO), StringName(port_id))
 	return {
-		"id": &"NP-02", "implementationState": &"scene_collision_authored_runtime_gated", "scenePath": "res://ben_rpg/world/rooms/new_philadelphia_invention_annex.tscn",
+		"id": &"NP-02", "implementationState": &"implemented", "scenePath": "res://ben_rpg/world/rooms/new_philadelphia_invention_annex.tscn",
 		"layout": {"dimensions": dimensions, "terrainProfileIds": [&"laboratory_floor_tile", &"laboratory_wall_tile"], "propProfileIds": [&"laboratory_west_terminal", &"laboratory_east_reactor", &"laboratory_east_generator", &"laboratory_center_storage", &"laboratory_east_fabricator"], "featureContracts": [{"id": &"invention_bench", "anchor": &"Icenter", "cell": Vector2i(12, 8), "runtimeState": &"visual_and_interaction_gated"}]},
 		"navigation": {"id": &"np02-invention-annex-navigation-v1", "collisionMaskId": &"np02-invention-annex-perimeter-and-equipment-v1", "dimensions": dimensions, "walkableCells": walkable, "blockedCells": blocked, "arrivalSafeCells": safe_cells},
 	}
@@ -169,7 +167,7 @@ static func _power_records_basement_record() -> Dictionary:
 	for port_id in catalog_room.get("ports", {}):
 		safe_cells[port_id] = ADDRESS_RECORDS.expected_arrival_cell((blueprint.get("ports", {}) as Dictionary).get(port_id, Vector2i.ZERO), StringName(port_id))
 	return {
-		"id": &"NP-03", "implementationState": &"scene_collision_authored_runtime_gated", "scenePath": "res://ben_rpg/world/rooms/new_philadelphia_power_records_basement.tscn",
+		"id": &"NP-03", "implementationState": &"implemented", "scenePath": "res://ben_rpg/world/rooms/new_philadelphia_power_records_basement.tscn",
 		"layout": {"dimensions": dimensions, "terrainProfileIds": [&"laboratory_floor_tile", &"laboratory_wall_tile"], "propProfileIds": [&"laboratory_west_storage", &"laboratory_east_generator", &"laboratory_analysis_station", &"laboratory_center_storage", &"laboratory_east_reactor"], "featureContracts": [{"id": &"fault_line_regulator", "anchor": &"Icenter", "cell": Vector2i(9, 8), "runtimeState": &"visual_and_interaction_gated"}]},
 		"navigation": {"id": &"np03-power-records-navigation-v1", "collisionMaskId": &"np03-power-records-perimeter-and-equipment-v1", "dimensions": dimensions, "walkableCells": walkable, "blockedCells": blocked, "arrivalSafeCells": safe_cells},
 	}
@@ -183,7 +181,7 @@ static func _founders_square_record() -> Dictionary:
 	walkable.erase(Vector2i(16, 11))
 	var safe_cells := {}
 	for port_id in catalog_room.get("ports", {}): safe_cells[port_id] = ADDRESS_RECORDS.expected_arrival_cell((blueprint.get("ports", {}) as Dictionary).get(port_id, Vector2i.ZERO), StringName(port_id))
-	return {"id": &"NP-04", "implementationState": &"scene_collision_authored_runtime_gated", "scenePath": "res://ben_rpg/world/rooms/new_philadelphia_founders_square.tscn", "layout": {"dimensions": dimensions, "terrainProfileIds": [&"sandbox_modern_grass", &"sandbox_modern_cobble"], "featureContracts": [{"id": &"founding_monument", "anchor": &"Icenter", "cell": Vector2i(16, 11), "runtimeState": &"visual_and_interaction_gated"}]}, "navigation": {"id": &"np04-founders-square-navigation-v1", "collisionMaskId": &"np04-founders-square-perimeter-and-monument-v1", "dimensions": dimensions, "walkableCells": walkable, "blockedCells": _blocked_cells(dimensions, walkable), "arrivalSafeCells": safe_cells}}
+	return {"id": &"NP-04", "implementationState": &"implemented", "scenePath": "res://ben_rpg/world/rooms/new_philadelphia_founders_square.tscn", "layout": {"dimensions": dimensions, "terrainProfileIds": [&"sandbox_modern_grass", &"sandbox_modern_cobble"], "featureContracts": [{"id": &"founding_monument", "anchor": &"Icenter", "cell": Vector2i(16, 11), "runtimeState": &"visual_and_interaction_gated"}]}, "navigation": {"id": &"np04-founders-square-navigation-v1", "collisionMaskId": &"np04-founders-square-perimeter-and-monument-v1", "dimensions": dimensions, "walkableCells": walkable, "blockedCells": _blocked_cells(dimensions, walkable), "arrivalSafeCells": safe_cells}}
 
 
 static func _old_town_market_record() -> Dictionary:
@@ -234,7 +232,7 @@ static func _district_record(room_id: StringName, scene_path: String, terrain_pr
 	for cell in reservations: walkable.erase(cell)
 	var safe_cells := {}
 	for port_id in catalog_room.get("ports", {}): safe_cells[port_id] = ADDRESS_RECORDS.expected_arrival_cell((blueprint.get("ports", {}) as Dictionary).get(port_id, Vector2i.ZERO), StringName(port_id))
-	return {"id": room_id, "implementationState": &"scene_collision_authored_runtime_gated", "scenePath": scene_path, "layout": {"dimensions": dimensions, "terrainProfileIds": terrain_profile_ids, "propProfileIds": prop_profile_ids, "lotIds": lot_ids, "featureContracts": feature_contracts}, "navigation": {"id": StringName("%s-navigation-v1" % String(room_id).to_lower()), "collisionMaskId": StringName("%s-perimeter-and-reservations-v1" % String(room_id).to_lower()), "dimensions": dimensions, "walkableCells": walkable, "blockedCells": _blocked_cells(dimensions, walkable), "arrivalSafeCells": safe_cells}}
+	return {"id": room_id, "implementationState": &"implemented", "scenePath": scene_path, "layout": {"dimensions": dimensions, "terrainProfileIds": terrain_profile_ids, "propProfileIds": prop_profile_ids, "lotIds": lot_ids, "featureContracts": feature_contracts}, "navigation": {"id": StringName("%s-navigation-v1" % String(room_id).to_lower()), "collisionMaskId": StringName("%s-perimeter-and-reservations-v1" % String(room_id).to_lower()), "dimensions": dimensions, "walkableCells": walkable, "blockedCells": _blocked_cells(dimensions, walkable), "arrivalSafeCells": safe_cells}}
 
 
 static func _walkable_cells(dimensions: Vector2i, blueprint_ports: Dictionary, bound_ports: Dictionary) -> Array[Vector2i]:

@@ -23,6 +23,7 @@ const WORLD_CATALOG := preload("res://ben_rpg/core/campaign_world_catalog.gd")
 const SANDBOX_OBJECT_CATALOG := preload("res://ben_rpg/world/sandbox_object_catalog.gd")
 const SANDBOX_TERRAIN_CATALOG := preload("res://ben_rpg/world/sandbox_terrain_catalog.gd")
 const NEW_PHILADELPHIA_CATALOG := preload("res://ben_rpg/world/campaign_new_philadelphia_catalog.gd")
+const FACILITY_CATALOG := preload("res://ben_rpg/world/campaign_facility_catalog.gd")
 const SANDBOX_LAYOUT_SLOT_VERSION := 1
 const SANDBOX_LAYOUT_SLOT_COUNT := 3
 const SANDBOX_LAYOUT_SLOT_PATH := "user://sandbox_layout_slot_%d.json"
@@ -2651,6 +2652,10 @@ func build_facility(plot_index: int, facility_name: String, universe_id: StringN
 				universe_id = StringName(raw_universe_id)
 				break
 	built_facilities[plot_index] = facility_name
+	var lot_id := StringName("LOT-%02d" % (plot_index + 1))
+	var facility_interior_id := FACILITY_CATALOG.room_for_facility(facility_name)
+	if not NEW_PHILADELPHIA_CATALOG.lot(lot_id).is_empty() and facility_interior_id != &"":
+		new_philadelphia_lot_placements[lot_id] = facility_interior_id
 	if universe_id != &"":
 		universe_anchors[plot_index] = universe_id
 		var anchor_flag := StringName(UNIVERSE_DEFINITIONS[universe_id].get("anchor_flag", &""))
@@ -2662,6 +2667,30 @@ func build_facility(plot_index: int, facility_name: String, universe_id: StringN
 	facility_built.emit(plot_index, facility_name)
 	if universe_id != &"":
 		universe_anchored.emit(plot_index, universe_id)
+	state_changed.emit()
+	return true
+
+
+func relocate_facility(facility_name: String, destination_plot_index: int) -> bool:
+	if not sandbox_mode or destination_plot_index < 0 or destination_plot_index >= NEW_PHILADELPHIA_CATALOG.LOT_DEFINITIONS.size():
+		return false
+	var source_plot_index := -1
+	for raw_plot_index in built_facilities:
+		if String(built_facilities[raw_plot_index]) == facility_name:
+			source_plot_index = int(raw_plot_index)
+			break
+	if source_plot_index < 0 or source_plot_index == destination_plot_index or built_facilities.has(destination_plot_index):
+		return false
+	var source_lot := StringName("LOT-%02d" % (source_plot_index + 1))
+	var destination_lot := StringName("LOT-%02d" % (destination_plot_index + 1))
+	var facility_id := StringName(new_philadelphia_lot_placements.get(source_lot, FACILITY_CATALOG.room_for_facility(facility_name)))
+	built_facilities.erase(source_plot_index)
+	built_facilities[destination_plot_index] = facility_name
+	new_philadelphia_lot_placements.erase(source_lot)
+	new_philadelphia_lot_placements[destination_lot] = facility_id
+	if universe_anchors.has(source_plot_index):
+		universe_anchors[destination_plot_index] = universe_anchors[source_plot_index]
+		universe_anchors.erase(source_plot_index)
 	state_changed.emit()
 	return true
 
@@ -3187,6 +3216,17 @@ func _deserialize(data: Dictionary, source_version_override := -1) -> void:
 		var facility_interior_id := StringName(data.new_philadelphia_lot_placements[raw_lot_id])
 		if not NEW_PHILADELPHIA_CATALOG.lot(lot_id).is_empty() and facility_interior_id != &"":
 			new_philadelphia_lot_placements[lot_id] = facility_interior_id
+	# Versions through 21 stored the legacy numeric lot/facade map without
+	# materializing the Phase 3 stable-interior links. Recover those links while
+	# leaving every facility's jobs, upgrades, staffing, and portal state intact.
+	for raw_plot_index in built_facilities:
+		var plot_index := int(raw_plot_index)
+		var lot_id := StringName("LOT-%02d" % (plot_index + 1))
+		if new_philadelphia_lot_placements.has(lot_id):
+			continue
+		var facility_id := FACILITY_CATALOG.room_for_facility(String(built_facilities[raw_plot_index]))
+		if facility_id != &"" and not NEW_PHILADELPHIA_CATALOG.lot(lot_id).is_empty():
+			new_philadelphia_lot_placements[lot_id] = facility_id
 	universe_anchors = _integer_key_dictionary(data.get("universe_anchors", {}))
 	for plot_index in universe_anchors.keys():
 		universe_anchors[plot_index] = StringName(universe_anchors[plot_index])

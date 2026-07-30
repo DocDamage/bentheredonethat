@@ -5,6 +5,7 @@ extends Node
 ## legacy areas continue to use their compatibility adapter during migration.
 
 const ROOM_REGISTRY := preload("res://ben_rpg/world/campaign_room_registry.gd")
+const ANNEX_REGISTRY := preload("res://ben_rpg/world/campaign_annex_room_registry.gd")
 const FIELD_SCALE := preload("res://ben_rpg/world/campaign_field_scale.gd")
 
 var active_room_id: StringName = &""
@@ -38,7 +39,7 @@ func apply_to(camera: Camera2D) -> bool:
 
 
 func _on_active_room_changed(room_id: StringName, legacy_area: StringName) -> void:
-	if legacy_area != &"" or not ROOM_REGISTRY.is_authored_room(room_id):
+	if legacy_area != &"" or (not ROOM_REGISTRY.is_authored_room(room_id) and not ANNEX_REGISTRY.is_runtime_admitted(room_id)):
 		active_room_id = &""
 		active_bounds = Rect2i()
 		active_zoom = Vector2.ONE
@@ -48,7 +49,7 @@ func _on_active_room_changed(room_id: StringName, legacy_area: StringName) -> vo
 
 func _activate(room_id: StringName) -> void:
 	active_room_id = room_id
-	var definition := ROOM_REGISTRY.room(room_id)
+	var definition := ANNEX_REGISTRY.room(room_id) if ANNEX_REGISTRY.is_runtime_admitted(room_id) else ROOM_REGISTRY.room(room_id)
 	var local_bounds := definition.get("cameraBounds", Rect2i()) as Rect2i
 	var world_origin := definition.get("worldOrigin", Vector2i.ZERO) as Vector2i
 	var world_origin_pixels := world_origin * FIELD_SCALE.MOVEMENT_CELL_PIXELS

@@ -69,6 +69,8 @@ func activate_annex_room(room_id: StringName, definition: Dictionary) -> void:
 	deactivate()
 	if root.has_method(&"configure"):
 		root.call(&"configure", definition.get("record", {}))
+	_install_annex_population(root, definition.get("populationContract", {}))
+	root.position = Vector2(definition.get("worldOrigin", Vector2i.ZERO) as Vector2i) * 48.0
 	_activate_root(room_id, &"", root)
 
 
@@ -101,6 +103,21 @@ func _activate_root(room_id: StringName, legacy_area: StringName, root: Node2D) 
 	_active_root = root
 	add_child(_active_root)
 	active_room_changed.emit(room_id, legacy_area)
+
+
+func _install_annex_population(root: Node2D, contract: Dictionary) -> void:
+	if contract.is_empty(): return
+	root.set_meta(&"population_contract", contract)
+	var actors := root.get_node_or_null("YSortedActorsAndProps") as Node2D
+	if not actors: return
+	for assignment in contract.get("assignments", []) as Array:
+		var marker := Node2D.new()
+		marker.name = "DistrictCohort_%s" % assignment.get("cohortId", &"resident")
+		marker.position = Gameboard.cell_to_pixel(assignment.get("cell", Vector2i.ZERO))
+		marker.set_meta(&"cohort_id", assignment.get("cohortId", &""))
+		marker.set_meta(&"route", assignment.get("route", []))
+		marker.set_meta(&"activity", assignment.get("activity", &""))
+		actors.add_child(marker)
 
 
 func _create_room_root(room_id: StringName, area: StringName) -> Node2D:

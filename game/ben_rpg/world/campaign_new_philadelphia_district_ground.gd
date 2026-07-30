@@ -14,6 +14,8 @@ func _ready() -> void:
 
 
 func configure(layout: Dictionary) -> void:
+	if _profiles == null:
+		_profiles = PROFILES.new()
 	_layout = layout.duplicate(true)
 	for profile_id in _layout.get("terrainProfileIds", []) as Array:
 		_textures[profile_id] = _profiles.texture(profile_id)

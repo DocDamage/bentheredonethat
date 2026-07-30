@@ -169,6 +169,8 @@ const ROOM_MARKER_NAVIGATION := preload("res://ben_rpg/world/campaign_room_marke
 const NAVIGATION_BUILDER := preload("res://ben_rpg/world/campaign_navigation_builder.gd")
 const TRANSITION_ROUTER := preload("res://ben_rpg/world/campaign_transition_router.gd")
 const ROOM_RUNTIME_SCRIPT := preload("res://ben_rpg/world/campaign_room_runtime.gd")
+const ANNEX_ROOM_RUNTIME_SCRIPT := preload("res://ben_rpg/world/campaign_annex_room_runtime.gd")
+const ANNEX_ROOM_REGISTRY := preload("res://ben_rpg/world/campaign_annex_room_registry.gd")
 const AREA_LAYER_CONTROLLER_SCRIPT := preload("res://ben_rpg/world/campaign_area_layer_controller.gd")
 const WEATHER_OVERLAY_SCRIPT := preload("res://ben_rpg/world/campaign_weather_overlay.gd")
 const AREA_TRANSITION := preload("res://src/field/cutscenes/templates/area_transitions/area_transition.tscn")
@@ -227,6 +229,7 @@ var _visual_profiles := VISUAL_PROFILE_REGISTRY.new()
 var _room_streamer: Node
 var _camera_controller: CampaignCameraController
 var _room_runtime: Node
+var _annex_room_runtime: Node
 var _area_layer_controller
 var _empyreal_ground
 var _frosthold_ground
@@ -373,6 +376,11 @@ func _enter_tree() -> void:
 	_room_runtime.name = "ManifestRoomRuntime"
 	_room_runtime.call(&"configure", _room_streamer, _navigation)
 	world.add_child(_room_runtime)
+	_annex_room_runtime = ANNEX_ROOM_RUNTIME_SCRIPT.new()
+	_annex_room_runtime.name = "Phase3RoomRuntime"
+	_annex_room_runtime.call(&"configure", _room_streamer, _navigation, _room_runtime)
+	_room_runtime.call(&"set_annex_runtime", _annex_room_runtime)
+	world.add_child(_annex_room_runtime)
 	_resident_manager = TOWN_RESIDENT_MANAGER_SCRIPT.new()
 	_resident_manager.name = "TownResidents"
 	_resident_manager.campaign = self
@@ -506,6 +514,17 @@ func start_sandbox_campaign() -> bool:
 	return true
 
 
+func enter_phase3_room(room_id: StringName, arrival_port: StringName = &"") -> bool:
+	if not _annex_room_runtime or not ANNEX_ROOM_REGISTRY.is_runtime_admitted(room_id):
+		return false
+	if not bool(_annex_room_runtime.call(&"activate", room_id)):
+		return false
+	var definition := ANNEX_ROOM_REGISTRY.room(room_id)
+	var local_arrival := ANNEX_ROOM_REGISTRY.safe_arrival_cell(room_id, arrival_port) if arrival_port != &"" else Vector2i(int(definition.get("dimensions", Vector2i.ZERO).x / 2), int(definition.get("dimensions", Vector2i.ZERO).y / 2) + 2)
+	_place_player((definition.get("worldOrigin", Vector2i.ZERO) as Vector2i) + local_arrival)
+	return true
+
+
 func _show_title_screen() -> void:
 	if _title_screen:
 		return
@@ -553,7 +572,10 @@ func _place_player(requested_cell: Vector2i) -> void:
 	var destination := requested_cell
 	var current := GamepieceRegistry.get_cell(player)
 	var occupant := GamepieceRegistry.get_gamepiece(destination)
-	if not Gameboard.pathfinder.has_cell(destination) or (occupant != null and occupant != player):
+	var active_phase3_room := StringName(_annex_room_runtime.call(&"active_room_id")) if _annex_room_runtime else &""
+	var phase3_definition := ANNEX_ROOM_REGISTRY.room(active_phase3_room)
+	var is_phase3_arrival := active_phase3_room != &"" and Rect2i(phase3_definition.get("worldOrigin", Vector2i.ZERO), phase3_definition.get("dimensions", Vector2i.ZERO)).has_point(destination)
+	if (not Gameboard.pathfinder.has_cell(destination) and not is_phase3_arrival) or (occupant != null and occupant != player):
 		destination = LAB_SPAWN
 	if current != destination:
 		GamepieceRegistry.move_gamepiece(player, destination)
@@ -670,7 +692,7 @@ func _update_camera_limits(force := false) -> void:
 	if not gamepiece:
 		return
 	var current_cell := Gameboard.pixel_to_cell(gamepiece.position)
-	var runtime_room_id := StringName(_room_runtime.call(&"active_room_id")) if _room_runtime else &""
+	var runtime_room_id := StringName(_annex_room_runtime.call(&"active_room_id")) if _annex_room_runtime and StringName(_annex_room_runtime.call(&"active_room_id")) != &"" else (StringName(_room_runtime.call(&"active_room_id")) if _room_runtime else &"")
 	# Camera bounds and area activation are cell-based. Reclassifying the same
 	# cell every rendered frame repeated room lookup, camera application, and
 	# several area-bound checks even while the player was stationary. A streamed
@@ -681,7 +703,9 @@ func _update_camera_limits(force := false) -> void:
 		return
 	_last_camera_cell = current_cell
 	var area := "lab"
-	var manifest_room_id := StringName(_room_runtime.call(&"room_at_cell", current_cell)) if _room_runtime else &""
+	var manifest_room_id := StringName(_annex_room_runtime.call(&"room_at_cell", current_cell)) if _annex_room_runtime else &""
+	if manifest_room_id == &"":
+		manifest_room_id = StringName(_room_runtime.call(&"room_at_cell", current_cell)) if _room_runtime else &""
 	if manifest_room_id == &"":
 		manifest_room_id = ROOM_REGISTRY.room_id_at_world_cell(current_cell)
 		if manifest_room_id != &"" and _room_runtime:
@@ -776,7 +800,10 @@ func _update_camera_limits(force := false) -> void:
 		_camera_controller.set_canvas_scale(global_scale)
 	if _room_streamer:
 		if manifest_room_id != &"":
-			_room_streamer.call(&"activate_room", manifest_room_id)
+			if ANNEX_ROOM_REGISTRY.is_runtime_admitted(manifest_room_id):
+				_room_streamer.call(&"activate_annex_room", manifest_room_id, ANNEX_ROOM_REGISTRY.room(manifest_room_id))
+			else:
+				_room_streamer.call(&"activate_room", manifest_room_id)
 		else:
 			_room_streamer.call(&"activate_legacy_mansion_area", StringName(area))
 	_sync_boss_marker_visibility(area)
@@ -801,7 +828,7 @@ func _update_camera_limits(force := false) -> void:
 	var origin := Vector2i.ZERO
 	var size := LAB_SIZE
 	if manifest_room_id != &"":
-		var manifest_definition := ROOM_REGISTRY.room(manifest_room_id)
+		var manifest_definition := ANNEX_ROOM_REGISTRY.room(manifest_room_id) if ANNEX_ROOM_REGISTRY.is_runtime_admitted(manifest_room_id) else ROOM_REGISTRY.room(manifest_room_id)
 		origin = manifest_definition.get("worldOrigin", Vector2i.ZERO)
 		size = manifest_definition.get("dimensions", Vector2i.ZERO)
 	elif area == "town":
@@ -978,9 +1005,12 @@ func _restore_campaign_state() -> void:
 
 func _restore_saved_manifest_room() -> void:
 	var room_id := CampaignState.last_manifest_room_id
-	if room_id == &"" or not ROOM_REGISTRY.is_authored_room(room_id) or not _room_runtime:
+	if room_id == &"":
 		return
-	_room_runtime.call(&"activate", room_id)
+	if ANNEX_ROOM_REGISTRY.is_runtime_admitted(room_id) and _annex_room_runtime:
+		_annex_room_runtime.call(&"activate", room_id)
+	elif ROOM_REGISTRY.is_authored_room(room_id) and _room_runtime:
+		_room_runtime.call(&"activate", room_id)
 
 
 func refresh_sandbox_object_collision() -> void:

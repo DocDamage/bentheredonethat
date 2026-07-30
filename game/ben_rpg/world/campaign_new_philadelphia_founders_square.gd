@@ -8,7 +8,9 @@ func _ready() -> void:
 func configure(record: Dictionary) -> void:
 	_record = record.duplicate(true)
 	set_meta(&"room_id", &"NP-04")
+	set_meta(&"runtime_enabled", true)
 	set_meta(&"runtime_gated", true)
+	set_meta(&"implementation_state", &"implemented")
 	for node_name in [&"NavigationAndCollision", &"GroundLayer", &"YSortedActorsAndProps"]:
 		var node := get_node_or_null(NodePath(node_name))
 		if node and node.has_method(&"configure"): node.call(&"configure", _record.get("navigation", {}) if node_name == &"NavigationAndCollision" else _record.get("layout", {}))

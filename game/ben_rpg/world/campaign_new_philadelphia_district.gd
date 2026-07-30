@@ -22,7 +22,9 @@ func configure(record_definition: Dictionary) -> void:
 	room_id = StringName(_record.get("id", room_id))
 	name = "AuthoredNewPhiladelphiaRoom_%s" % room_id
 	set_meta(&"room_id", room_id)
-	set_meta(&"runtime_gated", true)
+	set_meta(&"runtime_enabled", true)
+	set_meta(&"runtime_gated", true) # compatibility metadata for staged-scene tooling
+	set_meta(&"implementation_state", &"implemented")
 	var navigation: Dictionary = _record.get("navigation", {})
 	var layout: Dictionary = _record.get("layout", {})
 	for node_name in [&"NavigationAndCollision", &"GroundLayer", &"YSortedActorsAndProps"]:

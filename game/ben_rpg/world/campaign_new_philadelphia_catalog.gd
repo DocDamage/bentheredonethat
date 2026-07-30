@@ -2,8 +2,7 @@ class_name CampaignNewPhiladelphiaCatalog
 extends RefCounted
 
 ## Locked Section 23.3 hub and facility-lot contracts. This catalog deliberately
-## keeps the new town outside the legacy 32x28 construction map until every
-## room has an authored scene, collision record, and visual/population review.
+## supplies the production Phase 3 district streamer and movable lot runtime.
 
 const ROOM_REGISTRY := preload("res://ben_rpg/world/campaign_room_registry.gd")
 const ROOM_ORDER := [&"NP-01", &"NP-02", &"NP-03", &"NP-04", &"NP-05", &"NP-06", &"NP-07", &"NP-08", &"NP-09", &"NP-10", &"NP-11", &"NP-12", &"NP-13", &"NP-14", &"NP-15"]
@@ -78,8 +77,8 @@ static func validate() -> PackedStringArray:
 		known_rooms[room_id] = true
 		var blueprint_id: StringName = definition.get("blueprint", &"")
 		var blueprint: Dictionary = ROOM_REGISTRY.BLUEPRINTS.get(blueprint_id, {})
-		if blueprint.is_empty() or bool(definition.get("runtimeEnabled", true)):
-			errors.append("%s must use a known blueprint and remain runtime-gated." % room_id)
+		if blueprint.is_empty() or not bool(definition.get("runtimeEnabled", false)):
+			errors.append("%s must use a known blueprint and be runtime-enabled." % room_id)
 			continue
 		var dimensions: Vector2i = blueprint.get("dimensions", Vector2i.ZERO)
 		var layout := resolved_layout(room_id)
@@ -112,11 +111,11 @@ static func validate() -> PackedStringArray:
 
 
 static func _room(title: String, blueprint: StringName, ports: Dictionary, treasure_anchor: StringName, interaction_anchor: StringName, population_anchor_ids: Array, lot_ids: Array = []) -> Dictionary:
-	return {"title": title, "blueprint": blueprint, "ports": ports, "treasureAnchor": treasure_anchor, "interactionAnchor": interaction_anchor, "populationAnchorIds": population_anchor_ids, "lotIds": lot_ids, "runtimeEnabled": false, "implementationState": &"catalogued_runtime_gated"}
+	return {"title": title, "blueprint": blueprint, "ports": ports, "treasureAnchor": treasure_anchor, "interactionAnchor": interaction_anchor, "populationAnchorIds": population_anchor_ids, "lotIds": lot_ids, "runtimeEnabled": true, "implementationState": &"implemented"}
 
 
 static func _lot(district: StringName, footprint: Rect2i, door_cell: Vector2i) -> Dictionary:
-	return {"district": district, "footprint": footprint, "doorCell": door_cell, "runtimeEnabled": false}
+	return {"district": district, "footprint": footprint, "doorCell": door_cell, "runtimeEnabled": true}
 
 
 static func _has_reciprocal_port(room_id: StringName, target_room_id: StringName) -> bool:

@@ -12,10 +12,12 @@ const ROOM_REGISTRY := preload("res://ben_rpg/world/campaign_room_registry.gd")
 const NAVIGATION_BUILDER := preload("res://ben_rpg/world/campaign_navigation_builder.gd")
 const TRANSITION_ROUTER := preload("res://ben_rpg/world/campaign_transition_router.gd")
 const PORT_TRANSITION := preload("res://ben_rpg/world/campaign_manifest_port_transition.tscn")
+const ANNEX_REGISTRY := preload("res://ben_rpg/world/campaign_annex_room_registry.gd")
 
 var _streamer: Node
 var _navigation: GameboardLayer
 var _active_room_id: StringName = &""
+var _annex_runtime: Node
 
 
 func configure(streamer: Node, navigation: GameboardLayer) -> void:
@@ -23,6 +25,10 @@ func configure(streamer: Node, navigation: GameboardLayer) -> void:
 	_navigation = navigation
 	if not CampaignState.state_changed.is_connected(_on_campaign_state_changed):
 		CampaignState.state_changed.connect(_on_campaign_state_changed)
+
+
+func set_annex_runtime(annex_runtime: Node) -> void:
+	_annex_runtime = annex_runtime
 
 
 func active_room_id() -> StringName:
@@ -39,10 +45,15 @@ func room_at_cell(cell: Vector2i) -> StringName:
 
 
 func activate(room_id: StringName) -> void:
+	if ANNEX_REGISTRY.is_runtime_admitted(room_id):
+		if _annex_runtime: _annex_runtime.call_deferred(&"activate", room_id)
+		return
 	if not ROOM_REGISTRY.is_authored_room(room_id) or not _navigation:
 		return
 	if room_id == _active_room_id:
 		return
+	if _annex_runtime and StringName(_annex_runtime.call(&"active_room_id")) != &"":
+		_annex_runtime.call(&"deactivate")
 	var previous := _active_room_id
 	_unregister_room_save_points(previous)
 	_active_room_id = room_id
@@ -51,6 +62,14 @@ func activate(room_id: StringName) -> void:
 		_streamer.call(&"activate_room", room_id)
 	_install_port_transitions(room_id)
 	active_room_changed.emit(room_id)
+
+
+func deactivate() -> void:
+	if _active_room_id == &"": return
+	_unregister_room_save_points(_active_room_id)
+	_set_room_cells(_active_room_id, {}, [], [])
+	_active_room_id = &""
+	for child in get_children(): child.queue_free()
 
 
 func refresh_active_room() -> void:
@@ -115,9 +134,13 @@ func _install_port_transitions(room_id: StringName) -> void:
 	for port in ROOM_REGISTRY.ports(room_id):
 		var port_id := StringName(port.get("id", &""))
 		var destination_room_id := StringName(port.get("destination", &""))
-		if not port_id in enabled_ports or not ROOM_REGISTRY.is_authored_room(destination_room_id):
+		if not port_id in enabled_ports or (not ROOM_REGISTRY.is_authored_room(destination_room_id) and not ANNEX_REGISTRY.is_runtime_admitted(destination_room_id)):
 			continue
 		var route := TRANSITION_ROUTER.resolve(room_id, port_id)
+		if route.is_empty() and ANNEX_REGISTRY.is_runtime_admitted(destination_room_id):
+			var arrival_port := ANNEX_REGISTRY.reciprocal_port(destination_room_id, room_id)
+			if arrival_port != &"":
+				route = {"destinationRoom": destination_room_id, "arrivalPort": arrival_port, "arrivalCell": ANNEX_REGISTRY.safe_arrival_cell(destination_room_id, arrival_port)}
 		if route.is_empty():
 			continue
 		var transition := PORT_TRANSITION.instantiate() as AreaTransition
@@ -125,7 +148,7 @@ func _install_port_transitions(room_id: StringName) -> void:
 			continue
 		transition.name = "ManifestPort_%s_%s" % [room_id, port_id]
 		transition.position = Gameboard.cell_to_pixel(origin + (port_cells.get(port_id, Vector2i.ZERO) as Vector2i))
-		var destination_definition := ROOM_REGISTRY.room(destination_room_id)
+		var destination_definition := ROOM_REGISTRY.room(destination_room_id) if ROOM_REGISTRY.has_room(destination_room_id) else ANNEX_REGISTRY.room(destination_room_id)
 		var destination_origin: Vector2i = destination_definition.get("worldOrigin", Vector2i.ZERO)
 		transition.arrival_coordinates = Gameboard.cell_to_pixel(destination_origin + (route.get("arrivalCell", Vector2i.ZERO) as Vector2i))
 		transition.set("room_runtime", self)
@@ -137,6 +160,6 @@ func _streamable_port_ids(room_id: StringName) -> Array[StringName]:
 	var result: Array[StringName] = []
 	for port_id in ROOM_REGISTRY.enabled_port_ids(room_id):
 		var destination_room_id := StringName(ROOM_REGISTRY.port(room_id, port_id).get("destination", &""))
-		if destination_room_id in [&"FI-05", &"FI-06", &"FI-07", &"FI-08"] or ROOM_REGISTRY.is_authored_room(destination_room_id):
+		if ANNEX_REGISTRY.is_runtime_admitted(destination_room_id) or ROOM_REGISTRY.is_authored_room(destination_room_id):
 			result.append(port_id)
 	return result

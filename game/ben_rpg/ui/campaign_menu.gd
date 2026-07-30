@@ -7,6 +7,7 @@ const UI_ROOT := "res://game_assets/Tilesets/Dark RPG GUI Kit - Pixel Art Asset 
 const UI_PARTY_HUD := UI_ROOT + "/dfgui_partyhud.png"
 const UI_BUTTON := UI_ROOT + "/dfgui_button-empty.png"
 const VISUAL_PROFILE_REGISTRY := preload("res://ben_rpg/world/campaign_visual_profile_registry.gd")
+const MENU_CONTEXT := preload("res://ben_rpg/ui/campaign_menu_context.gd")
 const CHARACTER_PORTRAIT_REGIONS := {
 	&"ben": Rect2(20, 15, 48, 58),
 	&"fighter": Rect2(30, 24, 62, 76),
@@ -1610,9 +1611,7 @@ func _archive_library_records() -> void:
 
 
 func _at_laboratory() -> bool:
-	if not Player.gamepiece:
-		return false
-	return Rect2i(Vector2i.ZERO, Vector2i(20, 12)).has_point(Gameboard.pixel_to_cell(Player.gamepiece.position))
+	return MENU_CONTEXT.at_laboratory(Player.gamepiece)
 
 
 func _is_menu_character_available(character_id: StringName) -> bool:
@@ -1624,10 +1623,7 @@ func _is_menu_character_available(character_id: StringName) -> bool:
 func _at_company_management_location() -> bool:
 	if management_location_override >= 0:
 		return management_location_override == 1
-	if not Player.gamepiece:
-		return false
-	var cell := Gameboard.pixel_to_cell(Player.gamepiece.position)
-	return Rect2i(Vector2i.ZERO, Vector2i(20, 12)).has_point(cell) or Rect2i(Vector2i(36, 0), Vector2i(32, 22)).has_point(cell)
+	return MENU_CONTEXT.at_management_location(Player.gamepiece)
 
 
 func _at_roster_edit_location() -> bool:
@@ -1640,14 +1636,7 @@ func _at_roster_edit_location() -> bool:
 
 
 func _built_facility_names() -> Array[String]:
-	var plot_indexes: Array = CampaignState.built_facilities.keys()
-	plot_indexes.sort()
-	var results: Array[String] = []
-	for plot_index in plot_indexes:
-		var facility_name := String(CampaignState.built_facilities[plot_index])
-		if not CampaignState.facility_definition(facility_name).is_empty():
-			results.append(facility_name)
-	return results
+	return MENU_CONTEXT.built_facility_names()
 
 
 func _update_active_job_timer() -> void:
