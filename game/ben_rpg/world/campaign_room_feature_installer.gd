@@ -7,6 +7,7 @@ extends RefCounted
 const ROOM_REGISTRY := preload("res://ben_rpg/world/campaign_room_registry.gd")
 const TRANSITION_ROUTER := preload("res://ben_rpg/world/campaign_transition_router.gd")
 const POPULATION_SCHEDULER := preload("res://ben_rpg/world/campaign_population_scheduler.gd")
+const POPULATION_ACTOR_FACTORY := preload("res://ben_rpg/world/campaign_population_actor_factory.gd")
 const MANSION_SAVE_POINT := preload("res://ben_rpg/world/mansion_save_point.tscn")
 const MANSION_CHAPTER_INTERACTION := preload("res://ben_rpg/world/mansion_chapter_interaction.tscn")
 const MANSION_BOSS_INTERACTION := preload("res://ben_rpg/world/campaign_mansion_boss_interaction.tscn")
@@ -111,6 +112,12 @@ static func install(root: Node2D, room_id: StringName, definition: Dictionary) -
 		cohort.set_meta(&"reserved_cells", reserved_cells)
 		cohort.set_meta(&"assignments", population_schedule.get("assignments", []))
 		cohort.set_meta(&"unavailable_population_ids", population_schedule.get("unavailable", []))
+		for assignment in population_schedule.get("assignments", []):
+			if not assignment is Dictionary:
+				continue
+			var actor := POPULATION_ACTOR_FACTORY.create(assignment)
+			if actor:
+				cohort.add_child(actor)
 		actors_layer.add_child(cohort)
 
 
