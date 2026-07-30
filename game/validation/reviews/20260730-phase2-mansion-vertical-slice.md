@@ -1,7 +1,7 @@
 # Phase 2 — Mansion vertical slice verification
 
 - State: Verified automated; human acceptance pending
-- Implementation commit: populated in the follow-up documentation commit
+- Implementation commit: `c4e97fa2`
 - Engine: Godot 4.7.1 stable
 - Platform: Windows, NVIDIA GeForce RTX 3060
 - Scope: opening/laboratory handoff and `HM-01` through `HM-16`

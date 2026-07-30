@@ -145,7 +145,7 @@ remaining campaign.
 
 ### Verification record — 2026-07-30
 
-- Exact implementation commit: recorded by the subsequent documentation commit.
+- Exact implementation commit: `c4e97fa2`.
 - Evidence: `game/validation/reviews/20260730-phase2-mansion-vertical-slice.md`.
 - All 16 rooms now stream with authored navigation, room-owned interactions,
   scripted encounters, saves, optional rewards, 4:44 state, boss persistence,
