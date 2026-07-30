@@ -40,7 +40,7 @@ A phase closes only when every exit gate is recorded against an exact commit.
 | 1. Expansion architecture | Safe data-driven platform for 192 rooms | 10% | Complete; verified at `f3ec2199` |
 | 2. Mansion vertical slice | One final-quality, end-to-end chapter | 15% | Verified automated; human acceptance pending |
 | 3. New Philadelphia and facilities | Final hub plus movable facility contract | 15% | Contracts and staged scenes exist; runtime migration open |
-| 4. Core universe production | All 102 core-universe rooms accepted | 20% | Contracts/layouts exist; acceptance largely open |
+| 4. Core universe production | All 102 core-universe rooms accepted | 20% | Verified automated; human acceptance pending |
 | 5. Mandatory address production | All 64 address rooms accepted | 20% | Contracts exist; AF-01 is the first gated prototype |
 | 6. Population, progression, and side content | Full roster and campaign integration | 5% | Registry exists; production placement/integration open |
 | 7. Content lock and release candidate | Measured, licensed, signed, shippable build | 10% | Not started as a release phase |
@@ -231,6 +231,21 @@ current one is reviewed, but it cannot be marked accepted early.
   battle stage, population, town consequence, and save-safe traversal.
 - The opening-to-Empyreal path works with the protagonist trio in field, battle,
   menu, dialogue, progression, save, and ending flows.
+
+### Verification record — 2026-07-30
+
+- Exact implementation commit: `8afbcb34`.
+- Evidence: `game/validation/reviews/20260730-phase4-core-universe-production.md`.
+- All 86 Phase 4 rooms (102 core rooms including the Mansion) now pass one
+  production-runtime gate for authored scenes, navigation/collision ownership,
+  admitted visual profiles, encounter/population contracts, reciprocal safe
+  arrivals, live streaming, six universe save boundaries, protagonist-trio
+  continuity, and the provisional Empyreal ending handoff.
+- The 163-scene isolated Godot suite, fast/tool checks, runtime-asset checks,
+  and six focused universe scenario playthroughs pass on the Windows baseline.
+- Phase 4 remains `Verified`, not `Accepted`, until a human completes the
+  keyboard/controller, native-scale visual, balance, accessibility,
+  performance, and product sign-off gates required above.
 
 ## Phase 5 — Mandatory address production
 
