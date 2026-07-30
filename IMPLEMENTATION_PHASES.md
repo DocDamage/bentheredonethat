@@ -42,7 +42,7 @@ A phase closes only when every exit gate is recorded against an exact commit.
 | 3. New Philadelphia and facilities | Final hub plus movable facility contract | 15% | Contracts and staged scenes exist; runtime migration open |
 | 4. Core universe production | All 102 core-universe rooms accepted | 20% | Verified automated; human acceptance pending |
 | 5. Mandatory address production | All 64 address rooms accepted | 20% | Verified automated; human acceptance pending |
-| 6. Population, progression, and side content | Full roster and campaign integration | 5% | Registry exists; production placement/integration open |
+| 6. Population, progression, and side content | Full roster and campaign integration | 5% | Verified automated; human acceptance pending |
 | 7. Content lock and release candidate | Measured, licensed, signed, shippable build | 10% | Not started as a release phase |
 
 Weights are progress-reporting weights, not schedule estimates. Progress is
@@ -320,6 +320,24 @@ campaign-wide integration after all homes exist.
 - Every identity appears in an appropriate home/state without route conflicts.
 - Required characters and progression systems work across the entire campaign.
 - Optional content cannot block, duplicate, or invalidate main-story rewards.
+
+### Verification record — 2026-07-30
+
+- Exact implementation commit: `a9be2e6f`.
+- Evidence: `game/validation/reviews/20260730-phase6-population-progression-side-content.md`.
+- All 258 eligible identities now have unique checksum-backed runtime profiles,
+  complete eight-direction field art, canonical home/phase/cohort scheduling,
+  conflict-safe P1-P6 placement, and a six-resident room ceiling.
+- Lincoln and Gandhi remain mandatory protagonists instead of entering optional
+  recruit trials; named arcs, jobs, inventions, equipment/skills, economy,
+  bestiary, quests, rare events, postgame reactions, and rewardless rematches
+  pass one campaign-wide integration gate.
+- The 165-scene isolated Godot suite, 200 deterministic Phase 6 route
+  simulations, focused touched-system regression, fast/tool checks, and
+  runtime-asset checks pass on the Windows development baseline.
+- Phase 6 remains `Verified`, not `Accepted`, until a human completes resident
+  interaction, native-scale population visual, balance/accessibility,
+  minimum-hardware performance, and product sign-off gates.
 
 ## Phase 7 — Content lock and release candidate
 
