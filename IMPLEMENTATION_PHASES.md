@@ -183,6 +183,19 @@ remaining campaign.
 - `NP-15` keeps gated, reciprocal routes to `AF-01` and `WF-01`; no placeholder
   shortcut substitutes for either route.
 
+### Verification record — 2026-07-30
+
+- Exact implementation commit: `73a347c1`.
+- Evidence: `game/validation/reviews/20260730-phase3-new-philadelphia-facilities.md`.
+- All 15 hub rooms and 11 stable facility interiors now run through the annex
+  streamer with migrated lot identities, population phases, construction and
+  universe-import states, service/job ownership, and save-safe relocation.
+- The 162-scene isolated Godot suite, fast/tool checks, runtime-asset checks,
+  121-case facility placement matrix, and focused mansion/facility return pass.
+- Phase 3 remains `Verified`, not `Accepted`, until a human completes the
+  keyboard/controller, resident-schedule, accessibility, visual, and product
+  sign-off gates required above.
+
 ## Phase 4 — Core universe production
 
 Process one universe at a time. A later universe may be contracted while the
