@@ -30,8 +30,6 @@ func _execute() -> void:
 func apply_victory(save_after := true) -> bool:
 	var contract := ENCOUNTERS.contract(encounter_id)
 	if contract.is_empty() or not PROGRESSION.complete_encounter(encounter_id): return false
-	if StringName(contract.get("policy", &"")) == &"boss":
-		PROGRESSION.resolve(StringName(contract.get("addressId", &"")))
 	if save_after: CampaignState.save_game()
 	return true
 

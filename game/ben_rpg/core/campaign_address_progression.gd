@@ -33,6 +33,10 @@ static func complete_encounter(encounter_id: StringName, state = CampaignState) 
 	if bool(state.story_flags.get(flag, false)): return false
 	state.story_flags[flag] = true
 	state.story_flags[StringName("%s_restored" % String(contract.get("roomId", "")).to_lower())] = true
+	# Encounters are optional to walk around, so the boss is not guaranteed to be
+	# the final critical victory. Retry resolution after every first-time clear to
+	# prevent an early boss victory from permanently stranding the chapter.
+	resolve(StringName(contract.get("addressId", &"")), state)
 	state.state_changed.emit()
 	return true
 

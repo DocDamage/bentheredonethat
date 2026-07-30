@@ -53,10 +53,21 @@ func _run() -> void:
 		var chapter := CATALOG.address(address_id)
 		for flag in chapter.get("unlockFlags", []) as Array: CampaignState.story_flags[StringName(flag)] = true
 		assert(PROGRESSION.enter(address_id))
+		var critical_encounters: Array[StringName] = []
+		var boss_encounter := &""
 		for room in chapter.get("rooms", []) as Array:
-			if StringName(room.get("class", &"")) == &"C": assert(PROGRESSION.complete_encounter(StringName(room.get("encounterId", &""))))
+			if StringName(room.get("class", &"")) != &"C": continue
+			var encounter_id := StringName(room.get("encounterId", &""))
+			critical_encounters.append(encounter_id)
+			if StringName(ENCOUNTERS.contract(encounter_id).get("policy", &"")) == &"boss": boss_encounter = encounter_id
 		var before_duckets := CampaignState.duckets
-		assert(PROGRESSION.resolve(address_id))
+		assert(boss_encounter != &"")
+		assert(PROGRESSION.complete_encounter(boss_encounter))
+		assert(not PROGRESSION.can_resolve(address_id), "An early boss victory resolved %s before the remaining critical route." % address_id)
+		for encounter_id in critical_encounters:
+			if encounter_id != boss_encounter: assert(PROGRESSION.complete_encounter(encounter_id))
+		var resolution_flag := StringName(chapter.get("resolutionFlag", &""))
+		assert(bool(CampaignState.story_flags.get(resolution_flag, false)), "The last critical victory did not recover %s after an early boss clear." % address_id)
 		assert(CampaignState.duckets == before_duckets + int((chapter.get("rewards", {}) as Dictionary).get("duckets", 0)))
 		assert(not PROGRESSION.resolve(address_id), "Address reward replayed: %s" % address_id)
 		assert(PROGRESSION.return_room(address_id).begins_with("NP-"))
