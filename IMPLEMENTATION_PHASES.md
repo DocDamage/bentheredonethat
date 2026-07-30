@@ -41,7 +41,7 @@ A phase closes only when every exit gate is recorded against an exact commit.
 | 2. Mansion vertical slice | One final-quality, end-to-end chapter | 15% | Verified automated; human acceptance pending |
 | 3. New Philadelphia and facilities | Final hub plus movable facility contract | 15% | Contracts and staged scenes exist; runtime migration open |
 | 4. Core universe production | All 102 core-universe rooms accepted | 20% | Verified automated; human acceptance pending |
-| 5. Mandatory address production | All 64 address rooms accepted | 20% | Contracts exist; AF-01 is the first gated prototype |
+| 5. Mandatory address production | All 64 address rooms accepted | 20% | Verified automated; human acceptance pending |
 | 6. Population, progression, and side content | Full roster and campaign integration | 5% | Registry exists; production placement/integration open |
 | 7. Content lock and release candidate | Measured, licensed, signed, shippable build | 10% | Not started as a release phase |
 
@@ -279,6 +279,22 @@ passes the room, asset, population, battle, progression, and return-path gates.
 - Each resolution flag is awarded exactly once and survives migration/reload.
 - All six resolution flags are required for the final Empyreal ending.
 - Optional rooms remain optional and cannot hard-lock chapter progression.
+
+### Verification record — 2026-07-30
+
+- Exact implementation commit: `2365185e`.
+- Evidence: `game/validation/reviews/20260730-phase5-mandatory-address-production.md`.
+- All 64 mandatory-address rooms now run through the production annex streamer
+  with authored navigation/collision records, reciprocal New Philadelphia
+  returns, chapter visual/population contracts, and optional-room classification.
+- The six chapters expose 41 executable ATB encounter formations, exactly one
+  boss each, save-backed restoration state, idempotent resolution rewards, and
+  a six-flag gate on the Empyreal ending.
+- The 164-scene isolated Godot suite, focused Phase 5 production gate, fast/tool
+  checks, and runtime-asset checks pass on the Windows development baseline.
+- Phase 5 remains `Verified`, not `Accepted`, until a human completes the
+  keyboard/controller, native-scale visual, balance, accessibility,
+  performance, and product sign-off gates required above.
 
 ## Phase 6 — Population, progression, and side content
 
