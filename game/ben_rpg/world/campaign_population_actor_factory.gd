@@ -8,6 +8,8 @@ extends RefCounted
 ## the active room.
 
 const VISUAL_PROFILES := preload("res://ben_rpg/world/campaign_visual_profile_registry.gd")
+const POPULATION_VISUALS := preload("res://ben_rpg/world/campaign_population_visual_registry.gd")
+const POPULATION_ACTOR := preload("res://ben_rpg/world/campaign_population_actor.gd")
 const TILE := 48.0
 
 
@@ -18,6 +20,12 @@ static func create(assignment: Dictionary) -> Node2D:
 	var anchor := StringName(assignment.get("anchor", &""))
 	var cell: Vector2i = assignment.get("cell", Vector2i.ZERO)
 	if identity_id == &"" or profile_id == &"" or room_id == &"" or anchor == &"" or cell == Vector2i.ZERO:
+		return null
+	if POPULATION_VISUALS.has(profile_id):
+		var population_actor := POPULATION_ACTOR.new()
+		if bool(population_actor.call("configure", identity_id, POPULATION_VISUALS.profile(profile_id), POPULATION_VISUALS.texture(), room_id, anchor, cell)):
+			return population_actor
+		population_actor.free()
 		return null
 
 	var profiles := VISUAL_PROFILES.new()

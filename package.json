@@ -18,10 +18,12 @@
     "validate:vertical-slice-contact-sheets": "python tools/build_vertical_slice_contact_sheets.py --check",
     "validate:provenance": "python tools/build_runtime_asset_provenance.py --check",
     "validate:population-registry": "python tools/build_population_registry.py --check",
+    "build:population-runtime-atlas": "python tools/build_population_runtime_atlas.py && python tools/build_population_registry.py --source-root \"assets/characters/SakPix - 8-Direction Characters - ALL AS OF 7-3-26\"",
+    "validate:population-runtime-atlas": "python tools/build_population_runtime_atlas.py --check",
     "build:source-inventory": "python tools/build_source_library_inventory.py",
     "validate:source-inventory": "python tools/build_source_library_inventory.py --check",
     "validate:release-source-references": "python tools/validate_release_source_references.py",
-    "validate:runtime-assets": "npm run validate:town-library-facade && npm run validate:ashfall-cinder-gate-derivatives && npm run validate:visual-inventory && npm run validate:provenance && npm run validate:visual-manifest && npm run validate:visual-contact-sheet && npm run validate:population-registry && npm run validate:release-source-references",
+    "validate:runtime-assets": "npm run validate:town-library-facade && npm run validate:ashfall-cinder-gate-derivatives && npm run validate:visual-inventory && npm run validate:provenance && npm run validate:visual-manifest && npm run validate:visual-contact-sheet && npm run validate:population-runtime-atlas && npm run validate:population-registry && npm run validate:release-source-references",
     "validate:source-library": "python tools/require_source_library.py && python tools/validate_curated_asset_catalog.py && node tools/validate_npc_asset_readiness.js && python tools/build_population_registry.py --source-root \"assets/characters/SakPix - 8-Direction Characters - ALL AS OF 7-3-26\" && python tools/build_population_contact_sheets.py --source-root \"assets/characters/SakPix - 8-Direction Characters - ALL AS OF 7-3-26\" && npm run build:vertical-slice-contact-sheets && npm run validate:source-inventory",
     "validate:assets": "npm run validate:runtime-assets && npm run validate:source-library",
     "serve": "python -m http.server 8080"

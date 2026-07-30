@@ -13,6 +13,8 @@ const PROFILES := {
 	&"missed_treasure": {"optional_encounters": 0, "optional_spend_ratio": 0.0},
 	&"no_job": {"optional_encounters": 0, "optional_spend_ratio": 0.0},
 	&"heavy_job": {"optional_encounters": 3, "optional_spend_ratio": 0.22, "job_bonus_ratio": 0.18},
+	&"minimum_job": {"optional_encounters": 0, "optional_spend_ratio": 0.0, "job_bonus_ratio": 0.0},
+	&"offline_heavy": {"optional_encounters": 3, "optional_spend_ratio": 0.22, "job_bonus_ratio": 0.18},
 }
 
 const MAIN_PATH := [

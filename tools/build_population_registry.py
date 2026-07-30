@@ -76,7 +76,7 @@ def provenance_status(root: Path) -> str:
     return status
 
 
-def identity_record(assignment: dict[str, str], rotations: list[str] | None, admitted_status: str) -> dict[str, Any]:
+def identity_record(assignment: dict[str, str], rotations: list[str] | None, admitted_status: str, runtime_profile_id: str | None = None) -> dict[str, Any]:
     match = PHASE_PATTERN.search(assignment["schedule"])
     if rotations is None:
         rotation_state = "unverified"
@@ -90,7 +90,7 @@ def identity_record(assignment: dict[str, str], rotations: list[str] | None, adm
         "canonicalHome": assignment["home"],
         "sourceRotationState": rotation_state,
         "availableRotations": available,
-        "runtimeProfileId": None,
+        "runtimeProfileId": runtime_profile_id,
         "provenanceStatus": admitted_status,
     }
     if match is None:
@@ -109,8 +109,22 @@ def identity_record(assignment: dict[str, str], rotations: list[str] | None, adm
 def build(root: Path, source_root: Path | None = None) -> dict[str, Any]:
     assignments = parse_assignments(root / "FFVI_ALIGNMENT_COMPLETION_PLAN.md")
     admitted_status = provenance_status(root)
+    visual_profiles_path = root / "game/ben_rpg/population/generated/population_visual_profiles.json"
+    visual_profile_ids: dict[str, str] = {}
+    if visual_profiles_path.is_file():
+        visual_payload = json.loads(visual_profiles_path.read_text(encoding="utf-8"))
+        visual_profile_ids = {
+            str(profile["identityId"]): str(profile["id"])
+            for profile in visual_payload.get("profiles", [])
+            if isinstance(profile, dict) and isinstance(profile.get("identityId"), str) and isinstance(profile.get("id"), str)
+        }
     records = [
-        identity_record(item, source_rotations(source_root, item["collection"], item["folder"]) if source_root else None, admitted_status)
+        identity_record(
+            item,
+            source_rotations(source_root, item["collection"], item["folder"]) if source_root else None,
+            admitted_status,
+            visual_profile_ids.get(stable_id(item["collection"], item["folder"])),
+        )
         for item in assignments
     ]
     if source_root:
@@ -182,6 +196,8 @@ def validate(raw: dict[str, Any], source_verified: bool | None = None) -> None:
             raise ValueError(f"{identity_id} has an invalid provenance status")
         if item.get("runtimeProfileId") is not None and provenance != "distribution_confirmed":
             raise ValueError(f"{identity_id} cannot bind a runtime profile before provenance admission")
+        if item.get("runtimeProfileId") is not None and not isinstance(item.get("runtimeProfileId"), str):
+            raise ValueError(f"{identity_id} has an invalid runtime profile id")
     if source_verified:
         if (complete, unverified) != (PLANNED_IDENTITY_COUNT, 0):
             raise ValueError(

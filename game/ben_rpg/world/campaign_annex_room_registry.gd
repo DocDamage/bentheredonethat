@@ -139,6 +139,7 @@ static func _build_definitions() -> Dictionary:
 			"record": record, "navigation": record.get("navigation", {}), "runtimeEnabled": true,
 			"implementationState": &"implemented",
 		}
+		definition.merge(_population_contract(definition["dimensions"]), false)
 		result[room_id] = definition
 	for room_id in FACILITIES.ROOM_ORDER:
 		var facility := FACILITIES.room(room_id)
@@ -148,6 +149,7 @@ static func _build_definitions() -> Dictionary:
 		facility["cameraBounds"] = FIELD_SCALE.camera_bounds_for_cells(facility.get("dimensions", Vector2i.ZERO))
 		facility["portCells"] = blueprint.get("ports", {})
 		facility["navigation"] = _facility_navigation(facility)
+		facility.merge(_population_contract(facility["dimensions"]), false)
 		facility["record"] = facility.duplicate(true)
 		result[room_id] = facility
 	for room_id in ADDRESS_CATALOG.room_ids():
@@ -155,8 +157,26 @@ static func _build_definitions() -> Dictionary:
 		var address_record := ADDRESS_RECORDS.record(room_id)
 		var dimensions: Vector2i = (address_record.get("layout", {}) as Dictionary).get("dimensions", Vector2i.ZERO)
 		var address_blueprint: Dictionary = ROOM_REGISTRY.BLUEPRINTS.get(address_catalog.get("blueprint", &""), {})
-		result[room_id] = {"id": room_id, "worldOrigin": STAGING_ORIGIN, "dimensions": dimensions, "cameraBounds": FIELD_SCALE.camera_bounds_for_cells(dimensions), "ports": address_catalog.get("ports", {}), "portCells": address_blueprint.get("ports", {}), "scenePath": address_record.get("scenePath", ""), "record": address_record, "navigation": address_record.get("navigation", {}), "runtimeEnabled": true, "implementationState": &"implemented"}
+		var address_definition := {"id": room_id, "worldOrigin": STAGING_ORIGIN, "dimensions": dimensions, "cameraBounds": FIELD_SCALE.camera_bounds_for_cells(dimensions), "ports": address_catalog.get("ports", {}), "portCells": address_blueprint.get("ports", {}), "scenePath": address_record.get("scenePath", ""), "record": address_record, "navigation": address_record.get("navigation", {}), "runtimeEnabled": true, "implementationState": &"implemented"}
+		address_definition.merge(_population_contract(dimensions), false)
+		result[room_id] = address_definition
 	return result
+
+
+static func _population_contract(dimensions: Vector2i) -> Dictionary:
+	var anchors: Array[StringName] = [&"P1", &"P2", &"P3", &"P4", &"P5", &"P6"]
+	var candidates := [
+		Vector2i(floori(dimensions.x / 4.0), floori(dimensions.y / 3.0)),
+		Vector2i(floori(dimensions.x / 2.0), floori(dimensions.y / 3.0)),
+		Vector2i(floori(3.0 * dimensions.x / 4.0), floori(dimensions.y / 3.0)),
+		Vector2i(floori(dimensions.x / 4.0), floori(2.0 * dimensions.y / 3.0)),
+		Vector2i(floori(dimensions.x / 2.0), floori(2.0 * dimensions.y / 3.0)),
+		Vector2i(floori(3.0 * dimensions.x / 4.0), floori(2.0 * dimensions.y / 3.0)),
+	]
+	var cells := {}
+	for index in range(anchors.size()):
+		cells[anchors[index]] = candidates[index]
+	return {"populationAnchors": anchors, "populationAnchorCells": cells}
 
 
 static func _facility_navigation(definition: Dictionary) -> Dictionary:

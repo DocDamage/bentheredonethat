@@ -210,6 +210,10 @@ static var MANIFEST_TEST_ROOMS := {
 static func _room(blueprint: StringName, encounter_policy: StringName, treasure_anchor: StringName, population_anchor_count: int, port_pairs: Array) -> Dictionary:
 	var layout := blueprint_layout(blueprint)
 	var dimensions: Vector2i = layout.get("dimensions", Vector2i.ZERO)
+	# The final population plan may assign any P1-P6 anchor even in compact
+	# rooms. All six are spatial reservations; the active cohort still caps
+	# occupancy at six and can use fewer of them.
+	population_anchor_count = 6
 	var ports: Array[Dictionary] = []
 	for pair in port_pairs:
 		ports.append({"id": StringName(pair[0]), "destination": StringName(pair[1])})
@@ -600,7 +604,7 @@ static func room(room_id: StringName) -> Dictionary:
 			"enabledPortIds": [&"Nw", &"Ne"],
 			"navigationId": &"authored:hm01-rain-gate-navigation",
 			"collisionMaskId": &"authored:hm01-rain-gate-collision",
-			"populationAnchorCells": {&"P1": Vector2i(6, 6), &"P2": Vector2i(12, 6), &"P3": Vector2i(6, 8), &"P4": Vector2i(12, 8)},
+			"populationAnchorCells": {&"P1": Vector2i(6, 6), &"P2": Vector2i(12, 6), &"P3": Vector2i(6, 8), &"P4": Vector2i(12, 8), &"P5": Vector2i(6, 10), &"P6": Vector2i(12, 10)},
 			"navigationLayout": {
 				"id": &"hm01-rain-gate-v1",
 				"kind": &"authored",

@@ -1,13 +1,6 @@
 extends Interaction
 
 const TRIALS := {
-	&"abe_lincoln": {
-		"name": "Abraham Lincoln", "prerequisite": &"mansion_archive_boss_defeated", "encounter": &"rift_exhibition_lincoln_trial",
-		"met": &"abe_lincoln_met", "trial_complete": &"abe_lincoln_trial_complete", "unlocked": &"abe_lincoln_recruit_unlocked",
-		"intro": ["LINCOLN: A divided timeline cannot stand. Let us see whether your company can hold a formation together.", "BEN: A practical debate, then. I warn you that our velociraptor is a poor parliamentarian.", "Optional Rift Exhibition: The Union Line."],
-		"retry": "LINCOLN: The field remains open. Assemble your company when you are ready.",
-		"hire": "Abraham Lincoln joined Franklin & Company as a leader and logistics specialist.",
-	},
 	&"cthulhu": {
 		"name": "Cthulhu", "prerequisite": &"asterion_station_complete", "encounter": &"rift_exhibition_cthulhu_trial",
 		"met": &"cthulhu_met", "trial_complete": &"cthulhu_trial_complete", "unlocked": &"cthulhu_recruit_unlocked",
@@ -35,13 +28,6 @@ const TRIALS := {
 		"intro": ["The visitor studies Ben's coils, then gently corrects three dangerous connections with one enormous finger.", "BEN: Engineering competence and dramatic entrance. You understand our hiring rubric perfectly.", "Optional Rift Exhibition: Galvanic Second Opinion."],
 		"retry": "The Monster points toward the grounded arena and waits for a safer load test.",
 		"hire": "Frankenstein's Monster joined Franklin & Company as an engineer and frontline guardian.",
-	},
-	&"gandhi": {
-		"name": "Mahatma Gandhi", "prerequisite": &"empyreal_scenario_complete", "encounter": &"rift_exhibition_gandhi_trial",
-		"met": &"gandhi_met", "trial_complete": &"gandhi_trial_complete", "unlocked": &"gandhi_recruit_unlocked",
-		"intro": ["GANDHI: Power that cannot be restrained is only another kind of prison. Show me that your company can prevail without losing its purpose.", "BEN: A trial of resolve, then—not conquest.", "Optional Rift Exhibition: The Unshakable March."],
-		"retry": "GANDHI: Resolve is practiced more than once. The road remains before us.",
-		"hire": "Mahatma Gandhi joined Franklin & Company as a diplomat and logistics specialist.",
 	},
 }
 
