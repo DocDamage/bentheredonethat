@@ -164,7 +164,10 @@ jobs:
     if: github.event_name == 'workflow_dispatch'
     needs: [browser-validation, isolated-smoke]
     runs-on: windows-latest
-    timeout-minutes: 30
+    # A clean runner imports the complete release asset set before exporting.
+    # Keep this bounded, but allow enough time for that one-time import plus
+    # packaging and the isolated executable launch check.
+    timeout-minutes: 90
 
     steps:
       - name: Check out source and runtime assets
