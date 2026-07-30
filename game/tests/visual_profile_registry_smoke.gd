@@ -239,7 +239,7 @@ func _ready() -> void:
 		[&"commute_tyrant", &"commute_tyrant_battle_actor"],
 		[&"schoolgirl_ghost", &"schoolgirl_ghost_battle_actor"],
 		[&"war_book", &"war_book_battle_actor"],
-		[&"clock_mirror", &"clock_mirror_battle_actor"],
+		[&"clock_mirror", &"mansion_foyer_clock"],
 		[&"composer_portrait", &"composer_portrait_battle_actor"],
 		[&"haunted_doll", &"haunted_doll_battle_actor"],
 		[&"work_robot", &"work_robot_battle_actor"], [ &"sentry_drone", &"sentry_drone_battle_actor"], [ &"medical_robot", &"medical_robot_battle_actor"], [ &"machine_commander", &"machine_commander_battle_actor"], [ &"mother_computer", &"mother_computer_battle_actor"],

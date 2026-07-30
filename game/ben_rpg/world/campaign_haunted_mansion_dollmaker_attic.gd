@@ -2,6 +2,7 @@ class_name CampaignHauntedMansionDollmakerAttic
 extends Node2D
 const FEATURE_INSTALLER := preload("res://ben_rpg/world/campaign_room_feature_installer.gd")
 const VISUAL_PROFILE_REGISTRY := preload("res://ben_rpg/world/campaign_visual_profile_registry.gd")
+const MANSION_ROOM_ART := preload("res://ben_rpg/world/campaign_mansion_room_art.gd")
 var _dimensions := Vector2i.ZERO
 var _profiles
 var _bed: Texture2D
@@ -23,7 +24,7 @@ func _ready() -> void:
 	texture_filter = CanvasItem.TEXTURE_FILTER_NEAREST; _profiles = VISUAL_PROFILE_REGISTRY.new(); _bed = _profiles.texture(&"mansion_nursery_bed"); _shelves = _profiles.texture(&"mansion_archive_shelving"); _box = _profiles.texture(&"mansion_nursery_music_box"); queue_redraw()
 func _draw() -> void:
 	if _dimensions == Vector2i.ZERO: return
-	var bounds := Rect2(Vector2.ZERO, Vector2(_dimensions * 48)); draw_rect(bounds, Color("251c24"), true); draw_rect(Rect2(Vector2(48, 4 * 48), Vector2((_dimensions.x - 2) * 48, (_dimensions.y - 5) * 48)), Color("5a4036"), true)
+	var bounds := Rect2(Vector2.ZERO, Vector2(_dimensions * 48)); draw_rect(bounds, Color("251c24"), true); draw_rect(Rect2(Vector2(48, 4 * 48), Vector2((_dimensions.x - 2) * 48, (_dimensions.y - 5) * 48)), Color("5a4036"), true); MANSION_ROOM_ART.draw_interior(self, _dimensions, _profiles, &"nursery")
 	_draw_profile(&"mansion_nursery_bed", _bed, Vector2(3 * 48, 5 * 48)); _draw_profile(&"mansion_archive_shelving", _shelves, Vector2((_dimensions.x - 5) * 48, 48)); _draw_profile(&"mansion_nursery_music_box", _box, Vector2(9 * 48, 6 * 48)); draw_rect(bounds, Color("c9a090"), false, 2.0)
 func _draw_profile(profile_id: StringName, texture: Texture2D, draw_position: Vector2) -> void:
 	if texture and _profiles and _profiles.has(profile_id): draw_texture_rect_region(texture, Rect2(draw_position, _profiles.world_draw_size(profile_id)), _profiles.region(profile_id))

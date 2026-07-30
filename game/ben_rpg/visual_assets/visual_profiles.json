@@ -990,9 +990,9 @@
     },
     {
       "id": "mansion_foyer_clock", "kind": "prop",
-      "source": {"pack": "Haunted Mansion Pixel Art Tileset Pack", "runtimeTexture": "game/game_assets/Tilesets/Haunted Mansion Pixel Art Tileset Pack/2.png", "sourceChecksum": "7b703a7e5eabd9017bfd4ae47bc8c5c328c9e237448a025d7e9de0d49a0b1bca", "sourceDensity": 48, "region": [392, 2, 80, 95], "alphaBounds": [392, 2, 80, 95]},
-      "placement": {"footAnchor": [40, 94], "scaleClass": "prop", "collisionFootprint": "foyer_clock"},
-      "worldDrawSize": [80, 95], "licenseReference": "game/ben_rpg/visual_assets/generated/runtime_asset_provenance.json", "cropApproval": "approved", "goldenCapture": "game/validation/mansion-foyer-layout-pass.png"
+      "source": {"pack": "Haunted Mansion Pixel Art Tileset Pack", "runtimeTexture": "game/game_assets/Tilesets/Haunted Mansion Pixel Art Tileset Pack/2.png", "sourceChecksum": "7b703a7e5eabd9017bfd4ae47bc8c5c328c9e237448a025d7e9de0d49a0b1bca", "sourceDensity": 48, "region": [603, 578, 42, 93], "alphaBounds": [603, 578, 42, 93]},
+      "placement": {"footAnchor": [21, 92], "scaleClass": "prop", "collisionFootprint": "foyer_clock"},
+      "worldDrawSize": [42, 93], "licenseReference": "game/ben_rpg/visual_assets/generated/runtime_asset_provenance.json", "cropApproval": "approved", "goldenCapture": "game/validation/mansion-foyer-layout-pass.png"
     },
     {
       "id": "mansion_foyer_wall_tableau", "kind": "building",

@@ -621,6 +621,9 @@ static func room(room_id: StringName) -> Dictionary:
 				],
 			},
 			"visualProfileIds": [&"haunted_mansion_exterior"],
+			"featureIds": [&"locked_return_gate", &"dry_porch_safe_strip", &"stabilized_watch_post"],
+			"chapterInteractions": [{"nodeName": "RainGateNotice", "kind": &"rain_gate", "cell": Vector2i(9, 7)}],
+			"scriptedEncounters": [{"nodeName": "FoyerIntroduction", "encounterId": &"mansion_foyer_intro", "defeatedFlag": &"mansion_foyer_cleared", "cell": Vector2i(9, 10)}],
 		}, true)
 	elif room_id == &"HM-02":
 		definition.merge({
@@ -643,6 +646,7 @@ static func room(room_id: StringName) -> Dictionary:
 				],
 			},
 			"visualProfileIds": [&"mansion_foyer_clock", &"mansion_foyer_wall_tableau"],
+			"mansionClueInteractions": [{"nodeName": "ImpossibleClock", "kind": &"clock", "cell": Vector2i(10, 6)}],
 		}, true)
 	elif room_id == &"HM-03":
 		definition.merge({
@@ -662,6 +666,7 @@ static func room(room_id: StringName) -> Dictionary:
 			},
 			"visualProfileIds": [&"mansion_archive_shelving", &"mansion_archive_cabinet"],
 			"featureIds": [&"false_book_row", &"household_ledger"],
+			"mansionClueInteractions": [{"nodeName": "HouseholdLedger", "kind": &"bookcase", "cell": Vector2i(11, 6)}],
 		}, true)
 	elif room_id == &"HM-04":
 		definition.merge({
@@ -683,6 +688,7 @@ static func room(room_id: StringName) -> Dictionary:
 			},
 			"visualProfileIds": [&"mansion_foyer_clock", &"mansion_foyer_passage_door"],
 			"featureIds": [&"pendulum_blade_timing", &"clock_444_gate"],
+			"chapterInteractions": [{"nodeName": "PendulumAlcove", "kind": &"passage_alcove", "cell": Vector2i(6, 6)}],
 		}, true)
 	elif room_id == &"HM-05":
 		definition.merge({
@@ -704,6 +710,7 @@ static func room(room_id: StringName) -> Dictionary:
 			},
 			"visualProfileIds": [&"mansion_archive_shelving", &"mansion_archive_cabinet", &"mansion_foyer_clock"],
 			"featureIds": [&"servant_records", &"archive_retry_anchor"],
+			"chapterInteractions": [{"nodeName": "ServantRecords", "kind": &"servant_records", "cell": Vector2i(6, 6)}],
 			"savePoint": {
 				"id": &"mansion_archive",
 				"nodeName": "ArchiveAnchorClock",
@@ -730,6 +737,7 @@ static func room(room_id: StringName) -> Dictionary:
 			},
 			"visualProfileIds": [&"mansion_gallery_left_portrait", &"mansion_gallery_right_portrait", &"mansion_gallery_stage_curtain"],
 			"featureIds": [&"west_stair", &"portrait_balcony", &"gallery_return_banister"],
+			"chapterInteractions": [{"nodeName": "GalleryBanister", "kind": &"gallery_banister", "cell": Vector2i(10, 8)}],
 		}, true)
 	elif room_id == &"HM-06":
 		definition.merge({
@@ -754,6 +762,7 @@ static func room(room_id: StringName) -> Dictionary:
 				{"nodeName": "GalleryPortrait", "kind": &"gallery_portrait", "cell": Vector2i(13, 6)},
 				{"nodeName": "GalleryCache", "kind": &"gallery_cache", "cell": Vector2i(4, 7)},
 			],
+			"scriptedEncounters": [{"nodeName": "PortraitAmbush", "encounterId": &"mansion_gallery_ambush", "defeatedFlag": &"mansion_gallery_ambush_cleared", "cell": Vector2i(13, 8)}],
 		}, true)
 	elif room_id == &"HM-15":
 		definition.merge({
@@ -773,6 +782,7 @@ static func room(room_id: StringName) -> Dictionary:
 			},
 			"visualProfileIds": [&"mansion_gallery_lower_left_frame", &"mansion_gallery_lower_right_frame", &"mansion_foyer_wall_tableau"],
 			"featureIds": [&"next_room_mirrors", &"false_reflection_encounter", &"reliable_reflection_loop"],
+			"chapterInteractions": [{"nodeName": "FalseReflection", "kind": &"mirror_reflection", "cell": Vector2i(9, 5)}],
 		}, true)
 	elif room_id == &"HM-07":
 		definition.merge({
@@ -797,6 +807,7 @@ static func room(room_id: StringName) -> Dictionary:
 				{"nodeName": "NurseryMusicBox", "kind": &"nursery_music_box", "cell": Vector2i(12, 6)},
 				{"nodeName": "NurseryCache", "kind": &"nursery_cache", "cell": Vector2i(16, 8)},
 			],
+			"scriptedEncounters": [{"nodeName": "DollAmbush", "encounterId": &"mansion_nursery_ambush", "defeatedFlag": &"mansion_nursery_ambush_cleared", "cell": Vector2i(11, 8)}],
 		}, true)
 	elif room_id == &"HM-08":
 		definition.merge({
@@ -844,7 +855,7 @@ static func room(room_id: StringName) -> Dictionary:
 					{"origin": Vector2i(3, 4), "size": Vector2i(18, 9)}, # Clock Mirror arena and results floor
 				],
 			},
-			"visualProfileIds": [&"mansion_ballroom_chandelier", &"mansion_ballroom_door_frame", &"clock_mirror_battle_actor"],
+			"visualProfileIds": [&"mansion_ballroom_chandelier", &"mansion_ballroom_door_frame", &"mansion_foyer_clock"],
 			"featureIds": [&"clock_mirror_arena", &"results_return_anchor", &"stabilized_ballroom_lighting"],
 			"bossEncounter": {"nodeName": "The444Appointment", "encounterId": &"mansion_archive_boss", "defeatedFlag": &"mansion_archive_boss_defeated", "cell": Vector2i(12, 9)},
 		}, true)
@@ -866,6 +877,7 @@ static func room(room_id: StringName) -> Dictionary:
 			},
 			"visualProfileIds": [&"mansion_archive_wall_lit_tile", &"mansion_archive_wall_plain_tile", &"mansion_foyer_wall_tableau"],
 			"featureIds": [&"cursed_tree_elite", &"herb_cache", &"inside_shutter_shortcut", &"impossible_black_rose"],
+			"chapterInteractions": [{"nodeName": "ConservatoryHerbLocker", "kind": &"conservatory_cache", "cell": Vector2i(10, 7)}],
 		}, true)
 	elif room_id == &"HM-16":
 		definition.merge({
@@ -876,6 +888,10 @@ static func room(room_id: StringName) -> Dictionary:
 			"navigationLayout": {"id": &"hm16-kitchen-lift-v1", "kind": &"authored", "usefulCellRange": Vector2i(112, 112), "walkableRects": [{"origin": Vector2i(4, 1), "size": Vector2i(10, 5)}, {"origin": Vector2i(3, 5), "size": Vector2i(12, 6)}]},
 			"visualProfileIds": [&"mansion_archive_cabinet", &"mansion_archive_shelving", &"mansion_foyer_passage_door"],
 			"featureIds": [&"pantry_supplies", &"service_lift", &"stabilized_return_route"],
+			"chapterInteractions": [
+				{"nodeName": "KitchenPantry", "kind": &"kitchen_pantry", "cell": Vector2i(6, 8)},
+				{"nodeName": "ServiceLift", "kind": &"service_lift", "cell": Vector2i(11, 4)},
+			],
 		}, true)
 	elif room_id == &"HM-11":
 		definition.merge({
@@ -898,6 +914,7 @@ static func room(room_id: StringName) -> Dictionary:
 			"navigationLayout": {"id": &"hm12-sealed-undercroft-v1", "kind": &"authored", "usefulCellRange": Vector2i(216, 216), "walkableRects": [{"origin": Vector2i(6, 1), "size": Vector2i(12, 4)}, {"origin": Vector2i(3, 4), "size": Vector2i(18, 10)}]},
 			"visualProfileIds": [&"mansion_archive_wall_plain_tile", &"mansion_archive_wall_lit_tile", &"mansion_gallery_stage_curtain"],
 			"featureIds": [&"temporal_field_note", &"anchor_dust_payoff", &"infernal_elite", &"two_sided_exit"],
+			"chapterInteractions": [{"nodeName": "UndercroftFieldCase", "kind": &"undercroft_cache", "cell": Vector2i(12, 9)}],
 		}, true)
 	elif room_id == &"HM-13":
 		definition.merge({
@@ -907,7 +924,10 @@ static func room(room_id: StringName) -> Dictionary:
 			"navigationLayout": {"id": &"hm13-dollmaker-attic-v1", "kind": &"authored", "usefulCellRange": Vector2i(101, 102), "walkableRects": [{"origin": Vector2i(4, 1), "size": Vector2i(10, 4)}, {"origin": Vector2i(3, 4), "size": Vector2i(12, 6)}]},
 			"visualProfileIds": [&"mansion_nursery_bed", &"mansion_archive_shelving", &"mansion_nursery_music_box"],
 			"featureIds": [&"vertical_clutter_maze", &"dollmaker_invoice", &"doll_resistant_charm", &"attic_stair"],
-			"chapterInteractions": [{"nodeName": "AtticStair", "kind": &"attic_stair", "cell": Vector2i(9, 8)}],
+			"chapterInteractions": [
+				{"nodeName": "DollmakerWorkbench", "kind": &"attic_cache", "cell": Vector2i(6, 7)},
+				{"nodeName": "AtticStair", "kind": &"attic_stair", "cell": Vector2i(9, 8)},
+			],
 		}, true)
 	if not definition.is_empty() and room_id != &"TEST-01":
 		definition["encounterContract"] = _encounter_contract(room_id, StringName(definition.get("encounterPolicy", &"none")))

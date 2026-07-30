@@ -10,6 +10,7 @@ const POPULATION_SCHEDULER := preload("res://ben_rpg/world/campaign_population_s
 const POPULATION_ACTOR_FACTORY := preload("res://ben_rpg/world/campaign_population_actor_factory.gd")
 const MANSION_SAVE_POINT := preload("res://ben_rpg/world/mansion_save_point.tscn")
 const MANSION_CHAPTER_INTERACTION := preload("res://ben_rpg/world/mansion_chapter_interaction.tscn")
+const MANSION_CLUE_INTERACTION := preload("res://ben_rpg/world/mansion_clue_interaction.tscn")
 const MANSION_BOSS_INTERACTION := preload("res://ben_rpg/world/campaign_mansion_boss_interaction.tscn")
 const ASTERION_INTERACTION := preload("res://ben_rpg/world/asterion_interaction.tscn")
 const PRIMEVAL_INTERACTION := preload("res://ben_rpg/world/primeval_interaction.tscn")
@@ -46,6 +47,12 @@ static func install(root: Node2D, room_id: StringName, definition: Dictionary) -
 			chapter_interaction.set("interaction_kind", StringName(chapter_definition.get("kind", &"")))
 			chapter_interaction.position = Vector2((chapter_definition.get("cell", Vector2i.ZERO) as Vector2i) * 48)
 			interaction_layer.add_child(chapter_interaction)
+		for clue_definition in definition.get("mansionClueInteractions", []):
+			var clue_interaction := MANSION_CLUE_INTERACTION.instantiate()
+			clue_interaction.name = String(clue_definition.get("nodeName", "ManifestMansionClue"))
+			clue_interaction.set("clue_kind", StringName(clue_definition.get("kind", &"")))
+			clue_interaction.position = Vector2((clue_definition.get("cell", Vector2i.ZERO) as Vector2i) * 48)
+			interaction_layer.add_child(clue_interaction)
 		for asterion_definition in definition.get("asterionInteractions", []):
 			var asterion_interaction := ASTERION_INTERACTION.instantiate()
 			var save_point_id := StringName(asterion_definition.get("savePointId", &""))
@@ -75,6 +82,13 @@ static func install(root: Node2D, room_id: StringName, definition: Dictionary) -
 			treasure.position = Vector2(treasure_cell * 48)
 			treasure.add_to_group(&"universe_treasure_cache")
 			interaction_layer.add_child(treasure)
+		for encounter_definition in definition.get("scriptedEncounters", []):
+			var encounter_interaction := MANSION_BOSS_INTERACTION.instantiate()
+			encounter_interaction.name = String(encounter_definition.get("nodeName", "ManifestScriptedEncounter"))
+			encounter_interaction.set("encounter_id", StringName(encounter_definition.get("encounterId", &"")))
+			encounter_interaction.set("defeated_flag", StringName(encounter_definition.get("defeatedFlag", &"")))
+			encounter_interaction.position = Vector2((encounter_definition.get("cell", Vector2i.ZERO) as Vector2i) * 48)
+			interaction_layer.add_child(encounter_interaction)
 		var boss_definition: Dictionary = definition.get("bossEncounter", {})
 		if not boss_definition.is_empty():
 			var boss_interaction := MANSION_BOSS_INTERACTION.instantiate()

@@ -38,7 +38,7 @@ A phase closes only when every exit gate is recorded against an exact commit.
 | --- | --- | ---: | --- |
 | 0. Baseline and scope control | One trustworthy build/test baseline | 5% | Active; refresh required for current worktree |
 | 1. Expansion architecture | Safe data-driven platform for 192 rooms | 10% | Complete; verified at `f3ec2199` |
-| 2. Mansion vertical slice | One final-quality, end-to-end chapter | 15% | Implemented in part; not accepted |
+| 2. Mansion vertical slice | One final-quality, end-to-end chapter | 15% | Verified automated; human acceptance pending |
 | 3. New Philadelphia and facilities | Final hub plus movable facility contract | 15% | Contracts and staged scenes exist; runtime migration open |
 | 4. Core universe production | All 102 core-universe rooms accepted | 20% | Contracts/layouts exist; acceptance largely open |
 | 5. Mandatory address production | All 64 address rooms accepted | 20% | Contracts exist; AF-01 is the first gated prototype |
@@ -142,6 +142,20 @@ remaining campaign.
 - A blind player can understand the route, solve the puzzle, read the boss
   states, and recover from defeat without developer guidance.
 - Frame pacing meets the provisional budget on the development baseline.
+
+### Verification record — 2026-07-30
+
+- Exact implementation commit: recorded by the subsequent documentation commit.
+- Evidence: `game/validation/reviews/20260730-phase2-mansion-vertical-slice.md`.
+- All 16 rooms now stream with authored navigation, room-owned interactions,
+  scripted encounters, saves, optional rewards, 4:44 state, boss persistence,
+  stabilization, and postgame state coverage.
+- The 161-scene isolated Godot suite, fast/tool checks, runtime-asset checks,
+  288-frame state/resolution capture matrix, and 16-room performance diagnostic
+  pass on the Windows development baseline.
+- Phase 2 remains `Verified`, not `Accepted`, until a human completes the
+  keyboard/controller, blind-route, balance, accessibility, and product/visual
+  sign-off gates required above.
 
 ## Phase 3 — New Philadelphia and facilities
 

@@ -51,7 +51,7 @@ class ProfiledForegroundRendererTests(unittest.TestCase):
     def test_campaign_boss_markers_resolve_through_approved_profiles(self) -> None:
         source = BOOTSTRAP.read_text(encoding="utf-8")
         expected_ids = {
-            "clock_mirror_battle_actor",
+            "mansion_foyer_clock",
             "mother_computer_battle_actor",
             "commute_tyrant_battle_actor",
             "civic_sun_battle_actor",

@@ -2,6 +2,10 @@
 
 ## FFVI Alignment and Completion Plan
 
+> Execution companion: `IMPLEMENTATION_PHASES.md` converts this specification
+> into ordered work packages, verification cadence, and phase exit gates. This
+> document remains the detailed scope and acceptance authority.
+
 **Created:** July 22, 2026
 **Expanded-world amendment:** July 22, 2026
 **Project target:** `game/project.godot` (Godot 4.7.1)

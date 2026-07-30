@@ -3,6 +3,7 @@ extends Node2D
 
 const FEATURE_INSTALLER := preload("res://ben_rpg/world/campaign_room_feature_installer.gd")
 const VISUAL_PROFILE_REGISTRY := preload("res://ben_rpg/world/campaign_visual_profile_registry.gd")
+const MANSION_ROOM_ART := preload("res://ben_rpg/world/campaign_mansion_room_art.gd")
 var _dimensions := Vector2i.ZERO
 var _profiles
 var _plain: Texture2D
@@ -36,6 +37,7 @@ func _draw() -> void:
 	draw_rect(bounds, Color("120f18"), true)
 	draw_rect(Rect2(Vector2(48, 4 * 48), Vector2((_dimensions.x - 2) * 48, (_dimensions.y - 5) * 48)), Color("352c3c"), true)
 	for x in range(2, _dimensions.x - 1, 3): draw_line(Vector2(x * 48, 4 * 48), Vector2(x * 48, (_dimensions.y - 1) * 48), Color("211b2b"), 4.0)
+	MANSION_ROOM_ART.draw_interior(self, _dimensions, _profiles, &"crypt")
 	_draw_profile(&"mansion_archive_wall_plain_tile", _plain, Vector2(48, 48))
 	_draw_profile(&"mansion_archive_wall_lit_tile", _lit, Vector2((_dimensions.x - 4) * 48, 48))
 	_draw_profile(&"mansion_gallery_stage_curtain", _curtain, Vector2((_dimensions.x / 2.0 - 2) * 48, 5 * 48))

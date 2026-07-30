@@ -10595,8 +10595,8 @@
       "placement": {
         "collisionFootprint": "foyer_clock",
         "footAnchor": [
-          40,
-          94
+          21,
+          92
         ],
         "scaleClass": "prop"
       },
@@ -10605,17 +10605,17 @@
       "renderScaleY": 1.0,
       "source": {
         "alphaBounds": [
-          392,
-          2,
-          80,
-          95
+          603,
+          578,
+          42,
+          93
         ],
         "pack": "Haunted Mansion Pixel Art Tileset Pack",
         "region": [
-          392,
-          2,
-          80,
-          95
+          603,
+          578,
+          42,
+          93
         ],
         "runtimeTexture": "game/game_assets/Tilesets/Haunted Mansion Pixel Art Tileset Pack/2.png",
         "sha256": "7b703a7e5eabd9017bfd4ae47bc8c5c328c9e237448a025d7e9de0d49a0b1bca",
@@ -10624,8 +10624,8 @@
       },
       "surface": "field",
       "worldDrawSize": [
-        80,
-        95
+        42,
+        93
       ]
     },
     {

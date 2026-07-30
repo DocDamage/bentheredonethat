@@ -1792,11 +1792,11 @@ func _spawn_mansion_save_point(world: Node2D) -> void:
 func _spawn_mansion_boss_marker(world: Node2D) -> void:
 	_mansion_boss_marker = Sprite2D.new()
 	_mansion_boss_marker.name = "The444Appointment"
-	_mansion_boss_marker.texture = _profiled_texture(&"clock_mirror_battle_actor")
+	_mansion_boss_marker.texture = _profiled_texture(&"mansion_foyer_clock")
 	_mansion_boss_marker.texture_filter = CanvasItem.TEXTURE_FILTER_NEAREST
 	# Stand the marker on the open floor rather than over the rear-wall furniture.
 	_mansion_boss_marker.position = Gameboard.cell_to_pixel(ROOM_MARKER_NAVIGATION.world_cell(&"mansion_appointment"))
-	_mansion_boss_marker.scale = Vector2(0.32, 0.32)
+	_mansion_boss_marker.scale = Vector2.ONE
 	_mansion_boss_marker.visible = not CampaignState.story_flags.get(&"mansion_archive_boss_defeated", false)
 	world.add_child(_mansion_boss_marker)
 

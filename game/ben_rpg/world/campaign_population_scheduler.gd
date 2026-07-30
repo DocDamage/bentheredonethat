@@ -50,7 +50,7 @@ static func reserved_cells_for_room(room_id: StringName, definition: Dictionary)
 		var arrival := TRANSITION_ROUTER.safe_arrival_cell(room_id, StringName(port_id))
 		if arrival != Vector2i.ZERO:
 			reserved[arrival] = "safe_arrival:%s" % port_id
-	for property_name in [&"chapterInteractions", &"asterionInteractions", &"primevalInteractions", &"heliosInteractions", &"frostholdInteractions", &"moonpetalInteractions", &"empyrealInteractions", &"universeTreasures"]:
+	for property_name in [&"chapterInteractions", &"mansionClueInteractions", &"scriptedEncounters", &"asterionInteractions", &"primevalInteractions", &"heliosInteractions", &"frostholdInteractions", &"moonpetalInteractions", &"empyrealInteractions", &"universeTreasures"]:
 		for feature in definition.get(property_name, []):
 			if feature is Dictionary:
 				_reserve_feature_cell(reserved, feature.get("cell", Vector2i.ZERO), property_name)

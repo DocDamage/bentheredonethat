@@ -1,5 +1,5 @@
 class_name CampaignRoomStreamer
-extends Node
+extends Node2D
 
 ## Owns the active room root while legacy field regions migrate.  New authored
 ## rooms will attach their visuals, collision, interactions, and actors below

@@ -10,8 +10,30 @@ const REGISTRY := preload("res://ben_rpg/world/campaign_room_registry.gd")
 const ROUTER := preload("res://ben_rpg/world/campaign_transition_router.gd")
 
 const CAPTURE_ROOT := "user://m2-mansion-manifest-captures"
+const SUPPORTED_RESOLUTIONS := [Vector2i(960, 540), Vector2i(1280, 720), Vector2i(1920, 1080)]
 const STATE_PROFILES := {
 	&"first_visit": {},
+	&"pre_444_partial": {
+		&"mansion_foyer_cleared": true,
+		&"mansion_clock_examined": true,
+		&"mansion_ledger_found": true,
+		&"mansion_clock_time": "03:13",
+	},
+	&"hands_installed": {
+		&"mansion_first_room_complete": true,
+		&"mansion_gallery_ambush_cleared": true,
+		&"mansion_hour_hand_found": true,
+		&"mansion_nursery_ambush_cleared": true,
+		&"mansion_minute_hand_found": true,
+	},
+	&"boss_ready": {
+		&"mansion_first_room_complete": true,
+		&"mansion_gallery_ambush_cleared": true,
+		&"mansion_hour_hand_found": true,
+		&"mansion_nursery_ambush_cleared": true,
+		&"mansion_minute_hand_found": true,
+		&"mansion_ballroom_open": true,
+	},
 	&"stabilized": {
 		&"mansion_first_room_complete": true,
 		&"mansion_temporal_secret_found": true,
@@ -48,17 +70,20 @@ func _capture_all() -> void:
 	if DirAccess.make_dir_recursive_absolute(ProjectSettings.globalize_path(CAPTURE_ROOT)) != OK:
 		_fail("Could not create isolated Mansion capture directory.")
 		return
-	for state_id in STATE_PROFILES:
-		if not await _capture_state(state_id, STATE_PROFILES[state_id], capture_tag):
-			return
+	for resolution in SUPPORTED_RESOLUTIONS:
+		DisplayServer.window_set_size(resolution)
+		await _settle()
+		for state_id in STATE_PROFILES:
+			if not await _capture_state(state_id, STATE_PROFILES[state_id], capture_tag, resolution):
+				return
 	if not _write_manifest(capture_tag):
 		_fail("Could not write Mansion capture manifest.")
 		return
-	print("MANSION_MANIFEST_STATE_CAPTURE_OK captures=%d rooms=%d states=%d root=%s visual_review_only=true" % [_capture_records.size(), REGISTRY.MANSION_ROOM_IDS.size(), STATE_PROFILES.size(), ProjectSettings.globalize_path(CAPTURE_ROOT)])
+	print("MANSION_MANIFEST_STATE_CAPTURE_OK captures=%d rooms=%d states=%d resolutions=%d root=%s visual_review_only=true" % [_capture_records.size(), REGISTRY.MANSION_ROOM_IDS.size(), STATE_PROFILES.size(), SUPPORTED_RESOLUTIONS.size(), ProjectSettings.globalize_path(CAPTURE_ROOT)])
 	get_tree().quit(0)
 
 
-func _capture_state(state_id: StringName, flags: Dictionary, capture_tag: String) -> bool:
+func _capture_state(state_id: StringName, flags: Dictionary, capture_tag: String, requested_resolution: Vector2i) -> bool:
 	CampaignState.reset_new_game()
 	for plot_index in range(3):
 		if not CampaignState.build_facility(plot_index, ["Cafe", "Library", "Clinic"][plot_index]):
@@ -88,9 +113,19 @@ func _capture_state(state_id: StringName, flags: Dictionary, capture_tag: String
 			_fail("%s has no safe capture cell." % room_id)
 			return false
 		var world_cell: Vector2i = definition.get("worldOrigin", Vector2i.ZERO) + capture_cell
+		var current_player_cell := GamepieceRegistry.get_cell(Player.gamepiece) if Player.gamepiece else Gameboard.INVALID_CELL
+		if not Gameboard.pathfinder.has_cell(world_cell) and current_player_cell != world_cell:
+			main.queue_free()
+			_fail("%s capture cell %s is not live after activation." % [room_id, world_cell])
+			return false
 		main._place_player(world_cell)
+		await get_tree().process_frame
+		if Player.gamepiece == null or GamepieceRegistry.get_cell(Player.gamepiece) != world_cell:
+			main.queue_free()
+			_fail("%s capture placement did not remain at %s." % [room_id, world_cell])
+			return false
 		await _settle()
-		var file_name := "%s-%s-native-%s.png" % [String(room_id).to_lower(), state_id, capture_tag]
+		var file_name := "%s-%s-%dx%d-%s.png" % [String(room_id).to_lower(), state_id, requested_resolution.x, requested_resolution.y, capture_tag]
 		var capture_path := "%s/%s" % [CAPTURE_ROOT, file_name]
 		if not CAPTURE_GUARD.save_viewport_png(get_viewport(), capture_path, "Mansion manifest %s %s" % [room_id, state_id]):
 			main.queue_free()
@@ -101,6 +136,7 @@ func _capture_state(state_id: StringName, flags: Dictionary, capture_tag: String
 			"state": state_id,
 			"path": capture_path,
 			"resolution": get_viewport().get_visible_rect().size,
+			"requestedResolution": requested_resolution,
 			"captureTag": capture_tag,
 			"inputMode": "visual_review_only",
 		})
@@ -132,6 +168,7 @@ func _write_manifest(capture_tag: String) -> bool:
 		"captureTag": capture_tag,
 		"reviewStatus": "visual_review_only",
 		"states": STATE_PROFILES.keys(),
+		"supportedResolutions": SUPPORTED_RESOLUTIONS,
 		"captures": _capture_records,
 	}, "\t"))
 	file.close()
