@@ -51,9 +51,13 @@ jobs:
         run: npm run validate:runtime-assets
 
   isolated-smoke:
-    name: Isolated Godot smoke
+    name: Isolated Godot smoke (shard ${{ matrix.shard }})
     runs-on: windows-latest
     timeout-minutes: 60
+    strategy:
+      fail-fast: false
+      matrix:
+        shard: [0, 1]
 
     steps:
       - name: Check out source
@@ -130,19 +134,25 @@ jobs:
             throw 'Godot did not create global_script_class_cache.cfg within 5 minutes.'
           }
 
-      - name: Run isolated smoke suite
+      - name: Run isolated smoke suite shard
         shell: pwsh
-        run: >
-          ./tools/run_godot_isolated.ps1
-          -GodotExecutable "$env:GODOT_EXECUTABLE"
-          -AllSmoke
-          -TimeoutSeconds 240
+        run: |
+          $allScenes = @(Get-ChildItem 'game/tests' -Filter '*_smoke.tscn' -File | Sort-Object Name)
+          $half = [Math]::Ceiling($allScenes.Count / 2.0)
+          $selectedScenes = if (${{ matrix.shard }} -eq 0) {
+            @($allScenes | Select-Object -First $half)
+          } else {
+            @($allScenes | Select-Object -Skip $half)
+          }
+          if ($selectedScenes.Count -eq 0) { throw 'Smoke shard is empty.' }
+          $scenePaths = @($selectedScenes | ForEach-Object { 'tests/' + $_.Name })
+          ./tools/run_godot_isolated.ps1 -GodotExecutable "$env:GODOT_EXECUTABLE" -Scene $scenePaths -TimeoutSeconds 240
 
       - name: Upload test artifacts
         if: always()
         uses: actions/upload-artifact@v4
         with:
-          name: godot-smoke-${{ github.run_id }}
+          name: godot-smoke-${{ github.run_id }}-shard-${{ matrix.shard }}
           path: test-artifacts
           if-no-files-found: warn
           retention-days: 14
