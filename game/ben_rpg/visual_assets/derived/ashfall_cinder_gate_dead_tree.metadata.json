@@ -1,0 +1,30 @@
+{
+  "asset": "game/ben_rpg/visual_assets/derived/ashfall_cinder_gate_dead_tree.png",
+  "bindings": {
+    "profileIds": [],
+    "roomIds": [
+      "AF-01"
+    ],
+    "runtimeStatus": "admission_foundation_not_yet_profile_referenced"
+  },
+  "derivedChecksum": "49d52d2e4377c86e56634ac918c155f4d17c2f038d0b50bc110e00e10738536d",
+  "dimensions": [
+    64,
+    104
+  ],
+  "schemaVersion": 1,
+  "source": {
+    "checksum": "6d142ca29c9d0e659118db514c7c3a107e581b5efeb11a09b647c5885b953938",
+    "path": "assets/Tilesets/Ashlands Tileset/1x/tf_B_ashlands_1.png",
+    "region": [
+      64,
+      76,
+      64,
+      104
+    ]
+  },
+  "transform": {
+    "description": "Exact dead-tree crop for Ashfall's Cinder Gate; no colour, alpha, or scale changes.",
+    "id": "ashfall_cinder_gate_dead_tree_crop_v1"
+  }
+}

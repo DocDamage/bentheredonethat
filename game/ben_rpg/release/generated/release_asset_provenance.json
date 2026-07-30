@@ -1,0 +1,3637 @@
+{
+  "assets": [
+    {
+      "category": "notice",
+      "distributionEligibility": "distribution_confirmed",
+      "license": "notice",
+      "licenseEvidence": [
+        "game/CREDITS.md"
+      ],
+      "path": "res://CREDITS.md",
+      "sha256": "629841c537673ab0aca104e07582113ab24ea32fe8189e632d624a2afba03f3f"
+    },
+    {
+      "category": "notice",
+      "distributionEligibility": "distribution_confirmed",
+      "license": "notice",
+      "licenseEvidence": [
+        "game/LICENSE"
+      ],
+      "path": "res://LICENSE",
+      "sha256": "34592284a6ef4db8b906c9e1baccfc1c221317276ff5d1014667a553ded19e78"
+    },
+    {
+      "category": "notice",
+      "distributionEligibility": "distribution_confirmed",
+      "license": "notice",
+      "licenseEvidence": [
+        "game/THIRD_PARTY_NOTICES.md"
+      ],
+      "path": "res://THIRD_PARTY_NOTICES.md",
+      "sha256": "8c03edbd0182d8636bdbca7370a94aa40f4bb7b77c56f91c99a58b242461b8db"
+    },
+    {
+      "category": "addon",
+      "distributionEligibility": "distribution_confirmed",
+      "license": "MIT",
+      "licenseEvidence": [
+        "game/THIRD_PARTY_NOTICES.md"
+      ],
+      "path": "res://addons/dialogic/Core/DialogicGameHandler.gd",
+      "sha256": "c0cf2460c8e683e2a5be043c77a6abb0a18acfd99bf300e569b4b2ad54a2fd9c"
+    },
+    {
+      "category": "addon",
+      "distributionEligibility": "distribution_confirmed",
+      "license": "MIT",
+      "licenseEvidence": [
+        "game/THIRD_PARTY_NOTICES.md"
+      ],
+      "path": "res://addons/dialogic/Core/DialogicResourceUtil.gd",
+      "sha256": "bbf0c97876b657bb38afcf91392bc0d0a0c737372aca386d5d022e54afad57d9"
+    },
+    {
+      "category": "addon",
+      "distributionEligibility": "distribution_confirmed",
+      "license": "MIT",
+      "licenseEvidence": [
+        "game/THIRD_PARTY_NOTICES.md"
+      ],
+      "path": "res://addons/dialogic/Core/DialogicUtil.gd",
+      "sha256": "e6596665875652c01ee34efcdeb058e21d0aeb134befb669c3d321b14667ad2f"
+    },
+    {
+      "category": "addon",
+      "distributionEligibility": "distribution_confirmed",
+      "license": "MIT",
+      "licenseEvidence": [
+        "game/THIRD_PARTY_NOTICES.md"
+      ],
+      "path": "res://addons/dialogic/Core/Dialogic_Subsystem.gd",
+      "sha256": "c29ae3ba9f0db1d1b9df4047906d4873a0f69afb1280a234cbce15ef49fa1d67"
+    },
+    {
+      "category": "addon",
+      "distributionEligibility": "distribution_confirmed",
+      "license": "MIT",
+      "licenseEvidence": [
+        "game/THIRD_PARTY_NOTICES.md"
+      ],
+      "path": "res://addons/dialogic/Core/index_class.gd",
+      "sha256": "e4a119df08ab7a315a7b4b50f6060785c8226cf9fec70e532cfad49c2a53e830"
+    },
+    {
+      "category": "addon",
+      "distributionEligibility": "distribution_confirmed",
+      "license": "MIT",
+      "licenseEvidence": [
+        "game/THIRD_PARTY_NOTICES.md"
+      ],
+      "path": "res://addons/dialogic/Core/save_state.gd",
+      "sha256": "10b2f9770d95f12b66f39525630738db8b92912531f1994c8bf7bf33d2d054ee"
+    },
+    {
+      "category": "font",
+      "distributionEligibility": "distribution_confirmed",
+      "license": "Apache-2.0",
+      "licenseEvidence": [
+        "game/addons/dialogic/Example Assets/Fonts/LICENSE.txt"
+      ],
+      "path": "res://addons/dialogic/Example Assets/Fonts/Roboto-Bold.ttf",
+      "sha256": "c9cc991deb5d27f267830a19f2301eb164d9e61ec08669c1a1a291c5620ff40a"
+    },
+    {
+      "category": "font",
+      "distributionEligibility": "distribution_confirmed",
+      "license": "Apache-2.0",
+      "licenseEvidence": [
+        "game/addons/dialogic/Example Assets/Fonts/LICENSE.txt"
+      ],
+      "path": "res://addons/dialogic/Example Assets/Fonts/Roboto-Italic.ttf",
+      "sha256": "2c0958e0c7e9b63f36f672d3cccba14ca0d7ce2e3d6945b38e4ef3de35b79691"
+    },
+    {
+      "category": "font",
+      "distributionEligibility": "distribution_confirmed",
+      "license": "Apache-2.0",
+      "licenseEvidence": [
+        "game/addons/dialogic/Example Assets/Fonts/LICENSE.txt"
+      ],
+      "path": "res://addons/dialogic/Example Assets/Fonts/Roboto-Regular.ttf",
+      "sha256": "017c0be9aaa6d0359737e1fa762ad304c0e0107927faff5a6c1f415c7f5244ed"
+    },
+    {
+      "category": "addon",
+      "distributionEligibility": "distribution_confirmed",
+      "license": "MIT",
+      "licenseEvidence": [
+        "game/THIRD_PARTY_NOTICES.md"
+      ],
+      "path": "res://addons/dialogic/Example Assets/already_read_indicator.gd",
+      "sha256": "9bc59472a6be272e0a2cb8be9c6e6cd519ee723987ebb0c5a045a03802056f66"
+    },
+    {
+      "category": "addon",
+      "distributionEligibility": "distribution_confirmed",
+      "license": "MIT",
+      "licenseEvidence": [
+        "game/THIRD_PARTY_NOTICES.md"
+      ],
+      "path": "res://addons/dialogic/Example Assets/bbcode_transitions/bbcode_transition_effect.gd",
+      "sha256": "6f3e923f3dd1e89bea502b0cf19e234769e6bee8292adaf519a644de551931ad"
+    },
+    {
+      "category": "dynamic_resource",
+      "distributionEligibility": "distribution_confirmed",
+      "license": "MIT",
+      "licenseEvidence": [
+        "game/THIRD_PARTY_NOTICES.md"
+      ],
+      "path": "res://addons/dialogic/Example Assets/bbcode_transitions/fade_in.tres",
+      "sha256": "d734662643b77227c30c90da8d3c9980a01e1b13bd1a883502261c4fd0ab18a8"
+    },
+    {
+      "category": "dynamic_resource",
+      "distributionEligibility": "distribution_confirmed",
+      "license": "MIT",
+      "licenseEvidence": [
+        "game/THIRD_PARTY_NOTICES.md"
+      ],
+      "path": "res://addons/dialogic/Example Assets/bbcode_transitions/fade_scale_in.tres",
+      "sha256": "844480145a3c6355e78419b52c168b522e8b1fb322598fc334b1eeba64ea4e96"
+    },
+    {
+      "category": "dynamic_resource",
+      "distributionEligibility": "distribution_confirmed",
+      "license": "MIT",
+      "licenseEvidence": [
+        "game/THIRD_PARTY_NOTICES.md"
+      ],
+      "path": "res://addons/dialogic/Example Assets/bbcode_transitions/fancy_in.tres",
+      "sha256": "e348aa610149d9424598a817379426ec0e2fdf577c8ab83ba53da55f3fb1a05c"
+    },
+    {
+      "category": "dynamic_resource",
+      "distributionEligibility": "distribution_confirmed",
+      "license": "MIT",
+      "licenseEvidence": [
+        "game/THIRD_PARTY_NOTICES.md"
+      ],
+      "path": "res://addons/dialogic/Example Assets/bbcode_transitions/shaky_in.tres",
+      "sha256": "a6acdec6da651750c285be3d30d39fcf47a711e79e1f446994e3c4086f629697"
+    },
+    {
+      "category": "addon",
+      "distributionEligibility": "distribution_confirmed",
+      "license": "MIT",
+      "licenseEvidence": [
+        "game/THIRD_PARTY_NOTICES.md"
+      ],
+      "path": "res://addons/dialogic/Example Assets/default_event.gd",
+      "sha256": "5e42a1e03dcc3691955b91bdd6e4dcdf2c07bb463d63556c2bdcffa2b0633c69"
+    },
+    {
+      "category": "addon",
+      "distributionEligibility": "distribution_confirmed",
+      "license": "MIT",
+      "licenseEvidence": [
+        "game/THIRD_PARTY_NOTICES.md"
+      ],
+      "path": "res://addons/dialogic/Example Assets/portraits/CustomPortrait_AnimatedSprite.gd",
+      "sha256": "7d3cf185ff0e45a831d92ba6a4d2c0d60cf8d50c2d692354f2998215230bbc03"
+    },
+    {
+      "category": "addon",
+      "distributionEligibility": "distribution_confirmed",
+      "license": "MIT",
+      "licenseEvidence": [
+        "game/THIRD_PARTY_NOTICES.md"
+      ],
+      "path": "res://addons/dialogic/Example Assets/portraits/CustomPortrait_FaceAtlas.gd",
+      "sha256": "f2b5244543c723c75feef92e178d9459c0d5595d808f740d1a13070a32229ecd"
+    },
+    {
+      "category": "audio",
+      "distributionEligibility": "distribution_confirmed",
+      "license": "CC-BY-SA-4.0",
+      "licenseEvidence": [
+        "game/addons/dialogic/Example Assets/sound-effects/LICENSE.txt"
+      ],
+      "path": "res://addons/dialogic/Example Assets/sound-effects/typing1.wav",
+      "sha256": "bbd6019a8fa349e98490f59117d0cab0fc2131c239c38970f5f505d7d3ba484e"
+    },
+    {
+      "category": "audio",
+      "distributionEligibility": "distribution_confirmed",
+      "license": "CC-BY-SA-4.0",
+      "licenseEvidence": [
+        "game/addons/dialogic/Example Assets/sound-effects/LICENSE.txt"
+      ],
+      "path": "res://addons/dialogic/Example Assets/sound-effects/typing2.wav",
+      "sha256": "e670ce45f360797ba9ca4e4bd5e3192bc932ae354a9605d1da62bc0da5689417"
+    },
+    {
+      "category": "audio",
+      "distributionEligibility": "distribution_confirmed",
+      "license": "CC-BY-SA-4.0",
+      "licenseEvidence": [
+        "game/addons/dialogic/Example Assets/sound-effects/LICENSE.txt"
+      ],
+      "path": "res://addons/dialogic/Example Assets/sound-effects/typing3.wav",
+      "sha256": "39bd756623907cd9d4c09f0cd164665557d6fddcd7de4a4eb6396d88ff6f87a2"
+    },
+    {
+      "category": "audio",
+      "distributionEligibility": "distribution_confirmed",
+      "license": "CC-BY-SA-4.0",
+      "licenseEvidence": [
+        "game/addons/dialogic/Example Assets/sound-effects/LICENSE.txt"
+      ],
+      "path": "res://addons/dialogic/Example Assets/sound-effects/typing4.wav",
+      "sha256": "c701ab0ca993c48dc1b7f3bec9c45b867347ba63ed3f7591ff79d9fb68ce304e"
+    },
+    {
+      "category": "audio",
+      "distributionEligibility": "distribution_confirmed",
+      "license": "CC-BY-SA-4.0",
+      "licenseEvidence": [
+        "game/addons/dialogic/Example Assets/sound-effects/LICENSE.txt"
+      ],
+      "path": "res://addons/dialogic/Example Assets/sound-effects/typing5.wav",
+      "sha256": "a1ebdb183f5e56a6143e0dd43e32332cf1f57161385b076987016af32b4b4911"
+    },
+    {
+      "category": "addon",
+      "distributionEligibility": "distribution_confirmed",
+      "license": "MIT",
+      "licenseEvidence": [
+        "game/THIRD_PARTY_NOTICES.md"
+      ],
+      "path": "res://addons/dialogic/Modules/Audio/event_audio.gd",
+      "sha256": "37d74780f8b2459f0d238f4b0c1927749309380392eabb5414ab55ee40367e2e"
+    },
+    {
+      "category": "addon",
+      "distributionEligibility": "distribution_confirmed",
+      "license": "MIT",
+      "licenseEvidence": [
+        "game/THIRD_PARTY_NOTICES.md"
+      ],
+      "path": "res://addons/dialogic/Modules/Audio/index.gd",
+      "sha256": "78ff0f790df4a4da9ef028a4d15853aafdddff6bfee2ecb2b06d0c7a564e06e5"
+    },
+    {
+      "category": "addon",
+      "distributionEligibility": "distribution_confirmed",
+      "license": "MIT",
+      "licenseEvidence": [
+        "game/THIRD_PARTY_NOTICES.md"
+      ],
+      "path": "res://addons/dialogic/Modules/Audio/settings_audio.gd",
+      "sha256": "2326ebade2393053810f0b1038303375efa4fd082b2a8b4cf9836ee1ac90cf6a"
+    },
+    {
+      "category": "addon",
+      "distributionEligibility": "distribution_confirmed",
+      "license": "MIT",
+      "licenseEvidence": [
+        "game/THIRD_PARTY_NOTICES.md"
+      ],
+      "path": "res://addons/dialogic/Modules/Audio/subsystem_audio.gd",
+      "sha256": "6603de7b4db6821aa6ac8f5d3ed8e75b61f09cdf536a75e9d84e6f077f6428a1"
+    },
+    {
+      "category": "addon",
+      "distributionEligibility": "distribution_confirmed",
+      "license": "MIT",
+      "licenseEvidence": [
+        "game/THIRD_PARTY_NOTICES.md"
+      ],
+      "path": "res://addons/dialogic/Modules/Background/DefaultBackgroundScene/default_background.gd",
+      "sha256": "fd3fb965f3893e382e4201bd6fb3abb0504104001d0204553882b7b467f21677"
+    },
+    {
+      "category": "addon",
+      "distributionEligibility": "distribution_confirmed",
+      "license": "MIT",
+      "licenseEvidence": [
+        "game/THIRD_PARTY_NOTICES.md"
+      ],
+      "path": "res://addons/dialogic/Modules/Background/Transitions/Defaults/push_down.gd",
+      "sha256": "95ef9a2acf529fca62dbb75b94d3f7c156457c8a9148cf9c2e3bba5deb3c5b7b"
+    },
+    {
+      "category": "addon",
+      "distributionEligibility": "distribution_confirmed",
+      "license": "MIT",
+      "licenseEvidence": [
+        "game/THIRD_PARTY_NOTICES.md"
+      ],
+      "path": "res://addons/dialogic/Modules/Background/Transitions/Defaults/push_left.gd",
+      "sha256": "841847278de0721f275483287173a600d9d3bb6a63d139d205a0a8b615570c10"
+    },
+    {
+      "category": "addon",
+      "distributionEligibility": "distribution_confirmed",
+      "license": "MIT",
+      "licenseEvidence": [
+        "game/THIRD_PARTY_NOTICES.md"
+      ],
+      "path": "res://addons/dialogic/Modules/Background/Transitions/Defaults/push_right.gd",
+      "sha256": "877c46c40debe148dde22b6068f044597863bbae4ca6c44f1907c98f75adca60"
+    },
+    {
+      "category": "addon",
+      "distributionEligibility": "distribution_confirmed",
+      "license": "MIT",
+      "licenseEvidence": [
+        "game/THIRD_PARTY_NOTICES.md"
+      ],
+      "path": "res://addons/dialogic/Modules/Background/Transitions/Defaults/push_up.gd",
+      "sha256": "5fed8be7c84c1f25769d8e4de15339a2c5348ee19293c025e25c1d43f63dd0be"
+    },
+    {
+      "category": "addon",
+      "distributionEligibility": "distribution_confirmed",
+      "license": "MIT",
+      "licenseEvidence": [
+        "game/THIRD_PARTY_NOTICES.md"
+      ],
+      "path": "res://addons/dialogic/Modules/Background/Transitions/Defaults/simple_fade.gd",
+      "sha256": "4ab21db60e6a035e2a79655b89a239915fb358d5275e7b37ea494b7fea793467"
+    },
+    {
+      "category": "dynamic_resource",
+      "distributionEligibility": "distribution_confirmed",
+      "license": "MIT",
+      "licenseEvidence": [
+        "game/THIRD_PARTY_NOTICES.md"
+      ],
+      "path": "res://addons/dialogic/Modules/Background/Transitions/Defaults/simple_fade.tres",
+      "sha256": "d551d6b6f7b6e06139ef115f071261d35da859b83a62113f2cfcf16cd25a06f9"
+    },
+    {
+      "category": "addon",
+      "distributionEligibility": "distribution_confirmed",
+      "license": "MIT",
+      "licenseEvidence": [
+        "game/THIRD_PARTY_NOTICES.md"
+      ],
+      "path": "res://addons/dialogic/Modules/Background/Transitions/Defaults/swipe_diagonal_up_left.gd",
+      "sha256": "eaf95ebf207e9d5db831e1ae12bb885f7503ecd03f9fc4c188abd3749b900006"
+    },
+    {
+      "category": "addon",
+      "distributionEligibility": "distribution_confirmed",
+      "license": "MIT",
+      "licenseEvidence": [
+        "game/THIRD_PARTY_NOTICES.md"
+      ],
+      "path": "res://addons/dialogic/Modules/Background/Transitions/Defaults/swipe_left_to_right.gd",
+      "sha256": "14c1c837eac1e4ef0dcd3b940c12474a7ac02793c7e12e690abd7b160c1386a2"
+    },
+    {
+      "category": "addon",
+      "distributionEligibility": "distribution_confirmed",
+      "license": "MIT",
+      "licenseEvidence": [
+        "game/THIRD_PARTY_NOTICES.md"
+      ],
+      "path": "res://addons/dialogic/Modules/Background/Transitions/Defaults/swipe_right_to_left.gd",
+      "sha256": "546b2e805c78c2c04a45ea49bfec04e6f4e37098ef5945061527c161ead6dcd4"
+    },
+    {
+      "category": "addon",
+      "distributionEligibility": "distribution_confirmed",
+      "license": "MIT",
+      "licenseEvidence": [
+        "game/THIRD_PARTY_NOTICES.md"
+      ],
+      "path": "res://addons/dialogic/Modules/Background/Transitions/class_dialogic_background_transition.gd",
+      "sha256": "688323c6909418b27f7874d53b2cb4b36740c115a55a8d7496a9c107a8bbd139"
+    },
+    {
+      "category": "shader",
+      "distributionEligibility": "distribution_confirmed",
+      "license": "MIT",
+      "licenseEvidence": [
+        "game/THIRD_PARTY_NOTICES.md"
+      ],
+      "path": "res://addons/dialogic/Modules/Background/Transitions/default_transition_shader.gdshader",
+      "sha256": "a41b2a94106af781025440fedc5edd4f7646f52ee59a9cdb022678608bf9db14"
+    },
+    {
+      "category": "shader",
+      "distributionEligibility": "distribution_confirmed",
+      "license": "MIT",
+      "licenseEvidence": [
+        "game/THIRD_PARTY_NOTICES.md"
+      ],
+      "path": "res://addons/dialogic/Modules/Background/Transitions/push_transition_shader.gdshader",
+      "sha256": "f9bc3c549eb7f18fb8ed4a7ade918e8609cfa8687e4099d41e59d83cd2b78ca4"
+    },
+    {
+      "category": "addon",
+      "distributionEligibility": "distribution_confirmed",
+      "license": "MIT",
+      "licenseEvidence": [
+        "game/THIRD_PARTY_NOTICES.md"
+      ],
+      "path": "res://addons/dialogic/Modules/Background/Transitions/simple_push_transitions.gd",
+      "sha256": "8f0f5a1342292fa7742770b11e0b2f47f0aa52d13918b49449d7bb33b0e9039d"
+    },
+    {
+      "category": "dynamic_resource",
+      "distributionEligibility": "distribution_confirmed",
+      "license": "MIT",
+      "licenseEvidence": [
+        "game/THIRD_PARTY_NOTICES.md"
+      ],
+      "path": "res://addons/dialogic/Modules/Background/Transitions/simple_swipe_gradient.tres",
+      "sha256": "ab367fedd12a9764ac398bb6920129c101295b3cb18f95e43fb0ebc2928f3380"
+    },
+    {
+      "category": "addon",
+      "distributionEligibility": "distribution_confirmed",
+      "license": "MIT",
+      "licenseEvidence": [
+        "game/THIRD_PARTY_NOTICES.md"
+      ],
+      "path": "res://addons/dialogic/Modules/Background/Transitions/simple_swipe_transitions.gd",
+      "sha256": "41472941a380a3531e1a1731d2d339cbdc375a6a22104861c1e9fa0c310aef18"
+    },
+    {
+      "category": "addon",
+      "distributionEligibility": "distribution_confirmed",
+      "license": "MIT",
+      "licenseEvidence": [
+        "game/THIRD_PARTY_NOTICES.md"
+      ],
+      "path": "res://addons/dialogic/Modules/Background/dialogic_background.gd",
+      "sha256": "2cc21a5f710ae14c4b74082c1a4d9f3ed61ce95ab27a4f8089fb43a1f718c805"
+    },
+    {
+      "category": "addon",
+      "distributionEligibility": "distribution_confirmed",
+      "license": "MIT",
+      "licenseEvidence": [
+        "game/THIRD_PARTY_NOTICES.md"
+      ],
+      "path": "res://addons/dialogic/Modules/Background/event_background.gd",
+      "sha256": "a795393881592a4e11195686078f8185cce048a7765b79c78cb979e7d01b8ea5"
+    },
+    {
+      "category": "addon",
+      "distributionEligibility": "distribution_confirmed",
+      "license": "MIT",
+      "licenseEvidence": [
+        "game/THIRD_PARTY_NOTICES.md"
+      ],
+      "path": "res://addons/dialogic/Modules/Background/index.gd",
+      "sha256": "b99358109fb9e4778002bac2159bb14b997c7cff7bde30139305b36e180b40dc"
+    },
+    {
+      "category": "addon",
+      "distributionEligibility": "distribution_confirmed",
+      "license": "MIT",
+      "licenseEvidence": [
+        "game/THIRD_PARTY_NOTICES.md"
+      ],
+      "path": "res://addons/dialogic/Modules/Background/node_background_holder.gd",
+      "sha256": "1cd41b18fa5d65e8a7135b12bbeaabb1d079a9233f223fd0072f68a3f014d31a"
+    },
+    {
+      "category": "addon",
+      "distributionEligibility": "distribution_confirmed",
+      "license": "MIT",
+      "licenseEvidence": [
+        "game/THIRD_PARTY_NOTICES.md"
+      ],
+      "path": "res://addons/dialogic/Modules/Background/subsystem_backgrounds.gd",
+      "sha256": "cb3c0ebb47ce9cdb0cc26553cc1f0a3a8b75f4d1f222befd3caa6dcf55ae7658"
+    },
+    {
+      "category": "addon",
+      "distributionEligibility": "distribution_confirmed",
+      "license": "MIT",
+      "licenseEvidence": [
+        "game/THIRD_PARTY_NOTICES.md"
+      ],
+      "path": "res://addons/dialogic/Modules/Call/event_call.gd",
+      "sha256": "0ac48d64d736c845665543b95b366b884ab104de120302fa0780f56e64d2c799"
+    },
+    {
+      "category": "addon",
+      "distributionEligibility": "distribution_confirmed",
+      "license": "MIT",
+      "licenseEvidence": [
+        "game/THIRD_PARTY_NOTICES.md"
+      ],
+      "path": "res://addons/dialogic/Modules/Call/index.gd",
+      "sha256": "9b2d225a047c0ae05c8367ffdc1cb75f8e0386d4e8e60698d985e5be7027aa21"
+    },
+    {
+      "category": "addon",
+      "distributionEligibility": "distribution_confirmed",
+      "license": "MIT",
+      "licenseEvidence": [
+        "game/THIRD_PARTY_NOTICES.md"
+      ],
+      "path": "res://addons/dialogic/Modules/Character/DefaultAnimations/bounce.gd",
+      "sha256": "af7571f056edfb5ae439d5fe24b11d3691a1cb290426ba4bd76d0eecc68147a7"
+    },
+    {
+      "category": "addon",
+      "distributionEligibility": "distribution_confirmed",
+      "license": "MIT",
+      "licenseEvidence": [
+        "game/THIRD_PARTY_NOTICES.md"
+      ],
+      "path": "res://addons/dialogic/Modules/Character/DefaultAnimations/bounce_in_out.gd",
+      "sha256": "90687f2f3b3d5c9c95ac50d39c8eea243831a846d578de045ad8d705007ea3d8"
+    },
+    {
+      "category": "addon",
+      "distributionEligibility": "distribution_confirmed",
+      "license": "MIT",
+      "licenseEvidence": [
+        "game/THIRD_PARTY_NOTICES.md"
+      ],
+      "path": "res://addons/dialogic/Modules/Character/DefaultAnimations/fade_down_in_out.gd",
+      "sha256": "3c2bb9e152e80af541a1c200ad632d699f742b58515f1ddcbad37bd6d2352f28"
+    },
+    {
+      "category": "addon",
+      "distributionEligibility": "distribution_confirmed",
+      "license": "MIT",
+      "licenseEvidence": [
+        "game/THIRD_PARTY_NOTICES.md"
+      ],
+      "path": "res://addons/dialogic/Modules/Character/DefaultAnimations/fade_in_out.gd",
+      "sha256": "f87b7c0cebf96f64c676761dd77013e7b8c76e0fad4fffb12be006ad210b0c59"
+    },
+    {
+      "category": "addon",
+      "distributionEligibility": "distribution_confirmed",
+      "license": "MIT",
+      "licenseEvidence": [
+        "game/THIRD_PARTY_NOTICES.md"
+      ],
+      "path": "res://addons/dialogic/Modules/Character/DefaultAnimations/fade_up_in_out.gd",
+      "sha256": "8ee1d7755691113ccdd417877a76790254684819e7d4c6a40cbbf0e565c2cded"
+    },
+    {
+      "category": "addon",
+      "distributionEligibility": "distribution_confirmed",
+      "license": "MIT",
+      "licenseEvidence": [
+        "game/THIRD_PARTY_NOTICES.md"
+      ],
+      "path": "res://addons/dialogic/Modules/Character/DefaultAnimations/heartbeat.gd",
+      "sha256": "fd8351068eb87686fe4f45dc0cd311ebb3508a2b9ab34839a1bdea6230cbb6d5"
+    },
+    {
+      "category": "addon",
+      "distributionEligibility": "distribution_confirmed",
+      "license": "MIT",
+      "licenseEvidence": [
+        "game/THIRD_PARTY_NOTICES.md"
+      ],
+      "path": "res://addons/dialogic/Modules/Character/DefaultAnimations/instant_in_out.gd",
+      "sha256": "a86f7d209610202ae8010f911bc15fb60d48ffee3d9169b60d92ebed94506fad"
+    },
+    {
+      "category": "addon",
+      "distributionEligibility": "distribution_confirmed",
+      "license": "MIT",
+      "licenseEvidence": [
+        "game/THIRD_PARTY_NOTICES.md"
+      ],
+      "path": "res://addons/dialogic/Modules/Character/DefaultAnimations/shake_x.gd",
+      "sha256": "51e52c60557e3eb57ab407be1b3e21438cef271cfcc54538fb165369c7b720ea"
+    },
+    {
+      "category": "addon",
+      "distributionEligibility": "distribution_confirmed",
+      "license": "MIT",
+      "licenseEvidence": [
+        "game/THIRD_PARTY_NOTICES.md"
+      ],
+      "path": "res://addons/dialogic/Modules/Character/DefaultAnimations/shake_y.gd",
+      "sha256": "ce4e2f50140fc1e5297bcf01bd4ea900f629deccf4e31f0dd05eedfcf00d44bd"
+    },
+    {
+      "category": "addon",
+      "distributionEligibility": "distribution_confirmed",
+      "license": "MIT",
+      "licenseEvidence": [
+        "game/THIRD_PARTY_NOTICES.md"
+      ],
+      "path": "res://addons/dialogic/Modules/Character/DefaultAnimations/slide_down_in_out.gd",
+      "sha256": "d5a19d6345e2d9b70f10307f69f5c2751fd1af34031c1a20b2a04049144e5fce"
+    },
+    {
+      "category": "addon",
+      "distributionEligibility": "distribution_confirmed",
+      "license": "MIT",
+      "licenseEvidence": [
+        "game/THIRD_PARTY_NOTICES.md"
+      ],
+      "path": "res://addons/dialogic/Modules/Character/DefaultAnimations/slide_left_in_out.gd",
+      "sha256": "392760104e843a6a4cf3e60ec12b4fc26c2f264b60dd526226e54fb87fc0f9ec"
+    },
+    {
+      "category": "addon",
+      "distributionEligibility": "distribution_confirmed",
+      "license": "MIT",
+      "licenseEvidence": [
+        "game/THIRD_PARTY_NOTICES.md"
+      ],
+      "path": "res://addons/dialogic/Modules/Character/DefaultAnimations/slide_right_in_out.gd",
+      "sha256": "3b7f228aaa5b951d7c9b39d183fc1bf3ff81cacb2f033a467d865296bd770042"
+    },
+    {
+      "category": "addon",
+      "distributionEligibility": "distribution_confirmed",
+      "license": "MIT",
+      "licenseEvidence": [
+        "game/THIRD_PARTY_NOTICES.md"
+      ],
+      "path": "res://addons/dialogic/Modules/Character/DefaultAnimations/slide_up_in.gd",
+      "sha256": "7fc3fabdd8e444fdf64084a2b55a7045ab6f81a7d17f4d4ea0c8cf639e835282"
+    },
+    {
+      "category": "addon",
+      "distributionEligibility": "distribution_confirmed",
+      "license": "MIT",
+      "licenseEvidence": [
+        "game/THIRD_PARTY_NOTICES.md"
+      ],
+      "path": "res://addons/dialogic/Modules/Character/DefaultAnimations/tada.gd",
+      "sha256": "7f2ded67ea284f089427a84ab3adf51948e0af0a4a1a2e1a8765dd059865d92b"
+    },
+    {
+      "category": "addon",
+      "distributionEligibility": "distribution_confirmed",
+      "license": "MIT",
+      "licenseEvidence": [
+        "game/THIRD_PARTY_NOTICES.md"
+      ],
+      "path": "res://addons/dialogic/Modules/Character/DefaultAnimations/zoom_center_in_out.gd",
+      "sha256": "3468fd273c6ca37b095991a5a10b19fd25fe5f8411d0d777ee430a323de1c062"
+    },
+    {
+      "category": "addon",
+      "distributionEligibility": "distribution_confirmed",
+      "license": "MIT",
+      "licenseEvidence": [
+        "game/THIRD_PARTY_NOTICES.md"
+      ],
+      "path": "res://addons/dialogic/Modules/Character/DefaultAnimations/zoom_in_out.gd",
+      "sha256": "7c7550ad501a34099c3b8e4a3d20fcdc0363482e6aa795bdcc37dea4dcf6007d"
+    },
+    {
+      "category": "addon",
+      "distributionEligibility": "distribution_confirmed",
+      "license": "MIT",
+      "licenseEvidence": [
+        "game/THIRD_PARTY_NOTICES.md"
+      ],
+      "path": "res://addons/dialogic/Modules/Character/DialogicPortraitAnimationsUtil.gd",
+      "sha256": "83a1a4ecc133db34a7b6f707aa16d4c928c6e53af4d7fc20ea07a0a7806f7f7b"
+    },
+    {
+      "category": "addon",
+      "distributionEligibility": "distribution_confirmed",
+      "license": "MIT",
+      "licenseEvidence": [
+        "game/THIRD_PARTY_NOTICES.md"
+      ],
+      "path": "res://addons/dialogic/Modules/Character/class_dialogic_animation.gd",
+      "sha256": "2b287a65abae9fbb89d1d29e39d4757d8c9e81e0d002c5a1cc0ced147e5959a0"
+    },
+    {
+      "category": "addon",
+      "distributionEligibility": "distribution_confirmed",
+      "license": "MIT",
+      "licenseEvidence": [
+        "game/THIRD_PARTY_NOTICES.md"
+      ],
+      "path": "res://addons/dialogic/Modules/Character/default_portrait.gd",
+      "sha256": "ab5715828e3bd9aa4d120c8c02e392d93d6ff3622bdf9974d8212f08ba25704d"
+    },
+    {
+      "category": "addon",
+      "distributionEligibility": "distribution_confirmed",
+      "license": "MIT",
+      "licenseEvidence": [
+        "game/THIRD_PARTY_NOTICES.md"
+      ],
+      "path": "res://addons/dialogic/Modules/Character/dialogic_portrait.gd",
+      "sha256": "fe399570abdee93c938370444e39113b759bae22d8a79f103e11e394c9163258"
+    },
+    {
+      "category": "addon",
+      "distributionEligibility": "distribution_confirmed",
+      "license": "MIT",
+      "licenseEvidence": [
+        "game/THIRD_PARTY_NOTICES.md"
+      ],
+      "path": "res://addons/dialogic/Modules/Character/event_character.gd",
+      "sha256": "451938eff9ed29e4ae4e8fdb0a48ed0687210868e4b438b46e1f32022d0e4acf"
+    },
+    {
+      "category": "addon",
+      "distributionEligibility": "distribution_confirmed",
+      "license": "MIT",
+      "licenseEvidence": [
+        "game/THIRD_PARTY_NOTICES.md"
+      ],
+      "path": "res://addons/dialogic/Modules/Character/index.gd",
+      "sha256": "83baa4b09956694458a01e153a331be6b5b75a9041d92d3c5489caef37c1b82f"
+    },
+    {
+      "category": "addon",
+      "distributionEligibility": "distribution_confirmed",
+      "license": "MIT",
+      "licenseEvidence": [
+        "game/THIRD_PARTY_NOTICES.md"
+      ],
+      "path": "res://addons/dialogic/Modules/Character/node_portrait_container.gd",
+      "sha256": "085c1306258423b75d519847c3de9626a8d99a8de4018463f7c240fcb32d0c09"
+    },
+    {
+      "category": "dynamic_resource",
+      "distributionEligibility": "distribution_confirmed",
+      "license": "MIT",
+      "licenseEvidence": [
+        "game/THIRD_PARTY_NOTICES.md"
+      ],
+      "path": "res://addons/dialogic/Modules/Character/preview_character.tres",
+      "sha256": "61a25a10bdb3f28e7b7c5331002bab48ce409da7b3939f8b040c25ca37dd7a08"
+    },
+    {
+      "category": "addon",
+      "distributionEligibility": "distribution_confirmed",
+      "license": "MIT",
+      "licenseEvidence": [
+        "game/THIRD_PARTY_NOTICES.md"
+      ],
+      "path": "res://addons/dialogic/Modules/Character/settings_portraits.gd",
+      "sha256": "4825ef01ee36dd3ca521a9248c4ee0101e5948acfa69db7d69a5706fd7a7f5f2"
+    },
+    {
+      "category": "addon",
+      "distributionEligibility": "distribution_confirmed",
+      "license": "MIT",
+      "licenseEvidence": [
+        "game/THIRD_PARTY_NOTICES.md"
+      ],
+      "path": "res://addons/dialogic/Modules/Character/subsystem_containers.gd",
+      "sha256": "074d5df990d6a86133fc0ae9c4b86b7ea1ee73128fe318fc7d878359c8f035c9"
+    },
+    {
+      "category": "addon",
+      "distributionEligibility": "distribution_confirmed",
+      "license": "MIT",
+      "licenseEvidence": [
+        "game/THIRD_PARTY_NOTICES.md"
+      ],
+      "path": "res://addons/dialogic/Modules/Character/subsystem_portraits.gd",
+      "sha256": "c219061df4454133dd03c5007bb1cef910371fdeb98268c383ee3ee0146beeb4"
+    },
+    {
+      "category": "addon",
+      "distributionEligibility": "distribution_confirmed",
+      "license": "MIT",
+      "licenseEvidence": [
+        "game/THIRD_PARTY_NOTICES.md"
+      ],
+      "path": "res://addons/dialogic/Modules/Choice/event_choice.gd",
+      "sha256": "6ca3d84be2f19f315a65abbee8fa6e1b7a580b48365841554342a50b89263eef"
+    },
+    {
+      "category": "addon",
+      "distributionEligibility": "distribution_confirmed",
+      "license": "MIT",
+      "licenseEvidence": [
+        "game/THIRD_PARTY_NOTICES.md"
+      ],
+      "path": "res://addons/dialogic/Modules/Choice/index.gd",
+      "sha256": "2e3ec0f2620fd790605bda379d227bd550c09cf3a2005b70024256d60dd85048"
+    },
+    {
+      "category": "addon",
+      "distributionEligibility": "distribution_confirmed",
+      "license": "MIT",
+      "licenseEvidence": [
+        "game/THIRD_PARTY_NOTICES.md"
+      ],
+      "path": "res://addons/dialogic/Modules/Choice/node_button_sound.gd",
+      "sha256": "3975942ca104354c9421f7227a8e1b78597e29fde66851980a82264ce2f0786b"
+    },
+    {
+      "category": "addon",
+      "distributionEligibility": "distribution_confirmed",
+      "license": "MIT",
+      "licenseEvidence": [
+        "game/THIRD_PARTY_NOTICES.md"
+      ],
+      "path": "res://addons/dialogic/Modules/Choice/node_choice_button.gd",
+      "sha256": "d95d224fe0497f36aa2b35e11e6241436d6c81f779bd80a03c4b884a10684470"
+    },
+    {
+      "category": "addon",
+      "distributionEligibility": "distribution_confirmed",
+      "license": "MIT",
+      "licenseEvidence": [
+        "game/THIRD_PARTY_NOTICES.md"
+      ],
+      "path": "res://addons/dialogic/Modules/Choice/settings_choices.gd",
+      "sha256": "da0c3fc24e8e5cc95de7ea91e9c699e799c1ec839c19392fe5f6092f4b59cad6"
+    },
+    {
+      "category": "addon",
+      "distributionEligibility": "distribution_confirmed",
+      "license": "MIT",
+      "licenseEvidence": [
+        "game/THIRD_PARTY_NOTICES.md"
+      ],
+      "path": "res://addons/dialogic/Modules/Choice/subsystem_choices.gd",
+      "sha256": "1ede155f477fe215b754969f384be6aa0c76782112e90fef2a782fbfe36a10bb"
+    },
+    {
+      "category": "addon",
+      "distributionEligibility": "distribution_confirmed",
+      "license": "MIT",
+      "licenseEvidence": [
+        "game/THIRD_PARTY_NOTICES.md"
+      ],
+      "path": "res://addons/dialogic/Modules/Choice/ui_choice_end.gd",
+      "sha256": "c10db69d6c872cbd1fcf7a8695aeeb5f6de64f8adada19f1a697b757d12102ad"
+    },
+    {
+      "category": "addon",
+      "distributionEligibility": "distribution_confirmed",
+      "license": "MIT",
+      "licenseEvidence": [
+        "game/THIRD_PARTY_NOTICES.md"
+      ],
+      "path": "res://addons/dialogic/Modules/Clear/event_clear.gd",
+      "sha256": "30c9eb23c6855a55fb7bf4b57ffe13a235fcaa7325937eccaac64c7f47363c08"
+    },
+    {
+      "category": "addon",
+      "distributionEligibility": "distribution_confirmed",
+      "license": "MIT",
+      "licenseEvidence": [
+        "game/THIRD_PARTY_NOTICES.md"
+      ],
+      "path": "res://addons/dialogic/Modules/Clear/index.gd",
+      "sha256": "c4f5b7cbd33d56a935c056a05404ae2863bdfb6afc7d754927afd756c939959a"
+    },
+    {
+      "category": "addon",
+      "distributionEligibility": "distribution_confirmed",
+      "license": "MIT",
+      "licenseEvidence": [
+        "game/THIRD_PARTY_NOTICES.md"
+      ],
+      "path": "res://addons/dialogic/Modules/Comment/event_comment.gd",
+      "sha256": "17245adf190b5686f98d29c1eb8b43aacf198ee29c1b3c42e2577f92ed8ea45f"
+    },
+    {
+      "category": "addon",
+      "distributionEligibility": "distribution_confirmed",
+      "license": "MIT",
+      "licenseEvidence": [
+        "game/THIRD_PARTY_NOTICES.md"
+      ],
+      "path": "res://addons/dialogic/Modules/Comment/index.gd",
+      "sha256": "eea964d9790b13313f0e800c336912ee73cd76f157ebf9f0b81bd12809932772"
+    },
+    {
+      "category": "addon",
+      "distributionEligibility": "distribution_confirmed",
+      "license": "MIT",
+      "licenseEvidence": [
+        "game/THIRD_PARTY_NOTICES.md"
+      ],
+      "path": "res://addons/dialogic/Modules/Condition/event_condition.gd",
+      "sha256": "2c7e42e4f7c85baf01d9781ec13a9ea93ba47a4d4c3cecee2f5fbbf6c88eecf8"
+    },
+    {
+      "category": "addon",
+      "distributionEligibility": "distribution_confirmed",
+      "license": "MIT",
+      "licenseEvidence": [
+        "game/THIRD_PARTY_NOTICES.md"
+      ],
+      "path": "res://addons/dialogic/Modules/Condition/index.gd",
+      "sha256": "c7748c49163747e0df4e32cb7ad2f13b568119a85ecf9f0b168e5a02e142750f"
+    },
+    {
+      "category": "addon",
+      "distributionEligibility": "distribution_confirmed",
+      "license": "MIT",
+      "licenseEvidence": [
+        "game/THIRD_PARTY_NOTICES.md"
+      ],
+      "path": "res://addons/dialogic/Modules/Condition/ui_condition_end.gd",
+      "sha256": "43e9e3abb28212b97aa62e8b0998982cead36b691fc74cffaaee8189cba0aa61"
+    },
+    {
+      "category": "addon",
+      "distributionEligibility": "distribution_confirmed",
+      "license": "MIT",
+      "licenseEvidence": [
+        "game/THIRD_PARTY_NOTICES.md"
+      ],
+      "path": "res://addons/dialogic/Modules/Core/event_end_branch.gd",
+      "sha256": "fd6e6766fc11f7f2d8cc951f85c36ed0aae1b6090e1c466ec0e170df88979149"
+    },
+    {
+      "category": "addon",
+      "distributionEligibility": "distribution_confirmed",
+      "license": "MIT",
+      "licenseEvidence": [
+        "game/THIRD_PARTY_NOTICES.md"
+      ],
+      "path": "res://addons/dialogic/Modules/Core/index.gd",
+      "sha256": "2b1e4f0646cdef89094a6a164c89721f30ecd4b365cae2dad0e09c04c8dce1a5"
+    },
+    {
+      "category": "addon",
+      "distributionEligibility": "distribution_confirmed",
+      "license": "MIT",
+      "licenseEvidence": [
+        "game/THIRD_PARTY_NOTICES.md"
+      ],
+      "path": "res://addons/dialogic/Modules/Core/subsystem_animation.gd",
+      "sha256": "9a1d5f162a3979bf4237981b8dc4b9d2e436b87003ca69154739128ebf289420"
+    },
+    {
+      "category": "addon",
+      "distributionEligibility": "distribution_confirmed",
+      "license": "MIT",
+      "licenseEvidence": [
+        "game/THIRD_PARTY_NOTICES.md"
+      ],
+      "path": "res://addons/dialogic/Modules/Core/subsystem_expression.gd",
+      "sha256": "05163261c89732d19e904af1e9c53436a17e74d009ef82eb33651baa5be1b5f1"
+    },
+    {
+      "category": "addon",
+      "distributionEligibility": "distribution_confirmed",
+      "license": "MIT",
+      "licenseEvidence": [
+        "game/THIRD_PARTY_NOTICES.md"
+      ],
+      "path": "res://addons/dialogic/Modules/Core/subsystem_input.gd",
+      "sha256": "248269bbc5c45987e586c727cd5cf071a59fc3b6e6084ff2661271988c3d64fd"
+    },
+    {
+      "category": "addon",
+      "distributionEligibility": "distribution_confirmed",
+      "license": "MIT",
+      "licenseEvidence": [
+        "game/THIRD_PARTY_NOTICES.md"
+      ],
+      "path": "res://addons/dialogic/Modules/DefaultLayoutParts/Base_Default/default_layout_base.gd",
+      "sha256": "8bb3aba6d7ecdbe88719ddeffd33b3cd349edef419da9a7a0880d1b8b621259e"
+    },
+    {
+      "category": "addon",
+      "distributionEligibility": "distribution_confirmed",
+      "license": "MIT",
+      "licenseEvidence": [
+        "game/THIRD_PARTY_NOTICES.md"
+      ],
+      "path": "res://addons/dialogic/Modules/DefaultLayoutParts/Base_Default/part_config.cfg",
+      "sha256": "c96ad7e73a6f4ab7a11b766ba731640506cd2a06dfacc7d27f2d8c270771a274"
+    },
+    {
+      "category": "addon",
+      "distributionEligibility": "distribution_confirmed",
+      "license": "MIT",
+      "licenseEvidence": [
+        "game/THIRD_PARTY_NOTICES.md"
+      ],
+      "path": "res://addons/dialogic/Modules/DefaultLayoutParts/Base_TextBubble/part_config.cfg",
+      "sha256": "9f47696fc3be05a703b245f6022d72608cbdb3cd38c3ba88d1a6667aede755ea"
+    },
+    {
+      "category": "addon",
+      "distributionEligibility": "distribution_confirmed",
+      "license": "MIT",
+      "licenseEvidence": [
+        "game/THIRD_PARTY_NOTICES.md"
+      ],
+      "path": "res://addons/dialogic/Modules/DefaultLayoutParts/Base_TextBubble/text_bubble_base.gd",
+      "sha256": "805b4ddbba62a8a6d315cd28b53567380b332074982d58aaa175c815c827375c"
+    },
+    {
+      "category": "addon",
+      "distributionEligibility": "distribution_confirmed",
+      "license": "MIT",
+      "licenseEvidence": [
+        "game/THIRD_PARTY_NOTICES.md"
+      ],
+      "path": "res://addons/dialogic/Modules/DefaultLayoutParts/Layer_FullBackground/full_background_layer.gd",
+      "sha256": "79386c8221bfd400360cdf9e4f0f8e2f6fd59309af34188dcafe05bc47f24af1"
+    },
+    {
+      "category": "addon",
+      "distributionEligibility": "distribution_confirmed",
+      "license": "MIT",
+      "licenseEvidence": [
+        "game/THIRD_PARTY_NOTICES.md"
+      ],
+      "path": "res://addons/dialogic/Modules/DefaultLayoutParts/Layer_FullBackground/part_config.cfg",
+      "sha256": "021605634f20ddd62f18ea831b76032b2383b289a4a625ce9f952fb9729828d0"
+    },
+    {
+      "category": "addon",
+      "distributionEligibility": "distribution_confirmed",
+      "license": "MIT",
+      "licenseEvidence": [
+        "game/THIRD_PARTY_NOTICES.md"
+      ],
+      "path": "res://addons/dialogic/Modules/DefaultLayoutParts/Layer_Glossary/glossary_popup_layer.gd",
+      "sha256": "3f9fc01ff909574ff3d973467950d793ccb43dee542eaafa79d42ca626377d2b"
+    },
+    {
+      "category": "addon",
+      "distributionEligibility": "distribution_confirmed",
+      "license": "MIT",
+      "licenseEvidence": [
+        "game/THIRD_PARTY_NOTICES.md"
+      ],
+      "path": "res://addons/dialogic/Modules/DefaultLayoutParts/Layer_Glossary/part_config.cfg",
+      "sha256": "b1b2f502954a0c36a2d5c58155a8d50c9a45017721573988911bbd39757393c4"
+    },
+    {
+      "category": "addon",
+      "distributionEligibility": "distribution_confirmed",
+      "license": "MIT",
+      "licenseEvidence": [
+        "game/THIRD_PARTY_NOTICES.md"
+      ],
+      "path": "res://addons/dialogic/Modules/DefaultLayoutParts/Layer_History/example_history_item.gd",
+      "sha256": "16b4dcf44f128dab0b7aa9379c6195b562c0334a76d8c96f6cc4d9f67f6e7714"
+    },
+    {
+      "category": "addon",
+      "distributionEligibility": "distribution_confirmed",
+      "license": "MIT",
+      "licenseEvidence": [
+        "game/THIRD_PARTY_NOTICES.md"
+      ],
+      "path": "res://addons/dialogic/Modules/DefaultLayoutParts/Layer_History/history_layer.gd",
+      "sha256": "a98d569292b79ff5a5509ac811874ad4cfbcbb1d25529273d12c4814458f8190"
+    },
+    {
+      "category": "addon",
+      "distributionEligibility": "distribution_confirmed",
+      "license": "MIT",
+      "licenseEvidence": [
+        "game/THIRD_PARTY_NOTICES.md"
+      ],
+      "path": "res://addons/dialogic/Modules/DefaultLayoutParts/Layer_History/part_config.cfg",
+      "sha256": "049cf77b122bd3708b9417de103af3763fcd70c4d3cdf28f710e634c36c06789"
+    },
+    {
+      "category": "addon",
+      "distributionEligibility": "distribution_confirmed",
+      "license": "MIT",
+      "licenseEvidence": [
+        "game/THIRD_PARTY_NOTICES.md"
+      ],
+      "path": "res://addons/dialogic/Modules/DefaultLayoutParts/Layer_Input/full_advance_input_layer.gd",
+      "sha256": "1a47353afe40a046da9a9098ff6d24233b3b717d1fba596490fe0f7509c39f65"
+    },
+    {
+      "category": "addon",
+      "distributionEligibility": "distribution_confirmed",
+      "license": "MIT",
+      "licenseEvidence": [
+        "game/THIRD_PARTY_NOTICES.md"
+      ],
+      "path": "res://addons/dialogic/Modules/DefaultLayoutParts/Layer_Input/part_config.cfg",
+      "sha256": "0cadbec3ab2acd18ea9788b534df6467f7a7bac23ddafbbfb6c3e4b5dbf06e1f"
+    },
+    {
+      "category": "dynamic_resource",
+      "distributionEligibility": "distribution_confirmed",
+      "license": "MIT",
+      "licenseEvidence": [
+        "game/THIRD_PARTY_NOTICES.md"
+      ],
+      "path": "res://addons/dialogic/Modules/DefaultLayoutParts/Layer_SpeakerPortraitTextbox/default_stylebox.tres",
+      "sha256": "bf3b9917318fb798402bc94129822da9e3ea84aad51491ace25dd3deb0a82a1d"
+    },
+    {
+      "category": "addon",
+      "distributionEligibility": "distribution_confirmed",
+      "license": "MIT",
+      "licenseEvidence": [
+        "game/THIRD_PARTY_NOTICES.md"
+      ],
+      "path": "res://addons/dialogic/Modules/DefaultLayoutParts/Layer_SpeakerPortraitTextbox/part_config.cfg",
+      "sha256": "565523b6cf1413f470ad6dbbd2414b5bde96e91be7e284ec41c81e000a4da4f7"
+    },
+    {
+      "category": "addon",
+      "distributionEligibility": "distribution_confirmed",
+      "license": "MIT",
+      "licenseEvidence": [
+        "game/THIRD_PARTY_NOTICES.md"
+      ],
+      "path": "res://addons/dialogic/Modules/DefaultLayoutParts/Layer_SpeakerPortraitTextbox/speaker_portrait_textbox_layer.gd",
+      "sha256": "ee41aee2d4feeba2160755d69ca16f749d1a1f7fa547c3872db6adbd8607a05a"
+    },
+    {
+      "category": "addon",
+      "distributionEligibility": "distribution_confirmed",
+      "license": "MIT",
+      "licenseEvidence": [
+        "game/THIRD_PARTY_NOTICES.md"
+      ],
+      "path": "res://addons/dialogic/Modules/DefaultLayoutParts/Layer_TextInput/part_config.cfg",
+      "sha256": "deee8b21a09f8c445d216cb7896b29089fc3336a816851151671b6f392faedc4"
+    },
+    {
+      "category": "addon",
+      "distributionEligibility": "distribution_confirmed",
+      "license": "MIT",
+      "licenseEvidence": [
+        "game/THIRD_PARTY_NOTICES.md"
+      ],
+      "path": "res://addons/dialogic/Modules/DefaultLayoutParts/Layer_TextInput/text_input_layer.gd",
+      "sha256": "89eb38d85303aa8ef787703427c18d1957c113d1cdfe8a1a89b80c01797267f9"
+    },
+    {
+      "category": "addon",
+      "distributionEligibility": "distribution_confirmed",
+      "license": "MIT",
+      "licenseEvidence": [
+        "game/THIRD_PARTY_NOTICES.md"
+      ],
+      "path": "res://addons/dialogic/Modules/DefaultLayoutParts/Layer_Textbubble/part_config.cfg",
+      "sha256": "4edd5f6e98e62d3ea0a73da20607f8cb0a53d13e8cf90fc735640813f7306ead"
+    },
+    {
+      "category": "shader",
+      "distributionEligibility": "distribution_confirmed",
+      "license": "MIT",
+      "licenseEvidence": [
+        "game/THIRD_PARTY_NOTICES.md"
+      ],
+      "path": "res://addons/dialogic/Modules/DefaultLayoutParts/Layer_Textbubble/speech_bubble.gdshader",
+      "sha256": "ef124e9dff617b2c16975dc0e4a1a2f915195e4f45fb279e94f5960729385dfd"
+    },
+    {
+      "category": "addon",
+      "distributionEligibility": "distribution_confirmed",
+      "license": "MIT",
+      "licenseEvidence": [
+        "game/THIRD_PARTY_NOTICES.md"
+      ],
+      "path": "res://addons/dialogic/Modules/DefaultLayoutParts/Layer_Textbubble/text_bubble.gd",
+      "sha256": "9b34fd9d0900b9c4188229b75aaa13f0f9bb3cf64b6ee65bcc93f80db16f0169"
+    },
+    {
+      "category": "shader",
+      "distributionEligibility": "distribution_confirmed",
+      "license": "MIT",
+      "licenseEvidence": [
+        "game/THIRD_PARTY_NOTICES.md"
+      ],
+      "path": "res://addons/dialogic/Modules/DefaultLayoutParts/Layer_Textbubble/text_bubble.gdshader",
+      "sha256": "43a6fe0a078b346702a9a0a6232b5a2cdbb2866600968e5e434d0c4faf7b1581"
+    },
+    {
+      "category": "addon",
+      "distributionEligibility": "distribution_confirmed",
+      "license": "MIT",
+      "licenseEvidence": [
+        "game/THIRD_PARTY_NOTICES.md"
+      ],
+      "path": "res://addons/dialogic/Modules/DefaultLayoutParts/Layer_Textbubble/text_bubble_layer.gd",
+      "sha256": "f7ddd0807ef7e65ca57b39711d31315f893cd6cfa2c4b23e8f3896d1310ffda8"
+    },
+    {
+      "category": "dynamic_resource",
+      "distributionEligibility": "distribution_confirmed",
+      "license": "MIT",
+      "licenseEvidence": [
+        "game/THIRD_PARTY_NOTICES.md"
+      ],
+      "path": "res://addons/dialogic/Modules/DefaultLayoutParts/Layer_VN_Choices/choice_panel_focus.tres",
+      "sha256": "c635ef4ace7a8fda453e76ec24c7063cf4c13f61cc0f153d237dc18cf261cad0"
+    },
+    {
+      "category": "dynamic_resource",
+      "distributionEligibility": "distribution_confirmed",
+      "license": "MIT",
+      "licenseEvidence": [
+        "game/THIRD_PARTY_NOTICES.md"
+      ],
+      "path": "res://addons/dialogic/Modules/DefaultLayoutParts/Layer_VN_Choices/choice_panel_hover.tres",
+      "sha256": "92e376ee5de51918ff140af14883fe32b6fb6636f61efe9f2b8362459dfcf67c"
+    },
+    {
+      "category": "dynamic_resource",
+      "distributionEligibility": "distribution_confirmed",
+      "license": "MIT",
+      "licenseEvidence": [
+        "game/THIRD_PARTY_NOTICES.md"
+      ],
+      "path": "res://addons/dialogic/Modules/DefaultLayoutParts/Layer_VN_Choices/choice_panel_normal.tres",
+      "sha256": "2a0b600427c38c7b17116d99c713595a8bff8b55d5c144287e0895f8550d2e6c"
+    },
+    {
+      "category": "addon",
+      "distributionEligibility": "distribution_confirmed",
+      "license": "MIT",
+      "licenseEvidence": [
+        "game/THIRD_PARTY_NOTICES.md"
+      ],
+      "path": "res://addons/dialogic/Modules/DefaultLayoutParts/Layer_VN_Choices/part_config.cfg",
+      "sha256": "5e2da8b39f500b8a08904cb6253b268c7acb89686797b1b241db44c3ca33448a"
+    },
+    {
+      "category": "addon",
+      "distributionEligibility": "distribution_confirmed",
+      "license": "MIT",
+      "licenseEvidence": [
+        "game/THIRD_PARTY_NOTICES.md"
+      ],
+      "path": "res://addons/dialogic/Modules/DefaultLayoutParts/Layer_VN_Choices/vn_choice_layer.gd",
+      "sha256": "d7b37baa21b324d692be6766805d38055db8ad92458f534c8abece9784d8d7cc"
+    },
+    {
+      "category": "addon",
+      "distributionEligibility": "distribution_confirmed",
+      "license": "MIT",
+      "licenseEvidence": [
+        "game/THIRD_PARTY_NOTICES.md"
+      ],
+      "path": "res://addons/dialogic/Modules/DefaultLayoutParts/Layer_VN_Portraits/part_config.cfg",
+      "sha256": "779a064caa43c57847cac4ae883ec8d95f5594719597ef8487ccf2acf93e34fb"
+    },
+    {
+      "category": "addon",
+      "distributionEligibility": "distribution_confirmed",
+      "license": "MIT",
+      "licenseEvidence": [
+        "game/THIRD_PARTY_NOTICES.md"
+      ],
+      "path": "res://addons/dialogic/Modules/DefaultLayoutParts/Layer_VN_Portraits/vn_portrait_layer.gd",
+      "sha256": "63562828d4184ac22056288480d2dd870918ff72a2da70841e2535a9a7ba4b21"
+    },
+    {
+      "category": "addon",
+      "distributionEligibility": "distribution_confirmed",
+      "license": "MIT",
+      "licenseEvidence": [
+        "game/THIRD_PARTY_NOTICES.md"
+      ],
+      "path": "res://addons/dialogic/Modules/DefaultLayoutParts/Layer_VN_Textbox/animations.gd",
+      "sha256": "1efc117ff34b1d0f21eff773bdd3340de19cb7449bbcc7c80addee01c8d898df"
+    },
+    {
+      "category": "addon",
+      "distributionEligibility": "distribution_confirmed",
+      "license": "MIT",
+      "licenseEvidence": [
+        "game/THIRD_PARTY_NOTICES.md"
+      ],
+      "path": "res://addons/dialogic/Modules/DefaultLayoutParts/Layer_VN_Textbox/autoadvance_indicator.gd",
+      "sha256": "892eb89f0063a22e1b4be64fa1e75d6202a035fe4c713eadb249b1ea1e952752"
+    },
+    {
+      "category": "addon",
+      "distributionEligibility": "distribution_confirmed",
+      "license": "MIT",
+      "licenseEvidence": [
+        "game/THIRD_PARTY_NOTICES.md"
+      ],
+      "path": "res://addons/dialogic/Modules/DefaultLayoutParts/Layer_VN_Textbox/part_config.cfg",
+      "sha256": "af176b95523f6f1d563eb27fae675601fbd17ed2fec3c3303d007cc65c3d763c"
+    },
+    {
+      "category": "dynamic_resource",
+      "distributionEligibility": "distribution_confirmed",
+      "license": "MIT",
+      "licenseEvidence": [
+        "game/THIRD_PARTY_NOTICES.md"
+      ],
+      "path": "res://addons/dialogic/Modules/DefaultLayoutParts/Layer_VN_Textbox/vn_textbox_default_panel.tres",
+      "sha256": "9c5be1b0a50beecb15a0f76e4f1cb6019af216341f26b7782a1f057c33ed62de"
+    },
+    {
+      "category": "addon",
+      "distributionEligibility": "distribution_confirmed",
+      "license": "MIT",
+      "licenseEvidence": [
+        "game/THIRD_PARTY_NOTICES.md"
+      ],
+      "path": "res://addons/dialogic/Modules/DefaultLayoutParts/Layer_VN_Textbox/vn_textbox_layer.gd",
+      "sha256": "738ed033fa609236df47f4f27b47468d17427c36178e71823fcf069247f26faf"
+    },
+    {
+      "category": "dynamic_resource",
+      "distributionEligibility": "distribution_confirmed",
+      "license": "MIT",
+      "licenseEvidence": [
+        "game/THIRD_PARTY_NOTICES.md"
+      ],
+      "path": "res://addons/dialogic/Modules/DefaultLayoutParts/Layer_VN_Textbox/vn_textbox_name_label_panel.tres",
+      "sha256": "135c59b3734fd75fd6cb5f1e53bb6f360996ac506a87bae0d0c22e2e4998d6e8"
+    },
+    {
+      "category": "addon",
+      "distributionEligibility": "distribution_confirmed",
+      "license": "MIT",
+      "licenseEvidence": [
+        "game/THIRD_PARTY_NOTICES.md"
+      ],
+      "path": "res://addons/dialogic/Modules/DefaultLayoutParts/Style_SpeakerTextbox/part_config.cfg",
+      "sha256": "d8f370f61dbf1b98c6898e788eb7d5d47b3c42cbf6fef5e4645b6229c6b5fe0d"
+    },
+    {
+      "category": "dynamic_resource",
+      "distributionEligibility": "distribution_confirmed",
+      "license": "MIT",
+      "licenseEvidence": [
+        "game/THIRD_PARTY_NOTICES.md"
+      ],
+      "path": "res://addons/dialogic/Modules/DefaultLayoutParts/Style_SpeakerTextbox/speaker_textbox_style.tres",
+      "sha256": "137e0dee47fec7167e1f0b0420964c5870f975c6d990dc89435609d15d8ca56a"
+    },
+    {
+      "category": "addon",
+      "distributionEligibility": "distribution_confirmed",
+      "license": "MIT",
+      "licenseEvidence": [
+        "game/THIRD_PARTY_NOTICES.md"
+      ],
+      "path": "res://addons/dialogic/Modules/DefaultLayoutParts/Style_TextBubbles/part_config.cfg",
+      "sha256": "5a428c3d880a63593a149aa747d983437a938d4cefbd95a3d39a85875f4d9343"
+    },
+    {
+      "category": "dynamic_resource",
+      "distributionEligibility": "distribution_confirmed",
+      "license": "MIT",
+      "licenseEvidence": [
+        "game/THIRD_PARTY_NOTICES.md"
+      ],
+      "path": "res://addons/dialogic/Modules/DefaultLayoutParts/Style_TextBubbles/textbubble_style.tres",
+      "sha256": "d576c2e2e026f6802dab71a3059a04319fe720f9a08d96cd430bf7b75f5c5e51"
+    },
+    {
+      "category": "dynamic_resource",
+      "distributionEligibility": "distribution_confirmed",
+      "license": "MIT",
+      "licenseEvidence": [
+        "game/THIRD_PARTY_NOTICES.md"
+      ],
+      "path": "res://addons/dialogic/Modules/DefaultLayoutParts/Style_VN_Default/default_vn_style.tres",
+      "sha256": "9ae2390903c14f838d5830e5f27475d18fa33dde2e3c9a345ee84d8facf9fc12"
+    },
+    {
+      "category": "addon",
+      "distributionEligibility": "distribution_confirmed",
+      "license": "MIT",
+      "licenseEvidence": [
+        "game/THIRD_PARTY_NOTICES.md"
+      ],
+      "path": "res://addons/dialogic/Modules/DefaultLayoutParts/Style_VN_Default/part_config.cfg",
+      "sha256": "4a1681b3e6892250f3a318fe1f34ffa591e56f4557419c9917e9baa51e79a5d1"
+    },
+    {
+      "category": "addon",
+      "distributionEligibility": "distribution_confirmed",
+      "license": "MIT",
+      "licenseEvidence": [
+        "game/THIRD_PARTY_NOTICES.md"
+      ],
+      "path": "res://addons/dialogic/Modules/DefaultLayoutParts/index.gd",
+      "sha256": "d2a00a2aa6c274de85baaceba6b184f137a67e47d956ed52be9e39838cff47de"
+    },
+    {
+      "category": "addon",
+      "distributionEligibility": "distribution_confirmed",
+      "license": "MIT",
+      "licenseEvidence": [
+        "game/THIRD_PARTY_NOTICES.md"
+      ],
+      "path": "res://addons/dialogic/Modules/End/event_end.gd",
+      "sha256": "c7f8ed496b04feefbd1bca3df9bbf001f258a71ac5faa7ce6f54672e489a2ff7"
+    },
+    {
+      "category": "addon",
+      "distributionEligibility": "distribution_confirmed",
+      "license": "MIT",
+      "licenseEvidence": [
+        "game/THIRD_PARTY_NOTICES.md"
+      ],
+      "path": "res://addons/dialogic/Modules/End/index.gd",
+      "sha256": "409bb27dcd427649414531aca91227837aa33628c9738a87f23d06b5a14008b4"
+    },
+    {
+      "category": "addon",
+      "distributionEligibility": "distribution_confirmed",
+      "license": "MIT",
+      "licenseEvidence": [
+        "game/THIRD_PARTY_NOTICES.md"
+      ],
+      "path": "res://addons/dialogic/Modules/Glossary/event_glossary.gd",
+      "sha256": "0cef995ca804c48d9933c328c4a393dc742e76c728ab3107338b6ae812abcc55"
+    },
+    {
+      "category": "addon",
+      "distributionEligibility": "distribution_confirmed",
+      "license": "MIT",
+      "licenseEvidence": [
+        "game/THIRD_PARTY_NOTICES.md"
+      ],
+      "path": "res://addons/dialogic/Modules/Glossary/glossary_resource.gd",
+      "sha256": "9f5caf9f86406739ec0fb532c1d8b26a06418d3b78716999515a6022cba10821"
+    },
+    {
+      "category": "addon",
+      "distributionEligibility": "distribution_confirmed",
+      "license": "MIT",
+      "licenseEvidence": [
+        "game/THIRD_PARTY_NOTICES.md"
+      ],
+      "path": "res://addons/dialogic/Modules/Glossary/index.gd",
+      "sha256": "827fbddbda9e45f26930cc3017079331bbb919699474ea9be744c187a9bdf31d"
+    },
+    {
+      "category": "addon",
+      "distributionEligibility": "distribution_confirmed",
+      "license": "MIT",
+      "licenseEvidence": [
+        "game/THIRD_PARTY_NOTICES.md"
+      ],
+      "path": "res://addons/dialogic/Modules/Glossary/subsystem_glossary.gd",
+      "sha256": "2979922d0dc2c7c5d8a7215b437d7bedfb7bc2ca7fceff6174a3c81ff210b8d0"
+    },
+    {
+      "category": "addon",
+      "distributionEligibility": "distribution_confirmed",
+      "license": "MIT",
+      "licenseEvidence": [
+        "game/THIRD_PARTY_NOTICES.md"
+      ],
+      "path": "res://addons/dialogic/Modules/HighlightPortrait/index.gd",
+      "sha256": "984bd197dbe097726e9c5eebae324c80b74ed5bbaa15473e54c32dd5bebec3b8"
+    },
+    {
+      "category": "addon",
+      "distributionEligibility": "distribution_confirmed",
+      "license": "MIT",
+      "licenseEvidence": [
+        "game/THIRD_PARTY_NOTICES.md"
+      ],
+      "path": "res://addons/dialogic/Modules/HighlightPortrait/simple_highlight_portrait.gd",
+      "sha256": "d115fafc820b858d37e757e99b7f49465df619e36b050d47bad8309a1e2271ce"
+    },
+    {
+      "category": "addon",
+      "distributionEligibility": "distribution_confirmed",
+      "license": "MIT",
+      "licenseEvidence": [
+        "game/THIRD_PARTY_NOTICES.md"
+      ],
+      "path": "res://addons/dialogic/Modules/History/event_history.gd",
+      "sha256": "38d2392db53475f1e7b28e003a1f3b4da9d6d47ed6c0dd5907688b9690dd167e"
+    },
+    {
+      "category": "addon",
+      "distributionEligibility": "distribution_confirmed",
+      "license": "MIT",
+      "licenseEvidence": [
+        "game/THIRD_PARTY_NOTICES.md"
+      ],
+      "path": "res://addons/dialogic/Modules/History/index.gd",
+      "sha256": "d1cd27292239f4600c03ffb669dc418249e9af50ed62f79276a28e0ea8b1e468"
+    },
+    {
+      "category": "addon",
+      "distributionEligibility": "distribution_confirmed",
+      "license": "MIT",
+      "licenseEvidence": [
+        "game/THIRD_PARTY_NOTICES.md"
+      ],
+      "path": "res://addons/dialogic/Modules/History/settings_history.gd",
+      "sha256": "30f0ce89c3134c0255b2c153a7f1d1212fde572452d023e777782b44db71db97"
+    },
+    {
+      "category": "addon",
+      "distributionEligibility": "distribution_confirmed",
+      "license": "MIT",
+      "licenseEvidence": [
+        "game/THIRD_PARTY_NOTICES.md"
+      ],
+      "path": "res://addons/dialogic/Modules/History/subsystem_history.gd",
+      "sha256": "c79728be8a1ad6d7906b1448e0c3e5d6847db77a526999074b126daef3b31012"
+    },
+    {
+      "category": "addon",
+      "distributionEligibility": "distribution_confirmed",
+      "license": "MIT",
+      "licenseEvidence": [
+        "game/THIRD_PARTY_NOTICES.md"
+      ],
+      "path": "res://addons/dialogic/Modules/Jump/event_jump.gd",
+      "sha256": "dee89da9842b0ea65bceeaaf7cd41e334409ea67f44c9640e69a62e4c9dece69"
+    },
+    {
+      "category": "addon",
+      "distributionEligibility": "distribution_confirmed",
+      "license": "MIT",
+      "licenseEvidence": [
+        "game/THIRD_PARTY_NOTICES.md"
+      ],
+      "path": "res://addons/dialogic/Modules/Jump/event_label.gd",
+      "sha256": "7974123bbef4dc219c55ed80580fdc27cb3374a2fa5edd4870771f86b80e978b"
+    },
+    {
+      "category": "addon",
+      "distributionEligibility": "distribution_confirmed",
+      "license": "MIT",
+      "licenseEvidence": [
+        "game/THIRD_PARTY_NOTICES.md"
+      ],
+      "path": "res://addons/dialogic/Modules/Jump/event_return.gd",
+      "sha256": "851383c4b3b5a64f8915658380495fb65bc6b24f4a69f20d13a6317ea0a5bd09"
+    },
+    {
+      "category": "addon",
+      "distributionEligibility": "distribution_confirmed",
+      "license": "MIT",
+      "licenseEvidence": [
+        "game/THIRD_PARTY_NOTICES.md"
+      ],
+      "path": "res://addons/dialogic/Modules/Jump/index.gd",
+      "sha256": "1beff778865ec5e647741784b50a11e3f22413e0bece6034b2ff54569ac199a0"
+    },
+    {
+      "category": "addon",
+      "distributionEligibility": "distribution_confirmed",
+      "license": "MIT",
+      "licenseEvidence": [
+        "game/THIRD_PARTY_NOTICES.md"
+      ],
+      "path": "res://addons/dialogic/Modules/Jump/subsystem_jump.gd",
+      "sha256": "c02cebad27897ec91a394680f360ee778b93992bd64737ed2feebeb92004f98a"
+    },
+    {
+      "category": "addon",
+      "distributionEligibility": "distribution_confirmed",
+      "license": "MIT",
+      "licenseEvidence": [
+        "game/THIRD_PARTY_NOTICES.md"
+      ],
+      "path": "res://addons/dialogic/Modules/LayeredPortrait/custom_layered_portrait.gd",
+      "sha256": "0d297f5f013aec2fc9b8835d8aae7523caf9e226a30d610f0c892b2d510ff9d6"
+    },
+    {
+      "category": "addon",
+      "distributionEligibility": "distribution_confirmed",
+      "license": "MIT",
+      "licenseEvidence": [
+        "game/THIRD_PARTY_NOTICES.md"
+      ],
+      "path": "res://addons/dialogic/Modules/LayeredPortrait/index.gd",
+      "sha256": "8210efa6cab58b99786bd29277fefbb86b00691d81a8a5cf0c957c8ebf6d89de"
+    },
+    {
+      "category": "addon",
+      "distributionEligibility": "distribution_confirmed",
+      "license": "MIT",
+      "licenseEvidence": [
+        "game/THIRD_PARTY_NOTICES.md"
+      ],
+      "path": "res://addons/dialogic/Modules/LayeredPortrait/layered_portrait.gd",
+      "sha256": "5ee3cea87ac8cef8fd2f43f1ff49bf6204584059cfd74de8e8dd80201ffab954"
+    },
+    {
+      "category": "addon",
+      "distributionEligibility": "distribution_confirmed",
+      "license": "MIT",
+      "licenseEvidence": [
+        "game/THIRD_PARTY_NOTICES.md"
+      ],
+      "path": "res://addons/dialogic/Modules/Save/event_save.gd",
+      "sha256": "5638919f71d96d1b5d17a025bdeeb90a01e1c84dbdf0f0db2fa747faee07129b"
+    },
+    {
+      "category": "addon",
+      "distributionEligibility": "distribution_confirmed",
+      "license": "MIT",
+      "licenseEvidence": [
+        "game/THIRD_PARTY_NOTICES.md"
+      ],
+      "path": "res://addons/dialogic/Modules/Save/index.gd",
+      "sha256": "82c2e173df44fa33d00f69c8718e63c450562bd42b28ff63b686f1674a812d6f"
+    },
+    {
+      "category": "addon",
+      "distributionEligibility": "distribution_confirmed",
+      "license": "MIT",
+      "licenseEvidence": [
+        "game/THIRD_PARTY_NOTICES.md"
+      ],
+      "path": "res://addons/dialogic/Modules/Save/settings_save.gd",
+      "sha256": "c24908aef91e2a67190a1a4d81ba251e6efca8f478eaf2da8004157451648ff4"
+    },
+    {
+      "category": "addon",
+      "distributionEligibility": "distribution_confirmed",
+      "license": "MIT",
+      "licenseEvidence": [
+        "game/THIRD_PARTY_NOTICES.md"
+      ],
+      "path": "res://addons/dialogic/Modules/Save/subsystem_save.gd",
+      "sha256": "d601cf37fbf8d835a497efde1ea52dab4853b0b2c5771c3e70229c96225b6eef"
+    },
+    {
+      "category": "addon",
+      "distributionEligibility": "distribution_confirmed",
+      "license": "MIT",
+      "licenseEvidence": [
+        "game/THIRD_PARTY_NOTICES.md"
+      ],
+      "path": "res://addons/dialogic/Modules/Settings/event_setting.gd",
+      "sha256": "f2f988cccd512953b76c753d5069812ea081455bef27660075537e3c951b9c5d"
+    },
+    {
+      "category": "addon",
+      "distributionEligibility": "distribution_confirmed",
+      "license": "MIT",
+      "licenseEvidence": [
+        "game/THIRD_PARTY_NOTICES.md"
+      ],
+      "path": "res://addons/dialogic/Modules/Settings/index.gd",
+      "sha256": "5f0dbb2090ac23522969e20fd31900e6415a5c86daa408dfa664182566a84687"
+    },
+    {
+      "category": "addon",
+      "distributionEligibility": "distribution_confirmed",
+      "license": "MIT",
+      "licenseEvidence": [
+        "game/THIRD_PARTY_NOTICES.md"
+      ],
+      "path": "res://addons/dialogic/Modules/Settings/subsystem_settings.gd",
+      "sha256": "7907c598c88f846210182e8493120ca9865a62b2f13d367779a97138488b1f81"
+    },
+    {
+      "category": "addon",
+      "distributionEligibility": "distribution_confirmed",
+      "license": "MIT",
+      "licenseEvidence": [
+        "game/THIRD_PARTY_NOTICES.md"
+      ],
+      "path": "res://addons/dialogic/Modules/Signal/event_signal.gd",
+      "sha256": "9b07e37459a97e037c9eac9b44e1eb335cf39e04f2453c77220a73f95f6b6e4b"
+    },
+    {
+      "category": "addon",
+      "distributionEligibility": "distribution_confirmed",
+      "license": "MIT",
+      "licenseEvidence": [
+        "game/THIRD_PARTY_NOTICES.md"
+      ],
+      "path": "res://addons/dialogic/Modules/Signal/index.gd",
+      "sha256": "ff5782664ce442c027a2daf3f14e933c3bc0c4bdb4e9ec8f81460fef62b6ff70"
+    },
+    {
+      "category": "addon",
+      "distributionEligibility": "distribution_confirmed",
+      "license": "MIT",
+      "licenseEvidence": [
+        "game/THIRD_PARTY_NOTICES.md"
+      ],
+      "path": "res://addons/dialogic/Modules/Style/DialogicStylesUtil.gd",
+      "sha256": "6ef9b2993e8a88e43d52115ccdec37c413d9a8dd8c39f12b7466a1bc81e5c1c4"
+    },
+    {
+      "category": "addon",
+      "distributionEligibility": "distribution_confirmed",
+      "license": "MIT",
+      "licenseEvidence": [
+        "game/THIRD_PARTY_NOTICES.md"
+      ],
+      "path": "res://addons/dialogic/Modules/Style/character_settings_style.gd",
+      "sha256": "edead44f9b9876d2395691aba4fc48bbff582d05a13a3a48d3ecaa403d57f9dc"
+    },
+    {
+      "category": "addon",
+      "distributionEligibility": "distribution_confirmed",
+      "license": "MIT",
+      "licenseEvidence": [
+        "game/THIRD_PARTY_NOTICES.md"
+      ],
+      "path": "res://addons/dialogic/Modules/Style/event_style.gd",
+      "sha256": "e7e8bbfb1a3cbac23b6301434af0a02ffbe861eb813c5cd366413fc2c5fe0dc4"
+    },
+    {
+      "category": "addon",
+      "distributionEligibility": "distribution_confirmed",
+      "license": "MIT",
+      "licenseEvidence": [
+        "game/THIRD_PARTY_NOTICES.md"
+      ],
+      "path": "res://addons/dialogic/Modules/Style/index.gd",
+      "sha256": "2f0bd61c857830948a1c7eeee79a124e7c5f0a9f56f53c45a8b77bdf8c5901c8"
+    },
+    {
+      "category": "addon",
+      "distributionEligibility": "distribution_confirmed",
+      "license": "MIT",
+      "licenseEvidence": [
+        "game/THIRD_PARTY_NOTICES.md"
+      ],
+      "path": "res://addons/dialogic/Modules/Style/node_style.gd",
+      "sha256": "0230610b0ed83754177ec976613a9f387311d05322f4ba9704bfbc407df1f605"
+    },
+    {
+      "category": "addon",
+      "distributionEligibility": "distribution_confirmed",
+      "license": "MIT",
+      "licenseEvidence": [
+        "game/THIRD_PARTY_NOTICES.md"
+      ],
+      "path": "res://addons/dialogic/Modules/Style/subsystem_styles.gd",
+      "sha256": "4c3000161871ae9e5c70b95f6a8c108f3395de0623d83308533244d6a9127b3a"
+    },
+    {
+      "category": "addon",
+      "distributionEligibility": "distribution_confirmed",
+      "license": "MIT",
+      "licenseEvidence": [
+        "game/THIRD_PARTY_NOTICES.md"
+      ],
+      "path": "res://addons/dialogic/Modules/Text/auto_advance.gd",
+      "sha256": "db6f4c64d96ba014ec90efc74db703231a8df61529e3459d48c7c64ed708bdac"
+    },
+    {
+      "category": "addon",
+      "distributionEligibility": "distribution_confirmed",
+      "license": "MIT",
+      "licenseEvidence": [
+        "game/THIRD_PARTY_NOTICES.md"
+      ],
+      "path": "res://addons/dialogic/Modules/Text/auto_skip.gd",
+      "sha256": "60b10f216155bd703983fa2939f4ce17bd7b86b31de3bdd50ab974663edfa0b5"
+    },
+    {
+      "category": "addon",
+      "distributionEligibility": "distribution_confirmed",
+      "license": "MIT",
+      "licenseEvidence": [
+        "game/THIRD_PARTY_NOTICES.md"
+      ],
+      "path": "res://addons/dialogic/Modules/Text/character_settings/character_moods_settings.gd",
+      "sha256": "0effe4a6793295ba6e7160c9fca9aa2d57e05cf488c630c3294bd6e8887b9043"
+    },
+    {
+      "category": "addon",
+      "distributionEligibility": "distribution_confirmed",
+      "license": "MIT",
+      "licenseEvidence": [
+        "game/THIRD_PARTY_NOTICES.md"
+      ],
+      "path": "res://addons/dialogic/Modules/Text/character_settings/character_portrait_mood_settings.gd",
+      "sha256": "b55889adf2ff1e969448b5c89a3cfb2feb8411def015fba2ac84f14522229fab"
+    },
+    {
+      "category": "addon",
+      "distributionEligibility": "distribution_confirmed",
+      "license": "MIT",
+      "licenseEvidence": [
+        "game/THIRD_PARTY_NOTICES.md"
+      ],
+      "path": "res://addons/dialogic/Modules/Text/event_text.gd",
+      "sha256": "3ea127ff75dd593f10508dea8833407e53aab2ec2f016e7854a5b445de41d8df"
+    },
+    {
+      "category": "addon",
+      "distributionEligibility": "distribution_confirmed",
+      "license": "MIT",
+      "licenseEvidence": [
+        "game/THIRD_PARTY_NOTICES.md"
+      ],
+      "path": "res://addons/dialogic/Modules/Text/index.gd",
+      "sha256": "da2662ad22e9b4004ccae613d14b26b2a2ba8dea184b0c8301b0a6453e789765"
+    },
+    {
+      "category": "addon",
+      "distributionEligibility": "distribution_confirmed",
+      "license": "MIT",
+      "licenseEvidence": [
+        "game/THIRD_PARTY_NOTICES.md"
+      ],
+      "path": "res://addons/dialogic/Modules/Text/manual_advance.gd",
+      "sha256": "c3de0022fa1b9726792d70e9329143fb423940f49b5d9b87166ffb86e6300c61"
+    },
+    {
+      "category": "addon",
+      "distributionEligibility": "distribution_confirmed",
+      "license": "MIT",
+      "licenseEvidence": [
+        "game/THIRD_PARTY_NOTICES.md"
+      ],
+      "path": "res://addons/dialogic/Modules/Text/node_dialog_text.gd",
+      "sha256": "8d0d5abfd40a0838edaa2ca6c7ebe3971fcb7e0df708bbf214deded448f4127c"
+    },
+    {
+      "category": "addon",
+      "distributionEligibility": "distribution_confirmed",
+      "license": "MIT",
+      "licenseEvidence": [
+        "game/THIRD_PARTY_NOTICES.md"
+      ],
+      "path": "res://addons/dialogic/Modules/Text/node_input.gd",
+      "sha256": "2368c9e4e10d4e2e171f91d07a2d8c92d17893accefd42ab8003b71ab2f94b18"
+    },
+    {
+      "category": "addon",
+      "distributionEligibility": "distribution_confirmed",
+      "license": "MIT",
+      "licenseEvidence": [
+        "game/THIRD_PARTY_NOTICES.md"
+      ],
+      "path": "res://addons/dialogic/Modules/Text/node_name_label.gd",
+      "sha256": "4457dd11bca8d6a1749f912dd99b117445fb0676efab04437d9c8df8e6e7b261"
+    },
+    {
+      "category": "addon",
+      "distributionEligibility": "distribution_confirmed",
+      "license": "MIT",
+      "licenseEvidence": [
+        "game/THIRD_PARTY_NOTICES.md"
+      ],
+      "path": "res://addons/dialogic/Modules/Text/node_next_indicator.gd",
+      "sha256": "0772624d056ac6f2e4675963b612480ed014839134464a09dda2da1ecd73ff37"
+    },
+    {
+      "category": "addon",
+      "distributionEligibility": "distribution_confirmed",
+      "license": "MIT",
+      "licenseEvidence": [
+        "game/THIRD_PARTY_NOTICES.md"
+      ],
+      "path": "res://addons/dialogic/Modules/Text/node_type_sound.gd",
+      "sha256": "4da4e13ded4dc462836c19a4e7bbca8fa96ed4cfbb24143194375d54c1902c85"
+    },
+    {
+      "category": "addon",
+      "distributionEligibility": "distribution_confirmed",
+      "license": "MIT",
+      "licenseEvidence": [
+        "game/THIRD_PARTY_NOTICES.md"
+      ],
+      "path": "res://addons/dialogic/Modules/Text/settings_text.gd",
+      "sha256": "c7b87964633164a2c52eefb1c0421e454573e1e9450803b147616d8f08e442d2"
+    },
+    {
+      "category": "addon",
+      "distributionEligibility": "distribution_confirmed",
+      "license": "MIT",
+      "licenseEvidence": [
+        "game/THIRD_PARTY_NOTICES.md"
+      ],
+      "path": "res://addons/dialogic/Modules/Text/subsystem_text.gd",
+      "sha256": "e581c44514dac8bdee5302108d9e6ad4426a4429c9dee257ad002db32cf90991"
+    },
+    {
+      "category": "addon",
+      "distributionEligibility": "distribution_confirmed",
+      "license": "MIT",
+      "licenseEvidence": [
+        "game/THIRD_PARTY_NOTICES.md"
+      ],
+      "path": "res://addons/dialogic/Modules/TextInput/event_text_input.gd",
+      "sha256": "897d41aca31ac2945b6c172c553620251e930431f40292aef678cb2037b41662"
+    },
+    {
+      "category": "addon",
+      "distributionEligibility": "distribution_confirmed",
+      "license": "MIT",
+      "licenseEvidence": [
+        "game/THIRD_PARTY_NOTICES.md"
+      ],
+      "path": "res://addons/dialogic/Modules/TextInput/index.gd",
+      "sha256": "3def14aaa26ce18491d6704b239a57b05430ed72289f0396e4469ed7990b9254"
+    },
+    {
+      "category": "addon",
+      "distributionEligibility": "distribution_confirmed",
+      "license": "MIT",
+      "licenseEvidence": [
+        "game/THIRD_PARTY_NOTICES.md"
+      ],
+      "path": "res://addons/dialogic/Modules/TextInput/node_text_input.gd",
+      "sha256": "965ee921a4b79d57dfb45e7a8d9a9ec5012fa073622a633702db52ce51f253e4"
+    },
+    {
+      "category": "addon",
+      "distributionEligibility": "distribution_confirmed",
+      "license": "MIT",
+      "licenseEvidence": [
+        "game/THIRD_PARTY_NOTICES.md"
+      ],
+      "path": "res://addons/dialogic/Modules/TextInput/subsystem_text_input.gd",
+      "sha256": "481e64587269d133d1d9b7a2be8110a411d80e5b93074d3254531f3567b9d9f0"
+    },
+    {
+      "category": "addon",
+      "distributionEligibility": "distribution_confirmed",
+      "license": "MIT",
+      "licenseEvidence": [
+        "game/THIRD_PARTY_NOTICES.md"
+      ],
+      "path": "res://addons/dialogic/Modules/Variable/event_variable.gd",
+      "sha256": "ec62afe95890312fc729cd0cc1282f11ce6debb75fc78dbf2af24e483ea456cb"
+    },
+    {
+      "category": "addon",
+      "distributionEligibility": "distribution_confirmed",
+      "license": "MIT",
+      "licenseEvidence": [
+        "game/THIRD_PARTY_NOTICES.md"
+      ],
+      "path": "res://addons/dialogic/Modules/Variable/index.gd",
+      "sha256": "4ec3895bc74480ceea4e3b0ac05c9ab7424ffbdef9b6ebfd5b3d38f98e887d25"
+    },
+    {
+      "category": "addon",
+      "distributionEligibility": "distribution_confirmed",
+      "license": "MIT",
+      "licenseEvidence": [
+        "game/THIRD_PARTY_NOTICES.md"
+      ],
+      "path": "res://addons/dialogic/Modules/Variable/subsystem_variables.gd",
+      "sha256": "dc181b8557c45cccb5e8504973caf80ed5f22fa47bf8d40e562c4b0959fc1688"
+    },
+    {
+      "category": "addon",
+      "distributionEligibility": "distribution_confirmed",
+      "license": "MIT",
+      "licenseEvidence": [
+        "game/THIRD_PARTY_NOTICES.md"
+      ],
+      "path": "res://addons/dialogic/Modules/Voice/event_voice.gd",
+      "sha256": "d594f2b956d50eddf36b268367cf443f94bbb1188f3ffad56be8c05f3f943fdb"
+    },
+    {
+      "category": "addon",
+      "distributionEligibility": "distribution_confirmed",
+      "license": "MIT",
+      "licenseEvidence": [
+        "game/THIRD_PARTY_NOTICES.md"
+      ],
+      "path": "res://addons/dialogic/Modules/Voice/index.gd",
+      "sha256": "6b9b9d4bb9235f7c5864762b218c14603f666109cb31a1b6451220ce4eaf7f3e"
+    },
+    {
+      "category": "addon",
+      "distributionEligibility": "distribution_confirmed",
+      "license": "MIT",
+      "licenseEvidence": [
+        "game/THIRD_PARTY_NOTICES.md"
+      ],
+      "path": "res://addons/dialogic/Modules/Voice/subsystem_voice.gd",
+      "sha256": "c0ecace5f0b4b185b2fab05f377352dfdceba13dfd35d9b075e95ba900e7a59d"
+    },
+    {
+      "category": "addon",
+      "distributionEligibility": "distribution_confirmed",
+      "license": "MIT",
+      "licenseEvidence": [
+        "game/THIRD_PARTY_NOTICES.md"
+      ],
+      "path": "res://addons/dialogic/Modules/Wait/event_wait.gd",
+      "sha256": "7118d2e924e444ac5619084e55e1e9bc105b25086424a4511710071542f07d23"
+    },
+    {
+      "category": "addon",
+      "distributionEligibility": "distribution_confirmed",
+      "license": "MIT",
+      "licenseEvidence": [
+        "game/THIRD_PARTY_NOTICES.md"
+      ],
+      "path": "res://addons/dialogic/Modules/Wait/index.gd",
+      "sha256": "7b8c87a6063fbdc0435fa6317efe85839d274a4b8c9722aafff81f9402d530ae"
+    },
+    {
+      "category": "addon",
+      "distributionEligibility": "distribution_confirmed",
+      "license": "MIT",
+      "licenseEvidence": [
+        "game/THIRD_PARTY_NOTICES.md"
+      ],
+      "path": "res://addons/dialogic/Modules/Wait/subsystem_wait.gd",
+      "sha256": "eda5c689e0ecc44cd647f666dbc3dc3fb6ef96a05767e7d0795518de7f2bbe00"
+    },
+    {
+      "category": "addon",
+      "distributionEligibility": "distribution_confirmed",
+      "license": "MIT",
+      "licenseEvidence": [
+        "game/THIRD_PARTY_NOTICES.md"
+      ],
+      "path": "res://addons/dialogic/Modules/WaitInput/event_wait_input.gd",
+      "sha256": "e5807bcb441d8c47f8165a2238fec79a14b2144dd07fa33e71bbedff1872fc9d"
+    },
+    {
+      "category": "addon",
+      "distributionEligibility": "distribution_confirmed",
+      "license": "MIT",
+      "licenseEvidence": [
+        "game/THIRD_PARTY_NOTICES.md"
+      ],
+      "path": "res://addons/dialogic/Modules/WaitInput/index.gd",
+      "sha256": "535fa3e1ee51dd4193f8af0d34114967dbd460ed402317cf0e725b5cff0e69a9"
+    },
+    {
+      "category": "addon",
+      "distributionEligibility": "distribution_confirmed",
+      "license": "MIT",
+      "licenseEvidence": [
+        "game/THIRD_PARTY_NOTICES.md"
+      ],
+      "path": "res://addons/dialogic/Resources/CharacterResourceLoader.gd",
+      "sha256": "7945a783b9ea7c1eb34fc7e5f26f1758d251616497e1ebbf5ca8d280e29003af"
+    },
+    {
+      "category": "addon",
+      "distributionEligibility": "distribution_confirmed",
+      "license": "MIT",
+      "licenseEvidence": [
+        "game/THIRD_PARTY_NOTICES.md"
+      ],
+      "path": "res://addons/dialogic/Resources/CharacterResourceSaver.gd",
+      "sha256": "e2ba4ea3250d1d4f0152a2cdf4434c41b1d2c503c68e02d154acbff3307d55ec"
+    },
+    {
+      "category": "addon",
+      "distributionEligibility": "distribution_confirmed",
+      "license": "MIT",
+      "licenseEvidence": [
+        "game/THIRD_PARTY_NOTICES.md"
+      ],
+      "path": "res://addons/dialogic/Resources/TimelineResourceLoader.gd",
+      "sha256": "63c7c9e699de48d114fd7ba0f8ae6b99609a8aa1ac9168de5f413b7bd9e702dd"
+    },
+    {
+      "category": "addon",
+      "distributionEligibility": "distribution_confirmed",
+      "license": "MIT",
+      "licenseEvidence": [
+        "game/THIRD_PARTY_NOTICES.md"
+      ],
+      "path": "res://addons/dialogic/Resources/TimelineResourceSaver.gd",
+      "sha256": "04aa60a54b50255b73d814e8cda9ca63f4ae1e6fae1ff10cf86bccc572cfad99"
+    },
+    {
+      "category": "addon",
+      "distributionEligibility": "distribution_confirmed",
+      "license": "MIT",
+      "licenseEvidence": [
+        "game/THIRD_PARTY_NOTICES.md"
+      ],
+      "path": "res://addons/dialogic/Resources/character.gd",
+      "sha256": "c65b73e1d79159f31eb666c6f3209dfd6a5c32676e6fefb9eaebc0bfc5f76fb0"
+    },
+    {
+      "category": "addon",
+      "distributionEligibility": "distribution_confirmed",
+      "license": "MIT",
+      "licenseEvidence": [
+        "game/THIRD_PARTY_NOTICES.md"
+      ],
+      "path": "res://addons/dialogic/Resources/dialogic_identifiable_resource.gd",
+      "sha256": "02886bbe6c2ff2f39fd23c95228e2e8904c8642e0672a30d7d6e61be8e6dda62"
+    },
+    {
+      "category": "addon",
+      "distributionEligibility": "distribution_confirmed",
+      "license": "MIT",
+      "licenseEvidence": [
+        "game/THIRD_PARTY_NOTICES.md"
+      ],
+      "path": "res://addons/dialogic/Resources/dialogic_layout_base.gd",
+      "sha256": "47c03b2c48952fc9eba01213bde65b7877c478f3f1883c3461a65bbae73d909c"
+    },
+    {
+      "category": "addon",
+      "distributionEligibility": "distribution_confirmed",
+      "license": "MIT",
+      "licenseEvidence": [
+        "game/THIRD_PARTY_NOTICES.md"
+      ],
+      "path": "res://addons/dialogic/Resources/dialogic_layout_layer.gd",
+      "sha256": "85e1e65c4fefbb6b85a0be8a09c57535e156a173b5d337251abb1dd4b3f061b8"
+    },
+    {
+      "category": "addon",
+      "distributionEligibility": "distribution_confirmed",
+      "license": "MIT",
+      "licenseEvidence": [
+        "game/THIRD_PARTY_NOTICES.md"
+      ],
+      "path": "res://addons/dialogic/Resources/dialogic_style.gd",
+      "sha256": "c696ab78aa6b584139d0f18b0b260382257b0ad97859a10ff13ac80c7f37a447"
+    },
+    {
+      "category": "addon",
+      "distributionEligibility": "distribution_confirmed",
+      "license": "MIT",
+      "licenseEvidence": [
+        "game/THIRD_PARTY_NOTICES.md"
+      ],
+      "path": "res://addons/dialogic/Resources/dialogic_style_layer.gd",
+      "sha256": "c0a0c74126b5f0e9ef603937538c568a507105d4d512a4813a9fbc0448100fc8"
+    },
+    {
+      "category": "addon",
+      "distributionEligibility": "distribution_confirmed",
+      "license": "MIT",
+      "licenseEvidence": [
+        "game/THIRD_PARTY_NOTICES.md"
+      ],
+      "path": "res://addons/dialogic/Resources/event.gd",
+      "sha256": "0f0842ebb2c1bd55908601158c302053858774f9126963376f6d08b8a58608ff"
+    },
+    {
+      "category": "addon",
+      "distributionEligibility": "distribution_confirmed",
+      "license": "MIT",
+      "licenseEvidence": [
+        "game/THIRD_PARTY_NOTICES.md"
+      ],
+      "path": "res://addons/dialogic/Resources/timeline.gd",
+      "sha256": "b977dd9423dc0db8aa6a1284786f4528361e6cc3edb3b50747a55318a5974e0a"
+    },
+    {
+      "category": "addon",
+      "distributionEligibility": "distribution_confirmed",
+      "license": "MIT",
+      "licenseEvidence": [
+        "game/THIRD_PARTY_NOTICES.md"
+      ],
+      "path": "res://addons/dialogic/export_plugin.gd",
+      "sha256": "3b5399193355f68607081e7bb0d44ffd41bd59d9a2a7e6e0f23d75f09183a8d1"
+    },
+    {
+      "category": "addon",
+      "distributionEligibility": "distribution_confirmed",
+      "license": "MIT",
+      "licenseEvidence": [
+        "game/THIRD_PARTY_NOTICES.md"
+      ],
+      "path": "res://addons/dialogic/plugin.cfg",
+      "sha256": "dce520762954dede530f650b93e45c43b989d52995fa9e81b646b19097c4cb9f"
+    },
+    {
+      "category": "addon",
+      "distributionEligibility": "distribution_confirmed",
+      "license": "MIT",
+      "licenseEvidence": [
+        "game/THIRD_PARTY_NOTICES.md"
+      ],
+      "path": "res://addons/dialogic/plugin.gd",
+      "sha256": "c55170ef424613b4a500dbd1bba43cf1039f0cdb6c84698ce18719a7bd5db1b4"
+    },
+    {
+      "category": "font",
+      "distributionEligibility": "distribution_confirmed",
+      "license": "CC0-1.0",
+      "licenseEvidence": [
+        "game/CREDITS.md"
+      ],
+      "path": "res://assets/gui/font/Kenney Pixel.ttf",
+      "sha256": "c97952d7c44c4adc944121c5ac050389b17ac301c9dbd85d85d7fe180b25cda6"
+    },
+    {
+      "category": "font",
+      "distributionEligibility": "distribution_confirmed",
+      "license": "OFL-1.1",
+      "licenseEvidence": [
+        "game/THIRD_PARTY_NOTICES.md"
+      ],
+      "path": "res://assets/gui/font/SourceCodePro-Bold.ttf",
+      "sha256": "0e0e7549a4eaaa46d142336b4338718d3f96ef2ee3a5fa6ace056bb188bfea54"
+    },
+    {
+      "category": "dynamic_resource",
+      "distributionEligibility": "distribution_confirmed",
+      "license": "MIT",
+      "licenseEvidence": [
+        "game/LICENSE"
+      ],
+      "path": "res://assets/gui/path_destination_marker.tres",
+      "sha256": "d0af58b93def2c73c942c1e4d49ed7c3ef5228c11778bdfd95a1c42b8573d0ee"
+    },
+    {
+      "category": "dynamic_resource",
+      "distributionEligibility": "distribution_confirmed",
+      "license": "MIT",
+      "licenseEvidence": [
+        "game/LICENSE"
+      ],
+      "path": "res://assets/items/bomb.atlastex",
+      "sha256": "2d282d34d3923abafc7ae7374f7c6c9fd8b5450bad53bae06d7b370faf166889"
+    },
+    {
+      "category": "dynamic_resource",
+      "distributionEligibility": "distribution_confirmed",
+      "license": "MIT",
+      "licenseEvidence": [
+        "game/LICENSE"
+      ],
+      "path": "res://assets/items/bomb.tres",
+      "sha256": "2ca36dab5bc8b741d2f7a2dedc951aafdd9792427011320c988257484bf88a58"
+    },
+    {
+      "category": "dynamic_resource",
+      "distributionEligibility": "distribution_confirmed",
+      "license": "MIT",
+      "licenseEvidence": [
+        "game/LICENSE"
+      ],
+      "path": "res://assets/items/coin.atlastex",
+      "sha256": "316b39572066000e798e4213b1d591c3c64a139a67836d3916f120df848f0b59"
+    },
+    {
+      "category": "dynamic_resource",
+      "distributionEligibility": "distribution_confirmed",
+      "license": "MIT",
+      "licenseEvidence": [
+        "game/LICENSE"
+      ],
+      "path": "res://assets/items/coin.tres",
+      "sha256": "31cdb1ee8e015ad302c7a21e2e816f160139512614d83d2e85ef65e3cfc2003e"
+    },
+    {
+      "category": "dynamic_resource",
+      "distributionEligibility": "distribution_confirmed",
+      "license": "MIT",
+      "licenseEvidence": [
+        "game/LICENSE"
+      ],
+      "path": "res://assets/items/key.atlastex",
+      "sha256": "8af4c725e627aad2b5cabaa9f2804d3062ae12b228d8cc9e7507af2a81330f96"
+    },
+    {
+      "category": "dynamic_resource",
+      "distributionEligibility": "distribution_confirmed",
+      "license": "MIT",
+      "licenseEvidence": [
+        "game/LICENSE"
+      ],
+      "path": "res://assets/items/key.tres",
+      "sha256": "1f8842e5806412e2af9ff2dc06c32cb473aa3e190bcf3ac4f07a3b6e6a7994f6"
+    },
+    {
+      "category": "dynamic_resource",
+      "distributionEligibility": "distribution_confirmed",
+      "license": "MIT",
+      "licenseEvidence": [
+        "game/LICENSE"
+      ],
+      "path": "res://assets/items/wand_blue.atlastex",
+      "sha256": "d901db7c874b62339f102112a3e720fe0299d4e6d1410b70c16b14f190143a0c"
+    },
+    {
+      "category": "dynamic_resource",
+      "distributionEligibility": "distribution_confirmed",
+      "license": "MIT",
+      "licenseEvidence": [
+        "game/LICENSE"
+      ],
+      "path": "res://assets/items/wand_blue.tres",
+      "sha256": "fed730f95d97ff3a91c08e8ad4a81aa5ed68e7a5ce18cb108e5dd2bccf8311f7"
+    },
+    {
+      "category": "dynamic_resource",
+      "distributionEligibility": "distribution_confirmed",
+      "license": "MIT",
+      "licenseEvidence": [
+        "game/LICENSE"
+      ],
+      "path": "res://assets/items/wand_green.atlastex",
+      "sha256": "9b5247ec61c4935428c7d635dae255b830dc15e244e9eecca092f5d0c2d4f741"
+    },
+    {
+      "category": "dynamic_resource",
+      "distributionEligibility": "distribution_confirmed",
+      "license": "MIT",
+      "licenseEvidence": [
+        "game/LICENSE"
+      ],
+      "path": "res://assets/items/wand_green.tres",
+      "sha256": "abf925cab3a64d7b8c794a60c8e17ba96e4736c808bdc7d345c25922812ac7c6"
+    },
+    {
+      "category": "dynamic_resource",
+      "distributionEligibility": "distribution_confirmed",
+      "license": "MIT",
+      "licenseEvidence": [
+        "game/LICENSE"
+      ],
+      "path": "res://assets/items/wand_red.atlastex",
+      "sha256": "db695f3a9e4d07605bd98704af861b44d959096d4dd48c7e858e3a32bfcdd111"
+    },
+    {
+      "category": "dynamic_resource",
+      "distributionEligibility": "distribution_confirmed",
+      "license": "MIT",
+      "licenseEvidence": [
+        "game/LICENSE"
+      ],
+      "path": "res://assets/items/wand_red.tres",
+      "sha256": "1e8874d96120b6be9a52e0c7521091b8b952c77c54af5a256ae48e3e6d67aeba"
+    },
+    {
+      "category": "audio",
+      "distributionEligibility": "distribution_confirmed",
+      "license": "CC0-1.0",
+      "licenseEvidence": [
+        "game/CREDITS.md"
+      ],
+      "path": "res://assets/music/Apple Cider.mp3",
+      "sha256": "d714a38c56b8d415fd551a93528437f8adacbc119cdced025a5cc0249b33c619"
+    },
+    {
+      "category": "audio",
+      "distributionEligibility": "distribution_confirmed",
+      "license": "CC0-1.0",
+      "licenseEvidence": [
+        "game/CREDITS.md"
+      ],
+      "path": "res://assets/music/Insect Factory.mp3",
+      "sha256": "77a7658be86138c451016eb134c70de4727e39ad69073cd9b96b6e1db690d2bc"
+    },
+    {
+      "category": "audio",
+      "distributionEligibility": "distribution_confirmed",
+      "license": "CC0-1.0",
+      "licenseEvidence": [
+        "game/CREDITS.md"
+      ],
+      "path": "res://assets/music/squashin_bugs_fixed.mp3",
+      "sha256": "354fbf89267ae2382b4946d7a457adb99b2b0df57e39a216056208901b709e67"
+    },
+    {
+      "category": "audio",
+      "distributionEligibility": "distribution_confirmed",
+      "license": "CC0-1.0",
+      "licenseEvidence": [
+        "game/CREDITS.md"
+      ],
+      "path": "res://assets/music/the_fun_run.mp3",
+      "sha256": "815711247fbf5aacb3ae038d69fc800f39dcff1e45dfceff72c3dca3e22643df"
+    },
+    {
+      "category": "audio",
+      "distributionEligibility": "distribution_confirmed",
+      "license": "CC0-1.0",
+      "licenseEvidence": [
+        "game/CREDITS.md"
+      ],
+      "path": "res://assets/sfx/chop.ogg",
+      "sha256": "41095dffee1ff2d0715c4eadd82ae7846dfd4d67327088a69848a9bd2e08db1b"
+    },
+    {
+      "category": "audio",
+      "distributionEligibility": "distribution_confirmed",
+      "license": "CC0-1.0",
+      "licenseEvidence": [
+        "game/CREDITS.md"
+      ],
+      "path": "res://assets/sfx/confirmation_002.ogg",
+      "sha256": "9f3a15ffd9d8e031e2afa17539baa4ef3655b2ad06fcf9d44e5d3bd0d0ec64e2"
+    },
+    {
+      "category": "audio",
+      "distributionEligibility": "distribution_confirmed",
+      "license": "CC0-1.0",
+      "licenseEvidence": [
+        "game/CREDITS.md"
+      ],
+      "path": "res://assets/sfx/doorClose_1.ogg",
+      "sha256": "68eec543408b4c296fed6820df9b8e986ee9708289ce60145c4934aff514e4ee"
+    },
+    {
+      "category": "audio",
+      "distributionEligibility": "distribution_confirmed",
+      "license": "CC0-1.0",
+      "licenseEvidence": [
+        "game/CREDITS.md"
+      ],
+      "path": "res://assets/sfx/doorClose_4.ogg",
+      "sha256": "a0b40a11ffd7fc8c521085bcda1fafd7bf10d8e058beb72815754a3bcebb7319"
+    },
+    {
+      "category": "audio",
+      "distributionEligibility": "distribution_confirmed",
+      "license": "CC0-1.0",
+      "licenseEvidence": [
+        "game/CREDITS.md"
+      ],
+      "path": "res://assets/sfx/doorOpen_2.ogg",
+      "sha256": "378471f21245119d19d55b5c78bfffc72cf614da8781915d6903f13527cd5f50"
+    },
+    {
+      "category": "audio",
+      "distributionEligibility": "distribution_confirmed",
+      "license": "CC0-1.0",
+      "licenseEvidence": [
+        "game/CREDITS.md"
+      ],
+      "path": "res://assets/sfx/drop_002.ogg",
+      "sha256": "978c28bfc517f54fc956f7491e33f37802809d938933bf5071f39423089554d3"
+    },
+    {
+      "category": "audio",
+      "distributionEligibility": "distribution_confirmed",
+      "license": "CC0-1.0",
+      "licenseEvidence": [
+        "game/CREDITS.md"
+      ],
+      "path": "res://assets/sfx/error_006.ogg",
+      "sha256": "b1a3f4cf361f6997fd0d71074fa961689fc7fdab71d91e8cdaaeca4c09528fcc"
+    },
+    {
+      "category": "audio",
+      "distributionEligibility": "distribution_confirmed",
+      "license": "CC0-1.0",
+      "licenseEvidence": [
+        "game/CREDITS.md"
+      ],
+      "path": "res://assets/sfx/impactWood_light_002.ogg",
+      "sha256": "64d181339ecb33c7781f04f18036d6d8625176834e0b1d9d752a28390d89f91b"
+    },
+    {
+      "category": "audio",
+      "distributionEligibility": "distribution_confirmed",
+      "license": "CC0-1.0",
+      "licenseEvidence": [
+        "game/CREDITS.md"
+      ],
+      "path": "res://assets/sfx/impactWood_light_003.ogg",
+      "sha256": "d4e3acdadfe7f63dd06d96efb443058dcb914b43f117ed8ed078c740c71ccf6a"
+    },
+    {
+      "category": "dynamic_resource",
+      "distributionEligibility": "distribution_confirmed",
+      "license": "MIT",
+      "licenseEvidence": [
+        "game/LICENSE"
+      ],
+      "path": "res://combat/battlers/bear/bear_stats.tres",
+      "sha256": "fa4886472e3ddac3c0c0def015f8c92e04109be1b0533bd1b94367d2a74b56cf"
+    },
+    {
+      "category": "dynamic_resource",
+      "distributionEligibility": "distribution_confirmed",
+      "license": "MIT",
+      "licenseEvidence": [
+        "game/LICENSE"
+      ],
+      "path": "res://combat/battlers/bear/focus_attack.tres",
+      "sha256": "ec39aec245815a896f1a5fff6f1a55b090d9d8ef4c70aaed29e000b5b993eadd"
+    },
+    {
+      "category": "dynamic_resource",
+      "distributionEligibility": "distribution_confirmed",
+      "license": "MIT",
+      "licenseEvidence": [
+        "game/LICENSE"
+      ],
+      "path": "res://combat/battlers/bear/player_melee_action.tres",
+      "sha256": "090a06b99dddd668f5a673e382ff455547f13863a1328a8f3a6f41fb2250d900"
+    },
+    {
+      "category": "dynamic_resource",
+      "distributionEligibility": "distribution_confirmed",
+      "license": "MIT",
+      "licenseEvidence": [
+        "game/LICENSE"
+      ],
+      "path": "res://combat/battlers/bugcat/bugcat_stats.tres",
+      "sha256": "29aff605af9ea1a8ed84e85ef8be1b67d95fa1a5c605d981d3af4602c8160245"
+    },
+    {
+      "category": "dynamic_resource",
+      "distributionEligibility": "distribution_confirmed",
+      "license": "MIT",
+      "licenseEvidence": [
+        "game/LICENSE"
+      ],
+      "path": "res://combat/battlers/bugcat/quick_attack.tres",
+      "sha256": "1ecd73a43dfd80cdf30d8c9efda1f8d04e34c04d60083fcc5f67d8335e3f1f62"
+    },
+    {
+      "category": "dynamic_resource",
+      "distributionEligibility": "distribution_confirmed",
+      "license": "MIT",
+      "licenseEvidence": [
+        "game/LICENSE"
+      ],
+      "path": "res://combat/battlers/default_battler_animations.res",
+      "sha256": "64032b2fabe401bdba1ced455069858590d13a968805e6779738be2bb14c5fff"
+    },
+    {
+      "category": "dynamic_resource",
+      "distributionEligibility": "distribution_confirmed",
+      "license": "MIT",
+      "licenseEvidence": [
+        "game/LICENSE"
+      ],
+      "path": "res://combat/battlers/squirrel/area_attack.tres",
+      "sha256": "2aa9e5f17d87e122a6d5d38859dd54531a289f0e99421fdb9fbe4a52896b613f"
+    },
+    {
+      "category": "dynamic_resource",
+      "distributionEligibility": "distribution_confirmed",
+      "license": "MIT",
+      "licenseEvidence": [
+        "game/LICENSE"
+      ],
+      "path": "res://combat/battlers/squirrel/heal_friendly.tres",
+      "sha256": "a442e36b535cbbbd4f619910e29e897dc875ddcd28b2197bbde236e6ab0a29ef"
+    },
+    {
+      "category": "dynamic_resource",
+      "distributionEligibility": "distribution_confirmed",
+      "license": "MIT",
+      "licenseEvidence": [
+        "game/LICENSE"
+      ],
+      "path": "res://combat/battlers/squirrel/squirrel_stats.tres",
+      "sha256": "3bc5be0ffb3c3e52e9f8afdb14e1bb4f1e3074d1fcaa23af6704e1ad6e6e8ab2"
+    },
+    {
+      "category": "dynamic_resource",
+      "distributionEligibility": "distribution_confirmed",
+      "license": "MIT",
+      "licenseEvidence": [
+        "game/LICENSE"
+      ],
+      "path": "res://combat/battlers/wolf/area_attack.tres",
+      "sha256": "5ee78e05bae77d1b015b1ed38fd1da63ab1bbd8e261b5242fd58cc6cabca2533"
+    },
+    {
+      "category": "dynamic_resource",
+      "distributionEligibility": "distribution_confirmed",
+      "license": "MIT",
+      "licenseEvidence": [
+        "game/LICENSE"
+      ],
+      "path": "res://combat/battlers/wolf/wolf_stats.tres",
+      "sha256": "6f40f8fe07f5b775b932b4599140b2b386ea3e4dd877feade53c098b738baece"
+    },
+    {
+      "category": "dynamic_resource",
+      "distributionEligibility": "distribution_confirmed",
+      "license": "MIT",
+      "licenseEvidence": [
+        "game/LICENSE"
+      ],
+      "path": "res://default_bus_layout.tres",
+      "sha256": "caa596e95d94a7f89c46e661d57662e04b8c5a744d6f430d070a1545dc013599"
+    },
+    {
+      "category": "audio",
+      "distributionEligibility": "distribution_confirmed",
+      "license": "CC0-1.0",
+      "licenseEvidence": [
+        "game/CREDITS.md"
+      ],
+      "path": "res://game_assets/SFX/RPG Sounds/arcane_status.mp3",
+      "sha256": "8ba38ae8f2113056776586745f61dd0703a53b16c330391b877f01e70a720e93"
+    },
+    {
+      "category": "audio",
+      "distributionEligibility": "distribution_confirmed",
+      "license": "CC0-1.0",
+      "licenseEvidence": [
+        "game/CREDITS.md"
+      ],
+      "path": "res://game_assets/SFX/RPG Sounds/lightning_cast.mp3",
+      "sha256": "20496d6988e6149ef52500a40889f1798cf5015c8d991890533cd25c9a221eca"
+    },
+    {
+      "category": "audio",
+      "distributionEligibility": "distribution_confirmed",
+      "license": "CC0-1.0",
+      "licenseEvidence": [
+        "game/CREDITS.md"
+      ],
+      "path": "res://game_assets/SFX/RPG Sounds/potion.mp3",
+      "sha256": "69d4396a37e46b368129a50db34e936f3e57118d8421e12674f1ab0b9099b925"
+    },
+    {
+      "category": "audio",
+      "distributionEligibility": "distribution_confirmed",
+      "license": "CC0-1.0",
+      "licenseEvidence": [
+        "game/CREDITS.md"
+      ],
+      "path": "res://game_assets/SFX/RPG Sounds/sword_hit.mp3",
+      "sha256": "b458183cbf82f205409db3f3b12ebe492b7cf8de8ae4920e9bb26c25b1c59dff"
+    },
+    {
+      "category": "audio",
+      "distributionEligibility": "distribution_confirmed",
+      "license": "CC0-1.0",
+      "licenseEvidence": [
+        "game/CREDITS.md"
+      ],
+      "path": "res://game_assets/SFX/RPG Sounds/sword_swing.mp3",
+      "sha256": "f13b1a2ca2c793f12b9cfa3ed284661b9af3360c2ff405ae41f602fd2bdc01b7"
+    },
+    {
+      "category": "audio",
+      "distributionEligibility": "distribution_confirmed",
+      "license": "CC0-1.0",
+      "licenseEvidence": [
+        "game/CREDITS.md"
+      ],
+      "path": "res://game_assets/SFX/RPG Sounds/victory.mp3",
+      "sha256": "42312827009d1a4cdff91620b64561f4669b0c5ce1b7a225588c82acb00aadbd"
+    },
+    {
+      "category": "audio",
+      "distributionEligibility": "distribution_confirmed",
+      "license": "pack-license",
+      "licenseEvidence": [
+        "game/THIRD_PARTY_NOTICES.md"
+      ],
+      "path": "res://game_assets/Tilesets/Ranch Stuff/assets/musics/ambients/melodies/fanfare/fanfare_01.wav",
+      "sha256": "c0efe6bcaf3833b0f8a14e606fd39b3df52a12b5f2c981c90296a6032eb530cd"
+    },
+    {
+      "category": "audio",
+      "distributionEligibility": "distribution_confirmed",
+      "license": "pack-license",
+      "licenseEvidence": [
+        "game/THIRD_PARTY_NOTICES.md"
+      ],
+      "path": "res://game_assets/Tilesets/Ranch Stuff/assets/musics/ambients/melodies/gameover/gameover_01.wav",
+      "sha256": "ed616e21f297d66ab2173590a6312b59cf53edc07966cc4e0d03d423b0af9c53"
+    },
+    {
+      "category": "audio",
+      "distributionEligibility": "distribution_confirmed",
+      "license": "pack-license",
+      "licenseEvidence": [
+        "game/THIRD_PARTY_NOTICES.md"
+      ],
+      "path": "res://game_assets/Tilesets/Ranch Stuff/assets/musics/ambients/melodies/inn/inn_01.wav",
+      "sha256": "461fe1afd68c3fc97bc222dc895c2de6647cc1a015c45583c0314bc3c39150c9"
+    },
+    {
+      "category": "audio",
+      "distributionEligibility": "distribution_confirmed",
+      "license": "pack-license",
+      "licenseEvidence": [
+        "game/THIRD_PARTY_NOTICES.md"
+      ],
+      "path": "res://game_assets/Tilesets/Ranch Stuff/assets/musics/ambients/night/night_01.wav",
+      "sha256": "2d9c2703c2f7242fb08ef443f3d27232082848a7f2c11b59c350df932ab4376c"
+    },
+    {
+      "category": "audio",
+      "distributionEligibility": "distribution_confirmed",
+      "license": "pack-license",
+      "licenseEvidence": [
+        "game/THIRD_PARTY_NOTICES.md"
+      ],
+      "path": "res://game_assets/Tilesets/Ranch Stuff/assets/musics/ambients/rain/rain_01.wav",
+      "sha256": "a230f521b9432071ec9b143dbab55b39334e5e2777d5b6eeac5712e188ed51bf"
+    },
+    {
+      "category": "audio",
+      "distributionEligibility": "distribution_confirmed",
+      "license": "pack-license",
+      "licenseEvidence": [
+        "game/THIRD_PARTY_NOTICES.md"
+      ],
+      "path": "res://game_assets/Tilesets/Ranch Stuff/assets/musics/music_themes/field.wav",
+      "sha256": "5343889dfdd18c37cdb2ce122212dd5dae7435e2f43d8301461fe67a30f8f65f"
+    },
+    {
+      "category": "audio",
+      "distributionEligibility": "distribution_confirmed",
+      "license": "pack-license",
+      "licenseEvidence": [
+        "game/THIRD_PARTY_NOTICES.md"
+      ],
+      "path": "res://game_assets/Tilesets/Ranch Stuff/assets/musics/music_themes/town.wav",
+      "sha256": "af6f8552173157a759ce2101f98f1156313b6711d6f1b9110812c0c55b06b402"
+    },
+    {
+      "category": "audio",
+      "distributionEligibility": "distribution_confirmed",
+      "license": "pack-license",
+      "licenseEvidence": [
+        "game/THIRD_PARTY_NOTICES.md"
+      ],
+      "path": "res://game_assets/Tilesets/Ranch Stuff/assets/musics/music_themes/village.wav",
+      "sha256": "df468293eb34b2f3863c3d3fe8293a487b94c35567393c396ecd8f2eb9ce0cf5"
+    },
+    {
+      "category": "font",
+      "distributionEligibility": "distribution_confirmed",
+      "license": "pack-license",
+      "licenseEvidence": [
+        "game/THIRD_PARTY_NOTICES.md"
+      ],
+      "path": "res://game_assets/Tilesets/Ranch Stuff/assets/user_interfaces/fonts/roboto/Roboto-Black.ttf",
+      "sha256": "50f0aab10018fc1892ccf1a371f7bb94dd929210c23b651c96232d5b1779a5b2"
+    },
+    {
+      "category": "font",
+      "distributionEligibility": "distribution_confirmed",
+      "license": "pack-license",
+      "licenseEvidence": [
+        "game/THIRD_PARTY_NOTICES.md"
+      ],
+      "path": "res://game_assets/Tilesets/Ranch Stuff/assets/user_interfaces/fonts/roboto/Roboto-BlackItalic.ttf",
+      "sha256": "4634ff2ffd78abc3be7d5d52e754b15d23cc812c83529a499b8458949e6b331e"
+    },
+    {
+      "category": "font",
+      "distributionEligibility": "distribution_confirmed",
+      "license": "pack-license",
+      "licenseEvidence": [
+        "game/THIRD_PARTY_NOTICES.md"
+      ],
+      "path": "res://game_assets/Tilesets/Ranch Stuff/assets/user_interfaces/fonts/roboto/Roboto-Bold.ttf",
+      "sha256": "2ca2b3bfc2c2d43fa8f2b7227982d735fd537ecf113a4c56cc2d292bcc3106c8"
+    },
+    {
+      "category": "font",
+      "distributionEligibility": "distribution_confirmed",
+      "license": "pack-license",
+      "licenseEvidence": [
+        "game/THIRD_PARTY_NOTICES.md"
+      ],
+      "path": "res://game_assets/Tilesets/Ranch Stuff/assets/user_interfaces/fonts/roboto/Roboto-BoldItalic.ttf",
+      "sha256": "03ccd7a9d4493577d5b7da5440d01a24bd4f6bf05f48c2e114ef24b752859323"
+    },
+    {
+      "category": "font",
+      "distributionEligibility": "distribution_confirmed",
+      "license": "pack-license",
+      "licenseEvidence": [
+        "game/THIRD_PARTY_NOTICES.md"
+      ],
+      "path": "res://game_assets/Tilesets/Ranch Stuff/assets/user_interfaces/fonts/roboto/Roboto-Italic.ttf",
+      "sha256": "2b4076dd3f5a7fadfca760ef45557a0d437af983284652fc149535c5bd93d493"
+    },
+    {
+      "category": "font",
+      "distributionEligibility": "distribution_confirmed",
+      "license": "pack-license",
+      "licenseEvidence": [
+        "game/THIRD_PARTY_NOTICES.md"
+      ],
+      "path": "res://game_assets/Tilesets/Ranch Stuff/assets/user_interfaces/fonts/roboto/Roboto-Light.ttf",
+      "sha256": "a08729d794801eaa158c53b1558f4cc351c3b1791eb3d22faf7058b2b7df9c8c"
+    },
+    {
+      "category": "font",
+      "distributionEligibility": "distribution_confirmed",
+      "license": "pack-license",
+      "licenseEvidence": [
+        "game/THIRD_PARTY_NOTICES.md"
+      ],
+      "path": "res://game_assets/Tilesets/Ranch Stuff/assets/user_interfaces/fonts/roboto/Roboto-LightItalic.ttf",
+      "sha256": "cbc8f4ad3302f8c0a7e7b8b3d2dc53ef529a406162b276287f9949ad8864eaa4"
+    },
+    {
+      "category": "font",
+      "distributionEligibility": "distribution_confirmed",
+      "license": "pack-license",
+      "licenseEvidence": [
+        "game/THIRD_PARTY_NOTICES.md"
+      ],
+      "path": "res://game_assets/Tilesets/Ranch Stuff/assets/user_interfaces/fonts/roboto/Roboto-Medium.ttf",
+      "sha256": "b398bb9c791ddb08f1063d9c874f98e8aadb99132043b2d272a9276cf90c465a"
+    },
+    {
+      "category": "font",
+      "distributionEligibility": "distribution_confirmed",
+      "license": "pack-license",
+      "licenseEvidence": [
+        "game/THIRD_PARTY_NOTICES.md"
+      ],
+      "path": "res://game_assets/Tilesets/Ranch Stuff/assets/user_interfaces/fonts/roboto/Roboto-MediumItalic.ttf",
+      "sha256": "823e1a6c4c9f157359076ae78e244611e946b2900e72101bc9fb8a134d8ff4e2"
+    },
+    {
+      "category": "font",
+      "distributionEligibility": "distribution_confirmed",
+      "license": "pack-license",
+      "licenseEvidence": [
+        "game/THIRD_PARTY_NOTICES.md"
+      ],
+      "path": "res://game_assets/Tilesets/Ranch Stuff/assets/user_interfaces/fonts/roboto/Roboto-Regular.ttf",
+      "sha256": "f3edb8058e523f5612bfd99d0745e661568ad85e1b6217bc62f786fabae624c6"
+    },
+    {
+      "category": "font",
+      "distributionEligibility": "distribution_confirmed",
+      "license": "pack-license",
+      "licenseEvidence": [
+        "game/THIRD_PARTY_NOTICES.md"
+      ],
+      "path": "res://game_assets/Tilesets/Ranch Stuff/assets/user_interfaces/fonts/roboto/Roboto-Thin.ttf",
+      "sha256": "6662f2a2dfd4e0d6d1dd04f8cb3e5c0c6de519c1c557fd39f3e0fc1eef96a266"
+    },
+    {
+      "category": "font",
+      "distributionEligibility": "distribution_confirmed",
+      "license": "pack-license",
+      "licenseEvidence": [
+        "game/THIRD_PARTY_NOTICES.md"
+      ],
+      "path": "res://game_assets/Tilesets/Ranch Stuff/assets/user_interfaces/fonts/roboto/Roboto-ThinItalic.ttf",
+      "sha256": "67da63cc898177497af4d7328b83ce9a322c188b2ca0e6053b98ab42362fefad"
+    },
+    {
+      "category": "font",
+      "distributionEligibility": "distribution_confirmed",
+      "license": "pack-license",
+      "licenseEvidence": [
+        "game/THIRD_PARTY_NOTICES.md"
+      ],
+      "path": "res://game_assets/Tilesets/Ranch Stuff/assets/user_interfaces/fonts/roboto/RobotoCondensed-Bold.ttf",
+      "sha256": "6a08cf0822ec2b1b584d42e7b27983d0af45e121770bb83ce76cf1be5e0a9d59"
+    },
+    {
+      "category": "font",
+      "distributionEligibility": "distribution_confirmed",
+      "license": "pack-license",
+      "licenseEvidence": [
+        "game/THIRD_PARTY_NOTICES.md"
+      ],
+      "path": "res://game_assets/Tilesets/Ranch Stuff/assets/user_interfaces/fonts/roboto/RobotoCondensed-BoldItalic.ttf",
+      "sha256": "6563a1da1b215b9abcf9b57cdc9c6ad35b891e6aab547d713d4fd4c2b409f32c"
+    },
+    {
+      "category": "font",
+      "distributionEligibility": "distribution_confirmed",
+      "license": "pack-license",
+      "licenseEvidence": [
+        "game/THIRD_PARTY_NOTICES.md"
+      ],
+      "path": "res://game_assets/Tilesets/Ranch Stuff/assets/user_interfaces/fonts/roboto/RobotoCondensed-Italic.ttf",
+      "sha256": "a20745044624fe4e19ee2d5ddb6fd785a62cd9fd86a773fe719388e9ddfe73af"
+    },
+    {
+      "category": "font",
+      "distributionEligibility": "distribution_confirmed",
+      "license": "pack-license",
+      "licenseEvidence": [
+        "game/THIRD_PARTY_NOTICES.md"
+      ],
+      "path": "res://game_assets/Tilesets/Ranch Stuff/assets/user_interfaces/fonts/roboto/RobotoCondensed-Light.ttf",
+      "sha256": "0d43b069cd944a773ec48cc57eed3572ded8e8abf5a1b180591b953389ad8e24"
+    },
+    {
+      "category": "font",
+      "distributionEligibility": "distribution_confirmed",
+      "license": "pack-license",
+      "licenseEvidence": [
+        "game/THIRD_PARTY_NOTICES.md"
+      ],
+      "path": "res://game_assets/Tilesets/Ranch Stuff/assets/user_interfaces/fonts/roboto/RobotoCondensed-LightItalic.ttf",
+      "sha256": "343a2dbe13c36b5e226c4271b3dced77555151cbe825a908a0f98d6360929749"
+    },
+    {
+      "category": "font",
+      "distributionEligibility": "distribution_confirmed",
+      "license": "pack-license",
+      "licenseEvidence": [
+        "game/THIRD_PARTY_NOTICES.md"
+      ],
+      "path": "res://game_assets/Tilesets/Ranch Stuff/assets/user_interfaces/fonts/roboto/RobotoCondensed-Medium.ttf",
+      "sha256": "468aba16d1c69634ac7e0c5c2318efa895a4192f7d687760b6304e4b8d91ac70"
+    },
+    {
+      "category": "font",
+      "distributionEligibility": "distribution_confirmed",
+      "license": "pack-license",
+      "licenseEvidence": [
+        "game/THIRD_PARTY_NOTICES.md"
+      ],
+      "path": "res://game_assets/Tilesets/Ranch Stuff/assets/user_interfaces/fonts/roboto/RobotoCondensed-MediumItalic.ttf",
+      "sha256": "8ddcedc87f9942c73654886dea933f5c09d2ad3be88d8c5a193630f9b2dda7e0"
+    },
+    {
+      "category": "font",
+      "distributionEligibility": "distribution_confirmed",
+      "license": "pack-license",
+      "licenseEvidence": [
+        "game/THIRD_PARTY_NOTICES.md"
+      ],
+      "path": "res://game_assets/Tilesets/Ranch Stuff/assets/user_interfaces/fonts/roboto/RobotoCondensed-Regular.ttf",
+      "sha256": "c462dd3947f0ea2645d797515bb88a68ba3c64695aeed2316eadab285882fec8"
+    },
+    {
+      "category": "font",
+      "distributionEligibility": "distribution_confirmed",
+      "license": "pack-license",
+      "licenseEvidence": [
+        "game/THIRD_PARTY_NOTICES.md"
+      ],
+      "path": "res://game_assets/Tilesets/Ranch Stuff/assets/user_interfaces/fonts/roboto/__MACOSX/._Roboto-Black.ttf",
+      "sha256": "3ea39f9ff76cd033ae2b1184cb47f8b669f5658a161ce164e6316906d51df972"
+    },
+    {
+      "category": "font",
+      "distributionEligibility": "distribution_confirmed",
+      "license": "pack-license",
+      "licenseEvidence": [
+        "game/THIRD_PARTY_NOTICES.md"
+      ],
+      "path": "res://game_assets/Tilesets/Ranch Stuff/assets/user_interfaces/fonts/roboto/__MACOSX/._Roboto-BlackItalic.ttf",
+      "sha256": "3ea39f9ff76cd033ae2b1184cb47f8b669f5658a161ce164e6316906d51df972"
+    },
+    {
+      "category": "font",
+      "distributionEligibility": "distribution_confirmed",
+      "license": "pack-license",
+      "licenseEvidence": [
+        "game/THIRD_PARTY_NOTICES.md"
+      ],
+      "path": "res://game_assets/Tilesets/Ranch Stuff/assets/user_interfaces/fonts/roboto/__MACOSX/._Roboto-Bold.ttf",
+      "sha256": "3ea39f9ff76cd033ae2b1184cb47f8b669f5658a161ce164e6316906d51df972"
+    },
+    {
+      "category": "font",
+      "distributionEligibility": "distribution_confirmed",
+      "license": "pack-license",
+      "licenseEvidence": [
+        "game/THIRD_PARTY_NOTICES.md"
+      ],
+      "path": "res://game_assets/Tilesets/Ranch Stuff/assets/user_interfaces/fonts/roboto/__MACOSX/._Roboto-BoldItalic.ttf",
+      "sha256": "3ea39f9ff76cd033ae2b1184cb47f8b669f5658a161ce164e6316906d51df972"
+    },
+    {
+      "category": "font",
+      "distributionEligibility": "distribution_confirmed",
+      "license": "pack-license",
+      "licenseEvidence": [
+        "game/THIRD_PARTY_NOTICES.md"
+      ],
+      "path": "res://game_assets/Tilesets/Ranch Stuff/assets/user_interfaces/fonts/roboto/__MACOSX/._Roboto-Italic.ttf",
+      "sha256": "3ea39f9ff76cd033ae2b1184cb47f8b669f5658a161ce164e6316906d51df972"
+    },
+    {
+      "category": "font",
+      "distributionEligibility": "distribution_confirmed",
+      "license": "pack-license",
+      "licenseEvidence": [
+        "game/THIRD_PARTY_NOTICES.md"
+      ],
+      "path": "res://game_assets/Tilesets/Ranch Stuff/assets/user_interfaces/fonts/roboto/__MACOSX/._Roboto-Light.ttf",
+      "sha256": "3ea39f9ff76cd033ae2b1184cb47f8b669f5658a161ce164e6316906d51df972"
+    },
+    {
+      "category": "font",
+      "distributionEligibility": "distribution_confirmed",
+      "license": "pack-license",
+      "licenseEvidence": [
+        "game/THIRD_PARTY_NOTICES.md"
+      ],
+      "path": "res://game_assets/Tilesets/Ranch Stuff/assets/user_interfaces/fonts/roboto/__MACOSX/._Roboto-LightItalic.ttf",
+      "sha256": "3ea39f9ff76cd033ae2b1184cb47f8b669f5658a161ce164e6316906d51df972"
+    },
+    {
+      "category": "font",
+      "distributionEligibility": "distribution_confirmed",
+      "license": "pack-license",
+      "licenseEvidence": [
+        "game/THIRD_PARTY_NOTICES.md"
+      ],
+      "path": "res://game_assets/Tilesets/Ranch Stuff/assets/user_interfaces/fonts/roboto/__MACOSX/._Roboto-Medium.ttf",
+      "sha256": "3ea39f9ff76cd033ae2b1184cb47f8b669f5658a161ce164e6316906d51df972"
+    },
+    {
+      "category": "font",
+      "distributionEligibility": "distribution_confirmed",
+      "license": "pack-license",
+      "licenseEvidence": [
+        "game/THIRD_PARTY_NOTICES.md"
+      ],
+      "path": "res://game_assets/Tilesets/Ranch Stuff/assets/user_interfaces/fonts/roboto/__MACOSX/._Roboto-MediumItalic.ttf",
+      "sha256": "3ea39f9ff76cd033ae2b1184cb47f8b669f5658a161ce164e6316906d51df972"
+    },
+    {
+      "category": "font",
+      "distributionEligibility": "distribution_confirmed",
+      "license": "pack-license",
+      "licenseEvidence": [
+        "game/THIRD_PARTY_NOTICES.md"
+      ],
+      "path": "res://game_assets/Tilesets/Ranch Stuff/assets/user_interfaces/fonts/roboto/__MACOSX/._Roboto-Regular.ttf",
+      "sha256": "3ea39f9ff76cd033ae2b1184cb47f8b669f5658a161ce164e6316906d51df972"
+    },
+    {
+      "category": "font",
+      "distributionEligibility": "distribution_confirmed",
+      "license": "pack-license",
+      "licenseEvidence": [
+        "game/THIRD_PARTY_NOTICES.md"
+      ],
+      "path": "res://game_assets/Tilesets/Ranch Stuff/assets/user_interfaces/fonts/roboto/__MACOSX/._Roboto-Thin.ttf",
+      "sha256": "3ea39f9ff76cd033ae2b1184cb47f8b669f5658a161ce164e6316906d51df972"
+    },
+    {
+      "category": "font",
+      "distributionEligibility": "distribution_confirmed",
+      "license": "pack-license",
+      "licenseEvidence": [
+        "game/THIRD_PARTY_NOTICES.md"
+      ],
+      "path": "res://game_assets/Tilesets/Ranch Stuff/assets/user_interfaces/fonts/roboto/__MACOSX/._Roboto-ThinItalic.ttf",
+      "sha256": "3ea39f9ff76cd033ae2b1184cb47f8b669f5658a161ce164e6316906d51df972"
+    },
+    {
+      "category": "font",
+      "distributionEligibility": "distribution_confirmed",
+      "license": "pack-license",
+      "licenseEvidence": [
+        "game/THIRD_PARTY_NOTICES.md"
+      ],
+      "path": "res://game_assets/Tilesets/Ranch Stuff/assets/user_interfaces/fonts/roboto/__MACOSX/._RobotoCondensed-Bold.ttf",
+      "sha256": "3ea39f9ff76cd033ae2b1184cb47f8b669f5658a161ce164e6316906d51df972"
+    },
+    {
+      "category": "font",
+      "distributionEligibility": "distribution_confirmed",
+      "license": "pack-license",
+      "licenseEvidence": [
+        "game/THIRD_PARTY_NOTICES.md"
+      ],
+      "path": "res://game_assets/Tilesets/Ranch Stuff/assets/user_interfaces/fonts/roboto/__MACOSX/._RobotoCondensed-BoldItalic.ttf",
+      "sha256": "3ea39f9ff76cd033ae2b1184cb47f8b669f5658a161ce164e6316906d51df972"
+    },
+    {
+      "category": "font",
+      "distributionEligibility": "distribution_confirmed",
+      "license": "pack-license",
+      "licenseEvidence": [
+        "game/THIRD_PARTY_NOTICES.md"
+      ],
+      "path": "res://game_assets/Tilesets/Ranch Stuff/assets/user_interfaces/fonts/roboto/__MACOSX/._RobotoCondensed-Italic.ttf",
+      "sha256": "3ea39f9ff76cd033ae2b1184cb47f8b669f5658a161ce164e6316906d51df972"
+    },
+    {
+      "category": "font",
+      "distributionEligibility": "distribution_confirmed",
+      "license": "pack-license",
+      "licenseEvidence": [
+        "game/THIRD_PARTY_NOTICES.md"
+      ],
+      "path": "res://game_assets/Tilesets/Ranch Stuff/assets/user_interfaces/fonts/roboto/__MACOSX/._RobotoCondensed-Light.ttf",
+      "sha256": "3ea39f9ff76cd033ae2b1184cb47f8b669f5658a161ce164e6316906d51df972"
+    },
+    {
+      "category": "font",
+      "distributionEligibility": "distribution_confirmed",
+      "license": "pack-license",
+      "licenseEvidence": [
+        "game/THIRD_PARTY_NOTICES.md"
+      ],
+      "path": "res://game_assets/Tilesets/Ranch Stuff/assets/user_interfaces/fonts/roboto/__MACOSX/._RobotoCondensed-LightItalic.ttf",
+      "sha256": "3ea39f9ff76cd033ae2b1184cb47f8b669f5658a161ce164e6316906d51df972"
+    },
+    {
+      "category": "font",
+      "distributionEligibility": "distribution_confirmed",
+      "license": "pack-license",
+      "licenseEvidence": [
+        "game/THIRD_PARTY_NOTICES.md"
+      ],
+      "path": "res://game_assets/Tilesets/Ranch Stuff/assets/user_interfaces/fonts/roboto/__MACOSX/._RobotoCondensed-Medium.ttf",
+      "sha256": "3ea39f9ff76cd033ae2b1184cb47f8b669f5658a161ce164e6316906d51df972"
+    },
+    {
+      "category": "font",
+      "distributionEligibility": "distribution_confirmed",
+      "license": "pack-license",
+      "licenseEvidence": [
+        "game/THIRD_PARTY_NOTICES.md"
+      ],
+      "path": "res://game_assets/Tilesets/Ranch Stuff/assets/user_interfaces/fonts/roboto/__MACOSX/._RobotoCondensed-MediumItalic.ttf",
+      "sha256": "3ea39f9ff76cd033ae2b1184cb47f8b669f5658a161ce164e6316906d51df972"
+    },
+    {
+      "category": "font",
+      "distributionEligibility": "distribution_confirmed",
+      "license": "pack-license",
+      "licenseEvidence": [
+        "game/THIRD_PARTY_NOTICES.md"
+      ],
+      "path": "res://game_assets/Tilesets/Ranch Stuff/assets/user_interfaces/fonts/roboto/__MACOSX/._RobotoCondensed-Regular.ttf",
+      "sha256": "3ea39f9ff76cd033ae2b1184cb47f8b669f5658a161ce164e6316906d51df972"
+    },
+    {
+      "category": "dynamic_resource",
+      "distributionEligibility": "distribution_confirmed",
+      "license": "MIT",
+      "licenseEvidence": [
+        "game/LICENSE"
+      ],
+      "path": "res://overworld/characters/default_animations/standard_animations.res",
+      "sha256": "fa7e2a6be6200927500cb956f0de26e3f6711f481fadfae86f459beead7336fe"
+    },
+    {
+      "category": "dynamic_resource",
+      "distributionEligibility": "distribution_confirmed",
+      "license": "MIT",
+      "licenseEvidence": [
+        "game/LICENSE"
+      ],
+      "path": "res://overworld/characters/generic.atlastex",
+      "sha256": "78f87bf59a374ed33802f39ad00809f215de4a803424a9dda6cceac1c356498a"
+    },
+    {
+      "category": "dynamic_resource",
+      "distributionEligibility": "distribution_confirmed",
+      "license": "MIT",
+      "licenseEvidence": [
+        "game/LICENSE"
+      ],
+      "path": "res://overworld/characters/generic.tres",
+      "sha256": "b27acc50667677de982980553b525167632153ea351da461c3bd4419483c0182"
+    },
+    {
+      "category": "dynamic_resource",
+      "distributionEligibility": "distribution_confirmed",
+      "license": "MIT",
+      "licenseEvidence": [
+        "game/LICENSE"
+      ],
+      "path": "res://overworld/characters/ghost.atlastex",
+      "sha256": "e95af0a3514382e36a2434ca9236db86b17aa4957fa0d43814b7690e4cad7129"
+    },
+    {
+      "category": "dynamic_resource",
+      "distributionEligibility": "distribution_confirmed",
+      "license": "MIT",
+      "licenseEvidence": [
+        "game/LICENSE"
+      ],
+      "path": "res://overworld/characters/ghost.tres",
+      "sha256": "98304a5c4564b786ca3fe6a5ece9c732858dcb85b3710c5cadaab573c5a46d53"
+    },
+    {
+      "category": "dynamic_resource",
+      "distributionEligibility": "distribution_confirmed",
+      "license": "MIT",
+      "licenseEvidence": [
+        "game/LICENSE"
+      ],
+      "path": "res://overworld/characters/gobot.atlastex",
+      "sha256": "3ac7706195889df203379be075f3436b72eee67d5792f5657509759720da8905"
+    },
+    {
+      "category": "dynamic_resource",
+      "distributionEligibility": "distribution_confirmed",
+      "license": "MIT",
+      "licenseEvidence": [
+        "game/LICENSE"
+      ],
+      "path": "res://overworld/characters/gobot.tres",
+      "sha256": "023f09d602764f3b8c41f4cbfd715f74ceb2477d1aa1dc98b93f31edfefcd5a3"
+    },
+    {
+      "category": "dynamic_resource",
+      "distributionEligibility": "distribution_confirmed",
+      "license": "MIT",
+      "licenseEvidence": [
+        "game/LICENSE"
+      ],
+      "path": "res://overworld/characters/knight.atlastex",
+      "sha256": "88ee06cab56df69aa169edf8284c8e10e180c12f9c16581b5014fa16ccedd34d"
+    },
+    {
+      "category": "dynamic_resource",
+      "distributionEligibility": "distribution_confirmed",
+      "license": "MIT",
+      "licenseEvidence": [
+        "game/LICENSE"
+      ],
+      "path": "res://overworld/characters/knight.tres",
+      "sha256": "bcb30446f3492888fcdaf3c2b9d1a7fbcc137fb2237fc711d6e28634f636ff66"
+    },
+    {
+      "category": "dynamic_resource",
+      "distributionEligibility": "distribution_confirmed",
+      "license": "MIT",
+      "licenseEvidence": [
+        "game/LICENSE"
+      ],
+      "path": "res://overworld/characters/monk.atlastex",
+      "sha256": "ad58986e6af946b79d308c4635cc5d0847eed5dc21a9fbb7b2796a19f5697c53"
+    },
+    {
+      "category": "dynamic_resource",
+      "distributionEligibility": "distribution_confirmed",
+      "license": "MIT",
+      "licenseEvidence": [
+        "game/LICENSE"
+      ],
+      "path": "res://overworld/characters/monk.tres",
+      "sha256": "a5dcd744e7a4edb23065d077a0e937f413e4adecf70575a3b599ddc93afc9c0f"
+    },
+    {
+      "category": "dynamic_resource",
+      "distributionEligibility": "distribution_confirmed",
+      "license": "MIT",
+      "licenseEvidence": [
+        "game/LICENSE"
+      ],
+      "path": "res://overworld/characters/smith.atlastex",
+      "sha256": "44c3d6e37b38b47e66ca36bebfecb6cf91d76fb4b7161686b7bd223192091f9e"
+    },
+    {
+      "category": "dynamic_resource",
+      "distributionEligibility": "distribution_confirmed",
+      "license": "MIT",
+      "licenseEvidence": [
+        "game/LICENSE"
+      ],
+      "path": "res://overworld/characters/smith.tres",
+      "sha256": "1183fade1ac36e8b6bde27811a2319d04320f4cc26bdedb99227ece924b3e48f"
+    },
+    {
+      "category": "dynamic_resource",
+      "distributionEligibility": "distribution_confirmed",
+      "license": "MIT",
+      "licenseEvidence": [
+        "game/LICENSE"
+      ],
+      "path": "res://overworld/characters/thief.atlastex",
+      "sha256": "0e5d21d05a67b55756d8ea5a940c55db0db6ea020931d4e08034bdc2ac0d31b7"
+    },
+    {
+      "category": "dynamic_resource",
+      "distributionEligibility": "distribution_confirmed",
+      "license": "MIT",
+      "licenseEvidence": [
+        "game/LICENSE"
+      ],
+      "path": "res://overworld/characters/thief.tres",
+      "sha256": "08bcff7e50b3d0c2a1ed12e98e2d2f31522a0a649b56a97c8afbc91370db94b8"
+    },
+    {
+      "category": "dynamic_resource",
+      "distributionEligibility": "distribution_confirmed",
+      "license": "MIT",
+      "licenseEvidence": [
+        "game/LICENSE"
+      ],
+      "path": "res://overworld/characters/wizard.atlastex",
+      "sha256": "52c7b47e1c56616f630ab90af1d9624afaface2c6a5b8b1c4c181d5e55186404"
+    },
+    {
+      "category": "dynamic_resource",
+      "distributionEligibility": "distribution_confirmed",
+      "license": "MIT",
+      "licenseEvidence": [
+        "game/LICENSE"
+      ],
+      "path": "res://overworld/characters/wizard.tres",
+      "sha256": "42dfd6d6a3145c2026079b4c9c8cb4a6b519c1478ca5f9a5ceb6f9fc95d6ec6b"
+    },
+    {
+      "category": "dynamic_resource",
+      "distributionEligibility": "distribution_confirmed",
+      "license": "MIT",
+      "licenseEvidence": [
+        "game/LICENSE"
+      ],
+      "path": "res://overworld/maps/forest/ghost.dch",
+      "sha256": "b558a1da3f06a57e35cd59c0fe9332328d241191a80100d11b45eaf8a05b5ebe"
+    },
+    {
+      "category": "dynamic_resource",
+      "distributionEligibility": "distribution_confirmed",
+      "license": "MIT",
+      "licenseEvidence": [
+        "game/LICENSE"
+      ],
+      "path": "res://overworld/maps/forest/ghost.dtl",
+      "sha256": "f2244bfe72d4d7e055bb76b50f19b5767afd11f80eb1c1b0661ae60d0bd46746"
+    },
+    {
+      "category": "dynamic_resource",
+      "distributionEligibility": "distribution_confirmed",
+      "license": "MIT",
+      "licenseEvidence": [
+        "game/LICENSE"
+      ],
+      "path": "res://overworld/maps/gbprops.tres",
+      "sha256": "2c356fe2fe2eecc2fd6cb4a1ff3f6582dfedd094888503c877e269da66809620"
+    },
+    {
+      "category": "dynamic_resource",
+      "distributionEligibility": "distribution_confirmed",
+      "license": "MIT",
+      "licenseEvidence": [
+        "game/LICENSE"
+      ],
+      "path": "res://overworld/maps/house/wand_pedestal.dtl",
+      "sha256": "4352e5b3b6a0926f1b78e6a53de79ad98771c7250455b7e0e203fc93d89c5d73"
+    },
+    {
+      "category": "dynamic_resource",
+      "distributionEligibility": "distribution_confirmed",
+      "license": "MIT",
+      "licenseEvidence": [
+        "game/LICENSE"
+      ],
+      "path": "res://overworld/maps/house/wand_pedestal_occupied.dtl",
+      "sha256": "845471c2d78bb88a3de4aba2165a4a9f094874ee4b24b58058053bca4d42d224"
+    },
+    {
+      "category": "dynamic_resource",
+      "distributionEligibility": "distribution_confirmed",
+      "license": "MIT",
+      "licenseEvidence": [
+        "game/LICENSE"
+      ],
+      "path": "res://overworld/maps/opening_cutscene.dtl",
+      "sha256": "8dd51a1060d66ea6965832a3bf51fff14a9c961bd5e523f092741f910bbb6fbd"
+    },
+    {
+      "category": "dynamic_resource",
+      "distributionEligibility": "distribution_confirmed",
+      "license": "MIT",
+      "licenseEvidence": [
+        "game/LICENSE"
+      ],
+      "path": "res://overworld/maps/tilesets/kenney_terrain.tres",
+      "sha256": "144e770655b7200f0e9333bddab709935357cb1bb45f9a8718d0f4d4b3f8fdfd"
+    },
+    {
+      "category": "dynamic_resource",
+      "distributionEligibility": "distribution_confirmed",
+      "license": "MIT",
+      "licenseEvidence": [
+        "game/LICENSE"
+      ],
+      "path": "res://overworld/maps/town/encounter_before_combat.dtl",
+      "sha256": "5b16fea0111f51abf852e3e9142e799a3997352491f9bb861ee1833d436ba983"
+    },
+    {
+      "category": "dynamic_resource",
+      "distributionEligibility": "distribution_confirmed",
+      "license": "MIT",
+      "licenseEvidence": [
+        "game/LICENSE"
+      ],
+      "path": "res://overworld/maps/town/encounter_on_loss.dtl",
+      "sha256": "cd703708c848c6547de36422ea71866f3271e37ab72dfddd60562873f4cb733b"
+    },
+    {
+      "category": "dynamic_resource",
+      "distributionEligibility": "distribution_confirmed",
+      "license": "MIT",
+      "licenseEvidence": [
+        "game/LICENSE"
+      ],
+      "path": "res://overworld/maps/town/encounter_on_victory.dtl",
+      "sha256": "39ebf61eeb4fc526e8cf9620f42f5244c86779c2f568d3d00fb316db7b8f3543"
+    },
+    {
+      "category": "dynamic_resource",
+      "distributionEligibility": "distribution_confirmed",
+      "license": "MIT",
+      "licenseEvidence": [
+        "game/LICENSE"
+      ],
+      "path": "res://overworld/maps/town/enemy_ghost.dch",
+      "sha256": "74226091be9582b03c438932dd9271e234112436c0fbb0ef3d5cd5646f4924b9"
+    },
+    {
+      "category": "dynamic_resource",
+      "distributionEligibility": "distribution_confirmed",
+      "license": "MIT",
+      "licenseEvidence": [
+        "game/LICENSE"
+      ],
+      "path": "res://overworld/maps/town/fan_of_four.dch",
+      "sha256": "8b968906d4d4520f9bbc4dbb1b401570be9573caedfaf81ef197d25883119bb8"
+    },
+    {
+      "category": "dynamic_resource",
+      "distributionEligibility": "distribution_confirmed",
+      "license": "MIT",
+      "licenseEvidence": [
+        "game/LICENSE"
+      ],
+      "path": "res://overworld/maps/town/fan_of_four.dtl",
+      "sha256": "e0260dadcbfafdbeb5a0261f76262c175ec2d911f3dd88a4c513ad083f131fd0"
+    },
+    {
+      "category": "dynamic_resource",
+      "distributionEligibility": "distribution_confirmed",
+      "license": "MIT",
+      "licenseEvidence": [
+        "game/LICENSE"
+      ],
+      "path": "res://overworld/maps/town/monk.dch",
+      "sha256": "3930d4ca120b62f03eaab08c2faf59881972ef296b9388c5046a378179551168"
+    },
+    {
+      "category": "dynamic_resource",
+      "distributionEligibility": "distribution_confirmed",
+      "license": "MIT",
+      "licenseEvidence": [
+        "game/LICENSE"
+      ],
+      "path": "res://overworld/maps/town/monk.dtl",
+      "sha256": "b395dcfe7c41ad5a121509baf6ce14eef77e2d49df93c0ddce5fb4879f62eba3"
+    },
+    {
+      "category": "dynamic_resource",
+      "distributionEligibility": "distribution_confirmed",
+      "license": "MIT",
+      "licenseEvidence": [
+        "game/LICENSE"
+      ],
+      "path": "res://overworld/maps/town/runner.dch",
+      "sha256": "c0ef9a510e29b1f4052505745e7fb398055404981bb5fc4414f3d843e5a5436e"
+    },
+    {
+      "category": "dynamic_resource",
+      "distributionEligibility": "distribution_confirmed",
+      "license": "MIT",
+      "licenseEvidence": [
+        "game/LICENSE"
+      ],
+      "path": "res://overworld/maps/town/runner.dtl",
+      "sha256": "e8404dd5a9afb9e2aa050e2062c5b68e1005625f40eefbedea6c75f7746277e3"
+    },
+    {
+      "category": "dynamic_resource",
+      "distributionEligibility": "distribution_confirmed",
+      "license": "MIT",
+      "licenseEvidence": [
+        "game/LICENSE"
+      ],
+      "path": "res://overworld/maps/town/sign.dtl",
+      "sha256": "081458ee675ef750efc24e56cfb6a05579adf6d303c146611581b06705746557"
+    },
+    {
+      "category": "dynamic_resource",
+      "distributionEligibility": "distribution_confirmed",
+      "license": "MIT",
+      "licenseEvidence": [
+        "game/LICENSE"
+      ],
+      "path": "res://overworld/maps/town/smith.dch",
+      "sha256": "1c7082e19ff7a3142e4c971a52b7b0348668f47cc4892217c28f697e22ff2864"
+    },
+    {
+      "category": "dynamic_resource",
+      "distributionEligibility": "distribution_confirmed",
+      "license": "MIT",
+      "licenseEvidence": [
+        "game/LICENSE"
+      ],
+      "path": "res://overworld/maps/town/smith.dtl",
+      "sha256": "be833c0d5cd943820b0ecfc5924ae3b18d9d7e2854ed6e64eeb4066411c62aad"
+    },
+    {
+      "category": "dynamic_resource",
+      "distributionEligibility": "distribution_confirmed",
+      "license": "MIT",
+      "licenseEvidence": [
+        "game/LICENSE"
+      ],
+      "path": "res://overworld/maps/town/strange_tree.dtl",
+      "sha256": "322b7d2852624d1ce5b225966b4477ac6ca4f505c49724abff169c13d86fcde8"
+    },
+    {
+      "category": "dynamic_resource",
+      "distributionEligibility": "distribution_confirmed",
+      "license": "MIT",
+      "licenseEvidence": [
+        "game/LICENSE"
+      ],
+      "path": "res://overworld/maps/town/thief.dch",
+      "sha256": "172b8d2d2c4a6a7d15ffdb9682db9ee86c0f0c5df5fdf9f81c60acbdd76e83ea"
+    },
+    {
+      "category": "dynamic_resource",
+      "distributionEligibility": "distribution_confirmed",
+      "license": "MIT",
+      "licenseEvidence": [
+        "game/LICENSE"
+      ],
+      "path": "res://overworld/maps/town/thief.dtl",
+      "sha256": "8ca94ca6c36e8de52c1b32588022803c58398ee7e591536453118a3ae90cbfc8"
+    },
+    {
+      "category": "dynamic_resource",
+      "distributionEligibility": "distribution_confirmed",
+      "license": "MIT",
+      "licenseEvidence": [
+        "game/LICENSE"
+      ],
+      "path": "res://overworld/maps/town/warrior.dch",
+      "sha256": "dc75fee2d501fb612f6d6c89f64ede82d3e938562ec34c8674dc0b02e3daf384"
+    },
+    {
+      "category": "dynamic_resource",
+      "distributionEligibility": "distribution_confirmed",
+      "license": "MIT",
+      "licenseEvidence": [
+        "game/LICENSE"
+      ],
+      "path": "res://overworld/maps/town/warrior.dtl",
+      "sha256": "7487e8d28ba9ee67f0b2ad656abe8580efe805058d929da88e8c349e7ae6e8ac"
+    },
+    {
+      "category": "dynamic_resource",
+      "distributionEligibility": "distribution_confirmed",
+      "license": "MIT",
+      "licenseEvidence": [
+        "game/LICENSE"
+      ],
+      "path": "res://overworld/maps/town/wizard.dch",
+      "sha256": "a8400f55399c549e43dd316226cc8554550140e72df47222fe3e50b78d1be247"
+    },
+    {
+      "category": "dynamic_resource",
+      "distributionEligibility": "distribution_confirmed",
+      "license": "MIT",
+      "licenseEvidence": [
+        "game/LICENSE"
+      ],
+      "path": "res://overworld/maps/town/wizard.dtl",
+      "sha256": "7163aa0de0f07cbdcf60f33e893becaea0a0e929ed4f3f2e53171ea327fe69e8"
+    },
+    {
+      "category": "dynamic_resource",
+      "distributionEligibility": "distribution_confirmed",
+      "license": "MIT",
+      "licenseEvidence": [
+        "game/LICENSE"
+      ],
+      "path": "res://src/field/cutscenes/templates/pickups/pickup_animations.res",
+      "sha256": "af5f08060ce58110184ba3d9da4b2384fe70ef199575770e29d12d27ed4f5926"
+    },
+    {
+      "category": "dynamic_resource",
+      "distributionEligibility": "distribution_confirmed",
+      "license": "MIT",
+      "licenseEvidence": [
+        "game/LICENSE"
+      ],
+      "path": "res://src/field/gameboard/debug/tileset_debug_pathfinder_map.tres",
+      "sha256": "50eed8c2ea7e6e30d07b46bf779c87629e67de01b1844451fd97132055690d3d"
+    },
+    {
+      "category": "dynamic_resource",
+      "distributionEligibility": "distribution_confirmed",
+      "license": "MIT",
+      "licenseEvidence": [
+        "game/LICENSE"
+      ],
+      "path": "res://src/field/gamepieces/controllers/cursor/tileset_cursor.tres",
+      "sha256": "04b57080aec3c6ed8bf68324c38596f16d065eedc1972a54544c5ed185cdc22b"
+    }
+  ],
+  "schemaVersion": 1,
+  "scope": "tracked, export-eligible non-raster runtime assets and shipped notices",
+  "summary": {
+    "assets": 362,
+    "byCategory": {
+      "addon": 190,
+      "audio": 32,
+      "dynamic_resource": 88,
+      "font": 45,
+      "notice": 3,
+      "shader": 4
+    }
+  }
+}

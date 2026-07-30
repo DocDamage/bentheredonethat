@@ -1,0 +1,30 @@
+[gd_scene load_steps=6 format=3]
+
+[ext_resource type="PackedScene" path="res://src/field/gamepieces/gamepiece.tscn" id="1_gamepiece"]
+[ext_resource type="PackedScene" path="res://ben_rpg/characters/frost_lich_field_animation.tscn" id="2_animation"]
+[ext_resource type="PackedScene" path="res://src/field/cutscenes/Interaction.tscn" id="3_interaction"]
+[ext_resource type="Script" path="res://ben_rpg/characters/frost_lich_recruit_interaction.gd" id="4_recruit"]
+[ext_resource type="PackedScene" path="res://src/field/cutscenes/popups/interaction_popup.tscn" id="5_popup"]
+
+[node name="FrostLichEmperor" instance=ExtResource("1_gamepiece")]
+animation_scene = ExtResource("2_animation")
+move_speed = 190.0
+
+[node name="RecruitInteraction" parent="." instance=ExtResource("3_interaction")]
+script = ExtResource("4_recruit")
+
+[node name="CollisionShape2D" parent="RecruitInteraction/InteractionArea2D" index="0"]
+position = Vector2(0, -4)
+
+[node name="Button" parent="RecruitInteraction" index="1"]
+offset_left = -32.0
+offset_top = -62.0
+offset_right = 32.0
+offset_bottom = 18.0
+
+[node name="RecruitPopup" parent="." instance=ExtResource("5_popup")]
+position = Vector2(0, -56)
+emote = 2
+radius = 96
+
+[editable path="RecruitInteraction"]

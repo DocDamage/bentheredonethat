@@ -1,0 +1,33 @@
+extends Node
+
+const CATALOG := preload("res://ben_rpg/core/campaign_world_catalog.gd")
+
+
+func _ready() -> void:
+	var errors := CATALOG.validate()
+	assert(errors.is_empty(), "World catalog validation failed: %s" % errors)
+	assert(CampaignState.UNIVERSE_DEFINITIONS == CATALOG.UNIVERSE_DEFINITIONS)
+	assert(CampaignState.TOWN_STATE_OVERLAYS == CATALOG.TOWN_STATE_OVERLAYS)
+	assert(CampaignState.UNIVERSE_SAVE_POINTS == CATALOG.UNIVERSE_SAVE_POINTS)
+	assert(CampaignState.UNIVERSE_TREASURE_CACHES == CATALOG.UNIVERSE_TREASURE_CACHES)
+	assert(CampaignState.EQUIPMENT_SLOTS == CATALOG.EQUIPMENT_SLOTS)
+	assert(CampaignState.EQUIPMENT_AFFINITIES == CATALOG.EQUIPMENT_AFFINITIES)
+	assert(CampaignState.SERVICE_ITEM_CATALOG == CATALOG.SERVICE_ITEM_CATALOG)
+	assert(CampaignState.SERVICE_STOCK == CATALOG.SERVICE_STOCK)
+	assert(CampaignState.ARMORY_STOCK == CATALOG.ARMORY_STOCK)
+	assert(CampaignState.FACILITY_DEFINITIONS == CATALOG.FACILITY_DEFINITIONS)
+	assert(CampaignState.INVENTION_DEFINITIONS == CATALOG.INVENTION_DEFINITIONS)
+	assert(CampaignState.EXPEDITION_TOOL_CONTRACTS == CATALOG.EXPEDITION_TOOL_CONTRACTS)
+	assert(CampaignState.FACILITY_UPGRADE_DEFINITIONS == CATALOG.FACILITY_UPGRADE_DEFINITIONS)
+	assert(CampaignState.SKILL_TREES == CATALOG.SKILL_TREES)
+	assert(CampaignState.QUEST_DEFINITIONS == CATALOG.QUEST_DEFINITIONS)
+	assert(CampaignState.REQUIRED_NAMED_CHARACTER_ARCS == CATALOG.REQUIRED_NAMED_CHARACTER_ARCS)
+	assert((CATALOG.REQUIRED_NAMED_CHARACTER_ARCS[&"mansion_ashfall_horror"].get("characters", []) as Array).has(&"dracula"))
+	assert((CATALOG.REQUIRED_NAMED_CHARACTER_ARCS[&"pelagic_depths"].get("characters", []) as Array).has(&"cthulhu"))
+	assert((CATALOG.REQUIRED_NAMED_CHARACTER_ARCS[&"ashfall_empyreal_magic"].get("characters", []) as Array).has(&"dark_mage"))
+	assert(CampaignState.REQUIRED_ADDRESS_DEFINITIONS == CATALOG.REQUIRED_ADDRESS_DEFINITIONS)
+	assert(CampaignState.REQUIRED_ADDRESS_DEFINITIONS.size() == 6)
+	assert(StringName(CampaignState.universe_definition(&"haunted_mansion").get("destination", &"")) == &"haunted_mansion")
+	assert(CampaignState.town_state_overlay().has("tint"))
+	print("CAMPAIGN_WORLD_CATALOG_SMOKE_OK universes=7 overlays=5 immutable_catalogs=true compatibility_aliases=true")
+	get_tree().quit()

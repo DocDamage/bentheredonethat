@@ -1,0 +1,47 @@
+[gd_scene load_steps=4 format=3]
+
+[ext_resource type="Script" path="res://ben_rpg/world/town_resident_animation.gd" id="1_animation"]
+[ext_resource type="FontFile" path="res://assets/gui/font/SourceCodePro-Bold.ttf" id="2_font"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_activity"]
+bg_color = Color(0.035, 0.05, 0.075, 0.92)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.88, 0.66, 0.25, 0.95)
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 3
+expand_margin_left = 4.0
+expand_margin_top = 2.0
+expand_margin_right = 4.0
+expand_margin_bottom = 2.0
+
+[node name="TownResidentAnimation" type="Marker2D"]
+script = ExtResource("1_animation")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+
+[node name="Anchor" type="Marker2D" parent="."]
+
+[node name="Sprite" type="Sprite2D" parent="Anchor"]
+
+[node name="ActivityBadge" type="Label" parent="Anchor"]
+z_index = 5
+offset_left = -70.0
+offset_top = -48.0
+offset_right = 70.0
+offset_bottom = -29.0
+mouse_filter = 2
+theme_override_colors/font_color = Color(0.98, 0.93, 0.78, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.85)
+theme_override_constants/shadow_offset_x = 1
+theme_override_constants/shadow_offset_y = 1
+theme_override_fonts/font = ExtResource("2_font")
+theme_override_font_sizes/font_size = 12
+theme_override_styles/normal = SubResource("StyleBoxFlat_activity")
+text = "Mara • Grinding coffee"
+horizontal_alignment = 1
+vertical_alignment = 1

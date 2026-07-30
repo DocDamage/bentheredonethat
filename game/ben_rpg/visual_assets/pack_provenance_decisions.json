@@ -1,0 +1,144 @@
+{
+  "schemaVersion": 1,
+  "purpose": "pack-level migration provenance decisions; owner-confirmed distribution approval is recorded against exact terms and credit evidence",
+  "decisions": [
+    {
+      "id": "ashfall-ashlands-cinder-gate-v1",
+      "world": "Ashfall",
+      "canonicalPack": "Ashlands Tileset",
+      "runtimePack": "ashfall_cinder_gate_scene_derivatives",
+      "inventoryPackId": "Tilesets:Ashlands Tileset",
+      "sheetState": "DERIVATIVE_SOURCE",
+      "roomIds": [
+        "AF-01"
+      ],
+      "derivativeIds": [
+        "ashfall_cinder_gate_air_beacon",
+        "ashfall_cinder_gate_barricade",
+        "ashfall_cinder_gate_dead_tree",
+        "ashfall_cinder_gate_filter_cache",
+        "ashfall_cinder_gate_ground"
+      ],
+      "sourceChecksums": [
+        "3760542af6506073bd3dc927126f545ec1db44f27e26e3e3ef3beefe0fb7b6f4",
+        "6d142ca29c9d0e659118db514c7c3a107e581b5efeb11a09b647c5885b953938",
+        "f836b9638187790f1eec033e20d025bacf9bed56e35ffbb8a1cc5fd36f5a182b",
+        "f45630241d7f010e823778a3d9af813969ee13345a330414abab7e6a93be5c04"
+      ],
+      "termsEvidence": [
+        {
+          "inventory": "game/validation/generated/source_library_inventory.json",
+          "library": "Tilesets",
+          "path": "license.txt",
+          "sha256": "da5ca129716c7ee53d88425bc6e0ac4b616bd2ddda72c4a136c66ad66c11b156",
+          "scope": "The owner confirmed that the main supplied Tilesets license covers all supplied assets in this source library, including the Ashlands and Wasteland survivor-kit AF-01 derivatives."
+        }
+      ],
+      "creditEvidence": [
+        {
+          "inventory": "game/validation/generated/source_library_inventory.json",
+          "library": "Tilesets",
+          "path": "license.txt",
+          "sha256": "da5ca129716c7ee53d88425bc6e0ac4b616bd2ddda72c4a136c66ad66c11b156",
+          "requirement": "The recorded license states attribution is optional; retain this decision record even when no credit line is required."
+        }
+      ],
+      "decision": "distribution_confirmed",
+      "approvedBy": "product owner",
+      "approvalDate": "2026-07-23",
+      "rationale": "The owner confirmed that the main supplied license covers all supplied source assets; this record binds the AF-01 Ashlands and Wasteland survivor-kit derivatives to that approval."
+    },
+    {
+      "id": "mansion-haunted-mansion-v1",
+      "world": "Mansion",
+      "canonicalPack": "Haunted Mansion",
+      "runtimePack": "Haunted Mansion Pixel Art Tileset Pack",
+      "inventoryPackId": "Tilesets:Haunted Mansion",
+      "duplicateRelationship": "runtime files 1.png through 5.png match the canonical Haunted Mansion checksums",
+      "sourceChecksums": [
+        "acdcde19e54d70050d03f77c719e0e7d4285c68c54f7261863f3ce3e44f604cc",
+        "7b703a7e5eabd9017bfd4ae47bc8c5c328c9e237448a025d7e9de0d49a0b1bca",
+        "a8b3defc3bee6f3c919b0ea9fcabebc9427b22e0ef60ef1b5a7a445f4e619ca4",
+        "fabb60e8d270cf106674b7669dda3e7fe75c8ae9072ff86a4d867a259ed6ea7b",
+        "7f8c9fab086d0efe1cd7056926e4e19cfa32b144c9a8e4bfa54062c56a2816c2"
+      ],
+      "termsEvidence": [
+        {
+          "inventory": "game/validation/generated/source_library_inventory.json",
+          "library": "Tilesets",
+          "path": "license.txt",
+          "sha256": "da5ca129716c7ee53d88425bc6e0ac4b616bd2ddda72c4a136c66ad66c11b156",
+          "scope": "The recorded Tilesets-root CC0 record is bound to this named child pack only; it is not treated as evidence for adjacent source roots."
+        }
+      ],
+      "creditEvidence": [
+        {
+          "inventory": "game/validation/generated/source_library_inventory.json",
+          "library": "Tilesets",
+          "path": "license.txt",
+          "sha256": "da5ca129716c7ee53d88425bc6e0ac4b616bd2ddda72c4a136c66ad66c11b156",
+          "requirement": "The recorded license states attribution is optional; retain this decision record even when no credit line is required."
+        }
+      ],
+      "decision": "distribution_confirmed",
+      "approvedBy": "product owner",
+      "approvalDate": "2026-07-23",
+      "rationale": "The owner confirmed that the supplied current licences cover distribution rights for this named pack and its runtime derivatives."
+    },
+    {
+      "id": "asterion-sci-fi-spaceship-interior-v1",
+      "world": "Asterion",
+      "canonicalPack": "Space Station Interior Tileset",
+      "runtimePack": "Sci-Fi Spaceship Interior Tileset Pack",
+      "termsEvidence": [
+        {
+          "inventory": "game/validation/generated/source_library_inventory.json",
+          "library": "Tilesets",
+          "path": "license.txt",
+          "sha256": "da5ca129716c7ee53d88425bc6e0ac4b616bd2ddda72c4a136c66ad66c11b156",
+          "scope": "The recorded Tilesets-root CC0 record is bound to this named child pack only; it is not treated as evidence for adjacent source roots."
+        }
+      ],
+      "creditEvidence": [
+        {
+          "inventory": "game/validation/generated/source_library_inventory.json",
+          "library": "Tilesets",
+          "path": "license.txt",
+          "sha256": "da5ca129716c7ee53d88425bc6e0ac4b616bd2ddda72c4a136c66ad66c11b156",
+          "requirement": "The recorded license states attribution is optional; retain this decision record even when no credit line is required."
+        }
+      ],
+      "decision": "distribution_confirmed",
+      "approvedBy": "product owner",
+      "approvalDate": "2026-07-23",
+      "rationale": "The owner confirmed that the supplied current licences cover distribution rights for the station pack and its runtime derivatives."
+    },
+    {
+      "id": "primeval-jurassic-and-stone-age-v1",
+      "world": "Primeval",
+      "canonicalPacks": ["Jurassic World Pixel Art Megapack", "Stone Age Modern Life Pixel Art Tileset Pack"],
+      "termsEvidence": [
+        {
+          "inventory": "game/validation/generated/source_library_inventory.json",
+          "library": "Tilesets",
+          "path": "license.txt",
+          "sha256": "da5ca129716c7ee53d88425bc6e0ac4b616bd2ddda72c4a136c66ad66c11b156",
+          "scope": "The recorded Tilesets-root CC0 record is bound to these named child packs only; it is not treated as evidence for adjacent source roots."
+        }
+      ],
+      "creditEvidence": [
+        {
+          "inventory": "game/validation/generated/source_library_inventory.json",
+          "library": "Tilesets",
+          "path": "license.txt",
+          "sha256": "da5ca129716c7ee53d88425bc6e0ac4b616bd2ddda72c4a136c66ad66c11b156",
+          "requirement": "The recorded license states attribution is optional; retain this decision record even when no credit line is required."
+        }
+      ],
+      "decision": "distribution_confirmed",
+      "approvedBy": "product owner",
+      "approvalDate": "2026-07-23",
+      "rationale": "The owner confirmed that the supplied current licences cover distribution rights for both named packs and their runtime derivatives."
+    }
+  ]
+}

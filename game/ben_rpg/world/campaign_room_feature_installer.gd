@@ -1,0 +1,153 @@
+class_name CampaignRoomFeatureInstaller
+extends RefCounted
+
+## Installs room-scoped contract nodes underneath an authored room scene. The
+## scene chooses this installer; bootstrap never manufactures room features.
+
+const ROOM_REGISTRY := preload("res://ben_rpg/world/campaign_room_registry.gd")
+const TRANSITION_ROUTER := preload("res://ben_rpg/world/campaign_transition_router.gd")
+const POPULATION_SCHEDULER := preload("res://ben_rpg/world/campaign_population_scheduler.gd")
+const POPULATION_ACTOR_FACTORY := preload("res://ben_rpg/world/campaign_population_actor_factory.gd")
+const MANSION_SAVE_POINT := preload("res://ben_rpg/world/mansion_save_point.tscn")
+const MANSION_CHAPTER_INTERACTION := preload("res://ben_rpg/world/mansion_chapter_interaction.tscn")
+const MANSION_CLUE_INTERACTION := preload("res://ben_rpg/world/mansion_clue_interaction.tscn")
+const MANSION_BOSS_INTERACTION := preload("res://ben_rpg/world/campaign_mansion_boss_interaction.tscn")
+const ASTERION_INTERACTION := preload("res://ben_rpg/world/asterion_interaction.tscn")
+const PRIMEVAL_INTERACTION := preload("res://ben_rpg/world/primeval_interaction.tscn")
+const HELIOS_INTERACTION := preload("res://ben_rpg/world/helios_interaction.tscn")
+const FROSTHOLD_INTERACTION := preload("res://ben_rpg/world/frosthold_interaction.tscn")
+const MOONPETAL_INTERACTION := preload("res://ben_rpg/world/moonpetal_interaction.tscn")
+const EMPYREAL_INTERACTION := preload("res://ben_rpg/world/empyreal_interaction.tscn")
+const UNIVERSE_TREASURE_INTERACTION := preload("res://ben_rpg/world/universe_treasure_interaction.tscn")
+
+const UNIVERSE_INTERACTION_SCENES := {
+	"heliosInteractions": HELIOS_INTERACTION,
+	"frostholdInteractions": FROSTHOLD_INTERACTION,
+	"moonpetalInteractions": MOONPETAL_INTERACTION,
+	"empyrealInteractions": EMPYREAL_INTERACTION,
+}
+
+
+static func install(root: Node2D, room_id: StringName, definition: Dictionary) -> void:
+	var interaction_layer := root.get_node_or_null("InteractionLayer") as Node2D
+	var actors_layer := root.get_node_or_null("YSortedActorsAndProps") as Node2D
+	if interaction_layer:
+		var interaction := Node2D.new()
+		interaction.name = "ManifestInteraction"
+		interaction.set_meta(&"anchor", definition.get("interactionAnchor", &"Icenter"))
+		interaction_layer.add_child(interaction)
+		for feature_id in definition.get("featureIds", []):
+			var feature := Node2D.new()
+			feature.name = "Feature_%s" % String(feature_id)
+			feature.set_meta(&"feature_id", StringName(feature_id))
+			interaction.add_child(feature)
+		for chapter_definition in definition.get("chapterInteractions", []):
+			var chapter_interaction := MANSION_CHAPTER_INTERACTION.instantiate()
+			chapter_interaction.name = String(chapter_definition.get("nodeName", "ManifestChapterInteraction"))
+			chapter_interaction.set("interaction_kind", StringName(chapter_definition.get("kind", &"")))
+			chapter_interaction.position = Vector2((chapter_definition.get("cell", Vector2i.ZERO) as Vector2i) * 48)
+			interaction_layer.add_child(chapter_interaction)
+		for clue_definition in definition.get("mansionClueInteractions", []):
+			var clue_interaction := MANSION_CLUE_INTERACTION.instantiate()
+			clue_interaction.name = String(clue_definition.get("nodeName", "ManifestMansionClue"))
+			clue_interaction.set("clue_kind", StringName(clue_definition.get("kind", &"")))
+			clue_interaction.position = Vector2((clue_definition.get("cell", Vector2i.ZERO) as Vector2i) * 48)
+			interaction_layer.add_child(clue_interaction)
+		for asterion_definition in definition.get("asterionInteractions", []):
+			var asterion_interaction := ASTERION_INTERACTION.instantiate()
+			var save_point_id := StringName(asterion_definition.get("savePointId", &""))
+			var anchor_cell: Vector2i = asterion_definition.get("cell", Vector2i.ZERO)
+			asterion_interaction.name = String(asterion_definition.get("nodeName", "AsterionInteraction"))
+			asterion_interaction.set("interaction_kind", StringName(asterion_definition.get("kind", &"")))
+			asterion_interaction.position = Vector2(anchor_cell * 48)
+			interaction_layer.add_child(asterion_interaction)
+			_register_save_point(definition, save_point_id, anchor_cell)
+		for primeval_definition in definition.get("primevalInteractions", []):
+			var primeval_interaction := PRIMEVAL_INTERACTION.instantiate()
+			var save_point_id := StringName(primeval_definition.get("savePointId", &""))
+			var anchor_cell: Vector2i = primeval_definition.get("cell", Vector2i.ZERO)
+			primeval_interaction.name = String(primeval_definition.get("nodeName", "PrimevalInteraction"))
+			primeval_interaction.set("interaction_kind", StringName(primeval_definition.get("kind", &"")))
+			primeval_interaction.position = Vector2(anchor_cell * 48)
+			interaction_layer.add_child(primeval_interaction)
+			_register_save_point(definition, save_point_id, anchor_cell)
+		for property_name in UNIVERSE_INTERACTION_SCENES:
+			_install_universe_interactions(interaction_layer, definition, property_name, UNIVERSE_INTERACTION_SCENES[property_name] as PackedScene)
+		for treasure_definition in definition.get("universeTreasures", []):
+			var treasure := UNIVERSE_TREASURE_INTERACTION.instantiate()
+			var treasure_cell: Vector2i = treasure_definition.get("cell", Vector2i.ZERO)
+			treasure.name = String(treasure_definition.get("nodeName", "ManifestUniverseTreasure"))
+			treasure.cache_id = StringName(treasure_definition.get("cacheId", &""))
+			treasure.area_id = "manifest:%s" % room_id
+			treasure.position = Vector2(treasure_cell * 48)
+			treasure.add_to_group(&"universe_treasure_cache")
+			interaction_layer.add_child(treasure)
+		for encounter_definition in definition.get("scriptedEncounters", []):
+			var encounter_interaction := MANSION_BOSS_INTERACTION.instantiate()
+			encounter_interaction.name = String(encounter_definition.get("nodeName", "ManifestScriptedEncounter"))
+			encounter_interaction.set("encounter_id", StringName(encounter_definition.get("encounterId", &"")))
+			encounter_interaction.set("defeated_flag", StringName(encounter_definition.get("defeatedFlag", &"")))
+			encounter_interaction.position = Vector2((encounter_definition.get("cell", Vector2i.ZERO) as Vector2i) * 48)
+			interaction_layer.add_child(encounter_interaction)
+		var boss_definition: Dictionary = definition.get("bossEncounter", {})
+		if not boss_definition.is_empty():
+			var boss_interaction := MANSION_BOSS_INTERACTION.instantiate()
+			boss_interaction.name = String(boss_definition.get("nodeName", "ManifestBoss"))
+			boss_interaction.set("encounter_id", StringName(boss_definition.get("encounterId", &"")))
+			boss_interaction.set("defeated_flag", StringName(boss_definition.get("defeatedFlag", &"")))
+			boss_interaction.position = Vector2((boss_definition.get("cell", Vector2i.ZERO) as Vector2i) * 48)
+			interaction_layer.add_child(boss_interaction)
+		var save_point_definition: Dictionary = definition.get("savePoint", {})
+		if not save_point_definition.is_empty():
+			var save_point := MANSION_SAVE_POINT.instantiate()
+			var save_point_id := StringName(save_point_definition.get("id", &""))
+			var anchor_cell: Vector2i = save_point_definition.get("cell", Vector2i.ZERO)
+			save_point.name = String(save_point_definition.get("nodeName", "ManifestSavePoint"))
+			save_point.set("save_point_id", save_point_id)
+			save_point.set("anchor_name", String(save_point_definition.get("anchorName", "anchor")))
+			save_point.position = Vector2(anchor_cell * 48)
+			interaction_layer.add_child(save_point)
+			_register_save_point(definition, save_point_id, anchor_cell)
+		for port in ROOM_REGISTRY.ports(room_id):
+			var route := TRANSITION_ROUTER.resolve(room_id, StringName(port.get("id", &"")))
+			if route.is_empty():
+				continue
+			var arrival := Node2D.new()
+			arrival.name = "SafeArrival_%s" % route["arrivalPort"]
+			arrival.position = Vector2(route["arrivalCell"]) * 48.0
+			interaction_layer.add_child(arrival)
+	if actors_layer:
+		var cohort := Node2D.new()
+		cohort.name = "PopulationCohort"
+		var reserved_cells := POPULATION_SCHEDULER.reserved_cells_for_room(room_id, definition)
+		var population_schedule := POPULATION_SCHEDULER.schedule(room_id, definition, reserved_cells)
+		cohort.set_meta(&"population_ids", definition.get("populationIds", []))
+		cohort.set_meta(&"population_anchors", definition.get("populationAnchors", []))
+		cohort.set_meta(&"reserved_cells", reserved_cells)
+		cohort.set_meta(&"assignments", population_schedule.get("assignments", []))
+		cohort.set_meta(&"unavailable_population_ids", population_schedule.get("unavailable", []))
+		for assignment in population_schedule.get("assignments", []):
+			if not assignment is Dictionary:
+				continue
+			var actor := POPULATION_ACTOR_FACTORY.create(assignment)
+			if actor:
+				cohort.add_child(actor)
+		actors_layer.add_child(cohort)
+
+
+static func _install_universe_interactions(interaction_layer: Node2D, definition: Dictionary, property_name: String, interaction_scene: PackedScene) -> void:
+	for interaction_definition in definition.get(property_name, []):
+		var interaction := interaction_scene.instantiate()
+		var anchor_cell: Vector2i = interaction_definition.get("cell", Vector2i.ZERO)
+		var save_point_id := StringName(interaction_definition.get("savePointId", &""))
+		interaction.name = String(interaction_definition.get("nodeName", "ManifestUniverseInteraction"))
+		interaction.set("interaction_kind", StringName(interaction_definition.get("kind", &"")))
+		interaction.position = Vector2(anchor_cell * 48)
+		interaction_layer.add_child(interaction)
+		_register_save_point(definition, save_point_id, anchor_cell)
+
+
+static func _register_save_point(definition: Dictionary, save_point_id: StringName, anchor_cell: Vector2i) -> void:
+	if save_point_id != &"":
+		var world_origin: Vector2i = definition.get("worldOrigin", Vector2i.ZERO)
+		CampaignState.register_runtime_save_point(save_point_id, world_origin + anchor_cell)

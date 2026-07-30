@@ -1,0 +1,46 @@
+[gd_scene load_steps=3 format=3]
+
+[ext_resource type="Script" path="res://ben_rpg/world/town_facility_interaction.gd" id="1_service"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_service"]
+radius = 7.0
+
+[node name="TownFacilityInteraction" type="Node2D"]
+script = ExtResource("1_service")
+
+[node name="InteractionArea2D" type="Area2D" parent="."]
+collision_layer = 16
+collision_mask = 8
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="InteractionArea2D"]
+shape = SubResource("CircleShape2D_service")
+
+[node name="Button" type="Button" parent="."]
+offset_left = -30.0
+offset_top = -56.0
+offset_right = 30.0
+offset_bottom = 18.0
+focus_mode = 0
+mouse_filter = 1
+flat = true
+
+[node name="ServiceMarker" type="Sprite2D" parent="."]
+position = Vector2(0, -42)
+scale = Vector2(0.8, 0.8)
+texture_filter = 1
+
+[node name="ServiceLabel" type="Label" parent="."]
+offset_left = -72.0
+offset_top = -28.0
+offset_right = 72.0
+offset_bottom = -12.0
+theme_override_colors/font_color = Color(1, 0.88, 0.55, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_offset_x = 2
+theme_override_constants/shadow_offset_y = 2
+theme_override_font_sizes/font_size = 10
+text = "SERVICE • INTERACT"
+horizontal_alignment = 1
+
+[connection signal="area_entered" from="InteractionArea2D" to="." method="_on_area_entered"]
+[connection signal="area_exited" from="InteractionArea2D" to="." method="_on_area_exited"]

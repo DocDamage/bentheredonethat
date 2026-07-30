@@ -1,0 +1,8 @@
+{
+  "schemaVersion": 1,
+  "default": "distribution_confirmed",
+  "approvedBy": "product owner",
+  "approvalDate": "2026-07-23",
+  "approvalScope": "All supplied workspace assets are covered by the main-folder license, including every child of assets/ and assets/Space Extra; runtime derivatives retain exact source and crop provenance.",
+  "assets": {}
+}

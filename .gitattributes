@@ -1,0 +1,7 @@
+# Keep text portable. Runtime art/audio is stored through Git LFS so clones do not
+# duplicate large binary history in normal Git objects.
+* text=auto eol=lf
+game/game_assets/**/*.png filter=lfs diff=lfs merge=lfs -text
+game/game_assets/**/*.gif filter=lfs diff=lfs merge=lfs -text
+game/game_assets/**/*.psd filter=lfs diff=lfs merge=lfs -text
+game/game_assets/**/*.mp3 filter=lfs diff=lfs merge=lfs -text

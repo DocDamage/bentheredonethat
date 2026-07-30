@@ -1,0 +1,12 @@
+{
+  "mcpServers": {
+    "godot-mcp-x": {
+      "command": "node",
+      "args": [
+        "<workspace>/.tools/godot-mcp-x/server/build/index.js",
+        "--mode",
+        "2d"
+      ]
+    }
+  }
+}

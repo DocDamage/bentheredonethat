@@ -1,0 +1,5345 @@
+{
+  "assets": [
+    {
+      "path": "res://addons/dialogic/Modules/Character/update_mirror.svg",
+      "profileCoverage": "external_dependency",
+      "profileIds": [],
+      "references": [
+        {
+          "file": "game/addons/dialogic/Modules/Character/event_character.gd",
+          "line": 434,
+          "resolution": "literal"
+        }
+      ],
+      "unprofiledClassification": "third_party_addon_ui"
+    },
+    {
+      "path": "res://addons/dialogic/Modules/Character/update_portrait.svg",
+      "profileCoverage": "external_dependency",
+      "profileIds": [],
+      "references": [
+        {
+          "file": "game/addons/dialogic/Modules/Character/event_character.gd",
+          "line": 378,
+          "resolution": "literal"
+        }
+      ],
+      "unprofiledClassification": "third_party_addon_ui"
+    },
+    {
+      "path": "res://addons/dialogic/Modules/Character/update_position.svg",
+      "profileCoverage": "external_dependency",
+      "profileIds": [],
+      "references": [
+        {
+          "file": "game/addons/dialogic/Modules/Character/event_character.gd",
+          "line": 387,
+          "resolution": "literal"
+        }
+      ],
+      "unprofiledClassification": "third_party_addon_ui"
+    },
+    {
+      "path": "res://addons/dialogic/Modules/Character/update_z_index.svg",
+      "profileCoverage": "external_dependency",
+      "profileIds": [],
+      "references": [
+        {
+          "file": "game/addons/dialogic/Modules/Character/event_character.gd",
+          "line": 431,
+          "resolution": "literal"
+        }
+      ],
+      "unprofiledClassification": "third_party_addon_ui"
+    },
+    {
+      "path": "res://addons/dialogic/Modules/Clear/clear_background.svg",
+      "profileCoverage": "external_dependency",
+      "profileIds": [],
+      "references": [
+        {
+          "file": "game/addons/dialogic/Modules/Clear/event_clear.gd",
+          "line": 116,
+          "resolution": "literal"
+        }
+      ],
+      "unprofiledClassification": "third_party_addon_ui"
+    },
+    {
+      "path": "res://addons/dialogic/Modules/Clear/clear_characters.svg",
+      "profileCoverage": "external_dependency",
+      "profileIds": [],
+      "references": [
+        {
+          "file": "game/addons/dialogic/Modules/Clear/event_clear.gd",
+          "line": 115,
+          "resolution": "literal"
+        }
+      ],
+      "unprofiledClassification": "third_party_addon_ui"
+    },
+    {
+      "path": "res://addons/dialogic/Modules/Clear/clear_music.svg",
+      "profileCoverage": "external_dependency",
+      "profileIds": [],
+      "references": [
+        {
+          "file": "game/addons/dialogic/Modules/Clear/event_clear.gd",
+          "line": 117,
+          "resolution": "literal"
+        }
+      ],
+      "unprofiledClassification": "third_party_addon_ui"
+    },
+    {
+      "path": "res://addons/dialogic/Modules/Clear/clear_positions.svg",
+      "profileCoverage": "external_dependency",
+      "profileIds": [],
+      "references": [
+        {
+          "file": "game/addons/dialogic/Modules/Clear/event_clear.gd",
+          "line": 119,
+          "resolution": "literal"
+        }
+      ],
+      "unprofiledClassification": "third_party_addon_ui"
+    },
+    {
+      "path": "res://addons/dialogic/Modules/Clear/clear_style.svg",
+      "profileCoverage": "external_dependency",
+      "profileIds": [],
+      "references": [
+        {
+          "file": "game/addons/dialogic/Modules/Clear/event_clear.gd",
+          "line": 118,
+          "resolution": "literal"
+        }
+      ],
+      "unprofiledClassification": "third_party_addon_ui"
+    },
+    {
+      "path": "res://addons/dialogic/Modules/Clear/clear_textbox.svg",
+      "profileCoverage": "external_dependency",
+      "profileIds": [],
+      "references": [
+        {
+          "file": "game/addons/dialogic/Modules/Clear/event_clear.gd",
+          "line": 114,
+          "resolution": "literal"
+        }
+      ],
+      "unprofiledClassification": "third_party_addon_ui"
+    },
+    {
+      "path": "res://addons/dialogic/Modules/DefaultLayoutParts/Layer_VN_Textbox/next.svg",
+      "profileCoverage": "external_dependency",
+      "profileIds": [],
+      "references": [
+        {
+          "file": "game/addons/dialogic/Modules/DefaultLayoutParts/Layer_VN_Textbox/vn_textbox_layer.tscn",
+          "line": 10,
+          "resolution": "literal"
+        }
+      ],
+      "unprofiledClassification": "third_party_addon_ui"
+    },
+    {
+      "path": "res://assets/gui/emotes/emote__.png",
+      "profileCoverage": "profiled",
+      "profileIds": [
+        "interaction_emote_empty"
+      ],
+      "references": [
+        {
+          "file": "game/ben_rpg/visual_assets/visual_profiles.json",
+          "line": 1880,
+          "profileId": "interaction_emote_empty",
+          "resolution": "profile_runtime_texture"
+        }
+      ]
+    },
+    {
+      "path": "res://assets/gui/emotes/emote_combat.png",
+      "profileCoverage": "profiled",
+      "profileIds": [
+        "interaction_emote_combat"
+      ],
+      "references": [
+        {
+          "file": "game/ben_rpg/visual_assets/visual_profiles.json",
+          "line": 1881,
+          "profileId": "interaction_emote_combat",
+          "resolution": "profile_runtime_texture"
+        }
+      ]
+    },
+    {
+      "path": "res://assets/gui/emotes/emote_exclamations.png",
+      "profileCoverage": "profiled",
+      "profileIds": [
+        "interaction_emote_exclamation"
+      ],
+      "references": [
+        {
+          "file": "game/ben_rpg/visual_assets/visual_profiles.json",
+          "line": 1882,
+          "profileId": "interaction_emote_exclamation",
+          "resolution": "profile_runtime_texture"
+        }
+      ]
+    },
+    {
+      "path": "res://assets/gui/emotes/emote_question.png",
+      "profileCoverage": "profiled",
+      "profileIds": [
+        "interaction_emote_question"
+      ],
+      "references": [
+        {
+          "file": "game/ben_rpg/visual_assets/visual_profiles.json",
+          "line": 1883,
+          "profileId": "interaction_emote_question",
+          "resolution": "profile_runtime_texture"
+        }
+      ]
+    },
+    {
+      "path": "res://ben_rpg/visual_assets/derived/af01_dust_hunter_east.png",
+      "profileCoverage": "profiled",
+      "profileIds": [
+        "af01_dust_hunter_east"
+      ],
+      "references": [
+        {
+          "file": "game/ben_rpg/visual_assets/visual_profiles.json",
+          "line": 2117,
+          "profileId": "af01_dust_hunter_east",
+          "resolution": "profile_runtime_texture"
+        }
+      ]
+    },
+    {
+      "path": "res://ben_rpg/visual_assets/derived/af01_dust_hunter_north-east.png",
+      "profileCoverage": "profiled",
+      "profileIds": [
+        "af01_dust_hunter_north-east"
+      ],
+      "references": [
+        {
+          "file": "game/ben_rpg/visual_assets/visual_profiles.json",
+          "line": 2128,
+          "profileId": "af01_dust_hunter_north-east",
+          "resolution": "profile_runtime_texture"
+        }
+      ]
+    },
+    {
+      "path": "res://ben_rpg/visual_assets/derived/af01_dust_hunter_north-west.png",
+      "profileCoverage": "profiled",
+      "profileIds": [
+        "af01_dust_hunter_north-west"
+      ],
+      "references": [
+        {
+          "file": "game/ben_rpg/visual_assets/visual_profiles.json",
+          "line": 2139,
+          "profileId": "af01_dust_hunter_north-west",
+          "resolution": "profile_runtime_texture"
+        }
+      ]
+    },
+    {
+      "path": "res://ben_rpg/visual_assets/derived/af01_dust_hunter_north.png",
+      "profileCoverage": "profiled",
+      "profileIds": [
+        "af01_dust_hunter_north"
+      ],
+      "references": [
+        {
+          "file": "game/ben_rpg/visual_assets/visual_profiles.json",
+          "line": 2150,
+          "profileId": "af01_dust_hunter_north",
+          "resolution": "profile_runtime_texture"
+        }
+      ]
+    },
+    {
+      "path": "res://ben_rpg/visual_assets/derived/af01_dust_hunter_south-east.png",
+      "profileCoverage": "profiled",
+      "profileIds": [
+        "af01_dust_hunter_south-east"
+      ],
+      "references": [
+        {
+          "file": "game/ben_rpg/visual_assets/visual_profiles.json",
+          "line": 2161,
+          "profileId": "af01_dust_hunter_south-east",
+          "resolution": "profile_runtime_texture"
+        }
+      ]
+    },
+    {
+      "path": "res://ben_rpg/visual_assets/derived/af01_dust_hunter_south-west.png",
+      "profileCoverage": "profiled",
+      "profileIds": [
+        "af01_dust_hunter_south-west"
+      ],
+      "references": [
+        {
+          "file": "game/ben_rpg/visual_assets/visual_profiles.json",
+          "line": 2172,
+          "profileId": "af01_dust_hunter_south-west",
+          "resolution": "profile_runtime_texture"
+        }
+      ]
+    },
+    {
+      "path": "res://ben_rpg/visual_assets/derived/af01_dust_hunter_south.png",
+      "profileCoverage": "profiled",
+      "profileIds": [
+        "af01_dust_hunter_south"
+      ],
+      "references": [
+        {
+          "file": "game/ben_rpg/visual_assets/visual_profiles.json",
+          "line": 2183,
+          "profileId": "af01_dust_hunter_south",
+          "resolution": "profile_runtime_texture"
+        }
+      ]
+    },
+    {
+      "path": "res://ben_rpg/visual_assets/derived/af01_dust_hunter_west.png",
+      "profileCoverage": "profiled",
+      "profileIds": [
+        "af01_dust_hunter_west"
+      ],
+      "references": [
+        {
+          "file": "game/ben_rpg/visual_assets/visual_profiles.json",
+          "line": 2194,
+          "profileId": "af01_dust_hunter_west",
+          "resolution": "profile_runtime_texture"
+        }
+      ]
+    },
+    {
+      "path": "res://ben_rpg/visual_assets/derived/af01_iron_sentinel_east.png",
+      "profileCoverage": "profiled",
+      "profileIds": [
+        "af01_iron_sentinel_east"
+      ],
+      "references": [
+        {
+          "file": "game/ben_rpg/visual_assets/visual_profiles.json",
+          "line": 2205,
+          "profileId": "af01_iron_sentinel_east",
+          "resolution": "profile_runtime_texture"
+        }
+      ]
+    },
+    {
+      "path": "res://ben_rpg/visual_assets/derived/af01_iron_sentinel_north-east.png",
+      "profileCoverage": "profiled",
+      "profileIds": [
+        "af01_iron_sentinel_north-east"
+      ],
+      "references": [
+        {
+          "file": "game/ben_rpg/visual_assets/visual_profiles.json",
+          "line": 2216,
+          "profileId": "af01_iron_sentinel_north-east",
+          "resolution": "profile_runtime_texture"
+        }
+      ]
+    },
+    {
+      "path": "res://ben_rpg/visual_assets/derived/af01_iron_sentinel_north-west.png",
+      "profileCoverage": "profiled",
+      "profileIds": [
+        "af01_iron_sentinel_north-west"
+      ],
+      "references": [
+        {
+          "file": "game/ben_rpg/visual_assets/visual_profiles.json",
+          "line": 2227,
+          "profileId": "af01_iron_sentinel_north-west",
+          "resolution": "profile_runtime_texture"
+        }
+      ]
+    },
+    {
+      "path": "res://ben_rpg/visual_assets/derived/af01_iron_sentinel_north.png",
+      "profileCoverage": "profiled",
+      "profileIds": [
+        "af01_iron_sentinel_north"
+      ],
+      "references": [
+        {
+          "file": "game/ben_rpg/visual_assets/visual_profiles.json",
+          "line": 2238,
+          "profileId": "af01_iron_sentinel_north",
+          "resolution": "profile_runtime_texture"
+        }
+      ]
+    },
+    {
+      "path": "res://ben_rpg/visual_assets/derived/af01_iron_sentinel_south-east.png",
+      "profileCoverage": "profiled",
+      "profileIds": [
+        "af01_iron_sentinel_south-east"
+      ],
+      "references": [
+        {
+          "file": "game/ben_rpg/visual_assets/visual_profiles.json",
+          "line": 2249,
+          "profileId": "af01_iron_sentinel_south-east",
+          "resolution": "profile_runtime_texture"
+        }
+      ]
+    },
+    {
+      "path": "res://ben_rpg/visual_assets/derived/af01_iron_sentinel_south-west.png",
+      "profileCoverage": "profiled",
+      "profileIds": [
+        "af01_iron_sentinel_south-west"
+      ],
+      "references": [
+        {
+          "file": "game/ben_rpg/visual_assets/visual_profiles.json",
+          "line": 2260,
+          "profileId": "af01_iron_sentinel_south-west",
+          "resolution": "profile_runtime_texture"
+        }
+      ]
+    },
+    {
+      "path": "res://ben_rpg/visual_assets/derived/af01_iron_sentinel_south.png",
+      "profileCoverage": "profiled",
+      "profileIds": [
+        "af01_iron_sentinel_south"
+      ],
+      "references": [
+        {
+          "file": "game/ben_rpg/visual_assets/visual_profiles.json",
+          "line": 2271,
+          "profileId": "af01_iron_sentinel_south",
+          "resolution": "profile_runtime_texture"
+        }
+      ]
+    },
+    {
+      "path": "res://ben_rpg/visual_assets/derived/af01_iron_sentinel_west.png",
+      "profileCoverage": "profiled",
+      "profileIds": [
+        "af01_iron_sentinel_west"
+      ],
+      "references": [
+        {
+          "file": "game/ben_rpg/visual_assets/visual_profiles.json",
+          "line": 2282,
+          "profileId": "af01_iron_sentinel_west",
+          "resolution": "profile_runtime_texture"
+        }
+      ]
+    },
+    {
+      "path": "res://ben_rpg/visual_assets/derived/af01_scrap_kid_east.png",
+      "profileCoverage": "profiled",
+      "profileIds": [
+        "af01_scrap_kid_east"
+      ],
+      "references": [
+        {
+          "file": "game/ben_rpg/visual_assets/visual_profiles.json",
+          "line": 2029,
+          "profileId": "af01_scrap_kid_east",
+          "resolution": "profile_runtime_texture"
+        }
+      ]
+    },
+    {
+      "path": "res://ben_rpg/visual_assets/derived/af01_scrap_kid_north-east.png",
+      "profileCoverage": "profiled",
+      "profileIds": [
+        "af01_scrap_kid_north-east"
+      ],
+      "references": [
+        {
+          "file": "game/ben_rpg/visual_assets/visual_profiles.json",
+          "line": 2040,
+          "profileId": "af01_scrap_kid_north-east",
+          "resolution": "profile_runtime_texture"
+        }
+      ]
+    },
+    {
+      "path": "res://ben_rpg/visual_assets/derived/af01_scrap_kid_north-west.png",
+      "profileCoverage": "profiled",
+      "profileIds": [
+        "af01_scrap_kid_north-west"
+      ],
+      "references": [
+        {
+          "file": "game/ben_rpg/visual_assets/visual_profiles.json",
+          "line": 2051,
+          "profileId": "af01_scrap_kid_north-west",
+          "resolution": "profile_runtime_texture"
+        }
+      ]
+    },
+    {
+      "path": "res://ben_rpg/visual_assets/derived/af01_scrap_kid_north.png",
+      "profileCoverage": "profiled",
+      "profileIds": [
+        "af01_scrap_kid_north"
+      ],
+      "references": [
+        {
+          "file": "game/ben_rpg/visual_assets/visual_profiles.json",
+          "line": 2062,
+          "profileId": "af01_scrap_kid_north",
+          "resolution": "profile_runtime_texture"
+        }
+      ]
+    },
+    {
+      "path": "res://ben_rpg/visual_assets/derived/af01_scrap_kid_south-east.png",
+      "profileCoverage": "profiled",
+      "profileIds": [
+        "af01_scrap_kid_south-east"
+      ],
+      "references": [
+        {
+          "file": "game/ben_rpg/visual_assets/visual_profiles.json",
+          "line": 2073,
+          "profileId": "af01_scrap_kid_south-east",
+          "resolution": "profile_runtime_texture"
+        }
+      ]
+    },
+    {
+      "path": "res://ben_rpg/visual_assets/derived/af01_scrap_kid_south-west.png",
+      "profileCoverage": "profiled",
+      "profileIds": [
+        "af01_scrap_kid_south-west"
+      ],
+      "references": [
+        {
+          "file": "game/ben_rpg/visual_assets/visual_profiles.json",
+          "line": 2084,
+          "profileId": "af01_scrap_kid_south-west",
+          "resolution": "profile_runtime_texture"
+        }
+      ]
+    },
+    {
+      "path": "res://ben_rpg/visual_assets/derived/af01_scrap_kid_south.png",
+      "profileCoverage": "profiled",
+      "profileIds": [
+        "af01_scrap_kid_south"
+      ],
+      "references": [
+        {
+          "file": "game/ben_rpg/visual_assets/visual_profiles.json",
+          "line": 2095,
+          "profileId": "af01_scrap_kid_south",
+          "resolution": "profile_runtime_texture"
+        }
+      ]
+    },
+    {
+      "path": "res://ben_rpg/visual_assets/derived/af01_scrap_kid_west.png",
+      "profileCoverage": "profiled",
+      "profileIds": [
+        "af01_scrap_kid_west"
+      ],
+      "references": [
+        {
+          "file": "game/ben_rpg/visual_assets/visual_profiles.json",
+          "line": 2106,
+          "profileId": "af01_scrap_kid_west",
+          "resolution": "profile_runtime_texture"
+        }
+      ]
+    },
+    {
+      "path": "res://ben_rpg/visual_assets/derived/ashfall_cinder_gate_air_beacon.png",
+      "profileCoverage": "profiled",
+      "profileIds": [
+        "ashfall_cinder_gate_air_beacon"
+      ],
+      "references": [
+        {
+          "file": "game/ben_rpg/visual_assets/visual_profiles.json",
+          "line": 1985,
+          "profileId": "ashfall_cinder_gate_air_beacon",
+          "resolution": "profile_runtime_texture"
+        }
+      ]
+    },
+    {
+      "path": "res://ben_rpg/visual_assets/derived/ashfall_cinder_gate_barricade.png",
+      "profileCoverage": "profiled",
+      "profileIds": [
+        "ashfall_cinder_gate_barricade"
+      ],
+      "references": [
+        {
+          "file": "game/ben_rpg/visual_assets/visual_profiles.json",
+          "line": 1974,
+          "profileId": "ashfall_cinder_gate_barricade",
+          "resolution": "profile_runtime_texture"
+        }
+      ]
+    },
+    {
+      "path": "res://ben_rpg/visual_assets/derived/ashfall_cinder_gate_battle_backdrop.png",
+      "profileCoverage": "profiled",
+      "profileIds": [
+        "ashfall_cinder_gate_battle_backdrop"
+      ],
+      "references": [
+        {
+          "file": "game/ben_rpg/visual_assets/visual_profiles.json",
+          "line": 2007,
+          "profileId": "ashfall_cinder_gate_battle_backdrop",
+          "resolution": "profile_runtime_texture"
+        }
+      ]
+    },
+    {
+      "path": "res://ben_rpg/visual_assets/derived/ashfall_cinder_gate_dead_tree.png",
+      "profileCoverage": "profiled",
+      "profileIds": [
+        "ashfall_cinder_gate_dead_tree"
+      ],
+      "references": [
+        {
+          "file": "game/ben_rpg/visual_assets/visual_profiles.json",
+          "line": 1952,
+          "profileId": "ashfall_cinder_gate_dead_tree",
+          "resolution": "profile_runtime_texture"
+        }
+      ]
+    },
+    {
+      "path": "res://ben_rpg/visual_assets/derived/ashfall_cinder_gate_filter_cache.png",
+      "profileCoverage": "profiled",
+      "profileIds": [
+        "ashfall_cinder_gate_filter_cache"
+      ],
+      "references": [
+        {
+          "file": "game/ben_rpg/visual_assets/visual_profiles.json",
+          "line": 1996,
+          "profileId": "ashfall_cinder_gate_filter_cache",
+          "resolution": "profile_runtime_texture"
+        }
+      ]
+    },
+    {
+      "path": "res://ben_rpg/visual_assets/derived/ashfall_cinder_gate_ground.png",
+      "profileCoverage": "profiled",
+      "profileIds": [
+        "ashfall_cinder_gate_ground"
+      ],
+      "references": [
+        {
+          "file": "game/ben_rpg/visual_assets/visual_profiles.json",
+          "line": 1963,
+          "profileId": "ashfall_cinder_gate_ground",
+          "resolution": "profile_runtime_texture"
+        }
+      ]
+    },
+    {
+      "path": "res://ben_rpg/visual_assets/derived/frosthold_blue_torch.png",
+      "profileCoverage": "profiled",
+      "profileIds": [
+        "frosthold_blue_torch"
+      ],
+      "references": [
+        {
+          "file": "game/ben_rpg/visual_assets/visual_profiles.json",
+          "line": 439,
+          "profileId": "frosthold_blue_torch",
+          "resolution": "profile_runtime_texture"
+        }
+      ]
+    },
+    {
+      "path": "res://ben_rpg/visual_assets/derived/town_library_facade.png",
+      "profileCoverage": "profiled",
+      "profileIds": [
+        "town_library_facade"
+      ],
+      "references": [
+        {
+          "file": "game/ben_rpg/visual_assets/visual_profiles.json",
+          "line": 31,
+          "profileId": "town_library_facade",
+          "resolution": "profile_runtime_texture"
+        }
+      ]
+    },
+    {
+      "path": "res://combat/arenas/steppes.png",
+      "profileCoverage": "profiled",
+      "profileIds": [
+        "legacy_steppes_battle_backdrop"
+      ],
+      "references": [
+        {
+          "file": "game/ben_rpg/visual_assets/visual_profiles.json",
+          "line": 1931,
+          "profileId": "legacy_steppes_battle_backdrop",
+          "resolution": "profile_runtime_texture"
+        }
+      ]
+    },
+    {
+      "path": "res://combat/battlers/bear/bear.png",
+      "profileCoverage": "profiled",
+      "profileIds": [
+        "legacy_bear_battle_actor"
+      ],
+      "references": [
+        {
+          "file": "game/ben_rpg/visual_assets/visual_profiles.json",
+          "line": 1932,
+          "profileId": "legacy_bear_battle_actor",
+          "resolution": "profile_runtime_texture"
+        }
+      ]
+    },
+    {
+      "path": "res://combat/battlers/bugcat/bugcat.png",
+      "profileCoverage": "profiled",
+      "profileIds": [
+        "legacy_bugcat_battle_actor"
+      ],
+      "references": [
+        {
+          "file": "game/ben_rpg/visual_assets/visual_profiles.json",
+          "line": 1933,
+          "profileId": "legacy_bugcat_battle_actor",
+          "resolution": "profile_runtime_texture"
+        }
+      ]
+    },
+    {
+      "path": "res://combat/battlers/squirrel/squirrel.png",
+      "profileCoverage": "profiled",
+      "profileIds": [
+        "legacy_squirrel_battle_actor"
+      ],
+      "references": [
+        {
+          "file": "game/ben_rpg/visual_assets/visual_profiles.json",
+          "line": 1934,
+          "profileId": "legacy_squirrel_battle_actor",
+          "resolution": "profile_runtime_texture"
+        }
+      ]
+    },
+    {
+      "path": "res://combat/battlers/wolf/wolf.png",
+      "profileCoverage": "profiled",
+      "profileIds": [
+        "legacy_wolf_battle_actor"
+      ],
+      "references": [
+        {
+          "file": "game/ben_rpg/visual_assets/visual_profiles.json",
+          "line": 1935,
+          "profileId": "legacy_wolf_battle_actor",
+          "resolution": "profile_runtime_texture"
+        }
+      ]
+    },
+    {
+      "path": "res://game_assets/Tilesets/Ancient Greek Mythology/1. Marble floor tiles.png",
+      "profileCoverage": "profiled",
+      "profileIds": [
+        "empyreal_aerie_battle_backdrop",
+        "empyreal_forum_battle_backdrop",
+        "empyreal_garden_battle_backdrop",
+        "empyreal_landing_battle_backdrop",
+        "empyreal_tribunal_battle_backdrop",
+        "empyreal_upper_aerie_battle_backdrop"
+      ],
+      "references": [
+        {
+          "file": "game/ben_rpg/visual_assets/visual_profiles.json",
+          "line": 1559,
+          "profileId": "empyreal_landing_battle_backdrop",
+          "resolution": "profile_runtime_texture"
+        },
+        {
+          "file": "game/ben_rpg/visual_assets/visual_profiles.json",
+          "line": 1566,
+          "profileId": "empyreal_garden_battle_backdrop",
+          "resolution": "profile_runtime_texture"
+        },
+        {
+          "file": "game/ben_rpg/visual_assets/visual_profiles.json",
+          "line": 1573,
+          "profileId": "empyreal_forum_battle_backdrop",
+          "resolution": "profile_runtime_texture"
+        },
+        {
+          "file": "game/ben_rpg/visual_assets/visual_profiles.json",
+          "line": 1580,
+          "profileId": "empyreal_aerie_battle_backdrop",
+          "resolution": "profile_runtime_texture"
+        },
+        {
+          "file": "game/ben_rpg/visual_assets/visual_profiles.json",
+          "line": 1587,
+          "profileId": "empyreal_upper_aerie_battle_backdrop",
+          "resolution": "profile_runtime_texture"
+        },
+        {
+          "file": "game/ben_rpg/visual_assets/visual_profiles.json",
+          "line": 1594,
+          "profileId": "empyreal_tribunal_battle_backdrop",
+          "resolution": "profile_runtime_texture"
+        }
+      ]
+    },
+    {
+      "path": "res://game_assets/Tilesets/Ancient Greek Mythology/Sliced/appeal_fountain.png",
+      "profileCoverage": "profiled",
+      "profileIds": [
+        "empyreal_appeal_fountain"
+      ],
+      "references": [
+        {
+          "file": "game/ben_rpg/visual_assets/visual_profiles.json",
+          "line": 1340,
+          "profileId": "empyreal_appeal_fountain",
+          "resolution": "profile_runtime_texture"
+        }
+      ]
+    },
+    {
+      "path": "res://game_assets/Tilesets/Ancient Greek Mythology/Sliced/belfry_building.png",
+      "profileCoverage": "profiled",
+      "profileIds": [
+        "belfry_building"
+      ],
+      "references": [
+        {
+          "file": "game/ben_rpg/visual_assets/visual_profiles.json",
+          "line": 889,
+          "profileId": "belfry_building",
+          "resolution": "profile_runtime_texture"
+        }
+      ]
+    },
+    {
+      "path": "res://game_assets/Tilesets/Ancient Greek Mythology/Sliced/blue_balustrade.png",
+      "profileCoverage": "profiled",
+      "profileIds": [
+        "empyreal_blue_balustrade"
+      ],
+      "references": [
+        {
+          "file": "game/ben_rpg/visual_assets/visual_profiles.json",
+          "line": 1315,
+          "profileId": "empyreal_blue_balustrade",
+          "resolution": "profile_runtime_texture"
+        }
+      ]
+    },
+    {
+      "path": "res://game_assets/Tilesets/Ancient Greek Mythology/Sliced/blue_column.png",
+      "profileCoverage": "profiled",
+      "profileIds": [
+        "empyreal_blue_column"
+      ],
+      "references": [
+        {
+          "file": "game/ben_rpg/visual_assets/visual_profiles.json",
+          "line": 1360,
+          "profileId": "empyreal_blue_column",
+          "resolution": "profile_runtime_texture"
+        }
+      ]
+    },
+    {
+      "path": "res://game_assets/Tilesets/Ancient Greek Mythology/Sliced/crystal_altar.png",
+      "profileCoverage": "profiled",
+      "profileIds": [
+        "empyreal_crystal_altar"
+      ],
+      "references": [
+        {
+          "file": "game/ben_rpg/visual_assets/visual_profiles.json",
+          "line": 1385,
+          "profileId": "empyreal_crystal_altar",
+          "resolution": "profile_runtime_texture"
+        }
+      ]
+    },
+    {
+      "path": "res://game_assets/Tilesets/Ancient Greek Mythology/Sliced/flower_offering.png",
+      "profileCoverage": "profiled",
+      "profileIds": [
+        "empyreal_flower_offering"
+      ],
+      "references": [
+        {
+          "file": "game/ben_rpg/visual_assets/visual_profiles.json",
+          "line": 1345,
+          "profileId": "empyreal_flower_offering",
+          "resolution": "profile_runtime_texture"
+        }
+      ]
+    },
+    {
+      "path": "res://game_assets/Tilesets/Ancient Greek Mythology/Sliced/fruit_offering.png",
+      "profileCoverage": "profiled",
+      "profileIds": [
+        "empyreal_fruit_offering"
+      ],
+      "references": [
+        {
+          "file": "game/ben_rpg/visual_assets/visual_profiles.json",
+          "line": 1350,
+          "profileId": "empyreal_fruit_offering",
+          "resolution": "profile_runtime_texture"
+        }
+      ]
+    },
+    {
+      "path": "res://game_assets/Tilesets/Ancient Greek Mythology/Sliced/golden_olive_tree.png",
+      "profileCoverage": "profiled",
+      "profileIds": [
+        "empyreal_golden_olive_tree"
+      ],
+      "references": [
+        {
+          "file": "game/ben_rpg/visual_assets/visual_profiles.json",
+          "line": 1335,
+          "profileId": "empyreal_golden_olive_tree",
+          "resolution": "profile_runtime_texture"
+        }
+      ]
+    },
+    {
+      "path": "res://game_assets/Tilesets/Ancient Greek Mythology/Sliced/gravity_crystal.png",
+      "profileCoverage": "profiled",
+      "profileIds": [
+        "empyreal_gravity_crystal"
+      ],
+      "references": [
+        {
+          "file": "game/ben_rpg/visual_assets/visual_profiles.json",
+          "line": 1395,
+          "profileId": "empyreal_gravity_crystal",
+          "resolution": "profile_runtime_texture"
+        }
+      ]
+    },
+    {
+      "path": "res://game_assets/Tilesets/Ancient Greek Mythology/Sliced/griffin_statue.png",
+      "profileCoverage": "profiled",
+      "profileIds": [
+        "empyreal_griffin_statue"
+      ],
+      "references": [
+        {
+          "file": "game/ben_rpg/visual_assets/visual_profiles.json",
+          "line": 1375,
+          "profileId": "empyreal_griffin_statue",
+          "resolution": "profile_runtime_texture"
+        }
+      ]
+    },
+    {
+      "path": "res://game_assets/Tilesets/Ancient Greek Mythology/Sliced/horse_statue.png",
+      "profileCoverage": "profiled",
+      "profileIds": [
+        "empyreal_horse_statue"
+      ],
+      "references": [
+        {
+          "file": "game/ben_rpg/visual_assets/visual_profiles.json",
+          "line": 1370,
+          "profileId": "empyreal_horse_statue",
+          "resolution": "profile_runtime_texture"
+        }
+      ]
+    },
+    {
+      "path": "res://game_assets/Tilesets/Ancient Greek Mythology/Sliced/justice_statue.png",
+      "profileCoverage": "profiled",
+      "profileIds": [
+        "empyreal_justice_statue"
+      ],
+      "references": [
+        {
+          "file": "game/ben_rpg/visual_assets/visual_profiles.json",
+          "line": 1405,
+          "profileId": "empyreal_justice_statue",
+          "resolution": "profile_runtime_texture"
+        }
+      ]
+    },
+    {
+      "path": "res://game_assets/Tilesets/Ancient Greek Mythology/Sliced/lotus_altar.png",
+      "profileCoverage": "profiled",
+      "profileIds": [
+        "empyreal_lotus_altar"
+      ],
+      "references": [
+        {
+          "file": "game/ben_rpg/visual_assets/visual_profiles.json",
+          "line": 1390,
+          "profileId": "empyreal_lotus_altar",
+          "resolution": "profile_runtime_texture"
+        }
+      ]
+    },
+    {
+      "path": "res://game_assets/Tilesets/Ancient Greek Mythology/Sliced/marble_cracked.png",
+      "profileCoverage": "profiled",
+      "profileIds": [
+        "empyreal_marble_cracked_tile"
+      ],
+      "references": [
+        {
+          "file": "game/ben_rpg/visual_assets/visual_profiles.json",
+          "line": 1305,
+          "profileId": "empyreal_marble_cracked_tile",
+          "resolution": "profile_runtime_texture"
+        }
+      ]
+    },
+    {
+      "path": "res://game_assets/Tilesets/Ancient Greek Mythology/Sliced/marble_gold_quarter.png",
+      "profileCoverage": "profiled",
+      "profileIds": [
+        "empyreal_marble_gold_quarter_tile"
+      ],
+      "references": [
+        {
+          "file": "game/ben_rpg/visual_assets/visual_profiles.json",
+          "line": 1310,
+          "profileId": "empyreal_marble_gold_quarter_tile",
+          "resolution": "profile_runtime_texture"
+        }
+      ]
+    },
+    {
+      "path": "res://game_assets/Tilesets/Ancient Greek Mythology/Sliced/marble_plain.png",
+      "profileCoverage": "profiled",
+      "profileIds": [
+        "empyreal_marble_plain_tile"
+      ],
+      "references": [
+        {
+          "file": "game/ben_rpg/visual_assets/visual_profiles.json",
+          "line": 1300,
+          "profileId": "empyreal_marble_plain_tile",
+          "resolution": "profile_runtime_texture"
+        }
+      ]
+    },
+    {
+      "path": "res://game_assets/Tilesets/Ancient Greek Mythology/Sliced/music_statue.png",
+      "profileCoverage": "profiled",
+      "profileIds": [
+        "empyreal_music_statue"
+      ],
+      "references": [
+        {
+          "file": "game/ben_rpg/visual_assets/visual_profiles.json",
+          "line": 1410,
+          "profileId": "empyreal_music_statue",
+          "resolution": "profile_runtime_texture"
+        }
+      ]
+    },
+    {
+      "path": "res://game_assets/Tilesets/Ancient Greek Mythology/Sliced/ordinance_book.png",
+      "profileCoverage": "profiled",
+      "profileIds": [
+        "empyreal_ordinance_book"
+      ],
+      "references": [
+        {
+          "file": "game/ben_rpg/visual_assets/visual_profiles.json",
+          "line": 1365,
+          "profileId": "empyreal_ordinance_book",
+          "resolution": "profile_runtime_texture"
+        }
+      ]
+    },
+    {
+      "path": "res://game_assets/Tilesets/Ancient Greek Mythology/Sliced/pediment_door.png",
+      "profileCoverage": "profiled",
+      "profileIds": [
+        "empyreal_pediment_door"
+      ],
+      "references": [
+        {
+          "file": "game/ben_rpg/visual_assets/visual_profiles.json",
+          "line": 1320,
+          "profileId": "empyreal_pediment_door",
+          "resolution": "profile_runtime_texture"
+        }
+      ]
+    },
+    {
+      "path": "res://game_assets/Tilesets/Ancient Greek Mythology/Sliced/plain_column.png",
+      "profileCoverage": "profiled",
+      "profileIds": [
+        "empyreal_plain_column"
+      ],
+      "references": [
+        {
+          "file": "game/ben_rpg/visual_assets/visual_profiles.json",
+          "line": 1355,
+          "profileId": "empyreal_plain_column",
+          "resolution": "profile_runtime_texture"
+        }
+      ]
+    },
+    {
+      "path": "res://game_assets/Tilesets/Ancient Greek Mythology/Sliced/reliquary_portal.png",
+      "profileCoverage": "profiled",
+      "profileIds": [
+        "empyreal_reliquary_portal"
+      ],
+      "references": [
+        {
+          "file": "game/ben_rpg/visual_assets/visual_profiles.json",
+          "line": 1380,
+          "profileId": "empyreal_reliquary_portal",
+          "resolution": "profile_runtime_texture"
+        }
+      ]
+    },
+    {
+      "path": "res://game_assets/Tilesets/Ancient Greek Mythology/Sliced/silver_olive_tree.png",
+      "profileCoverage": "profiled",
+      "profileIds": [
+        "empyreal_silver_olive_tree"
+      ],
+      "references": [
+        {
+          "file": "game/ben_rpg/visual_assets/visual_profiles.json",
+          "line": 1330,
+          "profileId": "empyreal_silver_olive_tree",
+          "resolution": "profile_runtime_texture"
+        }
+      ]
+    },
+    {
+      "path": "res://game_assets/Tilesets/Ancient Greek Mythology/Sliced/tribunal_gate.png",
+      "profileCoverage": "profiled",
+      "profileIds": [
+        "empyreal_tribunal_gate"
+      ],
+      "references": [
+        {
+          "file": "game/ben_rpg/visual_assets/visual_profiles.json",
+          "line": 1400,
+          "profileId": "empyreal_tribunal_gate",
+          "resolution": "profile_runtime_texture"
+        }
+      ]
+    },
+    {
+      "path": "res://game_assets/Tilesets/Ancient Greek Mythology/Sliced/tribunal_orrery.png",
+      "profileCoverage": "profiled",
+      "profileIds": [
+        "empyreal_tribunal_orrery"
+      ],
+      "references": [
+        {
+          "file": "game/ben_rpg/visual_assets/visual_profiles.json",
+          "line": 1415,
+          "profileId": "empyreal_tribunal_orrery",
+          "resolution": "profile_runtime_texture"
+        }
+      ]
+    },
+    {
+      "path": "res://game_assets/Tilesets/Ancient Greek Mythology/Sliced/winged_statue.png",
+      "profileCoverage": "profiled",
+      "profileIds": [
+        "empyreal_winged_statue"
+      ],
+      "references": [
+        {
+          "file": "game/ben_rpg/visual_assets/visual_profiles.json",
+          "line": 1325,
+          "profileId": "empyreal_winged_statue",
+          "resolution": "profile_runtime_texture"
+        }
+      ]
+    },
+    {
+      "path": "res://game_assets/Tilesets/Bright Cyberpunk Pixel Art Tileset Pack/1.png",
+      "profileCoverage": "profiled",
+      "profileIds": [
+        "helios_civic_sun_battle_backdrop",
+        "helios_core_quadrant",
+        "helios_skybridge_battle_backdrop",
+        "helios_skybridge_quadrant",
+        "helios_transit_battle_backdrop",
+        "helios_transit_quadrant"
+      ],
+      "references": [
+        {
+          "file": "game/ben_rpg/visual_assets/visual_profiles.json",
+          "line": 839,
+          "profileId": "helios_skybridge_quadrant",
+          "resolution": "profile_runtime_texture"
+        },
+        {
+          "file": "game/ben_rpg/visual_assets/visual_profiles.json",
+          "line": 852,
+          "profileId": "helios_transit_quadrant",
+          "resolution": "profile_runtime_texture"
+        },
+        {
+          "file": "game/ben_rpg/visual_assets/visual_profiles.json",
+          "line": 862,
+          "profileId": "helios_core_quadrant",
+          "resolution": "profile_runtime_texture"
+        },
+        {
+          "file": "game/ben_rpg/visual_assets/visual_profiles.json",
+          "line": 1482,
+          "profileId": "helios_skybridge_battle_backdrop",
+          "resolution": "profile_runtime_texture"
+        },
+        {
+          "file": "game/ben_rpg/visual_assets/visual_profiles.json",
+          "line": 1496,
+          "profileId": "helios_transit_battle_backdrop",
+          "resolution": "profile_runtime_texture"
+        },
+        {
+          "file": "game/ben_rpg/visual_assets/visual_profiles.json",
+          "line": 1510,
+          "profileId": "helios_civic_sun_battle_backdrop",
+          "resolution": "profile_runtime_texture"
+        }
+      ]
+    },
+    {
+      "path": "res://game_assets/Tilesets/Bright Cyberpunk Pixel Art Tileset Pack/3.png",
+      "profileCoverage": "profiled",
+      "profileIds": [
+        "afterlight_club_facade",
+        "helios_observatory_facade"
+      ],
+      "references": [
+        {
+          "file": "game/ben_rpg/visual_assets/visual_profiles.json",
+          "line": 868,
+          "profileId": "helios_observatory_facade",
+          "resolution": "profile_runtime_texture"
+        },
+        {
+          "file": "game/ben_rpg/visual_assets/visual_profiles.json",
+          "line": 882,
+          "profileId": "afterlight_club_facade",
+          "resolution": "profile_runtime_texture"
+        }
+      ]
+    },
+    {
+      "path": "res://game_assets/Tilesets/Bright Cyberpunk Pixel Art Tileset Pack/5.png",
+      "profileCoverage": "profiled",
+      "profileIds": [
+        "helios_clinic_battle_backdrop",
+        "helios_clinic_quadrant",
+        "helios_market_battle_backdrop",
+        "helios_market_quadrant"
+      ],
+      "references": [
+        {
+          "file": "game/ben_rpg/visual_assets/visual_profiles.json",
+          "line": 846,
+          "profileId": "helios_market_quadrant",
+          "resolution": "profile_runtime_texture"
+        },
+        {
+          "file": "game/ben_rpg/visual_assets/visual_profiles.json",
+          "line": 857,
+          "profileId": "helios_clinic_quadrant",
+          "resolution": "profile_runtime_texture"
+        },
+        {
+          "file": "game/ben_rpg/visual_assets/visual_profiles.json",
+          "line": 1489,
+          "profileId": "helios_market_battle_backdrop",
+          "resolution": "profile_runtime_texture"
+        },
+        {
+          "file": "game/ben_rpg/visual_assets/visual_profiles.json",
+          "line": 1503,
+          "profileId": "helios_clinic_battle_backdrop",
+          "resolution": "profile_runtime_texture"
+        }
+      ]
+    },
+    {
+      "path": "res://game_assets/Tilesets/Dark RPG GUI Kit - Pixel Art Asset Pack/dfgui_icon-chest.png",
+      "profileCoverage": "profiled",
+      "profileIds": [
+        "universe_treasure_chest"
+      ],
+      "references": [
+        {
+          "file": "game/ben_rpg/visual_assets/visual_profiles.json",
+          "line": 1920,
+          "profileId": "universe_treasure_chest",
+          "resolution": "profile_runtime_texture"
+        }
+      ]
+    },
+    {
+      "path": "res://game_assets/Tilesets/Flying Islands/PNG/Sliced/sky_clouds.png",
+      "profileCoverage": "profiled",
+      "profileIds": [
+        "empyreal_sky_cloud_bank"
+      ],
+      "references": [
+        {
+          "file": "game/ben_rpg/visual_assets/visual_profiles.json",
+          "line": 1421,
+          "profileId": "empyreal_sky_cloud_bank",
+          "resolution": "profile_runtime_texture"
+        }
+      ]
+    },
+    {
+      "path": "res://game_assets/Tilesets/Frozen kingdom/Frozen Kingdom – Top-Down Pixel Art Asset Pack/1. Snow ground tiles.png",
+      "profileCoverage": "profiled",
+      "profileIds": [
+        "frosthold_snow_battle_backdrop",
+        "frosthold_snow_ground_tile",
+        "frosthold_snow_ground_variant_1",
+        "frosthold_snow_ground_variant_2",
+        "frosthold_snow_ground_variant_3",
+        "frosthold_snow_ground_variant_4",
+        "frosthold_snow_ground_variant_5",
+        "frosthold_snow_ground_variant_6",
+        "frosthold_snow_ground_variant_7"
+      ],
+      "references": [
+        {
+          "file": "game/ben_rpg/visual_assets/visual_profiles.json",
+          "line": 1252,
+          "profileId": "frosthold_snow_ground_tile",
+          "resolution": "profile_runtime_texture"
+        },
+        {
+          "file": "game/ben_rpg/visual_assets/visual_profiles.json",
+          "line": 1258,
+          "profileId": "frosthold_snow_ground_variant_1",
+          "resolution": "profile_runtime_texture"
+        },
+        {
+          "file": "game/ben_rpg/visual_assets/visual_profiles.json",
+          "line": 1263,
+          "profileId": "frosthold_snow_ground_variant_2",
+          "resolution": "profile_runtime_texture"
+        },
+        {
+          "file": "game/ben_rpg/visual_assets/visual_profiles.json",
+          "line": 1268,
+          "profileId": "frosthold_snow_ground_variant_3",
+          "resolution": "profile_runtime_texture"
+        },
+        {
+          "file": "game/ben_rpg/visual_assets/visual_profiles.json",
+          "line": 1273,
+          "profileId": "frosthold_snow_ground_variant_4",
+          "resolution": "profile_runtime_texture"
+        },
+        {
+          "file": "game/ben_rpg/visual_assets/visual_profiles.json",
+          "line": 1278,
+          "profileId": "frosthold_snow_ground_variant_5",
+          "resolution": "profile_runtime_texture"
+        },
+        {
+          "file": "game/ben_rpg/visual_assets/visual_profiles.json",
+          "line": 1283,
+          "profileId": "frosthold_snow_ground_variant_6",
+          "resolution": "profile_runtime_texture"
+        },
+        {
+          "file": "game/ben_rpg/visual_assets/visual_profiles.json",
+          "line": 1288,
+          "profileId": "frosthold_snow_ground_variant_7",
+          "resolution": "profile_runtime_texture"
+        },
+        {
+          "file": "game/ben_rpg/visual_assets/visual_profiles.json",
+          "line": 1517,
+          "profileId": "frosthold_snow_battle_backdrop",
+          "resolution": "profile_runtime_texture"
+        }
+      ]
+    },
+    {
+      "path": "res://game_assets/Tilesets/Frozen kingdom/Frozen Kingdom – Top-Down Pixel Art Asset Pack/10. Frozen Trees and pines.png",
+      "profileCoverage": "profiled",
+      "profileIds": [
+        "frosthold_gate_tree",
+        "frosthold_gate_tree_right"
+      ],
+      "references": [
+        {
+          "file": "game/ben_rpg/visual_assets/visual_profiles.json",
+          "line": 408,
+          "profileId": "frosthold_gate_tree",
+          "resolution": "profile_runtime_texture"
+        },
+        {
+          "file": "game/ben_rpg/visual_assets/visual_profiles.json",
+          "line": 421,
+          "profileId": "frosthold_gate_tree_right",
+          "resolution": "profile_runtime_texture"
+        }
+      ]
+    },
+    {
+      "path": "res://game_assets/Tilesets/Frozen kingdom/Frozen Kingdom – Top-Down Pixel Art Asset Pack/12. Torches and blue flames.png",
+      "profileCoverage": "profiled",
+      "profileIds": [
+        "frosthold_gate_torch_right",
+        "frosthold_hall_torch_left"
+      ],
+      "references": [
+        {
+          "file": "game/ben_rpg/visual_assets/visual_profiles.json",
+          "line": 445,
+          "profileId": "frosthold_gate_torch_right",
+          "resolution": "profile_runtime_texture"
+        },
+        {
+          "file": "game/ben_rpg/visual_assets/visual_profiles.json",
+          "line": 530,
+          "profileId": "frosthold_hall_torch_left",
+          "resolution": "profile_runtime_texture"
+        }
+      ]
+    },
+    {
+      "path": "res://game_assets/Tilesets/Frozen kingdom/Frozen Kingdom – Top-Down Pixel Art Asset Pack/13. Frozen ruins.png",
+      "profileCoverage": "profiled",
+      "profileIds": [
+        "frosthold_gate_ruin",
+        "frosthold_gate_ruin_right"
+      ],
+      "references": [
+        {
+          "file": "game/ben_rpg/visual_assets/visual_profiles.json",
+          "line": 427,
+          "profileId": "frosthold_gate_ruin",
+          "resolution": "profile_runtime_texture"
+        },
+        {
+          "file": "game/ben_rpg/visual_assets/visual_profiles.json",
+          "line": 433,
+          "profileId": "frosthold_gate_ruin_right",
+          "resolution": "profile_runtime_texture"
+        }
+      ]
+    },
+    {
+      "path": "res://game_assets/Tilesets/Frozen kingdom/Frozen Kingdom – Top-Down Pixel Art Asset Pack/14. Magical runes.png",
+      "profileCoverage": "profiled",
+      "profileIds": [
+        "frosthold_causeway_rune",
+        "frosthold_hall_rune_left",
+        "frosthold_hall_rune_right",
+        "frosthold_throne_rune"
+      ],
+      "references": [
+        {
+          "file": "game/ben_rpg/visual_assets/visual_profiles.json",
+          "line": 504,
+          "profileId": "frosthold_causeway_rune",
+          "resolution": "profile_runtime_texture"
+        },
+        {
+          "file": "game/ben_rpg/visual_assets/visual_profiles.json",
+          "line": 535,
+          "profileId": "frosthold_hall_rune_left",
+          "resolution": "profile_runtime_texture"
+        },
+        {
+          "file": "game/ben_rpg/visual_assets/visual_profiles.json",
+          "line": 540,
+          "profileId": "frosthold_hall_rune_right",
+          "resolution": "profile_runtime_texture"
+        },
+        {
+          "file": "game/ben_rpg/visual_assets/visual_profiles.json",
+          "line": 545,
+          "profileId": "frosthold_throne_rune",
+          "resolution": "profile_runtime_texture"
+        }
+      ]
+    },
+    {
+      "path": "res://game_assets/Tilesets/Frozen kingdom/Frozen Kingdom – Top-Down Pixel Art Asset Pack/16. Frozen market stalls.png",
+      "profileCoverage": "profiled",
+      "profileIds": [
+        "frosthold_market_stall",
+        "frosthold_market_stall_right",
+        "frosthold_market_supply_stall"
+      ],
+      "references": [
+        {
+          "file": "game/ben_rpg/visual_assets/visual_profiles.json",
+          "line": 458,
+          "profileId": "frosthold_market_stall",
+          "resolution": "profile_runtime_texture"
+        },
+        {
+          "file": "game/ben_rpg/visual_assets/visual_profiles.json",
+          "line": 469,
+          "profileId": "frosthold_market_stall_right",
+          "resolution": "profile_runtime_texture"
+        },
+        {
+          "file": "game/ben_rpg/visual_assets/visual_profiles.json",
+          "line": 474,
+          "profileId": "frosthold_market_supply_stall",
+          "resolution": "profile_runtime_texture"
+        }
+      ]
+    },
+    {
+      "path": "res://game_assets/Tilesets/Frozen kingdom/Frozen Kingdom – Top-Down Pixel Art Asset Pack/5. Ice castle walls.png",
+      "profileCoverage": "profiled",
+      "profileIds": [
+        "frosthold_gate_castle",
+        "frosthold_hall_central_arch",
+        "frosthold_hall_side_arch",
+        "frosthold_throne_left_column",
+        "frosthold_throne_right_column"
+      ],
+      "references": [
+        {
+          "file": "game/ben_rpg/visual_assets/visual_profiles.json",
+          "line": 415,
+          "profileId": "frosthold_gate_castle",
+          "resolution": "profile_runtime_texture"
+        },
+        {
+          "file": "game/ben_rpg/visual_assets/visual_profiles.json",
+          "line": 510,
+          "profileId": "frosthold_hall_side_arch",
+          "resolution": "profile_runtime_texture"
+        },
+        {
+          "file": "game/ben_rpg/visual_assets/visual_profiles.json",
+          "line": 515,
+          "profileId": "frosthold_hall_central_arch",
+          "resolution": "profile_runtime_texture"
+        },
+        {
+          "file": "game/ben_rpg/visual_assets/visual_profiles.json",
+          "line": 520,
+          "profileId": "frosthold_throne_left_column",
+          "resolution": "profile_runtime_texture"
+        },
+        {
+          "file": "game/ben_rpg/visual_assets/visual_profiles.json",
+          "line": 525,
+          "profileId": "frosthold_throne_right_column",
+          "resolution": "profile_runtime_texture"
+        }
+      ]
+    },
+    {
+      "path": "res://game_assets/Tilesets/Frozen kingdom/Frozen Kingdom – Top-Down Pixel Art Asset Pack/7. Nordic wooden houses.png",
+      "profileCoverage": "profiled",
+      "profileIds": [
+        "frosthold_market_house",
+        "frosthold_market_house_right",
+        "town_cold_storage_facade"
+      ],
+      "references": [
+        {
+          "file": "game/ben_rpg/visual_assets/visual_profiles.json",
+          "line": 366,
+          "profileId": "town_cold_storage_facade",
+          "resolution": "profile_runtime_texture"
+        },
+        {
+          "file": "game/ben_rpg/visual_assets/visual_profiles.json",
+          "line": 451,
+          "profileId": "frosthold_market_house",
+          "resolution": "profile_runtime_texture"
+        },
+        {
+          "file": "game/ben_rpg/visual_assets/visual_profiles.json",
+          "line": 464,
+          "profileId": "frosthold_market_house_right",
+          "resolution": "profile_runtime_texture"
+        }
+      ]
+    },
+    {
+      "path": "res://game_assets/Tilesets/Frozen kingdom/Frozen Kingdom – Top-Down Pixel Art Asset Pack/8. Icy bridges.png",
+      "profileCoverage": "profiled",
+      "profileIds": [
+        "frosthold_causeway_bridge",
+        "frosthold_causeway_bridge_lower"
+      ],
+      "references": [
+        {
+          "file": "game/ben_rpg/visual_assets/visual_profiles.json",
+          "line": 487,
+          "profileId": "frosthold_causeway_bridge",
+          "resolution": "profile_runtime_texture"
+        },
+        {
+          "file": "game/ben_rpg/visual_assets/visual_profiles.json",
+          "line": 498,
+          "profileId": "frosthold_causeway_bridge_lower",
+          "resolution": "profile_runtime_texture"
+        }
+      ]
+    },
+    {
+      "path": "res://game_assets/Tilesets/Frozen kingdom/Frozen Kingdom – Top-Down Pixel Art Asset Pack/9. Crystal formations.png",
+      "profileCoverage": "profiled",
+      "profileIds": [
+        "frosthold_causeway_crystal_bank",
+        "frosthold_causeway_crystal_bank_right"
+      ],
+      "references": [
+        {
+          "file": "game/ben_rpg/visual_assets/visual_profiles.json",
+          "line": 480,
+          "profileId": "frosthold_causeway_crystal_bank",
+          "resolution": "profile_runtime_texture"
+        },
+        {
+          "file": "game/ben_rpg/visual_assets/visual_profiles.json",
+          "line": 493,
+          "profileId": "frosthold_causeway_crystal_bank_right",
+          "resolution": "profile_runtime_texture"
+        }
+      ]
+    },
+    {
+      "path": "res://game_assets/Tilesets/Haunted Mansion Pixel Art Tileset Pack/1.png",
+      "profileCoverage": "profiled",
+      "profileIds": [
+        "haunted_mansion_exterior",
+        "sandbox_haunted_facade"
+      ],
+      "references": [
+        {
+          "file": "game/ben_rpg/visual_assets/visual_profiles.json",
+          "line": 75,
+          "profileId": "haunted_mansion_exterior",
+          "resolution": "profile_runtime_texture"
+        },
+        {
+          "file": "game/ben_rpg/visual_assets/visual_profiles.json",
+          "line": 1926,
+          "profileId": "sandbox_haunted_facade",
+          "resolution": "profile_runtime_texture"
+        },
+        {
+          "file": "game/ben_rpg/world/sandbox_object_catalog.gd",
+          "line": 75,
+          "resolution": "literal"
+        }
+      ]
+    },
+    {
+      "path": "res://game_assets/Tilesets/Haunted Mansion Pixel Art Tileset Pack/2.png",
+      "profileCoverage": "profiled",
+      "profileIds": [
+        "mansion_archive_cabinet",
+        "mansion_archive_wall_lit_tile",
+        "mansion_archive_wall_plain_tile",
+        "mansion_ballroom_chandelier",
+        "mansion_ballroom_door_frame",
+        "mansion_foyer_battle_backdrop",
+        "mansion_foyer_clock",
+        "mansion_foyer_wall_tableau",
+        "mansion_gallery_battle_backdrop",
+        "mansion_gallery_stage_curtain",
+        "mansion_interior_wall_0_0",
+        "mansion_interior_wall_0_1",
+        "mansion_interior_wall_1_0",
+        "mansion_interior_wall_1_1",
+        "mansion_interior_wall_2_0",
+        "mansion_interior_wall_2_1",
+        "mansion_interior_wall_3_0",
+        "mansion_interior_wall_3_1",
+        "mansion_plank_grain_0_0",
+        "mansion_plank_grain_0_1",
+        "mansion_plank_grain_0_2",
+        "mansion_plank_grain_0_3",
+        "mansion_plank_grain_1_0",
+        "mansion_plank_grain_1_1",
+        "mansion_plank_grain_1_2",
+        "mansion_plank_grain_1_3",
+        "sandbox_haunted_planks",
+        "sandbox_haunted_stone"
+      ],
+      "references": [
+        {
+          "file": "game/ben_rpg/visual_assets/visual_profiles.json",
+          "line": 908,
+          "profileId": "mansion_archive_cabinet",
+          "resolution": "profile_runtime_texture"
+        },
+        {
+          "file": "game/ben_rpg/visual_assets/visual_profiles.json",
+          "line": 969,
+          "profileId": "mansion_gallery_stage_curtain",
+          "resolution": "profile_runtime_texture"
+        },
+        {
+          "file": "game/ben_rpg/visual_assets/visual_profiles.json",
+          "line": 981,
+          "profileId": "mansion_ballroom_chandelier",
+          "resolution": "profile_runtime_texture"
+        },
+        {
+          "file": "game/ben_rpg/visual_assets/visual_profiles.json",
+          "line": 987,
+          "profileId": "mansion_ballroom_door_frame",
+          "resolution": "profile_runtime_texture"
+        },
+        {
+          "file": "game/ben_rpg/visual_assets/visual_profiles.json",
+          "line": 993,
+          "profileId": "mansion_foyer_clock",
+          "resolution": "profile_runtime_texture"
+        },
+        {
+          "file": "game/ben_rpg/visual_assets/visual_profiles.json",
+          "line": 999,
+          "profileId": "mansion_foyer_wall_tableau",
+          "resolution": "profile_runtime_texture"
+        },
+        {
+          "file": "game/ben_rpg/visual_assets/visual_profiles.json",
+          "line": 1005,
+          "profileId": "mansion_archive_wall_plain_tile",
+          "resolution": "profile_runtime_texture"
+        },
+        {
+          "file": "game/ben_rpg/visual_assets/visual_profiles.json",
+          "line": 1011,
+          "profileId": "mansion_archive_wall_lit_tile",
+          "resolution": "profile_runtime_texture"
+        },
+        {
+          "file": "game/ben_rpg/visual_assets/visual_profiles.json",
+          "line": 1029,
+          "profileId": "mansion_interior_wall_0_0",
+          "resolution": "profile_runtime_texture"
+        },
+        {
+          "file": "game/ben_rpg/visual_assets/visual_profiles.json",
+          "line": 1033,
+          "profileId": "mansion_interior_wall_1_0",
+          "resolution": "profile_runtime_texture"
+        },
+        {
+          "file": "game/ben_rpg/visual_assets/visual_profiles.json",
+          "line": 1037,
+          "profileId": "mansion_interior_wall_2_0",
+          "resolution": "profile_runtime_texture"
+        },
+        {
+          "file": "game/ben_rpg/visual_assets/visual_profiles.json",
+          "line": 1041,
+          "profileId": "mansion_interior_wall_3_0",
+          "resolution": "profile_runtime_texture"
+        },
+        {
+          "file": "game/ben_rpg/visual_assets/visual_profiles.json",
+          "line": 1045,
+          "profileId": "mansion_interior_wall_0_1",
+          "resolution": "profile_runtime_texture"
+        },
+        {
+          "file": "game/ben_rpg/visual_assets/visual_profiles.json",
+          "line": 1049,
+          "profileId": "mansion_interior_wall_1_1",
+          "resolution": "profile_runtime_texture"
+        },
+        {
+          "file": "game/ben_rpg/visual_assets/visual_profiles.json",
+          "line": 1053,
+          "profileId": "mansion_interior_wall_2_1",
+          "resolution": "profile_runtime_texture"
+        },
+        {
+          "file": "game/ben_rpg/visual_assets/visual_profiles.json",
+          "line": 1057,
+          "profileId": "mansion_interior_wall_3_1",
+          "resolution": "profile_runtime_texture"
+        },
+        {
+          "file": "game/ben_rpg/visual_assets/visual_profiles.json",
+          "line": 1125,
+          "profileId": "mansion_plank_grain_0_0",
+          "resolution": "profile_runtime_texture"
+        },
+        {
+          "file": "game/ben_rpg/visual_assets/visual_profiles.json",
+          "line": 1129,
+          "profileId": "mansion_plank_grain_1_0",
+          "resolution": "profile_runtime_texture"
+        },
+        {
+          "file": "game/ben_rpg/visual_assets/visual_profiles.json",
+          "line": 1133,
+          "profileId": "mansion_plank_grain_0_1",
+          "resolution": "profile_runtime_texture"
+        },
+        {
+          "file": "game/ben_rpg/visual_assets/visual_profiles.json",
+          "line": 1137,
+          "profileId": "mansion_plank_grain_1_1",
+          "resolution": "profile_runtime_texture"
+        },
+        {
+          "file": "game/ben_rpg/visual_assets/visual_profiles.json",
+          "line": 1141,
+          "profileId": "mansion_plank_grain_0_2",
+          "resolution": "profile_runtime_texture"
+        },
+        {
+          "file": "game/ben_rpg/visual_assets/visual_profiles.json",
+          "line": 1145,
+          "profileId": "mansion_plank_grain_1_2",
+          "resolution": "profile_runtime_texture"
+        },
+        {
+          "file": "game/ben_rpg/visual_assets/visual_profiles.json",
+          "line": 1149,
+          "profileId": "mansion_plank_grain_0_3",
+          "resolution": "profile_runtime_texture"
+        },
+        {
+          "file": "game/ben_rpg/visual_assets/visual_profiles.json",
+          "line": 1153,
+          "profileId": "mansion_plank_grain_1_3",
+          "resolution": "profile_runtime_texture"
+        },
+        {
+          "file": "game/ben_rpg/visual_assets/visual_profiles.json",
+          "line": 1428,
+          "profileId": "mansion_foyer_battle_backdrop",
+          "resolution": "profile_runtime_texture"
+        },
+        {
+          "file": "game/ben_rpg/visual_assets/visual_profiles.json",
+          "line": 1435,
+          "profileId": "mansion_gallery_battle_backdrop",
+          "resolution": "profile_runtime_texture"
+        },
+        {
+          "file": "game/ben_rpg/visual_assets/visual_profiles.json",
+          "line": 1894,
+          "profileId": "sandbox_haunted_planks",
+          "resolution": "profile_runtime_texture"
+        },
+        {
+          "file": "game/ben_rpg/visual_assets/visual_profiles.json",
+          "line": 1895,
+          "profileId": "sandbox_haunted_stone",
+          "resolution": "profile_runtime_texture"
+        },
+        {
+          "file": "game/ben_rpg/world/sandbox_object_catalog.gd",
+          "line": 80,
+          "resolution": "literal"
+        },
+        {
+          "file": "game/ben_rpg/world/sandbox_terrain_catalog.gd",
+          "line": 64,
+          "resolution": "literal"
+        },
+        {
+          "file": "game/ben_rpg/world/sandbox_terrain_catalog.gd",
+          "line": 69,
+          "resolution": "literal"
+        }
+      ]
+    },
+    {
+      "path": "res://game_assets/Tilesets/Haunted Mansion Pixel Art Tileset Pack/3.png",
+      "profileCoverage": "profiled",
+      "profileIds": [
+        "mansion_nursery_bed",
+        "mansion_nursery_left_wall_panel",
+        "mansion_nursery_right_wall_panel",
+        "mansion_nursery_wall_0_0",
+        "mansion_nursery_wall_0_1",
+        "mansion_nursery_wall_1_0",
+        "mansion_nursery_wall_1_1",
+        "mansion_nursery_wall_2_0",
+        "mansion_nursery_wall_2_1",
+        "mansion_nursery_wall_3_0",
+        "mansion_nursery_wall_3_1",
+        "mansion_nursery_wall_4_0",
+        "mansion_nursery_wall_4_1",
+        "mansion_nursery_wall_5_0",
+        "mansion_nursery_wall_5_1",
+        "mansion_nursery_wall_6_0",
+        "mansion_nursery_wall_6_1",
+        "mansion_nursery_wall_7_0",
+        "mansion_nursery_wall_7_1"
+      ],
+      "references": [
+        {
+          "file": "game/ben_rpg/visual_assets/visual_profiles.json",
+          "line": 915,
+          "profileId": "mansion_nursery_bed",
+          "resolution": "profile_runtime_texture"
+        },
+        {
+          "file": "game/ben_rpg/visual_assets/visual_profiles.json",
+          "line": 1017,
+          "profileId": "mansion_nursery_left_wall_panel",
+          "resolution": "profile_runtime_texture"
+        },
+        {
+          "file": "game/ben_rpg/visual_assets/visual_profiles.json",
+          "line": 1023,
+          "profileId": "mansion_nursery_right_wall_panel",
+          "resolution": "profile_runtime_texture"
+        },
+        {
+          "file": "game/ben_rpg/visual_assets/visual_profiles.json",
+          "line": 1061,
+          "profileId": "mansion_nursery_wall_0_0",
+          "resolution": "profile_runtime_texture"
+        },
+        {
+          "file": "game/ben_rpg/visual_assets/visual_profiles.json",
+          "line": 1065,
+          "profileId": "mansion_nursery_wall_1_0",
+          "resolution": "profile_runtime_texture"
+        },
+        {
+          "file": "game/ben_rpg/visual_assets/visual_profiles.json",
+          "line": 1069,
+          "profileId": "mansion_nursery_wall_2_0",
+          "resolution": "profile_runtime_texture"
+        },
+        {
+          "file": "game/ben_rpg/visual_assets/visual_profiles.json",
+          "line": 1073,
+          "profileId": "mansion_nursery_wall_3_0",
+          "resolution": "profile_runtime_texture"
+        },
+        {
+          "file": "game/ben_rpg/visual_assets/visual_profiles.json",
+          "line": 1077,
+          "profileId": "mansion_nursery_wall_4_0",
+          "resolution": "profile_runtime_texture"
+        },
+        {
+          "file": "game/ben_rpg/visual_assets/visual_profiles.json",
+          "line": 1081,
+          "profileId": "mansion_nursery_wall_5_0",
+          "resolution": "profile_runtime_texture"
+        },
+        {
+          "file": "game/ben_rpg/visual_assets/visual_profiles.json",
+          "line": 1085,
+          "profileId": "mansion_nursery_wall_6_0",
+          "resolution": "profile_runtime_texture"
+        },
+        {
+          "file": "game/ben_rpg/visual_assets/visual_profiles.json",
+          "line": 1089,
+          "profileId": "mansion_nursery_wall_7_0",
+          "resolution": "profile_runtime_texture"
+        },
+        {
+          "file": "game/ben_rpg/visual_assets/visual_profiles.json",
+          "line": 1093,
+          "profileId": "mansion_nursery_wall_0_1",
+          "resolution": "profile_runtime_texture"
+        },
+        {
+          "file": "game/ben_rpg/visual_assets/visual_profiles.json",
+          "line": 1097,
+          "profileId": "mansion_nursery_wall_1_1",
+          "resolution": "profile_runtime_texture"
+        },
+        {
+          "file": "game/ben_rpg/visual_assets/visual_profiles.json",
+          "line": 1101,
+          "profileId": "mansion_nursery_wall_2_1",
+          "resolution": "profile_runtime_texture"
+        },
+        {
+          "file": "game/ben_rpg/visual_assets/visual_profiles.json",
+          "line": 1105,
+          "profileId": "mansion_nursery_wall_3_1",
+          "resolution": "profile_runtime_texture"
+        },
+        {
+          "file": "game/ben_rpg/visual_assets/visual_profiles.json",
+          "line": 1109,
+          "profileId": "mansion_nursery_wall_4_1",
+          "resolution": "profile_runtime_texture"
+        },
+        {
+          "file": "game/ben_rpg/visual_assets/visual_profiles.json",
+          "line": 1113,
+          "profileId": "mansion_nursery_wall_5_1",
+          "resolution": "profile_runtime_texture"
+        },
+        {
+          "file": "game/ben_rpg/visual_assets/visual_profiles.json",
+          "line": 1117,
+          "profileId": "mansion_nursery_wall_6_1",
+          "resolution": "profile_runtime_texture"
+        },
+        {
+          "file": "game/ben_rpg/visual_assets/visual_profiles.json",
+          "line": 1121,
+          "profileId": "mansion_nursery_wall_7_1",
+          "resolution": "profile_runtime_texture"
+        }
+      ]
+    },
+    {
+      "path": "res://game_assets/Tilesets/Haunted Mansion Pixel Art Tileset Pack/4.png",
+      "profileCoverage": "profiled",
+      "profileIds": [
+        "mansion_archive_shelving",
+        "mansion_archive_tall_shelving",
+        "mansion_foyer_passage_door",
+        "mansion_gallery_left_portrait",
+        "mansion_gallery_lower_left_frame",
+        "mansion_gallery_lower_right_frame",
+        "mansion_gallery_right_portrait",
+        "mansion_gallery_upper_left_frame",
+        "mansion_gallery_upper_right_frame",
+        "mansion_nursery_music_box",
+        "sandbox_haunted_passage_door"
+      ],
+      "references": [
+        {
+          "file": "game/ben_rpg/visual_assets/visual_profiles.json",
+          "line": 901,
+          "profileId": "mansion_archive_shelving",
+          "resolution": "profile_runtime_texture"
+        },
+        {
+          "file": "game/ben_rpg/visual_assets/visual_profiles.json",
+          "line": 921,
+          "profileId": "mansion_foyer_passage_door",
+          "resolution": "profile_runtime_texture"
+        },
+        {
+          "file": "game/ben_rpg/visual_assets/visual_profiles.json",
+          "line": 927,
+          "profileId": "mansion_archive_tall_shelving",
+          "resolution": "profile_runtime_texture"
+        },
+        {
+          "file": "game/ben_rpg/visual_assets/visual_profiles.json",
+          "line": 933,
+          "profileId": "mansion_gallery_left_portrait",
+          "resolution": "profile_runtime_texture"
+        },
+        {
+          "file": "game/ben_rpg/visual_assets/visual_profiles.json",
+          "line": 939,
+          "profileId": "mansion_gallery_right_portrait",
+          "resolution": "profile_runtime_texture"
+        },
+        {
+          "file": "game/ben_rpg/visual_assets/visual_profiles.json",
+          "line": 945,
+          "profileId": "mansion_gallery_upper_left_frame",
+          "resolution": "profile_runtime_texture"
+        },
+        {
+          "file": "game/ben_rpg/visual_assets/visual_profiles.json",
+          "line": 951,
+          "profileId": "mansion_gallery_upper_right_frame",
+          "resolution": "profile_runtime_texture"
+        },
+        {
+          "file": "game/ben_rpg/visual_assets/visual_profiles.json",
+          "line": 957,
+          "profileId": "mansion_gallery_lower_left_frame",
+          "resolution": "profile_runtime_texture"
+        },
+        {
+          "file": "game/ben_rpg/visual_assets/visual_profiles.json",
+          "line": 963,
+          "profileId": "mansion_gallery_lower_right_frame",
+          "resolution": "profile_runtime_texture"
+        },
+        {
+          "file": "game/ben_rpg/visual_assets/visual_profiles.json",
+          "line": 975,
+          "profileId": "mansion_nursery_music_box",
+          "resolution": "profile_runtime_texture"
+        },
+        {
+          "file": "game/ben_rpg/visual_assets/visual_profiles.json",
+          "line": 1927,
+          "profileId": "sandbox_haunted_passage_door",
+          "resolution": "profile_runtime_texture"
+        },
+        {
+          "file": "game/ben_rpg/world/sandbox_object_catalog.gd",
+          "line": 85,
+          "resolution": "literal"
+        }
+      ]
+    },
+    {
+      "path": "res://game_assets/Tilesets/Jurassic world/Jurassic World Pixel Art Megapack/11. Dinosaur nests and eggs.png",
+      "profileCoverage": "profiled",
+      "profileIds": [
+        "primeval_nest_left",
+        "primeval_nest_right",
+        "primeval_relay_nest"
+      ],
+      "references": [
+        {
+          "file": "game/ben_rpg/visual_assets/visual_profiles.json",
+          "line": 802,
+          "profileId": "primeval_relay_nest",
+          "resolution": "profile_runtime_texture"
+        },
+        {
+          "file": "game/ben_rpg/visual_assets/visual_profiles.json",
+          "line": 808,
+          "profileId": "primeval_nest_left",
+          "resolution": "profile_runtime_texture"
+        },
+        {
+          "file": "game/ben_rpg/visual_assets/visual_profiles.json",
+          "line": 813,
+          "profileId": "primeval_nest_right",
+          "resolution": "profile_runtime_texture"
+        }
+      ]
+    },
+    {
+      "path": "res://game_assets/Tilesets/Jurassic world/Jurassic World Pixel Art Megapack/19. Modular jungle ruins.png",
+      "profileCoverage": "profiled",
+      "profileIds": [
+        "primeval_caldera_forecourt",
+        "primeval_caldera_pillar",
+        "primeval_caldera_rubble_left",
+        "primeval_caldera_rubble_right",
+        "primeval_ruin_forecourt",
+        "primeval_ruins_left_rubble",
+        "primeval_ruins_left_wall",
+        "primeval_ruins_right_rubble",
+        "primeval_ruins_right_wall"
+      ],
+      "references": [
+        {
+          "file": "game/ben_rpg/visual_assets/visual_profiles.json",
+          "line": 775,
+          "profileId": "primeval_ruin_forecourt",
+          "resolution": "profile_runtime_texture"
+        },
+        {
+          "file": "game/ben_rpg/visual_assets/visual_profiles.json",
+          "line": 781,
+          "profileId": "primeval_ruins_left_wall",
+          "resolution": "profile_runtime_texture"
+        },
+        {
+          "file": "game/ben_rpg/visual_assets/visual_profiles.json",
+          "line": 786,
+          "profileId": "primeval_ruins_right_wall",
+          "resolution": "profile_runtime_texture"
+        },
+        {
+          "file": "game/ben_rpg/visual_assets/visual_profiles.json",
+          "line": 791,
+          "profileId": "primeval_ruins_left_rubble",
+          "resolution": "profile_runtime_texture"
+        },
+        {
+          "file": "game/ben_rpg/visual_assets/visual_profiles.json",
+          "line": 796,
+          "profileId": "primeval_ruins_right_rubble",
+          "resolution": "profile_runtime_texture"
+        },
+        {
+          "file": "game/ben_rpg/visual_assets/visual_profiles.json",
+          "line": 818,
+          "profileId": "primeval_caldera_forecourt",
+          "resolution": "profile_runtime_texture"
+        },
+        {
+          "file": "game/ben_rpg/visual_assets/visual_profiles.json",
+          "line": 823,
+          "profileId": "primeval_caldera_pillar",
+          "resolution": "profile_runtime_texture"
+        },
+        {
+          "file": "game/ben_rpg/visual_assets/visual_profiles.json",
+          "line": 828,
+          "profileId": "primeval_caldera_rubble_left",
+          "resolution": "profile_runtime_texture"
+        },
+        {
+          "file": "game/ben_rpg/visual_assets/visual_profiles.json",
+          "line": 833,
+          "profileId": "primeval_caldera_rubble_right",
+          "resolution": "profile_runtime_texture"
+        }
+      ]
+    },
+    {
+      "path": "res://game_assets/Tilesets/Jurassic world/Jurassic World Pixel Art Megapack/21. Dinosaurs.png",
+      "profileCoverage": "profiled",
+      "profileIds": [
+        "commute_tyrant_battle_actor",
+        "municipal_spinosaur_battle_actor",
+        "primeval_raptor_battle_actor",
+        "stone_triceratops_battle_actor"
+      ],
+      "references": [
+        {
+          "file": "game/ben_rpg/visual_assets/visual_profiles.json",
+          "line": 1629,
+          "profileId": "primeval_raptor_battle_actor",
+          "resolution": "profile_runtime_texture"
+        },
+        {
+          "file": "game/ben_rpg/visual_assets/visual_profiles.json",
+          "line": 1636,
+          "profileId": "stone_triceratops_battle_actor",
+          "resolution": "profile_runtime_texture"
+        },
+        {
+          "file": "game/ben_rpg/visual_assets/visual_profiles.json",
+          "line": 1643,
+          "profileId": "municipal_spinosaur_battle_actor",
+          "resolution": "profile_runtime_texture"
+        },
+        {
+          "file": "game/ben_rpg/visual_assets/visual_profiles.json",
+          "line": 1650,
+          "profileId": "commute_tyrant_battle_actor",
+          "resolution": "profile_runtime_texture"
+        }
+      ]
+    },
+    {
+      "path": "res://game_assets/Tilesets/Jurassic world/Jurassic World Pixel Art Megapack/7. Tropical trees and ferns.png",
+      "profileCoverage": "profiled",
+      "profileIds": [
+        "primeval_grove_canopy",
+        "primeval_grove_canopy_mid",
+        "primeval_grove_canopy_mid_left",
+        "primeval_grove_canopy_right",
+        "primeval_grove_fern_left",
+        "primeval_grove_fern_right"
+      ],
+      "references": [
+        {
+          "file": "game/ben_rpg/visual_assets/visual_profiles.json",
+          "line": 743,
+          "profileId": "primeval_grove_canopy",
+          "resolution": "profile_runtime_texture"
+        },
+        {
+          "file": "game/ben_rpg/visual_assets/visual_profiles.json",
+          "line": 749,
+          "profileId": "primeval_grove_canopy_mid_left",
+          "resolution": "profile_runtime_texture"
+        },
+        {
+          "file": "game/ben_rpg/visual_assets/visual_profiles.json",
+          "line": 754,
+          "profileId": "primeval_grove_canopy_mid",
+          "resolution": "profile_runtime_texture"
+        },
+        {
+          "file": "game/ben_rpg/visual_assets/visual_profiles.json",
+          "line": 759,
+          "profileId": "primeval_grove_canopy_right",
+          "resolution": "profile_runtime_texture"
+        },
+        {
+          "file": "game/ben_rpg/visual_assets/visual_profiles.json",
+          "line": 764,
+          "profileId": "primeval_grove_fern_left",
+          "resolution": "profile_runtime_texture"
+        },
+        {
+          "file": "game/ben_rpg/visual_assets/visual_profiles.json",
+          "line": 769,
+          "profileId": "primeval_grove_fern_right",
+          "resolution": "profile_runtime_texture"
+        }
+      ]
+    },
+    {
+      "path": "res://game_assets/Tilesets/Modern Bar & Nightclub Pixel Art Tileset Pack/4.png",
+      "profileCoverage": "profiled",
+      "profileIds": [
+        "afterlight_club_sign"
+      ],
+      "references": [
+        {
+          "file": "game/ben_rpg/visual_assets/visual_profiles.json",
+          "line": 875,
+          "profileId": "afterlight_club_sign",
+          "resolution": "profile_runtime_texture"
+        }
+      ]
+    },
+    {
+      "path": "res://game_assets/Tilesets/Modern Laboratory Pixel Art Tileset Pack/1.png",
+      "profileCoverage": "profiled",
+      "profileIds": [
+        "laboratory_floor_tile",
+        "laboratory_wall_tile",
+        "sandbox_lab_blue_panel",
+        "sandbox_lab_green_panel",
+        "sandbox_lab_steel_panel",
+        "sandbox_lab_white_panel"
+      ],
+      "references": [
+        {
+          "file": "game/ben_rpg/visual_assets/visual_profiles.json",
+          "line": 1158,
+          "profileId": "laboratory_floor_tile",
+          "resolution": "profile_runtime_texture"
+        },
+        {
+          "file": "game/ben_rpg/visual_assets/visual_profiles.json",
+          "line": 1185,
+          "profileId": "laboratory_wall_tile",
+          "resolution": "profile_runtime_texture"
+        },
+        {
+          "file": "game/ben_rpg/visual_assets/visual_profiles.json",
+          "line": 1896,
+          "profileId": "sandbox_lab_white_panel",
+          "resolution": "profile_runtime_texture"
+        },
+        {
+          "file": "game/ben_rpg/visual_assets/visual_profiles.json",
+          "line": 1897,
+          "profileId": "sandbox_lab_blue_panel",
+          "resolution": "profile_runtime_texture"
+        },
+        {
+          "file": "game/ben_rpg/visual_assets/visual_profiles.json",
+          "line": 1898,
+          "profileId": "sandbox_lab_green_panel",
+          "resolution": "profile_runtime_texture"
+        },
+        {
+          "file": "game/ben_rpg/visual_assets/visual_profiles.json",
+          "line": 1899,
+          "profileId": "sandbox_lab_steel_panel",
+          "resolution": "profile_runtime_texture"
+        },
+        {
+          "file": "game/ben_rpg/world/sandbox_terrain_catalog.gd",
+          "line": 74,
+          "resolution": "literal"
+        },
+        {
+          "file": "game/ben_rpg/world/sandbox_terrain_catalog.gd",
+          "line": 79,
+          "resolution": "literal"
+        },
+        {
+          "file": "game/ben_rpg/world/sandbox_terrain_catalog.gd",
+          "line": 84,
+          "resolution": "literal"
+        },
+        {
+          "file": "game/ben_rpg/world/sandbox_terrain_catalog.gd",
+          "line": 89,
+          "resolution": "literal"
+        }
+      ]
+    },
+    {
+      "path": "res://game_assets/Tilesets/Modern Laboratory Pixel Art Tileset Pack/2.png",
+      "profileCoverage": "profiled",
+      "profileIds": [
+        "laboratory_utility_bank",
+        "laboratory_ventilation_run"
+      ],
+      "references": [
+        {
+          "file": "game/ben_rpg/visual_assets/visual_profiles.json",
+          "line": 1165,
+          "profileId": "laboratory_utility_bank",
+          "resolution": "profile_runtime_texture"
+        },
+        {
+          "file": "game/ben_rpg/visual_assets/visual_profiles.json",
+          "line": 1189,
+          "profileId": "laboratory_ventilation_run",
+          "resolution": "profile_runtime_texture"
+        }
+      ]
+    },
+    {
+      "path": "res://game_assets/Tilesets/Modern Laboratory Pixel Art Tileset Pack/3.png",
+      "profileCoverage": "profiled",
+      "profileIds": [
+        "laboratory_analysis_station",
+        "laboratory_center_storage",
+        "laboratory_east_calibrator",
+        "laboratory_east_coolant",
+        "laboratory_east_fabricator",
+        "laboratory_east_generator",
+        "laboratory_east_reactor",
+        "laboratory_west_spectrometer",
+        "laboratory_west_storage",
+        "laboratory_west_terminal",
+        "sandbox_lab_workbench"
+      ],
+      "references": [
+        {
+          "file": "game/ben_rpg/visual_assets/visual_profiles.json",
+          "line": 1172,
+          "profileId": "laboratory_analysis_station",
+          "resolution": "profile_runtime_texture"
+        },
+        {
+          "file": "game/ben_rpg/visual_assets/visual_profiles.json",
+          "line": 1193,
+          "profileId": "laboratory_west_terminal",
+          "resolution": "profile_runtime_texture"
+        },
+        {
+          "file": "game/ben_rpg/visual_assets/visual_profiles.json",
+          "line": 1197,
+          "profileId": "laboratory_west_spectrometer",
+          "resolution": "profile_runtime_texture"
+        },
+        {
+          "file": "game/ben_rpg/visual_assets/visual_profiles.json",
+          "line": 1201,
+          "profileId": "laboratory_east_fabricator",
+          "resolution": "profile_runtime_texture"
+        },
+        {
+          "file": "game/ben_rpg/visual_assets/visual_profiles.json",
+          "line": 1205,
+          "profileId": "laboratory_east_reactor",
+          "resolution": "profile_runtime_texture"
+        },
+        {
+          "file": "game/ben_rpg/visual_assets/visual_profiles.json",
+          "line": 1209,
+          "profileId": "laboratory_east_calibrator",
+          "resolution": "profile_runtime_texture"
+        },
+        {
+          "file": "game/ben_rpg/visual_assets/visual_profiles.json",
+          "line": 1213,
+          "profileId": "laboratory_west_storage",
+          "resolution": "profile_runtime_texture"
+        },
+        {
+          "file": "game/ben_rpg/visual_assets/visual_profiles.json",
+          "line": 1217,
+          "profileId": "laboratory_center_storage",
+          "resolution": "profile_runtime_texture"
+        },
+        {
+          "file": "game/ben_rpg/visual_assets/visual_profiles.json",
+          "line": 1221,
+          "profileId": "laboratory_east_generator",
+          "resolution": "profile_runtime_texture"
+        },
+        {
+          "file": "game/ben_rpg/visual_assets/visual_profiles.json",
+          "line": 1225,
+          "profileId": "laboratory_east_coolant",
+          "resolution": "profile_runtime_texture"
+        },
+        {
+          "file": "game/ben_rpg/visual_assets/visual_profiles.json",
+          "line": 1928,
+          "profileId": "sandbox_lab_workbench",
+          "resolution": "profile_runtime_texture"
+        },
+        {
+          "file": "game/ben_rpg/world/sandbox_object_catalog.gd",
+          "line": 90,
+          "resolution": "literal"
+        }
+      ]
+    },
+    {
+      "path": "res://game_assets/Tilesets/Modern Laboratory Pixel Art Tileset Pack/4.png",
+      "profileCoverage": "profiled",
+      "profileIds": [
+        "laboratory_exit_doors",
+        "sandbox_lab_computer",
+        "sandbox_lab_schedule"
+      ],
+      "references": [
+        {
+          "file": "game/ben_rpg/visual_assets/visual_profiles.json",
+          "line": 1179,
+          "profileId": "laboratory_exit_doors",
+          "resolution": "profile_runtime_texture"
+        },
+        {
+          "file": "game/ben_rpg/visual_assets/visual_profiles.json",
+          "line": 1929,
+          "profileId": "sandbox_lab_computer",
+          "resolution": "profile_runtime_texture"
+        },
+        {
+          "file": "game/ben_rpg/visual_assets/visual_profiles.json",
+          "line": 1930,
+          "profileId": "sandbox_lab_schedule",
+          "resolution": "profile_runtime_texture"
+        },
+        {
+          "file": "game/ben_rpg/world/sandbox_object_catalog.gd",
+          "line": 95,
+          "resolution": "literal"
+        },
+        {
+          "file": "game/ben_rpg/world/sandbox_object_catalog.gd",
+          "line": 100,
+          "resolution": "literal"
+        }
+      ]
+    },
+    {
+      "path": "res://game_assets/Tilesets/Modern World Overworld Pixel Tileset/1.png",
+      "profileCoverage": "profiled",
+      "profileIds": [
+        "sandbox_modern_cobble",
+        "sandbox_modern_dirt",
+        "sandbox_modern_grass",
+        "sandbox_modern_sand"
+      ],
+      "references": [
+        {
+          "file": "game/ben_rpg/visual_assets/visual_profiles.json",
+          "line": 1890,
+          "profileId": "sandbox_modern_grass",
+          "resolution": "profile_runtime_texture"
+        },
+        {
+          "file": "game/ben_rpg/visual_assets/visual_profiles.json",
+          "line": 1891,
+          "profileId": "sandbox_modern_dirt",
+          "resolution": "profile_runtime_texture"
+        },
+        {
+          "file": "game/ben_rpg/visual_assets/visual_profiles.json",
+          "line": 1892,
+          "profileId": "sandbox_modern_cobble",
+          "resolution": "profile_runtime_texture"
+        },
+        {
+          "file": "game/ben_rpg/visual_assets/visual_profiles.json",
+          "line": 1893,
+          "profileId": "sandbox_modern_sand",
+          "resolution": "profile_runtime_texture"
+        },
+        {
+          "file": "game/ben_rpg/world/sandbox_terrain_catalog.gd",
+          "line": 44,
+          "resolution": "literal"
+        },
+        {
+          "file": "game/ben_rpg/world/sandbox_terrain_catalog.gd",
+          "line": 49,
+          "resolution": "literal"
+        },
+        {
+          "file": "game/ben_rpg/world/sandbox_terrain_catalog.gd",
+          "line": 54,
+          "resolution": "literal"
+        },
+        {
+          "file": "game/ben_rpg/world/sandbox_terrain_catalog.gd",
+          "line": 59,
+          "resolution": "literal"
+        }
+      ]
+    },
+    {
+      "path": "res://game_assets/Tilesets/Modern World Overworld Pixel Tileset/2.png",
+      "profileCoverage": "profiled",
+      "profileIds": [
+        "town_foundation_stone_tile",
+        "town_grass_tile",
+        "town_road_tile"
+      ],
+      "references": [
+        {
+          "file": "game/ben_rpg/visual_assets/visual_profiles.json",
+          "line": 1230,
+          "profileId": "town_grass_tile",
+          "resolution": "profile_runtime_texture"
+        },
+        {
+          "file": "game/ben_rpg/visual_assets/visual_profiles.json",
+          "line": 1236,
+          "profileId": "town_road_tile",
+          "resolution": "profile_runtime_texture"
+        },
+        {
+          "file": "game/ben_rpg/visual_assets/visual_profiles.json",
+          "line": 1240,
+          "profileId": "town_foundation_stone_tile",
+          "resolution": "profile_runtime_texture"
+        }
+      ]
+    },
+    {
+      "path": "res://game_assets/Tilesets/Modern World Overworld Pixel Tileset/3.png",
+      "profileCoverage": "profiled",
+      "profileIds": [
+        "laboratory_exterior",
+        "sandbox_modern_blue_cottage",
+        "sandbox_modern_clock_hall",
+        "sandbox_modern_red_cottage",
+        "town_armory_facade",
+        "town_cafe_facade",
+        "town_clinic_facade"
+      ],
+      "references": [
+        {
+          "file": "game/ben_rpg/visual_assets/visual_profiles.json",
+          "line": 9,
+          "profileId": "town_cafe_facade",
+          "resolution": "profile_runtime_texture"
+        },
+        {
+          "file": "game/ben_rpg/visual_assets/visual_profiles.json",
+          "line": 53,
+          "profileId": "laboratory_exterior",
+          "resolution": "profile_runtime_texture"
+        },
+        {
+          "file": "game/ben_rpg/visual_assets/visual_profiles.json",
+          "line": 300,
+          "profileId": "town_clinic_facade",
+          "resolution": "profile_runtime_texture"
+        },
+        {
+          "file": "game/ben_rpg/visual_assets/visual_profiles.json",
+          "line": 322,
+          "profileId": "town_armory_facade",
+          "resolution": "profile_runtime_texture"
+        },
+        {
+          "file": "game/ben_rpg/visual_assets/visual_profiles.json",
+          "line": 1921,
+          "profileId": "sandbox_modern_blue_cottage",
+          "resolution": "profile_runtime_texture"
+        },
+        {
+          "file": "game/ben_rpg/visual_assets/visual_profiles.json",
+          "line": 1922,
+          "profileId": "sandbox_modern_red_cottage",
+          "resolution": "profile_runtime_texture"
+        },
+        {
+          "file": "game/ben_rpg/visual_assets/visual_profiles.json",
+          "line": 1923,
+          "profileId": "sandbox_modern_clock_hall",
+          "resolution": "profile_runtime_texture"
+        },
+        {
+          "file": "game/ben_rpg/world/sandbox_object_catalog.gd",
+          "line": 15,
+          "resolution": "literal"
+        },
+        {
+          "file": "game/ben_rpg/world/sandbox_object_catalog.gd",
+          "line": 20,
+          "resolution": "literal"
+        },
+        {
+          "file": "game/ben_rpg/world/sandbox_object_catalog.gd",
+          "line": 25,
+          "resolution": "literal"
+        },
+        {
+          "file": "game/ben_rpg/world/sandbox_object_catalog.gd",
+          "line": 30,
+          "resolution": "literal"
+        },
+        {
+          "file": "game/ben_rpg/world/sandbox_object_catalog.gd",
+          "line": 35,
+          "resolution": "literal"
+        }
+      ]
+    },
+    {
+      "path": "res://game_assets/Tilesets/Ranch Stuff/assets/animals/cats/cat_01/idle/cat_01_idle_down_16x20.png",
+      "profileCoverage": "profiled",
+      "profileIds": [
+        "sandbox_ranch_cat"
+      ],
+      "references": [
+        {
+          "file": "game/ben_rpg/visual_assets/visual_profiles.json",
+          "line": 1906,
+          "profileId": "sandbox_ranch_cat",
+          "resolution": "profile_runtime_texture"
+        },
+        {
+          "file": "game/ben_rpg/world/sandbox_object_catalog.gd",
+          "line": 60,
+          "resolution": "literal"
+        }
+      ]
+    },
+    {
+      "path": "res://game_assets/Tilesets/Ranch Stuff/assets/animals/cows/cow_01/black/idle/cow_01_black_idle_down_32x32.png",
+      "profileCoverage": "profiled",
+      "profileIds": [
+        "sandbox_ranch_cow"
+      ],
+      "references": [
+        {
+          "file": "game/ben_rpg/visual_assets/visual_profiles.json",
+          "line": 1905,
+          "profileId": "sandbox_ranch_cow",
+          "resolution": "profile_runtime_texture"
+        },
+        {
+          "file": "game/ben_rpg/world/sandbox_object_catalog.gd",
+          "line": 55,
+          "resolution": "literal"
+        }
+      ]
+    },
+    {
+      "path": "res://game_assets/Tilesets/Ranch Stuff/assets/buildings/building_01_16x16.png",
+      "profileCoverage": "profiled",
+      "profileIds": [
+        "sandbox_ranch_house"
+      ],
+      "references": [
+        {
+          "file": "game/ben_rpg/visual_assets/visual_profiles.json",
+          "line": 1904,
+          "profileId": "sandbox_ranch_house",
+          "resolution": "profile_runtime_texture"
+        },
+        {
+          "file": "game/ben_rpg/world/sandbox_object_catalog.gd",
+          "line": 40,
+          "resolution": "literal"
+        }
+      ]
+    },
+    {
+      "path": "res://game_assets/Tilesets/Ranch Stuff/assets/crops/corn/growth_basic/corn_16x32_8frames.png",
+      "profileCoverage": "profiled",
+      "profileIds": [
+        "sandbox_ranch_corn"
+      ],
+      "references": [
+        {
+          "file": "game/ben_rpg/visual_assets/visual_profiles.json",
+          "line": 1907,
+          "profileId": "sandbox_ranch_corn",
+          "resolution": "profile_runtime_texture"
+        },
+        {
+          "file": "game/ben_rpg/world/sandbox_object_catalog.gd",
+          "line": 65,
+          "resolution": "literal"
+        }
+      ]
+    },
+    {
+      "path": "res://game_assets/Tilesets/Ranch Stuff/assets/crops/pumpkin/growth_basic/pumpkin_16x16_7frames.png",
+      "profileCoverage": "profiled",
+      "profileIds": [
+        "sandbox_ranch_pumpkin"
+      ],
+      "references": [
+        {
+          "file": "game/ben_rpg/visual_assets/visual_profiles.json",
+          "line": 1908,
+          "profileId": "sandbox_ranch_pumpkin",
+          "resolution": "profile_runtime_texture"
+        },
+        {
+          "file": "game/ben_rpg/world/sandbox_object_catalog.gd",
+          "line": 70,
+          "resolution": "literal"
+        }
+      ]
+    },
+    {
+      "path": "res://game_assets/Tilesets/Ranch Stuff/assets/tiles/ground_01_16x16.png",
+      "profileCoverage": "profiled",
+      "profileIds": [
+        "sandbox_ranch_dirt",
+        "sandbox_ranch_farmland",
+        "sandbox_ranch_light_grass",
+        "sandbox_ranch_meadow"
+      ],
+      "references": [
+        {
+          "file": "game/ben_rpg/visual_assets/visual_profiles.json",
+          "line": 1884,
+          "profileId": "sandbox_ranch_meadow",
+          "resolution": "profile_runtime_texture"
+        },
+        {
+          "file": "game/ben_rpg/visual_assets/visual_profiles.json",
+          "line": 1885,
+          "profileId": "sandbox_ranch_light_grass",
+          "resolution": "profile_runtime_texture"
+        },
+        {
+          "file": "game/ben_rpg/visual_assets/visual_profiles.json",
+          "line": 1886,
+          "profileId": "sandbox_ranch_dirt",
+          "resolution": "profile_runtime_texture"
+        },
+        {
+          "file": "game/ben_rpg/visual_assets/visual_profiles.json",
+          "line": 1887,
+          "profileId": "sandbox_ranch_farmland",
+          "resolution": "profile_runtime_texture"
+        },
+        {
+          "file": "game/ben_rpg/world/sandbox_terrain_catalog.gd",
+          "line": 14,
+          "resolution": "literal"
+        },
+        {
+          "file": "game/ben_rpg/world/sandbox_terrain_catalog.gd",
+          "line": 19,
+          "resolution": "literal"
+        },
+        {
+          "file": "game/ben_rpg/world/sandbox_terrain_catalog.gd",
+          "line": 24,
+          "resolution": "literal"
+        },
+        {
+          "file": "game/ben_rpg/world/sandbox_terrain_catalog.gd",
+          "line": 29,
+          "resolution": "literal"
+        }
+      ]
+    },
+    {
+      "path": "res://game_assets/Tilesets/Ranch Stuff/assets/tiles/snow_01_16x16.png",
+      "profileCoverage": "profiled",
+      "profileIds": [
+        "sandbox_ranch_snow"
+      ],
+      "references": [
+        {
+          "file": "game/ben_rpg/visual_assets/visual_profiles.json",
+          "line": 1888,
+          "profileId": "sandbox_ranch_snow",
+          "resolution": "profile_runtime_texture"
+        },
+        {
+          "file": "game/ben_rpg/world/sandbox_terrain_catalog.gd",
+          "line": 34,
+          "resolution": "literal"
+        }
+      ]
+    },
+    {
+      "path": "res://game_assets/Tilesets/Ranch Stuff/assets/tiles/tree_01_16x16.png",
+      "profileCoverage": "profiled",
+      "profileIds": [
+        "sandbox_ranch_oak",
+        "sandbox_ranch_sapling",
+        "town_ranch_tree_small",
+        "town_ranch_tree_tall"
+      ],
+      "references": [
+        {
+          "file": "game/ben_rpg/visual_assets/visual_profiles.json",
+          "line": 258,
+          "profileId": "town_ranch_tree_small",
+          "resolution": "profile_runtime_texture"
+        },
+        {
+          "file": "game/ben_rpg/visual_assets/visual_profiles.json",
+          "line": 279,
+          "profileId": "town_ranch_tree_tall",
+          "resolution": "profile_runtime_texture"
+        },
+        {
+          "file": "game/ben_rpg/visual_assets/visual_profiles.json",
+          "line": 1924,
+          "profileId": "sandbox_ranch_oak",
+          "resolution": "profile_runtime_texture"
+        },
+        {
+          "file": "game/ben_rpg/visual_assets/visual_profiles.json",
+          "line": 1925,
+          "profileId": "sandbox_ranch_sapling",
+          "resolution": "profile_runtime_texture"
+        },
+        {
+          "file": "game/ben_rpg/world/sandbox_object_catalog.gd",
+          "line": 45,
+          "resolution": "literal"
+        },
+        {
+          "file": "game/ben_rpg/world/sandbox_object_catalog.gd",
+          "line": 50,
+          "resolution": "literal"
+        }
+      ]
+    },
+    {
+      "path": "res://game_assets/Tilesets/Ranch Stuff/assets/tiles/water_01_16x16_5frames.png",
+      "profileCoverage": "profiled",
+      "profileIds": [
+        "sandbox_ranch_water"
+      ],
+      "references": [
+        {
+          "file": "game/ben_rpg/visual_assets/visual_profiles.json",
+          "line": 1889,
+          "profileId": "sandbox_ranch_water",
+          "resolution": "profile_runtime_texture"
+        },
+        {
+          "file": "game/ben_rpg/world/sandbox_terrain_catalog.gd",
+          "line": 39,
+          "resolution": "literal"
+        }
+      ]
+    },
+    {
+      "path": "res://game_assets/Tilesets/Sakura Temple Asset Pack/Decorative framed garden tiles.png",
+      "profileCoverage": "profiled",
+      "profileIds": [
+        "moonpetal_framed_garden_island",
+        "moonpetal_framed_garden_island_right",
+        "moonpetal_palace_garden_left",
+        "moonpetal_palace_garden_right"
+      ],
+      "references": [
+        {
+          "file": "game/ben_rpg/visual_assets/visual_profiles.json",
+          "line": 186,
+          "profileId": "moonpetal_framed_garden_island",
+          "resolution": "profile_runtime_texture"
+        },
+        {
+          "file": "game/ben_rpg/visual_assets/visual_profiles.json",
+          "line": 204,
+          "profileId": "moonpetal_framed_garden_island_right",
+          "resolution": "profile_runtime_texture"
+        },
+        {
+          "file": "game/ben_rpg/visual_assets/visual_profiles.json",
+          "line": 224,
+          "profileId": "moonpetal_palace_garden_left",
+          "resolution": "profile_runtime_texture"
+        },
+        {
+          "file": "game/ben_rpg/visual_assets/visual_profiles.json",
+          "line": 229,
+          "profileId": "moonpetal_palace_garden_right",
+          "resolution": "profile_runtime_texture"
+        }
+      ]
+    },
+    {
+      "path": "res://game_assets/Tilesets/Sakura Temple Asset Pack/Floor tiles.png",
+      "profileCoverage": "profiled",
+      "profileIds": [
+        "moonpetal_bell_battle_backdrop",
+        "moonpetal_court_battle_backdrop",
+        "moonpetal_garden_battle_backdrop",
+        "moonpetal_gate_battle_backdrop",
+        "moonpetal_palace_battle_backdrop"
+      ],
+      "references": [
+        {
+          "file": "game/ben_rpg/visual_assets/visual_profiles.json",
+          "line": 1524,
+          "profileId": "moonpetal_gate_battle_backdrop",
+          "resolution": "profile_runtime_texture"
+        },
+        {
+          "file": "game/ben_rpg/visual_assets/visual_profiles.json",
+          "line": 1531,
+          "profileId": "moonpetal_court_battle_backdrop",
+          "resolution": "profile_runtime_texture"
+        },
+        {
+          "file": "game/ben_rpg/visual_assets/visual_profiles.json",
+          "line": 1538,
+          "profileId": "moonpetal_garden_battle_backdrop",
+          "resolution": "profile_runtime_texture"
+        },
+        {
+          "file": "game/ben_rpg/visual_assets/visual_profiles.json",
+          "line": 1545,
+          "profileId": "moonpetal_bell_battle_backdrop",
+          "resolution": "profile_runtime_texture"
+        },
+        {
+          "file": "game/ben_rpg/visual_assets/visual_profiles.json",
+          "line": 1552,
+          "profileId": "moonpetal_palace_battle_backdrop",
+          "resolution": "profile_runtime_texture"
+        }
+      ]
+    },
+    {
+      "path": "res://game_assets/Tilesets/Sakura Temple Asset Pack/Lanterns and lights.png",
+      "profileCoverage": "profiled",
+      "profileIds": [
+        "moonpetal_gate_lantern",
+        "moonpetal_gate_lantern_right"
+      ],
+      "references": [
+        {
+          "file": "game/ben_rpg/visual_assets/visual_profiles.json",
+          "line": 237,
+          "profileId": "moonpetal_gate_lantern",
+          "resolution": "profile_runtime_texture"
+        },
+        {
+          "file": "game/ben_rpg/visual_assets/visual_profiles.json",
+          "line": 895,
+          "profileId": "moonpetal_gate_lantern_right",
+          "resolution": "profile_runtime_texture"
+        }
+      ]
+    },
+    {
+      "path": "res://game_assets/Tilesets/Sakura Temple Asset Pack/Sakura trees.png",
+      "profileCoverage": "profiled",
+      "profileIds": [
+        "moonpetal_court_tree_canopy",
+        "moonpetal_court_tree_canopy_right"
+      ],
+      "references": [
+        {
+          "file": "game/ben_rpg/visual_assets/visual_profiles.json",
+          "line": 139,
+          "profileId": "moonpetal_court_tree_canopy",
+          "resolution": "profile_runtime_texture"
+        },
+        {
+          "file": "game/ben_rpg/visual_assets/visual_profiles.json",
+          "line": 157,
+          "profileId": "moonpetal_court_tree_canopy_right",
+          "resolution": "profile_runtime_texture"
+        }
+      ]
+    },
+    {
+      "path": "res://game_assets/Tilesets/Sakura Temple Asset Pack/Shrine Gates.png",
+      "profileCoverage": "profiled",
+      "profileIds": [
+        "moonpetal_bell_walk_gate_left",
+        "moonpetal_bell_walk_gate_right",
+        "moonpetal_vermilion_gate"
+      ],
+      "references": [
+        {
+          "file": "game/ben_rpg/visual_assets/visual_profiles.json",
+          "line": 97,
+          "profileId": "moonpetal_vermilion_gate",
+          "resolution": "profile_runtime_texture"
+        },
+        {
+          "file": "game/ben_rpg/visual_assets/visual_profiles.json",
+          "line": 209,
+          "profileId": "moonpetal_bell_walk_gate_left",
+          "resolution": "profile_runtime_texture"
+        },
+        {
+          "file": "game/ben_rpg/visual_assets/visual_profiles.json",
+          "line": 214,
+          "profileId": "moonpetal_bell_walk_gate_right",
+          "resolution": "profile_runtime_texture"
+        }
+      ]
+    },
+    {
+      "path": "res://game_assets/Tilesets/Sakura Temple Asset Pack/Stone patchs and walkways.png",
+      "profileCoverage": "profiled",
+      "profileIds": [
+        "moonpetal_processional_path"
+      ],
+      "references": [
+        {
+          "file": "game/ben_rpg/visual_assets/visual_profiles.json",
+          "line": 1294,
+          "profileId": "moonpetal_processional_path",
+          "resolution": "profile_runtime_texture"
+        }
+      ]
+    },
+    {
+      "path": "res://game_assets/Tilesets/Sakura Temple Asset Pack/Water and ponds.png",
+      "profileCoverage": "profiled",
+      "profileIds": [
+        "moonpetal_mirror_pond"
+      ],
+      "references": [
+        {
+          "file": "game/ben_rpg/visual_assets/visual_profiles.json",
+          "line": 165,
+          "profileId": "moonpetal_mirror_pond",
+          "resolution": "profile_runtime_texture"
+        }
+      ]
+    },
+    {
+      "path": "res://game_assets/Tilesets/Sakura Temple Asset Pack/temple building parts.png",
+      "profileCoverage": "profiled",
+      "profileIds": [
+        "moonpetal_court_temple",
+        "moonpetal_palace_facade",
+        "town_tea_house_facade"
+      ],
+      "references": [
+        {
+          "file": "game/ben_rpg/visual_assets/visual_profiles.json",
+          "line": 118,
+          "profileId": "moonpetal_court_temple",
+          "resolution": "profile_runtime_texture"
+        },
+        {
+          "file": "game/ben_rpg/visual_assets/visual_profiles.json",
+          "line": 219,
+          "profileId": "moonpetal_palace_facade",
+          "resolution": "profile_runtime_texture"
+        },
+        {
+          "file": "game/ben_rpg/visual_assets/visual_profiles.json",
+          "line": 388,
+          "profileId": "town_tea_house_facade",
+          "resolution": "profile_runtime_texture"
+        }
+      ]
+    },
+    {
+      "path": "res://game_assets/Tilesets/Sci-Fi Spaceship Interior Tileset Pack/1.png",
+      "profileCoverage": "profiled",
+      "profileIds": [
+        "asterion_dock_battle_backdrop",
+        "asterion_station_architecture",
+        "asterion_station_floor_0_0",
+        "asterion_station_floor_0_1",
+        "asterion_station_floor_1_0",
+        "asterion_station_floor_1_1",
+        "asterion_station_wall_0_0",
+        "asterion_station_wall_0_1",
+        "asterion_station_wall_1_0",
+        "asterion_station_wall_1_1",
+        "sandbox_scifi_blue_panel",
+        "sandbox_scifi_grate",
+        "sandbox_scifi_gray_panel",
+        "sandbox_scifi_steel_floor"
+      ],
+      "references": [
+        {
+          "file": "game/ben_rpg/visual_assets/visual_profiles.json",
+          "line": 551,
+          "profileId": "asterion_station_architecture",
+          "resolution": "profile_runtime_texture"
+        },
+        {
+          "file": "game/ben_rpg/visual_assets/visual_profiles.json",
+          "line": 558,
+          "profileId": "asterion_station_wall_0_0",
+          "resolution": "profile_runtime_texture"
+        },
+        {
+          "file": "game/ben_rpg/visual_assets/visual_profiles.json",
+          "line": 565,
+          "profileId": "asterion_station_wall_1_0",
+          "resolution": "profile_runtime_texture"
+        },
+        {
+          "file": "game/ben_rpg/visual_assets/visual_profiles.json",
+          "line": 572,
+          "profileId": "asterion_station_wall_0_1",
+          "resolution": "profile_runtime_texture"
+        },
+        {
+          "file": "game/ben_rpg/visual_assets/visual_profiles.json",
+          "line": 579,
+          "profileId": "asterion_station_wall_1_1",
+          "resolution": "profile_runtime_texture"
+        },
+        {
+          "file": "game/ben_rpg/visual_assets/visual_profiles.json",
+          "line": 586,
+          "profileId": "asterion_station_floor_0_0",
+          "resolution": "profile_runtime_texture"
+        },
+        {
+          "file": "game/ben_rpg/visual_assets/visual_profiles.json",
+          "line": 593,
+          "profileId": "asterion_station_floor_1_0",
+          "resolution": "profile_runtime_texture"
+        },
+        {
+          "file": "game/ben_rpg/visual_assets/visual_profiles.json",
+          "line": 600,
+          "profileId": "asterion_station_floor_0_1",
+          "resolution": "profile_runtime_texture"
+        },
+        {
+          "file": "game/ben_rpg/visual_assets/visual_profiles.json",
+          "line": 607,
+          "profileId": "asterion_station_floor_1_1",
+          "resolution": "profile_runtime_texture"
+        },
+        {
+          "file": "game/ben_rpg/visual_assets/visual_profiles.json",
+          "line": 1442,
+          "profileId": "asterion_dock_battle_backdrop",
+          "resolution": "profile_runtime_texture"
+        },
+        {
+          "file": "game/ben_rpg/visual_assets/visual_profiles.json",
+          "line": 1900,
+          "profileId": "sandbox_scifi_blue_panel",
+          "resolution": "profile_runtime_texture"
+        },
+        {
+          "file": "game/ben_rpg/visual_assets/visual_profiles.json",
+          "line": 1901,
+          "profileId": "sandbox_scifi_gray_panel",
+          "resolution": "profile_runtime_texture"
+        },
+        {
+          "file": "game/ben_rpg/visual_assets/visual_profiles.json",
+          "line": 1902,
+          "profileId": "sandbox_scifi_steel_floor",
+          "resolution": "profile_runtime_texture"
+        },
+        {
+          "file": "game/ben_rpg/visual_assets/visual_profiles.json",
+          "line": 1903,
+          "profileId": "sandbox_scifi_grate",
+          "resolution": "profile_runtime_texture"
+        },
+        {
+          "file": "game/ben_rpg/world/sandbox_terrain_catalog.gd",
+          "line": 94,
+          "resolution": "literal"
+        },
+        {
+          "file": "game/ben_rpg/world/sandbox_terrain_catalog.gd",
+          "line": 99,
+          "resolution": "literal"
+        },
+        {
+          "file": "game/ben_rpg/world/sandbox_terrain_catalog.gd",
+          "line": 104,
+          "resolution": "literal"
+        },
+        {
+          "file": "game/ben_rpg/world/sandbox_terrain_catalog.gd",
+          "line": 109,
+          "resolution": "literal"
+        }
+      ]
+    },
+    {
+      "path": "res://game_assets/Tilesets/Sci-Fi Spaceship Interior Tileset Pack/10.png",
+      "profileCoverage": "profiled",
+      "profileIds": [
+        "asterion_medical_battle_backdrop",
+        "asterion_medical_cabinet",
+        "asterion_medical_station",
+        "asterion_medical_supply_cart",
+        "asterion_medical_treatment_bed",
+        "sandbox_scifi_drug_cabinet",
+        "sandbox_scifi_med_scanner"
+      ],
+      "references": [
+        {
+          "file": "game/ben_rpg/visual_assets/visual_profiles.json",
+          "line": 648,
+          "profileId": "asterion_medical_cabinet",
+          "resolution": "profile_runtime_texture"
+        },
+        {
+          "file": "game/ben_rpg/visual_assets/visual_profiles.json",
+          "line": 653,
+          "profileId": "asterion_medical_treatment_bed",
+          "resolution": "profile_runtime_texture"
+        },
+        {
+          "file": "game/ben_rpg/visual_assets/visual_profiles.json",
+          "line": 658,
+          "profileId": "asterion_medical_supply_cart",
+          "resolution": "profile_runtime_texture"
+        },
+        {
+          "file": "game/ben_rpg/visual_assets/visual_profiles.json",
+          "line": 697,
+          "profileId": "asterion_medical_station",
+          "resolution": "profile_runtime_texture"
+        },
+        {
+          "file": "game/ben_rpg/visual_assets/visual_profiles.json",
+          "line": 1456,
+          "profileId": "asterion_medical_battle_backdrop",
+          "resolution": "profile_runtime_texture"
+        },
+        {
+          "file": "game/ben_rpg/visual_assets/visual_profiles.json",
+          "line": 1918,
+          "profileId": "sandbox_scifi_med_scanner",
+          "resolution": "profile_runtime_texture"
+        },
+        {
+          "file": "game/ben_rpg/visual_assets/visual_profiles.json",
+          "line": 1919,
+          "profileId": "sandbox_scifi_drug_cabinet",
+          "resolution": "profile_runtime_texture"
+        },
+        {
+          "file": "game/ben_rpg/world/sandbox_object_catalog.gd",
+          "line": 170,
+          "resolution": "literal"
+        },
+        {
+          "file": "game/ben_rpg/world/sandbox_object_catalog.gd",
+          "line": 175,
+          "resolution": "literal"
+        },
+        {
+          "file": "game/ben_rpg/world/sandbox_object_catalog.gd",
+          "line": 180,
+          "resolution": "literal"
+        }
+      ]
+    },
+    {
+      "path": "res://game_assets/Tilesets/Sci-Fi Spaceship Interior Tileset Pack/2.png",
+      "profileCoverage": "profiled",
+      "profileIds": [
+        "asterion_mess_banner",
+        "asterion_mess_counter",
+        "asterion_mess_wall_fixture_left",
+        "asterion_mess_wall_fixture_right",
+        "sandbox_scifi_food_locker",
+        "sandbox_scifi_mess_table",
+        "sandbox_scifi_prep_locker",
+        "sandbox_scifi_water_cooler"
+      ],
+      "references": [
+        {
+          "file": "game/ben_rpg/visual_assets/visual_profiles.json",
+          "line": 618,
+          "profileId": "asterion_mess_wall_fixture_left",
+          "resolution": "profile_runtime_texture"
+        },
+        {
+          "file": "game/ben_rpg/visual_assets/visual_profiles.json",
+          "line": 623,
+          "profileId": "asterion_mess_wall_fixture_right",
+          "resolution": "profile_runtime_texture"
+        },
+        {
+          "file": "game/ben_rpg/visual_assets/visual_profiles.json",
+          "line": 633,
+          "profileId": "asterion_mess_counter",
+          "resolution": "profile_runtime_texture"
+        },
+        {
+          "file": "game/ben_rpg/visual_assets/visual_profiles.json",
+          "line": 669,
+          "profileId": "asterion_mess_banner",
+          "resolution": "profile_runtime_texture"
+        },
+        {
+          "file": "game/ben_rpg/visual_assets/visual_profiles.json",
+          "line": 1910,
+          "profileId": "sandbox_scifi_prep_locker",
+          "resolution": "profile_runtime_texture"
+        },
+        {
+          "file": "game/ben_rpg/visual_assets/visual_profiles.json",
+          "line": 1911,
+          "profileId": "sandbox_scifi_food_locker",
+          "resolution": "profile_runtime_texture"
+        },
+        {
+          "file": "game/ben_rpg/visual_assets/visual_profiles.json",
+          "line": 1912,
+          "profileId": "sandbox_scifi_mess_table",
+          "resolution": "profile_runtime_texture"
+        },
+        {
+          "file": "game/ben_rpg/visual_assets/visual_profiles.json",
+          "line": 1913,
+          "profileId": "sandbox_scifi_water_cooler",
+          "resolution": "profile_runtime_texture"
+        },
+        {
+          "file": "game/ben_rpg/world/sandbox_object_catalog.gd",
+          "line": 115,
+          "resolution": "literal"
+        },
+        {
+          "file": "game/ben_rpg/world/sandbox_object_catalog.gd",
+          "line": 120,
+          "resolution": "literal"
+        },
+        {
+          "file": "game/ben_rpg/world/sandbox_object_catalog.gd",
+          "line": 125,
+          "resolution": "literal"
+        },
+        {
+          "file": "game/ben_rpg/world/sandbox_object_catalog.gd",
+          "line": 130,
+          "resolution": "literal"
+        },
+        {
+          "file": "game/ben_rpg/world/sandbox_object_catalog.gd",
+          "line": 135,
+          "resolution": "literal"
+        }
+      ]
+    },
+    {
+      "path": "res://game_assets/Tilesets/Sci-Fi Spaceship Interior Tileset Pack/3.png",
+      "profileCoverage": "profiled",
+      "profileIds": [
+        "asterion_hydro_battle_backdrop",
+        "asterion_hydro_control_bank",
+        "asterion_hydro_reservoir",
+        "asterion_hydroponics_bed",
+        "sandbox_scifi_bio_pod",
+        "sandbox_scifi_seed_bed"
+      ],
+      "references": [
+        {
+          "file": "game/ben_rpg/visual_assets/visual_profiles.json",
+          "line": 638,
+          "profileId": "asterion_hydro_control_bank",
+          "resolution": "profile_runtime_texture"
+        },
+        {
+          "file": "game/ben_rpg/visual_assets/visual_profiles.json",
+          "line": 643,
+          "profileId": "asterion_hydro_reservoir",
+          "resolution": "profile_runtime_texture"
+        },
+        {
+          "file": "game/ben_rpg/visual_assets/visual_profiles.json",
+          "line": 676,
+          "profileId": "asterion_hydroponics_bed",
+          "resolution": "profile_runtime_texture"
+        },
+        {
+          "file": "game/ben_rpg/visual_assets/visual_profiles.json",
+          "line": 1449,
+          "profileId": "asterion_hydro_battle_backdrop",
+          "resolution": "profile_runtime_texture"
+        },
+        {
+          "file": "game/ben_rpg/visual_assets/visual_profiles.json",
+          "line": 1914,
+          "profileId": "sandbox_scifi_seed_bed",
+          "resolution": "profile_runtime_texture"
+        },
+        {
+          "file": "game/ben_rpg/visual_assets/visual_profiles.json",
+          "line": 1915,
+          "profileId": "sandbox_scifi_bio_pod",
+          "resolution": "profile_runtime_texture"
+        },
+        {
+          "file": "game/ben_rpg/world/sandbox_object_catalog.gd",
+          "line": 140,
+          "resolution": "literal"
+        },
+        {
+          "file": "game/ben_rpg/world/sandbox_object_catalog.gd",
+          "line": 145,
+          "resolution": "literal"
+        },
+        {
+          "file": "game/ben_rpg/world/sandbox_object_catalog.gd",
+          "line": 150,
+          "resolution": "literal"
+        }
+      ]
+    },
+    {
+      "path": "res://game_assets/Tilesets/Sci-Fi Spaceship Interior Tileset Pack/6.png",
+      "profileCoverage": "profiled",
+      "profileIds": [
+        "asterion_command_battle_backdrop",
+        "asterion_command_console",
+        "asterion_medical_control_console",
+        "sandbox_scifi_hologram_beacon",
+        "sandbox_scifi_porthole"
+      ],
+      "references": [
+        {
+          "file": "game/ben_rpg/visual_assets/visual_profiles.json",
+          "line": 663,
+          "profileId": "asterion_medical_control_console",
+          "resolution": "profile_runtime_texture"
+        },
+        {
+          "file": "game/ben_rpg/visual_assets/visual_profiles.json",
+          "line": 683,
+          "profileId": "asterion_command_console",
+          "resolution": "profile_runtime_texture"
+        },
+        {
+          "file": "game/ben_rpg/visual_assets/visual_profiles.json",
+          "line": 1463,
+          "profileId": "asterion_command_battle_backdrop",
+          "resolution": "profile_runtime_texture"
+        },
+        {
+          "file": "game/ben_rpg/visual_assets/visual_profiles.json",
+          "line": 1916,
+          "profileId": "sandbox_scifi_porthole",
+          "resolution": "profile_runtime_texture"
+        },
+        {
+          "file": "game/ben_rpg/visual_assets/visual_profiles.json",
+          "line": 1917,
+          "profileId": "sandbox_scifi_hologram_beacon",
+          "resolution": "profile_runtime_texture"
+        },
+        {
+          "file": "game/ben_rpg/world/sandbox_object_catalog.gd",
+          "line": 155,
+          "resolution": "literal"
+        },
+        {
+          "file": "game/ben_rpg/world/sandbox_object_catalog.gd",
+          "line": 160,
+          "resolution": "literal"
+        },
+        {
+          "file": "game/ben_rpg/world/sandbox_object_catalog.gd",
+          "line": 165,
+          "resolution": "literal"
+        }
+      ]
+    },
+    {
+      "path": "res://game_assets/Tilesets/Sci-Fi Spaceship Interior Tileset Pack/8.png",
+      "profileCoverage": "profiled",
+      "profileIds": [
+        "asterion_dock_bulkhead",
+        "asterion_dock_hull",
+        "asterion_mess_service_hatch",
+        "sandbox_scifi_cargo_module"
+      ],
+      "references": [
+        {
+          "file": "game/ben_rpg/visual_assets/visual_profiles.json",
+          "line": 613,
+          "profileId": "asterion_dock_bulkhead",
+          "resolution": "profile_runtime_texture"
+        },
+        {
+          "file": "game/ben_rpg/visual_assets/visual_profiles.json",
+          "line": 628,
+          "profileId": "asterion_mess_service_hatch",
+          "resolution": "profile_runtime_texture"
+        },
+        {
+          "file": "game/ben_rpg/visual_assets/visual_profiles.json",
+          "line": 690,
+          "profileId": "asterion_dock_hull",
+          "resolution": "profile_runtime_texture"
+        },
+        {
+          "file": "game/ben_rpg/visual_assets/visual_profiles.json",
+          "line": 1909,
+          "profileId": "sandbox_scifi_cargo_module",
+          "resolution": "profile_runtime_texture"
+        },
+        {
+          "file": "game/ben_rpg/world/sandbox_object_catalog.gd",
+          "line": 105,
+          "resolution": "literal"
+        },
+        {
+          "file": "game/ben_rpg/world/sandbox_object_catalog.gd",
+          "line": 110,
+          "resolution": "literal"
+        }
+      ]
+    },
+    {
+      "path": "res://game_assets/Tilesets/Stone Age Modern Life Pixel Art Tileset Pack/1.png",
+      "profileCoverage": "profiled",
+      "profileIds": [
+        "primeval_village_awning_left",
+        "primeval_village_awning_right",
+        "primeval_village_dwelling",
+        "primeval_village_dwelling_right",
+        "primeval_village_firepit",
+        "primeval_village_longhouse",
+        "town_trailhead_lodge_facade"
+      ],
+      "references": [
+        {
+          "file": "game/ben_rpg/visual_assets/visual_profiles.json",
+          "line": 344,
+          "profileId": "town_trailhead_lodge_facade",
+          "resolution": "profile_runtime_texture"
+        },
+        {
+          "file": "game/ben_rpg/visual_assets/visual_profiles.json",
+          "line": 704,
+          "profileId": "primeval_village_dwelling",
+          "resolution": "profile_runtime_texture"
+        },
+        {
+          "file": "game/ben_rpg/visual_assets/visual_profiles.json",
+          "line": 710,
+          "profileId": "primeval_village_dwelling_right",
+          "resolution": "profile_runtime_texture"
+        },
+        {
+          "file": "game/ben_rpg/visual_assets/visual_profiles.json",
+          "line": 715,
+          "profileId": "primeval_village_longhouse",
+          "resolution": "profile_runtime_texture"
+        },
+        {
+          "file": "game/ben_rpg/visual_assets/visual_profiles.json",
+          "line": 720,
+          "profileId": "primeval_village_firepit",
+          "resolution": "profile_runtime_texture"
+        },
+        {
+          "file": "game/ben_rpg/visual_assets/visual_profiles.json",
+          "line": 725,
+          "profileId": "primeval_village_awning_left",
+          "resolution": "profile_runtime_texture"
+        },
+        {
+          "file": "game/ben_rpg/visual_assets/visual_profiles.json",
+          "line": 730,
+          "profileId": "primeval_village_awning_right",
+          "resolution": "profile_runtime_texture"
+        }
+      ]
+    },
+    {
+      "path": "res://game_assets/Tilesets/Stone Age Modern Life Pixel Art Tileset Pack/7.png",
+      "profileCoverage": "profiled",
+      "profileIds": [
+        "primeval_anchor_totem"
+      ],
+      "references": [
+        {
+          "file": "game/ben_rpg/visual_assets/visual_profiles.json",
+          "line": 736,
+          "profileId": "primeval_anchor_totem",
+          "resolution": "profile_runtime_texture"
+        }
+      ]
+    },
+    {
+      "path": "res://game_assets/Tilesets/Stone Age Modern Life Pixel Art Tileset Pack/9.png",
+      "profileCoverage": "profiled",
+      "profileIds": [
+        "primeval_desert_ground_quadrant",
+        "primeval_ground_battle_backdrop",
+        "primeval_ground_quadrant"
+      ],
+      "references": [
+        {
+          "file": "game/ben_rpg/visual_assets/visual_profiles.json",
+          "line": 1245,
+          "profileId": "primeval_ground_quadrant",
+          "resolution": "profile_runtime_texture"
+        },
+        {
+          "file": "game/ben_rpg/visual_assets/visual_profiles.json",
+          "line": 1469,
+          "profileId": "primeval_desert_ground_quadrant",
+          "resolution": "profile_runtime_texture"
+        },
+        {
+          "file": "game/ben_rpg/visual_assets/visual_profiles.json",
+          "line": 1475,
+          "profileId": "primeval_ground_battle_backdrop",
+          "resolution": "profile_runtime_texture"
+        }
+      ]
+    },
+    {
+      "path": "res://game_assets/characters/Main Character/Ben_Franklin/rotations/south.png",
+      "profileCoverage": "profiled",
+      "profileIds": [
+        "ben_company_portrait"
+      ],
+      "references": [
+        {
+          "file": "game/ben_rpg/visual_assets/visual_profiles.json",
+          "line": 1877,
+          "profileId": "ben_company_portrait",
+          "resolution": "profile_runtime_texture"
+        }
+      ]
+    },
+    {
+      "path": "res://game_assets/characters/Main Character/Ben_Franklin/rotations/west.png",
+      "profileCoverage": "profiled",
+      "profileIds": [
+        "ben_battle_actor"
+      ],
+      "references": [
+        {
+          "file": "game/ben_rpg/visual_assets/visual_profiles.json",
+          "line": 1811,
+          "profileId": "ben_battle_actor",
+          "resolution": "profile_runtime_texture"
+        }
+      ]
+    },
+    {
+      "path": "res://game_assets/characters/Recruitable Characters/Abe_Lincoln/rotations/south.png",
+      "profileCoverage": "profiled",
+      "profileIds": [
+        "lincoln_company_portrait"
+      ],
+      "references": [
+        {
+          "file": "game/ben_rpg/visual_assets/visual_profiles.json",
+          "line": 1942,
+          "profileId": "lincoln_company_portrait",
+          "resolution": "profile_runtime_texture"
+        }
+      ]
+    },
+    {
+      "path": "res://game_assets/characters/Recruitable Characters/Abe_Lincoln/rotations/west.png",
+      "profileCoverage": "profiled",
+      "profileIds": [
+        "lincoln_battle_actor"
+      ],
+      "references": [
+        {
+          "file": "game/ben_rpg/visual_assets/visual_profiles.json",
+          "line": 1940,
+          "profileId": "lincoln_battle_actor",
+          "resolution": "profile_runtime_texture"
+        }
+      ]
+    },
+    {
+      "path": "res://game_assets/characters/Recruitable Characters/Archangel Commander — Legendary Celestial Warrior Hero/rotations/west.png",
+      "profileCoverage": "profiled",
+      "profileIds": [
+        "archangel_commander_battle_actor"
+      ],
+      "references": [
+        {
+          "file": "game/ben_rpg/visual_assets/visual_profiles.json",
+          "line": 1841,
+          "profileId": "archangel_commander_battle_actor",
+          "resolution": "profile_runtime_texture"
+        }
+      ]
+    },
+    {
+      "path": "res://game_assets/characters/Recruitable Characters/Fighter/Fighter/rotations/south.png",
+      "profileCoverage": "profiled",
+      "profileIds": [
+        "fighter_company_portrait"
+      ],
+      "references": [
+        {
+          "file": "game/ben_rpg/visual_assets/visual_profiles.json",
+          "line": 1878,
+          "profileId": "fighter_company_portrait",
+          "resolution": "profile_runtime_texture"
+        }
+      ]
+    },
+    {
+      "path": "res://game_assets/characters/Recruitable Characters/Fighter/Fighter/rotations/west.png",
+      "profileCoverage": "profiled",
+      "profileIds": [
+        "fighter_battle_actor"
+      ],
+      "references": [
+        {
+          "file": "game/ben_rpg/visual_assets/visual_profiles.json",
+          "line": 1816,
+          "profileId": "fighter_battle_actor",
+          "resolution": "profile_runtime_texture"
+        }
+      ]
+    },
+    {
+      "path": "res://game_assets/characters/Recruitable Characters/Gandhi_Sprite/rotations/south.png",
+      "profileCoverage": "profiled",
+      "profileIds": [
+        "gandhi_company_portrait"
+      ],
+      "references": [
+        {
+          "file": "game/ben_rpg/visual_assets/visual_profiles.json",
+          "line": 1943,
+          "profileId": "gandhi_company_portrait",
+          "resolution": "profile_runtime_texture"
+        }
+      ]
+    },
+    {
+      "path": "res://game_assets/characters/Recruitable Characters/Gandhi_Sprite/rotations/west.png",
+      "profileCoverage": "profiled",
+      "profileIds": [
+        "gandhi_battle_actor"
+      ],
+      "references": [
+        {
+          "file": "game/ben_rpg/visual_assets/visual_profiles.json",
+          "line": 1941,
+          "profileId": "gandhi_battle_actor",
+          "resolution": "profile_runtime_texture"
+        }
+      ]
+    },
+    {
+      "path": "res://game_assets/characters/Recruitable Characters/astronaut/Astronaut/rotations/south.png",
+      "profileCoverage": "profiled",
+      "profileIds": [
+        "astronaut_company_portrait"
+      ],
+      "references": [
+        {
+          "file": "game/ben_rpg/visual_assets/visual_profiles.json",
+          "line": 1879,
+          "profileId": "astronaut_company_portrait",
+          "resolution": "profile_runtime_texture"
+        }
+      ]
+    },
+    {
+      "path": "res://game_assets/characters/Recruitable Characters/astronaut/Astronaut/rotations/west.png",
+      "profileCoverage": "profiled",
+      "profileIds": [
+        "astronaut_battle_actor"
+      ],
+      "references": [
+        {
+          "file": "game/ben_rpg/visual_assets/visual_profiles.json",
+          "line": 1821,
+          "profileId": "astronaut_battle_actor",
+          "resolution": "profile_runtime_texture"
+        }
+      ]
+    },
+    {
+      "path": "res://game_assets/characters/Recruitable Characters/caveman/Caveman/rotations/west.png",
+      "profileCoverage": "profiled",
+      "profileIds": [
+        "caveman_battle_actor"
+      ],
+      "references": [
+        {
+          "file": "game/ben_rpg/visual_assets/visual_profiles.json",
+          "line": 1826,
+          "profileId": "caveman_battle_actor",
+          "resolution": "profile_runtime_texture"
+        }
+      ]
+    },
+    {
+      "path": "res://game_assets/characters/Recruitable Characters/crimson oni samurai/rotations/west.png",
+      "profileCoverage": "profiled",
+      "profileIds": [
+        "crimson_oni_challenger_battle_actor"
+      ],
+      "references": [
+        {
+          "file": "game/ben_rpg/visual_assets/visual_profiles.json",
+          "line": 1806,
+          "profileId": "crimson_oni_challenger_battle_actor",
+          "resolution": "profile_runtime_texture"
+        }
+      ]
+    },
+    {
+      "path": "res://game_assets/characters/Recruitable Characters/kitsune empress/rotations/west.png",
+      "profileCoverage": "profiled",
+      "profileIds": [
+        "kitsune_empress_battle_actor"
+      ],
+      "references": [
+        {
+          "file": "game/ben_rpg/visual_assets/visual_profiles.json",
+          "line": 1831,
+          "profileId": "kitsune_empress_battle_actor",
+          "resolution": "profile_runtime_texture"
+        }
+      ]
+    },
+    {
+      "path": "res://game_assets/characters/Recruitable Characters/neon viper - cyberpunk female/rotations/west.png",
+      "profileCoverage": "profiled",
+      "profileIds": [
+        "neon_viper_battle_actor"
+      ],
+      "references": [
+        {
+          "file": "game/ben_rpg/visual_assets/visual_profiles.json",
+          "line": 1836,
+          "profileId": "neon_viper_battle_actor",
+          "resolution": "profile_runtime_texture"
+        }
+      ]
+    },
+    {
+      "path": "res://game_assets/characters/Recruitable Characters/💀 The Frost Lich King Emperor/rotations/west.png",
+      "profileCoverage": "profiled",
+      "profileIds": [
+        "frost_lich_emperor_battle_actor"
+      ],
+      "references": [
+        {
+          "file": "game/ben_rpg/visual_assets/visual_profiles.json",
+          "line": 1846,
+          "profileId": "frost_lich_emperor_battle_actor",
+          "resolution": "profile_runtime_texture"
+        }
+      ]
+    },
+    {
+      "path": "res://game_assets/characters/Topdown Monsters Part 1/Sliced/Bulkhead Warden/00_idle/frame_000.png",
+      "profileCoverage": "profiled",
+      "profileIds": [
+        "bulkhead_warden_battle_actor"
+      ],
+      "references": [
+        {
+          "file": "game/ben_rpg/core/campaign_state.gd",
+          "line": 290,
+          "resolution": "literal"
+        },
+        {
+          "file": "game/ben_rpg/visual_assets/visual_profiles.json",
+          "line": 1608,
+          "profileId": "bulkhead_warden_battle_actor",
+          "resolution": "profile_runtime_texture"
+        }
+      ]
+    },
+    {
+      "path": "res://game_assets/characters/Topdown Monsters Part 1/Sliced/Cobalt Courier/00_idle/frame_000.png",
+      "profileCoverage": "profiled",
+      "profileIds": [
+        "cobalt_courier_battle_actor"
+      ],
+      "references": [
+        {
+          "file": "game/ben_rpg/core/campaign_state.gd",
+          "line": 272,
+          "resolution": "literal"
+        },
+        {
+          "file": "game/ben_rpg/visual_assets/visual_profiles.json",
+          "line": 1622,
+          "profileId": "cobalt_courier_battle_actor",
+          "resolution": "profile_runtime_texture"
+        }
+      ]
+    },
+    {
+      "path": "res://game_assets/characters/Topdown Monsters Part 1/Sliced/Mossback Surveyor/00_idle/frame_000.png",
+      "profileCoverage": "profiled",
+      "profileIds": [
+        "mossback_surveyor_battle_actor"
+      ],
+      "references": [
+        {
+          "file": "game/ben_rpg/core/campaign_state.gd",
+          "line": 254,
+          "resolution": "literal"
+        },
+        {
+          "file": "game/ben_rpg/visual_assets/visual_profiles.json",
+          "line": 1615,
+          "profileId": "mossback_surveyor_battle_actor",
+          "resolution": "profile_runtime_texture"
+        }
+      ]
+    },
+    {
+      "path": "res://game_assets/characters/Topdown Monsters Part 1/Sliced/Rift Jackal/00_idle/frame_000.png",
+      "profileCoverage": "profiled",
+      "profileIds": [
+        "rift_jackal_battle_actor"
+      ],
+      "references": [
+        {
+          "file": "game/ben_rpg/core/campaign_state.gd",
+          "line": 236,
+          "resolution": "literal"
+        },
+        {
+          "file": "game/ben_rpg/visual_assets/visual_profiles.json",
+          "line": 1601,
+          "profileId": "rift_jackal_battle_actor",
+          "resolution": "profile_runtime_texture"
+        }
+      ]
+    },
+    {
+      "path": "res://game_assets/characters/Velociraptor/Tiny_Velociraptor/rotations/west.png",
+      "profileCoverage": "profiled",
+      "profileIds": [
+        "velociraptor_battle_actor"
+      ],
+      "references": [
+        {
+          "file": "game/ben_rpg/visual_assets/visual_profiles.json",
+          "line": 1946,
+          "profileId": "velociraptor_battle_actor",
+          "resolution": "profile_runtime_texture"
+        }
+      ]
+    },
+    {
+      "path": "res://game_assets/items/armory/Singles/Armor_Singles/Copper/Copper_Chestplate1.png",
+      "profileCoverage": "profiled",
+      "profileIds": [
+        "item_copper_chestplate_1"
+      ],
+      "references": [
+        {
+          "file": "game/ben_rpg/core/campaign_world_catalog.gd",
+          "line": 149,
+          "resolution": "literal"
+        },
+        {
+          "file": "game/ben_rpg/visual_assets/visual_profiles.json",
+          "line": 1852,
+          "profileId": "item_copper_chestplate_1",
+          "resolution": "profile_runtime_texture"
+        }
+      ]
+    },
+    {
+      "path": "res://game_assets/items/armory/Singles/Armor_Singles/Copper/Copper_Gloves1.png",
+      "profileCoverage": "profiled",
+      "profileIds": [
+        "item_copper_gloves_1"
+      ],
+      "references": [
+        {
+          "file": "game/ben_rpg/core/campaign_world_catalog.gd",
+          "line": 154,
+          "resolution": "literal"
+        },
+        {
+          "file": "game/ben_rpg/visual_assets/visual_profiles.json",
+          "line": 1853,
+          "profileId": "item_copper_gloves_1",
+          "resolution": "profile_runtime_texture"
+        }
+      ]
+    },
+    {
+      "path": "res://game_assets/items/armory/Singles/Armor_Singles/Copper/Copper_Helmet1.png",
+      "profileCoverage": "profiled",
+      "profileIds": [
+        "item_copper_helmet_1"
+      ],
+      "references": [
+        {
+          "file": "game/ben_rpg/core/campaign_world_catalog.gd",
+          "line": 144,
+          "resolution": "literal"
+        },
+        {
+          "file": "game/ben_rpg/visual_assets/visual_profiles.json",
+          "line": 1851,
+          "profileId": "item_copper_helmet_1",
+          "resolution": "profile_runtime_texture"
+        }
+      ]
+    },
+    {
+      "path": "res://game_assets/items/armory/Singles/Armor_Singles/Iron/Iron_Chestplate1.png",
+      "profileCoverage": "profiled",
+      "profileIds": [
+        "item_iron_chestplate_1"
+      ],
+      "references": [
+        {
+          "file": "game/ben_rpg/core/campaign_world_catalog.gd",
+          "line": 181,
+          "resolution": "literal"
+        },
+        {
+          "file": "game/ben_rpg/visual_assets/visual_profiles.json",
+          "line": 1854,
+          "profileId": "item_iron_chestplate_1",
+          "resolution": "profile_runtime_texture"
+        }
+      ]
+    },
+    {
+      "path": "res://game_assets/items/armory/Singles/Armor_Singles/Iron/Iron_Chestplate5.png",
+      "profileCoverage": "profiled",
+      "profileIds": [
+        "item_iron_chestplate_5"
+      ],
+      "references": [
+        {
+          "file": "game/ben_rpg/core/campaign_world_catalog.gd",
+          "line": 217,
+          "resolution": "literal"
+        },
+        {
+          "file": "game/ben_rpg/visual_assets/visual_profiles.json",
+          "line": 1855,
+          "profileId": "item_iron_chestplate_5",
+          "resolution": "profile_runtime_texture"
+        }
+      ]
+    },
+    {
+      "path": "res://game_assets/items/armory/Singles/Armor_Singles/Iron/Iron_Gloves5.png",
+      "profileCoverage": "profiled",
+      "profileIds": [
+        "item_iron_gloves_5"
+      ],
+      "references": [
+        {
+          "file": "game/ben_rpg/core/campaign_world_catalog.gd",
+          "line": 193,
+          "resolution": "literal"
+        },
+        {
+          "file": "game/ben_rpg/visual_assets/visual_profiles.json",
+          "line": 1856,
+          "profileId": "item_iron_gloves_5",
+          "resolution": "profile_runtime_texture"
+        }
+      ]
+    },
+    {
+      "path": "res://game_assets/items/armory/Singles/Armor_Singles/Iron/Iron_Gloves9.png",
+      "profileCoverage": "profiled",
+      "profileIds": [
+        "item_iron_gloves_9"
+      ],
+      "references": [
+        {
+          "file": "game/ben_rpg/core/campaign_world_catalog.gd",
+          "line": 235,
+          "resolution": "literal"
+        },
+        {
+          "file": "game/ben_rpg/visual_assets/visual_profiles.json",
+          "line": 1857,
+          "profileId": "item_iron_gloves_9",
+          "resolution": "profile_runtime_texture"
+        }
+      ]
+    },
+    {
+      "path": "res://game_assets/items/armory/Singles/Armor_Singles/Iron/Iron_Helmet5.png",
+      "profileCoverage": "profiled",
+      "profileIds": [
+        "item_iron_helmet_5"
+      ],
+      "references": [
+        {
+          "file": "game/ben_rpg/core/campaign_world_catalog.gd",
+          "line": 205,
+          "resolution": "literal"
+        },
+        {
+          "file": "game/ben_rpg/visual_assets/visual_profiles.json",
+          "line": 1858,
+          "profileId": "item_iron_helmet_5",
+          "resolution": "profile_runtime_texture"
+        }
+      ]
+    },
+    {
+      "path": "res://game_assets/items/armory/Singles/Armor_Singles/Iron/Iron_Helmet8.png",
+      "profileCoverage": "profiled",
+      "profileIds": [
+        "item_iron_helmet_8"
+      ],
+      "references": [
+        {
+          "file": "game/ben_rpg/core/campaign_world_catalog.gd",
+          "line": 247,
+          "resolution": "literal"
+        },
+        {
+          "file": "game/ben_rpg/visual_assets/visual_profiles.json",
+          "line": 1859,
+          "profileId": "item_iron_helmet_8",
+          "resolution": "profile_runtime_texture"
+        }
+      ]
+    },
+    {
+      "path": "res://game_assets/items/armory/Singles/Weapon_Singles/Iron/Iron_Weapon1.png",
+      "profileCoverage": "profiled",
+      "profileIds": [
+        "item_iron_weapon_1"
+      ],
+      "references": [
+        {
+          "file": "game/ben_rpg/combat/campaign_encounter_reward_catalog.gd",
+          "line": 81,
+          "resolution": "literal"
+        },
+        {
+          "file": "game/ben_rpg/combat/campaign_encounter_reward_catalog.gd",
+          "line": 107,
+          "resolution": "literal"
+        },
+        {
+          "file": "game/ben_rpg/combat/campaign_encounter_reward_catalog.gd",
+          "line": 128,
+          "resolution": "literal"
+        },
+        {
+          "file": "game/ben_rpg/combat/campaign_encounter_reward_catalog.gd",
+          "line": 164,
+          "resolution": "literal"
+        },
+        {
+          "file": "game/ben_rpg/combat/campaign_encounter_reward_catalog.gd",
+          "line": 200,
+          "resolution": "literal"
+        },
+        {
+          "file": "game/ben_rpg/combat/campaign_encounter_reward_catalog.gd",
+          "line": 226,
+          "resolution": "literal"
+        },
+        {
+          "file": "game/ben_rpg/combat/campaign_encounter_reward_catalog.gd",
+          "line": 236,
+          "resolution": "literal"
+        },
+        {
+          "file": "game/ben_rpg/combat/campaign_encounter_reward_catalog.gd",
+          "line": 268,
+          "resolution": "literal"
+        },
+        {
+          "file": "game/ben_rpg/combat/campaign_encounter_reward_catalog.gd",
+          "line": 278,
+          "resolution": "literal"
+        },
+        {
+          "file": "game/ben_rpg/combat/campaign_encounter_reward_catalog.gd",
+          "line": 339,
+          "resolution": "literal"
+        },
+        {
+          "file": "game/ben_rpg/core/campaign_world_catalog.gd",
+          "line": 139,
+          "resolution": "literal"
+        },
+        {
+          "file": "game/ben_rpg/visual_assets/visual_profiles.json",
+          "line": 1849,
+          "profileId": "item_iron_weapon_1",
+          "resolution": "profile_runtime_texture"
+        }
+      ]
+    },
+    {
+      "path": "res://game_assets/items/armory/Singles/Weapon_Singles/Iron/Iron_Weapon8.png",
+      "profileCoverage": "profiled",
+      "profileIds": [
+        "item_iron_weapon_8"
+      ],
+      "references": [
+        {
+          "file": "game/ben_rpg/core/campaign_world_catalog.gd",
+          "line": 169,
+          "resolution": "literal"
+        },
+        {
+          "file": "game/ben_rpg/visual_assets/visual_profiles.json",
+          "line": 1850,
+          "profileId": "item_iron_weapon_8",
+          "resolution": "profile_runtime_texture"
+        }
+      ]
+    },
+    {
+      "path": "res://game_assets/items/resources_items_artifacts_loot/PNG/Transperent/Icon15.png",
+      "profileCoverage": "profiled",
+      "profileIds": [
+        "item_artifact_15"
+      ],
+      "references": [
+        {
+          "file": "game/ben_rpg/combat/campaign_encounter_reward_catalog.gd",
+          "line": 31,
+          "resolution": "literal"
+        },
+        {
+          "file": "game/ben_rpg/combat/campaign_encounter_reward_catalog.gd",
+          "line": 41,
+          "resolution": "literal"
+        },
+        {
+          "file": "game/ben_rpg/combat/campaign_encounter_reward_catalog.gd",
+          "line": 83,
+          "resolution": "literal"
+        },
+        {
+          "file": "game/ben_rpg/combat/campaign_encounter_reward_catalog.gd",
+          "line": 117,
+          "resolution": "literal"
+        },
+        {
+          "file": "game/ben_rpg/combat/campaign_encounter_reward_catalog.gd",
+          "line": 190,
+          "resolution": "literal"
+        },
+        {
+          "file": "game/ben_rpg/combat/campaign_encounter_reward_catalog.gd",
+          "line": 315,
+          "resolution": "literal"
+        },
+        {
+          "file": "game/ben_rpg/combat/campaign_encounter_reward_catalog.gd",
+          "line": 342,
+          "resolution": "literal"
+        },
+        {
+          "file": "game/ben_rpg/core/campaign_world_catalog.gd",
+          "line": 159,
+          "resolution": "literal"
+        },
+        {
+          "file": "game/ben_rpg/core/campaign_world_catalog.gd",
+          "line": 187,
+          "resolution": "literal"
+        },
+        {
+          "file": "game/ben_rpg/core/campaign_world_catalog.gd",
+          "line": 223,
+          "resolution": "literal"
+        },
+        {
+          "file": "game/ben_rpg/core/campaign_world_catalog.gd",
+          "line": 229,
+          "resolution": "literal"
+        },
+        {
+          "file": "game/ben_rpg/visual_assets/visual_profiles.json",
+          "line": 1860,
+          "profileId": "item_artifact_15",
+          "resolution": "profile_runtime_texture"
+        },
+        {
+          "file": "game/ben_rpg/world/mansion_chapter_interaction.gd",
+          "line": 145,
+          "resolution": "literal"
+        }
+      ]
+    },
+    {
+      "path": "res://game_assets/items/resources_items_artifacts_loot/PNG/Transperent/Icon18.png",
+      "profileCoverage": "profiled",
+      "profileIds": [
+        "item_artifact_18"
+      ],
+      "references": [
+        {
+          "file": "game/ben_rpg/combat/campaign_encounter_reward_catalog.gd",
+          "line": 154,
+          "resolution": "literal"
+        },
+        {
+          "file": "game/ben_rpg/visual_assets/visual_profiles.json",
+          "line": 1861,
+          "profileId": "item_artifact_18",
+          "resolution": "profile_runtime_texture"
+        }
+      ]
+    },
+    {
+      "path": "res://game_assets/items/resources_items_artifacts_loot/PNG/Transperent/Icon20.png",
+      "profileCoverage": "profiled",
+      "profileIds": [
+        "item_artifact_20"
+      ],
+      "references": [
+        {
+          "file": "game/ben_rpg/combat/campaign_encounter_reward_catalog.gd",
+          "line": 82,
+          "resolution": "literal"
+        },
+        {
+          "file": "game/ben_rpg/combat/campaign_encounter_reward_catalog.gd",
+          "line": 129,
+          "resolution": "literal"
+        },
+        {
+          "file": "game/ben_rpg/combat/campaign_encounter_reward_catalog.gd",
+          "line": 165,
+          "resolution": "literal"
+        },
+        {
+          "file": "game/ben_rpg/combat/campaign_encounter_reward_catalog.gd",
+          "line": 201,
+          "resolution": "literal"
+        },
+        {
+          "file": "game/ben_rpg/combat/campaign_encounter_reward_catalog.gd",
+          "line": 237,
+          "resolution": "literal"
+        },
+        {
+          "file": "game/ben_rpg/combat/campaign_encounter_reward_catalog.gd",
+          "line": 279,
+          "resolution": "literal"
+        },
+        {
+          "file": "game/ben_rpg/combat/campaign_encounter_reward_catalog.gd",
+          "line": 341,
+          "resolution": "literal"
+        },
+        {
+          "file": "game/ben_rpg/visual_assets/visual_profiles.json",
+          "line": 1862,
+          "profileId": "item_artifact_20",
+          "resolution": "profile_runtime_texture"
+        }
+      ]
+    },
+    {
+      "path": "res://game_assets/items/resources_items_artifacts_loot/PNG/Transperent/Icon31.png",
+      "profileCoverage": "profiled",
+      "profileIds": [
+        "item_artifact_31"
+      ],
+      "references": [
+        {
+          "file": "game/ben_rpg/combat/campaign_encounter_reward_catalog.gd",
+          "line": 281,
+          "resolution": "literal"
+        },
+        {
+          "file": "game/ben_rpg/combat/campaign_encounter_reward_catalog.gd",
+          "line": 343,
+          "resolution": "literal"
+        },
+        {
+          "file": "game/ben_rpg/visual_assets/visual_profiles.json",
+          "line": 1863,
+          "profileId": "item_artifact_31",
+          "resolution": "profile_runtime_texture"
+        }
+      ]
+    },
+    {
+      "path": "res://game_assets/items/resources_items_artifacts_loot/PNG/Transperent/Icon42.png",
+      "profileCoverage": "profiled",
+      "profileIds": [
+        "item_artifact_42"
+      ],
+      "references": [
+        {
+          "file": "game/ben_rpg/combat/campaign_encounter_reward_catalog.gd",
+          "line": 51,
+          "resolution": "literal"
+        },
+        {
+          "file": "game/ben_rpg/combat/campaign_encounter_reward_catalog.gd",
+          "line": 61,
+          "resolution": "literal"
+        },
+        {
+          "file": "game/ben_rpg/combat/campaign_encounter_reward_catalog.gd",
+          "line": 71,
+          "resolution": "literal"
+        },
+        {
+          "file": "game/ben_rpg/combat/campaign_encounter_reward_catalog.gd",
+          "line": 130,
+          "resolution": "literal"
+        },
+        {
+          "file": "game/ben_rpg/combat/campaign_encounter_reward_catalog.gd",
+          "line": 166,
+          "resolution": "literal"
+        },
+        {
+          "file": "game/ben_rpg/combat/campaign_encounter_reward_catalog.gd",
+          "line": 238,
+          "resolution": "literal"
+        },
+        {
+          "file": "game/ben_rpg/combat/campaign_encounter_reward_catalog.gd",
+          "line": 282,
+          "resolution": "literal"
+        },
+        {
+          "file": "game/ben_rpg/combat/campaign_encounter_reward_catalog.gd",
+          "line": 344,
+          "resolution": "literal"
+        },
+        {
+          "file": "game/ben_rpg/core/campaign_world_catalog.gd",
+          "line": 164,
+          "resolution": "literal"
+        },
+        {
+          "file": "game/ben_rpg/core/campaign_world_catalog.gd",
+          "line": 175,
+          "resolution": "literal"
+        },
+        {
+          "file": "game/ben_rpg/core/campaign_world_catalog.gd",
+          "line": 211,
+          "resolution": "literal"
+        },
+        {
+          "file": "game/ben_rpg/core/campaign_world_catalog.gd",
+          "line": 241,
+          "resolution": "literal"
+        },
+        {
+          "file": "game/ben_rpg/visual_assets/visual_profiles.json",
+          "line": 1864,
+          "profileId": "item_artifact_42",
+          "resolution": "profile_runtime_texture"
+        },
+        {
+          "file": "game/ben_rpg/world/mansion_clue_interaction.gd",
+          "line": 146,
+          "resolution": "literal"
+        }
+      ]
+    },
+    {
+      "path": "res://game_assets/items/resources_items_artifacts_loot/PNG/Transperent/Icon9.png",
+      "profileCoverage": "profiled",
+      "profileIds": [
+        "item_artifact_9"
+      ],
+      "references": [
+        {
+          "file": "game/ben_rpg/combat/campaign_encounter_reward_catalog.gd",
+          "line": 202,
+          "resolution": "literal"
+        },
+        {
+          "file": "game/ben_rpg/combat/campaign_encounter_reward_catalog.gd",
+          "line": 280,
+          "resolution": "literal"
+        },
+        {
+          "file": "game/ben_rpg/combat/campaign_encounter_reward_catalog.gd",
+          "line": 340,
+          "resolution": "literal"
+        },
+        {
+          "file": "game/ben_rpg/core/campaign_world_catalog.gd",
+          "line": 199,
+          "resolution": "literal"
+        },
+        {
+          "file": "game/ben_rpg/visual_assets/visual_profiles.json",
+          "line": 1865,
+          "profileId": "item_artifact_9",
+          "resolution": "profile_runtime_texture"
+        }
+      ]
+    },
+    {
+      "path": "res://game_assets/monsters/cp41-a181_japanese_yokai_urban_legends/CP_A186_NingyoPassGiantSpider.png",
+      "profileCoverage": "profiled",
+      "profileIds": [
+        "vow_spider_battle_actor"
+      ],
+      "references": [
+        {
+          "file": "game/ben_rpg/visual_assets/visual_profiles.json",
+          "line": 1796,
+          "profileId": "vow_spider_battle_actor",
+          "resolution": "profile_runtime_texture"
+        }
+      ]
+    },
+    {
+      "path": "res://game_assets/monsters/cp41-a181_japanese_yokai_urban_legends/CP_A199_KasaJizo.png",
+      "profileCoverage": "profiled",
+      "profileIds": [
+        "memory_inspector_battle_actor"
+      ],
+      "references": [
+        {
+          "file": "game/ben_rpg/visual_assets/visual_profiles.json",
+          "line": 1786,
+          "profileId": "memory_inspector_battle_actor",
+          "resolution": "profile_runtime_texture"
+        }
+      ]
+    },
+    {
+      "path": "res://game_assets/monsters/cp41-a181_japanese_yokai_urban_legends/CP_A204_FoxWeddingAttendant.png",
+      "profileCoverage": "profiled",
+      "profileIds": [
+        "fox_attendant_battle_actor"
+      ],
+      "references": [
+        {
+          "file": "game/ben_rpg/visual_assets/visual_profiles.json",
+          "line": 1791,
+          "profileId": "fox_attendant_battle_actor",
+          "resolution": "profile_runtime_texture"
+        }
+      ]
+    },
+    {
+      "path": "res://game_assets/monsters/cp41-a181_japanese_yokai_urban_legends/CP_A210_Enma.png",
+      "profileCoverage": "profiled",
+      "profileIds": [
+        "magistrate_enma_battle_actor"
+      ],
+      "references": [
+        {
+          "file": "game/ben_rpg/visual_assets/visual_profiles.json",
+          "line": 1801,
+          "profileId": "magistrate_enma_battle_actor",
+          "resolution": "profile_runtime_texture"
+        }
+      ]
+    },
+    {
+      "path": "res://game_assets/monsters/cp42-g31_sci_fi_entities/CP_G31_MechSoldier.png",
+      "profileCoverage": "profiled",
+      "profileIds": [
+        "helios_mech_battle_actor"
+      ],
+      "references": [
+        {
+          "file": "game/ben_rpg/visual_assets/visual_profiles.json",
+          "line": 1716,
+          "profileId": "helios_mech_battle_actor",
+          "resolution": "profile_runtime_texture"
+        }
+      ]
+    },
+    {
+      "path": "res://game_assets/monsters/cp42-g31_sci_fi_entities/CP_G33_AssassinRobot.png",
+      "profileCoverage": "profiled",
+      "profileIds": [
+        "helios_assassin_battle_actor"
+      ],
+      "references": [
+        {
+          "file": "game/ben_rpg/visual_assets/visual_profiles.json",
+          "line": 1721,
+          "profileId": "helios_assassin_battle_actor",
+          "resolution": "profile_runtime_texture"
+        }
+      ]
+    },
+    {
+      "path": "res://game_assets/monsters/cp42-g31_sci_fi_entities/CP_G37_WorkRobot.png",
+      "profileCoverage": "profiled",
+      "profileIds": [
+        "work_robot_battle_actor"
+      ],
+      "references": [
+        {
+          "file": "game/ben_rpg/visual_assets/visual_profiles.json",
+          "line": 1691,
+          "profileId": "work_robot_battle_actor",
+          "resolution": "profile_runtime_texture"
+        }
+      ]
+    },
+    {
+      "path": "res://game_assets/monsters/cp42-g31_sci_fi_entities/CP_G38_SentryDrone.png",
+      "profileCoverage": "profiled",
+      "profileIds": [
+        "sentry_drone_battle_actor"
+      ],
+      "references": [
+        {
+          "file": "game/ben_rpg/visual_assets/visual_profiles.json",
+          "line": 1696,
+          "profileId": "sentry_drone_battle_actor",
+          "resolution": "profile_runtime_texture"
+        }
+      ]
+    },
+    {
+      "path": "res://game_assets/monsters/cp42-g31_sci_fi_entities/CP_G39_SecurityRobot.png",
+      "profileCoverage": "profiled",
+      "profileIds": [
+        "helios_security_battle_actor"
+      ],
+      "references": [
+        {
+          "file": "game/ben_rpg/visual_assets/visual_profiles.json",
+          "line": 1726,
+          "profileId": "helios_security_battle_actor",
+          "resolution": "profile_runtime_texture"
+        }
+      ]
+    },
+    {
+      "path": "res://game_assets/monsters/cp42-g31_sci_fi_entities/CP_G40_GunnerRobot.png",
+      "profileCoverage": "profiled",
+      "profileIds": [
+        "helios_gunner_battle_actor"
+      ],
+      "references": [
+        {
+          "file": "game/ben_rpg/visual_assets/visual_profiles.json",
+          "line": 1731,
+          "profileId": "helios_gunner_battle_actor",
+          "resolution": "profile_runtime_texture"
+        }
+      ]
+    },
+    {
+      "path": "res://game_assets/monsters/cp42-g31_sci_fi_entities/CP_G43_UtilityRobot.png",
+      "profileCoverage": "profiled",
+      "profileIds": [
+        "medical_robot_battle_actor"
+      ],
+      "references": [
+        {
+          "file": "game/ben_rpg/visual_assets/visual_profiles.json",
+          "line": 1701,
+          "profileId": "medical_robot_battle_actor",
+          "resolution": "profile_runtime_texture"
+        }
+      ]
+    },
+    {
+      "path": "res://game_assets/monsters/cp42-g31_sci_fi_entities/CP_G52_MachineCommander.png",
+      "profileCoverage": "profiled",
+      "profileIds": [
+        "machine_commander_battle_actor"
+      ],
+      "references": [
+        {
+          "file": "game/ben_rpg/visual_assets/visual_profiles.json",
+          "line": 1706,
+          "profileId": "machine_commander_battle_actor",
+          "resolution": "profile_runtime_texture"
+        }
+      ]
+    },
+    {
+      "path": "res://game_assets/monsters/cp42-g31_sci_fi_entities/CP_G56_Guardian.png",
+      "profileCoverage": "profiled",
+      "profileIds": [
+        "civic_sun_battle_actor"
+      ],
+      "references": [
+        {
+          "file": "game/ben_rpg/visual_assets/visual_profiles.json",
+          "line": 1736,
+          "profileId": "civic_sun_battle_actor",
+          "resolution": "profile_runtime_texture"
+        }
+      ]
+    },
+    {
+      "path": "res://game_assets/monsters/cp42-g31_sci_fi_entities/CP_G59_MotherComputer.png",
+      "profileCoverage": "profiled",
+      "profileIds": [
+        "mother_computer_battle_actor"
+      ],
+      "references": [
+        {
+          "file": "game/ben_rpg/visual_assets/visual_profiles.json",
+          "line": 1711,
+          "profileId": "mother_computer_battle_actor",
+          "resolution": "profile_runtime_texture"
+        }
+      ]
+    },
+    {
+      "path": "res://game_assets/monsters/cp44-j31_villains/CP_J31_WindFighter.png",
+      "profileCoverage": "profiled",
+      "profileIds": [
+        "wind_bailiff_battle_actor"
+      ],
+      "references": [
+        {
+          "file": "game/ben_rpg/visual_assets/visual_profiles.json",
+          "line": 1761,
+          "profileId": "wind_bailiff_battle_actor",
+          "resolution": "profile_runtime_texture"
+        }
+      ]
+    },
+    {
+      "path": "res://game_assets/monsters/cp44-j31_villains/CP_J32_StormWingFighter.png",
+      "profileCoverage": "profiled",
+      "profileIds": [
+        "storm_repossessor_battle_actor"
+      ],
+      "references": [
+        {
+          "file": "game/ben_rpg/visual_assets/visual_profiles.json",
+          "line": 1766,
+          "profileId": "storm_repossessor_battle_actor",
+          "resolution": "profile_runtime_texture"
+        }
+      ]
+    },
+    {
+      "path": "res://game_assets/monsters/cp44-j31_villains/CP_J33_DarkNecromancer.png",
+      "profileCoverage": "profiled",
+      "profileIds": [
+        "frost_necromancer_battle_actor"
+      ],
+      "references": [
+        {
+          "file": "game/ben_rpg/visual_assets/visual_profiles.json",
+          "line": 1746,
+          "profileId": "frost_necromancer_battle_actor",
+          "resolution": "profile_runtime_texture"
+        }
+      ]
+    },
+    {
+      "path": "res://game_assets/monsters/cp44-j31_villains/CP_J35_WaterColossus.png",
+      "profileCoverage": "profiled",
+      "profileIds": [
+        "ice_colossus_battle_actor"
+      ],
+      "references": [
+        {
+          "file": "game/ben_rpg/visual_assets/visual_profiles.json",
+          "line": 1751,
+          "profileId": "ice_colossus_battle_actor",
+          "resolution": "profile_runtime_texture"
+        }
+      ]
+    },
+    {
+      "path": "res://game_assets/monsters/cp44-j31_villains/CP_J37_ElementalFusionKnight.png",
+      "profileCoverage": "profiled",
+      "profileIds": [
+        "gravity_knight_battle_actor"
+      ],
+      "references": [
+        {
+          "file": "game/ben_rpg/visual_assets/visual_profiles.json",
+          "line": 1776,
+          "profileId": "gravity_knight_battle_actor",
+          "resolution": "profile_runtime_texture"
+        }
+      ]
+    },
+    {
+      "path": "res://game_assets/monsters/cp44-j31_villains/CP_J46_BombGangster.png",
+      "profileCoverage": "profiled",
+      "profileIds": [
+        "ashfall_raider_battle_actor"
+      ],
+      "references": [
+        {
+          "file": "game/ben_rpg/visual_assets/visual_profiles.json",
+          "line": 2018,
+          "profileId": "ashfall_raider_battle_actor",
+          "resolution": "profile_runtime_texture"
+        }
+      ]
+    },
+    {
+      "path": "res://game_assets/monsters/cp44-j31_villains/CP_J49_FallenNobleMage.png",
+      "profileCoverage": "profiled",
+      "profileIds": [
+        "fallen_notary_battle_actor"
+      ],
+      "references": [
+        {
+          "file": "game/ben_rpg/visual_assets/visual_profiles.json",
+          "line": 1771,
+          "profileId": "fallen_notary_battle_actor",
+          "resolution": "profile_runtime_texture"
+        }
+      ]
+    },
+    {
+      "path": "res://game_assets/monsters/cp44-j31_villains/CP_J56_WaterClubWarrior.png",
+      "profileCoverage": "profiled",
+      "profileIds": [
+        "frost_collector_battle_actor"
+      ],
+      "references": [
+        {
+          "file": "game/ben_rpg/visual_assets/visual_profiles.json",
+          "line": 1741,
+          "profileId": "frost_collector_battle_actor",
+          "resolution": "profile_runtime_texture"
+        }
+      ]
+    },
+    {
+      "path": "res://game_assets/monsters/cp44-j31_villains/CP_J59_StormCommander.png",
+      "profileCoverage": "profiled",
+      "profileIds": [
+        "high_comptroller_battle_actor"
+      ],
+      "references": [
+        {
+          "file": "game/ben_rpg/visual_assets/visual_profiles.json",
+          "line": 1781,
+          "profileId": "high_comptroller_battle_actor",
+          "resolution": "profile_runtime_texture"
+        }
+      ]
+    },
+    {
+      "path": "res://game_assets/monsters/cp44-j31_villains/CP_J60_ElementalFusionDragon.png",
+      "profileCoverage": "profiled",
+      "profileIds": [
+        "whiteout_auditor_battle_actor"
+      ],
+      "references": [
+        {
+          "file": "game/ben_rpg/visual_assets/visual_profiles.json",
+          "line": 1756,
+          "profileId": "whiteout_auditor_battle_actor",
+          "resolution": "profile_runtime_texture"
+        }
+      ]
+    },
+    {
+      "path": "res://game_assets/monsters/cp45-f91_horror_and_nightmares/CP_F091_SchoolgirlGhost_01.png",
+      "profileCoverage": "profiled",
+      "profileIds": [
+        "schoolgirl_ghost_battle_actor"
+      ],
+      "references": [
+        {
+          "file": "game/ben_rpg/visual_assets/visual_profiles.json",
+          "line": 1657,
+          "profileId": "schoolgirl_ghost_battle_actor",
+          "resolution": "profile_runtime_texture"
+        }
+      ]
+    },
+    {
+      "path": "res://game_assets/monsters/cp45-f91_horror_and_nightmares/CP_F095_HauntedComposerPortrait.png",
+      "profileCoverage": "profiled",
+      "profileIds": [
+        "composer_portrait_battle_actor"
+      ],
+      "references": [
+        {
+          "file": "game/ben_rpg/visual_assets/visual_profiles.json",
+          "line": 1678,
+          "profileId": "composer_portrait_battle_actor",
+          "resolution": "profile_runtime_texture"
+        }
+      ]
+    },
+    {
+      "path": "res://game_assets/monsters/cp45-f91_horror_and_nightmares/CP_F098_WarBookGhost.png",
+      "profileCoverage": "profiled",
+      "profileIds": [
+        "war_book_battle_actor"
+      ],
+      "references": [
+        {
+          "file": "game/ben_rpg/visual_assets/visual_profiles.json",
+          "line": 1664,
+          "profileId": "war_book_battle_actor",
+          "resolution": "profile_runtime_texture"
+        }
+      ]
+    },
+    {
+      "path": "res://game_assets/monsters/cp45-f91_horror_and_nightmares/CP_F117_HauntedJapaneseDoll.png",
+      "profileCoverage": "profiled",
+      "profileIds": [
+        "haunted_doll_battle_actor"
+      ],
+      "references": [
+        {
+          "file": "game/ben_rpg/visual_assets/visual_profiles.json",
+          "line": 1685,
+          "profileId": "haunted_doll_battle_actor",
+          "resolution": "profile_runtime_texture"
+        }
+      ]
+    },
+    {
+      "path": "res://game_assets/monsters/cp45-f91_horror_and_nightmares/CP_F119_HauntedClockMirror.png",
+      "profileCoverage": "profiled",
+      "profileIds": [
+        "clock_mirror_battle_actor"
+      ],
+      "references": [
+        {
+          "file": "game/ben_rpg/visual_assets/visual_profiles.json",
+          "line": 1671,
+          "profileId": "clock_mirror_battle_actor",
+          "resolution": "profile_runtime_texture"
+        }
+      ]
+    },
+    {
+      "path": "res://overworld/characters/character_generic.png",
+      "profileCoverage": "profiled",
+      "profileIds": [
+        "legacy_generic_field_actor"
+      ],
+      "references": [
+        {
+          "file": "game/ben_rpg/visual_assets/visual_profiles.json",
+          "line": 1936,
+          "profileId": "legacy_generic_field_actor",
+          "resolution": "profile_runtime_texture"
+        }
+      ]
+    },
+    {
+      "path": "res://overworld/characters/gobot_field.png",
+      "profileCoverage": "profiled",
+      "profileIds": [
+        "legacy_gobot_field_actor"
+      ],
+      "references": [
+        {
+          "file": "game/ben_rpg/visual_assets/visual_profiles.json",
+          "line": 1937,
+          "profileId": "legacy_gobot_field_actor",
+          "resolution": "profile_runtime_texture"
+        }
+      ]
+    },
+    {
+      "path": "res://overworld/maps/tilesets/dungeon_tilemap.png",
+      "profileCoverage": "profiled",
+      "profileIds": [
+        "legacy_dungeon_tilemap"
+      ],
+      "references": [
+        {
+          "file": "game/ben_rpg/visual_assets/visual_profiles.json",
+          "line": 1938,
+          "profileId": "legacy_dungeon_tilemap",
+          "resolution": "profile_runtime_texture"
+        },
+        {
+          "file": "game/src/main.tscn",
+          "line": 11,
+          "resolution": "literal"
+        }
+      ]
+    },
+    {
+      "path": "res://overworld/maps/tilesets/town_tilemap.png",
+      "profileCoverage": "profiled",
+      "profileIds": [
+        "legacy_town_tilemap"
+      ],
+      "references": [
+        {
+          "file": "game/ben_rpg/visual_assets/visual_profiles.json",
+          "line": 1939,
+          "profileId": "legacy_town_tilemap",
+          "resolution": "profile_runtime_texture"
+        }
+      ]
+    },
+    {
+      "path": "res://src/combat/ui/action_menu/action_description_background.png",
+      "profileCoverage": "profiled",
+      "profileIds": [
+        "battle_ui_action_description"
+      ],
+      "references": [
+        {
+          "file": "game/ben_rpg/visual_assets/visual_profiles.json",
+          "line": 1866,
+          "profileId": "battle_ui_action_description",
+          "resolution": "profile_runtime_texture"
+        },
+        {
+          "file": "game/src/combat/ui/action_menu/ui_action_description.tscn",
+          "line": 4,
+          "resolution": "literal"
+        }
+      ]
+    },
+    {
+      "path": "res://src/combat/ui/action_menu/menu_action_bg.png",
+      "profileCoverage": "profiled",
+      "profileIds": [
+        "battle_ui_action_button"
+      ],
+      "references": [
+        {
+          "file": "game/ben_rpg/visual_assets/visual_profiles.json",
+          "line": 1867,
+          "profileId": "battle_ui_action_button",
+          "resolution": "profile_runtime_texture"
+        },
+        {
+          "file": "game/src/combat/ui/action_menu/ui_action_button.tscn",
+          "line": 3,
+          "resolution": "literal"
+        }
+      ]
+    },
+    {
+      "path": "res://src/combat/ui/action_menu/menu_action_bg_disabled.png",
+      "profileCoverage": "profiled",
+      "profileIds": [
+        "battle_ui_action_button_disabled"
+      ],
+      "references": [
+        {
+          "file": "game/ben_rpg/visual_assets/visual_profiles.json",
+          "line": 1868,
+          "profileId": "battle_ui_action_button_disabled",
+          "resolution": "profile_runtime_texture"
+        },
+        {
+          "file": "game/src/combat/ui/action_menu/ui_action_button.tscn",
+          "line": 6,
+          "resolution": "literal"
+        }
+      ]
+    },
+    {
+      "path": "res://src/combat/ui/action_menu/menu_action_bg_focused.png",
+      "profileCoverage": "profiled",
+      "profileIds": [
+        "battle_ui_action_button_focused"
+      ],
+      "references": [
+        {
+          "file": "game/ben_rpg/visual_assets/visual_profiles.json",
+          "line": 1869,
+          "profileId": "battle_ui_action_button_focused",
+          "resolution": "profile_runtime_texture"
+        },
+        {
+          "file": "game/src/combat/ui/action_menu/ui_action_button.tscn",
+          "line": 7,
+          "resolution": "literal"
+        }
+      ]
+    },
+    {
+      "path": "res://src/combat/ui/action_menu/menu_action_bg_pressed.png",
+      "profileCoverage": "profiled",
+      "profileIds": [
+        "battle_ui_action_button_pressed"
+      ],
+      "references": [
+        {
+          "file": "game/ben_rpg/visual_assets/visual_profiles.json",
+          "line": 1870,
+          "profileId": "battle_ui_action_button_pressed",
+          "resolution": "profile_runtime_texture"
+        },
+        {
+          "file": "game/src/combat/ui/action_menu/ui_action_button.tscn",
+          "line": 5,
+          "resolution": "literal"
+        }
+      ]
+    },
+    {
+      "path": "res://src/combat/ui/action_menu/menu_selection_arrow.png",
+      "profileCoverage": "profiled",
+      "profileIds": [
+        "battle_ui_selection_arrow"
+      ],
+      "references": [
+        {
+          "file": "game/ben_rpg/visual_assets/visual_profiles.json",
+          "line": 1871,
+          "profileId": "battle_ui_selection_arrow",
+          "resolution": "profile_runtime_texture"
+        },
+        {
+          "file": "game/src/combat/ui/cursors/ui_menu_cursor.tscn",
+          "line": 3,
+          "resolution": "literal"
+        }
+      ]
+    },
+    {
+      "path": "res://src/combat/ui/battler_entry/battler_hud_background.png",
+      "profileCoverage": "profiled",
+      "profileIds": [
+        "battle_ui_battler_hud"
+      ],
+      "references": [
+        {
+          "file": "game/ben_rpg/visual_assets/visual_profiles.json",
+          "line": 1872,
+          "profileId": "battle_ui_battler_hud",
+          "resolution": "profile_runtime_texture"
+        },
+        {
+          "file": "game/src/combat/ui/battler_entry/ui_battler_entry.tscn",
+          "line": 3,
+          "resolution": "literal"
+        }
+      ]
+    },
+    {
+      "path": "res://src/combat/ui/battler_entry/energy_point_bg.png",
+      "profileCoverage": "profiled",
+      "profileIds": [
+        "battle_ui_energy_point"
+      ],
+      "references": [
+        {
+          "file": "game/ben_rpg/visual_assets/visual_profiles.json",
+          "line": 1873,
+          "profileId": "battle_ui_energy_point",
+          "resolution": "profile_runtime_texture"
+        },
+        {
+          "file": "game/src/combat/ui/battler_entry/ui_energy_point.tscn",
+          "line": 3,
+          "resolution": "literal"
+        }
+      ]
+    },
+    {
+      "path": "res://src/combat/ui/battler_entry/energy_point_fill.png",
+      "profileCoverage": "profiled",
+      "profileIds": [
+        "battle_ui_energy_fill"
+      ],
+      "references": [
+        {
+          "file": "game/ben_rpg/visual_assets/visual_profiles.json",
+          "line": 1874,
+          "profileId": "battle_ui_energy_fill",
+          "resolution": "profile_runtime_texture"
+        },
+        {
+          "file": "game/src/combat/ui/battler_entry/ui_energy_point.tscn",
+          "line": 5,
+          "resolution": "literal"
+        }
+      ]
+    },
+    {
+      "path": "res://src/combat/ui/battler_entry/life_bar_bg.png",
+      "profileCoverage": "profiled",
+      "profileIds": [
+        "battle_ui_life_bar"
+      ],
+      "references": [
+        {
+          "file": "game/ben_rpg/visual_assets/visual_profiles.json",
+          "line": 1875,
+          "profileId": "battle_ui_life_bar",
+          "resolution": "profile_runtime_texture"
+        },
+        {
+          "file": "game/src/combat/ui/battler_entry/ui_life_bar.tscn",
+          "line": 3,
+          "resolution": "literal"
+        }
+      ]
+    },
+    {
+      "path": "res://src/combat/ui/battler_entry/life_bar_fill.png",
+      "profileCoverage": "profiled",
+      "profileIds": [
+        "battle_ui_life_fill"
+      ],
+      "references": [
+        {
+          "file": "game/ben_rpg/visual_assets/visual_profiles.json",
+          "line": 1876,
+          "profileId": "battle_ui_life_fill",
+          "resolution": "profile_runtime_texture"
+        },
+        {
+          "file": "game/src/combat/ui/battler_entry/ui_life_bar.tscn",
+          "line": 5,
+          "resolution": "literal"
+        }
+      ]
+    }
+  ],
+  "schemaVersion": 2,
+  "scope": "static Godot .gd/.tscn raster literals and approved profile runtime textures (tests, validation, and editor-only paths excluded)",
+  "stats": {
+    "assets": 217,
+    "profileRequiredAssetSources": 206,
+    "profileRequiredProfiledAssetSources": 206,
+    "profileRequiredUnprofiledAssetSources": 0,
+    "profiledAssetSources": 206,
+    "thirdPartyDependencyVisualSources": 11,
+    "unprofiledAssetSources": 11,
+    "unprofiledByClassification": {
+      "dynamic_template_visual": 0,
+      "legacy_compatibility_visual": 0,
+      "third_party_addon_ui": 11
+    }
+  }
+}

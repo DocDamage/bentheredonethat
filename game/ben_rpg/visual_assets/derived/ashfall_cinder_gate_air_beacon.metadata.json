@@ -1,0 +1,30 @@
+{
+  "asset": "game/ben_rpg/visual_assets/derived/ashfall_cinder_gate_air_beacon.png",
+  "bindings": {
+    "profileIds": [],
+    "roomIds": [
+      "AF-01"
+    ],
+    "runtimeStatus": "prototype_scene_admission"
+  },
+  "derivedChecksum": "4d5afe4e4a9ef9cb9566d7ff44e43d10f07c1c53263647cf90c66d55df8a32ec",
+  "dimensions": [
+    112,
+    144
+  ],
+  "schemaVersion": 1,
+  "source": {
+    "checksum": "f836b9638187790f1eec033e20d025bacf9bed56e35ffbb8a1cc5fd36f5a182b",
+    "path": "assets/Tilesets/Wasteland survivor kit/18. Light sources and fire barrels.png",
+    "region": [
+      626,
+      394,
+      112,
+      144
+    ]
+  },
+  "transform": {
+    "description": "Exact emergency-beacon crop for AF-01's air-quality interaction; no colour, alpha, or scale changes.",
+    "id": "ashfall_cinder_gate_air_beacon_crop_v1"
+  }
+}

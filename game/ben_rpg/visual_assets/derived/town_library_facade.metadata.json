@@ -1,0 +1,39 @@
+{
+  "asset": "game/ben_rpg/visual_assets/derived/town_library_facade.png",
+  "derivedChecksum": "a1942e5972560d3a6169261eae62761c6e31f72ea979a6539a3862ed16fa05c4",
+  "dimensions": [
+    102,
+    96
+  ],
+  "schemaVersion": 1,
+  "source": {
+    "checksum": "64a43b2b6abdcb31777d129b9121ef85e7ebf9a04aef43200c169f01690019e2",
+    "path": "game/game_assets/Tilesets/Modern World Overworld Pixel Tileset/3.png",
+    "region": [
+      141,
+      290,
+      102,
+      96
+    ]
+  },
+  "transform": {
+    "description": "Sets alpha to zero for the source pack's measured showcase-lawn colour range.",
+    "id": "town_library_showcase_lawn_transparency_v1",
+    "pixelsMadeTransparent": 490,
+    "thresholds8Bit": {
+      "blue": [
+        64,
+        122
+      ],
+      "green": [
+        174,
+        209
+      ],
+      "minimumGreenMinusRed": 36,
+      "red": [
+        115,
+        153
+      ]
+    }
+  }
+}

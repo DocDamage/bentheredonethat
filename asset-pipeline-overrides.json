@@ -1,0 +1,305 @@
+{
+  "version": 1,
+  "profiles": [
+    {
+      "glob": "assets/More Tilesets/Post-Apocalyptic Abandoned Supermarket Tileset/[0-9].png",
+      "kind": "reference",
+      "preview": true,
+      "usable": false,
+      "reason": "superseded_by_organized_sprite_exports"
+    },
+    {
+      "glob": "assets/Baby Dragon/Sprites/*/ATTACK.png",
+      "kind": "animation",
+      "grid": {
+        "columns": 6,
+        "rows": 1,
+        "count": 6,
+        "cellWidth": 158,
+        "cellHeight": 125,
+        "declaredFrames": 6,
+        "source": "baby-dragon-profile",
+        "confidence": 1.0
+      }
+    },
+    {
+      "glob": "assets/Baby Dragon/Sprites/*/DEATH.png",
+      "kind": "animation",
+      "grid": {
+        "columns": 5,
+        "rows": 1,
+        "count": 5,
+        "cellWidth": 158,
+        "cellHeight": 125,
+        "declaredFrames": 5,
+        "source": "baby-dragon-profile",
+        "confidence": 1.0
+      }
+    },
+    {
+      "glob": "assets/Baby Dragon/Sprites/*/HURT.png",
+      "kind": "animation",
+      "grid": {
+        "columns": 3,
+        "rows": 1,
+        "count": 3,
+        "cellWidth": 158,
+        "cellHeight": 125,
+        "declaredFrames": 3,
+        "source": "baby-dragon-profile",
+        "confidence": 1.0
+      }
+    },
+    {
+      "glob": "assets/Baby Dragon/Sprites/*/IDLE.png",
+      "kind": "animation",
+      "grid": {
+        "columns": 4,
+        "rows": 1,
+        "count": 4,
+        "cellWidth": 158,
+        "cellHeight": 125,
+        "declaredFrames": 4,
+        "source": "baby-dragon-profile",
+        "confidence": 1.0
+      }
+    },
+    {
+      "glob": "assets/Baby Dragon/Sprites/*/MOVE.png",
+      "kind": "animation",
+      "grid": {
+        "columns": 4,
+        "rows": 1,
+        "count": 4,
+        "cellWidth": 158,
+        "cellHeight": 125,
+        "declaredFrames": 4,
+        "source": "baby-dragon-profile",
+        "confidence": 1.0
+      }
+    },
+    {
+      "glob": "assets/Baby Dragon/Sprites/*/projectile*.png",
+      "kind": "animation",
+      "grid": {
+        "columns": 6,
+        "rows": 1,
+        "count": 6,
+        "cellWidth": 48,
+        "cellHeight": 32,
+        "declaredFrames": 6,
+        "source": "baby-dragon-profile",
+        "confidence": 1.0
+      }
+    },
+    {
+      "glob": "assets/Main Character/*.png",
+      "preserveCanvas": true
+    },
+    {
+      "glob": "assets/NPCs/Cozy Village NPC Collection Vol.1/*.png",
+      "preserveCanvas": true
+    },
+    {
+      "glob": "assets/NPCs/day_of_the_dead/dotd_skeletonsheet_[123].png",
+      "kind": "spritesheet",
+      "grid": {
+        "columns": 12,
+        "rows": 8,
+        "count": 96,
+        "source": "audited-rpg-eight-character-profile",
+        "confidence": 1.0,
+        "directionNames": ["south", "west", "east", "north"],
+        "frameOrder": [0, 1, 2, 1],
+        "idleFrame": 1,
+        "characterBlocks": {
+          "columns": 4,
+          "rows": 2,
+          "directions": 4,
+          "frames": 3
+        }
+      }
+    },
+    {
+      "glob": "assets/NPCs/vampire_[123].png",
+      "kind": "spritesheet",
+      "grid": {
+        "columns": 12,
+        "rows": 8,
+        "count": 96,
+        "source": "audited-rpg-eight-character-profile",
+        "confidence": 1.0,
+        "directionNames": ["south", "west", "east", "north"],
+        "frameOrder": [0, 1, 2, 1],
+        "idleFrame": 1,
+        "characterBlocks": {
+          "columns": 4,
+          "rows": 2,
+          "directions": 4,
+          "frames": 3
+        }
+      }
+    },
+    {
+      "glob": "assets/NPCs/RMMV/beast_hero_[1-5].png",
+      "kind": "spritesheet",
+      "grid": {
+        "columns": 3,
+        "rows": 4,
+        "count": 12,
+        "source": "audited-rpg-single-character-profile",
+        "confidence": 1.0,
+        "directionNames": ["south", "west", "east", "north"],
+        "frameOrder": [0, 1, 2, 1],
+        "idleFrame": 1,
+        "rowSequences": true
+      }
+    },
+    {
+      "glob": "assets/NPCs/witch/1x/witch[12]_1.png",
+      "kind": "spritesheet",
+      "grid": {
+        "columns": 3,
+        "rows": 4,
+        "count": 12,
+        "source": "audited-rpg-single-character-profile",
+        "confidence": 1.0,
+        "directionNames": ["south", "west", "east", "north"],
+        "frameOrder": [0, 1, 2, 1],
+        "idleFrame": 1,
+        "rowSequences": true
+      }
+    },
+    {
+      "glob": "assets/NPCs/reaper/reaper_1.png",
+      "kind": "spritesheet",
+      "grid": {
+        "columns": 3,
+        "rows": 4,
+        "count": 12,
+        "source": "audited-rpg-single-character-profile",
+        "confidence": 1.0,
+        "directionNames": ["south", "west", "east", "north"],
+        "frameOrder": [0, 1, 2, 1],
+        "idleFrame": 1,
+        "rowSequences": true
+      }
+    },
+    {
+      "glob": "assets/NPCs/ghost[123].png",
+      "kind": "spritesheet",
+      "grid": {
+        "columns": 3,
+        "rows": 4,
+        "count": 12,
+        "source": "audited-rpg-single-character-profile",
+        "confidence": 1.0,
+        "directionNames": ["south", "west", "east", "north"],
+        "frameOrder": [0, 1, 2, 1],
+        "idleFrame": 1,
+        "rowSequences": true
+      }
+    },
+    {
+      "glob": "assets/NPCs/horseman/jacko_a_1.png",
+      "kind": "spritesheet",
+      "grid": {
+        "columns": 3,
+        "rows": 4,
+        "count": 12,
+        "source": "audited-rpg-single-character-profile",
+        "confidence": 1.0,
+        "directionNames": ["south", "west", "east", "north"],
+        "frameOrder": [0, 1, 2, 1],
+        "idleFrame": 1,
+        "rowSequences": true
+      }
+    },
+    {
+      "glob": "assets/quirky npcs/fullcolor/*.png",
+      "kind": "spritesheet",
+      "grid": {
+        "columns": 3,
+        "rows": 4,
+        "source": "quirky-npc-profile",
+        "confidence": 0.9,
+        "directionNames": ["south", "west", "east", "north"],
+        "frameOrder": [0, 1, 2, 1],
+        "idleFrame": 1,
+        "rowSequences": true
+      }
+    }
+  ],
+  "sources": {
+    "assets/quirky npcs/fullcolor/aeronaut.png": {
+      "kind": "spritesheet",
+      "grid": {
+        "columns": 3,
+        "rows": 4,
+        "count": 10,
+        "source": "aeronaut-profile",
+        "confidence": 1.0,
+        "static": true
+      },
+      "variants": [
+        {
+          "id": "standing",
+          "name": "Aeronaut — standing",
+          "crop": [7, 6, 27, 59],
+          "kind": "sprite",
+          "usable": true
+        },
+        {
+          "id": "flight",
+          "name": "Aeronaut — balloon flight",
+          "crop": [0, 0, 46, 66],
+          "kind": "animation",
+          "usable": true,
+          "animation": {
+            "frameCount": 3,
+            "fps": 5,
+            "duration": 600,
+            "source": "audited-aeronaut-top-row",
+            "frames": [
+              {"src": "assets/quirky npcs/fullcolor/aeronaut.png", "x": 0, "y": 0, "w": 46, "h": 66, "duration": 200},
+              {"src": "assets/quirky npcs/fullcolor/aeronaut.png", "x": 46, "y": 0, "w": 46, "h": 66, "duration": 200},
+              {"src": "assets/quirky npcs/fullcolor/aeronaut.png", "x": 92, "y": 0, "w": 46, "h": 66, "duration": 200}
+            ]
+          }
+        }
+      ]
+    },
+    "assets/quirky npcs/fullcolor/conductor.png": {
+      "variants": [
+        {
+          "id": "south",
+          "name": "Conductor — south",
+          "crop": [46, 0, 46, 48],
+          "kind": "sprite",
+          "usable": true
+        },
+        {
+          "id": "west",
+          "name": "Conductor — west",
+          "crop": [0, 0, 46, 48],
+          "kind": "sprite",
+          "usable": true
+        },
+        {
+          "id": "east",
+          "name": "Conductor — east",
+          "crop": [92, 0, 46, 48],
+          "kind": "sprite",
+          "usable": true
+        },
+        {
+          "id": "north",
+          "name": "Conductor — north",
+          "crop": [46, 96, 46, 48],
+          "kind": "sprite",
+          "usable": true
+        }
+      ]
+    }
+  }
+}

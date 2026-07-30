@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://validation/af01_cinder_gate_capture.gd" id="1_capture"]
+
+[node name="Af01CinderGateCapture" type="Node2D"]
+script = ExtResource("1_capture")

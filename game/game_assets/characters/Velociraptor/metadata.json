@@ -1,0 +1,537 @@
+{
+  "group_id": null,
+  "states": [
+    {
+      "character": {
+        "id": "639bb975-a462-4244-ae11-4b738cae8edd",
+        "name": "Tiny Velociraptor",
+        "prompt": "Create for me a Velociraptor sprite with it's whole body in image. Only ONE tail. Long arms, large head. Almost like a caricature. Scary looking. Yellow eyes, light green skin. Consistent look throughout. Sharp teeth.",
+        "size": {
+          "width": 60,
+          "height": 60
+        },
+        "template_id": "mannequin",
+        "directions": 8,
+        "view": "side",
+        "created_at": "2026-07-15T19:55:06.536182+00:00"
+      },
+      "folder": "Tiny_Velociraptor",
+      "frames": {
+        "rotations": {
+          "south": "Tiny_Velociraptor/rotations/south.png",
+          "south-east": "Tiny_Velociraptor/rotations/south-east.png",
+          "east": "Tiny_Velociraptor/rotations/east.png",
+          "north-east": "Tiny_Velociraptor/rotations/north-east.png",
+          "north": "Tiny_Velociraptor/rotations/north.png",
+          "north-west": "Tiny_Velociraptor/rotations/north-west.png",
+          "west": "Tiny_Velociraptor/rotations/west.png",
+          "south-west": "Tiny_Velociraptor/rotations/south-west.png"
+        },
+        "animations": {
+          "Running": {
+            "west": [
+              "Tiny_Velociraptor/animations/Running/west/frame_000.png",
+              "Tiny_Velociraptor/animations/Running/west/frame_001.png",
+              "Tiny_Velociraptor/animations/Running/west/frame_002.png",
+              "Tiny_Velociraptor/animations/Running/west/frame_003.png",
+              "Tiny_Velociraptor/animations/Running/west/frame_004.png",
+              "Tiny_Velociraptor/animations/Running/west/frame_005.png"
+            ],
+            "north-west": [
+              "Tiny_Velociraptor/animations/Running/north-west/frame_000.png",
+              "Tiny_Velociraptor/animations/Running/north-west/frame_001.png",
+              "Tiny_Velociraptor/animations/Running/north-west/frame_002.png",
+              "Tiny_Velociraptor/animations/Running/north-west/frame_003.png",
+              "Tiny_Velociraptor/animations/Running/north-west/frame_004.png",
+              "Tiny_Velociraptor/animations/Running/north-west/frame_005.png"
+            ],
+            "south-east": [
+              "Tiny_Velociraptor/animations/Running/south-east/frame_000.png",
+              "Tiny_Velociraptor/animations/Running/south-east/frame_001.png",
+              "Tiny_Velociraptor/animations/Running/south-east/frame_002.png",
+              "Tiny_Velociraptor/animations/Running/south-east/frame_003.png",
+              "Tiny_Velociraptor/animations/Running/south-east/frame_004.png",
+              "Tiny_Velociraptor/animations/Running/south-east/frame_005.png"
+            ],
+            "north-east": [
+              "Tiny_Velociraptor/animations/Running/north-east/frame_000.png",
+              "Tiny_Velociraptor/animations/Running/north-east/frame_001.png",
+              "Tiny_Velociraptor/animations/Running/north-east/frame_002.png",
+              "Tiny_Velociraptor/animations/Running/north-east/frame_003.png",
+              "Tiny_Velociraptor/animations/Running/north-east/frame_004.png",
+              "Tiny_Velociraptor/animations/Running/north-east/frame_005.png"
+            ],
+            "south-west": [
+              "Tiny_Velociraptor/animations/Running/south-west/frame_000.png",
+              "Tiny_Velociraptor/animations/Running/south-west/frame_001.png",
+              "Tiny_Velociraptor/animations/Running/south-west/frame_002.png",
+              "Tiny_Velociraptor/animations/Running/south-west/frame_003.png",
+              "Tiny_Velociraptor/animations/Running/south-west/frame_004.png",
+              "Tiny_Velociraptor/animations/Running/south-west/frame_005.png"
+            ],
+            "south": [
+              "Tiny_Velociraptor/animations/Running/south/frame_000.png",
+              "Tiny_Velociraptor/animations/Running/south/frame_001.png",
+              "Tiny_Velociraptor/animations/Running/south/frame_002.png",
+              "Tiny_Velociraptor/animations/Running/south/frame_003.png",
+              "Tiny_Velociraptor/animations/Running/south/frame_004.png",
+              "Tiny_Velociraptor/animations/Running/south/frame_005.png"
+            ],
+            "east": [
+              "Tiny_Velociraptor/animations/Running/east/frame_000.png",
+              "Tiny_Velociraptor/animations/Running/east/frame_001.png",
+              "Tiny_Velociraptor/animations/Running/east/frame_002.png",
+              "Tiny_Velociraptor/animations/Running/east/frame_003.png",
+              "Tiny_Velociraptor/animations/Running/east/frame_004.png",
+              "Tiny_Velociraptor/animations/Running/east/frame_005.png"
+            ]
+          },
+          "Two-Footed_Jump": {
+            "north-west": [
+              "Tiny_Velociraptor/animations/Two-Footed_Jump/north-west/frame_000.png",
+              "Tiny_Velociraptor/animations/Two-Footed_Jump/north-west/frame_001.png",
+              "Tiny_Velociraptor/animations/Two-Footed_Jump/north-west/frame_002.png",
+              "Tiny_Velociraptor/animations/Two-Footed_Jump/north-west/frame_003.png",
+              "Tiny_Velociraptor/animations/Two-Footed_Jump/north-west/frame_004.png",
+              "Tiny_Velociraptor/animations/Two-Footed_Jump/north-west/frame_005.png",
+              "Tiny_Velociraptor/animations/Two-Footed_Jump/north-west/frame_006.png"
+            ],
+            "south-west": [
+              "Tiny_Velociraptor/animations/Two-Footed_Jump/south-west/frame_000.png",
+              "Tiny_Velociraptor/animations/Two-Footed_Jump/south-west/frame_001.png",
+              "Tiny_Velociraptor/animations/Two-Footed_Jump/south-west/frame_002.png",
+              "Tiny_Velociraptor/animations/Two-Footed_Jump/south-west/frame_003.png",
+              "Tiny_Velociraptor/animations/Two-Footed_Jump/south-west/frame_004.png",
+              "Tiny_Velociraptor/animations/Two-Footed_Jump/south-west/frame_005.png",
+              "Tiny_Velociraptor/animations/Two-Footed_Jump/south-west/frame_006.png"
+            ],
+            "south-east": [
+              "Tiny_Velociraptor/animations/Two-Footed_Jump/south-east/frame_000.png",
+              "Tiny_Velociraptor/animations/Two-Footed_Jump/south-east/frame_001.png",
+              "Tiny_Velociraptor/animations/Two-Footed_Jump/south-east/frame_002.png",
+              "Tiny_Velociraptor/animations/Two-Footed_Jump/south-east/frame_003.png",
+              "Tiny_Velociraptor/animations/Two-Footed_Jump/south-east/frame_004.png",
+              "Tiny_Velociraptor/animations/Two-Footed_Jump/south-east/frame_005.png",
+              "Tiny_Velociraptor/animations/Two-Footed_Jump/south-east/frame_006.png"
+            ],
+            "north-east": [
+              "Tiny_Velociraptor/animations/Two-Footed_Jump/north-east/frame_000.png",
+              "Tiny_Velociraptor/animations/Two-Footed_Jump/north-east/frame_001.png",
+              "Tiny_Velociraptor/animations/Two-Footed_Jump/north-east/frame_002.png",
+              "Tiny_Velociraptor/animations/Two-Footed_Jump/north-east/frame_003.png",
+              "Tiny_Velociraptor/animations/Two-Footed_Jump/north-east/frame_004.png",
+              "Tiny_Velociraptor/animations/Two-Footed_Jump/north-east/frame_005.png",
+              "Tiny_Velociraptor/animations/Two-Footed_Jump/north-east/frame_006.png"
+            ],
+            "east": [
+              "Tiny_Velociraptor/animations/Two-Footed_Jump/east/frame_000.png",
+              "Tiny_Velociraptor/animations/Two-Footed_Jump/east/frame_001.png",
+              "Tiny_Velociraptor/animations/Two-Footed_Jump/east/frame_002.png",
+              "Tiny_Velociraptor/animations/Two-Footed_Jump/east/frame_003.png",
+              "Tiny_Velociraptor/animations/Two-Footed_Jump/east/frame_004.png",
+              "Tiny_Velociraptor/animations/Two-Footed_Jump/east/frame_005.png",
+              "Tiny_Velociraptor/animations/Two-Footed_Jump/east/frame_006.png"
+            ],
+            "west": [
+              "Tiny_Velociraptor/animations/Two-Footed_Jump/west/frame_000.png",
+              "Tiny_Velociraptor/animations/Two-Footed_Jump/west/frame_001.png",
+              "Tiny_Velociraptor/animations/Two-Footed_Jump/west/frame_002.png",
+              "Tiny_Velociraptor/animations/Two-Footed_Jump/west/frame_003.png",
+              "Tiny_Velociraptor/animations/Two-Footed_Jump/west/frame_004.png",
+              "Tiny_Velociraptor/animations/Two-Footed_Jump/west/frame_005.png",
+              "Tiny_Velociraptor/animations/Two-Footed_Jump/west/frame_006.png"
+            ],
+            "south": [
+              "Tiny_Velociraptor/animations/Two-Footed_Jump/south/frame_000.png",
+              "Tiny_Velociraptor/animations/Two-Footed_Jump/south/frame_001.png",
+              "Tiny_Velociraptor/animations/Two-Footed_Jump/south/frame_002.png",
+              "Tiny_Velociraptor/animations/Two-Footed_Jump/south/frame_003.png",
+              "Tiny_Velociraptor/animations/Two-Footed_Jump/south/frame_004.png",
+              "Tiny_Velociraptor/animations/Two-Footed_Jump/south/frame_005.png",
+              "Tiny_Velociraptor/animations/Two-Footed_Jump/south/frame_006.png"
+            ]
+          },
+          "Taking_Hit": {
+            "south": [
+              "Tiny_Velociraptor/animations/Taking_Hit/south/frame_000.png",
+              "Tiny_Velociraptor/animations/Taking_Hit/south/frame_001.png",
+              "Tiny_Velociraptor/animations/Taking_Hit/south/frame_002.png",
+              "Tiny_Velociraptor/animations/Taking_Hit/south/frame_003.png",
+              "Tiny_Velociraptor/animations/Taking_Hit/south/frame_004.png",
+              "Tiny_Velociraptor/animations/Taking_Hit/south/frame_005.png"
+            ],
+            "south-west": [
+              "Tiny_Velociraptor/animations/Taking_Hit/south-west/frame_000.png",
+              "Tiny_Velociraptor/animations/Taking_Hit/south-west/frame_001.png",
+              "Tiny_Velociraptor/animations/Taking_Hit/south-west/frame_002.png",
+              "Tiny_Velociraptor/animations/Taking_Hit/south-west/frame_003.png",
+              "Tiny_Velociraptor/animations/Taking_Hit/south-west/frame_004.png",
+              "Tiny_Velociraptor/animations/Taking_Hit/south-west/frame_005.png"
+            ],
+            "north-east": [
+              "Tiny_Velociraptor/animations/Taking_Hit/north-east/frame_000.png",
+              "Tiny_Velociraptor/animations/Taking_Hit/north-east/frame_001.png",
+              "Tiny_Velociraptor/animations/Taking_Hit/north-east/frame_002.png",
+              "Tiny_Velociraptor/animations/Taking_Hit/north-east/frame_003.png",
+              "Tiny_Velociraptor/animations/Taking_Hit/north-east/frame_004.png",
+              "Tiny_Velociraptor/animations/Taking_Hit/north-east/frame_005.png"
+            ],
+            "east": [
+              "Tiny_Velociraptor/animations/Taking_Hit/east/frame_000.png",
+              "Tiny_Velociraptor/animations/Taking_Hit/east/frame_001.png",
+              "Tiny_Velociraptor/animations/Taking_Hit/east/frame_002.png",
+              "Tiny_Velociraptor/animations/Taking_Hit/east/frame_003.png",
+              "Tiny_Velociraptor/animations/Taking_Hit/east/frame_004.png",
+              "Tiny_Velociraptor/animations/Taking_Hit/east/frame_005.png"
+            ],
+            "south-east": [
+              "Tiny_Velociraptor/animations/Taking_Hit/south-east/frame_000.png",
+              "Tiny_Velociraptor/animations/Taking_Hit/south-east/frame_001.png",
+              "Tiny_Velociraptor/animations/Taking_Hit/south-east/frame_002.png",
+              "Tiny_Velociraptor/animations/Taking_Hit/south-east/frame_003.png",
+              "Tiny_Velociraptor/animations/Taking_Hit/south-east/frame_004.png",
+              "Tiny_Velociraptor/animations/Taking_Hit/south-east/frame_005.png"
+            ],
+            "north-west": [
+              "Tiny_Velociraptor/animations/Taking_Hit/north-west/frame_000.png",
+              "Tiny_Velociraptor/animations/Taking_Hit/north-west/frame_001.png",
+              "Tiny_Velociraptor/animations/Taking_Hit/north-west/frame_002.png",
+              "Tiny_Velociraptor/animations/Taking_Hit/north-west/frame_003.png",
+              "Tiny_Velociraptor/animations/Taking_Hit/north-west/frame_004.png",
+              "Tiny_Velociraptor/animations/Taking_Hit/north-west/frame_005.png"
+            ],
+            "west": [
+              "Tiny_Velociraptor/animations/Taking_Hit/west/frame_000.png",
+              "Tiny_Velociraptor/animations/Taking_Hit/west/frame_001.png",
+              "Tiny_Velociraptor/animations/Taking_Hit/west/frame_002.png",
+              "Tiny_Velociraptor/animations/Taking_Hit/west/frame_003.png",
+              "Tiny_Velociraptor/animations/Taking_Hit/west/frame_004.png",
+              "Tiny_Velociraptor/animations/Taking_Hit/west/frame_005.png"
+            ]
+          },
+          "Raptor_Death": {
+            "east": [
+              "Tiny_Velociraptor/animations/Raptor_Death/east/frame_000.png",
+              "Tiny_Velociraptor/animations/Raptor_Death/east/frame_001.png",
+              "Tiny_Velociraptor/animations/Raptor_Death/east/frame_002.png",
+              "Tiny_Velociraptor/animations/Raptor_Death/east/frame_003.png",
+              "Tiny_Velociraptor/animations/Raptor_Death/east/frame_004.png",
+              "Tiny_Velociraptor/animations/Raptor_Death/east/frame_005.png",
+              "Tiny_Velociraptor/animations/Raptor_Death/east/frame_006.png",
+              "Tiny_Velociraptor/animations/Raptor_Death/east/frame_007.png",
+              "Tiny_Velociraptor/animations/Raptor_Death/east/frame_008.png",
+              "Tiny_Velociraptor/animations/Raptor_Death/east/frame_009.png",
+              "Tiny_Velociraptor/animations/Raptor_Death/east/frame_010.png"
+            ],
+            "south-east": [
+              "Tiny_Velociraptor/animations/Raptor_Death/south-east/frame_000.png",
+              "Tiny_Velociraptor/animations/Raptor_Death/south-east/frame_001.png",
+              "Tiny_Velociraptor/animations/Raptor_Death/south-east/frame_002.png",
+              "Tiny_Velociraptor/animations/Raptor_Death/south-east/frame_003.png",
+              "Tiny_Velociraptor/animations/Raptor_Death/south-east/frame_004.png",
+              "Tiny_Velociraptor/animations/Raptor_Death/south-east/frame_005.png",
+              "Tiny_Velociraptor/animations/Raptor_Death/south-east/frame_006.png",
+              "Tiny_Velociraptor/animations/Raptor_Death/south-east/frame_007.png",
+              "Tiny_Velociraptor/animations/Raptor_Death/south-east/frame_008.png",
+              "Tiny_Velociraptor/animations/Raptor_Death/south-east/frame_009.png",
+              "Tiny_Velociraptor/animations/Raptor_Death/south-east/frame_010.png"
+            ],
+            "north-east": [
+              "Tiny_Velociraptor/animations/Raptor_Death/north-east/frame_000.png",
+              "Tiny_Velociraptor/animations/Raptor_Death/north-east/frame_001.png",
+              "Tiny_Velociraptor/animations/Raptor_Death/north-east/frame_002.png",
+              "Tiny_Velociraptor/animations/Raptor_Death/north-east/frame_003.png",
+              "Tiny_Velociraptor/animations/Raptor_Death/north-east/frame_004.png",
+              "Tiny_Velociraptor/animations/Raptor_Death/north-east/frame_005.png",
+              "Tiny_Velociraptor/animations/Raptor_Death/north-east/frame_006.png",
+              "Tiny_Velociraptor/animations/Raptor_Death/north-east/frame_007.png",
+              "Tiny_Velociraptor/animations/Raptor_Death/north-east/frame_008.png",
+              "Tiny_Velociraptor/animations/Raptor_Death/north-east/frame_009.png",
+              "Tiny_Velociraptor/animations/Raptor_Death/north-east/frame_010.png"
+            ],
+            "south-west": [
+              "Tiny_Velociraptor/animations/Raptor_Death/south-west/frame_000.png",
+              "Tiny_Velociraptor/animations/Raptor_Death/south-west/frame_001.png",
+              "Tiny_Velociraptor/animations/Raptor_Death/south-west/frame_002.png",
+              "Tiny_Velociraptor/animations/Raptor_Death/south-west/frame_003.png",
+              "Tiny_Velociraptor/animations/Raptor_Death/south-west/frame_004.png",
+              "Tiny_Velociraptor/animations/Raptor_Death/south-west/frame_005.png",
+              "Tiny_Velociraptor/animations/Raptor_Death/south-west/frame_006.png",
+              "Tiny_Velociraptor/animations/Raptor_Death/south-west/frame_007.png",
+              "Tiny_Velociraptor/animations/Raptor_Death/south-west/frame_008.png",
+              "Tiny_Velociraptor/animations/Raptor_Death/south-west/frame_009.png",
+              "Tiny_Velociraptor/animations/Raptor_Death/south-west/frame_010.png"
+            ],
+            "north": [
+              "Tiny_Velociraptor/animations/Raptor_Death/north/frame_000.png",
+              "Tiny_Velociraptor/animations/Raptor_Death/north/frame_001.png",
+              "Tiny_Velociraptor/animations/Raptor_Death/north/frame_002.png",
+              "Tiny_Velociraptor/animations/Raptor_Death/north/frame_003.png",
+              "Tiny_Velociraptor/animations/Raptor_Death/north/frame_004.png",
+              "Tiny_Velociraptor/animations/Raptor_Death/north/frame_005.png",
+              "Tiny_Velociraptor/animations/Raptor_Death/north/frame_006.png",
+              "Tiny_Velociraptor/animations/Raptor_Death/north/frame_007.png",
+              "Tiny_Velociraptor/animations/Raptor_Death/north/frame_008.png",
+              "Tiny_Velociraptor/animations/Raptor_Death/north/frame_009.png",
+              "Tiny_Velociraptor/animations/Raptor_Death/north/frame_010.png"
+            ],
+            "north-west": [
+              "Tiny_Velociraptor/animations/Raptor_Death/north-west/frame_000.png",
+              "Tiny_Velociraptor/animations/Raptor_Death/north-west/frame_001.png",
+              "Tiny_Velociraptor/animations/Raptor_Death/north-west/frame_002.png",
+              "Tiny_Velociraptor/animations/Raptor_Death/north-west/frame_003.png",
+              "Tiny_Velociraptor/animations/Raptor_Death/north-west/frame_004.png",
+              "Tiny_Velociraptor/animations/Raptor_Death/north-west/frame_005.png",
+              "Tiny_Velociraptor/animations/Raptor_Death/north-west/frame_006.png",
+              "Tiny_Velociraptor/animations/Raptor_Death/north-west/frame_007.png",
+              "Tiny_Velociraptor/animations/Raptor_Death/north-west/frame_008.png",
+              "Tiny_Velociraptor/animations/Raptor_Death/north-west/frame_009.png",
+              "Tiny_Velociraptor/animations/Raptor_Death/north-west/frame_010.png"
+            ],
+            "west": [
+              "Tiny_Velociraptor/animations/Raptor_Death/west/frame_000.png",
+              "Tiny_Velociraptor/animations/Raptor_Death/west/frame_001.png",
+              "Tiny_Velociraptor/animations/Raptor_Death/west/frame_002.png",
+              "Tiny_Velociraptor/animations/Raptor_Death/west/frame_003.png",
+              "Tiny_Velociraptor/animations/Raptor_Death/west/frame_004.png",
+              "Tiny_Velociraptor/animations/Raptor_Death/west/frame_005.png",
+              "Tiny_Velociraptor/animations/Raptor_Death/west/frame_006.png",
+              "Tiny_Velociraptor/animations/Raptor_Death/west/frame_007.png",
+              "Tiny_Velociraptor/animations/Raptor_Death/west/frame_008.png",
+              "Tiny_Velociraptor/animations/Raptor_Death/west/frame_009.png",
+              "Tiny_Velociraptor/animations/Raptor_Death/west/frame_010.png"
+            ],
+            "south": [
+              "Tiny_Velociraptor/animations/Raptor_Death/south/frame_000.png",
+              "Tiny_Velociraptor/animations/Raptor_Death/south/frame_001.png",
+              "Tiny_Velociraptor/animations/Raptor_Death/south/frame_002.png",
+              "Tiny_Velociraptor/animations/Raptor_Death/south/frame_003.png",
+              "Tiny_Velociraptor/animations/Raptor_Death/south/frame_004.png",
+              "Tiny_Velociraptor/animations/Raptor_Death/south/frame_005.png",
+              "Tiny_Velociraptor/animations/Raptor_Death/south/frame_006.png",
+              "Tiny_Velociraptor/animations/Raptor_Death/south/frame_007.png",
+              "Tiny_Velociraptor/animations/Raptor_Death/south/frame_008.png",
+              "Tiny_Velociraptor/animations/Raptor_Death/south/frame_009.png",
+              "Tiny_Velociraptor/animations/Raptor_Death/south/frame_010.png"
+            ]
+          },
+          "Scratch": {
+            "north-east": [
+              "Tiny_Velociraptor/animations/Scratch/north-east/frame_000.png",
+              "Tiny_Velociraptor/animations/Scratch/north-east/frame_001.png",
+              "Tiny_Velociraptor/animations/Scratch/north-east/frame_002.png",
+              "Tiny_Velociraptor/animations/Scratch/north-east/frame_003.png",
+              "Tiny_Velociraptor/animations/Scratch/north-east/frame_004.png",
+              "Tiny_Velociraptor/animations/Scratch/north-east/frame_005.png",
+              "Tiny_Velociraptor/animations/Scratch/north-east/frame_006.png"
+            ],
+            "north-west": [
+              "Tiny_Velociraptor/animations/Scratch/north-west/frame_000.png",
+              "Tiny_Velociraptor/animations/Scratch/north-west/frame_001.png",
+              "Tiny_Velociraptor/animations/Scratch/north-west/frame_002.png",
+              "Tiny_Velociraptor/animations/Scratch/north-west/frame_003.png",
+              "Tiny_Velociraptor/animations/Scratch/north-west/frame_004.png",
+              "Tiny_Velociraptor/animations/Scratch/north-west/frame_005.png",
+              "Tiny_Velociraptor/animations/Scratch/north-west/frame_006.png"
+            ],
+            "south-west": [
+              "Tiny_Velociraptor/animations/Scratch/south-west/frame_000.png",
+              "Tiny_Velociraptor/animations/Scratch/south-west/frame_001.png",
+              "Tiny_Velociraptor/animations/Scratch/south-west/frame_002.png",
+              "Tiny_Velociraptor/animations/Scratch/south-west/frame_003.png",
+              "Tiny_Velociraptor/animations/Scratch/south-west/frame_004.png",
+              "Tiny_Velociraptor/animations/Scratch/south-west/frame_005.png",
+              "Tiny_Velociraptor/animations/Scratch/south-west/frame_006.png"
+            ],
+            "east": [
+              "Tiny_Velociraptor/animations/Scratch/east/frame_000.png",
+              "Tiny_Velociraptor/animations/Scratch/east/frame_001.png",
+              "Tiny_Velociraptor/animations/Scratch/east/frame_002.png",
+              "Tiny_Velociraptor/animations/Scratch/east/frame_003.png",
+              "Tiny_Velociraptor/animations/Scratch/east/frame_004.png",
+              "Tiny_Velociraptor/animations/Scratch/east/frame_005.png",
+              "Tiny_Velociraptor/animations/Scratch/east/frame_006.png"
+            ],
+            "west": [
+              "Tiny_Velociraptor/animations/Scratch/west/frame_000.png",
+              "Tiny_Velociraptor/animations/Scratch/west/frame_001.png",
+              "Tiny_Velociraptor/animations/Scratch/west/frame_002.png",
+              "Tiny_Velociraptor/animations/Scratch/west/frame_003.png",
+              "Tiny_Velociraptor/animations/Scratch/west/frame_004.png",
+              "Tiny_Velociraptor/animations/Scratch/west/frame_005.png",
+              "Tiny_Velociraptor/animations/Scratch/west/frame_006.png"
+            ],
+            "south-east": [
+              "Tiny_Velociraptor/animations/Scratch/south-east/frame_000.png",
+              "Tiny_Velociraptor/animations/Scratch/south-east/frame_001.png",
+              "Tiny_Velociraptor/animations/Scratch/south-east/frame_002.png",
+              "Tiny_Velociraptor/animations/Scratch/south-east/frame_003.png",
+              "Tiny_Velociraptor/animations/Scratch/south-east/frame_004.png",
+              "Tiny_Velociraptor/animations/Scratch/south-east/frame_005.png",
+              "Tiny_Velociraptor/animations/Scratch/south-east/frame_006.png"
+            ],
+            "south": [
+              "Tiny_Velociraptor/animations/Scratch/south/frame_000.png",
+              "Tiny_Velociraptor/animations/Scratch/south/frame_001.png",
+              "Tiny_Velociraptor/animations/Scratch/south/frame_002.png",
+              "Tiny_Velociraptor/animations/Scratch/south/frame_003.png",
+              "Tiny_Velociraptor/animations/Scratch/south/frame_004.png",
+              "Tiny_Velociraptor/animations/Scratch/south/frame_005.png",
+              "Tiny_Velociraptor/animations/Scratch/south/frame_006.png"
+            ]
+          },
+          "Bite_Attack": {
+            "south-east": [
+              "Tiny_Velociraptor/animations/Bite_Attack/south-east/frame_000.png",
+              "Tiny_Velociraptor/animations/Bite_Attack/south-east/frame_001.png",
+              "Tiny_Velociraptor/animations/Bite_Attack/south-east/frame_002.png",
+              "Tiny_Velociraptor/animations/Bite_Attack/south-east/frame_003.png",
+              "Tiny_Velociraptor/animations/Bite_Attack/south-east/frame_004.png",
+              "Tiny_Velociraptor/animations/Bite_Attack/south-east/frame_005.png",
+              "Tiny_Velociraptor/animations/Bite_Attack/south-east/frame_006.png",
+              "Tiny_Velociraptor/animations/Bite_Attack/south-east/frame_007.png",
+              "Tiny_Velociraptor/animations/Bite_Attack/south-east/frame_008.png",
+              "Tiny_Velociraptor/animations/Bite_Attack/south-east/frame_009.png",
+              "Tiny_Velociraptor/animations/Bite_Attack/south-east/frame_010.png",
+              "Tiny_Velociraptor/animations/Bite_Attack/south-east/frame_011.png",
+              "Tiny_Velociraptor/animations/Bite_Attack/south-east/frame_012.png"
+            ],
+            "south-west": [
+              "Tiny_Velociraptor/animations/Bite_Attack/south-west/frame_000.png",
+              "Tiny_Velociraptor/animations/Bite_Attack/south-west/frame_001.png",
+              "Tiny_Velociraptor/animations/Bite_Attack/south-west/frame_002.png",
+              "Tiny_Velociraptor/animations/Bite_Attack/south-west/frame_003.png",
+              "Tiny_Velociraptor/animations/Bite_Attack/south-west/frame_004.png",
+              "Tiny_Velociraptor/animations/Bite_Attack/south-west/frame_005.png",
+              "Tiny_Velociraptor/animations/Bite_Attack/south-west/frame_006.png",
+              "Tiny_Velociraptor/animations/Bite_Attack/south-west/frame_007.png",
+              "Tiny_Velociraptor/animations/Bite_Attack/south-west/frame_008.png",
+              "Tiny_Velociraptor/animations/Bite_Attack/south-west/frame_009.png",
+              "Tiny_Velociraptor/animations/Bite_Attack/south-west/frame_010.png",
+              "Tiny_Velociraptor/animations/Bite_Attack/south-west/frame_011.png",
+              "Tiny_Velociraptor/animations/Bite_Attack/south-west/frame_012.png"
+            ],
+            "east": [
+              "Tiny_Velociraptor/animations/Bite_Attack/east/frame_000.png",
+              "Tiny_Velociraptor/animations/Bite_Attack/east/frame_001.png",
+              "Tiny_Velociraptor/animations/Bite_Attack/east/frame_002.png",
+              "Tiny_Velociraptor/animations/Bite_Attack/east/frame_003.png",
+              "Tiny_Velociraptor/animations/Bite_Attack/east/frame_004.png",
+              "Tiny_Velociraptor/animations/Bite_Attack/east/frame_005.png",
+              "Tiny_Velociraptor/animations/Bite_Attack/east/frame_006.png",
+              "Tiny_Velociraptor/animations/Bite_Attack/east/frame_007.png",
+              "Tiny_Velociraptor/animations/Bite_Attack/east/frame_008.png",
+              "Tiny_Velociraptor/animations/Bite_Attack/east/frame_009.png",
+              "Tiny_Velociraptor/animations/Bite_Attack/east/frame_010.png",
+              "Tiny_Velociraptor/animations/Bite_Attack/east/frame_011.png",
+              "Tiny_Velociraptor/animations/Bite_Attack/east/frame_012.png"
+            ],
+            "north-east": [
+              "Tiny_Velociraptor/animations/Bite_Attack/north-east/frame_000.png",
+              "Tiny_Velociraptor/animations/Bite_Attack/north-east/frame_001.png",
+              "Tiny_Velociraptor/animations/Bite_Attack/north-east/frame_002.png",
+              "Tiny_Velociraptor/animations/Bite_Attack/north-east/frame_003.png",
+              "Tiny_Velociraptor/animations/Bite_Attack/north-east/frame_004.png",
+              "Tiny_Velociraptor/animations/Bite_Attack/north-east/frame_005.png",
+              "Tiny_Velociraptor/animations/Bite_Attack/north-east/frame_006.png",
+              "Tiny_Velociraptor/animations/Bite_Attack/north-east/frame_007.png",
+              "Tiny_Velociraptor/animations/Bite_Attack/north-east/frame_008.png",
+              "Tiny_Velociraptor/animations/Bite_Attack/north-east/frame_009.png",
+              "Tiny_Velociraptor/animations/Bite_Attack/north-east/frame_010.png",
+              "Tiny_Velociraptor/animations/Bite_Attack/north-east/frame_011.png",
+              "Tiny_Velociraptor/animations/Bite_Attack/north-east/frame_012.png"
+            ],
+            "north-west": [
+              "Tiny_Velociraptor/animations/Bite_Attack/north-west/frame_000.png",
+              "Tiny_Velociraptor/animations/Bite_Attack/north-west/frame_001.png",
+              "Tiny_Velociraptor/animations/Bite_Attack/north-west/frame_002.png",
+              "Tiny_Velociraptor/animations/Bite_Attack/north-west/frame_003.png",
+              "Tiny_Velociraptor/animations/Bite_Attack/north-west/frame_004.png",
+              "Tiny_Velociraptor/animations/Bite_Attack/north-west/frame_005.png",
+              "Tiny_Velociraptor/animations/Bite_Attack/north-west/frame_006.png",
+              "Tiny_Velociraptor/animations/Bite_Attack/north-west/frame_007.png",
+              "Tiny_Velociraptor/animations/Bite_Attack/north-west/frame_008.png",
+              "Tiny_Velociraptor/animations/Bite_Attack/north-west/frame_009.png",
+              "Tiny_Velociraptor/animations/Bite_Attack/north-west/frame_010.png",
+              "Tiny_Velociraptor/animations/Bite_Attack/north-west/frame_011.png",
+              "Tiny_Velociraptor/animations/Bite_Attack/north-west/frame_012.png"
+            ],
+            "north": [
+              "Tiny_Velociraptor/animations/Bite_Attack/north/frame_000.png",
+              "Tiny_Velociraptor/animations/Bite_Attack/north/frame_001.png",
+              "Tiny_Velociraptor/animations/Bite_Attack/north/frame_002.png",
+              "Tiny_Velociraptor/animations/Bite_Attack/north/frame_003.png",
+              "Tiny_Velociraptor/animations/Bite_Attack/north/frame_004.png",
+              "Tiny_Velociraptor/animations/Bite_Attack/north/frame_005.png",
+              "Tiny_Velociraptor/animations/Bite_Attack/north/frame_006.png",
+              "Tiny_Velociraptor/animations/Bite_Attack/north/frame_007.png",
+              "Tiny_Velociraptor/animations/Bite_Attack/north/frame_008.png",
+              "Tiny_Velociraptor/animations/Bite_Attack/north/frame_009.png",
+              "Tiny_Velociraptor/animations/Bite_Attack/north/frame_010.png",
+              "Tiny_Velociraptor/animations/Bite_Attack/north/frame_011.png",
+              "Tiny_Velociraptor/animations/Bite_Attack/north/frame_012.png"
+            ],
+            "west": [
+              "Tiny_Velociraptor/animations/Bite_Attack/west/frame_000.png",
+              "Tiny_Velociraptor/animations/Bite_Attack/west/frame_001.png",
+              "Tiny_Velociraptor/animations/Bite_Attack/west/frame_002.png",
+              "Tiny_Velociraptor/animations/Bite_Attack/west/frame_003.png",
+              "Tiny_Velociraptor/animations/Bite_Attack/west/frame_004.png",
+              "Tiny_Velociraptor/animations/Bite_Attack/west/frame_005.png",
+              "Tiny_Velociraptor/animations/Bite_Attack/west/frame_006.png",
+              "Tiny_Velociraptor/animations/Bite_Attack/west/frame_007.png",
+              "Tiny_Velociraptor/animations/Bite_Attack/west/frame_008.png",
+              "Tiny_Velociraptor/animations/Bite_Attack/west/frame_009.png",
+              "Tiny_Velociraptor/animations/Bite_Attack/west/frame_010.png",
+              "Tiny_Velociraptor/animations/Bite_Attack/west/frame_011.png",
+              "Tiny_Velociraptor/animations/Bite_Attack/west/frame_012.png"
+            ],
+            "south": [
+              "Tiny_Velociraptor/animations/Bite_Attack/south/frame_000.png",
+              "Tiny_Velociraptor/animations/Bite_Attack/south/frame_001.png",
+              "Tiny_Velociraptor/animations/Bite_Attack/south/frame_002.png",
+              "Tiny_Velociraptor/animations/Bite_Attack/south/frame_003.png",
+              "Tiny_Velociraptor/animations/Bite_Attack/south/frame_004.png",
+              "Tiny_Velociraptor/animations/Bite_Attack/south/frame_005.png",
+              "Tiny_Velociraptor/animations/Bite_Attack/south/frame_006.png",
+              "Tiny_Velociraptor/animations/Bite_Attack/south/frame_007.png",
+              "Tiny_Velociraptor/animations/Bite_Attack/south/frame_008.png",
+              "Tiny_Velociraptor/animations/Bite_Attack/south/frame_009.png",
+              "Tiny_Velociraptor/animations/Bite_Attack/south/frame_010.png",
+              "Tiny_Velociraptor/animations/Bite_Attack/south/frame_011.png",
+              "Tiny_Velociraptor/animations/Bite_Attack/south/frame_012.png"
+            ]
+          },
+          "Breathing_Idle": {
+            "north": [
+              "Tiny_Velociraptor/animations/Breathing_Idle/north/frame_000.png",
+              "Tiny_Velociraptor/animations/Breathing_Idle/north/frame_001.png",
+              "Tiny_Velociraptor/animations/Breathing_Idle/north/frame_002.png",
+              "Tiny_Velociraptor/animations/Breathing_Idle/north/frame_003.png"
+            ],
+            "east": [
+              "Tiny_Velociraptor/animations/Breathing_Idle/east/frame_000.png",
+              "Tiny_Velociraptor/animations/Breathing_Idle/east/frame_001.png",
+              "Tiny_Velociraptor/animations/Breathing_Idle/east/frame_002.png",
+              "Tiny_Velociraptor/animations/Breathing_Idle/east/frame_003.png"
+            ],
+            "south": [
+              "Tiny_Velociraptor/animations/Breathing_Idle/south/frame_000.png",
+              "Tiny_Velociraptor/animations/Breathing_Idle/south/frame_001.png",
+              "Tiny_Velociraptor/animations/Breathing_Idle/south/frame_002.png",
+              "Tiny_Velociraptor/animations/Breathing_Idle/south/frame_003.png"
+            ],
+            "west": [
+              "Tiny_Velociraptor/animations/Breathing_Idle/west/frame_000.png",
+              "Tiny_Velociraptor/animations/Breathing_Idle/west/frame_001.png",
+              "Tiny_Velociraptor/animations/Breathing_Idle/west/frame_002.png",
+              "Tiny_Velociraptor/animations/Breathing_Idle/west/frame_003.png"
+            ]
+          }
+        }
+      }
+    }
+  ],
+  "export_version": "3.1",
+  "export_date": "2026-07-16T13:20:45.769811"
+}

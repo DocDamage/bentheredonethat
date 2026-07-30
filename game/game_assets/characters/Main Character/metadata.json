@@ -1,0 +1,753 @@
+{
+  "group_id": "0c95ce5e-570d-4127-8b00-b7d49345254b",
+  "states": [
+    {
+      "character": {
+        "id": "635e825a-0c3b-44a9-80be-296a3752c3c5",
+        "name": "Ben Franklin",
+        "prompt": "Create Ben Franklin, with a large, stereotypical head with glasses. Clothing and garb from the time. Presidential look, fairly short and rounded. Head is the largest part of his body like a caricature. ",
+        "size": {
+          "width": 88,
+          "height": 88
+        },
+        "template_id": "mannequin",
+        "directions": 8,
+        "view": "side",
+        "created_at": "2026-07-13T15:50:13.661762+00:00"
+      },
+      "folder": "Ben_Franklin",
+      "frames": {
+        "rotations": {
+          "south": "Ben_Franklin/rotations/south.png",
+          "south-east": "Ben_Franklin/rotations/south-east.png",
+          "east": "Ben_Franklin/rotations/east.png",
+          "north-east": "Ben_Franklin/rotations/north-east.png",
+          "north": "Ben_Franklin/rotations/north.png",
+          "north-west": "Ben_Franklin/rotations/north-west.png",
+          "west": "Ben_Franklin/rotations/west.png",
+          "south-west": "Ben_Franklin/rotations/south-west.png"
+        },
+        "animations": {
+          "Falling_Back_Death": {
+            "east": [
+              "Ben_Franklin/animations/Falling_Back_Death/east/frame_000.png",
+              "Ben_Franklin/animations/Falling_Back_Death/east/frame_001.png",
+              "Ben_Franklin/animations/Falling_Back_Death/east/frame_002.png",
+              "Ben_Franklin/animations/Falling_Back_Death/east/frame_003.png",
+              "Ben_Franklin/animations/Falling_Back_Death/east/frame_004.png",
+              "Ben_Franklin/animations/Falling_Back_Death/east/frame_005.png",
+              "Ben_Franklin/animations/Falling_Back_Death/east/frame_006.png"
+            ],
+            "north": [
+              "Ben_Franklin/animations/Falling_Back_Death/north/frame_000.png",
+              "Ben_Franklin/animations/Falling_Back_Death/north/frame_001.png",
+              "Ben_Franklin/animations/Falling_Back_Death/north/frame_002.png",
+              "Ben_Franklin/animations/Falling_Back_Death/north/frame_003.png",
+              "Ben_Franklin/animations/Falling_Back_Death/north/frame_004.png",
+              "Ben_Franklin/animations/Falling_Back_Death/north/frame_005.png",
+              "Ben_Franklin/animations/Falling_Back_Death/north/frame_006.png"
+            ],
+            "south-west": [
+              "Ben_Franklin/animations/Falling_Back_Death/south-west/frame_000.png",
+              "Ben_Franklin/animations/Falling_Back_Death/south-west/frame_001.png",
+              "Ben_Franklin/animations/Falling_Back_Death/south-west/frame_002.png",
+              "Ben_Franklin/animations/Falling_Back_Death/south-west/frame_003.png",
+              "Ben_Franklin/animations/Falling_Back_Death/south-west/frame_004.png",
+              "Ben_Franklin/animations/Falling_Back_Death/south-west/frame_005.png",
+              "Ben_Franklin/animations/Falling_Back_Death/south-west/frame_006.png"
+            ],
+            "west": [
+              "Ben_Franklin/animations/Falling_Back_Death/west/frame_000.png",
+              "Ben_Franklin/animations/Falling_Back_Death/west/frame_001.png",
+              "Ben_Franklin/animations/Falling_Back_Death/west/frame_002.png",
+              "Ben_Franklin/animations/Falling_Back_Death/west/frame_003.png",
+              "Ben_Franklin/animations/Falling_Back_Death/west/frame_004.png",
+              "Ben_Franklin/animations/Falling_Back_Death/west/frame_005.png",
+              "Ben_Franklin/animations/Falling_Back_Death/west/frame_006.png"
+            ],
+            "south": [
+              "Ben_Franklin/animations/Falling_Back_Death/south/frame_000.png",
+              "Ben_Franklin/animations/Falling_Back_Death/south/frame_001.png",
+              "Ben_Franklin/animations/Falling_Back_Death/south/frame_002.png",
+              "Ben_Franklin/animations/Falling_Back_Death/south/frame_003.png",
+              "Ben_Franklin/animations/Falling_Back_Death/south/frame_004.png",
+              "Ben_Franklin/animations/Falling_Back_Death/south/frame_005.png",
+              "Ben_Franklin/animations/Falling_Back_Death/south/frame_006.png"
+            ]
+          },
+          "Crouched_Walking": {
+            "north": [
+              "Ben_Franklin/animations/Crouched_Walking/north/frame_000.png",
+              "Ben_Franklin/animations/Crouched_Walking/north/frame_001.png",
+              "Ben_Franklin/animations/Crouched_Walking/north/frame_002.png",
+              "Ben_Franklin/animations/Crouched_Walking/north/frame_003.png",
+              "Ben_Franklin/animations/Crouched_Walking/north/frame_004.png",
+              "Ben_Franklin/animations/Crouched_Walking/north/frame_005.png"
+            ],
+            "west": [
+              "Ben_Franklin/animations/Crouched_Walking/west/frame_000.png",
+              "Ben_Franklin/animations/Crouched_Walking/west/frame_001.png",
+              "Ben_Franklin/animations/Crouched_Walking/west/frame_002.png",
+              "Ben_Franklin/animations/Crouched_Walking/west/frame_003.png",
+              "Ben_Franklin/animations/Crouched_Walking/west/frame_004.png",
+              "Ben_Franklin/animations/Crouched_Walking/west/frame_005.png"
+            ],
+            "east": [
+              "Ben_Franklin/animations/Crouched_Walking/east/frame_000.png",
+              "Ben_Franklin/animations/Crouched_Walking/east/frame_001.png",
+              "Ben_Franklin/animations/Crouched_Walking/east/frame_002.png",
+              "Ben_Franklin/animations/Crouched_Walking/east/frame_003.png",
+              "Ben_Franklin/animations/Crouched_Walking/east/frame_004.png",
+              "Ben_Franklin/animations/Crouched_Walking/east/frame_005.png"
+            ],
+            "south": [
+              "Ben_Franklin/animations/Crouched_Walking/south/frame_000.png",
+              "Ben_Franklin/animations/Crouched_Walking/south/frame_001.png",
+              "Ben_Franklin/animations/Crouched_Walking/south/frame_002.png",
+              "Ben_Franklin/animations/Crouched_Walking/south/frame_003.png",
+              "Ben_Franklin/animations/Crouched_Walking/south/frame_004.png",
+              "Ben_Franklin/animations/Crouched_Walking/south/frame_005.png"
+            ]
+          },
+          "Taking_Punch": {
+            "east": [
+              "Ben_Franklin/animations/Taking_Punch/east/frame_000.png",
+              "Ben_Franklin/animations/Taking_Punch/east/frame_001.png",
+              "Ben_Franklin/animations/Taking_Punch/east/frame_002.png",
+              "Ben_Franklin/animations/Taking_Punch/east/frame_003.png",
+              "Ben_Franklin/animations/Taking_Punch/east/frame_004.png",
+              "Ben_Franklin/animations/Taking_Punch/east/frame_005.png"
+            ],
+            "west": [
+              "Ben_Franklin/animations/Taking_Punch/west/frame_000.png",
+              "Ben_Franklin/animations/Taking_Punch/west/frame_001.png",
+              "Ben_Franklin/animations/Taking_Punch/west/frame_002.png",
+              "Ben_Franklin/animations/Taking_Punch/west/frame_003.png",
+              "Ben_Franklin/animations/Taking_Punch/west/frame_004.png",
+              "Ben_Franklin/animations/Taking_Punch/west/frame_005.png"
+            ],
+            "north": [
+              "Ben_Franklin/animations/Taking_Punch/north/frame_000.png",
+              "Ben_Franklin/animations/Taking_Punch/north/frame_001.png",
+              "Ben_Franklin/animations/Taking_Punch/north/frame_002.png",
+              "Ben_Franklin/animations/Taking_Punch/north/frame_003.png",
+              "Ben_Franklin/animations/Taking_Punch/north/frame_004.png",
+              "Ben_Franklin/animations/Taking_Punch/north/frame_005.png"
+            ],
+            "south": [
+              "Ben_Franklin/animations/Taking_Punch/south/frame_000.png",
+              "Ben_Franklin/animations/Taking_Punch/south/frame_001.png",
+              "Ben_Franklin/animations/Taking_Punch/south/frame_002.png",
+              "Ben_Franklin/animations/Taking_Punch/south/frame_003.png",
+              "Ben_Franklin/animations/Taking_Punch/south/frame_004.png",
+              "Ben_Franklin/animations/Taking_Punch/south/frame_005.png"
+            ]
+          },
+          "Fight_Stance_Idle": {
+            "north": [
+              "Ben_Franklin/animations/Fight_Stance_Idle/north/frame_000.png",
+              "Ben_Franklin/animations/Fight_Stance_Idle/north/frame_001.png",
+              "Ben_Franklin/animations/Fight_Stance_Idle/north/frame_002.png",
+              "Ben_Franklin/animations/Fight_Stance_Idle/north/frame_003.png",
+              "Ben_Franklin/animations/Fight_Stance_Idle/north/frame_004.png",
+              "Ben_Franklin/animations/Fight_Stance_Idle/north/frame_005.png",
+              "Ben_Franklin/animations/Fight_Stance_Idle/north/frame_006.png",
+              "Ben_Franklin/animations/Fight_Stance_Idle/north/frame_007.png"
+            ],
+            "east": [
+              "Ben_Franklin/animations/Fight_Stance_Idle/east/frame_000.png",
+              "Ben_Franklin/animations/Fight_Stance_Idle/east/frame_001.png",
+              "Ben_Franklin/animations/Fight_Stance_Idle/east/frame_002.png",
+              "Ben_Franklin/animations/Fight_Stance_Idle/east/frame_003.png",
+              "Ben_Franklin/animations/Fight_Stance_Idle/east/frame_004.png",
+              "Ben_Franklin/animations/Fight_Stance_Idle/east/frame_005.png",
+              "Ben_Franklin/animations/Fight_Stance_Idle/east/frame_006.png",
+              "Ben_Franklin/animations/Fight_Stance_Idle/east/frame_007.png"
+            ],
+            "west": [
+              "Ben_Franklin/animations/Fight_Stance_Idle/west/frame_000.png",
+              "Ben_Franklin/animations/Fight_Stance_Idle/west/frame_001.png",
+              "Ben_Franklin/animations/Fight_Stance_Idle/west/frame_002.png",
+              "Ben_Franklin/animations/Fight_Stance_Idle/west/frame_003.png",
+              "Ben_Franklin/animations/Fight_Stance_Idle/west/frame_004.png",
+              "Ben_Franklin/animations/Fight_Stance_Idle/west/frame_005.png",
+              "Ben_Franklin/animations/Fight_Stance_Idle/west/frame_006.png",
+              "Ben_Franklin/animations/Fight_Stance_Idle/west/frame_007.png"
+            ],
+            "south": [
+              "Ben_Franklin/animations/Fight_Stance_Idle/south/frame_000.png",
+              "Ben_Franklin/animations/Fight_Stance_Idle/south/frame_001.png",
+              "Ben_Franklin/animations/Fight_Stance_Idle/south/frame_002.png",
+              "Ben_Franklin/animations/Fight_Stance_Idle/south/frame_003.png",
+              "Ben_Franklin/animations/Fight_Stance_Idle/south/frame_004.png",
+              "Ben_Franklin/animations/Fight_Stance_Idle/south/frame_005.png",
+              "Ben_Franklin/animations/Fight_Stance_Idle/south/frame_006.png",
+              "Ben_Franklin/animations/Fight_Stance_Idle/south/frame_007.png"
+            ]
+          },
+          "Flying_Kick": {
+            "west": [
+              "Ben_Franklin/animations/Flying_Kick/west/frame_000.png",
+              "Ben_Franklin/animations/Flying_Kick/west/frame_001.png",
+              "Ben_Franklin/animations/Flying_Kick/west/frame_002.png",
+              "Ben_Franklin/animations/Flying_Kick/west/frame_003.png",
+              "Ben_Franklin/animations/Flying_Kick/west/frame_004.png",
+              "Ben_Franklin/animations/Flying_Kick/west/frame_005.png"
+            ],
+            "south": [
+              "Ben_Franklin/animations/Flying_Kick/south/frame_000.png",
+              "Ben_Franklin/animations/Flying_Kick/south/frame_001.png",
+              "Ben_Franklin/animations/Flying_Kick/south/frame_002.png",
+              "Ben_Franklin/animations/Flying_Kick/south/frame_003.png",
+              "Ben_Franklin/animations/Flying_Kick/south/frame_004.png",
+              "Ben_Franklin/animations/Flying_Kick/south/frame_005.png"
+            ],
+            "north": [
+              "Ben_Franklin/animations/Flying_Kick/north/frame_000.png",
+              "Ben_Franklin/animations/Flying_Kick/north/frame_001.png",
+              "Ben_Franklin/animations/Flying_Kick/north/frame_002.png",
+              "Ben_Franklin/animations/Flying_Kick/north/frame_003.png",
+              "Ben_Franklin/animations/Flying_Kick/north/frame_004.png",
+              "Ben_Franklin/animations/Flying_Kick/north/frame_005.png"
+            ],
+            "east": [
+              "Ben_Franklin/animations/Flying_Kick/east/frame_000.png",
+              "Ben_Franklin/animations/Flying_Kick/east/frame_001.png",
+              "Ben_Franklin/animations/Flying_Kick/east/frame_002.png",
+              "Ben_Franklin/animations/Flying_Kick/east/frame_003.png",
+              "Ben_Franklin/animations/Flying_Kick/east/frame_004.png",
+              "Ben_Franklin/animations/Flying_Kick/east/frame_005.png"
+            ]
+          },
+          "Lead_Jab": {
+            "east": [
+              "Ben_Franklin/animations/Lead_Jab/east/frame_000.png",
+              "Ben_Franklin/animations/Lead_Jab/east/frame_001.png",
+              "Ben_Franklin/animations/Lead_Jab/east/frame_002.png"
+            ],
+            "west": [
+              "Ben_Franklin/animations/Lead_Jab/west/frame_000.png",
+              "Ben_Franklin/animations/Lead_Jab/west/frame_001.png",
+              "Ben_Franklin/animations/Lead_Jab/west/frame_002.png"
+            ],
+            "south": [
+              "Ben_Franklin/animations/Lead_Jab/south/frame_000.png",
+              "Ben_Franklin/animations/Lead_Jab/south/frame_001.png",
+              "Ben_Franklin/animations/Lead_Jab/south/frame_002.png"
+            ],
+            "north": [
+              "Ben_Franklin/animations/Lead_Jab/north/frame_000.png",
+              "Ben_Franklin/animations/Lead_Jab/north/frame_001.png",
+              "Ben_Franklin/animations/Lead_Jab/north/frame_002.png"
+            ]
+          },
+          "Angry_Stomp": {
+            "east": [
+              "Ben_Franklin/animations/Angry_Stomp/east/frame_000.png",
+              "Ben_Franklin/animations/Angry_Stomp/east/frame_001.png",
+              "Ben_Franklin/animations/Angry_Stomp/east/frame_002.png",
+              "Ben_Franklin/animations/Angry_Stomp/east/frame_003.png",
+              "Ben_Franklin/animations/Angry_Stomp/east/frame_004.png",
+              "Ben_Franklin/animations/Angry_Stomp/east/frame_005.png",
+              "Ben_Franklin/animations/Angry_Stomp/east/frame_006.png",
+              "Ben_Franklin/animations/Angry_Stomp/east/frame_007.png",
+              "Ben_Franklin/animations/Angry_Stomp/east/frame_008.png"
+            ],
+            "south": [
+              "Ben_Franklin/animations/Angry_Stomp/south/frame_000.png",
+              "Ben_Franklin/animations/Angry_Stomp/south/frame_001.png",
+              "Ben_Franklin/animations/Angry_Stomp/south/frame_002.png",
+              "Ben_Franklin/animations/Angry_Stomp/south/frame_003.png",
+              "Ben_Franklin/animations/Angry_Stomp/south/frame_004.png",
+              "Ben_Franklin/animations/Angry_Stomp/south/frame_005.png",
+              "Ben_Franklin/animations/Angry_Stomp/south/frame_006.png",
+              "Ben_Franklin/animations/Angry_Stomp/south/frame_007.png",
+              "Ben_Franklin/animations/Angry_Stomp/south/frame_008.png"
+            ],
+            "west": [
+              "Ben_Franklin/animations/Angry_Stomp/west/frame_000.png",
+              "Ben_Franklin/animations/Angry_Stomp/west/frame_001.png",
+              "Ben_Franklin/animations/Angry_Stomp/west/frame_002.png",
+              "Ben_Franklin/animations/Angry_Stomp/west/frame_003.png",
+              "Ben_Franklin/animations/Angry_Stomp/west/frame_004.png",
+              "Ben_Franklin/animations/Angry_Stomp/west/frame_005.png",
+              "Ben_Franklin/animations/Angry_Stomp/west/frame_006.png",
+              "Ben_Franklin/animations/Angry_Stomp/west/frame_007.png",
+              "Ben_Franklin/animations/Angry_Stomp/west/frame_008.png"
+            ],
+            "north": [
+              "Ben_Franklin/animations/Angry_Stomp/north/frame_000.png",
+              "Ben_Franklin/animations/Angry_Stomp/north/frame_001.png",
+              "Ben_Franklin/animations/Angry_Stomp/north/frame_002.png",
+              "Ben_Franklin/animations/Angry_Stomp/north/frame_003.png",
+              "Ben_Franklin/animations/Angry_Stomp/north/frame_004.png",
+              "Ben_Franklin/animations/Angry_Stomp/north/frame_005.png",
+              "Ben_Franklin/animations/Angry_Stomp/north/frame_006.png",
+              "Ben_Franklin/animations/Angry_Stomp/north/frame_007.png",
+              "Ben_Franklin/animations/Angry_Stomp/north/frame_008.png"
+            ]
+          },
+          "Running": {
+            "east": [
+              "Ben_Franklin/animations/Running/east/frame_000.png",
+              "Ben_Franklin/animations/Running/east/frame_001.png",
+              "Ben_Franklin/animations/Running/east/frame_002.png",
+              "Ben_Franklin/animations/Running/east/frame_003.png",
+              "Ben_Franklin/animations/Running/east/frame_004.png",
+              "Ben_Franklin/animations/Running/east/frame_005.png"
+            ],
+            "south": [
+              "Ben_Franklin/animations/Running/south/frame_000.png",
+              "Ben_Franklin/animations/Running/south/frame_001.png",
+              "Ben_Franklin/animations/Running/south/frame_002.png",
+              "Ben_Franklin/animations/Running/south/frame_003.png",
+              "Ben_Franklin/animations/Running/south/frame_004.png",
+              "Ben_Franklin/animations/Running/south/frame_005.png"
+            ],
+            "west": [
+              "Ben_Franklin/animations/Running/west/frame_000.png",
+              "Ben_Franklin/animations/Running/west/frame_001.png",
+              "Ben_Franklin/animations/Running/west/frame_002.png",
+              "Ben_Franklin/animations/Running/west/frame_003.png",
+              "Ben_Franklin/animations/Running/west/frame_004.png",
+              "Ben_Franklin/animations/Running/west/frame_005.png"
+            ],
+            "north": [
+              "Ben_Franklin/animations/Running/north/frame_000.png",
+              "Ben_Franklin/animations/Running/north/frame_001.png",
+              "Ben_Franklin/animations/Running/north/frame_002.png",
+              "Ben_Franklin/animations/Running/north/frame_003.png",
+              "Ben_Franklin/animations/Running/north/frame_004.png",
+              "Ben_Franklin/animations/Running/north/frame_005.png"
+            ]
+          },
+          "Getting_Up": {
+            "north": [
+              "Ben_Franklin/animations/Getting_Up/north/frame_000.png",
+              "Ben_Franklin/animations/Getting_Up/north/frame_001.png",
+              "Ben_Franklin/animations/Getting_Up/north/frame_002.png",
+              "Ben_Franklin/animations/Getting_Up/north/frame_003.png",
+              "Ben_Franklin/animations/Getting_Up/north/frame_004.png"
+            ],
+            "east": [
+              "Ben_Franklin/animations/Getting_Up/east/frame_000.png",
+              "Ben_Franklin/animations/Getting_Up/east/frame_001.png",
+              "Ben_Franklin/animations/Getting_Up/east/frame_002.png",
+              "Ben_Franklin/animations/Getting_Up/east/frame_003.png",
+              "Ben_Franklin/animations/Getting_Up/east/frame_004.png"
+            ],
+            "south": [
+              "Ben_Franklin/animations/Getting_Up/south/frame_000.png",
+              "Ben_Franklin/animations/Getting_Up/south/frame_001.png",
+              "Ben_Franklin/animations/Getting_Up/south/frame_002.png",
+              "Ben_Franklin/animations/Getting_Up/south/frame_003.png",
+              "Ben_Franklin/animations/Getting_Up/south/frame_004.png"
+            ],
+            "west": [
+              "Ben_Franklin/animations/Getting_Up/west/frame_000.png",
+              "Ben_Franklin/animations/Getting_Up/west/frame_001.png",
+              "Ben_Franklin/animations/Getting_Up/west/frame_002.png",
+              "Ben_Franklin/animations/Getting_Up/west/frame_003.png",
+              "Ben_Franklin/animations/Getting_Up/west/frame_004.png"
+            ]
+          },
+          "Breathing_Idle": {
+            "north": [
+              "Ben_Franklin/animations/Breathing_Idle/north/frame_000.png",
+              "Ben_Franklin/animations/Breathing_Idle/north/frame_001.png",
+              "Ben_Franklin/animations/Breathing_Idle/north/frame_002.png",
+              "Ben_Franklin/animations/Breathing_Idle/north/frame_003.png"
+            ],
+            "west": [
+              "Ben_Franklin/animations/Breathing_Idle/west/frame_000.png",
+              "Ben_Franklin/animations/Breathing_Idle/west/frame_001.png",
+              "Ben_Franklin/animations/Breathing_Idle/west/frame_002.png",
+              "Ben_Franklin/animations/Breathing_Idle/west/frame_003.png"
+            ],
+            "east": [
+              "Ben_Franklin/animations/Breathing_Idle/east/frame_000.png",
+              "Ben_Franklin/animations/Breathing_Idle/east/frame_001.png",
+              "Ben_Franklin/animations/Breathing_Idle/east/frame_002.png",
+              "Ben_Franklin/animations/Breathing_Idle/east/frame_003.png"
+            ],
+            "south": [
+              "Ben_Franklin/animations/Breathing_Idle/south/frame_000.png",
+              "Ben_Franklin/animations/Breathing_Idle/south/frame_001.png",
+              "Ben_Franklin/animations/Breathing_Idle/south/frame_002.png",
+              "Ben_Franklin/animations/Breathing_Idle/south/frame_003.png"
+            ]
+          },
+          "Picking_Up": {
+            "south": [
+              "Ben_Franklin/animations/Picking_Up/south/frame_000.png",
+              "Ben_Franklin/animations/Picking_Up/south/frame_001.png",
+              "Ben_Franklin/animations/Picking_Up/south/frame_002.png",
+              "Ben_Franklin/animations/Picking_Up/south/frame_003.png",
+              "Ben_Franklin/animations/Picking_Up/south/frame_004.png"
+            ],
+            "east": [
+              "Ben_Franklin/animations/Picking_Up/east/frame_000.png",
+              "Ben_Franklin/animations/Picking_Up/east/frame_001.png",
+              "Ben_Franklin/animations/Picking_Up/east/frame_002.png",
+              "Ben_Franklin/animations/Picking_Up/east/frame_003.png",
+              "Ben_Franklin/animations/Picking_Up/east/frame_004.png"
+            ],
+            "north": [
+              "Ben_Franklin/animations/Picking_Up/north/frame_000.png",
+              "Ben_Franklin/animations/Picking_Up/north/frame_001.png",
+              "Ben_Franklin/animations/Picking_Up/north/frame_002.png",
+              "Ben_Franklin/animations/Picking_Up/north/frame_003.png",
+              "Ben_Franklin/animations/Picking_Up/north/frame_004.png"
+            ],
+            "west": [
+              "Ben_Franklin/animations/Picking_Up/west/frame_000.png",
+              "Ben_Franklin/animations/Picking_Up/west/frame_001.png",
+              "Ben_Franklin/animations/Picking_Up/west/frame_002.png",
+              "Ben_Franklin/animations/Picking_Up/west/frame_003.png",
+              "Ben_Franklin/animations/Picking_Up/west/frame_004.png"
+            ]
+          },
+          "Cross_Punch": {
+            "south": [
+              "Ben_Franklin/animations/Cross_Punch/south/frame_000.png",
+              "Ben_Franklin/animations/Cross_Punch/south/frame_001.png",
+              "Ben_Franklin/animations/Cross_Punch/south/frame_002.png",
+              "Ben_Franklin/animations/Cross_Punch/south/frame_003.png",
+              "Ben_Franklin/animations/Cross_Punch/south/frame_004.png",
+              "Ben_Franklin/animations/Cross_Punch/south/frame_005.png"
+            ],
+            "east": [
+              "Ben_Franklin/animations/Cross_Punch/east/frame_000.png",
+              "Ben_Franklin/animations/Cross_Punch/east/frame_001.png",
+              "Ben_Franklin/animations/Cross_Punch/east/frame_002.png",
+              "Ben_Franklin/animations/Cross_Punch/east/frame_003.png",
+              "Ben_Franklin/animations/Cross_Punch/east/frame_004.png",
+              "Ben_Franklin/animations/Cross_Punch/east/frame_005.png"
+            ],
+            "north": [
+              "Ben_Franklin/animations/Cross_Punch/north/frame_000.png",
+              "Ben_Franklin/animations/Cross_Punch/north/frame_001.png",
+              "Ben_Franklin/animations/Cross_Punch/north/frame_002.png",
+              "Ben_Franklin/animations/Cross_Punch/north/frame_003.png",
+              "Ben_Franklin/animations/Cross_Punch/north/frame_004.png",
+              "Ben_Franklin/animations/Cross_Punch/north/frame_005.png"
+            ],
+            "west": [
+              "Ben_Franklin/animations/Cross_Punch/west/frame_000.png",
+              "Ben_Franklin/animations/Cross_Punch/west/frame_001.png",
+              "Ben_Franklin/animations/Cross_Punch/west/frame_002.png",
+              "Ben_Franklin/animations/Cross_Punch/west/frame_003.png",
+              "Ben_Franklin/animations/Cross_Punch/west/frame_004.png",
+              "Ben_Franklin/animations/Cross_Punch/west/frame_005.png"
+            ]
+          },
+          "Throw_Object": {
+            "south": [
+              "Ben_Franklin/animations/Throw_Object/south/frame_000.png",
+              "Ben_Franklin/animations/Throw_Object/south/frame_001.png",
+              "Ben_Franklin/animations/Throw_Object/south/frame_002.png",
+              "Ben_Franklin/animations/Throw_Object/south/frame_003.png",
+              "Ben_Franklin/animations/Throw_Object/south/frame_004.png",
+              "Ben_Franklin/animations/Throw_Object/south/frame_005.png",
+              "Ben_Franklin/animations/Throw_Object/south/frame_006.png"
+            ],
+            "west": [
+              "Ben_Franklin/animations/Throw_Object/west/frame_000.png",
+              "Ben_Franklin/animations/Throw_Object/west/frame_001.png",
+              "Ben_Franklin/animations/Throw_Object/west/frame_002.png",
+              "Ben_Franklin/animations/Throw_Object/west/frame_003.png",
+              "Ben_Franklin/animations/Throw_Object/west/frame_004.png",
+              "Ben_Franklin/animations/Throw_Object/west/frame_005.png",
+              "Ben_Franklin/animations/Throw_Object/west/frame_006.png"
+            ],
+            "north": [
+              "Ben_Franklin/animations/Throw_Object/north/frame_000.png",
+              "Ben_Franklin/animations/Throw_Object/north/frame_001.png",
+              "Ben_Franklin/animations/Throw_Object/north/frame_002.png",
+              "Ben_Franklin/animations/Throw_Object/north/frame_003.png",
+              "Ben_Franklin/animations/Throw_Object/north/frame_004.png",
+              "Ben_Franklin/animations/Throw_Object/north/frame_005.png",
+              "Ben_Franklin/animations/Throw_Object/north/frame_006.png"
+            ],
+            "east": [
+              "Ben_Franklin/animations/Throw_Object/east/frame_000.png",
+              "Ben_Franklin/animations/Throw_Object/east/frame_001.png",
+              "Ben_Franklin/animations/Throw_Object/east/frame_002.png",
+              "Ben_Franklin/animations/Throw_Object/east/frame_003.png",
+              "Ben_Franklin/animations/Throw_Object/east/frame_004.png",
+              "Ben_Franklin/animations/Throw_Object/east/frame_005.png",
+              "Ben_Franklin/animations/Throw_Object/east/frame_006.png"
+            ]
+          }
+        }
+      }
+    },
+    {
+      "character": {
+        "id": "64a7f255-1a89-4589-81a8-1e54bb48ad1f",
+        "name": "Ben Franklin with Kite",
+        "prompt": "Create Ben Franklin, with a large, stereotypical head with glasses. Clothing and garb from the time. Presidential look, fairly short and rounded. Head is the largest part of his body like a caricature. ",
+        "size": {
+          "width": 88,
+          "height": 88
+        },
+        "template_id": "mannequin",
+        "directions": 8,
+        "view": "side",
+        "created_at": "2026-07-13T15:58:00.603245+00:00"
+      },
+      "folder": "Ben_Franklin_with_Kite",
+      "frames": {
+        "rotations": {
+          "south": "Ben_Franklin_with_Kite/rotations/south.png",
+          "south-east": "Ben_Franklin_with_Kite/rotations/south-east.png",
+          "east": "Ben_Franklin_with_Kite/rotations/east.png",
+          "north-east": "Ben_Franklin_with_Kite/rotations/north-east.png",
+          "north": "Ben_Franklin_with_Kite/rotations/north.png",
+          "north-west": "Ben_Franklin_with_Kite/rotations/north-west.png",
+          "west": "Ben_Franklin_with_Kite/rotations/west.png",
+          "south-west": "Ben_Franklin_with_Kite/rotations/south-west.png"
+        },
+        "animations": {
+          "Ben_Franklin_flashes_blue_and_white_over_and_over": {
+            "east": [
+              "Ben_Franklin_with_Kite/animations/Ben_Franklin_flashes_blue_and_white_over_and_over/east/frame_000.png",
+              "Ben_Franklin_with_Kite/animations/Ben_Franklin_flashes_blue_and_white_over_and_over/east/frame_001.png",
+              "Ben_Franklin_with_Kite/animations/Ben_Franklin_flashes_blue_and_white_over_and_over/east/frame_002.png",
+              "Ben_Franklin_with_Kite/animations/Ben_Franklin_flashes_blue_and_white_over_and_over/east/frame_003.png",
+              "Ben_Franklin_with_Kite/animations/Ben_Franklin_flashes_blue_and_white_over_and_over/east/frame_004.png",
+              "Ben_Franklin_with_Kite/animations/Ben_Franklin_flashes_blue_and_white_over_and_over/east/frame_005.png",
+              "Ben_Franklin_with_Kite/animations/Ben_Franklin_flashes_blue_and_white_over_and_over/east/frame_006.png",
+              "Ben_Franklin_with_Kite/animations/Ben_Franklin_flashes_blue_and_white_over_and_over/east/frame_007.png",
+              "Ben_Franklin_with_Kite/animations/Ben_Franklin_flashes_blue_and_white_over_and_over/east/frame_008.png",
+              "Ben_Franklin_with_Kite/animations/Ben_Franklin_flashes_blue_and_white_over_and_over/east/frame_009.png",
+              "Ben_Franklin_with_Kite/animations/Ben_Franklin_flashes_blue_and_white_over_and_over/east/frame_010.png",
+              "Ben_Franklin_with_Kite/animations/Ben_Franklin_flashes_blue_and_white_over_and_over/east/frame_011.png",
+              "Ben_Franklin_with_Kite/animations/Ben_Franklin_flashes_blue_and_white_over_and_over/east/frame_012.png",
+              "Ben_Franklin_with_Kite/animations/Ben_Franklin_flashes_blue_and_white_over_and_over/east/frame_013.png",
+              "Ben_Franklin_with_Kite/animations/Ben_Franklin_flashes_blue_and_white_over_and_over/east/frame_014.png",
+              "Ben_Franklin_with_Kite/animations/Ben_Franklin_flashes_blue_and_white_over_and_over/east/frame_015.png",
+              "Ben_Franklin_with_Kite/animations/Ben_Franklin_flashes_blue_and_white_over_and_over/east/frame_016.png"
+            ],
+            "west": [
+              "Ben_Franklin_with_Kite/animations/Ben_Franklin_flashes_blue_and_white_over_and_over/west/frame_000.png",
+              "Ben_Franklin_with_Kite/animations/Ben_Franklin_flashes_blue_and_white_over_and_over/west/frame_001.png",
+              "Ben_Franklin_with_Kite/animations/Ben_Franklin_flashes_blue_and_white_over_and_over/west/frame_002.png",
+              "Ben_Franklin_with_Kite/animations/Ben_Franklin_flashes_blue_and_white_over_and_over/west/frame_003.png",
+              "Ben_Franklin_with_Kite/animations/Ben_Franklin_flashes_blue_and_white_over_and_over/west/frame_004.png",
+              "Ben_Franklin_with_Kite/animations/Ben_Franklin_flashes_blue_and_white_over_and_over/west/frame_005.png",
+              "Ben_Franklin_with_Kite/animations/Ben_Franklin_flashes_blue_and_white_over_and_over/west/frame_006.png",
+              "Ben_Franklin_with_Kite/animations/Ben_Franklin_flashes_blue_and_white_over_and_over/west/frame_007.png",
+              "Ben_Franklin_with_Kite/animations/Ben_Franklin_flashes_blue_and_white_over_and_over/west/frame_008.png",
+              "Ben_Franklin_with_Kite/animations/Ben_Franklin_flashes_blue_and_white_over_and_over/west/frame_009.png",
+              "Ben_Franklin_with_Kite/animations/Ben_Franklin_flashes_blue_and_white_over_and_over/west/frame_010.png",
+              "Ben_Franklin_with_Kite/animations/Ben_Franklin_flashes_blue_and_white_over_and_over/west/frame_011.png",
+              "Ben_Franklin_with_Kite/animations/Ben_Franklin_flashes_blue_and_white_over_and_over/west/frame_012.png",
+              "Ben_Franklin_with_Kite/animations/Ben_Franklin_flashes_blue_and_white_over_and_over/west/frame_013.png",
+              "Ben_Franklin_with_Kite/animations/Ben_Franklin_flashes_blue_and_white_over_and_over/west/frame_014.png",
+              "Ben_Franklin_with_Kite/animations/Ben_Franklin_flashes_blue_and_white_over_and_over/west/frame_015.png",
+              "Ben_Franklin_with_Kite/animations/Ben_Franklin_flashes_blue_and_white_over_and_over/west/frame_016.png"
+            ],
+            "north-east": [
+              "Ben_Franklin_with_Kite/animations/Ben_Franklin_flashes_blue_and_white_over_and_over/north-east/frame_000.png",
+              "Ben_Franklin_with_Kite/animations/Ben_Franklin_flashes_blue_and_white_over_and_over/north-east/frame_001.png",
+              "Ben_Franklin_with_Kite/animations/Ben_Franklin_flashes_blue_and_white_over_and_over/north-east/frame_002.png",
+              "Ben_Franklin_with_Kite/animations/Ben_Franklin_flashes_blue_and_white_over_and_over/north-east/frame_003.png",
+              "Ben_Franklin_with_Kite/animations/Ben_Franklin_flashes_blue_and_white_over_and_over/north-east/frame_004.png",
+              "Ben_Franklin_with_Kite/animations/Ben_Franklin_flashes_blue_and_white_over_and_over/north-east/frame_005.png",
+              "Ben_Franklin_with_Kite/animations/Ben_Franklin_flashes_blue_and_white_over_and_over/north-east/frame_006.png",
+              "Ben_Franklin_with_Kite/animations/Ben_Franklin_flashes_blue_and_white_over_and_over/north-east/frame_007.png",
+              "Ben_Franklin_with_Kite/animations/Ben_Franklin_flashes_blue_and_white_over_and_over/north-east/frame_008.png",
+              "Ben_Franklin_with_Kite/animations/Ben_Franklin_flashes_blue_and_white_over_and_over/north-east/frame_009.png",
+              "Ben_Franklin_with_Kite/animations/Ben_Franklin_flashes_blue_and_white_over_and_over/north-east/frame_010.png",
+              "Ben_Franklin_with_Kite/animations/Ben_Franklin_flashes_blue_and_white_over_and_over/north-east/frame_011.png",
+              "Ben_Franklin_with_Kite/animations/Ben_Franklin_flashes_blue_and_white_over_and_over/north-east/frame_012.png",
+              "Ben_Franklin_with_Kite/animations/Ben_Franklin_flashes_blue_and_white_over_and_over/north-east/frame_013.png",
+              "Ben_Franklin_with_Kite/animations/Ben_Franklin_flashes_blue_and_white_over_and_over/north-east/frame_014.png",
+              "Ben_Franklin_with_Kite/animations/Ben_Franklin_flashes_blue_and_white_over_and_over/north-east/frame_015.png",
+              "Ben_Franklin_with_Kite/animations/Ben_Franklin_flashes_blue_and_white_over_and_over/north-east/frame_016.png"
+            ],
+            "south": [
+              "Ben_Franklin_with_Kite/animations/Ben_Franklin_flashes_blue_and_white_over_and_over/south/frame_000.png",
+              "Ben_Franklin_with_Kite/animations/Ben_Franklin_flashes_blue_and_white_over_and_over/south/frame_001.png",
+              "Ben_Franklin_with_Kite/animations/Ben_Franklin_flashes_blue_and_white_over_and_over/south/frame_002.png",
+              "Ben_Franklin_with_Kite/animations/Ben_Franklin_flashes_blue_and_white_over_and_over/south/frame_003.png",
+              "Ben_Franklin_with_Kite/animations/Ben_Franklin_flashes_blue_and_white_over_and_over/south/frame_004.png",
+              "Ben_Franklin_with_Kite/animations/Ben_Franklin_flashes_blue_and_white_over_and_over/south/frame_005.png",
+              "Ben_Franklin_with_Kite/animations/Ben_Franklin_flashes_blue_and_white_over_and_over/south/frame_006.png",
+              "Ben_Franklin_with_Kite/animations/Ben_Franklin_flashes_blue_and_white_over_and_over/south/frame_007.png",
+              "Ben_Franklin_with_Kite/animations/Ben_Franklin_flashes_blue_and_white_over_and_over/south/frame_008.png",
+              "Ben_Franklin_with_Kite/animations/Ben_Franklin_flashes_blue_and_white_over_and_over/south/frame_009.png",
+              "Ben_Franklin_with_Kite/animations/Ben_Franklin_flashes_blue_and_white_over_and_over/south/frame_010.png",
+              "Ben_Franklin_with_Kite/animations/Ben_Franklin_flashes_blue_and_white_over_and_over/south/frame_011.png",
+              "Ben_Franklin_with_Kite/animations/Ben_Franklin_flashes_blue_and_white_over_and_over/south/frame_012.png",
+              "Ben_Franklin_with_Kite/animations/Ben_Franklin_flashes_blue_and_white_over_and_over/south/frame_013.png",
+              "Ben_Franklin_with_Kite/animations/Ben_Franklin_flashes_blue_and_white_over_and_over/south/frame_014.png",
+              "Ben_Franklin_with_Kite/animations/Ben_Franklin_flashes_blue_and_white_over_and_over/south/frame_015.png",
+              "Ben_Franklin_with_Kite/animations/Ben_Franklin_flashes_blue_and_white_over_and_over/south/frame_016.png"
+            ],
+            "north-west": [
+              "Ben_Franklin_with_Kite/animations/Ben_Franklin_flashes_blue_and_white_over_and_over/north-west/frame_000.png",
+              "Ben_Franklin_with_Kite/animations/Ben_Franklin_flashes_blue_and_white_over_and_over/north-west/frame_001.png",
+              "Ben_Franklin_with_Kite/animations/Ben_Franklin_flashes_blue_and_white_over_and_over/north-west/frame_002.png",
+              "Ben_Franklin_with_Kite/animations/Ben_Franklin_flashes_blue_and_white_over_and_over/north-west/frame_003.png",
+              "Ben_Franklin_with_Kite/animations/Ben_Franklin_flashes_blue_and_white_over_and_over/north-west/frame_004.png",
+              "Ben_Franklin_with_Kite/animations/Ben_Franklin_flashes_blue_and_white_over_and_over/north-west/frame_005.png",
+              "Ben_Franklin_with_Kite/animations/Ben_Franklin_flashes_blue_and_white_over_and_over/north-west/frame_006.png",
+              "Ben_Franklin_with_Kite/animations/Ben_Franklin_flashes_blue_and_white_over_and_over/north-west/frame_007.png",
+              "Ben_Franklin_with_Kite/animations/Ben_Franklin_flashes_blue_and_white_over_and_over/north-west/frame_008.png",
+              "Ben_Franklin_with_Kite/animations/Ben_Franklin_flashes_blue_and_white_over_and_over/north-west/frame_009.png",
+              "Ben_Franklin_with_Kite/animations/Ben_Franklin_flashes_blue_and_white_over_and_over/north-west/frame_010.png",
+              "Ben_Franklin_with_Kite/animations/Ben_Franklin_flashes_blue_and_white_over_and_over/north-west/frame_011.png",
+              "Ben_Franklin_with_Kite/animations/Ben_Franklin_flashes_blue_and_white_over_and_over/north-west/frame_012.png",
+              "Ben_Franklin_with_Kite/animations/Ben_Franklin_flashes_blue_and_white_over_and_over/north-west/frame_013.png",
+              "Ben_Franklin_with_Kite/animations/Ben_Franklin_flashes_blue_and_white_over_and_over/north-west/frame_014.png",
+              "Ben_Franklin_with_Kite/animations/Ben_Franklin_flashes_blue_and_white_over_and_over/north-west/frame_015.png",
+              "Ben_Franklin_with_Kite/animations/Ben_Franklin_flashes_blue_and_white_over_and_over/north-west/frame_016.png"
+            ]
+          },
+          "Swinging_Kite": {
+            "south": [
+              "Ben_Franklin_with_Kite/animations/Swinging_Kite/south/frame_000.png",
+              "Ben_Franklin_with_Kite/animations/Swinging_Kite/south/frame_001.png",
+              "Ben_Franklin_with_Kite/animations/Swinging_Kite/south/frame_002.png",
+              "Ben_Franklin_with_Kite/animations/Swinging_Kite/south/frame_003.png",
+              "Ben_Franklin_with_Kite/animations/Swinging_Kite/south/frame_004.png",
+              "Ben_Franklin_with_Kite/animations/Swinging_Kite/south/frame_005.png",
+              "Ben_Franklin_with_Kite/animations/Swinging_Kite/south/frame_006.png",
+              "Ben_Franklin_with_Kite/animations/Swinging_Kite/south/frame_007.png",
+              "Ben_Franklin_with_Kite/animations/Swinging_Kite/south/frame_008.png"
+            ],
+            "east": [
+              "Ben_Franklin_with_Kite/animations/Swinging_Kite/east/frame_000.png",
+              "Ben_Franklin_with_Kite/animations/Swinging_Kite/east/frame_001.png",
+              "Ben_Franklin_with_Kite/animations/Swinging_Kite/east/frame_002.png",
+              "Ben_Franklin_with_Kite/animations/Swinging_Kite/east/frame_003.png",
+              "Ben_Franklin_with_Kite/animations/Swinging_Kite/east/frame_004.png",
+              "Ben_Franklin_with_Kite/animations/Swinging_Kite/east/frame_005.png",
+              "Ben_Franklin_with_Kite/animations/Swinging_Kite/east/frame_006.png",
+              "Ben_Franklin_with_Kite/animations/Swinging_Kite/east/frame_007.png",
+              "Ben_Franklin_with_Kite/animations/Swinging_Kite/east/frame_008.png"
+            ],
+            "north": [
+              "Ben_Franklin_with_Kite/animations/Swinging_Kite/north/frame_000.png",
+              "Ben_Franklin_with_Kite/animations/Swinging_Kite/north/frame_001.png",
+              "Ben_Franklin_with_Kite/animations/Swinging_Kite/north/frame_002.png",
+              "Ben_Franklin_with_Kite/animations/Swinging_Kite/north/frame_003.png",
+              "Ben_Franklin_with_Kite/animations/Swinging_Kite/north/frame_004.png",
+              "Ben_Franklin_with_Kite/animations/Swinging_Kite/north/frame_005.png",
+              "Ben_Franklin_with_Kite/animations/Swinging_Kite/north/frame_006.png",
+              "Ben_Franklin_with_Kite/animations/Swinging_Kite/north/frame_007.png",
+              "Ben_Franklin_with_Kite/animations/Swinging_Kite/north/frame_008.png"
+            ],
+            "west": [
+              "Ben_Franklin_with_Kite/animations/Swinging_Kite/west/frame_000.png",
+              "Ben_Franklin_with_Kite/animations/Swinging_Kite/west/frame_001.png",
+              "Ben_Franklin_with_Kite/animations/Swinging_Kite/west/frame_002.png",
+              "Ben_Franklin_with_Kite/animations/Swinging_Kite/west/frame_003.png",
+              "Ben_Franklin_with_Kite/animations/Swinging_Kite/west/frame_004.png",
+              "Ben_Franklin_with_Kite/animations/Swinging_Kite/west/frame_005.png",
+              "Ben_Franklin_with_Kite/animations/Swinging_Kite/west/frame_006.png",
+              "Ben_Franklin_with_Kite/animations/Swinging_Kite/west/frame_007.png",
+              "Ben_Franklin_with_Kite/animations/Swinging_Kite/west/frame_008.png"
+            ]
+          },
+          "Throwing_spinning_flag_attack._Throw_the_flag_and": {
+            "south": [
+              "Ben_Franklin_with_Kite/animations/Throwing_spinning_flag_attack._Throw_the_flag_and/south/frame_000.png",
+              "Ben_Franklin_with_Kite/animations/Throwing_spinning_flag_attack._Throw_the_flag_and/south/frame_001.png",
+              "Ben_Franklin_with_Kite/animations/Throwing_spinning_flag_attack._Throw_the_flag_and/south/frame_002.png",
+              "Ben_Franklin_with_Kite/animations/Throwing_spinning_flag_attack._Throw_the_flag_and/south/frame_003.png",
+              "Ben_Franklin_with_Kite/animations/Throwing_spinning_flag_attack._Throw_the_flag_and/south/frame_004.png",
+              "Ben_Franklin_with_Kite/animations/Throwing_spinning_flag_attack._Throw_the_flag_and/south/frame_005.png",
+              "Ben_Franklin_with_Kite/animations/Throwing_spinning_flag_attack._Throw_the_flag_and/south/frame_006.png",
+              "Ben_Franklin_with_Kite/animations/Throwing_spinning_flag_attack._Throw_the_flag_and/south/frame_007.png",
+              "Ben_Franklin_with_Kite/animations/Throwing_spinning_flag_attack._Throw_the_flag_and/south/frame_008.png"
+            ],
+            "north": [
+              "Ben_Franklin_with_Kite/animations/Throwing_spinning_flag_attack._Throw_the_flag_and/north/frame_000.png",
+              "Ben_Franklin_with_Kite/animations/Throwing_spinning_flag_attack._Throw_the_flag_and/north/frame_001.png",
+              "Ben_Franklin_with_Kite/animations/Throwing_spinning_flag_attack._Throw_the_flag_and/north/frame_002.png",
+              "Ben_Franklin_with_Kite/animations/Throwing_spinning_flag_attack._Throw_the_flag_and/north/frame_003.png",
+              "Ben_Franklin_with_Kite/animations/Throwing_spinning_flag_attack._Throw_the_flag_and/north/frame_004.png",
+              "Ben_Franklin_with_Kite/animations/Throwing_spinning_flag_attack._Throw_the_flag_and/north/frame_005.png",
+              "Ben_Franklin_with_Kite/animations/Throwing_spinning_flag_attack._Throw_the_flag_and/north/frame_006.png",
+              "Ben_Franklin_with_Kite/animations/Throwing_spinning_flag_attack._Throw_the_flag_and/north/frame_007.png",
+              "Ben_Franklin_with_Kite/animations/Throwing_spinning_flag_attack._Throw_the_flag_and/north/frame_008.png"
+            ],
+            "west": [
+              "Ben_Franklin_with_Kite/animations/Throwing_spinning_flag_attack._Throw_the_flag_and/west/frame_000.png",
+              "Ben_Franklin_with_Kite/animations/Throwing_spinning_flag_attack._Throw_the_flag_and/west/frame_001.png",
+              "Ben_Franklin_with_Kite/animations/Throwing_spinning_flag_attack._Throw_the_flag_and/west/frame_002.png",
+              "Ben_Franklin_with_Kite/animations/Throwing_spinning_flag_attack._Throw_the_flag_and/west/frame_003.png",
+              "Ben_Franklin_with_Kite/animations/Throwing_spinning_flag_attack._Throw_the_flag_and/west/frame_004.png",
+              "Ben_Franklin_with_Kite/animations/Throwing_spinning_flag_attack._Throw_the_flag_and/west/frame_005.png",
+              "Ben_Franklin_with_Kite/animations/Throwing_spinning_flag_attack._Throw_the_flag_and/west/frame_006.png",
+              "Ben_Franklin_with_Kite/animations/Throwing_spinning_flag_attack._Throw_the_flag_and/west/frame_007.png",
+              "Ben_Franklin_with_Kite/animations/Throwing_spinning_flag_attack._Throw_the_flag_and/west/frame_008.png"
+            ],
+            "east": [
+              "Ben_Franklin_with_Kite/animations/Throwing_spinning_flag_attack._Throw_the_flag_and/east/frame_000.png",
+              "Ben_Franklin_with_Kite/animations/Throwing_spinning_flag_attack._Throw_the_flag_and/east/frame_001.png",
+              "Ben_Franklin_with_Kite/animations/Throwing_spinning_flag_attack._Throw_the_flag_and/east/frame_002.png",
+              "Ben_Franklin_with_Kite/animations/Throwing_spinning_flag_attack._Throw_the_flag_and/east/frame_003.png",
+              "Ben_Franklin_with_Kite/animations/Throwing_spinning_flag_attack._Throw_the_flag_and/east/frame_004.png",
+              "Ben_Franklin_with_Kite/animations/Throwing_spinning_flag_attack._Throw_the_flag_and/east/frame_005.png",
+              "Ben_Franklin_with_Kite/animations/Throwing_spinning_flag_attack._Throw_the_flag_and/east/frame_006.png",
+              "Ben_Franklin_with_Kite/animations/Throwing_spinning_flag_attack._Throw_the_flag_and/east/frame_007.png",
+              "Ben_Franklin_with_Kite/animations/Throwing_spinning_flag_attack._Throw_the_flag_and/east/frame_008.png"
+            ]
+          },
+          "Light_Flag_Attack": {
+            "south": [
+              "Ben_Franklin_with_Kite/animations/Light_Flag_Attack/south/frame_000.png",
+              "Ben_Franklin_with_Kite/animations/Light_Flag_Attack/south/frame_001.png",
+              "Ben_Franklin_with_Kite/animations/Light_Flag_Attack/south/frame_002.png",
+              "Ben_Franklin_with_Kite/animations/Light_Flag_Attack/south/frame_003.png",
+              "Ben_Franklin_with_Kite/animations/Light_Flag_Attack/south/frame_004.png",
+              "Ben_Franklin_with_Kite/animations/Light_Flag_Attack/south/frame_005.png",
+              "Ben_Franklin_with_Kite/animations/Light_Flag_Attack/south/frame_006.png",
+              "Ben_Franklin_with_Kite/animations/Light_Flag_Attack/south/frame_007.png",
+              "Ben_Franklin_with_Kite/animations/Light_Flag_Attack/south/frame_008.png"
+            ],
+            "north": [
+              "Ben_Franklin_with_Kite/animations/Light_Flag_Attack/north/frame_000.png",
+              "Ben_Franklin_with_Kite/animations/Light_Flag_Attack/north/frame_001.png",
+              "Ben_Franklin_with_Kite/animations/Light_Flag_Attack/north/frame_002.png",
+              "Ben_Franklin_with_Kite/animations/Light_Flag_Attack/north/frame_003.png",
+              "Ben_Franklin_with_Kite/animations/Light_Flag_Attack/north/frame_004.png",
+              "Ben_Franklin_with_Kite/animations/Light_Flag_Attack/north/frame_005.png",
+              "Ben_Franklin_with_Kite/animations/Light_Flag_Attack/north/frame_006.png",
+              "Ben_Franklin_with_Kite/animations/Light_Flag_Attack/north/frame_007.png",
+              "Ben_Franklin_with_Kite/animations/Light_Flag_Attack/north/frame_008.png"
+            ],
+            "east": [
+              "Ben_Franklin_with_Kite/animations/Light_Flag_Attack/east/frame_000.png",
+              "Ben_Franklin_with_Kite/animations/Light_Flag_Attack/east/frame_001.png",
+              "Ben_Franklin_with_Kite/animations/Light_Flag_Attack/east/frame_002.png",
+              "Ben_Franklin_with_Kite/animations/Light_Flag_Attack/east/frame_003.png",
+              "Ben_Franklin_with_Kite/animations/Light_Flag_Attack/east/frame_004.png",
+              "Ben_Franklin_with_Kite/animations/Light_Flag_Attack/east/frame_005.png",
+              "Ben_Franklin_with_Kite/animations/Light_Flag_Attack/east/frame_006.png",
+              "Ben_Franklin_with_Kite/animations/Light_Flag_Attack/east/frame_007.png",
+              "Ben_Franklin_with_Kite/animations/Light_Flag_Attack/east/frame_008.png"
+            ],
+            "west": [
+              "Ben_Franklin_with_Kite/animations/Light_Flag_Attack/west/frame_000.png",
+              "Ben_Franklin_with_Kite/animations/Light_Flag_Attack/west/frame_001.png",
+              "Ben_Franklin_with_Kite/animations/Light_Flag_Attack/west/frame_002.png",
+              "Ben_Franklin_with_Kite/animations/Light_Flag_Attack/west/frame_003.png",
+              "Ben_Franklin_with_Kite/animations/Light_Flag_Attack/west/frame_004.png",
+              "Ben_Franklin_with_Kite/animations/Light_Flag_Attack/west/frame_005.png",
+              "Ben_Franklin_with_Kite/animations/Light_Flag_Attack/west/frame_006.png",
+              "Ben_Franklin_with_Kite/animations/Light_Flag_Attack/west/frame_007.png",
+              "Ben_Franklin_with_Kite/animations/Light_Flag_Attack/west/frame_008.png"
+            ]
+          }
+        }
+      }
+    }
+  ],
+  "export_version": "3.1",
+  "export_date": "2026-07-13T17:35:11.188188"
+}

@@ -1,0 +1,28 @@
+[gd_scene load_steps=6 format=3]
+
+[ext_resource type="PackedScene" path="res://src/field/gamepieces/gamepiece.tscn" id="1_gamepiece"]
+[ext_resource type="PackedScene" path="res://ben_rpg/characters/dark_mage_field_animation.tscn" id="2_animation"]
+[ext_resource type="PackedScene" path="res://src/field/cutscenes/Interaction.tscn" id="3_interaction"]
+[ext_resource type="Script" path="res://ben_rpg/characters/expansion_trial_recruit_interaction.gd" id="4_recruit"]
+[ext_resource type="PackedScene" path="res://src/field/cutscenes/popups/interaction_popup.tscn" id="5_popup"]
+
+[node name="DarkMage" instance=ExtResource("1_gamepiece")]
+animation_scene = ExtResource("2_animation")
+move_speed = 210.0
+
+[node name="RecruitInteraction" parent="." instance=ExtResource("3_interaction")]
+script = ExtResource("4_recruit")
+recruit_id = &"dark_mage"
+
+[node name="Button" parent="RecruitInteraction" index="1"]
+offset_left = -36.0
+offset_top = -64.0
+offset_right = 36.0
+offset_bottom = 18.0
+
+[node name="RecruitPopup" parent="." instance=ExtResource("5_popup")]
+position = Vector2(0, -56)
+emote = 2
+radius = 96
+
+[editable path="RecruitInteraction"]

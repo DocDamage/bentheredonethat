@@ -1,0 +1,32 @@
+{
+  "name": "ben-there-done-that",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "test": "node --test tests/*.test.js",
+    "check": "node --check asset-paths.js && node --check game-core.js && node --check game.js && node --check rpg-core.js && node --check rpg-campaign.js && npm test && npm run test:visual-tools",
+    "test:visual-tools": "python -m unittest discover -s tools/tests -p test_*.py",
+    "build:visual-manifest": "python tools/build_godot_visual_manifest.py",
+    "build:town-library-facade": "python tools/build_town_library_facade.py",
+    "build:visual-contact-sheet": "python tools/build_visual_profile_contact_sheet.py",
+    "build:vertical-slice-contact-sheets": "python tools/build_vertical_slice_contact_sheets.py",
+    "validate:visual-manifest": "python tools/build_godot_visual_manifest.py --check",
+    "validate:town-library-facade": "python tools/build_town_library_facade.py --check",
+    "validate:ashfall-cinder-gate-derivatives": "python tools/build_ashfall_cinder_gate_derivative.py --check && python tools/build_ashfall_cinder_gate_ground_derivative.py --check && python tools/build_ashfall_cinder_gate_barricade_derivative.py --check && python tools/build_ashfall_cinder_gate_feature_derivatives.py --check && python tools/build_ashfall_field_actor_derivatives.py --check && python tools/build_ashfall_cinder_gate_battle_backdrop.py --check",
+    "validate:visual-inventory": "python tools/build_godot_visual_inventory.py --check",
+    "validate:visual-contact-sheet": "python tools/build_visual_profile_contact_sheet.py --check",
+    "validate:vertical-slice-contact-sheets": "python tools/build_vertical_slice_contact_sheets.py --check",
+    "validate:provenance": "python tools/build_runtime_asset_provenance.py --check",
+    "validate:release-provenance": "python tools/build_release_asset_provenance.py --check",
+    "validate:population-registry": "python tools/build_population_registry.py --check",
+    "build:population-runtime-atlas": "python tools/build_population_runtime_atlas.py && python tools/build_population_registry.py --source-root \"assets/characters/SakPix - 8-Direction Characters - ALL AS OF 7-3-26\"",
+    "validate:population-runtime-atlas": "python tools/build_population_runtime_atlas.py --check",
+    "build:source-inventory": "python tools/build_source_library_inventory.py",
+    "validate:source-inventory": "python tools/build_source_library_inventory.py --check",
+    "validate:release-source-references": "python tools/validate_release_source_references.py",
+    "validate:runtime-assets": "npm run validate:town-library-facade && npm run validate:visual-inventory && npm run validate:provenance && npm run validate:release-provenance && npm run validate:visual-manifest && npm run validate:visual-contact-sheet && npm run validate:population-runtime-atlas && npm run validate:population-registry && npm run validate:release-source-references",
+    "validate:source-library": "python tools/require_source_library.py && python tools/validate_curated_asset_catalog.py && node tools/validate_npc_asset_readiness.js && npm run validate:ashfall-cinder-gate-derivatives && python tools/build_population_registry.py --source-root \"assets/characters/SakPix - 8-Direction Characters - ALL AS OF 7-3-26\" && python tools/build_population_contact_sheets.py --source-root \"assets/characters/SakPix - 8-Direction Characters - ALL AS OF 7-3-26\" && npm run build:vertical-slice-contact-sheets && npm run validate:source-inventory",
+    "validate:assets": "npm run validate:runtime-assets && npm run validate:source-library",
+    "serve": "python -m http.server 8080"
+  }
+}

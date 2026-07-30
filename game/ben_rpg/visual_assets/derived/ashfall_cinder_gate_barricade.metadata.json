@@ -1,0 +1,30 @@
+{
+  "asset": "game/ben_rpg/visual_assets/derived/ashfall_cinder_gate_barricade.png",
+  "bindings": {
+    "profileIds": [],
+    "roomIds": [
+      "AF-01"
+    ],
+    "runtimeStatus": "prototype_scene_admission"
+  },
+  "derivedChecksum": "ba4cca14d60a230730247f94a76d47e97c4765a0362635237487bcef500a283e",
+  "dimensions": [
+    96,
+    48
+  ],
+  "schemaVersion": 1,
+  "source": {
+    "checksum": "6d142ca29c9d0e659118db514c7c3a107e581b5efeb11a09b647c5885b953938",
+    "path": "assets/Tilesets/Ashlands Tileset/1x/tf_B_ashlands_1.png",
+    "region": [
+      96,
+      52,
+      96,
+      48
+    ]
+  },
+  "transform": {
+    "description": "Exact collapsed-barricade crop for AF-01; no colour, alpha, or scale changes.",
+    "id": "ashfall_cinder_gate_barricade_crop_v1"
+  }
+}

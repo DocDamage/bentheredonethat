@@ -1,0 +1,15 @@
+[gd_scene load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://ben_rpg/characters/neon_viper_field_animation.gd" id="1_viper"]
+
+[node name="NeonViperFieldAnimation" type="Marker2D"]
+script = ExtResource("1_viper")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+
+[node name="Anchor" type="Marker2D" parent="."]
+
+[node name="Sprite" type="Sprite2D" parent="Anchor"]
+
+[node name="Shadow" type="Sprite2D" parent="Anchor"]
+

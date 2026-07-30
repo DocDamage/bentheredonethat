@@ -1,0 +1,31 @@
+[gd_scene load_steps=6 format=3]
+
+[ext_resource type="PackedScene" path="res://src/field/gamepieces/gamepiece.tscn" id="1_gamepiece"]
+[ext_resource type="PackedScene" path="res://ben_rpg/characters/dracula_horror_arc_field_animation.tscn" id="2_animation"]
+[ext_resource type="PackedScene" path="res://src/field/cutscenes/Interaction.tscn" id="3_interaction"]
+[ext_resource type="Script" path="res://ben_rpg/characters/horror_arc_interaction.gd" id="4_interaction"]
+[ext_resource type="PackedScene" path="res://src/field/cutscenes/popups/interaction_popup.tscn" id="5_popup"]
+
+[node name="MansionDraculaWitness" instance=ExtResource("1_gamepiece")]
+animation_scene = ExtResource("2_animation")
+move_speed = 0.0
+
+[node name="StoryInteraction" parent="." instance=ExtResource("3_interaction")]
+script = ExtResource("4_interaction")
+witness_id = "dracula"
+
+[node name="CollisionShape2D" parent="StoryInteraction/InteractionArea2D" index="0"]
+position = Vector2(0, -5)
+
+[node name="Button" parent="StoryInteraction" index="1"]
+offset_left = -36.0
+offset_top = -64.0
+offset_right = 36.0
+offset_bottom = 18.0
+
+[node name="StoryPopup" parent="." instance=ExtResource("5_popup")]
+position = Vector2(0, -60)
+emote = 2
+radius = 96
+
+[editable path="StoryInteraction"]

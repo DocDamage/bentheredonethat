@@ -1,0 +1,589 @@
+{
+  "group_id": null,
+  "states": [
+    {
+      "character": {
+        "id": "5e38c60f-d8a8-4a0d-80e0-89739ac62797",
+        "name": "Caveman",
+        "prompt": "Create an 8 bit caveman sprite. Have him holding a large club at all times. Brown in colour. He's tanned and neandrathal looking. Make his head big, like a caricature. Have his forehead stand out and look like a create from a bygone era. Prehistoric garb and dress.",
+        "size": {
+          "width": 92,
+          "height": 92
+        },
+        "template_id": "mannequin",
+        "directions": 8,
+        "view": "side",
+        "created_at": "2026-07-14T00:48:31.876816+00:00"
+      },
+      "folder": "Caveman",
+      "frames": {
+        "rotations": {
+          "south": "Caveman/rotations/south.png",
+          "south-east": "Caveman/rotations/south-east.png",
+          "east": "Caveman/rotations/east.png",
+          "north-east": "Caveman/rotations/north-east.png",
+          "north": "Caveman/rotations/north.png",
+          "north-west": "Caveman/rotations/north-west.png",
+          "west": "Caveman/rotations/west.png",
+          "south-west": "Caveman/rotations/south-west.png"
+        },
+        "animations": {
+          "Crawl_on_caveman_s_hands_and_knees._Start_standing": {
+            "north": [
+              "Caveman/animations/Crawl_on_caveman_s_hands_and_knees._Start_standing/north/frame_000.png",
+              "Caveman/animations/Crawl_on_caveman_s_hands_and_knees._Start_standing/north/frame_001.png",
+              "Caveman/animations/Crawl_on_caveman_s_hands_and_knees._Start_standing/north/frame_002.png",
+              "Caveman/animations/Crawl_on_caveman_s_hands_and_knees._Start_standing/north/frame_003.png",
+              "Caveman/animations/Crawl_on_caveman_s_hands_and_knees._Start_standing/north/frame_004.png",
+              "Caveman/animations/Crawl_on_caveman_s_hands_and_knees._Start_standing/north/frame_005.png",
+              "Caveman/animations/Crawl_on_caveman_s_hands_and_knees._Start_standing/north/frame_006.png",
+              "Caveman/animations/Crawl_on_caveman_s_hands_and_knees._Start_standing/north/frame_007.png",
+              "Caveman/animations/Crawl_on_caveman_s_hands_and_knees._Start_standing/north/frame_008.png",
+              "Caveman/animations/Crawl_on_caveman_s_hands_and_knees._Start_standing/north/frame_009.png",
+              "Caveman/animations/Crawl_on_caveman_s_hands_and_knees._Start_standing/north/frame_010.png"
+            ],
+            "east": [
+              "Caveman/animations/Crawl_on_caveman_s_hands_and_knees._Start_standing/east/frame_000.png",
+              "Caveman/animations/Crawl_on_caveman_s_hands_and_knees._Start_standing/east/frame_001.png",
+              "Caveman/animations/Crawl_on_caveman_s_hands_and_knees._Start_standing/east/frame_002.png",
+              "Caveman/animations/Crawl_on_caveman_s_hands_and_knees._Start_standing/east/frame_003.png",
+              "Caveman/animations/Crawl_on_caveman_s_hands_and_knees._Start_standing/east/frame_004.png",
+              "Caveman/animations/Crawl_on_caveman_s_hands_and_knees._Start_standing/east/frame_005.png",
+              "Caveman/animations/Crawl_on_caveman_s_hands_and_knees._Start_standing/east/frame_006.png",
+              "Caveman/animations/Crawl_on_caveman_s_hands_and_knees._Start_standing/east/frame_007.png",
+              "Caveman/animations/Crawl_on_caveman_s_hands_and_knees._Start_standing/east/frame_008.png",
+              "Caveman/animations/Crawl_on_caveman_s_hands_and_knees._Start_standing/east/frame_009.png",
+              "Caveman/animations/Crawl_on_caveman_s_hands_and_knees._Start_standing/east/frame_010.png"
+            ],
+            "south": [
+              "Caveman/animations/Crawl_on_caveman_s_hands_and_knees._Start_standing/south/frame_000.png",
+              "Caveman/animations/Crawl_on_caveman_s_hands_and_knees._Start_standing/south/frame_001.png",
+              "Caveman/animations/Crawl_on_caveman_s_hands_and_knees._Start_standing/south/frame_002.png",
+              "Caveman/animations/Crawl_on_caveman_s_hands_and_knees._Start_standing/south/frame_003.png",
+              "Caveman/animations/Crawl_on_caveman_s_hands_and_knees._Start_standing/south/frame_004.png",
+              "Caveman/animations/Crawl_on_caveman_s_hands_and_knees._Start_standing/south/frame_005.png",
+              "Caveman/animations/Crawl_on_caveman_s_hands_and_knees._Start_standing/south/frame_006.png",
+              "Caveman/animations/Crawl_on_caveman_s_hands_and_knees._Start_standing/south/frame_007.png",
+              "Caveman/animations/Crawl_on_caveman_s_hands_and_knees._Start_standing/south/frame_008.png",
+              "Caveman/animations/Crawl_on_caveman_s_hands_and_knees._Start_standing/south/frame_009.png",
+              "Caveman/animations/Crawl_on_caveman_s_hands_and_knees._Start_standing/south/frame_010.png"
+            ],
+            "west": [
+              "Caveman/animations/Crawl_on_caveman_s_hands_and_knees._Start_standing/west/frame_000.png",
+              "Caveman/animations/Crawl_on_caveman_s_hands_and_knees._Start_standing/west/frame_001.png",
+              "Caveman/animations/Crawl_on_caveman_s_hands_and_knees._Start_standing/west/frame_002.png",
+              "Caveman/animations/Crawl_on_caveman_s_hands_and_knees._Start_standing/west/frame_003.png",
+              "Caveman/animations/Crawl_on_caveman_s_hands_and_knees._Start_standing/west/frame_004.png",
+              "Caveman/animations/Crawl_on_caveman_s_hands_and_knees._Start_standing/west/frame_005.png",
+              "Caveman/animations/Crawl_on_caveman_s_hands_and_knees._Start_standing/west/frame_006.png",
+              "Caveman/animations/Crawl_on_caveman_s_hands_and_knees._Start_standing/west/frame_007.png",
+              "Caveman/animations/Crawl_on_caveman_s_hands_and_knees._Start_standing/west/frame_008.png",
+              "Caveman/animations/Crawl_on_caveman_s_hands_and_knees._Start_standing/west/frame_009.png",
+              "Caveman/animations/Crawl_on_caveman_s_hands_and_knees._Start_standing/west/frame_010.png"
+            ]
+          },
+          "Push_Object": {
+            "west": [
+              "Caveman/animations/Push_Object/west/frame_000.png",
+              "Caveman/animations/Push_Object/west/frame_001.png",
+              "Caveman/animations/Push_Object/west/frame_002.png",
+              "Caveman/animations/Push_Object/west/frame_003.png",
+              "Caveman/animations/Push_Object/west/frame_004.png",
+              "Caveman/animations/Push_Object/west/frame_005.png"
+            ],
+            "south": [
+              "Caveman/animations/Push_Object/south/frame_000.png",
+              "Caveman/animations/Push_Object/south/frame_001.png",
+              "Caveman/animations/Push_Object/south/frame_002.png",
+              "Caveman/animations/Push_Object/south/frame_003.png",
+              "Caveman/animations/Push_Object/south/frame_004.png",
+              "Caveman/animations/Push_Object/south/frame_005.png"
+            ],
+            "north": [
+              "Caveman/animations/Push_Object/north/frame_000.png",
+              "Caveman/animations/Push_Object/north/frame_001.png",
+              "Caveman/animations/Push_Object/north/frame_002.png",
+              "Caveman/animations/Push_Object/north/frame_003.png",
+              "Caveman/animations/Push_Object/north/frame_004.png",
+              "Caveman/animations/Push_Object/north/frame_005.png"
+            ],
+            "east": [
+              "Caveman/animations/Push_Object/east/frame_000.png",
+              "Caveman/animations/Push_Object/east/frame_001.png",
+              "Caveman/animations/Push_Object/east/frame_002.png",
+              "Caveman/animations/Push_Object/east/frame_003.png",
+              "Caveman/animations/Push_Object/east/frame_004.png",
+              "Caveman/animations/Push_Object/east/frame_005.png"
+            ]
+          },
+          "Running_Jump": {
+            "east": [
+              "Caveman/animations/Running_Jump/east/frame_000.png",
+              "Caveman/animations/Running_Jump/east/frame_001.png",
+              "Caveman/animations/Running_Jump/east/frame_002.png",
+              "Caveman/animations/Running_Jump/east/frame_003.png",
+              "Caveman/animations/Running_Jump/east/frame_004.png",
+              "Caveman/animations/Running_Jump/east/frame_005.png",
+              "Caveman/animations/Running_Jump/east/frame_006.png",
+              "Caveman/animations/Running_Jump/east/frame_007.png"
+            ],
+            "south": [
+              "Caveman/animations/Running_Jump/south/frame_000.png",
+              "Caveman/animations/Running_Jump/south/frame_001.png",
+              "Caveman/animations/Running_Jump/south/frame_002.png",
+              "Caveman/animations/Running_Jump/south/frame_003.png",
+              "Caveman/animations/Running_Jump/south/frame_004.png",
+              "Caveman/animations/Running_Jump/south/frame_005.png",
+              "Caveman/animations/Running_Jump/south/frame_006.png",
+              "Caveman/animations/Running_Jump/south/frame_007.png"
+            ],
+            "north": [
+              "Caveman/animations/Running_Jump/north/frame_000.png",
+              "Caveman/animations/Running_Jump/north/frame_001.png",
+              "Caveman/animations/Running_Jump/north/frame_002.png",
+              "Caveman/animations/Running_Jump/north/frame_003.png",
+              "Caveman/animations/Running_Jump/north/frame_004.png",
+              "Caveman/animations/Running_Jump/north/frame_005.png",
+              "Caveman/animations/Running_Jump/north/frame_006.png",
+              "Caveman/animations/Running_Jump/north/frame_007.png"
+            ],
+            "west": [
+              "Caveman/animations/Running_Jump/west/frame_000.png",
+              "Caveman/animations/Running_Jump/west/frame_001.png",
+              "Caveman/animations/Running_Jump/west/frame_002.png",
+              "Caveman/animations/Running_Jump/west/frame_003.png",
+              "Caveman/animations/Running_Jump/west/frame_004.png",
+              "Caveman/animations/Running_Jump/west/frame_005.png",
+              "Caveman/animations/Running_Jump/west/frame_006.png",
+              "Caveman/animations/Running_Jump/west/frame_007.png"
+            ]
+          },
+          "Fight_Stance_Idle": {
+            "north": [
+              "Caveman/animations/Fight_Stance_Idle/north/frame_000.png",
+              "Caveman/animations/Fight_Stance_Idle/north/frame_001.png",
+              "Caveman/animations/Fight_Stance_Idle/north/frame_002.png",
+              "Caveman/animations/Fight_Stance_Idle/north/frame_003.png",
+              "Caveman/animations/Fight_Stance_Idle/north/frame_004.png",
+              "Caveman/animations/Fight_Stance_Idle/north/frame_005.png",
+              "Caveman/animations/Fight_Stance_Idle/north/frame_006.png",
+              "Caveman/animations/Fight_Stance_Idle/north/frame_007.png"
+            ],
+            "south": [
+              "Caveman/animations/Fight_Stance_Idle/south/frame_000.png",
+              "Caveman/animations/Fight_Stance_Idle/south/frame_001.png",
+              "Caveman/animations/Fight_Stance_Idle/south/frame_002.png",
+              "Caveman/animations/Fight_Stance_Idle/south/frame_003.png",
+              "Caveman/animations/Fight_Stance_Idle/south/frame_004.png",
+              "Caveman/animations/Fight_Stance_Idle/south/frame_005.png",
+              "Caveman/animations/Fight_Stance_Idle/south/frame_006.png",
+              "Caveman/animations/Fight_Stance_Idle/south/frame_007.png"
+            ],
+            "west": [
+              "Caveman/animations/Fight_Stance_Idle/west/frame_000.png",
+              "Caveman/animations/Fight_Stance_Idle/west/frame_001.png",
+              "Caveman/animations/Fight_Stance_Idle/west/frame_002.png",
+              "Caveman/animations/Fight_Stance_Idle/west/frame_003.png",
+              "Caveman/animations/Fight_Stance_Idle/west/frame_004.png",
+              "Caveman/animations/Fight_Stance_Idle/west/frame_005.png",
+              "Caveman/animations/Fight_Stance_Idle/west/frame_006.png",
+              "Caveman/animations/Fight_Stance_Idle/west/frame_007.png"
+            ],
+            "east": [
+              "Caveman/animations/Fight_Stance_Idle/east/frame_000.png",
+              "Caveman/animations/Fight_Stance_Idle/east/frame_001.png",
+              "Caveman/animations/Fight_Stance_Idle/east/frame_002.png",
+              "Caveman/animations/Fight_Stance_Idle/east/frame_003.png",
+              "Caveman/animations/Fight_Stance_Idle/east/frame_004.png",
+              "Caveman/animations/Fight_Stance_Idle/east/frame_005.png",
+              "Caveman/animations/Fight_Stance_Idle/east/frame_006.png",
+              "Caveman/animations/Fight_Stance_Idle/east/frame_007.png"
+            ]
+          },
+          "Swing_hammer_at_opponents_to_harm_them._Violent_an": {
+            "north": [
+              "Caveman/animations/Swing_hammer_at_opponents_to_harm_them._Violent_an/north/frame_000.png",
+              "Caveman/animations/Swing_hammer_at_opponents_to_harm_them._Violent_an/north/frame_001.png",
+              "Caveman/animations/Swing_hammer_at_opponents_to_harm_them._Violent_an/north/frame_002.png",
+              "Caveman/animations/Swing_hammer_at_opponents_to_harm_them._Violent_an/north/frame_003.png",
+              "Caveman/animations/Swing_hammer_at_opponents_to_harm_them._Violent_an/north/frame_004.png",
+              "Caveman/animations/Swing_hammer_at_opponents_to_harm_them._Violent_an/north/frame_005.png",
+              "Caveman/animations/Swing_hammer_at_opponents_to_harm_them._Violent_an/north/frame_006.png",
+              "Caveman/animations/Swing_hammer_at_opponents_to_harm_them._Violent_an/north/frame_007.png",
+              "Caveman/animations/Swing_hammer_at_opponents_to_harm_them._Violent_an/north/frame_008.png",
+              "Caveman/animations/Swing_hammer_at_opponents_to_harm_them._Violent_an/north/frame_009.png",
+              "Caveman/animations/Swing_hammer_at_opponents_to_harm_them._Violent_an/north/frame_010.png"
+            ],
+            "west": [
+              "Caveman/animations/Swing_hammer_at_opponents_to_harm_them._Violent_an/west/frame_000.png",
+              "Caveman/animations/Swing_hammer_at_opponents_to_harm_them._Violent_an/west/frame_001.png",
+              "Caveman/animations/Swing_hammer_at_opponents_to_harm_them._Violent_an/west/frame_002.png",
+              "Caveman/animations/Swing_hammer_at_opponents_to_harm_them._Violent_an/west/frame_003.png",
+              "Caveman/animations/Swing_hammer_at_opponents_to_harm_them._Violent_an/west/frame_004.png",
+              "Caveman/animations/Swing_hammer_at_opponents_to_harm_them._Violent_an/west/frame_005.png",
+              "Caveman/animations/Swing_hammer_at_opponents_to_harm_them._Violent_an/west/frame_006.png",
+              "Caveman/animations/Swing_hammer_at_opponents_to_harm_them._Violent_an/west/frame_007.png",
+              "Caveman/animations/Swing_hammer_at_opponents_to_harm_them._Violent_an/west/frame_008.png",
+              "Caveman/animations/Swing_hammer_at_opponents_to_harm_them._Violent_an/west/frame_009.png",
+              "Caveman/animations/Swing_hammer_at_opponents_to_harm_them._Violent_an/west/frame_010.png"
+            ],
+            "south": [
+              "Caveman/animations/Swing_hammer_at_opponents_to_harm_them._Violent_an/south/frame_000.png",
+              "Caveman/animations/Swing_hammer_at_opponents_to_harm_them._Violent_an/south/frame_001.png",
+              "Caveman/animations/Swing_hammer_at_opponents_to_harm_them._Violent_an/south/frame_002.png",
+              "Caveman/animations/Swing_hammer_at_opponents_to_harm_them._Violent_an/south/frame_003.png",
+              "Caveman/animations/Swing_hammer_at_opponents_to_harm_them._Violent_an/south/frame_004.png",
+              "Caveman/animations/Swing_hammer_at_opponents_to_harm_them._Violent_an/south/frame_005.png",
+              "Caveman/animations/Swing_hammer_at_opponents_to_harm_them._Violent_an/south/frame_006.png",
+              "Caveman/animations/Swing_hammer_at_opponents_to_harm_them._Violent_an/south/frame_007.png",
+              "Caveman/animations/Swing_hammer_at_opponents_to_harm_them._Violent_an/south/frame_008.png",
+              "Caveman/animations/Swing_hammer_at_opponents_to_harm_them._Violent_an/south/frame_009.png",
+              "Caveman/animations/Swing_hammer_at_opponents_to_harm_them._Violent_an/south/frame_010.png"
+            ],
+            "east": [
+              "Caveman/animations/Swing_hammer_at_opponents_to_harm_them._Violent_an/east/frame_000.png",
+              "Caveman/animations/Swing_hammer_at_opponents_to_harm_them._Violent_an/east/frame_001.png",
+              "Caveman/animations/Swing_hammer_at_opponents_to_harm_them._Violent_an/east/frame_002.png",
+              "Caveman/animations/Swing_hammer_at_opponents_to_harm_them._Violent_an/east/frame_003.png",
+              "Caveman/animations/Swing_hammer_at_opponents_to_harm_them._Violent_an/east/frame_004.png",
+              "Caveman/animations/Swing_hammer_at_opponents_to_harm_them._Violent_an/east/frame_005.png",
+              "Caveman/animations/Swing_hammer_at_opponents_to_harm_them._Violent_an/east/frame_006.png",
+              "Caveman/animations/Swing_hammer_at_opponents_to_harm_them._Violent_an/east/frame_007.png",
+              "Caveman/animations/Swing_hammer_at_opponents_to_harm_them._Violent_an/east/frame_008.png",
+              "Caveman/animations/Swing_hammer_at_opponents_to_harm_them._Violent_an/east/frame_009.png",
+              "Caveman/animations/Swing_hammer_at_opponents_to_harm_them._Violent_an/east/frame_010.png"
+            ]
+          },
+          "Attack_with_club": {
+            "north-west": [
+              "Caveman/animations/Attack_with_club/north-west/frame_000.png",
+              "Caveman/animations/Attack_with_club/north-west/frame_001.png",
+              "Caveman/animations/Attack_with_club/north-west/frame_002.png",
+              "Caveman/animations/Attack_with_club/north-west/frame_003.png",
+              "Caveman/animations/Attack_with_club/north-west/frame_004.png",
+              "Caveman/animations/Attack_with_club/north-west/frame_005.png",
+              "Caveman/animations/Attack_with_club/north-west/frame_006.png",
+              "Caveman/animations/Attack_with_club/north-west/frame_007.png",
+              "Caveman/animations/Attack_with_club/north-west/frame_008.png"
+            ],
+            "south-west": [
+              "Caveman/animations/Attack_with_club/south-west/frame_000.png",
+              "Caveman/animations/Attack_with_club/south-west/frame_001.png",
+              "Caveman/animations/Attack_with_club/south-west/frame_002.png",
+              "Caveman/animations/Attack_with_club/south-west/frame_003.png",
+              "Caveman/animations/Attack_with_club/south-west/frame_004.png",
+              "Caveman/animations/Attack_with_club/south-west/frame_005.png",
+              "Caveman/animations/Attack_with_club/south-west/frame_006.png",
+              "Caveman/animations/Attack_with_club/south-west/frame_007.png",
+              "Caveman/animations/Attack_with_club/south-west/frame_008.png"
+            ],
+            "north-east": [
+              "Caveman/animations/Attack_with_club/north-east/frame_000.png",
+              "Caveman/animations/Attack_with_club/north-east/frame_001.png",
+              "Caveman/animations/Attack_with_club/north-east/frame_002.png",
+              "Caveman/animations/Attack_with_club/north-east/frame_003.png",
+              "Caveman/animations/Attack_with_club/north-east/frame_004.png",
+              "Caveman/animations/Attack_with_club/north-east/frame_005.png",
+              "Caveman/animations/Attack_with_club/north-east/frame_006.png",
+              "Caveman/animations/Attack_with_club/north-east/frame_007.png",
+              "Caveman/animations/Attack_with_club/north-east/frame_008.png"
+            ],
+            "north": [
+              "Caveman/animations/Attack_with_club/north/frame_000.png",
+              "Caveman/animations/Attack_with_club/north/frame_001.png",
+              "Caveman/animations/Attack_with_club/north/frame_002.png",
+              "Caveman/animations/Attack_with_club/north/frame_003.png",
+              "Caveman/animations/Attack_with_club/north/frame_004.png",
+              "Caveman/animations/Attack_with_club/north/frame_005.png",
+              "Caveman/animations/Attack_with_club/north/frame_006.png",
+              "Caveman/animations/Attack_with_club/north/frame_007.png",
+              "Caveman/animations/Attack_with_club/north/frame_008.png"
+            ],
+            "south": [
+              "Caveman/animations/Attack_with_club/south/frame_000.png",
+              "Caveman/animations/Attack_with_club/south/frame_001.png",
+              "Caveman/animations/Attack_with_club/south/frame_002.png",
+              "Caveman/animations/Attack_with_club/south/frame_003.png",
+              "Caveman/animations/Attack_with_club/south/frame_004.png",
+              "Caveman/animations/Attack_with_club/south/frame_005.png",
+              "Caveman/animations/Attack_with_club/south/frame_006.png",
+              "Caveman/animations/Attack_with_club/south/frame_007.png",
+              "Caveman/animations/Attack_with_club/south/frame_008.png"
+            ],
+            "south-east": [
+              "Caveman/animations/Attack_with_club/south-east/frame_000.png",
+              "Caveman/animations/Attack_with_club/south-east/frame_001.png",
+              "Caveman/animations/Attack_with_club/south-east/frame_002.png",
+              "Caveman/animations/Attack_with_club/south-east/frame_003.png",
+              "Caveman/animations/Attack_with_club/south-east/frame_004.png",
+              "Caveman/animations/Attack_with_club/south-east/frame_005.png",
+              "Caveman/animations/Attack_with_club/south-east/frame_006.png",
+              "Caveman/animations/Attack_with_club/south-east/frame_007.png",
+              "Caveman/animations/Attack_with_club/south-east/frame_008.png"
+            ]
+          },
+          "Bloody_Death": {
+            "south-east": [
+              "Caveman/animations/Bloody_Death/south-east/frame_000.png",
+              "Caveman/animations/Bloody_Death/south-east/frame_001.png",
+              "Caveman/animations/Bloody_Death/south-east/frame_002.png",
+              "Caveman/animations/Bloody_Death/south-east/frame_003.png",
+              "Caveman/animations/Bloody_Death/south-east/frame_004.png",
+              "Caveman/animations/Bloody_Death/south-east/frame_005.png",
+              "Caveman/animations/Bloody_Death/south-east/frame_006.png",
+              "Caveman/animations/Bloody_Death/south-east/frame_007.png",
+              "Caveman/animations/Bloody_Death/south-east/frame_008.png",
+              "Caveman/animations/Bloody_Death/south-east/frame_009.png",
+              "Caveman/animations/Bloody_Death/south-east/frame_010.png",
+              "Caveman/animations/Bloody_Death/south-east/frame_011.png",
+              "Caveman/animations/Bloody_Death/south-east/frame_012.png",
+              "Caveman/animations/Bloody_Death/south-east/frame_013.png",
+              "Caveman/animations/Bloody_Death/south-east/frame_014.png"
+            ],
+            "north-west": [
+              "Caveman/animations/Bloody_Death/north-west/frame_000.png",
+              "Caveman/animations/Bloody_Death/north-west/frame_001.png",
+              "Caveman/animations/Bloody_Death/north-west/frame_002.png",
+              "Caveman/animations/Bloody_Death/north-west/frame_003.png",
+              "Caveman/animations/Bloody_Death/north-west/frame_004.png",
+              "Caveman/animations/Bloody_Death/north-west/frame_005.png",
+              "Caveman/animations/Bloody_Death/north-west/frame_006.png",
+              "Caveman/animations/Bloody_Death/north-west/frame_007.png",
+              "Caveman/animations/Bloody_Death/north-west/frame_008.png",
+              "Caveman/animations/Bloody_Death/north-west/frame_009.png",
+              "Caveman/animations/Bloody_Death/north-west/frame_010.png",
+              "Caveman/animations/Bloody_Death/north-west/frame_011.png",
+              "Caveman/animations/Bloody_Death/north-west/frame_012.png",
+              "Caveman/animations/Bloody_Death/north-west/frame_013.png",
+              "Caveman/animations/Bloody_Death/north-west/frame_014.png"
+            ],
+            "north-east": [
+              "Caveman/animations/Bloody_Death/north-east/frame_000.png",
+              "Caveman/animations/Bloody_Death/north-east/frame_001.png",
+              "Caveman/animations/Bloody_Death/north-east/frame_002.png",
+              "Caveman/animations/Bloody_Death/north-east/frame_003.png",
+              "Caveman/animations/Bloody_Death/north-east/frame_004.png",
+              "Caveman/animations/Bloody_Death/north-east/frame_005.png",
+              "Caveman/animations/Bloody_Death/north-east/frame_006.png",
+              "Caveman/animations/Bloody_Death/north-east/frame_007.png",
+              "Caveman/animations/Bloody_Death/north-east/frame_008.png",
+              "Caveman/animations/Bloody_Death/north-east/frame_009.png",
+              "Caveman/animations/Bloody_Death/north-east/frame_010.png",
+              "Caveman/animations/Bloody_Death/north-east/frame_011.png",
+              "Caveman/animations/Bloody_Death/north-east/frame_012.png",
+              "Caveman/animations/Bloody_Death/north-east/frame_013.png",
+              "Caveman/animations/Bloody_Death/north-east/frame_014.png"
+            ],
+            "south": [
+              "Caveman/animations/Bloody_Death/south/frame_000.png",
+              "Caveman/animations/Bloody_Death/south/frame_001.png",
+              "Caveman/animations/Bloody_Death/south/frame_002.png",
+              "Caveman/animations/Bloody_Death/south/frame_003.png",
+              "Caveman/animations/Bloody_Death/south/frame_004.png",
+              "Caveman/animations/Bloody_Death/south/frame_005.png",
+              "Caveman/animations/Bloody_Death/south/frame_006.png",
+              "Caveman/animations/Bloody_Death/south/frame_007.png",
+              "Caveman/animations/Bloody_Death/south/frame_008.png",
+              "Caveman/animations/Bloody_Death/south/frame_009.png",
+              "Caveman/animations/Bloody_Death/south/frame_010.png",
+              "Caveman/animations/Bloody_Death/south/frame_011.png",
+              "Caveman/animations/Bloody_Death/south/frame_012.png",
+              "Caveman/animations/Bloody_Death/south/frame_013.png",
+              "Caveman/animations/Bloody_Death/south/frame_014.png"
+            ],
+            "south-west": [
+              "Caveman/animations/Bloody_Death/south-west/frame_000.png",
+              "Caveman/animations/Bloody_Death/south-west/frame_001.png",
+              "Caveman/animations/Bloody_Death/south-west/frame_002.png",
+              "Caveman/animations/Bloody_Death/south-west/frame_003.png",
+              "Caveman/animations/Bloody_Death/south-west/frame_004.png",
+              "Caveman/animations/Bloody_Death/south-west/frame_005.png",
+              "Caveman/animations/Bloody_Death/south-west/frame_006.png",
+              "Caveman/animations/Bloody_Death/south-west/frame_007.png",
+              "Caveman/animations/Bloody_Death/south-west/frame_008.png",
+              "Caveman/animations/Bloody_Death/south-west/frame_009.png",
+              "Caveman/animations/Bloody_Death/south-west/frame_010.png",
+              "Caveman/animations/Bloody_Death/south-west/frame_011.png",
+              "Caveman/animations/Bloody_Death/south-west/frame_012.png",
+              "Caveman/animations/Bloody_Death/south-west/frame_013.png",
+              "Caveman/animations/Bloody_Death/south-west/frame_014.png"
+            ],
+            "north": [
+              "Caveman/animations/Bloody_Death/north/frame_000.png",
+              "Caveman/animations/Bloody_Death/north/frame_001.png",
+              "Caveman/animations/Bloody_Death/north/frame_002.png",
+              "Caveman/animations/Bloody_Death/north/frame_003.png",
+              "Caveman/animations/Bloody_Death/north/frame_004.png",
+              "Caveman/animations/Bloody_Death/north/frame_005.png",
+              "Caveman/animations/Bloody_Death/north/frame_006.png",
+              "Caveman/animations/Bloody_Death/north/frame_007.png",
+              "Caveman/animations/Bloody_Death/north/frame_008.png",
+              "Caveman/animations/Bloody_Death/north/frame_009.png",
+              "Caveman/animations/Bloody_Death/north/frame_010.png",
+              "Caveman/animations/Bloody_Death/north/frame_011.png",
+              "Caveman/animations/Bloody_Death/north/frame_012.png",
+              "Caveman/animations/Bloody_Death/north/frame_013.png",
+              "Caveman/animations/Bloody_Death/north/frame_014.png"
+            ]
+          },
+          "Taking_Punch": {
+            "west": [
+              "Caveman/animations/Taking_Punch/west/frame_000.png",
+              "Caveman/animations/Taking_Punch/west/frame_001.png",
+              "Caveman/animations/Taking_Punch/west/frame_002.png",
+              "Caveman/animations/Taking_Punch/west/frame_003.png",
+              "Caveman/animations/Taking_Punch/west/frame_004.png",
+              "Caveman/animations/Taking_Punch/west/frame_005.png"
+            ],
+            "north": [
+              "Caveman/animations/Taking_Punch/north/frame_000.png",
+              "Caveman/animations/Taking_Punch/north/frame_001.png",
+              "Caveman/animations/Taking_Punch/north/frame_002.png",
+              "Caveman/animations/Taking_Punch/north/frame_003.png",
+              "Caveman/animations/Taking_Punch/north/frame_004.png",
+              "Caveman/animations/Taking_Punch/north/frame_005.png"
+            ],
+            "south": [
+              "Caveman/animations/Taking_Punch/south/frame_000.png",
+              "Caveman/animations/Taking_Punch/south/frame_001.png",
+              "Caveman/animations/Taking_Punch/south/frame_002.png",
+              "Caveman/animations/Taking_Punch/south/frame_003.png",
+              "Caveman/animations/Taking_Punch/south/frame_004.png",
+              "Caveman/animations/Taking_Punch/south/frame_005.png"
+            ],
+            "east": [
+              "Caveman/animations/Taking_Punch/east/frame_000.png",
+              "Caveman/animations/Taking_Punch/east/frame_001.png",
+              "Caveman/animations/Taking_Punch/east/frame_002.png",
+              "Caveman/animations/Taking_Punch/east/frame_003.png",
+              "Caveman/animations/Taking_Punch/east/frame_004.png",
+              "Caveman/animations/Taking_Punch/east/frame_005.png"
+            ]
+          },
+          "Falling_Back_Death": {
+            "east": [
+              "Caveman/animations/Falling_Back_Death/east/frame_000.png",
+              "Caveman/animations/Falling_Back_Death/east/frame_001.png",
+              "Caveman/animations/Falling_Back_Death/east/frame_002.png",
+              "Caveman/animations/Falling_Back_Death/east/frame_003.png",
+              "Caveman/animations/Falling_Back_Death/east/frame_004.png",
+              "Caveman/animations/Falling_Back_Death/east/frame_005.png",
+              "Caveman/animations/Falling_Back_Death/east/frame_006.png"
+            ],
+            "south-east": [
+              "Caveman/animations/Falling_Back_Death/south-east/frame_000.png",
+              "Caveman/animations/Falling_Back_Death/south-east/frame_001.png",
+              "Caveman/animations/Falling_Back_Death/south-east/frame_002.png",
+              "Caveman/animations/Falling_Back_Death/south-east/frame_003.png",
+              "Caveman/animations/Falling_Back_Death/south-east/frame_004.png",
+              "Caveman/animations/Falling_Back_Death/south-east/frame_005.png",
+              "Caveman/animations/Falling_Back_Death/south-east/frame_006.png"
+            ],
+            "west": [
+              "Caveman/animations/Falling_Back_Death/west/frame_000.png",
+              "Caveman/animations/Falling_Back_Death/west/frame_001.png",
+              "Caveman/animations/Falling_Back_Death/west/frame_002.png",
+              "Caveman/animations/Falling_Back_Death/west/frame_003.png",
+              "Caveman/animations/Falling_Back_Death/west/frame_004.png",
+              "Caveman/animations/Falling_Back_Death/west/frame_005.png",
+              "Caveman/animations/Falling_Back_Death/west/frame_006.png"
+            ],
+            "south-west": [
+              "Caveman/animations/Falling_Back_Death/south-west/frame_000.png",
+              "Caveman/animations/Falling_Back_Death/south-west/frame_001.png",
+              "Caveman/animations/Falling_Back_Death/south-west/frame_002.png",
+              "Caveman/animations/Falling_Back_Death/south-west/frame_003.png",
+              "Caveman/animations/Falling_Back_Death/south-west/frame_004.png",
+              "Caveman/animations/Falling_Back_Death/south-west/frame_005.png",
+              "Caveman/animations/Falling_Back_Death/south-west/frame_006.png"
+            ],
+            "south": [
+              "Caveman/animations/Falling_Back_Death/south/frame_000.png",
+              "Caveman/animations/Falling_Back_Death/south/frame_001.png",
+              "Caveman/animations/Falling_Back_Death/south/frame_002.png",
+              "Caveman/animations/Falling_Back_Death/south/frame_003.png",
+              "Caveman/animations/Falling_Back_Death/south/frame_004.png",
+              "Caveman/animations/Falling_Back_Death/south/frame_005.png",
+              "Caveman/animations/Falling_Back_Death/south/frame_006.png"
+            ],
+            "north": [
+              "Caveman/animations/Falling_Back_Death/north/frame_000.png",
+              "Caveman/animations/Falling_Back_Death/north/frame_001.png",
+              "Caveman/animations/Falling_Back_Death/north/frame_002.png",
+              "Caveman/animations/Falling_Back_Death/north/frame_003.png",
+              "Caveman/animations/Falling_Back_Death/north/frame_004.png",
+              "Caveman/animations/Falling_Back_Death/north/frame_005.png",
+              "Caveman/animations/Falling_Back_Death/north/frame_006.png"
+            ]
+          },
+          "Getting_Up": {
+            "west": [
+              "Caveman/animations/Getting_Up/west/frame_000.png",
+              "Caveman/animations/Getting_Up/west/frame_001.png",
+              "Caveman/animations/Getting_Up/west/frame_002.png",
+              "Caveman/animations/Getting_Up/west/frame_003.png",
+              "Caveman/animations/Getting_Up/west/frame_004.png"
+            ],
+            "east": [
+              "Caveman/animations/Getting_Up/east/frame_000.png",
+              "Caveman/animations/Getting_Up/east/frame_001.png",
+              "Caveman/animations/Getting_Up/east/frame_002.png",
+              "Caveman/animations/Getting_Up/east/frame_003.png",
+              "Caveman/animations/Getting_Up/east/frame_004.png"
+            ],
+            "north": [
+              "Caveman/animations/Getting_Up/north/frame_000.png",
+              "Caveman/animations/Getting_Up/north/frame_001.png",
+              "Caveman/animations/Getting_Up/north/frame_002.png",
+              "Caveman/animations/Getting_Up/north/frame_003.png",
+              "Caveman/animations/Getting_Up/north/frame_004.png"
+            ],
+            "south": [
+              "Caveman/animations/Getting_Up/south/frame_000.png",
+              "Caveman/animations/Getting_Up/south/frame_001.png",
+              "Caveman/animations/Getting_Up/south/frame_002.png",
+              "Caveman/animations/Getting_Up/south/frame_003.png",
+              "Caveman/animations/Getting_Up/south/frame_004.png"
+            ]
+          },
+          "Running": {
+            "north": [
+              "Caveman/animations/Running/north/frame_000.png",
+              "Caveman/animations/Running/north/frame_001.png",
+              "Caveman/animations/Running/north/frame_002.png",
+              "Caveman/animations/Running/north/frame_003.png",
+              "Caveman/animations/Running/north/frame_004.png",
+              "Caveman/animations/Running/north/frame_005.png"
+            ],
+            "east": [
+              "Caveman/animations/Running/east/frame_000.png",
+              "Caveman/animations/Running/east/frame_001.png",
+              "Caveman/animations/Running/east/frame_002.png",
+              "Caveman/animations/Running/east/frame_003.png",
+              "Caveman/animations/Running/east/frame_004.png",
+              "Caveman/animations/Running/east/frame_005.png"
+            ],
+            "west": [
+              "Caveman/animations/Running/west/frame_000.png",
+              "Caveman/animations/Running/west/frame_001.png",
+              "Caveman/animations/Running/west/frame_002.png",
+              "Caveman/animations/Running/west/frame_003.png",
+              "Caveman/animations/Running/west/frame_004.png",
+              "Caveman/animations/Running/west/frame_005.png"
+            ],
+            "south": [
+              "Caveman/animations/Running/south/frame_000.png",
+              "Caveman/animations/Running/south/frame_001.png",
+              "Caveman/animations/Running/south/frame_002.png",
+              "Caveman/animations/Running/south/frame_003.png",
+              "Caveman/animations/Running/south/frame_004.png",
+              "Caveman/animations/Running/south/frame_005.png"
+            ]
+          }
+        }
+      }
+    }
+  ],
+  "export_version": "3.1",
+  "export_date": "2026-07-14T02:02:51.905417"
+}

@@ -1,0 +1,839 @@
+{
+  "group_id": null,
+  "states": [
+    {
+      "character": {
+        "id": "e7fa1308-a758-4ac4-87fb-0083453ce24b",
+        "name": "Fighter",
+        "prompt": "Make an MMA fighter sprite. Red boxing gloves. Make him look hispanic/latino, no tattoos or identifying marks. Cage warrior, scary kind of look. Whole body in image.",
+        "size": {
+          "width": 124,
+          "height": 124
+        },
+        "template_id": "mannequin",
+        "directions": 8,
+        "view": "side",
+        "created_at": "2026-07-15T01:09:43.490354+00:00"
+      },
+      "folder": "Fighter",
+      "frames": {
+        "rotations": {
+          "south": "Fighter/rotations/south.png",
+          "south-east": "Fighter/rotations/south-east.png",
+          "east": "Fighter/rotations/east.png",
+          "north-east": "Fighter/rotations/north-east.png",
+          "north": "Fighter/rotations/north.png",
+          "north-west": "Fighter/rotations/north-west.png",
+          "west": "Fighter/rotations/west.png",
+          "south-west": "Fighter/rotations/south-west.png"
+        },
+        "animations": {
+          "Cross_Punch": {
+            "south-west": [
+              "Fighter/animations/Cross_Punch/south-west/frame_000.png",
+              "Fighter/animations/Cross_Punch/south-west/frame_001.png",
+              "Fighter/animations/Cross_Punch/south-west/frame_002.png",
+              "Fighter/animations/Cross_Punch/south-west/frame_003.png",
+              "Fighter/animations/Cross_Punch/south-west/frame_004.png",
+              "Fighter/animations/Cross_Punch/south-west/frame_005.png"
+            ],
+            "north-east": [
+              "Fighter/animations/Cross_Punch/north-east/frame_000.png",
+              "Fighter/animations/Cross_Punch/north-east/frame_001.png",
+              "Fighter/animations/Cross_Punch/north-east/frame_002.png",
+              "Fighter/animations/Cross_Punch/north-east/frame_003.png",
+              "Fighter/animations/Cross_Punch/north-east/frame_004.png",
+              "Fighter/animations/Cross_Punch/north-east/frame_005.png"
+            ],
+            "east": [
+              "Fighter/animations/Cross_Punch/east/frame_000.png",
+              "Fighter/animations/Cross_Punch/east/frame_001.png",
+              "Fighter/animations/Cross_Punch/east/frame_002.png",
+              "Fighter/animations/Cross_Punch/east/frame_003.png",
+              "Fighter/animations/Cross_Punch/east/frame_004.png",
+              "Fighter/animations/Cross_Punch/east/frame_005.png"
+            ],
+            "north-west": [
+              "Fighter/animations/Cross_Punch/north-west/frame_000.png",
+              "Fighter/animations/Cross_Punch/north-west/frame_001.png",
+              "Fighter/animations/Cross_Punch/north-west/frame_002.png",
+              "Fighter/animations/Cross_Punch/north-west/frame_003.png",
+              "Fighter/animations/Cross_Punch/north-west/frame_004.png",
+              "Fighter/animations/Cross_Punch/north-west/frame_005.png"
+            ],
+            "south": [
+              "Fighter/animations/Cross_Punch/south/frame_000.png",
+              "Fighter/animations/Cross_Punch/south/frame_001.png",
+              "Fighter/animations/Cross_Punch/south/frame_002.png",
+              "Fighter/animations/Cross_Punch/south/frame_003.png",
+              "Fighter/animations/Cross_Punch/south/frame_004.png",
+              "Fighter/animations/Cross_Punch/south/frame_005.png"
+            ],
+            "south-east": [
+              "Fighter/animations/Cross_Punch/south-east/frame_000.png",
+              "Fighter/animations/Cross_Punch/south-east/frame_001.png",
+              "Fighter/animations/Cross_Punch/south-east/frame_002.png",
+              "Fighter/animations/Cross_Punch/south-east/frame_003.png",
+              "Fighter/animations/Cross_Punch/south-east/frame_004.png",
+              "Fighter/animations/Cross_Punch/south-east/frame_005.png"
+            ],
+            "west": [
+              "Fighter/animations/Cross_Punch/west/frame_000.png",
+              "Fighter/animations/Cross_Punch/west/frame_001.png",
+              "Fighter/animations/Cross_Punch/west/frame_002.png",
+              "Fighter/animations/Cross_Punch/west/frame_003.png",
+              "Fighter/animations/Cross_Punch/west/frame_004.png",
+              "Fighter/animations/Cross_Punch/west/frame_005.png"
+            ]
+          },
+          "Leg_Sweep": {
+            "west": [
+              "Fighter/animations/Leg_Sweep/west/frame_000.png",
+              "Fighter/animations/Leg_Sweep/west/frame_001.png",
+              "Fighter/animations/Leg_Sweep/west/frame_002.png",
+              "Fighter/animations/Leg_Sweep/west/frame_003.png",
+              "Fighter/animations/Leg_Sweep/west/frame_004.png",
+              "Fighter/animations/Leg_Sweep/west/frame_005.png",
+              "Fighter/animations/Leg_Sweep/west/frame_006.png"
+            ],
+            "north-east": [
+              "Fighter/animations/Leg_Sweep/north-east/frame_000.png",
+              "Fighter/animations/Leg_Sweep/north-east/frame_001.png",
+              "Fighter/animations/Leg_Sweep/north-east/frame_002.png",
+              "Fighter/animations/Leg_Sweep/north-east/frame_003.png",
+              "Fighter/animations/Leg_Sweep/north-east/frame_004.png",
+              "Fighter/animations/Leg_Sweep/north-east/frame_005.png",
+              "Fighter/animations/Leg_Sweep/north-east/frame_006.png"
+            ],
+            "south": [
+              "Fighter/animations/Leg_Sweep/south/frame_000.png",
+              "Fighter/animations/Leg_Sweep/south/frame_001.png",
+              "Fighter/animations/Leg_Sweep/south/frame_002.png",
+              "Fighter/animations/Leg_Sweep/south/frame_003.png",
+              "Fighter/animations/Leg_Sweep/south/frame_004.png",
+              "Fighter/animations/Leg_Sweep/south/frame_005.png",
+              "Fighter/animations/Leg_Sweep/south/frame_006.png"
+            ],
+            "north": [
+              "Fighter/animations/Leg_Sweep/north/frame_000.png",
+              "Fighter/animations/Leg_Sweep/north/frame_001.png",
+              "Fighter/animations/Leg_Sweep/north/frame_002.png",
+              "Fighter/animations/Leg_Sweep/north/frame_003.png",
+              "Fighter/animations/Leg_Sweep/north/frame_004.png",
+              "Fighter/animations/Leg_Sweep/north/frame_005.png",
+              "Fighter/animations/Leg_Sweep/north/frame_006.png"
+            ],
+            "east": [
+              "Fighter/animations/Leg_Sweep/east/frame_000.png",
+              "Fighter/animations/Leg_Sweep/east/frame_001.png",
+              "Fighter/animations/Leg_Sweep/east/frame_002.png",
+              "Fighter/animations/Leg_Sweep/east/frame_003.png",
+              "Fighter/animations/Leg_Sweep/east/frame_004.png",
+              "Fighter/animations/Leg_Sweep/east/frame_005.png",
+              "Fighter/animations/Leg_Sweep/east/frame_006.png"
+            ],
+            "north-west": [
+              "Fighter/animations/Leg_Sweep/north-west/frame_000.png",
+              "Fighter/animations/Leg_Sweep/north-west/frame_001.png",
+              "Fighter/animations/Leg_Sweep/north-west/frame_002.png",
+              "Fighter/animations/Leg_Sweep/north-west/frame_003.png",
+              "Fighter/animations/Leg_Sweep/north-west/frame_004.png",
+              "Fighter/animations/Leg_Sweep/north-west/frame_005.png",
+              "Fighter/animations/Leg_Sweep/north-west/frame_006.png"
+            ],
+            "south-west": [
+              "Fighter/animations/Leg_Sweep/south-west/frame_000.png",
+              "Fighter/animations/Leg_Sweep/south-west/frame_001.png",
+              "Fighter/animations/Leg_Sweep/south-west/frame_002.png",
+              "Fighter/animations/Leg_Sweep/south-west/frame_003.png",
+              "Fighter/animations/Leg_Sweep/south-west/frame_004.png",
+              "Fighter/animations/Leg_Sweep/south-west/frame_005.png",
+              "Fighter/animations/Leg_Sweep/south-west/frame_006.png"
+            ],
+            "south-east": [
+              "Fighter/animations/Leg_Sweep/south-east/frame_000.png",
+              "Fighter/animations/Leg_Sweep/south-east/frame_001.png",
+              "Fighter/animations/Leg_Sweep/south-east/frame_002.png",
+              "Fighter/animations/Leg_Sweep/south-east/frame_003.png",
+              "Fighter/animations/Leg_Sweep/south-east/frame_004.png",
+              "Fighter/animations/Leg_Sweep/south-east/frame_005.png",
+              "Fighter/animations/Leg_Sweep/south-east/frame_006.png"
+            ]
+          },
+          "Confident_Walk": {
+            "south-east": [
+              "Fighter/animations/Confident_Walk/south-east/frame_000.png",
+              "Fighter/animations/Confident_Walk/south-east/frame_001.png",
+              "Fighter/animations/Confident_Walk/south-east/frame_002.png",
+              "Fighter/animations/Confident_Walk/south-east/frame_003.png",
+              "Fighter/animations/Confident_Walk/south-east/frame_004.png",
+              "Fighter/animations/Confident_Walk/south-east/frame_005.png"
+            ],
+            "north-west": [
+              "Fighter/animations/Confident_Walk/north-west/frame_000.png",
+              "Fighter/animations/Confident_Walk/north-west/frame_001.png",
+              "Fighter/animations/Confident_Walk/north-west/frame_002.png",
+              "Fighter/animations/Confident_Walk/north-west/frame_003.png",
+              "Fighter/animations/Confident_Walk/north-west/frame_004.png",
+              "Fighter/animations/Confident_Walk/north-west/frame_005.png"
+            ],
+            "south": [
+              "Fighter/animations/Confident_Walk/south/frame_000.png",
+              "Fighter/animations/Confident_Walk/south/frame_001.png",
+              "Fighter/animations/Confident_Walk/south/frame_002.png",
+              "Fighter/animations/Confident_Walk/south/frame_003.png",
+              "Fighter/animations/Confident_Walk/south/frame_004.png",
+              "Fighter/animations/Confident_Walk/south/frame_005.png"
+            ],
+            "west": [
+              "Fighter/animations/Confident_Walk/west/frame_000.png",
+              "Fighter/animations/Confident_Walk/west/frame_001.png",
+              "Fighter/animations/Confident_Walk/west/frame_002.png",
+              "Fighter/animations/Confident_Walk/west/frame_003.png",
+              "Fighter/animations/Confident_Walk/west/frame_004.png",
+              "Fighter/animations/Confident_Walk/west/frame_005.png"
+            ],
+            "north": [
+              "Fighter/animations/Confident_Walk/north/frame_000.png",
+              "Fighter/animations/Confident_Walk/north/frame_001.png",
+              "Fighter/animations/Confident_Walk/north/frame_002.png",
+              "Fighter/animations/Confident_Walk/north/frame_003.png",
+              "Fighter/animations/Confident_Walk/north/frame_004.png",
+              "Fighter/animations/Confident_Walk/north/frame_005.png"
+            ],
+            "east": [
+              "Fighter/animations/Confident_Walk/east/frame_000.png",
+              "Fighter/animations/Confident_Walk/east/frame_001.png",
+              "Fighter/animations/Confident_Walk/east/frame_002.png",
+              "Fighter/animations/Confident_Walk/east/frame_003.png",
+              "Fighter/animations/Confident_Walk/east/frame_004.png",
+              "Fighter/animations/Confident_Walk/east/frame_005.png"
+            ],
+            "south-west": [
+              "Fighter/animations/Confident_Walk/south-west/frame_000.png",
+              "Fighter/animations/Confident_Walk/south-west/frame_001.png",
+              "Fighter/animations/Confident_Walk/south-west/frame_002.png",
+              "Fighter/animations/Confident_Walk/south-west/frame_003.png",
+              "Fighter/animations/Confident_Walk/south-west/frame_004.png",
+              "Fighter/animations/Confident_Walk/south-west/frame_005.png"
+            ],
+            "north-east": [
+              "Fighter/animations/Confident_Walk/north-east/frame_000.png",
+              "Fighter/animations/Confident_Walk/north-east/frame_001.png",
+              "Fighter/animations/Confident_Walk/north-east/frame_002.png",
+              "Fighter/animations/Confident_Walk/north-east/frame_003.png",
+              "Fighter/animations/Confident_Walk/north-east/frame_004.png",
+              "Fighter/animations/Confident_Walk/north-east/frame_005.png"
+            ]
+          },
+          "Lead_Jab": {
+            "south": [
+              "Fighter/animations/Lead_Jab/south/frame_000.png",
+              "Fighter/animations/Lead_Jab/south/frame_001.png",
+              "Fighter/animations/Lead_Jab/south/frame_002.png"
+            ],
+            "north-west": [
+              "Fighter/animations/Lead_Jab/north-west/frame_000.png",
+              "Fighter/animations/Lead_Jab/north-west/frame_001.png",
+              "Fighter/animations/Lead_Jab/north-west/frame_002.png"
+            ],
+            "east": [
+              "Fighter/animations/Lead_Jab/east/frame_000.png",
+              "Fighter/animations/Lead_Jab/east/frame_001.png",
+              "Fighter/animations/Lead_Jab/east/frame_002.png"
+            ],
+            "north": [
+              "Fighter/animations/Lead_Jab/north/frame_000.png",
+              "Fighter/animations/Lead_Jab/north/frame_001.png",
+              "Fighter/animations/Lead_Jab/north/frame_002.png"
+            ],
+            "south-east": [
+              "Fighter/animations/Lead_Jab/south-east/frame_000.png",
+              "Fighter/animations/Lead_Jab/south-east/frame_001.png",
+              "Fighter/animations/Lead_Jab/south-east/frame_002.png"
+            ],
+            "west": [
+              "Fighter/animations/Lead_Jab/west/frame_000.png",
+              "Fighter/animations/Lead_Jab/west/frame_001.png",
+              "Fighter/animations/Lead_Jab/west/frame_002.png"
+            ]
+          },
+          "Taking_Punch": {
+            "west": [
+              "Fighter/animations/Taking_Punch/west/frame_000.png",
+              "Fighter/animations/Taking_Punch/west/frame_001.png",
+              "Fighter/animations/Taking_Punch/west/frame_002.png",
+              "Fighter/animations/Taking_Punch/west/frame_003.png",
+              "Fighter/animations/Taking_Punch/west/frame_004.png",
+              "Fighter/animations/Taking_Punch/west/frame_005.png"
+            ],
+            "south-east": [
+              "Fighter/animations/Taking_Punch/south-east/frame_000.png",
+              "Fighter/animations/Taking_Punch/south-east/frame_001.png",
+              "Fighter/animations/Taking_Punch/south-east/frame_002.png",
+              "Fighter/animations/Taking_Punch/south-east/frame_003.png",
+              "Fighter/animations/Taking_Punch/south-east/frame_004.png",
+              "Fighter/animations/Taking_Punch/south-east/frame_005.png"
+            ],
+            "north-west": [
+              "Fighter/animations/Taking_Punch/north-west/frame_000.png",
+              "Fighter/animations/Taking_Punch/north-west/frame_001.png",
+              "Fighter/animations/Taking_Punch/north-west/frame_002.png",
+              "Fighter/animations/Taking_Punch/north-west/frame_003.png",
+              "Fighter/animations/Taking_Punch/north-west/frame_004.png",
+              "Fighter/animations/Taking_Punch/north-west/frame_005.png"
+            ],
+            "north": [
+              "Fighter/animations/Taking_Punch/north/frame_000.png",
+              "Fighter/animations/Taking_Punch/north/frame_001.png",
+              "Fighter/animations/Taking_Punch/north/frame_002.png",
+              "Fighter/animations/Taking_Punch/north/frame_003.png",
+              "Fighter/animations/Taking_Punch/north/frame_004.png",
+              "Fighter/animations/Taking_Punch/north/frame_005.png"
+            ],
+            "north-east": [
+              "Fighter/animations/Taking_Punch/north-east/frame_000.png",
+              "Fighter/animations/Taking_Punch/north-east/frame_001.png",
+              "Fighter/animations/Taking_Punch/north-east/frame_002.png",
+              "Fighter/animations/Taking_Punch/north-east/frame_003.png",
+              "Fighter/animations/Taking_Punch/north-east/frame_004.png",
+              "Fighter/animations/Taking_Punch/north-east/frame_005.png"
+            ],
+            "south": [
+              "Fighter/animations/Taking_Punch/south/frame_000.png",
+              "Fighter/animations/Taking_Punch/south/frame_001.png",
+              "Fighter/animations/Taking_Punch/south/frame_002.png",
+              "Fighter/animations/Taking_Punch/south/frame_003.png",
+              "Fighter/animations/Taking_Punch/south/frame_004.png",
+              "Fighter/animations/Taking_Punch/south/frame_005.png"
+            ],
+            "east": [
+              "Fighter/animations/Taking_Punch/east/frame_000.png",
+              "Fighter/animations/Taking_Punch/east/frame_001.png",
+              "Fighter/animations/Taking_Punch/east/frame_002.png",
+              "Fighter/animations/Taking_Punch/east/frame_003.png",
+              "Fighter/animations/Taking_Punch/east/frame_004.png",
+              "Fighter/animations/Taking_Punch/east/frame_005.png"
+            ],
+            "south-west": [
+              "Fighter/animations/Taking_Punch/south-west/frame_000.png",
+              "Fighter/animations/Taking_Punch/south-west/frame_001.png",
+              "Fighter/animations/Taking_Punch/south-west/frame_002.png",
+              "Fighter/animations/Taking_Punch/south-west/frame_003.png",
+              "Fighter/animations/Taking_Punch/south-west/frame_004.png",
+              "Fighter/animations/Taking_Punch/south-west/frame_005.png"
+            ]
+          },
+          "Surprise_Uppercut": {
+            "north-west": [
+              "Fighter/animations/Surprise_Uppercut/north-west/frame_000.png",
+              "Fighter/animations/Surprise_Uppercut/north-west/frame_001.png",
+              "Fighter/animations/Surprise_Uppercut/north-west/frame_002.png",
+              "Fighter/animations/Surprise_Uppercut/north-west/frame_003.png",
+              "Fighter/animations/Surprise_Uppercut/north-west/frame_004.png",
+              "Fighter/animations/Surprise_Uppercut/north-west/frame_005.png",
+              "Fighter/animations/Surprise_Uppercut/north-west/frame_006.png"
+            ],
+            "south-west": [
+              "Fighter/animations/Surprise_Uppercut/south-west/frame_000.png",
+              "Fighter/animations/Surprise_Uppercut/south-west/frame_001.png",
+              "Fighter/animations/Surprise_Uppercut/south-west/frame_002.png",
+              "Fighter/animations/Surprise_Uppercut/south-west/frame_003.png",
+              "Fighter/animations/Surprise_Uppercut/south-west/frame_004.png",
+              "Fighter/animations/Surprise_Uppercut/south-west/frame_005.png",
+              "Fighter/animations/Surprise_Uppercut/south-west/frame_006.png"
+            ],
+            "west": [
+              "Fighter/animations/Surprise_Uppercut/west/frame_000.png",
+              "Fighter/animations/Surprise_Uppercut/west/frame_001.png",
+              "Fighter/animations/Surprise_Uppercut/west/frame_002.png",
+              "Fighter/animations/Surprise_Uppercut/west/frame_003.png",
+              "Fighter/animations/Surprise_Uppercut/west/frame_004.png",
+              "Fighter/animations/Surprise_Uppercut/west/frame_005.png",
+              "Fighter/animations/Surprise_Uppercut/west/frame_006.png"
+            ],
+            "north-east": [
+              "Fighter/animations/Surprise_Uppercut/north-east/frame_000.png",
+              "Fighter/animations/Surprise_Uppercut/north-east/frame_001.png",
+              "Fighter/animations/Surprise_Uppercut/north-east/frame_002.png",
+              "Fighter/animations/Surprise_Uppercut/north-east/frame_003.png",
+              "Fighter/animations/Surprise_Uppercut/north-east/frame_004.png",
+              "Fighter/animations/Surprise_Uppercut/north-east/frame_005.png",
+              "Fighter/animations/Surprise_Uppercut/north-east/frame_006.png"
+            ],
+            "south-east": [
+              "Fighter/animations/Surprise_Uppercut/south-east/frame_000.png",
+              "Fighter/animations/Surprise_Uppercut/south-east/frame_001.png",
+              "Fighter/animations/Surprise_Uppercut/south-east/frame_002.png",
+              "Fighter/animations/Surprise_Uppercut/south-east/frame_003.png",
+              "Fighter/animations/Surprise_Uppercut/south-east/frame_004.png",
+              "Fighter/animations/Surprise_Uppercut/south-east/frame_005.png",
+              "Fighter/animations/Surprise_Uppercut/south-east/frame_006.png"
+            ],
+            "south": [
+              "Fighter/animations/Surprise_Uppercut/south/frame_000.png",
+              "Fighter/animations/Surprise_Uppercut/south/frame_001.png",
+              "Fighter/animations/Surprise_Uppercut/south/frame_002.png",
+              "Fighter/animations/Surprise_Uppercut/south/frame_003.png",
+              "Fighter/animations/Surprise_Uppercut/south/frame_004.png",
+              "Fighter/animations/Surprise_Uppercut/south/frame_005.png",
+              "Fighter/animations/Surprise_Uppercut/south/frame_006.png"
+            ],
+            "east": [
+              "Fighter/animations/Surprise_Uppercut/east/frame_000.png",
+              "Fighter/animations/Surprise_Uppercut/east/frame_001.png",
+              "Fighter/animations/Surprise_Uppercut/east/frame_002.png",
+              "Fighter/animations/Surprise_Uppercut/east/frame_003.png",
+              "Fighter/animations/Surprise_Uppercut/east/frame_004.png",
+              "Fighter/animations/Surprise_Uppercut/east/frame_005.png",
+              "Fighter/animations/Surprise_Uppercut/east/frame_006.png"
+            ]
+          },
+          "Various_Angry_Animations": {
+            "north-east": [
+              "Fighter/animations/Various_Angry_Animations/north-east/frame_000.png",
+              "Fighter/animations/Various_Angry_Animations/north-east/frame_001.png",
+              "Fighter/animations/Various_Angry_Animations/north-east/frame_002.png",
+              "Fighter/animations/Various_Angry_Animations/north-east/frame_003.png",
+              "Fighter/animations/Various_Angry_Animations/north-east/frame_004.png",
+              "Fighter/animations/Various_Angry_Animations/north-east/frame_005.png",
+              "Fighter/animations/Various_Angry_Animations/north-east/frame_006.png",
+              "Fighter/animations/Various_Angry_Animations/north-east/frame_007.png",
+              "Fighter/animations/Various_Angry_Animations/north-east/frame_008.png"
+            ],
+            "west": [
+              "Fighter/animations/Various_Angry_Animations/west/frame_000.png",
+              "Fighter/animations/Various_Angry_Animations/west/frame_001.png",
+              "Fighter/animations/Various_Angry_Animations/west/frame_002.png",
+              "Fighter/animations/Various_Angry_Animations/west/frame_003.png",
+              "Fighter/animations/Various_Angry_Animations/west/frame_004.png",
+              "Fighter/animations/Various_Angry_Animations/west/frame_005.png",
+              "Fighter/animations/Various_Angry_Animations/west/frame_006.png",
+              "Fighter/animations/Various_Angry_Animations/west/frame_007.png",
+              "Fighter/animations/Various_Angry_Animations/west/frame_008.png"
+            ],
+            "south-east": [
+              "Fighter/animations/Various_Angry_Animations/south-east/frame_000.png",
+              "Fighter/animations/Various_Angry_Animations/south-east/frame_001.png",
+              "Fighter/animations/Various_Angry_Animations/south-east/frame_002.png",
+              "Fighter/animations/Various_Angry_Animations/south-east/frame_003.png",
+              "Fighter/animations/Various_Angry_Animations/south-east/frame_004.png",
+              "Fighter/animations/Various_Angry_Animations/south-east/frame_005.png",
+              "Fighter/animations/Various_Angry_Animations/south-east/frame_006.png",
+              "Fighter/animations/Various_Angry_Animations/south-east/frame_007.png",
+              "Fighter/animations/Various_Angry_Animations/south-east/frame_008.png"
+            ],
+            "south": [
+              "Fighter/animations/Various_Angry_Animations/south/frame_000.png",
+              "Fighter/animations/Various_Angry_Animations/south/frame_001.png",
+              "Fighter/animations/Various_Angry_Animations/south/frame_002.png",
+              "Fighter/animations/Various_Angry_Animations/south/frame_003.png",
+              "Fighter/animations/Various_Angry_Animations/south/frame_004.png",
+              "Fighter/animations/Various_Angry_Animations/south/frame_005.png",
+              "Fighter/animations/Various_Angry_Animations/south/frame_006.png",
+              "Fighter/animations/Various_Angry_Animations/south/frame_007.png",
+              "Fighter/animations/Various_Angry_Animations/south/frame_008.png"
+            ],
+            "east": [
+              "Fighter/animations/Various_Angry_Animations/east/frame_000.png",
+              "Fighter/animations/Various_Angry_Animations/east/frame_001.png",
+              "Fighter/animations/Various_Angry_Animations/east/frame_002.png",
+              "Fighter/animations/Various_Angry_Animations/east/frame_003.png",
+              "Fighter/animations/Various_Angry_Animations/east/frame_004.png",
+              "Fighter/animations/Various_Angry_Animations/east/frame_005.png",
+              "Fighter/animations/Various_Angry_Animations/east/frame_006.png",
+              "Fighter/animations/Various_Angry_Animations/east/frame_007.png",
+              "Fighter/animations/Various_Angry_Animations/east/frame_008.png"
+            ],
+            "south-west": [
+              "Fighter/animations/Various_Angry_Animations/south-west/frame_000.png",
+              "Fighter/animations/Various_Angry_Animations/south-west/frame_001.png",
+              "Fighter/animations/Various_Angry_Animations/south-west/frame_002.png",
+              "Fighter/animations/Various_Angry_Animations/south-west/frame_003.png",
+              "Fighter/animations/Various_Angry_Animations/south-west/frame_004.png",
+              "Fighter/animations/Various_Angry_Animations/south-west/frame_005.png",
+              "Fighter/animations/Various_Angry_Animations/south-west/frame_006.png",
+              "Fighter/animations/Various_Angry_Animations/south-west/frame_007.png",
+              "Fighter/animations/Various_Angry_Animations/south-west/frame_008.png"
+            ],
+            "north-west-eff25eac": [
+              "Fighter/animations/Various_Angry_Animations/north-west-eff25eac/frame_000.png",
+              "Fighter/animations/Various_Angry_Animations/north-west-eff25eac/frame_001.png",
+              "Fighter/animations/Various_Angry_Animations/north-west-eff25eac/frame_002.png",
+              "Fighter/animations/Various_Angry_Animations/north-west-eff25eac/frame_003.png",
+              "Fighter/animations/Various_Angry_Animations/north-west-eff25eac/frame_004.png",
+              "Fighter/animations/Various_Angry_Animations/north-west-eff25eac/frame_005.png",
+              "Fighter/animations/Various_Angry_Animations/north-west-eff25eac/frame_006.png",
+              "Fighter/animations/Various_Angry_Animations/north-west-eff25eac/frame_007.png",
+              "Fighter/animations/Various_Angry_Animations/north-west-eff25eac/frame_008.png"
+            ],
+            "north-west-f645a90d": [
+              "Fighter/animations/Various_Angry_Animations/north-west-f645a90d/frame_000.png",
+              "Fighter/animations/Various_Angry_Animations/north-west-f645a90d/frame_001.png",
+              "Fighter/animations/Various_Angry_Animations/north-west-f645a90d/frame_002.png",
+              "Fighter/animations/Various_Angry_Animations/north-west-f645a90d/frame_003.png",
+              "Fighter/animations/Various_Angry_Animations/north-west-f645a90d/frame_004.png",
+              "Fighter/animations/Various_Angry_Animations/north-west-f645a90d/frame_005.png",
+              "Fighter/animations/Various_Angry_Animations/north-west-f645a90d/frame_006.png",
+              "Fighter/animations/Various_Angry_Animations/north-west-f645a90d/frame_007.png",
+              "Fighter/animations/Various_Angry_Animations/north-west-f645a90d/frame_008.png"
+            ]
+          },
+          "Falling_Back_Death": {
+            "north-east": [
+              "Fighter/animations/Falling_Back_Death/north-east/frame_000.png",
+              "Fighter/animations/Falling_Back_Death/north-east/frame_001.png",
+              "Fighter/animations/Falling_Back_Death/north-east/frame_002.png",
+              "Fighter/animations/Falling_Back_Death/north-east/frame_003.png",
+              "Fighter/animations/Falling_Back_Death/north-east/frame_004.png",
+              "Fighter/animations/Falling_Back_Death/north-east/frame_005.png",
+              "Fighter/animations/Falling_Back_Death/north-east/frame_006.png"
+            ],
+            "west": [
+              "Fighter/animations/Falling_Back_Death/west/frame_000.png",
+              "Fighter/animations/Falling_Back_Death/west/frame_001.png",
+              "Fighter/animations/Falling_Back_Death/west/frame_002.png",
+              "Fighter/animations/Falling_Back_Death/west/frame_003.png",
+              "Fighter/animations/Falling_Back_Death/west/frame_004.png",
+              "Fighter/animations/Falling_Back_Death/west/frame_005.png",
+              "Fighter/animations/Falling_Back_Death/west/frame_006.png"
+            ],
+            "south": [
+              "Fighter/animations/Falling_Back_Death/south/frame_000.png",
+              "Fighter/animations/Falling_Back_Death/south/frame_001.png",
+              "Fighter/animations/Falling_Back_Death/south/frame_002.png",
+              "Fighter/animations/Falling_Back_Death/south/frame_003.png",
+              "Fighter/animations/Falling_Back_Death/south/frame_004.png",
+              "Fighter/animations/Falling_Back_Death/south/frame_005.png",
+              "Fighter/animations/Falling_Back_Death/south/frame_006.png"
+            ],
+            "east": [
+              "Fighter/animations/Falling_Back_Death/east/frame_000.png",
+              "Fighter/animations/Falling_Back_Death/east/frame_001.png",
+              "Fighter/animations/Falling_Back_Death/east/frame_002.png",
+              "Fighter/animations/Falling_Back_Death/east/frame_003.png",
+              "Fighter/animations/Falling_Back_Death/east/frame_004.png",
+              "Fighter/animations/Falling_Back_Death/east/frame_005.png",
+              "Fighter/animations/Falling_Back_Death/east/frame_006.png"
+            ],
+            "south-east": [
+              "Fighter/animations/Falling_Back_Death/south-east/frame_000.png",
+              "Fighter/animations/Falling_Back_Death/south-east/frame_001.png",
+              "Fighter/animations/Falling_Back_Death/south-east/frame_002.png",
+              "Fighter/animations/Falling_Back_Death/south-east/frame_003.png",
+              "Fighter/animations/Falling_Back_Death/south-east/frame_004.png",
+              "Fighter/animations/Falling_Back_Death/south-east/frame_005.png",
+              "Fighter/animations/Falling_Back_Death/south-east/frame_006.png"
+            ],
+            "south-west": [
+              "Fighter/animations/Falling_Back_Death/south-west/frame_000.png",
+              "Fighter/animations/Falling_Back_Death/south-west/frame_001.png",
+              "Fighter/animations/Falling_Back_Death/south-west/frame_002.png",
+              "Fighter/animations/Falling_Back_Death/south-west/frame_003.png",
+              "Fighter/animations/Falling_Back_Death/south-west/frame_004.png",
+              "Fighter/animations/Falling_Back_Death/south-west/frame_005.png",
+              "Fighter/animations/Falling_Back_Death/south-west/frame_006.png"
+            ],
+            "north-west": [
+              "Fighter/animations/Falling_Back_Death/north-west/frame_000.png",
+              "Fighter/animations/Falling_Back_Death/north-west/frame_001.png",
+              "Fighter/animations/Falling_Back_Death/north-west/frame_002.png",
+              "Fighter/animations/Falling_Back_Death/north-west/frame_003.png",
+              "Fighter/animations/Falling_Back_Death/north-west/frame_004.png",
+              "Fighter/animations/Falling_Back_Death/north-west/frame_005.png",
+              "Fighter/animations/Falling_Back_Death/north-west/frame_006.png"
+            ],
+            "north": [
+              "Fighter/animations/Falling_Back_Death/north/frame_000.png",
+              "Fighter/animations/Falling_Back_Death/north/frame_001.png",
+              "Fighter/animations/Falling_Back_Death/north/frame_002.png",
+              "Fighter/animations/Falling_Back_Death/north/frame_003.png",
+              "Fighter/animations/Falling_Back_Death/north/frame_004.png",
+              "Fighter/animations/Falling_Back_Death/north/frame_005.png",
+              "Fighter/animations/Falling_Back_Death/north/frame_006.png"
+            ]
+          },
+          "Fight_Stance_Idle": {
+            "south": [
+              "Fighter/animations/Fight_Stance_Idle/south/frame_000.png",
+              "Fighter/animations/Fight_Stance_Idle/south/frame_001.png",
+              "Fighter/animations/Fight_Stance_Idle/south/frame_002.png",
+              "Fighter/animations/Fight_Stance_Idle/south/frame_003.png",
+              "Fighter/animations/Fight_Stance_Idle/south/frame_004.png",
+              "Fighter/animations/Fight_Stance_Idle/south/frame_005.png",
+              "Fighter/animations/Fight_Stance_Idle/south/frame_006.png",
+              "Fighter/animations/Fight_Stance_Idle/south/frame_007.png"
+            ],
+            "north": [
+              "Fighter/animations/Fight_Stance_Idle/north/frame_000.png",
+              "Fighter/animations/Fight_Stance_Idle/north/frame_001.png",
+              "Fighter/animations/Fight_Stance_Idle/north/frame_002.png",
+              "Fighter/animations/Fight_Stance_Idle/north/frame_003.png",
+              "Fighter/animations/Fight_Stance_Idle/north/frame_004.png",
+              "Fighter/animations/Fight_Stance_Idle/north/frame_005.png",
+              "Fighter/animations/Fight_Stance_Idle/north/frame_006.png",
+              "Fighter/animations/Fight_Stance_Idle/north/frame_007.png"
+            ],
+            "west": [
+              "Fighter/animations/Fight_Stance_Idle/west/frame_000.png",
+              "Fighter/animations/Fight_Stance_Idle/west/frame_001.png",
+              "Fighter/animations/Fight_Stance_Idle/west/frame_002.png",
+              "Fighter/animations/Fight_Stance_Idle/west/frame_003.png",
+              "Fighter/animations/Fight_Stance_Idle/west/frame_004.png",
+              "Fighter/animations/Fight_Stance_Idle/west/frame_005.png",
+              "Fighter/animations/Fight_Stance_Idle/west/frame_006.png",
+              "Fighter/animations/Fight_Stance_Idle/west/frame_007.png"
+            ],
+            "east": [
+              "Fighter/animations/Fight_Stance_Idle/east/frame_000.png",
+              "Fighter/animations/Fight_Stance_Idle/east/frame_001.png",
+              "Fighter/animations/Fight_Stance_Idle/east/frame_002.png",
+              "Fighter/animations/Fight_Stance_Idle/east/frame_003.png",
+              "Fighter/animations/Fight_Stance_Idle/east/frame_004.png",
+              "Fighter/animations/Fight_Stance_Idle/east/frame_005.png",
+              "Fighter/animations/Fight_Stance_Idle/east/frame_006.png",
+              "Fighter/animations/Fight_Stance_Idle/east/frame_007.png"
+            ]
+          },
+          "Jumping": {
+            "north": [
+              "Fighter/animations/Jumping/north/frame_000.png",
+              "Fighter/animations/Jumping/north/frame_001.png",
+              "Fighter/animations/Jumping/north/frame_002.png",
+              "Fighter/animations/Jumping/north/frame_003.png",
+              "Fighter/animations/Jumping/north/frame_004.png",
+              "Fighter/animations/Jumping/north/frame_005.png",
+              "Fighter/animations/Jumping/north/frame_006.png",
+              "Fighter/animations/Jumping/north/frame_007.png",
+              "Fighter/animations/Jumping/north/frame_008.png"
+            ],
+            "south": [
+              "Fighter/animations/Jumping/south/frame_000.png",
+              "Fighter/animations/Jumping/south/frame_001.png",
+              "Fighter/animations/Jumping/south/frame_002.png",
+              "Fighter/animations/Jumping/south/frame_003.png",
+              "Fighter/animations/Jumping/south/frame_004.png",
+              "Fighter/animations/Jumping/south/frame_005.png",
+              "Fighter/animations/Jumping/south/frame_006.png",
+              "Fighter/animations/Jumping/south/frame_007.png",
+              "Fighter/animations/Jumping/south/frame_008.png"
+            ],
+            "west": [
+              "Fighter/animations/Jumping/west/frame_000.png",
+              "Fighter/animations/Jumping/west/frame_001.png",
+              "Fighter/animations/Jumping/west/frame_002.png",
+              "Fighter/animations/Jumping/west/frame_003.png",
+              "Fighter/animations/Jumping/west/frame_004.png",
+              "Fighter/animations/Jumping/west/frame_005.png",
+              "Fighter/animations/Jumping/west/frame_006.png",
+              "Fighter/animations/Jumping/west/frame_007.png",
+              "Fighter/animations/Jumping/west/frame_008.png"
+            ],
+            "east": [
+              "Fighter/animations/Jumping/east/frame_000.png",
+              "Fighter/animations/Jumping/east/frame_001.png",
+              "Fighter/animations/Jumping/east/frame_002.png",
+              "Fighter/animations/Jumping/east/frame_003.png",
+              "Fighter/animations/Jumping/east/frame_004.png",
+              "Fighter/animations/Jumping/east/frame_005.png",
+              "Fighter/animations/Jumping/east/frame_006.png",
+              "Fighter/animations/Jumping/east/frame_007.png",
+              "Fighter/animations/Jumping/east/frame_008.png"
+            ]
+          },
+          "Flying_Kick": {
+            "south-east": [
+              "Fighter/animations/Flying_Kick/south-east/frame_000.png",
+              "Fighter/animations/Flying_Kick/south-east/frame_001.png",
+              "Fighter/animations/Flying_Kick/south-east/frame_002.png",
+              "Fighter/animations/Flying_Kick/south-east/frame_003.png",
+              "Fighter/animations/Flying_Kick/south-east/frame_004.png",
+              "Fighter/animations/Flying_Kick/south-east/frame_005.png"
+            ],
+            "north-west": [
+              "Fighter/animations/Flying_Kick/north-west/frame_000.png",
+              "Fighter/animations/Flying_Kick/north-west/frame_001.png",
+              "Fighter/animations/Flying_Kick/north-west/frame_002.png",
+              "Fighter/animations/Flying_Kick/north-west/frame_003.png",
+              "Fighter/animations/Flying_Kick/north-west/frame_004.png",
+              "Fighter/animations/Flying_Kick/north-west/frame_005.png"
+            ],
+            "north-east": [
+              "Fighter/animations/Flying_Kick/north-east/frame_000.png",
+              "Fighter/animations/Flying_Kick/north-east/frame_001.png",
+              "Fighter/animations/Flying_Kick/north-east/frame_002.png",
+              "Fighter/animations/Flying_Kick/north-east/frame_003.png",
+              "Fighter/animations/Flying_Kick/north-east/frame_004.png",
+              "Fighter/animations/Flying_Kick/north-east/frame_005.png"
+            ],
+            "east": [
+              "Fighter/animations/Flying_Kick/east/frame_000.png",
+              "Fighter/animations/Flying_Kick/east/frame_001.png",
+              "Fighter/animations/Flying_Kick/east/frame_002.png",
+              "Fighter/animations/Flying_Kick/east/frame_003.png",
+              "Fighter/animations/Flying_Kick/east/frame_004.png",
+              "Fighter/animations/Flying_Kick/east/frame_005.png"
+            ],
+            "west": [
+              "Fighter/animations/Flying_Kick/west/frame_000.png",
+              "Fighter/animations/Flying_Kick/west/frame_001.png",
+              "Fighter/animations/Flying_Kick/west/frame_002.png",
+              "Fighter/animations/Flying_Kick/west/frame_003.png",
+              "Fighter/animations/Flying_Kick/west/frame_004.png",
+              "Fighter/animations/Flying_Kick/west/frame_005.png"
+            ],
+            "south-west": [
+              "Fighter/animations/Flying_Kick/south-west/frame_000.png",
+              "Fighter/animations/Flying_Kick/south-west/frame_001.png",
+              "Fighter/animations/Flying_Kick/south-west/frame_002.png",
+              "Fighter/animations/Flying_Kick/south-west/frame_003.png",
+              "Fighter/animations/Flying_Kick/south-west/frame_004.png",
+              "Fighter/animations/Flying_Kick/south-west/frame_005.png"
+            ]
+          },
+          "High_Kick": {
+            "east": [
+              "Fighter/animations/High_Kick/east/frame_000.png",
+              "Fighter/animations/High_Kick/east/frame_001.png",
+              "Fighter/animations/High_Kick/east/frame_002.png",
+              "Fighter/animations/High_Kick/east/frame_003.png",
+              "Fighter/animations/High_Kick/east/frame_004.png",
+              "Fighter/animations/High_Kick/east/frame_005.png",
+              "Fighter/animations/High_Kick/east/frame_006.png"
+            ],
+            "south-west": [
+              "Fighter/animations/High_Kick/south-west/frame_000.png",
+              "Fighter/animations/High_Kick/south-west/frame_001.png",
+              "Fighter/animations/High_Kick/south-west/frame_002.png",
+              "Fighter/animations/High_Kick/south-west/frame_003.png",
+              "Fighter/animations/High_Kick/south-west/frame_004.png",
+              "Fighter/animations/High_Kick/south-west/frame_005.png",
+              "Fighter/animations/High_Kick/south-west/frame_006.png"
+            ],
+            "north-east": [
+              "Fighter/animations/High_Kick/north-east/frame_000.png",
+              "Fighter/animations/High_Kick/north-east/frame_001.png",
+              "Fighter/animations/High_Kick/north-east/frame_002.png",
+              "Fighter/animations/High_Kick/north-east/frame_003.png",
+              "Fighter/animations/High_Kick/north-east/frame_004.png",
+              "Fighter/animations/High_Kick/north-east/frame_005.png",
+              "Fighter/animations/High_Kick/north-east/frame_006.png"
+            ],
+            "west": [
+              "Fighter/animations/High_Kick/west/frame_000.png",
+              "Fighter/animations/High_Kick/west/frame_001.png",
+              "Fighter/animations/High_Kick/west/frame_002.png",
+              "Fighter/animations/High_Kick/west/frame_003.png",
+              "Fighter/animations/High_Kick/west/frame_004.png",
+              "Fighter/animations/High_Kick/west/frame_005.png",
+              "Fighter/animations/High_Kick/west/frame_006.png"
+            ],
+            "north-west": [
+              "Fighter/animations/High_Kick/north-west/frame_000.png",
+              "Fighter/animations/High_Kick/north-west/frame_001.png",
+              "Fighter/animations/High_Kick/north-west/frame_002.png",
+              "Fighter/animations/High_Kick/north-west/frame_003.png",
+              "Fighter/animations/High_Kick/north-west/frame_004.png",
+              "Fighter/animations/High_Kick/north-west/frame_005.png",
+              "Fighter/animations/High_Kick/north-west/frame_006.png"
+            ],
+            "south-east": [
+              "Fighter/animations/High_Kick/south-east/frame_000.png",
+              "Fighter/animations/High_Kick/south-east/frame_001.png",
+              "Fighter/animations/High_Kick/south-east/frame_002.png",
+              "Fighter/animations/High_Kick/south-east/frame_003.png",
+              "Fighter/animations/High_Kick/south-east/frame_004.png",
+              "Fighter/animations/High_Kick/south-east/frame_005.png",
+              "Fighter/animations/High_Kick/south-east/frame_006.png"
+            ]
+          },
+          "K.O._Knockout": {
+            "south-east": [
+              "Fighter/animations/K.O._Knockout/south-east/frame_000.png",
+              "Fighter/animations/K.O._Knockout/south-east/frame_001.png",
+              "Fighter/animations/K.O._Knockout/south-east/frame_002.png",
+              "Fighter/animations/K.O._Knockout/south-east/frame_003.png",
+              "Fighter/animations/K.O._Knockout/south-east/frame_004.png",
+              "Fighter/animations/K.O._Knockout/south-east/frame_005.png",
+              "Fighter/animations/K.O._Knockout/south-east/frame_006.png",
+              "Fighter/animations/K.O._Knockout/south-east/frame_007.png"
+            ],
+            "north-east": [
+              "Fighter/animations/K.O._Knockout/north-east/frame_000.png",
+              "Fighter/animations/K.O._Knockout/north-east/frame_001.png",
+              "Fighter/animations/K.O._Knockout/north-east/frame_002.png",
+              "Fighter/animations/K.O._Knockout/north-east/frame_003.png",
+              "Fighter/animations/K.O._Knockout/north-east/frame_004.png",
+              "Fighter/animations/K.O._Knockout/north-east/frame_005.png",
+              "Fighter/animations/K.O._Knockout/north-east/frame_006.png",
+              "Fighter/animations/K.O._Knockout/north-east/frame_007.png"
+            ],
+            "south": [
+              "Fighter/animations/K.O._Knockout/south/frame_000.png",
+              "Fighter/animations/K.O._Knockout/south/frame_001.png",
+              "Fighter/animations/K.O._Knockout/south/frame_002.png",
+              "Fighter/animations/K.O._Knockout/south/frame_003.png",
+              "Fighter/animations/K.O._Knockout/south/frame_004.png",
+              "Fighter/animations/K.O._Knockout/south/frame_005.png",
+              "Fighter/animations/K.O._Knockout/south/frame_006.png",
+              "Fighter/animations/K.O._Knockout/south/frame_007.png"
+            ],
+            "north": [
+              "Fighter/animations/K.O._Knockout/north/frame_000.png",
+              "Fighter/animations/K.O._Knockout/north/frame_001.png",
+              "Fighter/animations/K.O._Knockout/north/frame_002.png",
+              "Fighter/animations/K.O._Knockout/north/frame_003.png",
+              "Fighter/animations/K.O._Knockout/north/frame_004.png",
+              "Fighter/animations/K.O._Knockout/north/frame_005.png",
+              "Fighter/animations/K.O._Knockout/north/frame_006.png",
+              "Fighter/animations/K.O._Knockout/north/frame_007.png"
+            ],
+            "west": [
+              "Fighter/animations/K.O._Knockout/west/frame_000.png",
+              "Fighter/animations/K.O._Knockout/west/frame_001.png",
+              "Fighter/animations/K.O._Knockout/west/frame_002.png",
+              "Fighter/animations/K.O._Knockout/west/frame_003.png",
+              "Fighter/animations/K.O._Knockout/west/frame_004.png",
+              "Fighter/animations/K.O._Knockout/west/frame_005.png",
+              "Fighter/animations/K.O._Knockout/west/frame_006.png",
+              "Fighter/animations/K.O._Knockout/west/frame_007.png"
+            ],
+            "south-west": [
+              "Fighter/animations/K.O._Knockout/south-west/frame_000.png",
+              "Fighter/animations/K.O._Knockout/south-west/frame_001.png",
+              "Fighter/animations/K.O._Knockout/south-west/frame_002.png",
+              "Fighter/animations/K.O._Knockout/south-west/frame_003.png",
+              "Fighter/animations/K.O._Knockout/south-west/frame_004.png",
+              "Fighter/animations/K.O._Knockout/south-west/frame_005.png",
+              "Fighter/animations/K.O._Knockout/south-west/frame_006.png",
+              "Fighter/animations/K.O._Knockout/south-west/frame_007.png"
+            ],
+            "east": [
+              "Fighter/animations/K.O._Knockout/east/frame_000.png",
+              "Fighter/animations/K.O._Knockout/east/frame_001.png",
+              "Fighter/animations/K.O._Knockout/east/frame_002.png",
+              "Fighter/animations/K.O._Knockout/east/frame_003.png",
+              "Fighter/animations/K.O._Knockout/east/frame_004.png",
+              "Fighter/animations/K.O._Knockout/east/frame_005.png",
+              "Fighter/animations/K.O._Knockout/east/frame_006.png",
+              "Fighter/animations/K.O._Knockout/east/frame_007.png",
+              "Fighter/animations/K.O._Knockout/east/frame_008.png"
+            ],
+            "north-west": [
+              "Fighter/animations/K.O._Knockout/north-west/frame_000.png",
+              "Fighter/animations/K.O._Knockout/north-west/frame_001.png",
+              "Fighter/animations/K.O._Knockout/north-west/frame_002.png",
+              "Fighter/animations/K.O._Knockout/north-west/frame_003.png",
+              "Fighter/animations/K.O._Knockout/north-west/frame_004.png",
+              "Fighter/animations/K.O._Knockout/north-west/frame_005.png",
+              "Fighter/animations/K.O._Knockout/north-west/frame_006.png",
+              "Fighter/animations/K.O._Knockout/north-west/frame_007.png"
+            ]
+          }
+        }
+      }
+    }
+  ],
+  "export_version": "3.1",
+  "export_date": "2026-07-15T14:52:30.004679"
+}

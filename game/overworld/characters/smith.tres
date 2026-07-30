@@ -1,0 +1,7 @@
+[gd_resource type="AtlasTexture" format=3]
+
+[ext_resource type="Texture2D" path="res://overworld/maps/tilesets/dungeon_tilemap.png" id="1_vf2pq"]
+
+[resource]
+atlas = ExtResource("1_vf2pq")
+region = Rect2(34, 119, 16, 16)
