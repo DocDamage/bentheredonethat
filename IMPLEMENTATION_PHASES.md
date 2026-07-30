@@ -341,6 +341,14 @@ campaign-wide integration after all homes exist.
 
 ## Phase 7 — Content lock and release candidate
 
+State: **implemented; automated verification complete; human release acceptance pending.**
+The locked content, release contract, two-state 192-room capture harness,
+fresh/migrated scenario simulation, extended provenance, version/publisher
+metadata, Windows RC builder, and clean-CI export job are in place. The signed
+public build, hands-on input/accessibility matrix, minimum-hardware run, and
+multi-hour soak remain acceptance gates and are not represented as automated
+passes. See `game/validation/reviews/20260730-phase7-release-candidate.md`.
+
 ### Deliverables
 
 1. Freeze content and produce the complete 192-location graph audit, 121-case

@@ -65,6 +65,13 @@ func _draw() -> void:
 	for y in range(0, ceili(bounds.size.y), 96):
 		for x in range(0, ceili(bounds.size.x), 96):
 			_draw_profile(ground_profile, Vector2(x, y))
+	var runner := Rect2(Vector2(bounds.size.x * 0.5 - 96, 0), Vector2(192, bounds.size.y))
+	draw_rect(runner, Color(0.18, 0.49, 0.72, 0.18), true)
+	draw_line(runner.position + Vector2(10, 0), runner.position + Vector2(10, runner.size.y), Color(0.76, 0.61, 0.22, 0.62), 4.0)
+	draw_line(runner.position + Vector2(runner.size.x - 10, 0), runner.position + Vector2(runner.size.x - 10, runner.size.y), Color(0.76, 0.61, 0.22, 0.62), 4.0)
+	for medallion_y in range(72, int(bounds.size.y), 192):
+		draw_circle(Vector2(bounds.size.x * 0.5, medallion_y), 22.0, Color(0.85, 0.7, 0.31, 0.24))
+		draw_circle(Vector2(bounds.size.x * 0.5, medallion_y), 14.0, Color(0.3, 0.62, 0.82, 0.24))
 	var composition_offset := (bounds.size - Vector2(384, 384)) * 0.5
 	for prop_definition in ROOM_PROPS.get(_room_id, []):
 		_draw_profile(StringName(prop_definition[0]), composition_offset + (prop_definition[1] as Vector2))

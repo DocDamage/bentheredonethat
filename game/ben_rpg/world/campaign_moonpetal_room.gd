@@ -58,12 +58,30 @@ func _draw() -> void:
 	if _dimensions == Vector2i.ZERO:
 		return
 	var bounds := Rect2(Vector2.ZERO, Vector2(_dimensions * TILE))
+	draw_rect(Rect2(Vector2(-8 * TILE, -8 * TILE), Vector2((_dimensions.x + 16) * TILE, (_dimensions.y + 16) * TILE)), Color("081b17"), true)
 	draw_rect(bounds, Color("193e35"), true)
+	# Layered garden beds and a vertical stepping-stone approach connect the
+	# player's arrival to the authored horizontal processional way.
+	for y in range(TILE, int(bounds.size.y), TILE):
+		for x in range(TILE, int(bounds.size.x), TILE):
+			var petal_index := int(x / TILE) + int(y / TILE) + int(_room_id.trim_prefix("MP-"))
+			if petal_index % 5 == 0:
+				draw_circle(Vector2(x + 13, y + 9), 3.0, Color(0.82, 0.46, 0.62, 0.34))
+				draw_circle(Vector2(x + 19, y + 14), 2.0, Color(0.94, 0.74, 0.82, 0.3))
 	var path_size: Vector2 = _profiles.world_draw_size(PATH_PROFILE) if _profiles and _profiles.has(PATH_PROFILE) else Vector2(153, 57)
 	var path_y := floorf((bounds.size.y - path_size.y) * 0.5)
+	var approach := PackedVector2Array([Vector2(bounds.size.x * 0.44, 0), Vector2(bounds.size.x * 0.56, 0), Vector2(bounds.size.x * 0.59, path_y + path_size.y), Vector2(bounds.size.x * 0.41, path_y + path_size.y)])
+	draw_colored_polygon(approach, Color(0.45, 0.42, 0.31, 0.58))
+	for step_y in range(TILE, int(path_y), TILE):
+		var step_offset := -12 if int(step_y / TILE) % 2 == 0 else 12
+		draw_circle(Vector2(bounds.size.x * 0.5 + step_offset, step_y), 13.0, Color("8f8a70"))
 	for path_x in range(0, ceili(bounds.size.x), ceili(path_size.x)):
 		_draw_profile(PATH_PROFILE, Vector2(path_x, path_y))
 	var composition_offset := (bounds.size - Vector2(384, 384)) * 0.5
 	for prop_definition in ROOM_PROPS.get(_room_id, []):
 		_draw_profile(StringName(prop_definition[0]), composition_offset + (prop_definition[1] as Vector2))
+	# Framing lanterns keep large blueprints composed even when the arrival port
+	# puts the camera above the room-specific landmark cluster.
+	_draw_profile(&"moonpetal_gate_lantern", Vector2(TILE, path_y - 72))
+	_draw_profile(&"moonpetal_gate_lantern_right", Vector2(bounds.size.x - 2 * TILE, path_y - 72))
 	draw_rect(bounds, Color("f3b4c9"), false, 2.0)

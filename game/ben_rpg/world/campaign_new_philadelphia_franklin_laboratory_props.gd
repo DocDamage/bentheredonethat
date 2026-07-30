@@ -2,7 +2,14 @@ class_name CampaignNewPhiladelphiaFranklinLaboratoryProps
 extends Node2D
 
 const PROFILES := preload("res://ben_rpg/world/campaign_visual_profile_registry.gd")
-const PLACEMENTS := [[Vector2i(6, 5), &"laboratory_west_storage"], [Vector2i(24, 5), &"laboratory_east_calibrator"], [Vector2i(6, 14), &"laboratory_analysis_station"], [Vector2i(24, 14), &"laboratory_center_storage"], [Vector2i(15, 10), &"laboratory_east_fabricator"]]
+const PLACEMENTS := [
+	[Vector2i(6, 5), &"laboratory_west_storage"], [Vector2i(11, 5), &"laboratory_west_terminal"],
+	[Vector2i(19, 5), &"laboratory_east_reactor"], [Vector2i(24, 5), &"laboratory_east_calibrator"],
+	[Vector2i(6, 14), &"laboratory_analysis_station"], [Vector2i(11, 14), &"laboratory_west_spectrometer"],
+	[Vector2i(19, 14), &"laboratory_east_coolant"], [Vector2i(24, 14), &"laboratory_center_storage"],
+	[Vector2i(15, 10), &"laboratory_east_fabricator"], [Vector2i(15, 4), &"laboratory_utility_bank"],
+	[Vector2i(15, 18), &"laboratory_exit_doors"],
+]
 
 var _profiles
 var _textures: Dictionary = {}

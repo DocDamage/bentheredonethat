@@ -133,7 +133,8 @@ static func identities_for_room(room_id: StringName, phase: StringName, cohort: 
 		candidates.append(profile)
 	var available_cohorts: Array[StringName] = []
 	for profile in candidates:
-		var candidate_cohort := StringName((profile.get("schedule", {}) as Dictionary).get("cohort", &""))
+		var raw_cohort: Variant = (profile.get("schedule", {}) as Dictionary).get("cohort", &"")
+		var candidate_cohort := StringName(raw_cohort) if raw_cohort is String or raw_cohort is StringName else &""
 		if candidate_cohort != &"" and candidate_cohort not in available_cohorts:
 			available_cohorts.append(candidate_cohort)
 	available_cohorts.sort()
@@ -142,7 +143,8 @@ static func identities_for_room(room_id: StringName, phase: StringName, cohort: 
 		selected_cohort = available_cohorts[0]
 	var result: Array = []
 	for profile in candidates:
-		var candidate_cohort := StringName((profile.get("schedule", {}) as Dictionary).get("cohort", &""))
+		var raw_cohort: Variant = (profile.get("schedule", {}) as Dictionary).get("cohort", &"")
+		var candidate_cohort := StringName(raw_cohort) if raw_cohort is String or raw_cohort is StringName else &""
 		if candidate_cohort == &"" or candidate_cohort == selected_cohort:
 			result.append(StringName(profile.get("id", &"")))
 	return result

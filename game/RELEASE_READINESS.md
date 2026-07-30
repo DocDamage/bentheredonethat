@@ -1,7 +1,9 @@
 # Release readiness
 
-Status: **not ready to ship**. This file separates verified automated evidence
-from the human, platform, licensing, and performance sign-offs that remain.
+Status: **unsigned release candidate verified; not accepted for public ship.**
+The Phase 7 implementation and automatable gates are complete. This file keeps
+those results separate from the human, signing, minimum-hardware, and long-soak
+sign-offs that remain.
 
 ## Locked completion scope
 
@@ -171,26 +173,31 @@ memory, a DirectX 11-capable GPU with 2 GB VRAM, 2 GB free storage, and a
 current RTX 3060 measurement proves performance on every machine in that range.
 The 60 FPS and frame-pacing targets remain unchanged.
 
-- [ ] Choose supported export platforms, storefronts, minimum hardware, and
-  signing/notarization requirements. The tracked Windows x86_64 desktop preset
-  is an initial local baseline, not a declaration of the final platform list.
-- [ ] Install the matching Godot 4.7.1 export templates in CI/release machines,
-  then reproduce the clean Windows release export and launch it outside the
-  editor. Push the prepared smoke workflow and record its first clean remote
-  pass. The local 4.7.1 x86_64 templates and baseline export are verified.
-- [ ] Set the approved shipping version and final Windows publisher/signing metadata.
+- [x] Lock the initial release to direct-download Windows x86_64, declare the
+  provisional minimum hardware, and record Windows Authenticode as the public
+  signing requirement. Notarization is not applicable to this Windows-only RC.
+- [ ] Reproduce the new clean Windows RC job on GitHub for the exact pushed
+  commit. The workflow installs Godot 4.7.1 plus matching export templates and
+  uploads the launched candidate; local export/launch is verified.
+- [x] Set shipping version `1.0.0` and Windows publisher `DocDamage` in the
+  release contract, project, and export metadata.
 - [x] Record product-owner distribution approval for the current 182 static
   runtime visual sources and their supplied licence evidence.
-- [ ] Extend the provenance ledger to audio, fonts, addons, dynamically
-  resolved assets, and newly introduced runtime sources; consolidate required
-  notices into shipped credits.
-- [ ] Archive two fresh-save end-to-end playthroughs and one migrated-save run,
-  including recall, defeat/retry, partial-puzzle reload, and backup recovery.
+- [x] Extend the deterministic provenance ledger to audio, fonts, addons,
+  shaders, dynamic resources, and notices; ship consolidated third-party
+  notices alongside credits and the base license.
+- [ ] Perform and archive two human fresh-save end-to-end playthroughs and one
+  human migrated-save run. Automated state-machine scenarios cover recall,
+  defeat/retry, partial-puzzle reload, backup recovery, ending/postgame, and
+  two fresh plus one migrated run, but do not replace hands-on acceptance.
 - [ ] Perform complete keyboard/mouse and modern-controller playthroughs at all
   supported resolutions, and inspect native-scale captures for every room.
 - [ ] Measure campaign duration, load/save time, frame rate, and memory on the
   declared minimum hardware.
 - [ ] Investigate or explicitly baseline the current shutdown-only
   ObjectDB/resource warnings over a multi-hour session.
+- [ ] Sign the public executable with the release certificate and verify its
+  timestamped Authenticode signature. Unsigned candidates are allowed only for
+  internal validation.
 
 Do not mark a release complete until every blocker has recorded evidence.

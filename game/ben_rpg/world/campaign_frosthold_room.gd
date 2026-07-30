@@ -76,6 +76,11 @@ func _draw() -> void:
 		for x in range(_dimensions.x):
 			var profile_id: StringName = GROUND_PROFILES[(x * 3 + y * 5 + seed) % GROUND_PROFILES.size()]
 			_draw_profile(profile_id, Vector2(x, y) * TILE)
+	var road_width := 5.0 * TILE
+	var road := Rect2(Vector2((bounds.size.x - road_width) * 0.5, 0), Vector2(road_width, bounds.size.y))
+	draw_rect(road, Color(0.35, 0.58, 0.72, 0.13), true)
+	for y in range(TILE, int(bounds.size.y), 3 * TILE):
+		draw_arc(Vector2(bounds.size.x * 0.5, y), road_width * 0.34, PI, TAU, 24, Color(0.55, 0.76, 0.88, 0.32), 3.0)
 	var composition_offset := (bounds.size - Vector2(384, 384)) * 0.5
 	for prop_definition in ROOM_PROPS.get(_room_id, []):
 		_draw_profile(StringName(prop_definition[0]), composition_offset + (prop_definition[1] as Vector2))

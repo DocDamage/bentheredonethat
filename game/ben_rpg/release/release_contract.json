@@ -1,0 +1,82 @@
+{
+  "schemaVersion": 1,
+  "contentLock": {
+    "locations": 192,
+    "coreLocations": 102,
+    "annexLocations": 90,
+    "facilityPlacements": 121,
+    "populationIdentities": 258,
+    "baselineCaptures": 384,
+    "requiredAddressCampaigns": 6
+  },
+  "product": {
+    "name": "Ben There, Done That",
+    "publisher": "DocDamage",
+    "shippingVersion": "1.0.0",
+    "releaseChannel": "release_candidate",
+    "storefronts": [
+      "direct-download"
+    ],
+    "platforms": [
+      "windows-x86_64"
+    ]
+  },
+  "support": {
+    "operatingSystems": [
+      "Windows 10 x64",
+      "Windows 11 x64"
+    ],
+    "minimumHardware": {
+      "cpu": "4-core x86_64 processor",
+      "memoryGb": 8,
+      "gpu": "DirectX 11 compatible GPU with 2 GB VRAM",
+      "storageGb": 2
+    },
+    "resolutions": [
+      [1280, 720],
+      [1920, 1080],
+      [1920, 1200],
+      [2560, 1440],
+      [3840, 2160]
+    ],
+    "inputModes": [
+      "keyboard_mouse",
+      "modern_controller"
+    ]
+  },
+  "performanceBudgets": {
+    "targetFps": 60,
+    "frameTimeP95Ms": 16.7,
+    "frameTimeP99Ms": 33.3,
+    "warmTitleToFieldMs": 5000,
+    "universeTransitionMs": 2000,
+    "battleTransitionMs": 2000,
+    "saveLoadMs": 1000,
+    "peakMemoryMb": 1024,
+    "windowsPackageMb": 400
+  },
+  "releaseEvidence": {
+    "freshPlaythroughs": 2,
+    "migratedPlaythroughs": 1,
+    "requiredScenarios": [
+      "defeat_retry",
+      "recall",
+      "partial_puzzle_reload",
+      "backup_recovery",
+      "postgame_free_roam",
+      "rewardless_rematch"
+    ],
+    "captureStates": [
+      "fresh",
+      "stabilized"
+    ]
+  },
+  "signing": {
+    "method": "windows-authenticode",
+    "timestampRequired": true,
+    "credentialSource": "BTDT_SIGNING_CERTIFICATE_PATH and BTDT_SIGNING_CERTIFICATE_PASSWORD",
+    "unsignedCandidateAllowed": true,
+    "signedPublicReleaseRequired": true,
+    "notarization": "not-applicable-windows-only"
+  }
+}
