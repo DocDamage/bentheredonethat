@@ -52,3 +52,21 @@ a human records keyboard/mouse and controller traversal, native-scale first
 visit/restored/special-state visual review, chapter balance and accessibility
 review, minimum-hardware performance review, and product-owner approval for all
 64 address rooms.
+
+## Post-verification correction
+
+- Correction commit: `ae18cf9e`.
+- Review found that defeating a chapter boss before the other critical
+  encounters could leave the boss cleared without ever retrying chapter
+  resolution. Resolution is now retried after every first-time encounter clear,
+  so the final outstanding critical victory completes the chapter regardless of
+  encounter order while retaining the one-time reward guard.
+- The focused Phase 5 gate passed with boss-first ordering for all six chapters
+  at `test-artifacts/20260730-052727-c9bb0cc1`.
+- All 164 discovered isolated Godot smoke scenes passed across the retained
+  artifact batches `test-artifacts/20260730-053016-b16901e5` (107 scenes) and
+  `test-artifacts/20260730-054041-44029890` (57 scenes), with zero failure
+  signatures. The completed second batch and focused run both reported the
+  production-save sentinel unchanged.
+- `npm run check`, `npm run validate:runtime-assets`, and `git diff --check`
+  passed after the correction.
