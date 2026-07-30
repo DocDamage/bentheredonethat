@@ -71,8 +71,8 @@ jobs:
       - name: Materialize runtime LFS assets
         shell: pwsh
         run: |
-          git lfs pull
-          $pointers = Get-ChildItem -LiteralPath 'game/game_assets' -Recurse -File |
+          git lfs pull --include="game/**"
+          $pointers = Get-ChildItem -LiteralPath 'game' -Recurse -File |
             Where-Object {
               $_.Length -lt 200 -and
               ((Get-Content -LiteralPath $_.FullName -Raw -ErrorAction SilentlyContinue) -like 'version https://git-lfs.github.com/spec/v1*')
@@ -110,19 +110,21 @@ jobs:
           $content = Get-Content -LiteralPath $project -Raw
           $content = [regex]::Replace($content, '(?m)^enabled=PackedStringArray\([^\r\n]*\)$', 'enabled=PackedStringArray()')
           Set-Content -LiteralPath $project -Value $content -NoNewline -Encoding utf8
-          # Godot's first clean-checkout `--headless --import` can wait
-          # indefinitely while constructing global_script_class_cache.cfg. Start
-          # the editor only long enough to create that cache. Requiring the
-          # complete import tree to become idle delays CI on the large tracked
-          # asset library; the isolated runner below remains the authority for
-          # normal scene imports and smoke execution.
+          # A clean checkout needs both its global class cache and imported
+          # runtime resources. Killing the editor as soon as the class cache
+          # appears races texture/font/audio and UID imports, which makes valid
+          # files report "No loader found" in the isolated scenes. Wait until
+          # the imported tree has reached its expected floor and stayed idle.
           $bootstrap = Start-Process -FilePath $env:GODOT_EXECUTABLE -ArgumentList @('--headless', '--path', './game', '--editor') -PassThru -NoNewWindow
-          $deadline = (Get-Date).AddMinutes(5)
-          $cacheReady = $false
+          $deadline = (Get-Date).AddMinutes(20)
+          $settled = $false
           do {
-            Start-Sleep -Seconds 2
+            Start-Sleep -Seconds 3
             $cacheReady = Test-Path -LiteralPath 'game/.godot/global_script_class_cache.cfg' -PathType Leaf
-            if ($cacheReady) {
+            $imported = @(Get-ChildItem -LiteralPath 'game/.godot/imported' -File -Recurse -ErrorAction SilentlyContinue)
+            $latestImport = $imported | Sort-Object LastWriteTime -Descending | Select-Object -First 1
+            if ($cacheReady -and $imported.Count -ge 1000 -and $latestImport -and $latestImport.LastWriteTime -lt (Get-Date).AddSeconds(-15)) {
+              $settled = $true
               break
             }
           } while ((Get-Date) -lt $deadline -and -not $bootstrap.HasExited)
@@ -130,8 +132,8 @@ jobs:
             Stop-Process -Id $bootstrap.Id -Force
             $bootstrap.WaitForExit()
           }
-          if (-not $cacheReady) {
-            throw 'Godot did not create global_script_class_cache.cfg within 5 minutes.'
+          if (-not $settled) {
+            throw 'Godot did not finish its clean-checkout class-cache and runtime-resource imports within 20 minutes.'
           }
 
       - name: Run isolated smoke suite shard
